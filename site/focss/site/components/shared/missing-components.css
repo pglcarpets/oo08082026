@@ -1,0 +1,262 @@
+
+/* ==========================================================================
+   Missing shared component styles
+   Global component layer for shared classes used outside route-only bundles.
+   ========================================================================== */
+
+.product-gallery {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: calc(var(--spacing) * 3);
+}
+
+.product-gallery__thumbs {
+  display: flex;
+  gap: calc(var(--spacing) * 2);
+  overflow-x: auto;
+  padding-bottom: calc(var(--spacing) * 2);
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .product-gallery__thumbs {
+    flex-wrap: wrap;
+    overflow-x: visible;
+  }
+}
+
+.product-gallery__main {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-2xl);
+  /* Studio neutral under product photos — not ecru paper */
+  background: var(--surface-studio-field);
+}
+
+.product-gallery__count {
+  position: absolute;
+  right: calc(var(--spacing) * 3);
+  bottom: calc(var(--spacing) * 3);
+  border-radius: var(--radius-pill);
+  background: var(--hero-btn-secondary-shadow);
+  padding: 0.125rem 0.5rem;
+  color: var(--text-inverse);
+  font-size: var(--type-label-size);
+  line-height: 1.4;
+}
+
+.product-gallery__thumb--active {
+  border: 0.125rem solid var(--color-primary);
+}
+
+.contact-teaser {
+  width: 100%;
+}
+
+.contact-teaser__shell {
+  position: relative;
+  overflow: hidden;
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface-panel-strong);
+  box-shadow: var(--shadow-soft);
+  padding: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .contact-teaser__shell {
+    padding: var(--space-5);
+  }
+}
+
+.contact-teaser__layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .contact-teaser__layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.2fr);
+    gap: 1.75rem;
+  }
+}
+
+.contact-teaser__intro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  max-width: none;
+}
+
+.contact-teaser__media {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  aspect-ratio: 4 / 3;
+}
+
+.contact-teaser__img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.contact-teaser__form {
+  width: 100%;
+}
+
+.contact-teaser__mini-grid {
+  width: 100%;
+}
+
+.contact-teaser__hint {
+  margin-top: calc(var(--spacing) * 1.5);
+  margin-bottom: 0;
+}
+
+.contact-teaser__field {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 1);
+}
+
+.contact-teaser__field--brief {
+  margin-top: calc(var(--spacing) * 3);
+}
+
+.contact-teaser__input {
+  width: 100%;
+  min-height: 2.75rem;
+  height: 2.5rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-default);
+  background: var(--surface-page);
+  padding-inline: calc(var(--spacing) * 3);
+  color: var(--text-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  outline: none;
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.contact-teaser__input::placeholder {
+  color: var(--text-subtle);
+}
+
+.contact-teaser__input:focus,
+.contact-teaser__input:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.contact-teaser__input--textarea {
+  min-height: 7rem;
+  height: auto;
+  padding-block: calc(var(--spacing) * 3);
+  resize: vertical;
+}
+
+.contact-teaser__cta-stack {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--spacing) * 3);
+  margin-top: calc(var(--spacing) * 4);
+}
+
+.contact-teaser__cta-stack .btn-primary {
+  min-height: 44px;
+}
+
+.contact-teaser__support-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: calc(var(--spacing) * 2);
+}
+
+.contact-teaser__support-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--spacing) * 2);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-pill);
+  background: var(--surface-panel-strong);
+  padding-inline: calc(var(--spacing) * 3);
+  color: var(--text-body);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard),
+    color var(--motion-fast) var(--ease-standard);
+}
+
+.contact-teaser__support-link:hover {
+  border-color: var(--color-primary);
+  background: var(--surface-hover);
+  color: var(--text-strong);
+}
+
+.contact-teaser__support-link--whatsapp {
+  border-color: color-mix(in srgb, var(--color-whatsapp) 40%, var(--border-soft));
+  color: var(--color-whatsapp-hover);
+}
+
+.contact-teaser__support-link--whatsapp:hover {
+  border-color: var(--color-whatsapp-hover);
+  color: var(--color-whatsapp-hover);
+}
+
+.contact-teaser__support-link-icon {
+  display: inline-flex;
+  width: 1.5rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  color: var(--color-primary);
+}
+
+.contact-teaser__support-link--whatsapp .contact-teaser__support-link-icon {
+  background: color-mix(in srgb, var(--color-whatsapp) 14%, transparent);
+  color: var(--color-whatsapp-hover);
+}
+
+.contact-teaser__status {
+  margin-top: calc(var(--spacing) * 2);
+  border-radius: var(--radius-default);
+  padding: calc(var(--spacing) * 3);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.contact-teaser__status--success {
+  background: var(--color-bronze-50);
+  color: var(--color-success);
+}
+
+.contact-teaser__status--error {
+  background: var(--surface-status-bad);
+  color: var(--color-error-red);
+}
+
+.shell-card {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-panel-strong);
+  box-shadow: var(--shadow-soft);
+  -webkit-backdrop-filter: blur(0.5rem);
+  backdrop-filter: blur(8px);
+}

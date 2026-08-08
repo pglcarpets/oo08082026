@@ -1,0 +1,487 @@
+﻿/* Admin page layout â€” page chrome, header, sections, eyebrow.
+ * Depends on: admin-primitives.css */
+
+/* Parametric preview rules live in locked/svg/svg-preview.css */
+
+/* â”€â”€ Page shell â”€â”€ */
+
+.admin-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5, 1.25rem);
+  /* Vertical only â€” shell-admin-main already pads sides */
+  padding: var(--space-4, 1rem) 0 var(--space-6, 1.5rem);
+  /* No local page paint â€” shell owns homepage paper background */
+  background: transparent;
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  line-height: var(--type-leading-body);
+  letter-spacing: var(--type-letter-copy);
+}
+
+.admin-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4, 1rem);
+  flex-wrap: wrap;
+  padding-block: var(--space-3, 0.75rem) var(--space-2, 0.5rem);
+  border-bottom: 1px solid var(--border-soft);
+  margin-bottom: var(--space-1, 0.25rem);
+}
+
+.admin-page__eyebrow {
+  margin: 0 0 var(--space-1, 0.25rem);
+  font-family: var(--font-sans);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: var(--type-letter-label-wide, 0.08em);
+  line-height: var(--type-leading-label);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Operator page title â€” utilitarian sans, not marketing display */
+.admin-page__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: clamp(1.35rem, 1.15rem + 0.6vw, 1.75rem);
+  font-weight: var(--font-weight-copy-semibold, 600);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--text-heading);
+  font-kerning: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+.admin-page__actions {
+  display: flex;
+  gap: var(--space-2, 0.5rem);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.admin-page__meta {
+  margin: var(--space-2, 0.5rem) 0 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-regular);
+  letter-spacing: var(--type-letter-copy);
+  line-height: var(--type-leading-copy-sm);
+  /* Heading-soft (ink-700) — small meta on ecru must pass WCAG AA (price-books, analytics). */
+  color: var(--text-heading-soft, var(--text-body));
+}
+
+.admin-page__copy {
+  margin: var(--space-2, 0.5rem) 0 var(--space-3, 0.75rem);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--font-weight-copy-regular);
+  letter-spacing: var(--type-letter-copy);
+  line-height: var(--type-leading-copy);
+  color: var(--text-body);
+  max-width: 42rem;
+}
+
+.admin-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3, 0.75rem);
+}
+
+.admin-page__section--spaced {
+  gap: var(--space-5, 1.25rem);
+}
+
+/* â”€â”€ Workspace library (read-only static list) â”€â”€ */
+
+.admin-workspace-card-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.admin-workspace-card {
+  margin: 0;
+  padding: 0.85rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.admin-workspace-card__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  min-width: 0;
+}
+
+.admin-workspace-card__meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem 1rem;
+  margin: 0.85rem 0 0;
+}
+
+.admin-workspace-card__meta dt {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.admin-workspace-card__meta dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.875rem;
+  color: var(--text-strong);
+  overflow-wrap: anywhere;
+}
+
+.admin-workspace-card__meta-full {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 48.01rem) {
+  .admin-workspace-card-list {
+    display: none;
+  }
+}
+
+@media (max-width: 48rem) {
+  .admin-workspace-inventory .admin-table-wrap {
+    display: none;
+  }
+}
+
+/* â”€â”€ SVG engine page variant â”€â”€ */
+
+/* â”€â”€ Phone / narrow inventory: cards-priority (ADM-MOB-01 / ADM-MOB-03) â”€â”€
+ * Markup: data-phone-layout="cards-priority" + td[data-label].
+ * Card hierarchy: preview + product header, then meta rows, then actions.
+ * Semantic tokens only. No second theme tree. */
+
+@media (max-width: 48rem) {
+  .admin-page {
+    padding: 0.9rem 0;
+    gap: 0.85rem;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+  }
+
+  .admin-page__header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .admin-page__title {
+    font-size: 1.35rem;
+    line-height: 1.15;
+  }
+
+  .admin-page__copy {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+  }
+
+  .admin-page__actions {
+    width: 100%;
+  }
+
+  .admin-page__actions .admin-btn--primary {
+    width: 100%;
+    justify-content: center;
+    min-height: 2.75rem; /* ≥44px tap target */
+  }
+
+  /* Panels never force page-level horizontal scroll */
+  .admin-panel,
+  .admin-table-wrap {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  /* Cards replace the wide grid; clip bleed so Actions never paint past viewport. */
+  .admin-table-wrap[data-phone-layout="cards-priority"]{
+    overflow-x: hidden;
+    overflow-y: visible;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  table[data-phone-layout="cards-priority"] {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  table[data-phone-layout="cards-priority"] thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  table[data-phone-layout="cards-priority"] tbody {
+    display: block;
+  }
+
+  /* Data rows â†’ cards: 2-col header (preview | product), full-width meta */
+  table[data-phone-layout="cards-priority"] tbody tr:not(.admin-table__group) {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: 0.75rem;
+    row-gap: 0;
+    margin-block: 0.6rem;
+    padding: 0.8rem;
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-sm);
+    background: var(--color-surface-raised);
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  table[data-phone-layout="cards-priority"] tbody tr:not(.admin-table__group):hover {
+    background: color-mix(
+      in srgb,
+      var(--color-primary) 5%,
+      var(--color-surface-raised)
+    );
+  }
+
+  table[data-phone-layout="cards-priority"] tbody tr:not(.admin-table__group):focus-within {
+    outline: 2px solid color-mix(in srgb, var(--color-primary) 55%, transparent);
+    outline-offset: 1px;
+  }
+
+  table[data-phone-layout="cards-priority"] td {
+    min-width: 0;
+    max-width: 100%;
+    padding: 0.45rem 0;
+    border-bottom: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Preview + product form the card header (SVG inventory).
+   * Managed catalog uses Name as the sole header when no Preview column. */
+  table[data-phone-layout="cards-priority"] td[data-label="Preview"] {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0 0.6rem;
+    border-top: none;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Preview"]::before {
+    content: none;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"],
+  table[data-phone-layout="cards-priority"] td[data-label="Name"] {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 0 0 0.6rem;
+    border-top: none;
+  }
+
+  /* Catalog rows have no Preview cell â€” Name spans full card width as title */
+  table[data-phone-layout="cards-priority"]
+    tbody
+    tr:not(.admin-table__group):not(:has(td[data-label="Preview"]))
+    td[data-label="Name"] {
+    grid-column: 1 / -1;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"]::before,
+  table[data-phone-layout="cards-priority"] td[data-label="Name"]::before {
+    content: none;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"] .admin-table__primary,
+  table[data-phone-layout="cards-priority"] td[data-label="Name"] .admin-table__primary {
+    font-size: 0.95rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"] .admin-table__primary a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"] .admin-table__primary a:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Product"] .admin-table__secondary,
+  table[data-phone-layout="cards-priority"] td[data-label="Name"] .admin-table__secondary {
+    font-size: var(--type-small-size);
+    line-height: 1.35;
+  }
+
+  /* Remaining meta rows: label | value across full card width */
+  table[data-phone-layout="cards-priority"]
+    td:not([data-label="Preview"]):not([data-label="Product"]):not([data-label="Name"]) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: minmax(5rem, 32%) minmax(0, 1fr);
+    column-gap: 0.65rem;
+    align-items: start;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  table[data-phone-layout="cards-priority"]
+    td:not([data-label="Preview"]):not([data-label="Product"]):not([data-label="Name"])::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    padding-top: 0.15rem;
+    line-height: 1.3;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Lifecycle"] .admin-badge,
+  table[data-phone-layout="cards-priority"] td[data-label="Symbol"] .admin-badge,
+  table[data-phone-layout="cards-priority"] td[data-label="Status"] .admin-badge {
+    max-width: 100%;
+    white-space: normal;
+    text-transform: none;
+    letter-spacing: 0.02em;
+  }
+
+  /* Actions: label above, full-width â‰¥44px buttons */
+  table[data-phone-layout="cards-priority"] td[data-label="Actions"] {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.45rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border-soft);
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Actions"]::before {
+    content: attr(data-label);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.05rem;
+  }
+
+  /* Product Studio inventory action row â€” stay inside card width. */-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Actions"] .admin-catalog-row-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  table[data-phone-layout="cards-priority"] td[data-label="Actions"] .admin-btn {
+    flex: 1 1 calc(50% - 0.25rem);
+    justify-content: center;
+    min-height: 2.75rem; /* ≥44px */
+    min-width: 0;
+  }
+
+  /* Managed catalog panel (no SVG preview column): keep cards within viewport */
+  .admin-catalog-inventory,
+  .admin-catalog-inventory .admin-table-wrap {
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .admin-catalog-inventory .admin-table-wrap[data-phone-layout="cards-priority"] {
+    overflow-x: visible;
+  }
+
+  /* Catalog paging: full-width â‰¥44px controls under the card list */
+  .admin-catalog-paging {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding: 0.55rem 0.15rem 0.35rem;
+  }
+
+  .admin-catalog-paging .admin-btn {
+    width: 100%;
+    justify-content: center;
+    min-height: 2.75rem; /* ≥44px */
+  }
+
+  /* Family / group headers stay full-width labels, not cards */
+  table[data-phone-layout="cards-priority"] tr.admin-table__group {
+    display: block;
+    margin: 0.9rem 0 0.25rem;
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+
+  table[data-phone-layout="cards-priority"] tr.admin-table__group th {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.15rem;
+    border: none;
+    white-space: normal;
+    background: transparent;
+    cursor: default;
+    font-size: var(--type-label-size);
+  }
+}
+
+/* Desktop page shell: scannable density at ~1440 */
+@media (min-width: 48.01rem) {
+  .admin-page {
+    padding: 1.15rem 0 1.5rem;
+    gap: 1.1rem;
+    max-width: 90rem;
+  }
+
+  .admin-page__header {
+    gap: 1.25rem;
+  }
+
+  .admin-page__copy {
+    max-width: 42rem;
+  }
+}
+
+

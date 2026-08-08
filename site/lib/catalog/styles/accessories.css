@@ -1,0 +1,17 @@
+:root {
+  /* Accessories & Glyphs */
+  --block-glyph: var(--block-theme-body);
+  --block-glyph-dark: var(--block-theme-seat-contour);
+  --block-acc-mousepad: var(--block-theme-seat-back);
+  --block-acc-phone: var(--block-theme-accent-dark);
+  --block-acc-phone-stroke: var(--block-theme-panel);
+  --block-acc-laptop: var(--block-theme-stroke);
+  --block-acc-laptop-kb: var(--block-theme-accent-dark);
+  --block-acc-cup: var(--block-theme-surface-primary);
+  --block-acc-coffee: var(--block-primitive-amber-900);
+  --block-acc-notebook: var(--block-theme-surface-primary);
+  --block-acc-notebook-stroke: var(--block-theme-body);
+  --block-acc-notebook-bind: var(--block-primitive-blue-500);
+  --block-acc-kb-base: var(--block-theme-surface-primary);
+  --block-acc-kb-keys: var(--block-theme-body-light);
+}

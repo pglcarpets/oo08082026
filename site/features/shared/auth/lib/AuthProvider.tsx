@@ -1,0 +1,71 @@
+"use client";
+
+import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+import { createAuthClient } from '@/platform/supabase/client'
+import type { SessionState } from '@/features/shared/auth/types'
+
+const supabase = createAuthClient()
+
+const SessionContext = createContext<SessionState>({ status: 'loading' })
+
+export function AuthProvider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState<SessionState>({ status: 'loading' })
+
+  useEffect(() => {
+    let mounted = true
+    // Subscribe BEFORE getSession() so we never miss the cold-start
+    // event Supabase emits as the cached session is rehydrated. If
+    // that event lands first, `subscriptionFired` short-circuits the
+    // later getSession() resolution so a slow/cached round-trip can't
+    // overwrite a fresher state with stale data.
+    let subscriptionFired = false
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!mounted) {return}
+      subscriptionFired = true
+      setState(
+        session
+          ? { status: 'authenticated', user: { id: session.user.id, email: session.user.email ?? '' } }
+          : { status: 'unauthenticated' },
+      )
+    })
+
+    supabase.auth
+      .getSession()
+      .then(({ data }) => {
+        if (!mounted || subscriptionFired) {return}
+        setState(
+          data.session
+            ? { status: 'authenticated', user: { id: data.session.user.id, email: data.session.user.email ?? '' } }
+            : { status: 'unauthenticated' },
+        )
+      })
+      .catch(() => {
+        // A transient network error on cold load must not leave the app
+        // wedged in `'loading'`. Fall through to unauthenticated so the
+        // sign-in screen renders; the subscription above will still
+        // upgrade us to authenticated if a cached session resolves later.
+        if (!mounted || subscriptionFired) {return}
+        setState({ status: 'unauthenticated' })
+      })
+
+    return () => {
+      mounted = false
+      subscription.unsubscribe()
+    }
+  }, [])
+
+  return <SessionContext.Provider value={state}>{children}</SessionContext.Provider>
+}
+
+// Co-located with the provider because callers always import both
+// from the same module and the hook is trivial. Splitting into its
+// own file would just churn imports for no runtime benefit.
+export function useSession(): SessionState {
+  return useContext(SessionContext)
+}
+
+
+

@@ -1,0 +1,146 @@
+/*
+ * Route marketing pages — tighter vertical rhythm vs homepage.
+ * Same theme family as home (shared FOCSS surfaces/type/color).
+ * Do not remap --surface-* here — that made routes feel like a new theme.
+ * Accent punctuation bands (bronze strips, proof-kpi) keep their own padding.
+ */
+
+.home-marketing-layout:not(:has(#home-hero)):not(:has([data-testid="homepage-hero"])) {
+  --section-space-sm: clamp(2.35rem, 3.4vw, 3.15rem);
+  --section-space-md: clamp(2.85rem, 4.1vw, 3.85rem);
+  --section-space-lg: clamp(3.45rem, 4.9vw, 4.65rem);
+  --editorial-hero-follow-gap: clamp(1.25rem, 2.6vw, 2.75rem);
+}
+
+/* Soft bands stay in the shared cool-mist family. */
+.home-marketing-layout:not(:has(#home-hero)):not(:has([data-testid="homepage-hero"])) .home-section--soft,
+.home-marketing-layout:not(:has(#home-hero)):not(:has([data-testid="homepage-hero"])) .home-section--soft.scheme-soft {
+  background: linear-gradient(
+    165deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 24%, var(--color-white-100)) 48%,
+    color-mix(in srgb, var(--color-ecru-100) 6%, var(--color-white-150)) 100%
+  );
+}
+
+/*
+ * Editorial heroes — first body section hugs hero (beat section-y shorthand).
+ * Include .section-y* so utility padding-block cannot wipe the follow-gap.
+ */
+.home-marketing-layout:not(:has(#home-hero)) .about-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .about-hero + .home-section.section-y-sm,
+.home-marketing-layout:not(:has(#home-hero)) .contact-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .contact-hero + .home-section.section-y-sm,
+.home-marketing-layout:not(:has(#home-hero)) .service-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .service-hero + .home-section.section-y-sm,
+.home-marketing-layout:not(:has(#home-hero)) .solutions-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .solutions-hero + .home-section.section-y-sm,
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .home-section.section-y-sm,
+.home-marketing-layout:not(:has(#home-hero)) .clients-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .clients-hero + .home-section.section-y-sm {
+  padding-block: var(--editorial-hero-follow-gap) var(--section-space-md);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .clients-hero + .clients-proof-strip {
+  padding-block-start: var(--editorial-hero-follow-gap);
+  padding-block-end: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .clients-hero + .clients-proof-strip + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .clients-hero + .clients-proof-strip + .home-section.section-y-sm {
+  padding-block: var(--section-space-md);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .trusted-by-hero + .proof-kpi-band + .home-section,
+.home-marketing-layout:not(:has(#home-hero)) .sustainability-hero + .about-craft-strip + .home-section {
+  padding-block: var(--section-space-md);
+  padding-block-start: var(--section-space-md);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .page-hero + .legal-bronze-rule,
+.home-marketing-layout:not(:has(#home-hero)) .legal-hero + .legal-bronze-rule {
+  padding-block: 0.5rem;
+  min-height: 0;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .page-hero + .legal-bronze-rule + .home-section,
+.home-marketing-layout:not(:has(#home-hero)) .legal-hero + .legal-bronze-rule + .home-section {
+  padding-block: var(--editorial-hero-follow-gap) var(--section-space-md);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .planner-landing-hero + .planner-bronze-rule,
+.home-marketing-layout:not(:has(#home-hero)) .planner-editorial-hero + .planner-bronze-rule {
+  padding-block: 0.75rem;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .planner-landing-hero + .planner-bronze-rule + .home-section,
+.home-marketing-layout:not(:has(#home-hero)) .planner-editorial-hero + .planner-bronze-rule + .home-section {
+  padding-block: var(--section-space-md);
+  padding-block-start: var(--editorial-hero-follow-gap);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .service-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .solutions-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .showrooms-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .career-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .about-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .products-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .downloads-hero + .about-craft-strip,
+.home-marketing-layout:not(:has(#home-hero)) .sustainability-hero + .about-craft-strip {
+  padding-block-start: var(--editorial-hero-follow-gap);
+  padding-block-end: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .about-craft-strip + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .about-craft-strip + .home-section.section-y-sm {
+  padding-block: clamp(1.25rem, 2.6vw, 2.75rem) var(--section-space-md);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .home-section.section-y-sm:has([data-section="route-cta"]) {
+  padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .trusted-by-hero + .proof-kpi-band {
+  margin-block-start: 0;
+  padding-block: clamp(1.25rem, 2.5vw, 1.85rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) [data-section="route-cta"] {
+  padding: 1.65rem;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .home-marketing-layout:not(:has(#home-hero)) [data-section="route-cta"] {
+    padding: 2rem;
+  }
+}
+
+.home-marketing-layout:not(:has(#home-hero)) [data-section="route-cta"] .home-heading {
+  margin-top: 0.75rem;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) [data-section="route-cta"] .page-copy {
+  margin-top: 0.75rem;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .section-intro .typ-label {
+  margin-bottom: 0.75rem;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .section-intro .page-copy {
+  margin-top: 1rem;
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .page-hero.hero-section {
+  min-height: 10rem;
+  max-height: 16rem;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .home-marketing-layout:not(:has(#home-hero)) .page-hero.hero-section {
+    min-height: 11.5rem;
+    max-height: 18rem;
+  }
+}

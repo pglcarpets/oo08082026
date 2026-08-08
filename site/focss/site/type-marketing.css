@@ -1,0 +1,101 @@
+/* --- ========================================================================== Marketing / site type utilities (NOT base) home-*, hero-*, catalog-card__* used by marketing routes + home. Base typ-* scale only: base/type.css ========================================================================== --- */
+@utility hero-title {
+  font-family: var(--font-display);
+  font-size: var(--type-display-size);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-tight);
+  line-height: var(--type-leading-display);
+  font-kerning: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+@utility home-heading {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.6vw, 2.9rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-title);
+  line-height: 1.08;
+  font-kerning: normal;
+  overflow-wrap: anywhere;
+  /* Headings are pure black via --text-heading. */
+  color: var(--text-heading, var(--color-pure-black));
+  text-wrap: balance;
+}
+
+@utility home-copy {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--font-weight-copy-regular);
+  letter-spacing: var(--type-letter-copy);
+  line-height: var(--type-leading-copy);
+}
+
+@utility hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-lg-size);
+  font-weight: var(--font-weight-copy-regular);
+  letter-spacing: var(--type-letter-copy);
+  line-height: var(--type-leading-copy);
+}
+
+@utility catalog-card__description {
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-copy-regular);
+  letter-spacing: var(--type-letter-copy);
+  line-height: var(--type-leading-copy-sm);
+}
+
+@utility home-kicker {
+  font-family: var(--font-sans);
+  font-size: var(--type-kicker-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+@utility catalog-card__eyebrow {
+  font-family: var(--font-sans);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+@utility home-heading__accent {
+  color: var(--color-ocean-boat-blue-500);
+  font-style: normal;
+  font-weight: var(--font-weight-display-regular);
+  letter-spacing: inherit;
+}
+
+@utility hero-accent {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-display-regular);
+}
+
+@utility hero-title-default {
+  font-family: var(--font-display);
+  font-size: clamp(3.25rem, 6vw, 5.8125rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-tight);
+  line-height: var(--type-leading-display);
+  font-kerning: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+
+@utility hero-title-small {
+  font-family: var(--font-display);
+  font-size: clamp(2.625rem, 5vw, 4.6875rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-tight);
+  line-height: var(--type-leading-display);
+  font-kerning: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+

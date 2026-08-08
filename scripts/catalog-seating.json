@@ -1,0 +1,2112 @@
+[
+  {
+    "name": "Myel (With Headrest)",
+    "slug": "myel-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Myel Excellence represents the perfect fusion of unparalleled comfort and superior craftsmanship. Each chair is meticulously designed to provide the ultimate seating experience, blending luxurious support with timeless style.",
+    "features": [
+      "The chair features an adjustable headrest, offering support for your neck, promoting relaxation during long sitting sessions.",
+      "Equipped with 3D adjustable armrests, the Myel chair allows for customizable positioning, ensuring optimal support and reducing strain on your arms and shoulders.",
+      "With adjustable lumbar support, the Myel chair helps maintain proper posture, providing targeted lower back support for enhanced comfort throughout the day",
+      "The Myel chair's adjustable headrest provides personalized neck support for comfort during long sitting sessions",
+      "Experience personalized comfort with Myel’s adjustable seat featuring a 60mm seat depth adjustment",
+      "The Myel chair’s weight balance tilt mechanism ensures smooth and effortless reclining, adapting to your body’s movement and providing customized support for comfort during long hours of use",
+      "Sway’s intelligent design promotes motion and alignment—making it the ideal companion for continuous momentum",
+      "Sway integrates a flexible frame and precision-crafted components, combining modern engineering with ergonomic intelligence for sustained vitality at your desk"
+    ],
+    "dimensions": {
+      "Overall width": "635 ±10 mm",
+      "Backrest width (atinner frame)": "460 ±10 mm",
+      "Armrest heightadjustment": "200–255 ±10 mm",
+      "Seat heightadjustment": "435–505 ±10 mm",
+      "Backrest width": "490 ±10 mm",
+      "Headrest width": "270 ±10 mm",
+      "Headrest height adjustment": "170–220 ±10 mm",
+      "Base width": "500 ±10 mm",
+      "Caster wheel clearance": "45 ±5 mm",
+      "Overall depth": "580 ±10 mm",
+      "Seat depth adjustment": "465–525 ±10 mm",
+      "Backrest height (without headrest)": "1010–1080 ±10 mm",
+      "Overall height (with headrest)": "1165–1235 ±10 mm",
+      "Base height (minimum)": "640 ±10 mm"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--myel/image-01.webp",
+      "/assets/catalog/oando-seating--myel/image-02.webp",
+      "/assets/catalog/oando-seating--myel/image-03.webp",
+      "/assets/catalog/oando-seating--myel/image-04.webp",
+      "/assets/catalog/oando-seating--myel/image-05.webp",
+      "/assets/catalog/oando-seating--myel/image-06.webp",
+      "/assets/catalog/oando-seating--myel/image-07.webp",
+      "/assets/catalog/oando-seating--myel/image-08.webp",
+      "/assets/catalog/oando-seating--myel/image-09.webp",
+      "/assets/catalog/chairs/myel/image-32.png",
+      "/assets/catalog/chairs/myel/image-33.png",
+      "/assets/catalog/chairs/myel/image-34.png",
+      "/assets/catalog/chairs/myel/image-35.png",
+      "/assets/catalog/chairs/myel/image-39.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/myel/myel-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Myel (Without Headrest)",
+    "slug": "myel-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Myel Excellence represents the perfect fusion of unparalleled comfort and superior craftsmanship. Each chair is meticulously designed to provide the ultimate seating experience, blending luxurious support with timeless style.",
+    "features": [
+      "The chair features an adjustable headrest, offering support for your neck, promoting relaxation during long sitting sessions.",
+      "Equipped with 3D adjustable armrests, the Myel chair allows for customizable positioning, ensuring optimal support and reducing strain on your arms and shoulders.",
+      "With adjustable lumbar support, the Myel chair helps maintain proper posture, providing targeted lower back support for enhanced comfort throughout the day",
+      "The Myel chair's adjustable headrest provides personalized neck support for comfort during long sitting sessions",
+      "Experience personalized comfort with Myel’s adjustable seat featuring a 60mm seat depth adjustment",
+      "The Myel chair’s weight balance tilt mechanism ensures smooth and effortless reclining, adapting to your body’s movement and providing customized support for comfort during long hours of use",
+      "Sway’s intelligent design promotes motion and alignment—making it the ideal companion for continuous momentum",
+      "Sway integrates a flexible frame and precision-crafted components, combining modern engineering with ergonomic intelligence for sustained vitality at your desk"
+    ],
+    "dimensions": {
+      "Overall width": "635 ±10 mm",
+      "Backrest width (atinner frame)": "460 ±10 mm",
+      "Armrest heightadjustment": "200–255 ±10 mm",
+      "Seat heightadjustment": "435–505 ±10 mm",
+      "Backrest width": "490 ±10 mm",
+      "Headrest width": "270 ±10 mm",
+      "Headrest height adjustment": "170–220 ±10 mm",
+      "Base width": "500 ±10 mm",
+      "Caster wheel clearance": "45 ±5 mm",
+      "Overall depth": "580 ±10 mm",
+      "Seat depth adjustment": "465–525 ±10 mm",
+      "Backrest height (without headrest)": "1010–1080 ±10 mm",
+      "Overall height (with headrest)": "1165–1235 ±10 mm",
+      "Base height (minimum)": "640 ±10 mm"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--myel/image-01.webp",
+      "/assets/catalog/oando-seating--myel/image-02.webp",
+      "/assets/catalog/oando-seating--myel/image-03.webp",
+      "/assets/catalog/oando-seating--myel/image-04.webp",
+      "/assets/catalog/oando-seating--myel/image-05.webp",
+      "/assets/catalog/oando-seating--myel/image-06.webp",
+      "/assets/catalog/oando-seating--myel/image-07.webp",
+      "/assets/catalog/oando-seating--myel/image-08.webp",
+      "/assets/catalog/oando-seating--myel/image-09.webp",
+      "/assets/catalog/chairs/myel/image-32.png",
+      "/assets/catalog/chairs/myel/image-33.png",
+      "/assets/catalog/chairs/myel/image-34.png",
+      "/assets/catalog/chairs/myel/image-35.png",
+      "/assets/catalog/chairs/myel/image-39.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Sway (With Headrest)",
+    "slug": "sway-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Sway is crafted for those who thrive on fluidity and focus. Its agile design empowers seamless transitions between tasks, offering dependable ease and elegant responsiveness. More than just a chair—it’s a rhythm partner for your workday.",
+    "features": [
+      "A supple frame and tailored adjustments keep your form aligned, easing physical effort and allowing mental clarity to take the lead",
+      "Sway’s multidirectional arm platforms adapt to your preferred angle and elevation, minimizing pressure on upper limbs and enhancing ease",
+      "Engineered with a contouring back zone that adjusts to your curvature, Sway encourages an upright stance and mitigates tension near the spine",
+      "This self-adjusting tilt function senses your body weight and distributes resistance evenly, offering fluid recline that supports your every lean without manual effort",
+      "Tailor the seat’s depth to match your frame with a smooth-glide adjustment that enhances leg comfort and supports natural posture from hip to knee",
+      "The back structure is designed to bend with your body’s micro-movements, maintaining balanced support while promoting freedom and comfort as you shift throughout the day",
+      "Sway’s intelligent design promotes motion and alignment—making it the ideal companion for continuous momentum",
+      "Sway integrates a flexible frame and precision-crafted components, combining modern engineering with ergonomic intelligence for sustained vitality at your desk."
+    ],
+    "dimensions": {
+      "Armrest length": "250 mm.",
+      "Seat height till ground": "430 mm.",
+      "Total length": "1010 mm.",
+      "Seat base width (including wheels)": "660 mm.",
+      "Seat backrest width": "465 mm.",
+      "Overall height": "1180 mm.",
+      "Armrest height till seat": "300 mm.",
+      "Armrest width": "95 mm.",
+      "Headrest width": "320 mm.",
+      "Headrest length": "170 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--sway/image-01.webp",
+      "/assets/catalog/oando-seating--sway/image-02.webp",
+      "/assets/catalog/oando-seating--sway/image-03.webp",
+      "/assets/catalog/oando-seating--sway/image-04.webp",
+      "/assets/catalog/oando-seating--sway/image-05.webp",
+      "/assets/catalog/oando-seating--sway/image-06.webp",
+      "/assets/catalog/oando-seating--sway/image-07.webp",
+      "/assets/catalog/oando-seating--sway/image-08.webp",
+      "/assets/catalog/oando-seating--sway/image-09.webp",
+      "/assets/catalog/oando-seating--sway/image-10.webp",
+      "/assets/catalog/oando-seating--sway/image-11.webp",
+      "/assets/catalog/oando-seating--sway/image-12.webp",
+      "/assets/catalog/oando-seating--sway/image-13.webp",
+      "/assets/catalog/oando-seating--sway/image-14.webp",
+      "/assets/catalog/chairs/sway/image-31.jpg",
+      "/assets/catalog/chairs/sway/image-32.jpg",
+      "/assets/catalog/chairs/sway/image-33.png",
+      "/assets/catalog/chairs/sway/image-34.jpg",
+      "/assets/catalog/chairs/sway/image-35.jpg",
+      "/assets/catalog/chairs/sway/image-36.jpg",
+      "/assets/catalog/chairs/sway/image-37.jpg",
+      "/assets/catalog/chairs/sway/image-38.jpg",
+      "/assets/catalog/chairs/sway/image-39.jpg",
+      "/assets/catalog/chairs/sway/image-42.png"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/sway/sway-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Sway (Without Headrest)",
+    "slug": "sway-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Sway is crafted for those who thrive on fluidity and focus. Its agile design empowers seamless transitions between tasks, offering dependable ease and elegant responsiveness. More than just a chair—it’s a rhythm partner for your workday.",
+    "features": [
+      "A supple frame and tailored adjustments keep your form aligned, easing physical effort and allowing mental clarity to take the lead",
+      "Sway’s multidirectional arm platforms adapt to your preferred angle and elevation, minimizing pressure on upper limbs and enhancing ease",
+      "Engineered with a contouring back zone that adjusts to your curvature, Sway encourages an upright stance and mitigates tension near the spine",
+      "This self-adjusting tilt function senses your body weight and distributes resistance evenly, offering fluid recline that supports your every lean without manual effort",
+      "Tailor the seat’s depth to match your frame with a smooth-glide adjustment that enhances leg comfort and supports natural posture from hip to knee",
+      "The back structure is designed to bend with your body’s micro-movements, maintaining balanced support while promoting freedom and comfort as you shift throughout the day",
+      "Sway’s intelligent design promotes motion and alignment—making it the ideal companion for continuous momentum",
+      "Sway integrates a flexible frame and precision-crafted components, combining modern engineering with ergonomic intelligence for sustained vitality at your desk."
+    ],
+    "dimensions": {
+      "Armrest length": "250 mm.",
+      "Seat height till ground": "430 mm.",
+      "Total length": "1010 mm.",
+      "Seat base width (including wheels)": "660 mm.",
+      "Seat backrest width": "465 mm.",
+      "Overall height": "1180 mm.",
+      "Armrest height till seat": "300 mm.",
+      "Armrest width": "95 mm.",
+      "Headrest width": "320 mm.",
+      "Headrest length": "170 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--sway/image-01.webp",
+      "/assets/catalog/oando-seating--sway/image-02.webp",
+      "/assets/catalog/oando-seating--sway/image-03.webp",
+      "/assets/catalog/oando-seating--sway/image-04.webp",
+      "/assets/catalog/oando-seating--sway/image-05.webp",
+      "/assets/catalog/oando-seating--sway/image-06.webp",
+      "/assets/catalog/oando-seating--sway/image-07.webp",
+      "/assets/catalog/oando-seating--sway/image-08.webp",
+      "/assets/catalog/oando-seating--sway/image-09.webp",
+      "/assets/catalog/oando-seating--sway/image-10.webp",
+      "/assets/catalog/oando-seating--sway/image-11.webp",
+      "/assets/catalog/oando-seating--sway/image-12.webp",
+      "/assets/catalog/oando-seating--sway/image-13.webp",
+      "/assets/catalog/oando-seating--sway/image-14.webp",
+      "/assets/catalog/chairs/sway/image-31.jpg",
+      "/assets/catalog/chairs/sway/image-32.jpg",
+      "/assets/catalog/chairs/sway/image-33.png",
+      "/assets/catalog/chairs/sway/image-34.jpg",
+      "/assets/catalog/chairs/sway/image-35.jpg",
+      "/assets/catalog/chairs/sway/image-36.jpg",
+      "/assets/catalog/chairs/sway/image-37.jpg",
+      "/assets/catalog/chairs/sway/image-38.jpg",
+      "/assets/catalog/chairs/sway/image-39.jpg",
+      "/assets/catalog/chairs/sway/image-42.png"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Phoenix (With Headrest)",
+    "slug": "phoenix-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Phoenix is designed to energize your workflow with refined support and adaptive comfort. Every detail is engineered to promote a focused, upright experience—whether you're deep in thought or on the move.",
+    "features": [
+      "A supportive headrest and fluid motion system help reduce muscle strain, keeping your body at ease and your mind engaged during long hours at your desk",
+      "Easily modify the armrests in multiple directions to match your ideal height and angle, reducing shoulder tension and promoting ergonomic ease",
+      "An integrated lumbar system contours to your lower back, helping maintain healthy alignment and relieving daily pressure buildup",
+      "A responsive headrest adjusts to your preferred height and tilt, offering steady neck support and helping you stay relaxed through every task",
+      "Customize the seat depth to suit your leg length, enhancing circulation and comfort throughout extended sitting periods",
+      "The synchro tilt system allows the seat and back to move in harmony, encouraging natural posture changes and smooth recline transitions",
+      "Phoenix combines intuitive recline and targeted neck support—built for comfort that never holds you back",
+      "Crafted with high-resilience mesh and a sculpted frame, Phoenix is made to deliver performance seating with minimal effort and maximum impact."
+    ],
+    "dimensions": {
+      "Armrest width": "300 mm.",
+      "Armrest to seat height": "300 mm.",
+      "Seat width": "510 mm.",
+      "Backrest to seat height": "700 mm.",
+      "Seat base width (including wheels)": "660 mm.",
+      "Overall height": "1250 mm.",
+      "Armrest length": "250 mm.",
+      "Headrest length": "200 mm.",
+      "Headrest width": "340 mm",
+      "Seat to ground height": "450 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--phoenix/image-01.webp",
+      "/assets/catalog/oando-seating--phoenix/image-02.webp",
+      "/assets/catalog/oando-seating--phoenix/image-03.webp",
+      "/assets/catalog/oando-seating--phoenix/image-04.webp",
+      "/assets/catalog/oando-seating--phoenix/image-05.webp",
+      "/assets/catalog/oando-seating--phoenix/image-06.webp",
+      "/assets/catalog/oando-seating--phoenix/image-07.webp",
+      "/assets/catalog/oando-seating--phoenix/image-08.webp",
+      "/assets/catalog/oando-seating--phoenix/image-09.webp",
+      "/assets/catalog/oando-seating--phoenix/image-10.webp",
+      "/assets/catalog/oando-seating--phoenix/image-11.webp",
+      "/assets/catalog/oando-seating--phoenix/image-12.webp",
+      "/assets/catalog/chairs/phoenix/image-29.jpg",
+      "/assets/catalog/chairs/phoenix/image-30.jpg",
+      "/assets/catalog/chairs/phoenix/image-35.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/phoenix/phoenix-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Phoenix (Without Headrest)",
+    "slug": "phoenix-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Phoenix is designed to energize your workflow with refined support and adaptive comfort. Every detail is engineered to promote a focused, upright experience—whether you're deep in thought or on the move.",
+    "features": [
+      "A supportive headrest and fluid motion system help reduce muscle strain, keeping your body at ease and your mind engaged during long hours at your desk",
+      "Easily modify the armrests in multiple directions to match your ideal height and angle, reducing shoulder tension and promoting ergonomic ease",
+      "An integrated lumbar system contours to your lower back, helping maintain healthy alignment and relieving daily pressure buildup",
+      "A responsive headrest adjusts to your preferred height and tilt, offering steady neck support and helping you stay relaxed through every task",
+      "Customize the seat depth to suit your leg length, enhancing circulation and comfort throughout extended sitting periods",
+      "The synchro tilt system allows the seat and back to move in harmony, encouraging natural posture changes and smooth recline transitions",
+      "Phoenix combines intuitive recline and targeted neck support—built for comfort that never holds you back",
+      "Crafted with high-resilience mesh and a sculpted frame, Phoenix is made to deliver performance seating with minimal effort and maximum impact."
+    ],
+    "dimensions": {
+      "Armrest width": "300 mm.",
+      "Armrest to seat height": "300 mm.",
+      "Seat width": "510 mm.",
+      "Backrest to seat height": "700 mm.",
+      "Seat base width (including wheels)": "660 mm.",
+      "Overall height": "1250 mm.",
+      "Armrest length": "250 mm.",
+      "Headrest length": "200 mm.",
+      "Headrest width": "340 mm",
+      "Seat to ground height": "450 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--phoenix/image-01.webp",
+      "/assets/catalog/oando-seating--phoenix/image-02.webp",
+      "/assets/catalog/oando-seating--phoenix/image-03.webp",
+      "/assets/catalog/oando-seating--phoenix/image-04.webp",
+      "/assets/catalog/oando-seating--phoenix/image-05.webp",
+      "/assets/catalog/oando-seating--phoenix/image-06.webp",
+      "/assets/catalog/oando-seating--phoenix/image-07.webp",
+      "/assets/catalog/oando-seating--phoenix/image-08.webp",
+      "/assets/catalog/oando-seating--phoenix/image-09.webp",
+      "/assets/catalog/oando-seating--phoenix/image-10.webp",
+      "/assets/catalog/oando-seating--phoenix/image-11.webp",
+      "/assets/catalog/oando-seating--phoenix/image-12.webp",
+      "/assets/catalog/chairs/phoenix/image-29.jpg",
+      "/assets/catalog/chairs/phoenix/image-30.jpg",
+      "/assets/catalog/chairs/phoenix/image-35.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Fluid (With Headrest)",
+    "slug": "fluid-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Fluid is designed to keep you in motion without distraction. With intuitive ergonomics and responsive adjustments, it supports your body through every shift in task—offering ease, balance, and lasting comfort",
+    "features": [
+      "With a body-responsive recline and supportive design, Fluid reduces tension across key pressure points—helping you stay focused, not fatigued",
+      "Easily reposition the armrests to suit your preferred height and angle—reducing shoulder load and supporting better posture",
+      "A responsive lumbar zone flexes to support your lower back, helping maintain healthy alignment throughout the day",
+      "Engineered with a dynamic back and supportive frame, Fluid promotes natural posture while adapting to your movements",
+      "Fine-tune seat depth for optimal leg support, enhancing comfort and encouraging better circulation during long hours",
+      "This smart recline system adjusts automatically to your body weight, offering balanced resistance without manual settings",
+      "Fluid supports your body’s rhythm with smart tilt response and pressure-free seating, helping you work with less strain",
+      "Crafted with adaptive mesh and a flexible frame, Fluid offers durability and breathable comfort for everyday performance"
+    ],
+    "dimensions": {
+      "Overall height": "1035 mm",
+      "Seat height (from floor)": "450 mm",
+      "Seat depth": "500 mm",
+      "Armrest length": "250 mm",
+      "Overall height (from armrest to ground)": "650 mm",
+      "Seat width": "475 mm",
+      "Arm width": "95 mm",
+      "Backrest width (top)": "460 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--fluid/image-01.webp",
+      "/assets/catalog/oando-seating--fluid/image-01.webp",
+      "/assets/catalog/oando-seating--fluid/image-02.webp",
+      "/assets/catalog/oando-seating--fluid/image-03.webp",
+      "/assets/catalog/oando-seating--fluid/image-04.webp",
+      "/assets/catalog/oando-seating--fluid/image-05.webp",
+      "/assets/catalog/oando-seating--fluid/image-06.webp",
+      "/assets/catalog/oando-seating--fluid/image-07.webp",
+      "/assets/catalog/oando-seating--fluid/image-08.webp",
+      "/assets/catalog/oando-seating--fluid/image-09.webp",
+      "/assets/catalog/oando-seating--fluid/image-10.webp",
+      "/assets/catalog/oando-seating--fluid/image-11.webp",
+      "/assets/catalog/oando-seating--fluid/image-12.webp",
+      "/assets/catalog/chairs/fluid/image-30.jpg",
+      "/assets/catalog/chairs/fluid/image-31.jpg",
+      "/assets/catalog/chairs/fluid/image-36.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": []
+  },
+  {
+    "name": "Fluid (Without Headrest)",
+    "slug": "fluid-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Fluid is designed to keep you in motion without distraction. With intuitive ergonomics and responsive adjustments, it supports your body through every shift in task—offering ease, balance, and lasting comfort",
+    "features": [
+      "With a body-responsive recline and supportive design, Fluid reduces tension across key pressure points—helping you stay focused, not fatigued",
+      "Easily reposition the armrests to suit your preferred height and angle—reducing shoulder load and supporting better posture",
+      "A responsive lumbar zone flexes to support your lower back, helping maintain healthy alignment throughout the day",
+      "Engineered with a dynamic back and supportive frame, Fluid promotes natural posture while adapting to your movements",
+      "Fine-tune seat depth for optimal leg support, enhancing comfort and encouraging better circulation during long hours",
+      "This smart recline system adjusts automatically to your body weight, offering balanced resistance without manual settings",
+      "Fluid supports your body’s rhythm with smart tilt response and pressure-free seating, helping you work with less strain",
+      "Crafted with adaptive mesh and a flexible frame, Fluid offers durability and breathable comfort for everyday performance"
+    ],
+    "dimensions": {
+      "Overall height": "1035 mm",
+      "Seat height (from floor)": "450 mm",
+      "Seat depth": "500 mm",
+      "Armrest length": "250 mm",
+      "Overall height (from armrest to ground)": "650 mm",
+      "Seat width": "475 mm",
+      "Arm width": "95 mm",
+      "Backrest width (top)": "460 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--fluid/image-01.webp",
+      "/assets/catalog/oando-seating--fluid/image-01.webp",
+      "/assets/catalog/oando-seating--fluid/image-02.webp",
+      "/assets/catalog/oando-seating--fluid/image-03.webp",
+      "/assets/catalog/oando-seating--fluid/image-04.webp",
+      "/assets/catalog/oando-seating--fluid/image-05.webp",
+      "/assets/catalog/oando-seating--fluid/image-06.webp",
+      "/assets/catalog/oando-seating--fluid/image-07.webp",
+      "/assets/catalog/oando-seating--fluid/image-08.webp",
+      "/assets/catalog/oando-seating--fluid/image-09.webp",
+      "/assets/catalog/oando-seating--fluid/image-10.webp",
+      "/assets/catalog/oando-seating--fluid/image-11.webp",
+      "/assets/catalog/oando-seating--fluid/image-12.webp",
+      "/assets/catalog/chairs/fluid/image-30.jpg",
+      "/assets/catalog/chairs/fluid/image-31.jpg",
+      "/assets/catalog/chairs/fluid/image-36.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/fluid/fluid-mb.max"
+      }
+    ]
+  },
+  {
+    "name": "Fluid X (With Headrest)",
+    "slug": "fluid-x-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Fluid X is built for those who need their chair to keep up. With smooth adjustability and responsive features, it follows your posture—not the other way around—offering comfort that adapts with you from the first task to the last",
+    "features": [
+      "From neck to lower back, Fluid X adapts to your body’s shape and movement—minimizing tension so your mind stays sharp",
+      "Shift the armrests to match your ideal working angle—offering relief for your arms and better alignment for your upper body",
+      "The backrest includes targeted lumbar reinforcement that adapts to your spine’s curve, reducing pressure and improving seated posture",
+      "This mechanism adjusts to your body weight in real-time, delivering smooth recline with balanced resistance—no extra controls needed",
+      "Slide the seat forward or backward to match your leg length, creating a stable base for healthier, more comfortable sitting",
+      "Easily adjust the headrest height and tilt for steady neck support—ideal for extended periods of concentration or relaxation",
+      "Fluid X moves with your posture and pace—making every hour at your desk feel easier and more natural",
+      "Built with breathable mesh and a contour-adaptive frame, Fluid X is made for lasting comfort, everyday strength, and modern flexibility"
+    ],
+    "dimensions": {
+      "Overall height (including headrest)": "1300 mm",
+      "Seat height (from floor)": "450 mm",
+      "Headrest height": "170 mm",
+      "Armrest width": "100 mm.",
+      "Headrest width": "280 mm.",
+      "Overall height": "1020 mm",
+      "Seat headrest width": "420 mm",
+      "Overall width (base including wheels)": "660 mm",
+      "Seat width": "500 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--fluid-x/image-01.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-01.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-02.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-03.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-04.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-05.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-06.webp",
+      "/assets/catalog/chairs/fluid-x/image-29.jpg",
+      "/assets/catalog/chairs/fluid-x/image-30.jpg",
+      "/assets/catalog/chairs/fluid-x/image-34.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/fluid-x/fluid-x-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Fluid X (Without Headrest)",
+    "slug": "fluid-x-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Fluid X is built for those who need their chair to keep up. With smooth adjustability and responsive features, it follows your posture—not the other way around—offering comfort that adapts with you from the first task to the last",
+    "features": [
+      "From neck to lower back, Fluid X adapts to your body’s shape and movement—minimizing tension so your mind stays sharp",
+      "Shift the armrests to match your ideal working angle—offering relief for your arms and better alignment for your upper body",
+      "The backrest includes targeted lumbar reinforcement that adapts to your spine’s curve, reducing pressure and improving seated posture",
+      "This mechanism adjusts to your body weight in real-time, delivering smooth recline with balanced resistance—no extra controls needed",
+      "Slide the seat forward or backward to match your leg length, creating a stable base for healthier, more comfortable sitting",
+      "Easily adjust the headrest height and tilt for steady neck support—ideal for extended periods of concentration or relaxation",
+      "Fluid X moves with your posture and pace—making every hour at your desk feel easier and more natural",
+      "Built with breathable mesh and a contour-adaptive frame, Fluid X is made for lasting comfort, everyday strength, and modern flexibility"
+    ],
+    "dimensions": {
+      "Overall height (including headrest)": "1300 mm",
+      "Seat height (from floor)": "450 mm",
+      "Headrest height": "170 mm",
+      "Armrest width": "100 mm.",
+      "Headrest width": "280 mm.",
+      "Overall height": "1020 mm",
+      "Seat headrest width": "420 mm",
+      "Overall width (base including wheels)": "660 mm",
+      "Seat width": "500 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--fluid-x/image-01.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-01.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-02.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-03.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-04.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-05.webp",
+      "/assets/catalog/oando-seating--fluid-x/image-06.webp",
+      "/assets/catalog/chairs/fluid-x/image-29.jpg",
+      "/assets/catalog/chairs/fluid-x/image-30.jpg",
+      "/assets/catalog/chairs/fluid-x/image-34.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Spino (With Headrest)",
+    "slug": "spino-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Spino is crafted for those who prioritize alignment without sacrificing ease. With posture-enhancing features and thoughtful adjustability, it encourages upright sitting while letting you move naturally through the day",
+    "features": [
+      "Designed to reduce strain from top to bottom, Spino helps you maintain healthy posture—keeping your energy steady and your thoughts on track.",
+      "Spino’s armrests shift smoothly to suit your desk setup—helping you reduce shoulder tension and find a more relaxed working angle",
+      "The chair’s lumbar zone adjusts to cradle the lower back, encouraging spinal alignment and relieving pressure through extended use",
+      "The adjustable headrest offers steady upper-back and neck support, making it easier to stay upright without fatigue",
+      "The seat depth can be tailored to your leg length, promoting even weight distribution and all-day sitting comfort",
+      "Spino features a tilt system that encourages micro-movements, helping you stay mobile and supported while working or reclining",
+      "Spino’s balanced frame and focused support features work together to keep you aligned, alert, and comfortable—all day long",
+      "With a breathable mesh back, solid frame, and precision adjustment systems, Spino delivers reliable support and clean aesthetics for daily performance"
+    ],
+    "dimensions": {
+      "Seat base width (including wheels)": "660 mm.",
+      "Armrest length": "250 mm.",
+      "Overall height": "990 mm.",
+      "Headrest width": "280 mm.",
+      "Headrest height": "170 mm.",
+      "Armrest width": "85 mm.",
+      "Seat width": "490 mm.",
+      "Seat backrest width": "470 mm.",
+      "Armrest height till seat": "300 mm.",
+      "Seat height till ground": "450 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--spino/image-01.webp",
+      "/assets/catalog/oando-seating--spino/image-01.webp",
+      "/assets/catalog/oando-seating--spino/image-02.webp",
+      "/assets/catalog/oando-seating--spino/image-03.webp",
+      "/assets/catalog/oando-seating--spino/image-04.webp",
+      "/assets/catalog/oando-seating--spino/image-05.webp",
+      "/assets/catalog/oando-seating--spino/image-06.webp",
+      "/assets/catalog/oando-seating--spino/image-07.webp",
+      "/assets/catalog/oando-seating--spino/image-08.webp",
+      "/assets/catalog/oando-seating--spino/image-09.webp",
+      "/assets/catalog/oando-seating--spino/image-10.webp",
+      "/assets/catalog/chairs/spino/image-27.jpg",
+      "/assets/catalog/chairs/spino/image-28.jpg",
+      "/assets/catalog/chairs/spino/image-32.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/spino/spino-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Spino (Without Headrest)",
+    "slug": "spino-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Spino is crafted for those who prioritize alignment without sacrificing ease. With posture-enhancing features and thoughtful adjustability, it encourages upright sitting while letting you move naturally through the day",
+    "features": [
+      "Designed to reduce strain from top to bottom, Spino helps you maintain healthy posture—keeping your energy steady and your thoughts on track.",
+      "Spino’s armrests shift smoothly to suit your desk setup—helping you reduce shoulder tension and find a more relaxed working angle",
+      "The chair’s lumbar zone adjusts to cradle the lower back, encouraging spinal alignment and relieving pressure through extended use",
+      "The adjustable headrest offers steady upper-back and neck support, making it easier to stay upright without fatigue",
+      "The seat depth can be tailored to your leg length, promoting even weight distribution and all-day sitting comfort",
+      "Spino features a tilt system that encourages micro-movements, helping you stay mobile and supported while working or reclining",
+      "Spino’s balanced frame and focused support features work together to keep you aligned, alert, and comfortable—all day long",
+      "With a breathable mesh back, solid frame, and precision adjustment systems, Spino delivers reliable support and clean aesthetics for daily performance"
+    ],
+    "dimensions": {
+      "Seat base width (including wheels)": "660 mm.",
+      "Armrest length": "250 mm.",
+      "Overall height": "990 mm.",
+      "Headrest width": "280 mm.",
+      "Headrest height": "170 mm.",
+      "Armrest width": "85 mm.",
+      "Seat width": "490 mm.",
+      "Seat backrest width": "470 mm.",
+      "Armrest height till seat": "300 mm.",
+      "Seat height till ground": "450 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--spino/image-01.webp",
+      "/assets/catalog/oando-seating--spino/image-01.webp",
+      "/assets/catalog/oando-seating--spino/image-02.webp",
+      "/assets/catalog/oando-seating--spino/image-03.webp",
+      "/assets/catalog/oando-seating--spino/image-04.webp",
+      "/assets/catalog/oando-seating--spino/image-05.webp",
+      "/assets/catalog/oando-seating--spino/image-06.webp",
+      "/assets/catalog/oando-seating--spino/image-07.webp",
+      "/assets/catalog/oando-seating--spino/image-08.webp",
+      "/assets/catalog/oando-seating--spino/image-09.webp",
+      "/assets/catalog/oando-seating--spino/image-10.webp",
+      "/assets/catalog/chairs/spino/image-27.jpg",
+      "/assets/catalog/chairs/spino/image-28.jpg",
+      "/assets/catalog/chairs/spino/image-32.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Revoq (With Headrest)",
+    "slug": "revoq-with-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Revoq brings dynamic support to the modern workspace. With fluid adjustability and a responsive build, it encourages better movement, upright posture, and day-long ease—no matter how your workflow shifts.",
+    "features": [
+      "Built to move with you, Revoq reduces pressure across key areas—helping you stay comfortable, alert, and productive without strain.",
+      "Multi-directional armrests adjust to your working style, helping ease pressure on shoulders and support relaxed upper body alignment.",
+      "The lumbar area contours to your lower back, promoting better spinal positioning and reducing daily fatigue",
+      "A responsive back structure flexes gently with your movements, offering consistent support without stiffness or restriction",
+      "Revoq’s sliding seat allows for leg-length customization, helping improve circulation and reduce lower-body pressure.",
+      "This synchronized recline system lets the seat and backrest move in harmony, encouraging natural posture changes with minimal effort",
+      "Revoq’s intuitive controls and synchronized motion help you sit better, move often, and stay focused longer.",
+      "Made with a breathable mesh back, durable frame, and smooth-glide adjustments, Revoq is engineered for everyday comfort with minimal distraction."
+    ],
+    "dimensions": {
+      "Seat height till ground": "635 mm.",
+      "Overall width (base including wheels)": "660 mm",
+      "Seat width": "520 mm.",
+      "Armrest length": "250 mm.",
+      "Headrest width": "320 mm.",
+      "Armrest width": "100 mm.",
+      "Overall height": "10800 mm",
+      "Seat to width": "465 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--revoq/image-01.webp",
+      "/assets/catalog/oando-seating--revoq/image-02.webp"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "with-headrest",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/revoq/revoq-hb.max"
+      }
+    ]
+  },
+  {
+    "name": "Revoq (Without Headrest)",
+    "slug": "revoq-without-headrest",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Revoq brings dynamic support to the modern workspace. With fluid adjustability and a responsive build, it encourages better movement, upright posture, and day-long ease—no matter how your workflow shifts.",
+    "features": [
+      "Built to move with you, Revoq reduces pressure across key areas—helping you stay comfortable, alert, and productive without strain.",
+      "Multi-directional armrests adjust to your working style, helping ease pressure on shoulders and support relaxed upper body alignment.",
+      "The lumbar area contours to your lower back, promoting better spinal positioning and reducing daily fatigue",
+      "A responsive back structure flexes gently with your movements, offering consistent support without stiffness or restriction",
+      "Revoq’s sliding seat allows for leg-length customization, helping improve circulation and reduce lower-body pressure.",
+      "This synchronized recline system lets the seat and backrest move in harmony, encouraging natural posture changes with minimal effort",
+      "Revoq’s intuitive controls and synchronized motion help you sit better, move often, and stay focused longer.",
+      "Made with a breathable mesh back, durable frame, and smooth-glide adjustments, Revoq is engineered for everyday comfort with minimal distraction."
+    ],
+    "dimensions": {
+      "Seat height till ground": "635 mm.",
+      "Overall width (base including wheels)": "660 mm",
+      "Seat width": "520 mm.",
+      "Armrest length": "250 mm.",
+      "Headrest width": "320 mm.",
+      "Armrest width": "100 mm.",
+      "Overall height": "10800 mm",
+      "Seat to width": "465 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--revoq/image-01.webp",
+      "/assets/catalog/oando-seating--revoq/image-02.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "without-headrest",
+    "models": []
+  },
+  {
+    "name": "Flex",
+    "slug": "flex",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Flex offers a streamlined seating experience with essential ergonomic elements. Designed for durability and everyday ease, it delivers consistent support without the need for adjustments—ideal for focused, no-fuss work environments.",
+    "features": [
+      "With a strong back structure and balanced recline, Flex helps you maintain a steady, supported position through the entire workday",
+      "An integrated lumbar curve promotes natural lower back alignment, offering steady comfort without the need for adjustment.",
+      "The tilt function allows for smooth reclining with a locking feature—helping you stay both mobile and balanced during long hours",
+      "Sturdy, polished armrests provide stable forearm support and add a sleek touch to your workspace.",
+      "Flex keeps things simple with a reliable tilt, supportive frame, and durable construction built for daily use",
+      "Constructed with a high-strength frame, chrome-detailed armrests, and a supportive back, Flex combines durability with functional design",
+      "Armrest length: 280 mm.",
+      "Seat height till ground: 400 mm."
+    ],
+    "dimensions": {
+      "Armrest length": "280 mm.",
+      "Seat height till ground": "400 mm.",
+      "Seat base width (including wheels)": "540 mm.",
+      "Overall height": "910 mm.",
+      "Seat width": "470 mm.",
+      "Seat backrest width": "420 mm.",
+      "Armrest height till seat": "220 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--flex/image-01.webp",
+      "/assets/catalog/oando-seating--flex/image-01.webp",
+      "/assets/catalog/oando-seating--flex/image-02.webp",
+      "/assets/catalog/oando-seating--flex/image-03.webp",
+      "/assets/catalog/oando-seating--flex/image-04.webp",
+      "/assets/catalog/oando-seating--flex/image-05.webp",
+      "/assets/catalog/oando-seating--flex/image-06.webp",
+      "/assets/catalog/oando-seating--flex/image-07.webp",
+      "/assets/catalog/oando-seating--flex/image-08.webp",
+      "/assets/catalog/oando-seating--flex/image-09.webp",
+      "/assets/catalog/oando-seating--flex/image-10.webp",
+      "/assets/catalog/oando-seating--flex/image-11.webp",
+      "/assets/catalog/chairs/flex/image-33.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/flex/flex.max"
+      }
+    ]
+  },
+  {
+    "name": "Logica",
+    "slug": "logica",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Logica is built with simplicity and intelligence at its core. With user-friendly features and essential support, it brings balance to your setup—helping you stay comfortable and aligned through your entire workday",
+    "features": [
+      "With thoughtful ergonomic features, Logica helps relieve pressure across your back and shoulders—allowing you to stay focused, not fatigued.",
+      "The backrest and seat tilt together at a fixed ratio, with a single-position lock for recline—supporting natural motion with simplicity",
+      "Designed with a supportive lower back zone, Logica encourages a healthier seated posture and reduces tension across your spine.",
+      "Easily reposition the armrests for optimal forearm placement, easing shoulder strain and promoting better alignment at your desk",
+      "Logica offers reliable support and intuitive adjustability—perfect for everyday work with minimal distractions",
+      "Crafted with a durable mesh back and solid frame, Logica is built for comfort that lasts through your busiest hours",
+      "Armrest height (from floor): 670 mm",
+      "Armrest width: 250 mm."
+    ],
+    "dimensions": {
+      "Armrest height (from floor)": "670 mm",
+      "Armrest width": "85 mm.",
+      "Overall height": "1000 mm",
+      "Seat headrest width": "515 mm",
+      "Overall width (base including wheels)": "700 mm",
+      "Seat width": "500 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--logica/image-01.webp",
+      "/assets/catalog/oando-seating--logica/image-02.webp",
+      "/assets/catalog/oando-seating--logica/image-03.webp",
+      "/assets/catalog/oando-seating--logica/image-04.webp",
+      "/assets/catalog/oando-seating--logica/image-05.webp",
+      "/assets/catalog/oando-seating--logica/image-06.webp",
+      "/assets/catalog/oando-seating--logica/image-07.webp",
+      "/assets/catalog/chairs/logica/image-27.jpg",
+      "/assets/catalog/chairs/logica/image-28.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Sullion",
+    "slug": "sullion",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Sullion blends minimal design with essential ergonomic features to support the way you work. Whether you're leaning in or kicking back, it delivers the right balance of structure and softness—keeping you at ease without overcomplication",
+    "features": [
+      "The armrests shift smoothly to match your ideal height and angle—helping ease shoulder tension and support a more relaxed upper body posture",
+      "A built-in adjustable lumbar contour promotes better spinal alignment, offering steady lower back support during long sitting sessions",
+      "The headrest responds gently to your movements, providing consistent support without stiffness or resistance",
+      "Fine-tune the seat depth to suit your leg length and posture—helping maintain comfort and proper circulation during extended use",
+      "The seat and backrest recline together in a synchronized motion, encouraging movement while keeping you well-balanced at every angle",
+      "Sullion adapts to your posture and pace—supporting movement, stability, and comfort with every shift.",
+      "Sullion features a breathable mesh back, durable frame, and seamless adjustment controls—crafted for lasting use in fast-moving environments",
+      "Seat base width (including wheels): 660 mm."
+    ],
+    "dimensions": {
+      "Seat base width (including wheels)": "660 mm.",
+      "Armrest length": "250 mm.",
+      "Seat height": "1270 mm..",
+      "Seat height till ground": "450 mm.",
+      "Overall height": "1650 mm.",
+      "Armrest width": "85 mm.",
+      "Seat width": "485 mm.",
+      "Seat backrest width": "490 mm.",
+      "Armrest height till seat": "300 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--sullion/image-01.webp",
+      "/assets/catalog/oando-seating--sullion/image-02.webp",
+      "/assets/catalog/oando-seating--sullion/image-03.webp",
+      "/assets/catalog/oando-seating--sullion/image-04.webp",
+      "/assets/catalog/oando-seating--sullion/image-05.webp",
+      "/assets/catalog/oando-seating--sullion/image-06.webp",
+      "/assets/catalog/oando-seating--sullion/image-07.webp",
+      "/assets/catalog/oando-seating--sullion/image-08.webp",
+      "/assets/catalog/oando-seating--sullion/image-09.webp",
+      "/assets/catalog/oando-seating--sullion/image-10.webp",
+      "/assets/catalog/oando-seating--sullion/image-11.webp",
+      "/assets/catalog/chairs/sullion/image-28.jpg",
+      "/assets/catalog/chairs/sullion/image-29.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Nuvic",
+    "slug": "nuvic",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Nuvic is made for motion—combining responsive ergonomics with a clean, modern build. It encourages better posture, smoother transitions, and focused work with comfort that stays consistent from task to task.",
+    "features": [
+      "With flexible structure and personalized adjustment, Nuvic supports key pressure zones and helps you maintain balance through hours of deep work",
+      "Move the armrests vertically to match your natural arm position, reducing fatigue and enhancing ergonomic alignment",
+      "Built-in lumbar shaping offers steady lower back support, promoting an upright position and reducing strain throughout the day",
+      "The backrest flexes gently with your body’s movements, offering comfort that adapts to posture shifts without resistance",
+      "Fine-tune seat depth for a custom fit that improves leg comfort and overall sitting posture during long periods",
+      "The backrest and seat tilt together at a fixed ratio, with a single-position lock for recline—supporting natural motion with simplicity",
+      "Nuvic combines adjustable features and adaptive support—helping you work with ease, focus, and improved posture",
+      "Constructed with a breathable mesh back, reinforced frame, and smooth adjustment controls, Nuvic delivers long-term comfort and dependable performance."
+    ],
+    "dimensions": {
+      "Seat height till armrest": "300 mm.",
+      "Armrest length": "250 mm.",
+      "Seat height till ground": "450 mm.",
+      "Overall height": "1080 mm",
+      "Seat headrest width": "400 mm",
+      "Overall width (base including wheels)": "660 mm"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--nuvic/image-01.webp",
+      "/assets/catalog/oando-seating--nuvic/image-02.webp",
+      "/assets/catalog/oando-seating--nuvic/image-03.webp",
+      "/assets/catalog/oando-seating--nuvic/image-04.webp",
+      "/assets/catalog/oando-seating--nuvic/image-05.webp",
+      "/assets/catalog/oando-seating--nuvic/image-06.webp",
+      "/assets/catalog/oando-seating--nuvic/image-07.webp",
+      "/assets/catalog/oando-seating--nuvic/image-08.webp",
+      "/assets/catalog/oando-seating--nuvic/image-09.webp",
+      "/assets/catalog/oando-seating--nuvic/image-10.webp",
+      "/assets/catalog/oando-seating--nuvic/image-11.webp",
+      "/assets/catalog/oando-seating--nuvic/image-12.webp",
+      "/assets/catalog/chairs/nuvic/image-29.jpg",
+      "/assets/catalog/chairs/nuvic/image-30.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Rock",
+    "slug": "rock",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Rock is built for flexibility—designed to follow your posture, respond to your movements, and keep your body aligned throughout the day. Whether you're leaning in or reclining back, Rock adjusts in all the right places.",
+    "features": [
+      "Engineered for comfort through motion, Rock adapts to your form and flow—reducing pressure and encouraging natural posture without distractions.",
+      "Easily adjust the height and angle of the armrests to support your arms in any position, reducing shoulder tension throughout the day",
+      "Customize the seat depth to suit your body’s proportions—promoting better leg support and posture from the ground up.",
+      "The headrest adapts in both height and angle—offering reliable neck support whether you're upright or leaning back.",
+      "The backrest’s swing function allows a smooth, responsive recline that encourages movement while maintaining balanced support",
+      "Fine-tune the lumbar zone to match your lower back curve, providing personalized support where you need it most",
+      "Rock is made for those who shift, stretch, and move—offering responsive features that support every posture.",
+      "With a sculpted mesh back, durable support frame, and high-precision adjustments, Rock combines flexibility and performance in one streamlined build"
+    ],
+    "dimensions": {
+      "Seat backrest width": "490 mm.",
+      "Overall height": "1110 mm",
+      "Seat height till ground": "450 mm.",
+      "Headrest width": "490 mm.",
+      "Seat width": "470 mm.",
+      "Headrest height": "150 mm.",
+      "Armrest height till seat": "290 mm.",
+      "Seat base width (including wheels)": "680 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--rock/image-01.webp",
+      "/assets/catalog/oando-seating--rock/image-02.webp",
+      "/assets/catalog/oando-seating--rock/image-03.webp",
+      "/assets/catalog/oando-seating--rock/image-04.webp",
+      "/assets/catalog/oando-seating--rock/image-05.webp",
+      "/assets/catalog/oando-seating--rock/image-06.webp",
+      "/assets/catalog/oando-seating--rock/image-07.webp",
+      "/assets/catalog/oando-seating--rock/image-08.webp",
+      "/assets/catalog/oando-seating--rock/image-09.webp",
+      "/assets/catalog/oando-seating--rock/image-10.webp",
+      "/assets/catalog/oando-seating--rock/image-11.webp",
+      "/assets/catalog/oando-seating--rock/image-12.webp",
+      "/assets/catalog/chairs/rock/image-29.jpg",
+      "/assets/catalog/chairs/rock/image-30.jpg"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Breeze",
+    "slug": "breeze",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "The BREEZ Chair combines a breathable mesh design with ergonomic support to keep you cool and comfortable throughout the workday. Its contoured form promotes proper posture while maintaining a light, modern look.",
+    "features": [
+      "A lightweight frame with smooth rolling casters ensures effortless mobility across workspaces. With adjustable height and tilt functions, BREEZ offers a personalized seating experience tailored to individual comfort needs.",
+      "The adjustable armrests let users fine tune height and position for personalized support, reducing strain on the shoulders and arms during extended work hours.",
+      "The adjustable headrest allows precise height and angle positioning to support the neck and head, reducing strain and enhancing comfort during long hours of work.",
+      "The seat height adjustment allows precise positioning to suit different users and desk levels, promoting proper posture and all day comfort with effortless control",
+      "The tilt mechanism enables smooth, controlled recline that supports natural movement and maintains proper posture for enhanced comfort throughout the day.",
+      "A breathable mesh back and ergonomic design provide all day comfort, while smooth mobility and adjustable features support dynamic workspaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--breeze/image-01.webp",
+      "/assets/catalog/oando-seating--breeze/image-02.webp",
+      "/assets/catalog/oando-seating--breeze/image-03.webp",
+      "/assets/catalog/oando-seating--breeze/image-04.webp",
+      "/assets/catalog/oando-seating--breeze/image-05.webp",
+      "/assets/catalog/oando-seating--breeze/image-06.webp",
+      "/assets/catalog/oando-seating--breeze/image-07.webp",
+      "/assets/catalog/oando-seating--breeze/image-08.webp",
+      "/assets/catalog/oando-seating--breeze/image-09.webp",
+      "/assets/catalog/oando-seating--breeze/image-10.webp",
+      "/assets/catalog/oando-seating--breeze/image-11.webp",
+      "/assets/catalog/oando-seating--breeze/image-12.webp"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "X-Mesh",
+    "slug": "x-mesh",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "The X Mess chair is crafted for ultimate comfort with a high quality PU moulded cushion and support that enhances posture and reduces strain.",
+    "features": [
+      "Designed for extended work hours, the chair features a breathable mesh back and adjustable armrests for personalized comfort. With its sleek design and durable construction, X Mess is a perfect fit for modern, high performance workspaces.",
+      "The Tilt back mechanism offers smooth, controlled tilting that adapts to your movement, providing continuous support and relaxed comfort throughout the workday.",
+      "The breathable mesh and designer X-back enhances airflow and flexibility, keeping you cool while providing comfortable, supportive seating throughout long work hours.",
+      "The adjustable armrests allow flexible positioning to support natural arm movement, reducing strain and enhancing comfort during long work hours.",
+      "Breathable mesh and ergonomic design ensure everyday comfort, while smooth mobility and essential adjustments support modern workspaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--x-mesh/image-01.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-02.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-03.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-04.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-05.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-06.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-07.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-08.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-09.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-10.webp",
+      "/assets/catalog/oando-seating--x-mesh/image-11.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Orbit",
+    "slug": "orbit",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "The Orbit chair combines ergonomic comfort with advanced functionality, featuring a breathable mesh backrest that promotes airflow and keeps you cool during long sitting hours.",
+    "features": [
+      "Designed with a light, simple appearance, Orbit offers optimal comfort and support. Ideal for modern workspaces, it delivers ventilation, flexibility, and reliable performance without compromising on style.",
+      "The fixed armrests provide stable, consistent support for the arms, promoting relaxed posture and dependable comfort throughout the workday.",
+      "The tilt mechanism feature allows smooth, supportive leaning, adapting naturally to your movement for enhanced comfort during long sitting hours.",
+      "The breathable mesh back promotes continuous airflow, keeping you cool and comfortable even during extended sitting hours.",
+      "A breathable mesh back and ergonomic design deliver everyday comfort, while smooth mobility and essential adjustments support efficient workspaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Overall Height: 1040 mm",
+      "Overall Width: 660 mm"
+    ],
+    "dimensions": {
+      "Overall Height": "1040 mm",
+      "Overall Width": "660 mm",
+      "Overall Depth": "660 mm",
+      "Seat Width": "460 mm",
+      "Seat Depth": "470 mm"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--orbit/image-01.webp",
+      "/assets/catalog/oando-seating--orbit/image-02.webp",
+      "/assets/catalog/oando-seating--orbit/image-03.webp",
+      "/assets/catalog/oando-seating--orbit/image-04.webp",
+      "/assets/catalog/oando-seating--orbit/image-05.webp",
+      "/assets/catalog/oando-seating--orbit/image-06.webp",
+      "/assets/catalog/oando-seating--orbit/image-07.webp",
+      "/assets/catalog/oando-seating--orbit/image-08.webp",
+      "/assets/catalog/oando-seating--orbit/image-09.webp",
+      "/assets/catalog/oando-seating--orbit/image-10.webp",
+      "/assets/catalog/oando-seating--orbit/image-11.webp",
+      "/assets/catalog/oando-seating--orbit/image-12.webp",
+      "/assets/catalog/chairs/orbit/image-29.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Toro",
+    "slug": "toro",
+    "category": "mesh-chair",
+    "categoryLabel": "Mesh Chair",
+    "description": "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+    "features": [
+      "Help us get in touch with you",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--toro/image-01.webp",
+      "/assets/catalog/oando-seating--toro/image-01.webp",
+      "/assets/catalog/oando-seating--toro/image-02.webp",
+      "/assets/catalog/oando-seating--toro/image-03.webp",
+      "/assets/catalog/oando-seating--toro/image-04.webp",
+      "/assets/catalog/oando-seating--toro/image-05.webp",
+      "/assets/catalog/oando-seating--toro/image-06.webp",
+      "/assets/catalog/oando-seating--toro/image-07.webp",
+      "/assets/catalog/oando-seating--toro/image-08.webp",
+      "/assets/catalog/oando-seating--toro/image-09.webp",
+      "/assets/catalog/oando-seating--toro/image-10.webp",
+      "/assets/catalog/oando-seating--toro/image-11.webp",
+      "/assets/catalog/oando-seating--toro/image-12.webp",
+      "/assets/catalog/oando-seating--toro/image-13.webp",
+      "/assets/catalog/oando-seating--toro/image-14.webp",
+      "/assets/catalog/oando-seating--toro/image-15.webp",
+      "/assets/catalog/oando-seating--toro/image-16.webp",
+      "/assets/catalog/oando-seating--toro/image-17.webp",
+      "/assets/catalog/oando-seating--toro/image-18.webp",
+      "/assets/catalog/oando-seating--toro/image-19.webp",
+      "/assets/catalog/oando-seating--toro/image-20.webp",
+      "/assets/catalog/chairs/toro/image-21.jpg",
+      "/assets/catalog/chairs/toro/image-22.jpg",
+      "/assets/catalog/chairs/toro/image-23.jpg",
+      "/assets/catalog/chairs/toro/image-26.png"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Grace",
+    "slug": "grace",
+    "category": "leather-chair",
+    "categoryLabel": "Leather Chair",
+    "description": "Crafted with premium leather upholstery, this ergonomic chair delivers a refined balance of luxury and comfort. Its smooth, contoured surfaces offer a plush seating experience while elevating the visual language of modern executive spaces.",
+    "features": [
+      "Designed to support natural posture, the chair features precision ergonomics that adapt to your body’s movement. From long strategy sessions to focused work hours, it ensures sustained comfort, stability, and effortless mobility.",
+      "Precision die-cast armrests deliver superior strength and stability, offering consistent support with a refined metallic finish that elevates the chair’s executive appeal.",
+      "The elegantly contoured backrest is designed to follow the natural curve of the spine, promoting healthy posture while adding a sleek, modern silhouette.",
+      "Upholstered in premium leather, the seat provides a plush, breathable feel that ensures lasting comfort and a luxurious seating experience throughout long work hours.",
+      "Discover a refined blend of sculpted design, durable detailing, and luxurious comfort—crafted to elevate executive workspaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--grace/image-01.webp",
+      "/assets/catalog/oando-seating--grace/image-02.webp",
+      "/assets/catalog/oando-seating--grace/image-03.webp",
+      "/assets/catalog/oando-seating--grace/image-04.webp",
+      "/assets/catalog/oando-seating--grace/image-05.webp",
+      "/assets/catalog/oando-seating--grace/image-06.webp",
+      "/assets/catalog/oando-seating--grace/image-07.webp",
+      "/assets/catalog/oando-seating--grace/image-08.webp",
+      "/assets/catalog/oando-seating--grace/image-09.webp",
+      "/assets/catalog/oando-seating--grace/image-10.webp",
+      "/assets/catalog/oando-seating--grace/image-11.webp",
+      "/assets/catalog/oando-seating--grace/image-12.webp",
+      "/assets/catalog/oando-seating--grace/image-13.webp",
+      "/assets/catalog/oando-seating--grace/image-14.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Pinnacle",
+    "slug": "pinnacle",
+    "category": "leather-chair",
+    "categoryLabel": "Leather Chair",
+    "description": "This premium leather ergonomic chair is crafted to bring sophistication and authority to executive spaces. Rich upholstery, plush cushioning, and refined contours create a commanding presence without compromising on comfort.",
+    "features": [
+      "Designed for long hours of focused leadership, the chair offers structured back support and smooth reclining comfort. Its balanced ergonomics ensure stability, ease of movement, and lasting performance throughout the workday.",
+      "Generously cushioned L-shaped armrests wrapped in premium leather provide enhanced forearm support, reducing strain while adding a soft, executive touch to the chair’s profile.",
+      "The tall, well-padded backrest is designed to support the spine and shoulders, enabling relaxed reclining comfort during long working hours or reflective moments.",
+      "Discover a perfect blend of premium leather, ergonomic support, and refined detailing—crafted for comfort that performs and design that leads.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--pinnacle/image-01.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-02.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-03.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-04.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-05.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-06.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-07.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-08.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-09.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-10.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-11.webp",
+      "/assets/catalog/oando-seating--pinnacle/image-12.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Moonlight",
+    "slug": "moonlight",
+    "category": "leather-chair",
+    "categoryLabel": "Leather Chair",
+    "description": "Defined by clean lines and a softly contoured form, this premium leather chair brings understated sophistication to contemporary offices. The seamless upholstery and refined proportions create a calm, confident visual presence",
+    "features": [
+      "Thoughtfully engineered ergonomics provide balanced support to the back and seat, adapting naturally to extended sitting. The result is a composed, comfortable seating experience that keeps you focused, poised, and in control throughout the day.",
+      "The intelligently engineered recline mechanism allows fluid back movement, adapting naturally to posture changes for relaxed comfort during extended sitting.",
+      "Soft premium leather upholstery with generous padding delivers superior seating comfort, combining visual elegance with a plush, supportive feel throughout the day.",
+      "Experience a refined balance of premium materials, intelligent comfort, and enduring performance—crafted for modern leadership spaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--moonlight/image-01.webp",
+      "/assets/catalog/oando-seating--moonlight/image-02.webp",
+      "/assets/catalog/oando-seating--moonlight/image-03.webp",
+      "/assets/catalog/oando-seating--moonlight/image-04.webp",
+      "/assets/catalog/oando-seating--moonlight/image-05.webp",
+      "/assets/catalog/oando-seating--moonlight/image-06.webp",
+      "/assets/catalog/oando-seating--moonlight/image-07.webp",
+      "/assets/catalog/oando-seating--moonlight/image-08.webp",
+      "/assets/catalog/oando-seating--moonlight/image-09.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Rider",
+    "slug": "rider",
+    "category": "leather-chair",
+    "categoryLabel": "Leather Chair",
+    "description": "This premium leather ergonomic chair features a gracefully sculpted profile with layered cushioning that enhances both visual depth and seating comfort. Its refined form adds warmth and authority to modern leadership environments.",
+    "features": [
+      "Engineered to support natural posture, the chair offers smooth recline functionality and balanced cushioning for extended work hours. Finished in high-quality leather with precise detailing, it delivers comfort that feels as premium as it looks.",
+      "The softly padded headrest is designed to cradle the neck and upper spine, offering added comfort during long hours of sitting.",
+      "Rich, high-quality leather with refined stitching delivers a plush seating feel while enhancing the chair’s executive appeal.",
+      "Experience premium leather, sculpted support, and elegant detailing—designed to elevate comfort and command modern workspaces.",
+      "Available in a range of premium colours, materials, and finishes, with customization options to seamlessly match your workspace aesthetic.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--rider/image-01.webp",
+      "/assets/catalog/oando-seating--rider/image-02.webp",
+      "/assets/catalog/oando-seating--rider/image-03.webp",
+      "/assets/catalog/oando-seating--rider/image-04.webp",
+      "/assets/catalog/oando-seating--rider/image-05.webp",
+      "/assets/catalog/oando-seating--rider/image-06.webp",
+      "/assets/catalog/oando-seating--rider/image-07.webp",
+      "/assets/catalog/oando-seating--rider/image-08.webp",
+      "/assets/catalog/oando-seating--rider/image-09.webp",
+      "/assets/catalog/oando-seating--rider/image-10.webp",
+      "/assets/catalog/oando-seating--rider/image-11.webp"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Flip",
+    "slug": "flip",
+    "category": "training-chair",
+    "categoryLabel": "Training Chair",
+    "description": "Flip Training Chairs feature a breathable mesh back and cushioned seat for cool, long lasting comfort. The ergonomic design supports proper posture, boosting focus during training sessions.",
+    "features": [
+      "With a lightweight, stackable structure, they offer easy storage and flexible space use. Durable and versatile, they’re ideal for dynamic classrooms and modern learning environments.",
+      "Experience superior airflow and adaptive spinal support. The flexible mesh weave keeps you cool, while the durable frame provides reliable comfort for extended use.",
+      "Effortless mobility meets space-saving design. With its smooth flip-up mechanism and easy-roll casters, this chair is built for dynamic, multipurpose spaces.",
+      "Discover its ergonomic comfort, smart folding design, and space saving efficiency in one seamless overview.",
+      "We offer extensive customisation options across FLIP TRAINING CHAIR, ensuring the perfect fit for every learning space.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--flip/image-01.webp",
+      "/assets/catalog/oando-seating--flip/image-02.webp",
+      "/assets/catalog/oando-seating--flip/image-03.webp",
+      "/assets/catalog/oando-seating--flip/image-04.webp",
+      "/assets/catalog/oando-seating--flip/image-05.webp",
+      "/assets/catalog/oando-seating--flip/image-06.webp",
+      "/assets/catalog/oando-seating--flip/image-07.webp",
+      "/assets/catalog/oando-seating--flip/image-08.webp",
+      "/assets/catalog/oando-seating--flip/image-09.webp",
+      "/assets/catalog/oando-seating--flip/image-10.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Snap",
+    "slug": "snap",
+    "category": "training-chair",
+    "categoryLabel": "Training Chair",
+    "description": "Snap Training Chairs combine minimal elegance with durable design, blending effortlessly into any modern workspace. Clean, functional, and comfortable—they enhance any setting without compromising support.",
+    "features": [
+      "Snap offers easy comfort and strong support for sessions, work, or study. Its practical, stylish design fits perfectly into training zones, collaborative areas, and everyday workspaces.",
+      "Wide ventilation slats maximize airflow, while the flexible moulded structure adapts to your spine—delivering durable, modern ergonomic support.",
+      "Soft, supportive, and built to last. This seat features pressure-relieving padding and high-quality fabric, ensuring comfort during long training or work sessions.",
+      "Discover its ergonomic comfort, smart folding design, and space saving efficiency in one seamless overview.",
+      "We offer extensive customisation options across SNAP TRAINING CHAIR, ensuring the perfect fit for every learning space.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--snap/image-01.webp",
+      "/assets/catalog/oando-seating--snap/image-02.webp",
+      "/assets/catalog/oando-seating--snap/image-03.webp",
+      "/assets/catalog/oando-seating--snap/image-04.webp",
+      "/assets/catalog/oando-seating--snap/image-05.webp",
+      "/assets/catalog/oando-seating--snap/image-06.webp",
+      "/assets/catalog/oando-seating--snap/image-07.webp",
+      "/assets/catalog/oando-seating--snap/image-08.webp",
+      "/assets/catalog/oando-seating--snap/image-09.webp",
+      "/assets/catalog/oando-seating--snap/image-10.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Nordic",
+    "slug": "nordic",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Nordic Cafe Chair features clean lines and a beautifully sculpted form that showcases timeless wooden craftsmanship. Its angular silhouette paired with an open-frame backrest creates a perfect balance of strength and lightness.",
+    "features": [
+      "Enhanced with a soft upholstered seat, it provides exceptional comfort while adding a tactile touch. Thoughtfully designed, it blends effortlessly into both contemporary interiors and classic spaces with understated elegance.",
+      "Engineered with a sleek, open-frame backrest that offers natural support while maintaining a light visual profile. Its fluid wooden contour enhances posture and adds a refined, modern character to any setting.",
+      "The cushioned seat offers soft, supportive comfort with a refined textile touch. Its durable upholstery and precise wooden detailing ensure both long-lasting ease and elevated aesthetics in every sit.",
+      "Nordic’s clean, minimalist design encourage natural movement and proper posture—your perfect partner for sustained flow and everyday productivity.",
+      "The Nordic Café Chair collection comes in a mix of refined finishes, offering options in Wood finishes, multiple upholstery styles.",
+      "Height ofSeat: 465 mm.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310"
+    ],
+    "dimensions": {
+      "Height": "756mm.",
+      "Width": "570 mm.",
+      "Height ofSeat": "465 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--nordic/image-01.webp",
+      "/assets/catalog/oando-seating--nordic/image-02.webp",
+      "/assets/catalog/oando-seating--nordic/image-03.webp",
+      "/assets/catalog/oando-seating--nordic/image-04.webp",
+      "/assets/catalog/oando-seating--nordic/image-05.webp",
+      "/assets/catalog/oando-seating--nordic/image-06.webp",
+      "/assets/catalog/oando-seating--nordic/image-07.webp",
+      "/assets/catalog/oando-seating--nordic/image-08.webp",
+      "/assets/catalog/oando-seating--nordic/image-09.webp",
+      "/assets/catalog/oando-seating--nordic/image-10.webp",
+      "/assets/catalog/oando-seating--nordic/image-11.webp",
+      "/assets/catalog/oando-seating--nordic/image-12.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Arvo",
+    "slug": "arvo",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "Arvo celebrates the beauty of solid hardwood through precise craftsmanship and balanced proportions. Its clean structure highlights authenticity and warm materiality, bringing a naturally refined presence to any café or dining environment.",
+    "features": [
+      "Paired with an upholstered seat, it delivers comfort while preserving the design’s modern simplicity. Built for long-lasting use, Arvo adds a sense of contemporary elegance where true craftsmanship leaves a lasting impression.",
+      "A smoothly sculpted wooden backrest provides natural support while keeping the form sleek and minimal—bringing warmth, clarity, and comfort into every setting.",
+      "Experience superior comfort with the soft, durable heathered fabric cushion, perfectly paired with a smooth, supportive light wood frame for style that lasts.",
+      "Arvo’s simple design supports natural body alignment, keeping you comfortable throughout the day.",
+      "The Arvo Café Chair collection comes in a mix of refined finishes, offering options Wood finishes, multiple upholstery styles.",
+      "Height ofSeat: 480 mm.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310"
+    ],
+    "dimensions": {
+      "Height": "820mm.",
+      "Width": "520 mm.",
+      "Height ofSeat": "480 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--arvo/image-01.webp",
+      "/assets/catalog/oando-seating--arvo/image-02.webp",
+      "/assets/catalog/oando-seating--arvo/image-03.webp",
+      "/assets/catalog/oando-seating--arvo/image-04.webp",
+      "/assets/catalog/oando-seating--arvo/image-05.webp",
+      "/assets/catalog/oando-seating--arvo/image-06.webp",
+      "/assets/catalog/oando-seating--arvo/image-08.webp",
+      "/assets/catalog/oando-seating--arvo/image-09.webp",
+      "/assets/catalog/oando-seating--arvo/image-10.webp",
+      "/assets/catalog/oando-seating--arvo/image-11.webp",
+      "/assets/catalog/chairs/arvo/image-14.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/arvo/arvo.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/arvo/arvo.max"
+      }
+    ]
+  },
+  {
+    "name": "Ember",
+    "slug": "ember",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Ember Café Chair is defined by its clean lines, sculpted form, and timeless materiality. Crafted from solid hardwood, it showcases an angular silhouette that blends strength with visual lightness. Its open frame backrest adds an airy, inviting feel suited for modern café environments.",
+    "features": [
+      "The back of this chair features a smoothly sculpted wooden form with elegant, flowing curves. Its seamless joinery and natural grain highlight fine craftsmanship, offering both support and refined visual appeal.",
+      "Ember unites precision craftsmanship with intelligent construction, offering a modern aesthetic and ergonomic ease that keeps you comfortable, focused, and energized all day long.",
+      "The Ember Café Chair collection comes in a mix of refined finishes, offering options in Wood finishes, multiple upholstery styles.",
+      "Height ofSeat: 445 mm.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "Height": "762mm.",
+      "Width": "635 mm.",
+      "Height ofSeat": "445 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--ember/image-01.webp",
+      "/assets/catalog/oando-seating--ember/image-02.webp",
+      "/assets/catalog/oando-seating--ember/image-03.webp",
+      "/assets/catalog/oando-seating--ember/image-04.webp",
+      "/assets/catalog/oando-seating--ember/image-05.webp",
+      "/assets/catalog/oando-seating--ember/image-06.webp",
+      "/assets/catalog/oando-seating--ember/image-07.webp",
+      "/assets/catalog/oando-seating--ember/image-08.webp",
+      "/assets/catalog/oando-seating--ember/image-09.webp",
+      "/assets/catalog/oando-seating--ember/image-10.webp",
+      "/assets/catalog/oando-seating--ember/image-11.webp",
+      "/assets/catalog/chairs/ember/image-14.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/ember/ember.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/ember/ember.max"
+      }
+    ]
+  },
+  {
+    "name": "Caneva",
+    "slug": "caneva",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Caneva blends contemporary clarity with warm, natural materials. Its clean wooden frame pairs beautifully with a woven cane backrest that adds subtle texture. The gentle curve of the back provides comfort while maintaining a light, modern silhouette.",
+    "features": [
+      "A smooth, cushioned seat enhances comfort and contrasts elegantly with the airy cane weave. Designed with refined proportions, this chair brings understated elegance to cafés, dining areas, and social spaces. Its timeless details make it both visually appealing and functional for everyday use.",
+      "The chair’s cane woven backrest adds natural texture while keeping the design airy and comfortable. Its solid wooden frame offers dependable support, creating a refined and timeless look in any setting.",
+      "The chair features a smooth, cushioned seat designed for long lasting comfort and support. Its premium upholstery adds a refined touch while resisting wear for everyday use.",
+      "Combination of a smooth cushioned seat with a light wooden frame and airy cane backrest, offering comfort with a touch of natural texture.",
+      "The Caneva Café Chair collection comes in a mix of refined finishes, offering options in Wood finishes, multiple upholstery styles.",
+      "Height of Seat: 450 mm",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310"
+    ],
+    "dimensions": {
+      "Height": "850mm.",
+      "Width": "490 mm.",
+      "Height of Seat": "450 mm"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--caneva/image-01.webp",
+      "/assets/catalog/oando-seating--caneva/image-02.webp",
+      "/assets/catalog/oando-seating--caneva/image-03.webp",
+      "/assets/catalog/oando-seating--caneva/image-04.webp",
+      "/assets/catalog/oando-seating--caneva/image-05.webp",
+      "/assets/catalog/oando-seating--caneva/image-06.webp",
+      "/assets/catalog/oando-seating--caneva/image-07.webp",
+      "/assets/catalog/oando-seating--caneva/image-08.webp",
+      "/assets/catalog/oando-seating--caneva/image-09.webp",
+      "/assets/catalog/oando-seating--caneva/image-10.webp",
+      "/assets/catalog/chairs/caneva/image-13.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/caneva/caneva.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/caneva/caneva.max"
+      }
+    ]
+  },
+  {
+    "name": "Crotch",
+    "slug": "crotch",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Crotch Café Chair features a clean, linear aesthetic inspired by classic Scandinavian design. Its durable polypropylene seat shell rests on metal legs crafted to resemble solid wood, achieving both style and practicality.",
+    "features": [
+      "Designed to be lightweight and space efficient, the Crotch Café Chair is ideal for cafés, restaurants, and compact dining spaces. Built with high quality materials, it delivers longlasting durability and reliable support for everyday use.",
+      "The chair’s backrest features sleek, evenly spaced spindles that offer both visual lightness and secure support. Its smooth, moulded design enhances comfort while maintaining a bold, modern look.",
+      "The chair’s tapered legs are crafted to resemble natural wood while offering the durability of modern materials. Their sturdy, well balanced structure ensures reliable support for everyday use.",
+      "This vibrant café chair pairs a striking spindle back design with sturdy tapered legs, creating a perfect blend of modern style and reliable comfort.",
+      "The Crotch Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "770 mm.",
+      "Width": "430 mm.",
+      "Depth": "450 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--crotch/image-01.webp",
+      "/assets/catalog/oando-seating--crotch/image-02.webp",
+      "/assets/catalog/oando-seating--crotch/image-03.webp",
+      "/assets/catalog/oando-seating--crotch/image-04.webp",
+      "/assets/catalog/oando-seating--crotch/image-05.webp",
+      "/assets/catalog/oando-seating--crotch/image-06.webp",
+      "/assets/catalog/oando-seating--crotch/image-07.webp",
+      "/assets/catalog/oando-seating--crotch/image-08.webp",
+      "/assets/catalog/oando-seating--crotch/image-09.webp",
+      "/assets/catalog/oando-seating--crotch/image-10.webp",
+      "/assets/catalog/oando-seating--crotch/image-11.webp",
+      "/assets/catalog/oando-seating--crotch/image-12.webp",
+      "/assets/catalog/chairs/crotch/image-15.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/crotch/crotch.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/crotch/crotch.max"
+      }
+    ]
+  },
+  {
+    "name": "Smile",
+    "slug": "smile",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Chair brings a warm, inviting presence to any café or dining setting with its clean, contemporary lines. Designed with a supportive backrest, it maintains a balanced silhouette that enhances both comfort and style.",
+    "features": [
+      "With a thoughtfully shaped seat and ergonomic design, the Crotch Café Chair ensures comfort even during long seating durations. Its sturdy build and subtle curves offer a supportive experience, making it a practical and stylish choice for busy commercial spaces or home dining environments.",
+      "The chair’s curved wraparound backrest offers a supportive, hugged in feel while maintaining a sleek, modern look. Its smooth, molded design and evenly spaced spindles provide stability without adding bulk.",
+      "The chair’s backrest features slim, evenly spaced spindles that create an open, airy look while offering reliable support. Its smooth, curved seat edge connects seamlessly with the back, enhancing comfort and visual balance.",
+      "This contemporary café chair pairs a sleek spindleback design with sturdy, woodlook tapered legs for a fresh, lightweight feel. Durable, stylish, and effortlessly inviting, it adds a vibrant finish to dining areas, cafés, and modern interiors—perfect for your brochure showcase.",
+      "The Smile Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "770mm.",
+      "Width": "440 mm.",
+      "Depth": "520 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--smile/image-01.webp",
+      "/assets/catalog/oando-seating--smile/image-02.webp",
+      "/assets/catalog/oando-seating--smile/image-03.webp",
+      "/assets/catalog/oando-seating--smile/image-04.webp",
+      "/assets/catalog/oando-seating--smile/image-05.webp",
+      "/assets/catalog/oando-seating--smile/image-06.webp",
+      "/assets/catalog/oando-seating--smile/image-07.webp",
+      "/assets/catalog/oando-seating--smile/image-08.webp",
+      "/assets/catalog/oando-seating--smile/image-09.webp",
+      "/assets/catalog/oando-seating--smile/image-10.webp",
+      "/assets/catalog/oando-seating--smile/image-11.webp",
+      "/assets/catalog/oando-seating--smile/image-12.webp",
+      "/assets/catalog/chairs/smile/image-15.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/smile/smile.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/smile/smile.max"
+      }
+    ]
+  },
+  {
+    "name": "Rio",
+    "slug": "rio",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Rio Chair combines clean, contemporary contours with a light, easy presence. Its open style backrest creates a sense of space while maintaining a crisp, modern profile ideal for cafés and dining areas. Designed with thoughtful proportions, it blends visual simplicity with practical style.",
+    "features": [
+      "Shaped with ergonomic intent, the Crotch Café Chair provides supportive seating suited for extended use. Its durable construction ensures long lasting comfort in high traffic environments such as restaurants, collaborative zones, and home dining settings.",
+      "The chair’s backrest features a wide, gently curved design that offers natural lumbar support while enhancing comfort. Its seamless, one-piece structure provides stability without adding bulk, creating a clean, modern silhouette.",
+      "The chair’s backrest is crafted with a smooth, continuous curve that provides balanced support while maintaining a clean, modern look. Its one-piece moulded form adds durability and stability, making it ideal for everyday use.",
+      "This lightweight, one-piece chair features smooth curves and an airy open back design that blends comfort with contemporary style. Durable, versatile, and effortlessly sleek, it adds a refined finish to cafés, work zones, and dining interiors—perfect for a standout brochure showcase.",
+      "The Rio Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "770mm.",
+      "Width": "480 mm.",
+      "Depth": "510 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--rio/image-01.webp",
+      "/assets/catalog/oando-seating--rio/image-02.webp",
+      "/assets/catalog/oando-seating--rio/image-03.webp",
+      "/assets/catalog/oando-seating--rio/image-04.webp",
+      "/assets/catalog/oando-seating--rio/image-05.webp",
+      "/assets/catalog/oando-seating--rio/image-06.webp",
+      "/assets/catalog/oando-seating--rio/image-07.webp",
+      "/assets/catalog/oando-seating--rio/image-08.webp",
+      "/assets/catalog/oando-seating--rio/image-09.webp",
+      "/assets/catalog/oando-seating--rio/image-10.webp",
+      "/assets/catalog/oando-seating--rio/image-11.webp",
+      "/assets/catalog/oando-seating--rio/image-12.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Canaret",
+    "slug": "canaret",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Chair brings a clean, classic silhouette to any dining or café setting. Its refined lines and modern detailing create an understated elegance that fits seamlessly into both contemporary and traditional interiors. Designed to feel welcoming, it enhances any space with its balanced, versatile style.",
+    "features": [
+      "Built with comfort in mind, the Canaret Chair features supportive contours that make long hours of sitting feel effortless. Its ergonomic shaping and sturdy construction ensure a pleasant, reliable seating experience.",
+      "The wide, sculpted backrest offers strong ergonomic support with a sleek look. Its single-piece moulded design is durable and seamless, providing all-day comfort for work or leisure.",
+      "The cross-braced frame adds steady support without adding bulk, while the moulded seat flows seamlessly into the wooden legs for a clean, sturdy build. Strong, stylish, and perfect for everyday modern spaces.",
+      "Lightweight, durable, and effortlessly stylish, it’s a versatile addition to dining areas, cafés, and contemporary interiors—perfect for a polished brochure showcase.",
+      "The Canaret Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--canaret/image-01.webp",
+      "/assets/catalog/oando-seating--canaret/image-02.webp",
+      "/assets/catalog/oando-seating--canaret/image-03.webp",
+      "/assets/catalog/oando-seating--canaret/image-04.webp",
+      "/assets/catalog/oando-seating--canaret/image-05.webp",
+      "/assets/catalog/oando-seating--canaret/image-06.webp",
+      "/assets/catalog/oando-seating--canaret/image-07.webp",
+      "/assets/catalog/oando-seating--canaret/image-08.webp",
+      "/assets/catalog/oando-seating--canaret/image-09.webp",
+      "/assets/catalog/oando-seating--canaret/image-10.webp",
+      "/assets/catalog/oando-seating--canaret/image-11.webp",
+      "/assets/catalog/chairs/canaret/image-14.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/canaret/canaret.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/canaret/canaret.max"
+      }
+    ]
+  },
+  {
+    "name": "Brim",
+    "slug": "brim",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Brim Chair blends modern aesthetics with practical, everyday comfort. Its smooth, curved backrest provides supportive seating, while the cushioned seat enhances ease during long hours of use.",
+    "features": [
+      "Built with a robust frame, the Brim Chair ensures durability and longlasting performance. Its versatile form makes it suitable for workspaces, dining areas, and casual settings alike. Offering both style and functionality, it delivers comfort without compromising on design.",
+      "The broad, curved backrest gives balanced support with a clean, modern look. Its smooth one-piece form keeps posture comfortable, offering easy, stable seating for everyday use.",
+      "The clean, tapered legs offer strong stability and everyday durability. Their modern shape adds elegance while keeping the chair sturdy and minimal in style.",
+      "This brim back café chair features a smooth, curved backrest and a sturdy rounded seat, offering comfort with a clean, modern look.",
+      "The Brim Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "730mm.",
+      "Width": "480 mm.",
+      "Depth": "510 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--brim/image-01.webp",
+      "/assets/catalog/oando-seating--brim/image-02.webp",
+      "/assets/catalog/oando-seating--brim/image-03.webp",
+      "/assets/catalog/oando-seating--brim/image-04.webp",
+      "/assets/catalog/oando-seating--brim/image-06.webp",
+      "/assets/catalog/oando-seating--brim/image-07.webp",
+      "/assets/catalog/oando-seating--brim/image-08.webp",
+      "/assets/catalog/oando-seating--brim/image-09.webp",
+      "/assets/catalog/oando-seating--brim/image-10.webp",
+      "/assets/catalog/oando-seating--brim/image-11.webp",
+      "/assets/catalog/chairs/brim/image-12.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Dive",
+    "slug": "dive",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Dive Chair features a sleek, modern profile that adapts effortlessly to cafés, dining rooms, offices, and lounges. Its clean lines and smooth contours give it a versatile look that blends seamlessly with a wide range of interior styles. Designed to feel inviting, it adds a touch of contemporary simplicity to any space.",
+    "features": [
+      "Lightweight yet supportive, the Crotch Café Chair delivers ergonomic comfort ideal for extended seating. Its balanced proportions and thoughtfully shaped seat ensure ease whether used for work, dining, or casual relaxation.",
+      "The wide, angled backrest offers strong support with a clean, modern look. Its smooth moulded form keeps posture comfortable, while the bold colour adds a stylish visual touch to any space.",
+      "The smooth, tapered wooden legs add warmth and balance to the modern frame. Sturdy yet light in appearance, they offer reliable support while elevating the chair’s refined look.",
+      "A sleek, modern chair with a contoured seat and sturdy wooden legs, offering lightweight durability and everyday comfort. Its clean design fits seamlessly into cafés, dining spaces, and contemporary interiors.",
+      "The Dive Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "750mm.",
+      "Width": "480 mm.",
+      "Depth": "480 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--dive/image-01.webp",
+      "/assets/catalog/oando-seating--dive/image-02.webp",
+      "/assets/catalog/oando-seating--dive/image-03.webp",
+      "/assets/catalog/oando-seating--dive/image-04.webp",
+      "/assets/catalog/oando-seating--dive/image-05.webp",
+      "/assets/catalog/oando-seating--dive/image-06.webp",
+      "/assets/catalog/oando-seating--dive/image-07.webp",
+      "/assets/catalog/oando-seating--dive/image-08.webp",
+      "/assets/catalog/oando-seating--dive/image-09.webp",
+      "/assets/catalog/oando-seating--dive/image-10.webp",
+      "/assets/catalog/oando-seating--dive/image-11.webp",
+      "/assets/catalog/oando-seating--dive/image-12.webp",
+      "/assets/catalog/chairs/dive/image-15.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/dive/dive.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/dive/dive.max"
+      }
+    ]
+  },
+  {
+    "name": "Wing",
+    "slug": "wing",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+    "features": [
+      "Help us get in touch with you",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/chairs/wing/image-01.png",
+      "/assets/catalog/chairs/wing/image-03.png",
+      "/assets/catalog/chairs/wing/image-04.png",
+      "/assets/catalog/chairs/wing/image-05.jpg",
+      "/assets/catalog/chairs/wing/image-08.png"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Copse",
+    "slug": "copse",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Copse Café Chair is designed with ergonomic support that ensures lasting comfort, whether used at home or in a busy commercial environment. Its gently curved backrest offers excellent posture alignment, making it ideal for long seating periods.",
+    "features": [
+      "The sculpted, body-hugging backrest encourages natural posture and lasting support, while its diamond-textured surface adds depth and comfortable grip. Lightweight yet well-structured, it pairs modern style with ergonomic ease.",
+      "The unique legs provide a sleek, minimalist look with strong, steady support. Their design keeps the chair lightweight and easy to move, while the reflective finish adds a refined, contemporary appeal.",
+      "This textured café chair pairs a sculpted seat with sturdy legs, offering a striking blend of style, comfort, and durability. Lightweight and contemporary, it’s an ideal addition to cafés, dining areas, and modern interiors—perfect for a polished brochure highlight.",
+      "The Copse Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "Height": "775mm.",
+      "Width": "445 mm.",
+      "Depth": "510 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--copse/image-01.webp",
+      "/assets/catalog/oando-seating--copse/image-02.webp",
+      "/assets/catalog/oando-seating--copse/image-03.webp",
+      "/assets/catalog/oando-seating--copse/image-04.webp",
+      "/assets/catalog/oando-seating--copse/image-05.webp",
+      "/assets/catalog/oando-seating--copse/image-06.webp",
+      "/assets/catalog/oando-seating--copse/image-07.webp",
+      "/assets/catalog/oando-seating--copse/image-08.webp",
+      "/assets/catalog/oando-seating--copse/image-09.webp",
+      "/assets/catalog/oando-seating--copse/image-10.webp",
+      "/assets/catalog/oando-seating--copse/image-11.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Leaf",
+    "slug": "leaf",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Leaf Café Chair features a distinctive wing shaped silhouette that adds a refined and stylish touch to any setting. Its graceful, sculpted form brings a sense of sophistication while blending effortlessly into cafés, dining rooms, lounges, and workspaces. Designed to elevate interiors, it offers both visual appeal and everyday practicality.",
+    "features": [
+      "The perforated backrest allows refreshing airflow for cool comfort, while its gentle curve offers natural ergonomic support. Lightweight yet durable, the design flexes with the body, delivering a modern look with enhanced ease and comfort.",
+      "The smooth, perforated seat provides breathable comfort with a contoured shape that supports natural posture while keeping the design lightweight. Paired with sturdy molded legs for reliable stability and durability, the chair is well-suited for cafés, dining areas, and everyday spaces.",
+      "This perforated café chair combines a breathable seat and back with a sturdy molded frame, offering a modern look that’s both stylish and practical. Durable, versatile, and easy to maintain, it’s a perfect fit for cafés, dining areas, and contemporary interiors.",
+      "The Leaf Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "Height": "775mm.",
+      "Width": "800 mm.",
+      "Depth": "550 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--leaf/image-01.webp",
+      "/assets/catalog/oando-seating--leaf/image-02.webp",
+      "/assets/catalog/oando-seating--leaf/image-03.webp",
+      "/assets/catalog/oando-seating--leaf/image-04.webp",
+      "/assets/catalog/oando-seating--leaf/image-05.webp",
+      "/assets/catalog/oando-seating--leaf/image-06.webp",
+      "/assets/catalog/oando-seating--leaf/image-07.webp",
+      "/assets/catalog/oando-seating--leaf/image-08.webp",
+      "/assets/catalog/oando-seating--leaf/image-09.webp",
+      "/assets/catalog/oando-seating--leaf/image-10.webp",
+      "/assets/catalog/oando-seating--leaf/image-11.webp",
+      "/assets/catalog/oando-seating--leaf/image-12.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Lexus",
+    "slug": "lexus",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Lexus Café Chair brings together timeless design and contemporary appeal with its refined, wing inspired silhouette. Its smooth, sculpted form adds character to cafés, dining areas, and social spaces. Blending tradition with modern aesthetics, it stands out as both elegant and versatile.",
+    "features": [
+      "The seat’s woven cane-style pattern brings natural texture and airflow for cool comfort, while its molded build ensures durability with gentle flexibility. Lightweight yet supportive, it blends traditional craftsmanship with modern ease.",
+      "The molded cane-style backrest enhances airflow and adds a warm, natural texture, while its gentle curve offers supportive comfort for longer sitting. Lightweight yet durable, it combines traditional charm with modern structural strength.",
+      "Discover the Lexus Chair’s timeless craftsmanship and modern comfort—explore more details here.",
+      "The Lexus Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "Height": "790mm.",
+      "Width": "380 mm.",
+      "Depth": "380 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--lexus/image-01.webp",
+      "/assets/catalog/oando-seating--lexus/image-02.webp",
+      "/assets/catalog/oando-seating--lexus/image-03.webp",
+      "/assets/catalog/oando-seating--lexus/image-04.webp",
+      "/assets/catalog/oando-seating--lexus/image-05.webp",
+      "/assets/catalog/oando-seating--lexus/image-06.webp",
+      "/assets/catalog/oando-seating--lexus/image-07.webp",
+      "/assets/catalog/oando-seating--lexus/image-08.webp",
+      "/assets/catalog/oando-seating--lexus/image-09.webp",
+      "/assets/catalog/oando-seating--lexus/image-10.webp",
+      "/assets/catalog/oando-seating--lexus/image-11.webp",
+      "/assets/catalog/chairs/lexus/image-12.png"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Flare",
+    "slug": "flare",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Flare Café Chair embodies sleek minimalism with its clean, modern silhouette. Its contoured seat offers comfortable support, while the ventilated backrest enhances airflow for a cooler sitting experience. Designed with subtle elegance, it fits effortlessly into contemporary café and dining settings.",
+    "features": [
+      "Built to be stackable and lightweight, the Flare Café Chair is perfect for both compact interiors and hightraffic spaces. Its practical design ensures easy handling without compromising on style or durability. Versatile and refined, it brings everyday functionality together with modern appeal.",
+      "The backrest’s vertical slits promote airflow for cool comfort, while its gentle curve provides natural lumbar support. Lightweight yet durable, it offers practical comfort with a clean, contemporary look.",
+      "The sleek, tapered legs deliver a clean, minimalist look with strong, stable support. Moulded for durability without excess weight, they make the chair easy to move, while their seamless connection to the seat enhances its modern, sculpted appeal.",
+      "Flare delivers minimalist style with practical design, offering breathable comfort, easy maintenance, and stackable convenience.",
+      "The Flare Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "790mm.",
+      "Width": "460 mm.",
+      "Depth": "540 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--flare/image-01.webp",
+      "/assets/catalog/oando-seating--flare/image-02.webp",
+      "/assets/catalog/oando-seating--flare/image-03.webp",
+      "/assets/catalog/oando-seating--flare/image-04.webp",
+      "/assets/catalog/oando-seating--flare/image-05.webp",
+      "/assets/catalog/oando-seating--flare/image-06.webp",
+      "/assets/catalog/oando-seating--flare/image-07.webp",
+      "/assets/catalog/oando-seating--flare/image-08.webp",
+      "/assets/catalog/oando-seating--flare/image-09.webp",
+      "/assets/catalog/oando-seating--flare/image-10.webp",
+      "/assets/catalog/oando-seating--flare/image-11.webp"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Zilo",
+    "slug": "zilo",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Zilo Café Chair reflects modern simplicity with its clean, confident form. Its ergonomically shaped seat offers comfortable support, making it suitable for long hours of use. Designed with contemporary appeal, it blends seamlessly into café, dining, and social environments.",
+    "features": [
+      "Lightweight and highly versatile, the Flare Café Chair performs effortlessly in both indoor and outdoor spaces. Its durable construction ensures reliable everyday use while maintaining a sleek, minimal aesthetic. Practical yet stylish, it fits perfectly into a variety of modern settings.",
+      "The gently curved backrest supports the spine for comfortable, upright seating, while its wide surface ensures balanced comfort for longer use.",
+      "The polished metal legs offer strong stability with a clean, modern look. Their slim tubular form keeps the chair lightweight and easy to move without sacrificing durability, making them ideal for long-lasting performance in both home and commercial spaces.",
+      "Explore the Zilo Chair—modern simplicity, bold comfort, and lasting support for any space.",
+      "The Zilo Café Chair collection comes in a mix of refined finishes, offering multiple options in colour.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "800mm.",
+      "Width": "550 mm.",
+      "Depth": "440 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--zilo/image-01.webp",
+      "/assets/catalog/oando-seating--zilo/image-02.webp",
+      "/assets/catalog/oando-seating--zilo/image-03.webp",
+      "/assets/catalog/oando-seating--zilo/image-04.webp",
+      "/assets/catalog/oando-seating--zilo/image-05.webp",
+      "/assets/catalog/oando-seating--zilo/image-06.webp",
+      "/assets/catalog/oando-seating--zilo/image-07.webp",
+      "/assets/catalog/oando-seating--zilo/image-08.webp",
+      "/assets/catalog/oando-seating--zilo/image-09.webp",
+      "/assets/catalog/oando-seating--zilo/image-10.webp",
+      "/assets/catalog/oando-seating--zilo/image-11.webp",
+      "/assets/catalog/oando-seating--zilo/image-12.webp",
+      "/assets/catalog/chairs/zilo/image-13.jpg",
+      "/assets/catalog/chairs/zilo/image-14.jpg",
+      "/assets/catalog/chairs/zilo/image-17.png"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Fynn",
+    "slug": "fynn",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Fynn High Café Chair blends natural warmth with clean, modern precision through its solid wood base and upholstered seat. Its balanced proportions and supportive backrest make it a comfortable choice for cafés, collaborative zones, and social spaces.",
+    "features": [
+      "The plush, fully upholstered backrest offers gentle, wraparound support for extended comfort, while its smooth contours and textured fabric add visual warmth.",
+      "The robust legs provide lasting durability and a warm, timeless look. Their wide, angled stance and reinforced crossbars ensure superior stability and strength, making the stool secure and comfortable for both café and home use.",
+      "A refined blend of soft upholstery and natural wood, the Fynn High Stool delivers comfort, durability, and timeless versatility.",
+      "The Fynn High Café Chair collection comes in a mix of refined finishes, offering options in Wood finishes, multiple upholstery styles.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {},
+    "images": [
+      "/assets/catalog/oando-seating--fynn/image-01.webp",
+      "/assets/catalog/oando-seating--fynn/image-02.webp",
+      "/assets/catalog/oando-seating--fynn/image-03.webp",
+      "/assets/catalog/oando-seating--fynn/image-04.webp",
+      "/assets/catalog/oando-seating--fynn/image-05.webp",
+      "/assets/catalog/oando-seating--fynn/image-06.webp",
+      "/assets/catalog/oando-seating--fynn/image-07.webp",
+      "/assets/catalog/oando-seating--fynn/image-08.webp",
+      "/assets/catalog/oando-seating--fynn/image-09.webp",
+      "/assets/catalog/oando-seating--fynn/image-10.webp",
+      "/assets/catalog/chairs/fynn/image-13.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/fynn/fynn.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/fynn/fynn.max"
+      }
+    ]
+  },
+  {
+    "name": "Caneva-High",
+    "slug": "caneva-high",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Caneva Café Chair brings a sleek, modern character with its clean lines and thoughtfully contoured form. Designed for comfort, its supportive seat and backrest make it suitable for cafés, collaborative spaces, and casual social zones.",
+    "features": [
+      "The backrest features a hand-woven cane insert framed in solid wood, providing breathable support with timeless craftsmanship. Its open weave enhances airflow for added comfort, while the sturdy wooden frame ensures stability and a warm, elegant aesthetic.",
+      "Crafted from sturdy natural wood, the legs provide lasting strength with a clean, modern profile that still feels warm and classic. An integrated cross brace boosts stability, ensuring reliable support in both home and café spaces.",
+      "Elegant, sturdy, and versatile, the Caneva High Stool brings crafted warmth and everyday usability to any contemporary space.",
+      "The Caneva High Café Chair collection comes in a mix of refined finishes, offering options in Wood finishes, multiple upholstery styles.",
+      "Height ofSeat: 400 mm.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849"
+    ],
+    "dimensions": {
+      "Height": "1100mm.",
+      "Width": "360 mm.",
+      "Height ofSeat": "400 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--caneva-high/image-01.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-02.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-03.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-04.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-05.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-06.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-07.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-08.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-09.webp",
+      "/assets/catalog/oando-seating--caneva-high/image-10.webp",
+      "/assets/catalog/chairs/caneva-high/image-24.jpg",
+      "/assets/catalog/chairs/caneva-high/image-27.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": [
+      {
+        "label": "CAD DWG Model",
+        "path": "/assets/catalog/chairs/caneva-high/caneva-high.dwg"
+      },
+      {
+        "label": "3D Max Model",
+        "path": "/assets/catalog/chairs/caneva-high/caneva-high.max"
+      }
+    ]
+  },
+  {
+    "name": "Lisbo",
+    "slug": "lisbo",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "Built with ergonomic support in mind, the Lisbo High Café Chair offers a comfortable seating experience ideal for long durations. Its supportive structure makes it perfect for high counters, workspaces, and social settings.",
+    "features": [
+      "The smooth, gently curved backrest supports the upper body while offering relaxed, ergonomic seating. Its seamless moulded design is minimal and elegant, adding a refined modern touch to any space.",
+      "The strong, finished legs offer lasting durability and a warm, refined look. Their angled stance with an integrated metal footrest ensures stability and comfort, combining strength, style, and elegance.",
+      "(W) 500mm x (H) 740mm x (D) 430mm",
+      "(Seat height: 740mm, Seat depth: 350mm)",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "(Seat height": "740mm, Seat depth: 350mm)"
+    },
+    "images": [
+      "/assets/catalog/oando-seating--lisbo/image-03.webp",
+      "/assets/catalog/oando-seating--lisbo/image-04.webp",
+      "/assets/catalog/oando-seating--lisbo/image-05.webp",
+      "/assets/catalog/oando-seating--lisbo/image-06.webp",
+      "/assets/catalog/oando-seating--lisbo/image-07.webp",
+      "/assets/catalog/chairs/lisbo/image-08.jpg",
+      "/assets/catalog/chairs/lisbo/image-09.png",
+      "/assets/catalog/chairs/lisbo/image-10.jpg"
+    ],
+    "hasHeadrest": false,
+    "headrestVariant": "none",
+    "models": []
+  },
+  {
+    "name": "Fusion",
+    "slug": "fusion",
+    "category": "cafe-chair",
+    "categoryLabel": "Cafe Chair",
+    "description": "The Fusion High Café Chair features a slightly curved high backrest designed to offer thorough lumbar support, ensuring a comfortable seating experience even for long durations. Its sleek, contemporary form makes it a standout piece in café settings, bars, and modern interiors.",
+    "features": [
+      "The woven strap design backrest offers ergonomic support for comfortable seating. Durable and visually striking, it combines modern craftsmanship with contemporary style.",
+      "Fusion blends ergonomic support with handcrafted style, making long hours of seating effortlessly comfortable.",
+      "The Fusion High Café Chair collection comes in a mix of refined finishes, offering options in colours.",
+      "Help us get in touch with you",
+      "Plot No. 33, Ecotech 12,Greater Noida West, UP, 201310",
+      "Contact No. +91 9999006933Tel : 0120 - 6251548Tel : 0120 - 6251849",
+      "For service-related queries , please contact :"
+    ],
+    "dimensions": {
+      "Height": "1000mm.",
+      "Width": "480 mm.",
+      "Depth": "490 mm."
+    },
+    "images": [
+      "/assets/catalog/oando-seating--fusion/image-01.webp",
+      "/assets/catalog/oando-seating--fusion/image-02.webp",
+      "/assets/catalog/oando-seating--fusion/image-03.webp",
+      "/assets/catalog/oando-seating--fusion/image-04.webp",
+      "/assets/catalog/oando-seating--fusion/image-05.webp",
+      "/assets/catalog/oando-seating--fusion/image-06.webp",
+      "/assets/catalog/oando-seating--fusion/image-07.webp",
+      "/assets/catalog/oando-seating--fusion/image-08.webp",
+      "/assets/catalog/oando-seating--fusion/image-09.webp",
+      "/assets/catalog/oando-seating--fusion/image-10.webp"
+    ],
+    "hasHeadrest": true,
+    "headrestVariant": "none",
+    "models": []
+  }
+]
+

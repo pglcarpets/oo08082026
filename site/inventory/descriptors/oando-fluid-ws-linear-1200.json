@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000006",
+  "slug": "oando-fluid-ws-linear-1200",
+  "sku": "OANDO-FLUID-WS-L1200",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1200,
+    "depthMm": 600,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 600
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "linear-desk",
+    "widthMm": 1200,
+    "depthMm": 600,
+    "topThicknessMm": 75
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000010,
+  "checksum": "b8ec4870b9f79123b393104ca7fea6999f2ff700aa1e92d9b93a84be8f981d20",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

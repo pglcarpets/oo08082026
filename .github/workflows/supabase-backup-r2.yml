@@ -1,0 +1,36 @@
+name: Supabase backup to R2
+
+on:
+  schedule:
+    - cron: "15 2 * * *"
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - name: Install pg_dump
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run ops backup:supabase:r2
+        env:
+          PRODUCTS_DATABASE_URL: ${{ secrets.PRODUCTS_DATABASE_URL }}
+          SUPABASE_AUTH_DATABASE_URL: ${{ secrets.SUPABASE_AUTH_DATABASE_URL }}
+          CLOUDFLARE_S3_URL: ${{ secrets.CLOUDFLARE_S3_URL }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+          CLOUDFLARE_R2_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+          CLOUDFLARE_R2_CATALOG_BUCKET: ${{ secrets.CLOUDFLARE_R2_CATALOG_BUCKET }}

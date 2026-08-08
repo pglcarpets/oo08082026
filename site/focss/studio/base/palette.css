@@ -1,0 +1,26 @@
+:root {
+  /* Short-name aliases only — raw colour lives in base/tokens/palette.css. */
+  --color-obb-300: var(--color-ocean-boat-blue-300);
+  --color-obb-400: var(--color-ocean-boat-blue-400);
+  --color-obb-500: var(--color-ocean-boat-blue-500);
+  --color-obb-550: var(--color-ocean-boat-blue-550);
+  --color-obb-600: var(--color-ocean-boat-blue-600);
+
+  --color-midnight-300: var(--color-dark-midnight-blue-300);
+  --color-midnight-400: var(--color-dark-midnight-blue-400);
+  --color-midnight-500: var(--color-dark-midnight-blue-500);
+  --color-midnight-600: var(--color-dark-midnight-blue-600);
+  --color-midnight-700: var(--color-dark-midnight-blue-700);
+  --color-midnight-800: var(--color-dark-midnight-blue-800);
+  --color-midnight-900: var(--color-dark-midnight-blue-900);
+
+  --color-bronze-warm: var(--color-bronze-300);
+  --color-error: var(--color-error-red);
+
+  /* Canvas / scene — paired with site/lib scan:tokens where present */
+  --canvas-grid-minor: var(--color-support-mist);
+  --canvas-grid-major: var(--color-support-fog);
+  --canvas-window-fill: var(--color-ocean-boat-blue-50);
+  --scene-bg-draft: var(--color-white-100);
+  --scene-bg-high: var(--color-white-150);
+}

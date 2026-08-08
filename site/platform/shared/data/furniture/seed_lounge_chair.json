@@ -1,0 +1,26 @@
+{
+  "id": "seed_lounge_chair",
+  "name": "Lounge Chair",
+  "category": "Seating",
+  "subcategory": "Soft",
+  "tags": [
+    "lounge"
+  ],
+  "dimensions": {
+    "width_mm": 850,
+    "depth_mm": 850,
+    "height_mm": 780
+  },
+  "notes": null,
+  "is_custom": false,
+  "thumbnail_url": "/api/files/furniture/seed_lounge_chair_top.svg",
+  "top_png_url": null,
+  "top_svg_url": "/api/files/furniture/seed_lounge_chair_top.svg",
+  "front_png_url": null,
+  "side_png_url": null,
+  "top_fabric_json": null,
+  "front_fabric_json": null,
+  "side_fabric_json": null,
+  "created_at": "2026-07-30T16:58:34.119Z",
+  "updated_at": "2026-07-30T16:58:34.119Z"
+}

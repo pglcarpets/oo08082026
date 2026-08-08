@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000021",
+  "slug": "oando-mellow-sofa-2200",
+  "sku": "OANDO-MELLOW-SOF-2200",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 2200,
+    "depthMm": 900,
+    "heightMm": 850
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 2200,
+    "height": 900
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "seat",
+      "x": 80,
+      "y": 160,
+      "width": 2040,
+      "depth": 620
+    },
+    {
+      "id": "backrest",
+      "x": 80,
+      "y": 40,
+      "width": 2040,
+      "depth": 140
+    },
+    {
+      "id": "arm-l",
+      "x": 40,
+      "y": 160,
+      "width": 80,
+      "depth": 620
+    },
+    {
+      "id": "arm-r",
+      "x": 2080,
+      "y": 160,
+      "width": 80,
+      "depth": 620
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000052,
+  "checksum": "f4ae6e734e9a0c739d3f8e527634c53f2521e61e3e849dcdc5c39e2f480d87da",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

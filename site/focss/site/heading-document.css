@@ -1,0 +1,14 @@
+/* Marketing heading chrome — site zone only (was entries/document-base). */
+@layer base {
+  .home-heading,
+  .hero-title,
+  .typ-h1,
+  .typ-h2,
+  .typ-display,
+  .typ-section,
+  .typ-page-title {
+    /* Display face: Cisco Sans via --font-display → --font-cisco-sans on <html>. */
+    font-family: var(--font-display), sans-serif;
+    color: var(--text-heading, var(--color-pure-black));
+  }
+}

@@ -1,0 +1,180 @@
+/*
+ * Admin entry hero — first landing moment on `/admin`.
+ * Deliberate ecru/bronze/dark-ink identity (oando-premium-motion + oando-hero-media)
+ * inside the otherwise cool-white admin shell — one signature "wow" band, not a
+ * full re-skin of the operational surfaces below it.
+ */
+
+.admin-entry-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--color-dark-midnight-blue-900);
+  margin-block: var(--space-4, 1rem) var(--space-6, 1.5rem);
+  padding-block: clamp(2.75rem, 7vw, 3.75rem) clamp(1.75rem, 3.5vw, 2.25rem);
+  padding-inline: clamp(1.5rem, 4vw, 2.75rem);
+  box-shadow: 0 30px 60px -30px var(--overlay-inverse-55);
+}
+
+/* Ambient bronze/ecru glow behind the media — same drift language as editorial-hero.css */
+.admin-entry-hero__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 75% 60% at 78% 30%, color-mix(in srgb, var(--color-bronze-400) 22%, transparent), transparent 68%),
+    radial-gradient(ellipse 55% 45% at 15% 85%, color-mix(in srgb, var(--color-ecru-100) 10%, transparent), transparent 72%);
+  animation: admin-entry-hero-ambient-drift 18s ease-in-out infinite alternate;
+}
+
+.admin-entry-hero__ambient--off {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes admin-entry-hero-ambient-drift {
+  from { opacity: 0.5; transform: scale(1) translate3d(0, 0, 0); }
+  to { opacity: 0.85; transform: scale(1.05) translate3d(-1%, 1%, 0); }
+}
+
+.admin-entry-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.admin-entry-hero__video {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+.admin-entry-hero__video--ready {
+  opacity: 1;
+}
+
+.admin-entry-hero__img {
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+
+.admin-entry-hero__img--under-video {
+  opacity: 0;
+}
+
+.admin-entry-hero__grade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--color-dark-midnight-blue-900) 8%, transparent);
+}
+
+/* Stronger scrim (own element, not part of EditorialHeroMedia) — copy contrast + bronze wash */
+.admin-entry-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(180deg, var(--overlay-inverse-35) 0%, var(--overlay-inverse-78) 78%, var(--overlay-inverse-92) 100%),
+    linear-gradient(100deg, var(--overlay-inverse-78) 0%, var(--overlay-inverse-42) 46%, var(--overlay-inverse-12) 100%);
+}
+
+.admin-entry-hero__layout {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+}
+
+.admin-entry-hero__copy {
+  max-width: 40rem;
+}
+
+.admin-entry-hero__kicker {
+  margin: 0 0 0.85rem;
+  font-size: var(--type-label-size);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-bronze-300);
+}
+
+.admin-entry-hero__title {
+  margin: 0;
+  color: var(--color-ecru-50);
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.2vw, 2.75rem);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.admin-entry-hero__subtitle {
+  margin: 1rem 0 0;
+  max-width: 34rem;
+  color: var(--text-inverse-body);
+  font-size: clamp(0.95rem, 1.6vw, 1.0625rem);
+  line-height: 1.55;
+}
+
+.admin-entry-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.admin-entry-hero__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.7rem 1.35rem;
+  background: var(--color-bronze-400);
+  color: var(--color-dark-midnight-blue-900);
+  font-size: var(--type-small-size);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.admin-entry-hero__cta:hover {
+  background: var(--color-ecru-100);
+}
+
+.admin-entry-hero__cta:focus-visible {
+  outline: 2px solid var(--color-ecru-50);
+  outline-offset: 3px;
+}
+
+.admin-entry-hero__cta:active {
+  transform: translateY(1px);
+}
+
+.admin-entry-hero__meta {
+  margin: 0;
+  color: var(--text-inverse-muted);
+  font-size: var(--type-label-size);
+  letter-spacing: 0.02em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-entry-hero__video {
+    display: none;
+  }
+
+  .admin-entry-hero__img--under-video {
+    opacity: 1;
+  }
+}

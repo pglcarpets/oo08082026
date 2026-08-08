@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000010",
+  "slug": "oando-mozio-ws-cluster-1800",
+  "sku": "OANDO-MOZIO-WS-C1800",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1800,
+    "depthMm": 1800,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1800,
+    "height": 1800
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "desk-n",
+      "x": 300,
+      "y": 0,
+      "width": 1200,
+      "depth": 600
+    },
+    {
+      "id": "desk-s",
+      "x": 300,
+      "y": 1200,
+      "width": 1200,
+      "depth": 600
+    },
+    {
+      "id": "core",
+      "x": 700,
+      "y": 700,
+      "width": 400,
+      "depth": 400
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000014,
+  "checksum": "b84ffc7d8329aa95404e53a28c58765fd6459dc24c31bf92444d3b8fb8d79dc5",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

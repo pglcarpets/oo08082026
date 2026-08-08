@@ -1,0 +1,57 @@
+{
+  "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+  "slug": "chaise-lounge-001",
+  "name": "Chaise Lounge",
+  "description": "Two-block chaise: seat area unioned with backrest to form a single contiguous furniture outline.",
+  "variant": "union",
+  "sourceProvenance": "native",
+  "schemaVersion": "1.0.0",
+  "generatedAt": 1751631000,
+  "createdBy": "phase-03-executor",
+  "dimensions": {
+    "widthMm": 800,
+    "depthMm": 1600,
+    "heightMm": 420,
+    "seatHeightMm": 410
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 800,
+    "height": 1600
+  },
+  "mounting": "floor",
+  "blocks": [
+    {
+      "id": "seat-block",
+      "x": 0,
+      "y": 400,
+      "width": 800,
+      "height": 1200
+    },
+    {
+      "id": "backrest-block",
+      "x": 0,
+      "y": 0,
+      "width": 800,
+      "height": 420
+    }
+  ],
+  "themeTokens": {
+    "fill-primary": "currentColor",
+    "stroke-accent": "var(--block-stroke-accent, currentColor)"
+  },
+  "rovingFocus": [
+    {
+      "key": "focus-chaise-seat",
+      "focusSelector": "#seat-block",
+      "label": "Seat area"
+    },
+    {
+      "key": "focus-chaise-backrest",
+      "focusSelector": "#backrest-block",
+      "label": "Backrest"
+    }
+  ],
+  "liveAnnouncementsCategory": "status"
+}

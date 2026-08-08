@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "description": "Playwright specs run by site release:gate (test:a11y + test:planner-catalog). Paths relative to site/",
+  "specs": [
+    "tests/e2e/accessibility.spec.ts",
+    "tests/e2e/admin-smoke.spec.ts",
+    "tests/e2e/planner-catalog.spec.ts",
+    "tests/e2e/planner-guest-workspace.spec.ts",
+    "tests/e2e/planner-custom-tools.spec.ts",
+    "tests/e2e/planner-chrome.spec.ts",
+    "tests/e2e/sketch-to-plan-pipeline.spec.ts",
+    "tests/e2e/planner-offline-sync.spec.ts",
+    "tests/e2e/audit-3b-planner-fixes.spec.ts",
+    "tests/e2e/audit-3c-planner-polish.spec.ts"
+  ],
+  "excluded": []
+}

@@ -1,0 +1,74 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000012",
+  "slug": "oando-eclipse-meeting-2400",
+  "sku": "OANDO-ECLIPSE-MTG-2400",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 2400,
+    "depthMm": 1200,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 2400,
+    "height": 1200
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "tabletop",
+      "x": 0,
+      "y": 0,
+      "width": 2400,
+      "depth": 1200
+    },
+    {
+      "id": "leg-nw",
+      "x": 100,
+      "y": 100,
+      "width": 70,
+      "depth": 70
+    },
+    {
+      "id": "leg-ne",
+      "x": 2230,
+      "y": 100,
+      "width": 70,
+      "depth": 70
+    },
+    {
+      "id": "leg-sw",
+      "x": 100,
+      "y": 1030,
+      "width": 70,
+      "depth": 70
+    },
+    {
+      "id": "leg-se",
+      "x": 2230,
+      "y": 1030,
+      "width": 70,
+      "depth": 70
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000021,
+  "checksum": "641f13efb042e4d4995c23868f93de165e92f85b696330032c127badac63be9c",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

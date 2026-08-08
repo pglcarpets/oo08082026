@@ -1,0 +1,152 @@
+{
+  "version": 3,
+  "status": "live-route-auth-contract",
+  "entry": {
+    "access": "/access",
+    "chooseProduct": "/choose-product",
+    "dashboard": "/dashboard"
+  },
+  "planner": {
+    "landing": "/planner",
+    "guest": "/ooplanner",
+    "help": "/planner/help",
+    "canvas": "/ooplanner",
+    "dashboardRedirect": "/dashboard",
+    "_legacyRedirects": {
+      "oando-planner": "/planner",
+      "planner-fabric": "/ooplanner",
+      "planner-open3d": "/ooplanner",
+      "crm": "/admin/crm",
+      "ops": "/admin/customer-queries"
+    },
+    "_legacyRedirectSources": {
+      "planner-fabric": ["/planner/fabric", "/planner/fabric/guest", "/planner/fabric/canvas"],
+      "planner-open3d": ["/planner/open3d", "/planner/open3d/:path*"]
+    }
+  },
+  "configurator": {
+    "landing": "/planner",
+    "guest": "/ooplanner",
+    "editor": "/ooplanner",
+    "workspaceCompatibility": "/ooplanner",
+    "dashboardRedirect": "/dashboard",
+    "_status": "unified-planner",
+    "_note": "Configurator catalog uses unified /planner/** workspace."
+  },
+  "protectedPrefixes": [
+    "/dashboard",
+    "/portal",
+    "/admin",
+    "/crm",
+    "/ops"
+  ],
+  "pageMemberGates": {
+    "_note": "Not edge-protected by proxy.ts. Page/layout enforces session (or guest cookie flow).",
+    "canvas": "/ooplanner",
+    "gate": "getOptionalPlannerUser redirects to /ooplanner/ when no user"
+  },
+
+  "_phase04_admin_routes": {
+    "_status": "phase-04 admin portal svg-editor routes",
+    "_auth": "withAuth(['admin']) — Phase 04 widens; pre-Phase 07 route-level reuse `site/lib/api/withAuth.ts`",
+    "_persistence": "atomic-rename JSON /api/admin/product-studio/route.ts → site/inventory/descriptors/{slug}.json",
+    "_canonical": "site/features/admin/product-studio/puckBlockRegistry.tsx (GS locked; see I-D + registry.tsx; PLAN-FAIL-0403/0417)",
+    "_gs": "BP-04/BP-05, design §7/11, anti-copy (DESIGN-BENCHMARK-PROTOCOL.md), I-D module paths, full impl: pages use loader+registry+Puck/Render (no any; static verified)",
+    "_impl": "04-ADMIN-01/02 + 05-PORT-01/02 + api + alias + getPuckData full routes 2026-07-04 (TDD tests + RSC + withAuth + loader + atomic + runner + Render)",
+    "list": "/admin/product-studio",
+    "editById": "/admin/product-studio/[id]",
+    "createStub": "/admin/product-studio/new",
+    "apiPost": "/api/admin/product-studio",
+    "_legacyPageRedirects": {
+      "list": "/admin/svg-editor",
+      "editById": "/admin/svg-editor/[id]",
+      "parametric": "/admin/svg-editor/parametric"
+    }
+  },
+  "_phase05_portal_svg_routes": {
+    "_status": "phase-07-stage-b RETIRED — portal svg-catalog deleted",
+    "_auth": "n/a (no page modules)",
+    "_redirect": "next.config permanent 308 + proxy short-circuit → /products/",
+    "index": "/portal/svg-catalog",
+    "bySlug": "/portal/svg-catalog/[slug]",
+    "destination": "/products/"
+  },
+  "_phase07_auth_matrix": {
+    "_status": "phase-07 planner guest/member/admin permission matrix",
+    "_canonical": "site/features/planner/model/plannerPermissions.ts",
+    "_commandRegistry": "site/features/planner/lib/commands/plannerAccessContext.ts",
+    "_apiAuth": "site/lib/api/withAuth.ts + site/app/api/admin/_lib/server.ts requireAdminSession",
+    "_guestAllowedActions": ["view", "select"],
+    "_guestBlockedActions": ["persist", "import", "export", "publish", "share"],
+    "_guestBlockedCommands": ["save", "export-plan", "import-plan", "open-file", "print"],
+    "_descriptor422Codes": ["422.invalid", "422.version_mismatch"],
+    "_authApiCodes": ["AUTH_REQUIRED", "INSUFFICIENT_PERMISSIONS"]
+  },
+  "_phase08_persistence": {
+    "_status": "phase-08 versioned JSON-on-disk persistence",
+    "_writer": "site/features/admin/product-studio/persistBlockDescriptor.ts",
+    "_loader": "site/features/planner/catalog/svg/svgBlockDescriptorLoader.ts",
+    "_layout": "{slug}.{n}.json + {slug}.latest.json pointer + legacy {slug}.json mirror",
+    "_lock": "O_EXCL {slug}.lock, 30s timeout → 409.lock_busy",
+    "_errors": ["422.version_mismatch", "409.hash_mismatch", "409.lock_busy"],
+    "_archive": "versioned files co-located under site/inventory/descriptors/ as {slug}.{n}.json (rolling versions; no separate _archive/ directory)",
+    "_dualRead": "results/admin/catalog-ops dual-read harness when enabled",
+    "_deferred": "Supabase block_descriptors table dual-write"
+  },
+  "publicGuestRoutes": [
+    "/choose-product?mode=guest",
+    "/ooplanner",
+    "/oando-planner/guest"
+  ],
+  "plannerGuestCookie": {
+    "name": "planner_guest_pass",
+    "allowedPaths": [
+      "/planner",
+      "/ooplanner",
+      "/oando-planner",
+      "/oando-planner/guest",
+      "/oando-planner/onboarding",
+      "/oando-planner/canvas"
+    ],
+    "blockedActions": [
+      "persist",
+      "import",
+      "export",
+      "publish",
+      "share"
+    ]
+  },
+  "redirects": {
+    "unauthenticatedProtected": "/access?next=<path>",
+    "plannerDashboard": "/dashboard",
+    "configuratorDashboard": "/dashboard",
+    "configuratorWorkspaceCompatibility": "/ooplanner",
+    "legacyOandoPlanner": "/planner"
+  },
+  "notes": [
+    "Canonical workspace planner lives at /planner/** (guest + canvas + marketing help).",
+    "Legacy /oando-planner/** 301 to unified /planner/** routes.",
+    "/planner/fabric/** and /planner/open3d/** 301 to /ooplanner (not live entrypoints).",
+    "Planner guest access: /ooplanner plus planner_guest_pass cookie on allowed paths.",
+    "Canvas routes are noindex; landing and help are indexable.",
+    "Live workspace host is features/planner workspace stack (not a separate fabric package path).",
+    "Canvas is page-gated (session user), not proxy-protected; proxy only allows guest cookie on /ooplanner."
+  ],
+  "support": {
+    "ivr": "/support-ivr"
+  },
+  "api": {
+    "planner": {
+      "aiAdvisor": {
+        "path": "/api/planner/ai-advisor",
+        "method": "POST"
+      }
+    },
+    "theme": {
+      "active": {
+        "path": "/api/theme/active",
+        "method": "GET"
+      }
+    }
+  }
+}

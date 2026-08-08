@@ -1,0 +1,182 @@
+/* Floating action buttons — explicit viewport anchoring (avoids missing dynamic Tailwind offsets). */
+
+:root {
+  --site-fab-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0));
+  --site-fab-bottom-raised: calc(6.25rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-clearance: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-panel-raised: calc(10.5rem + env(safe-area-inset-bottom, 0px));
+  --cookie-consent-bar-offset: 0px;
+  --site-fab-side-left: 0px;
+  --site-fab-side-right: 0px;
+  --site-fab-row-gap: 0.625rem;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  :root {
+    --site-fab-side-left: 10.5rem;
+    --site-fab-side-right: 4.75rem;
+  }
+}
+
+html:has([data-compare-dock]) {
+  --site-fab-bottom: calc(5.75rem + env(safe-area-inset-bottom, 0));
+  --site-fab-bottom-raised: calc(11rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-clearance: calc(12.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+html:has([data-cookie-consent-bar]) {
+  --cookie-consent-bar-offset: calc(8.5rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-bottom: var(--site-fab-bottom-raised);
+  --site-fab-bottom-raised: calc(9.5rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-clearance: calc(11.5rem + env(safe-area-inset-bottom, 0px));
+  --site-fab-panel-raised: calc(13.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  html:has([data-cookie-consent-bar]) {
+    --cookie-consent-bar-offset: calc(5.75rem + env(safe-area-inset-bottom, 0px));
+    --site-fab-bottom-raised: calc(7.5rem + env(safe-area-inset-bottom, 0px));
+    --site-fab-clearance: calc(10.5rem + env(safe-area-inset-bottom, 0px));
+    --site-fab-panel-raised: calc(10.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+@media (width < theme(--breakpoint-md)) {
+  html:has([data-cookie-consent-bar]) #home-hero .home-hero__layout {
+    padding-bottom: calc(var(--cookie-consent-bar-offset) + var(--space-4));
+  }
+
+  html:has([data-cookie-consent-bar]) #home-hero [aria-label="Hero project images"] {
+    bottom: calc(var(--cookie-consent-bar-offset) + 0.75rem);
+  }
+}
+
+@utility site-fab-anchor {
+  position: fixed;
+  z-index: 40;
+}
+
+@utility site-fab-anchor--left {
+  right: auto;
+  left: 0.75rem;
+  @media (width >= theme(--breakpoint-sm)) {
+    left: 1rem;
+  }
+}
+
+@utility site-fab-anchor--right {
+  /* Explicit left:auto so left anchors never stick FAB mid-content. */
+  left: auto;
+  right: 0.75rem;
+  @media (width >= theme(--breakpoint-sm)) {
+    right: 1.25rem;
+  }
+}
+
+/* Vertically centered on the right edge (assistant / secondary FAB option). */
+@utility site-fab-anchor--center-y {
+  top: 50%;
+  bottom: auto;
+  transform: translateY(-50%);
+}
+
+@utility site-fab-anchor--inset-x {
+  left: 0.75rem;
+  right: 0.75rem;
+}
+
+@utility site-fab-anchor--bottom {
+  bottom: var(--site-fab-bottom);
+}
+
+@utility site-fab-anchor--bottom-raised {
+  bottom: var(--site-fab-bottom-raised);
+}
+
+@utility site-fab-anchor--panel {
+  bottom: calc(5.5rem + env(safe-area-inset-bottom, 0px));
+}
+
+@utility site-fab-anchor--panel-raised {
+  bottom: var(--site-fab-panel-raised, calc(10.5rem + env(safe-area-inset-bottom, 0px)));
+}
+
+.site-fab-row {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--site-fab-row-gap);
+}
+
+@utility site-fab-launcher {
+  display: inline-flex;
+  height: 3rem;
+  width: 3rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 1.5rem 3rem -28px var(--overlay-inverse-35);
+  transition-property: transform, background-color, border-color, box-shadow;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@utility site-fab-launcher--assistant {
+  border: 0.0625rem solid var(--color-bronze-500);
+  background-color: var(--color-bronze-400);
+  color: var(--text-inverse);
+  &:hover {
+    border-color: var(--color-bronze-500);
+    background-color: var(--color-bronze-500);
+  }
+}
+
+.site-fab-launcher__label {
+  font-size: var(--type-tiny-size, 0.75rem);
+  font-weight: var(--font-weight-copy-semibold, 600);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+}
+
+@utility site-fab-launcher--whatsapp {
+  border: 0.0625rem solid var(--color-whatsapp-hover);
+  background-color: var(--color-whatsapp);
+  color: var(--text-inverse);
+  &:hover {
+    border-color: var(--color-whatsapp-hover);
+    background-color: var(--color-whatsapp-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-fab-launcher {
+    transition: none;
+  }
+
+  .site-fab-launcher:hover {
+    transform: none;
+  }
+}
+
+/* ── 390 px viewport guard ──────────────────────────────────────────────
+   At 390 px the floating launcher (3 rem × 3 rem + label) can clip when
+   anchored with large side offsets.  Pull the FAB inward so it stays fully
+   visible inside the safe area.  Placed after @utility definitions so the
+   cascade wins over site-fab-anchor--left/right auto offsets.  ─────── */
+@media (max-width: 390px) {
+  .site-fab-anchor--left.site-fab-anchor--bottom,
+  .site-fab-anchor--right.site-fab-anchor--bottom,
+  .site-fab-anchor--right.site-fab-anchor--center-y {
+    right: max(0.5rem, env(safe-area-inset-right, 0)) !important;
+    left: auto !important;
+  }
+
+  .site-fab-anchor--left.site-fab-anchor--bottom {
+    left: max(0.5rem, env(safe-area-inset-left, 0)) !important;
+    right: auto !important;
+  }
+}

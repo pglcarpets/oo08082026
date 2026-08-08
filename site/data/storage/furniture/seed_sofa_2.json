@@ -1,0 +1,26 @@
+{
+  "id": "seed_sofa_2",
+  "name": "Sofa 2-seat",
+  "category": "Seating",
+  "subcategory": "Lounge",
+  "tags": [
+    "sofa"
+  ],
+  "dimensions": {
+    "width_mm": 1600,
+    "depth_mm": 800,
+    "height_mm": 850
+  },
+  "notes": null,
+  "is_custom": false,
+  "thumbnail_url": "/api/files/furniture/seed_sofa_2_top.svg",
+  "top_png_url": null,
+  "top_svg_url": "/api/files/furniture/seed_sofa_2_top.svg",
+  "front_png_url": null,
+  "side_png_url": null,
+  "top_fabric_json": null,
+  "front_fabric_json": null,
+  "side_fabric_json": null,
+  "created_at": "2026-07-28T15:58:12.032844+00:00",
+  "updated_at": "2026-07-28T15:58:12.032844+00:00"
+}

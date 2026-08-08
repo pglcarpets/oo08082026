@@ -1,0 +1,20 @@
+/* tokens-wood.css */
+:root {
+  /* Ash / Birch (Light) */
+  --block-wood-ash-base: var(--color-ecru-300);
+  --block-wood-ash-grain: var(--color-ecru-400);
+  --block-wood-ash-edge: var(--color-ecru-500);
+  --block-wood-ash-shadow: var(--color-bronze-400);
+
+  /* Oak (Medium) */
+  --block-wood-oak-base: var(--color-ecru-500);
+  --block-wood-oak-grain: var(--color-ecru-600);
+  --block-wood-oak-edge: var(--color-ecru-600);
+  --block-wood-oak-shadow: var(--color-ecru-700);
+
+  /* Walnut (Dark) */
+  --block-wood-walnut-base: var(--color-ecru-800);
+  --block-wood-walnut-grain: var(--color-ecru-900);
+  --block-wood-walnut-edge: var(--color-ecru-900);
+  --block-wood-walnut-shadow: var(--color-ecru-950);
+}

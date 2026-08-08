@@ -1,0 +1,26 @@
+{
+  "id": "seed_sofa_3",
+  "name": "Sofa 3-seat",
+  "category": "Seating",
+  "subcategory": "Lounge",
+  "tags": [
+    "sofa"
+  ],
+  "dimensions": {
+    "width_mm": 2200,
+    "depth_mm": 900,
+    "height_mm": 850
+  },
+  "notes": null,
+  "is_custom": false,
+  "thumbnail_url": "/api/files/furniture/seed_sofa_3_top.svg",
+  "top_png_url": null,
+  "top_svg_url": "/api/files/furniture/seed_sofa_3_top.svg",
+  "front_png_url": null,
+  "side_png_url": null,
+  "top_fabric_json": null,
+  "front_fabric_json": null,
+  "side_fabric_json": null,
+  "created_at": "2026-07-28T15:58:12.033522+00:00",
+  "updated_at": "2026-07-28T15:58:12.033522+00:00"
+}

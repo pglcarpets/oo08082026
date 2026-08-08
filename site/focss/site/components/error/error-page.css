@@ -1,0 +1,100 @@
+/* Offline / maintenance utility shell — poster ambient, no video */
+
+.site-error {
+  position: relative;
+  display: flex;
+  min-height: 100dvh;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: linear-gradient(
+    180deg,
+    var(--surface-soft) 0%,
+    var(--surface-page) 48%,
+    var(--surface-muted) 100%
+  );
+}
+
+.site-error__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(
+      125deg,
+      color-mix(in srgb, var(--surface-panel) 94%, transparent) 0%,
+      color-mix(in srgb, var(--surface-panel) 78%, transparent) 52%,
+      color-mix(in srgb, var(--surface-soft) 42%, transparent) 100%
+    ),
+    url("/assets/marketing/hero/planning-poster.webp") center 35% / cover no-repeat;
+  opacity: 0.22;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-error__ambient {
+    opacity: 0.16;
+  }
+}
+
+.site-error__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 28rem);
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border: 1px solid color-mix(in srgb, var(--color-bronze-400) 22%, transparent);
+  border-radius: 1.35rem;
+  background: color-mix(in srgb, var(--surface-panel) 96%, transparent);
+  box-shadow: var(--shadow-panel);
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+/* Real One&Only wordmark — not a bronze hairline stand-in for brand */
+.site-error__brand {
+  display: flex;
+  justify-content: center;
+  margin-block-end: 1.25rem;
+}
+
+.site-error__brand img {
+  width: auto;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Legacy hook kept for any residual hairline accents outside brand surfaces */
+.site-error__bronze-mark {
+  width: 3.5rem;
+  height: 1px;
+  margin-inline: auto;
+  margin-block-end: 1.25rem;
+  background: var(--color-bronze-400);
+}
+
+.site-error__kicker {
+  margin: 0;
+  color: var(--color-bronze-500);
+}
+
+.site-error__title {
+  margin: 0.75rem 0 0;
+  font-family: var(--font-display);
+  font-size: var(--type-title-lg-size);
+  font-weight: var(--font-weight-display-regular);
+  color: var(--text-strong);
+}
+
+.site-error__copy {
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+.site-error__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-block-start: 1.5rem;
+}

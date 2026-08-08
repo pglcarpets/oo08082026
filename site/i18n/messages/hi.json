@@ -1,0 +1,795 @@
+{
+  "common": {
+    "signIn": "साइन इन करें",
+    "signOut": "साइन आउट",
+    "guest": "अतिथि के रूप में जारी रखें",
+    "loading": "लोड हो रहा है...",
+    "error": "एक त्रुटि हुई"
+  },
+  "home": {
+    "title": "ओआंडो प्लेटफॉर्म",
+    "subtitle": "पेशेवर स्पेस प्लानिंग और डिज़ाइन टूल",
+    "getStarted": "शुरू करें",
+    "hero": {
+      "title": [
+        "Spaces that work",
+        "harder"
+      ],
+      "kicker": "पैन-इंडिया · 2011 से",
+      "primaryCta": {
+        "label": "उत्पाद देखें",
+        "href": "/products"
+      },
+      "secondaryCta": {
+        "label": "कोटेशन अनुरोध",
+        "href": "/#contact"
+      },
+      "glassProof": {
+        "badge": "Trusted by",
+        "lead": "120+ workplaces delivered.",
+        "support": "Catalog in planner · drafts · branded BOQ.",
+        "href": "/trusted-by",
+        "cta": "View clients"
+      }
+    },
+    "plannerSuite": {
+      "titleLead": "Oando",
+      "titleAccent": "Planner",
+      "description": "Sketch floors, place catalog items, export.",
+      "loginHref": "/login/?next=%2Fplanner%2Fcanvas%2F",
+      "loginLabel": "Member login",
+      "overviewHref": "/planner",
+      "overviewLabel": "Learn more"
+    },
+    "trust": {
+      "logoLabel": "Selected organisations",
+      "logos": [
+        {
+          "name": "Titan",
+          "src": "/assets/marketing/client-logos/Titan.png"
+        },
+        {
+          "name": "L&T",
+          "src": "/assets/marketing/client-logos/LandT.png"
+        },
+        {
+          "name": "JSW",
+          "src": "/assets/marketing/client-logos/JSW.png"
+        },
+        {
+          "name": "Tata Motors",
+          "src": "/assets/marketing/client-logos/TataMotors.jpg"
+        },
+        {
+          "name": "Maruti Suzuki",
+          "src": "/assets/marketing/client-logos/MarutiSuzuki.png"
+        },
+        {
+          "name": "HDFC",
+          "src": "/assets/marketing/client-logos/HDFCLogo.jpg"
+        },
+        {
+          "name": "Canara Bank",
+          "src": "/assets/marketing/client-logos/CanaraBank.jpg"
+        },
+        {
+          "name": "Franklin Templeton",
+          "src": "/assets/marketing/client-logos/FranklinTempleton.jpg"
+        },
+        {
+          "name": "Hyundai",
+          "src": "/assets/marketing/client-logos/HyundaiLogo.jpg"
+        },
+        {
+          "name": "IDBI Bank",
+          "src": "/assets/marketing/client-logos/IDBIBankLogo.png"
+        },
+        {
+          "name": "Usha",
+          "src": "/assets/marketing/client-logos/USHA.png"
+        },
+        {
+          "name": "Bihar Government",
+          "src": "/assets/marketing/client-logos/BiharGovernment.jpg"
+        },
+        {
+          "name": "SAIL",
+          "src": "/assets/marketing/client-logos/SAIL.png"
+        },
+        {
+          "name": "BIS",
+          "src": "/assets/marketing/client-logos/BIS.jpg"
+        },
+        {
+          "name": "Sonalika",
+          "src": "/assets/marketing/client-logos/Sonalika.jpg"
+        },
+        {
+          "name": "Survey of India",
+          "src": "/assets/marketing/client-logos/SurveyofIndia.jpg"
+        },
+        {
+          "name": "CRI Pumps",
+          "src": "/assets/marketing/client-logos/CRIPumps.jpg"
+        },
+        {
+          "name": "MECON",
+          "src": "/assets/marketing/client-logos/MECON.jpg"
+        }
+      ],
+      "projectsCta": "View projects",
+      "kpiLabels": [
+        "Years of experience",
+        "Projects completed",
+        "Selected organisations",
+        "Locations serviced"
+      ]
+    },
+    "brandStatement": {
+      "lead": "Workplaces planned and installed across India since 2011.",
+      "body": "Focus, collaboration, and dependable delivery — not interiors for show."
+    },
+    "collections": {
+      "titleLead": "Browse",
+      "titleAccent": "categories",
+      "catalogCta": {
+        "label": "Full catalog",
+        "href": "/products"
+      },
+      "items": [
+        {
+          "name": "Seating",
+          "image": "/assets/marketing/ui/categories/seating-clean.webp",
+          "href": "/products/seating"
+        },
+        {
+          "name": "Workstations",
+          "image": "/assets/marketing/ui/categories/workstations-clean.webp",
+          "href": "/products/workstations"
+        },
+        {
+          "name": "Tables",
+          "image": "/assets/marketing/ui/categories/tables-clean.webp",
+          "href": "/products/tables"
+        },
+        {
+          "name": "Storage",
+          "image": "/assets/marketing/ui/categories/storages-clean.webp",
+          "href": "/products/storages"
+        },
+        {
+          "name": "Soft Seating",
+          "image": "/assets/marketing/ui/categories/soft-seating-clean.webp",
+          "href": "/products/soft-seating"
+        },
+        {
+          "name": "Education",
+          "image": "/assets/marketing/ui/categories/education-clean.webp",
+          "href": "/products/education"
+        }
+      ]
+    },
+    "whyChooseUs": {
+      "titleLead": "We engineer",
+      "titleAccent": "workspaces",
+      "features": [
+        { "title": "Performance-graded", "tagline": "Load · cycle · ergonomics" },
+        { "title": "Built to last", "tagline": "Warranty by model" },
+        { "title": "Lower rework", "tagline": "Durable materials" },
+        { "title": "Scales cleanly", "tagline": "Pilot to rollout" }
+      ]
+    },
+    "tools": {
+      "kicker": "Workspace planning",
+      "titleLead": "Design your",
+      "titleAccent": "workspace",
+      "description": "True-scale plans with catalog furniture — export before you quote.",
+      "demoAriaLabel": "Example 10 by 8 metre office floor plan",
+      "demoCaption": "Example 10 by 8 metre office floor plan"
+    },
+    "showcase": {
+      "sectionLabel": "Selected projects",
+      "sectionTitleLead": "Recent",
+      "sectionTitleAccent": "installs",
+      "browseCta": {
+        "label": "View all clients",
+        "href": "/clients"
+      },
+      "items": [
+        {
+          "id": "dmrc",
+          "name": "DMRC",
+          "label": "",
+          "image": "/assets/marketing/clients/DMRC/dmrc.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "titan",
+          "name": "Titan",
+          "label": "",
+          "image": "/assets/marketing/clients/Titan/hero.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "tvs",
+          "name": "TVS",
+          "label": "",
+          "image": "/assets/marketing/clients/TVS/hero.webp",
+          "link": "/portfolio"
+        }
+      ]
+    },
+    "contact": {
+      "titleLead": "Share a",
+      "titleAccent": "brief",
+      "subtitle": "City, scope, timeline — we follow up by phone or email.",
+      "image": {
+        "src": "/assets/marketing/hero/pages/contact-oneandonly-bright.webp",
+        "alt": "Corporate workspace installed by One&Only"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "cityLabel": "City",
+        "cityPlaceholder": "Project city",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+91 …",
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@company.com",
+        "briefLabel": "Brief",
+        "briefPlaceholder": "Team size, scope, or timeline — optional detail helps.",
+        "consentText": "I agree that One&Only may use these details to respond to my enquiry.",
+        "consentLink": "Privacy policy",
+        "consentHint": "Required to send. We do not sell contact data.",
+        "channelHint": "Phone or email — at least one is required.",
+        "submitLabel": "Send Brief",
+        "submittingLabel": "Sending..."
+      },
+      "status": {
+        "success": "Brief received. Our team will contact you shortly.",
+        "errorCity": "Please add a project city.",
+        "errorConsent": "Confirm privacy consent before sending.",
+        "errorChannel": "Please add a phone number or email so we can reach you.",
+        "errorGeneric": "Unable to submit now."
+      },
+      "directActions": [
+        { "type": "whatsapp", "label": "WhatsApp now" },
+        { "type": "phone", "label": "Call team" }
+      ]
+    }
+  },
+  "planner": {
+    "title": "स्पेस प्लानर",
+    "newProject": "नया प्रोजेक्ट",
+    "roomPresets": "कमरे के प्रीसेट",
+    "session": {
+      "title": "Plan Sessions",
+      "description": "Save into the shared planner workspace, keep a local draft close at hand, import a canonical planner document, or reopen the same plan in 3D.",
+      "saveCloud": "Save to Cloud",
+      "saveDraft": "Save Local Draft",
+      "saveAsNew": "Save as New Session",
+      "open3d": "Open in 3D Viewer",
+      "importJson": "Import Plan JSON",
+      "exportJson": "Export Plan JSON",
+      "savedPlans": "Saved Plans",
+      "noPlans": "No local draft or cloud plan yet.",
+      "delete": "Delete",
+      "rename": "Rename"
+    }
+  },
+  "about": {
+    "heroTitle": "वन एंड ओनली के बारे में",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Interiors executed",
+    "heroTitleAccent": "with craft.",
+    "heroSubtitle": "हम व्यावहारिक, टिकाऊ और स्केलेबल वर्कस्पेस सिस्टम डिज़ाइन और डिलीवर करते हैं।",
+    "heroCta": "See our work",
+    "storyKicker": "Who we are",
+    "storyTitleLead": "Trust through",
+    "storyTitleAccent": "delivery.",
+    "storyLead": "One team owns planning, supply, and install — seating, workstations, meeting rooms, and storage for enterprise teams across the region.",
+    "craftQuote": "Furniture is half the job. Spacing, install discipline, and handover earn trust.",
+    "craftAttribution": "Field team · One&Only",
+    "pillarsKicker": "How we work",
+    "modelPillars": [
+      {
+        "title": "Planning-led",
+        "detail": "Match category, budget, and layout to how teams actually work."
+      },
+      {
+        "title": "Clear execution",
+        "detail": "Keep scope, timelines, and install readiness visible throughout."
+      },
+      {
+        "title": "After handover",
+        "detail": "Route warranty and follow-up through one accountable team."
+      }
+    ],
+    "processKicker": "Process",
+    "processTitleLead": "Brief to",
+    "processTitleAccent": "handover",
+    "processSteps": [
+      {
+        "title": "Brief",
+        "detail": "Capture headcount, space type, budget, and timing."
+      },
+      {
+        "title": "Specify",
+        "detail": "Lock products and finishes on a clear approval path."
+      },
+      {
+        "title": "Deliver",
+        "detail": "Install, route service, and follow through after handover."
+      }
+    ],
+    "ctaKicker": "Next step",
+    "ctaTitleLead": "Talk through",
+    "ctaTitleAccent": "your space.",
+    "ctaDescription": "Book a planning call or open Resource Desk for packs and technical sheets.",
+    "ctaPrimary": "Request planning call",
+    "ctaSecondary": "View clients",
+    "sectionKicker": "Who we are",
+    "sectionTitle": "Planning-first partner",
+    "sectionTitleLead": "Planning-first",
+    "sectionTitleAccent": "partner.",
+    "paragraphs": [
+      "We connect planning, product, and delivery so teams move from brief to handover with less delay.",
+      "Seating, workstations, meeting rooms, storage, and support for enterprise and institutional teams.",
+      "Clear scope, practical timelines, and accountable support after install."
+    ],
+    "confidenceKicker": "Client confidence",
+    "confidenceTitle": "Trusted by enterprise teams.",
+    "confidenceCta": "View all clients",
+    "modelKicker": "How we work",
+    "modelTitle": "One connected team",
+    "modelDescription": "Planning, sourcing, execution, and support stay connected from brief to handover.",
+    "processTitle": "Brief to handover",
+    "supportTitle": "Need a next step?",
+    "supportDescription": "Planning call or Resource Desk for packs and technical sheets.",
+    "supportPrimaryCta": "Request planning call",
+    "supportSecondaryCta": "Open Resource Desk"
+  },
+  "contact": {
+    "heroTitle": "संपर्क करें",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Get in",
+    "heroTitleAccent": "touch.",
+    "heroSubtitle": "अपनी वर्कस्पेस आवश्यकता साझा करें और हमारी टीम अगले कदम बताएगी।",
+    "sectionTitle": "Offices",
+    "introTitle": "Offices & channels",
+    "introDescription": "",
+    "resourceDeskLead": "Need packs first?",
+    "resourceDeskCta": "Resource Desk",
+    "resourceDeskTail": "for docs matched to your brief.",
+    "quickDeskKicker": "Fast path",
+    "quickDeskTitle": "Pick a lane",
+    "quickDeskDescription": "Planning, documents, or quote — we route you to the right team.",
+    "quickDeskPrimaryCta": "Resource Desk",
+    "quickDeskSecondaryCta": "Planning call",
+    "channelRegionLabel": "Service region",
+    "channelQuotesLabel": "Quotes and planning",
+    "channelSupportLabel": "Support and enquiries",
+    "channelEmailLabel": "Email",
+    "channelsAriaLabel": "Phone, email, and service region",
+    "offices": [
+      {
+        "title": "Corporate office",
+        "lines": [
+          "401, Jagat Trade Centre",
+          "Frazer Road",
+          "Patna - 800 013",
+          "India"
+        ]
+      },
+      {
+        "title": "Showroom",
+        "lines": [
+          "One and Only Furniture Pvt Ltd",
+          "Opp Patliputra Telephone Exchange",
+          "North Industrial Estate Road",
+          "Patna - 800 010",
+          "India"
+        ]
+      }
+    ]
+  },
+  "products": {
+    "heroKicker": "उत्पाद कैटलॉग",
+    "heroSubtitle": "लाइव कैटलॉग से श्रेणियां ब्राउज़ करें और अपनी टीम के लिए सही मिक्स चुनें।",
+    "headlineLead": "वर्कस्पेस",
+    "headlineAccent": "उत्पाद",
+    "heroPrimaryCta": "श्रेणियां देखें",
+    "heroSecondaryCta": "सेल्स से बात करें",
+    "craftQuote": "स्पेसिफिकेशन स्पष्टता, इंस्टॉलेशन वास्तविकता और हैंडओवर के बाद सपोर्ट के लिए चुनी श्रेणियां — शोरूम थिएटर नहीं।",
+    "craftAttribution": "कैटलॉग · One&Only",
+    "introKicker": "लाइव इन्वेंटरी",
+    "introTitleLead": "प्रकाशित कैटलॉग से",
+    "introTitleAccent": "फ़ोटोग्राफ़ी और स्पेक्स",
+    "introDescription": "हर श्रेणी टाइल लाइव उत्पादों से जुड़ती है — असली इंस्टॉल फ़ोटोग्राफ़ी और प्रकाशित प्लान सिंबल के साथ, ताकि खरीद और प्लानिंग एक साथ रहें।",
+    "featureBullets": [
+      "टास्क, एग्ज़ीक्यूटिव और विज़िटर ज़ोन के लिए एर्गोनॉमिक सीटिंग।",
+      "स्केलेबल टीम लेआउट के लिए मॉड्यूलर वर्कस्टेशन।",
+      "साझा स्पेस के लिए मीटिंग और सहयोग फर्नीचर।",
+      "व्यवस्थित संचालन के लिए स्टोरेज सिस्टम और एक्सेसरीज़।"
+    ],
+    "categoryRoutesKicker": "श्रेणी रूट",
+    "categoryRoutesDescription": "एक श्रेणी से शुरू करें, फिर फ़िल्टर, तुलना और पूछताछ से संकुचित करें।",
+    "categoryRoutesCta": "रेंज खोलें",
+    "rangeKicker": "श्रेणी प्रवेश",
+    "rangeTitleLead": "ब्राउज़ करें",
+    "rangeTitleAccent": "वर्कस्पेस ज़रूरतों के अनुसार",
+    "categoriesTitleLead": "Browse",
+    "categoriesTitleAccent": "product categories",
+    "pillarsKicker": "Why these categories",
+    "pillarsTitleLead": "Built for",
+    "pillarsTitleAccent": "real office workflows",
+    "pillarsIntro": "Every category is selected for durability, specification clarity, and support after handover—not presentation alone.",
+    "pillars": [
+      {
+        "title": "Specification-led guidance",
+        "detail": "We map headcount, usage patterns, and budget so product choices are practical from day one.",
+        "icon": "check-circle"
+      },
+      {
+        "title": "Reliable timelines",
+        "detail": "Modular categories and structured planning help teams move from approval to installation with control.",
+        "icon": "clock"
+      },
+      {
+        "title": "After-sales confidence",
+        "detail": "Warranty coverage and service support are built into every proposal, not handled as an afterthought.",
+        "icon": "shield"
+      }
+    ],
+    "deskKicker": "शॉर्टलिस्ट चाहिए?",
+    "deskTitle": "अपने ब्रीफ से श्रेणियां मिलाएँ।",
+    "deskDescription": "हेडकाउंट, लेआउट सीमाएँ और समयरेखा बताएँ — हम सही उत्पाद मिक्स और अगले प्लानिंग चरणों तक पहुँचाएँगे।",
+    "deskPrimaryCta": "कोट अनुरोध करें",
+    "deskSecondaryCta": "समाधान देखें",
+    "deskTertiaryCta": "पैक डाउनलोड करें",
+    "categories": {
+      "seating": "Seating",
+      "workstations": "Workstations",
+      "tables": "Tables",
+      "storages": "Storage",
+      "soft-seating": "Soft Seating",
+      "education": "Education"
+    }
+  },
+  "solutions": {
+    "metadataTitle": "Workspace Solutions",
+    "metadataDescription": "Workplace furniture solutions for focus, collaboration, meetings, storage, and education.",
+    "heroTitle": "Solutions",
+    "heroKicker": "Complete workplaces",
+    "heroTitleLead": "वर्कस्पेस",
+    "heroTitleAccent": "समाधान",
+    "heroSubtitle": "योजना से डिलीवरी तक — एक टीम, स्पष्ट समयरेखा, मापनीय परिणाम।",
+    "heroPrimaryCta": "Planning call",
+    "heroSecondaryCta": "Browse products",
+    "heroBackgroundImage": "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "categoriesTitleLead": "Browse",
+    "categoriesTitleAccent": "solutions",
+    "deliveryKicker": "Delivery",
+    "deliveryTitle": "Predictable delivery",
+    "deliveryDescription": "Clear scope, practical planning, and accountable install.",
+    "deliveryMedia": {
+      "src": "/assets/marketing/projects/DMRC/dmrc-1.webp",
+      "alt": "Workspace planning and delivery"
+    },
+    "stats": [
+      {
+        "value": "14+",
+        "label": "Years in workspace projects"
+      },
+      {
+        "value": "120+",
+        "label": "Projects delivered"
+      },
+      {
+        "value": "120+",
+        "label": "Client organizations served"
+      },
+      {
+        "value": "20+",
+        "label": "Cities supported"
+      }
+    ],
+    "phaseLabelTemplate": "Phase {number}",
+    "planningKicker": "Start planning",
+    "planningTitle": "Discuss your brief",
+    "planningDescription": "Site details, timelines, and seat count — we propose a practical path.",
+    "planningPrimaryCta": "Planning call",
+    "planningSecondaryCta": "Browse products",
+    "planningTertiaryCta": "Resource Desk",
+    "planningCtas": [
+      {
+        "label": "Planning call",
+        "href": "/contact",
+        "variant": "primary"
+      },
+      {
+        "label": "Browse products",
+        "href": "/products",
+        "variant": "outline"
+      },
+      {
+        "label": "Resource Desk",
+        "href": "/downloads",
+        "variant": "outline"
+      }
+    ],
+    "categoryHeroKicker": "Solution category",
+    "categoryHeroPrimaryCta": "Browse products",
+    "categoryHeroSecondaryCta": "All solutions",
+    "categoryCraftQuote": "Inventory is the start — layout and circulation decide whether the category works on site.",
+    "categoryCraftAttribution": "Planning desk · One&Only",
+    "categoryBodyKicker": "Specify",
+    "categoryBodyTitle": "From live catalog to layout",
+    "categoryBodyDescription": "{description} Browse the live product catalog or speak with the planning desk for a workspace layout aligned to this category.",
+    "categoryBrowseCta": "Browse products",
+    "categoryAllCta": "All solutions",
+    "categoryContactCta": "Contact planning desk",
+    "categoryDeskKicker": "Next step",
+    "categoryDeskTitle": "Plan this category",
+    "categoryDeskDescription": "Share seat count, timeline, and site constraints — we propose products and a practical layout path.",
+    "categoryDeskPrimaryCta": "Planning call",
+    "categoryDeskSecondaryCta": "Open planner",
+    "categoryDeskTertiaryCta": "All solutions"
+  },
+  "workspace": {
+    "backToHome": "Back to Home",
+    "accessPanelTitle": "Precision in Planning",
+    "accessPanelDescription": "Experience the Oando Suite. Our architectural tools are designed for accuracy, performance, and clear collaboration across teams."
+  },
+  "news": {
+    "heroTitle": "News and Updates",
+    "heroSubtitle": "Workspace guidance, project themes, and service updates presented without pretending to be a live newsroom.",
+    "introKicker": "What belongs here",
+    "introTitle": "A route for current direction, not fabricated announcements.",
+    "introDescription": "This page should help visitors understand what the team is focusing on across products, planning, support, and project delivery. It stays grounded in real categories and live support routes instead of synthetic press content.",
+    "cards": [
+      {
+        "category": "Planning focus",
+        "title": "How teams are approaching phased workplace upgrades",
+        "summary": "More projects are moving in phases, with planning, approvals, and category decisions split across multiple operational milestones."
+      },
+      {
+        "category": "Product guidance",
+        "title": "Choosing categories that stay useful longer",
+        "summary": "Task seating, modular workstations, collaboration furniture, and storage systems are being selected with longer replacement cycles in mind."
+      },
+      {
+        "category": "Support workflow",
+        "title": "Clearer routing for documentation, tracking, and after-sales requests",
+        "summary": "The live route system now pushes visitors toward the right contact and Resource Desk lanes instead of forcing guesswork."
+      }
+    ],
+    "ctaTitle": "Need a current product, planning, or support update?",
+    "ctaDescription": "Use the contact and Resource Desk routes when you need the latest category packs, service routing, or planning context for a live project.",
+    "primaryCta": "Open Resource Desk",
+    "secondaryCta": "Contact the team"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "heroSubtitle": "How we handle enquiry data, attribution cookies, and communication records across planning, sales, and support flows.",
+      "overviewKicker": "Privacy and consent",
+      "overviewTitle": "A practical privacy policy for active workspace enquiries.",
+      "overviewDescription": "We collect only the information needed to respond to project requests, route support conversations, and maintain service records around active client relationships.",
+      "intro": [
+        "One&Only is operated by One and Only Furniture Private Limited (\"OOFPL\"). This policy explains what personal data we collect, how we use it, and what cookies we set when you browse our website or submit an enquiry.",
+        "Personal information includes data that can identify or contact you, such as your name, company, email address, phone number, IP address, and any enquiry details you share through our forms."
+      ],
+      "commitmentsTitle": "What this policy covers",
+      "commitments": [
+        "What information we collect when you browse, enquire, or request support.",
+        "How we use submitted information for routing, follow-up, and service quality.",
+        "Which cookies support consent storage and attribution reporting."
+      ]
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "heroSubtitle": "Website, enquiry, quotation, delivery, warranty, and support terms for One&Only.",
+      "overviewKicker": "Commercial terms",
+      "overviewTitle": "The operating terms behind quotations, orders, delivery, and support.",
+      "overviewDescription": "These terms explain how website information, commercial quotations, project execution, and warranty-backed support are handled in practice.",
+      "sections": [
+        {
+          "heading": "General Terms and Conditions",
+          "body": "These Terms and Conditions govern the use of this website and all commercial dealings with One&Only, including product enquiries, quotations, supply, and support services."
+        },
+        {
+          "heading": "1. Scope",
+          "body": "These terms apply to all business relationships with customers, subject to any project-specific written agreement executed between both parties."
+        },
+        {
+          "heading": "2. Quotations and acceptance",
+          "body": "Product and service information on this website is informational. A binding transaction occurs only after written quote acceptance and order confirmation."
+        },
+        {
+          "heading": "3. Delivery and installation",
+          "body": "Delivery schedules are shared at order confirmation and may vary by project scope, site readiness, and material availability."
+        },
+        {
+          "heading": "4. Warranty and support",
+          "body": "Warranty applicability follows the specific product line and agreed terms. Service and support requests are handled through our official channels."
+        },
+        {
+          "heading": "5. Liability",
+          "body": "Liability is limited to the extent permitted by law and the value or terms agreed in the corresponding commercial contract."
+        }
+      ],
+      "asideGuidance": "Use this page together with the refund, privacy, and service routes when a client needs clear guidance on commercial handling, support scope, or warranty-backed follow-up.",
+      "viewRefundPolicy": "View refund policy",
+      "privacyPolicy": "Privacy policy",
+      "askCommercialDesk": "Ask commercial desk",
+      "ctaKicker": "Commercial desk",
+      "ctaTitleLead": "Ready to confirm scope",
+      "ctaTitleAccent": "in writing",
+      "ctaDescription": "Quotations, delivery windows, and warranty-backed support follow these terms — reach the desk when a project needs a clear next step.",
+      "ctaPrimary": "Contact team",
+      "ctaSecondary": "Privacy policy"
+    },
+    "imprint": {
+      "title": "Imprint",
+      "heroSubtitle": "Business identity, representative details, and official contact information for One&Only.",
+      "overviewKicker": "Business information",
+      "overviewTitle": "Official company and contact details.",
+      "overviewDescription": "Use this page when you need legal business identification, the official office address, or the named management and contact lines behind the website.",
+      "sections": [
+        {
+          "heading": "Legal Information",
+          "lines": [
+            "One and Only Furniture",
+            "401, Jagat Trade Centre",
+            "Frazer Road",
+            "Patna - 800 001, Bihar",
+            "India"
+          ]
+        },
+        {
+          "heading": "Represented by",
+          "lines": [
+            "Management: Arvind Kumar Singh"
+          ]
+        },
+        {
+          "heading": "Contact",
+          "lines": [
+            "Phone: +91 90310 22875",
+            "Email: sales@oando.co.in"
+          ]
+        },
+        {
+          "heading": "Business Identification",
+          "lines": [
+            "Authorized Dealer for leading office furniture brands.",
+            "Registered in Patna, Bihar."
+          ]
+        }
+      ]
+    },
+    "refund": {
+      "metadataTitle": "Refund and Return Policy",
+      "metadataDescription": "Refund, return, replacement, and cancellation policy for One&Only.",
+      "heroTitle": "Refund and return policy",
+      "heroSubtitle": "Terms for returns, replacements, cancellations, and refunds.",
+      "overviewKicker": "Returns and replacement terms",
+      "overviewTitle": "Clear guidance for damaged goods, cancellation windows, and refund eligibility.",
+      "overviewDescription": "This policy sets the expectations for product damage reporting, replacement handling, cancellation timing, and the conditions under which refunds are processed.",
+      "sections": [
+        {
+          "title": "General policy",
+          "tone": "white",
+          "items": [
+            "Change requests are not accepted after delivery is completed, except for damaged or defective products.",
+            "Exchanges are only provided for products that arrive damaged or defective.",
+            "Product images on the website are representational and a few features may vary on the final product.",
+            "Cancellation is allowed before shipment. Discounted purchases are not eligible for cancellation."
+          ]
+        },
+        {
+          "title": "Damaged or defective products",
+          "tone": "soft",
+          "items": [
+            "Report damage within 24 hours of delivery by email with product photos.",
+            "Contact: sales@oando.co.in",
+            "Reverse pickup and replacement for damaged product cases are arranged by our team.",
+            "Replaceable faulty parts are usually arranged within 7 days; full replacement can take up to 15 days depending on availability."
+          ]
+        },
+        {
+          "title": "Returns and refunds",
+          "tone": "white",
+          "items": [
+            "Returns are accepted only when products are damaged on arrival.",
+            "Refund is issued only if replacement or replacement parts are not available for the same product.",
+            "For non-damage refund requests, repackaging and transport charges may apply.",
+            "Refunds are processed via NEFT or back to the original payment method, usually within 7 working days."
+          ]
+        },
+        {
+          "title": "How to initiate return or cancellation",
+          "tone": "soft",
+          "items": [],
+          "contactLines": [
+            "Email: sales@oando.co.in",
+            "Phone: +91 90310 22875",
+            "Corporate Office: 401, Jagat Trade Centre, Frazer Road, Patna - 800 001, Bihar, India"
+          ]
+        }
+      ],
+      "contactSalesDesk": "Contact sales desk",
+      "ctaKicker": "Returns desk",
+      "ctaTitleLead": "Need a replacement or refund",
+      "ctaTitleAccent": "clarified",
+      "ctaDescription": "Damaged goods, cancellation windows, and refund eligibility follow this policy — contact sales when a delivery needs a clear next step.",
+      "ctaPrimary": "Contact sales desk",
+      "ctaSecondary": "View terms"
+    },
+    "shared": {
+      "serviceSupport": "Service and support"
+    }
+  },
+  "career": {
+    "heroKicker": "Join the team",
+    "heroTitleLead": "Careers",
+    "heroTitleAccent": "with us.",
+    "heroTitle": "Careers",
+    "heroSubtitle": "Join a team that builds practical, high-impact workspaces for organizations across India.",
+    "craftQuote": "Real client briefs, measured ownership, and teams that stay close to delivery.",
+    "craftAttribution": "People · One&Only",
+    "introKicker": "Why join us",
+    "introTitle": "Build your career in workspace delivery.",
+    "introDescription": "We work across planning, product consulting, project delivery, and support. If you care about reliable execution and customer outcomes, you will fit well here.",
+    "pillars": [
+      {
+        "title": "Collaborative teams",
+        "detail": "Sales, planning, and operations work closely so decisions are clear and execution stays fast.",
+        "icon": "users"
+      },
+      {
+        "title": "Learning-focused work",
+        "detail": "You gain practical exposure to real client briefs, procurement cycles, and installation realities.",
+        "icon": "graduation-cap"
+      },
+      {
+        "title": "Meaningful responsibility",
+        "detail": "We give ownership early, with mentorship and clear accountability standards.",
+        "icon": "briefcase"
+      }
+    ],
+    "openingsTitle": "Current openings",
+    "openingsAvailableTemplate": "{count} roles available",
+    "processKicker": "How careers grow here",
+    "processTitle": "Work that stays close to real projects and real ownership.",
+    "processDescription": "The team works across planning, product consultation, commercial coordination, site execution, and after-sales support. That means roles stay connected to actual client outcomes instead of isolated internal handoffs.",
+    "processSteps": [
+      {
+        "title": "Client-facing learning",
+        "detail": "You learn from active workspace briefs, approvals, and on-ground delivery realities instead of only internal training material."
+      },
+      {
+        "title": "Cross-functional exposure",
+        "detail": "Sales, planning, operations, and support stay close enough for faster decisions and clearer accountability."
+      },
+      {
+        "title": "Measured ownership",
+        "detail": "Responsibility increases with performance, but expectations stay explicit around response quality, execution, and professionalism."
+      }
+    ],
+    "fallbackTitle": "No matching role yet?",
+    "fallbackDescription": "Send your profile and let us know where you can contribute. We review applications for sales, operations, planning, and support functions on a rolling basis.",
+    "careersEmail": "careers@oando.co.in",
+    "supportTitle": "Not sure which role fits your background?",
+    "supportDescription": "Send a short note with your experience area and preferred function. We can route you toward the most relevant planning, sales, operations, or support lane.",
+    "supportPrimaryCta": "Contact the team",
+    "supportSecondaryCta": "Open planning page",
+    "ctaKicker": "Not sure where you fit?",
+    "ctaTitleLead": "Talk to",
+    "ctaTitleAccent": "the team.",
+    "ctaDescription": "Share your background — we'll route you to the right planning, sales, operations, or support lane.",
+    "ctaPrimary": "Contact the team",
+    "ctaSecondary": "Open planning page"
+  }
+}

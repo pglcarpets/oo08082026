@@ -1,0 +1,116 @@
+
+/* --- Text color utilities Complete mirror of the --text-* token set so `text-*` is the single inline-ink system (scheme-* stays for surface/panel composition). See docs/plans/04-DESIGN-SYSTEM-AND-THEME.md for the active color-application contract --- */
+@utility text-heading { color: var(--text-heading); }
+@utility text-heading-soft { color: var(--text-heading-soft); }
+@utility text-strong { color: var(--text-strong); }
+@utility text-body { color: var(--text-body); }
+/*
+ * text-muted collision: shadcn @theme sets --color-muted to a SURFACE wash
+ * (for bg-muted). Tailwind then emits .text-muted as light-on-light ink.
+ * Keep @utility for tooling, then re-assert semantic muted ink by specificity.
+ */
+@utility text-muted { color: var(--text-muted); }
+@utility text-soft { color: var(--text-muted); }
+
+/* Win over theme-generated .text-muted { color: var(--color-muted) } */
+html body :is(.text-muted) {
+  color: var(--text-muted);
+}
+@utility text-subtle { color: var(--text-subtle); }
+@utility text-brand { color: var(--text-brand); }
+@utility text-accent { color: var(--color-accent); }
+@utility text-accent-strong { color: var(--color-accent-strong); }
+@utility text-bronze { color: var(--color-bronze-500); }
+@utility text-inverse { color: var(--text-inverse); }
+@utility text-inverse-body { color: var(--text-inverse-body); }
+@utility text-inverse-muted { color: var(--text-inverse-muted); }
+@utility text-inverse-subtle { color: var(--text-inverse-subtle); }
+@utility text-primary { color: var(--color-primary); }
+@utility text-contrast-accent { color: var(--color-contrast-accent); }
+
+/* --- Background utilities --- */
+@utility bg-page { background-color: var(--surface-page); }
+@utility bg-primary { background-color: var(--color-primary); }
+@utility bg-primary-hover { background-color: var(--color-primary-hover); }
+@utility bg-soft { background-color: var(--surface-soft); }
+@utility bg-subtle { background-color: var(--surface-soft); }
+@utility bg-muted { background-color: var(--surface-muted); }
+/* --- Product photo plate only cool studio, never ecru --- */
+@utility bg-content-column { background-color: var(--surface-content-column); }
+@utility bg-studio { background: var(--surface-studio-field); }
+@utility bg-studio-solid { background-color: var(--surface-studio); }
+@utility bg-panel { background-color: var(--surface-panel); }
+@utility bg-hover { background-color: var(--surface-hover); }
+@utility bg-inverse { background-color: var(--surface-inverse); }
+@utility bg-glass { background-color: var(--surface-glass); }
+@utility bg-glass-strong { background-color: var(--surface-glass-strong); }
+@utility bg-inverse-soft { background-color: var(--surface-inverse-soft); }
+@utility bg-scrim { background-color: var(--scrim-black-40); }
+
+/* --- Border color utilities --- */
+@utility border-soft { border-color: var(--border-soft); }
+@utility border-muted { border-color: var(--border-muted); }
+@utility border-strong { border-color: var(--border-strong); }
+@utility border-accent { border-color: var(--border-accent); }
+@utility border-inverse { border-color: var(--border-inverse); }
+@utility border-theme-soft { border-color: var(--border-soft); }
+@utility border-theme-inverse { border-color: var(--border-inverse); }
+
+/* --- Shadow utilities --- */
+@utility shadow-theme-soft { box-shadow: var(--shadow-soft); }
+@utility shadow-theme-panel { box-shadow: var(--shadow-panel); }
+@utility shadow-theme-lift { box-shadow: var(--shadow-lift); }
+@utility shadow-theme-float { box-shadow: var(--shadow-float); }
+@utility shadow-shell-float { box-shadow: 0 1.875rem 3.375rem -32px var(--overlay-inverse-35); }
+
+/* --- Surface overlays --- */
+@utility surface-canvas-soft { background: var(--surface-canvas-soft); }
+@utility surface-overlay-08 { background: var(--overlay-panel-08); }
+@utility surface-overlay-12 { background: var(--overlay-panel-12); }
+@utility surface-overlay-92 { background: var(--overlay-panel-92); }
+@utility surface-overlay-95 { background: var(--overlay-panel-95); }
+@utility surface-overlay-72 { background: var(--overlay-panel-72); }
+
+/* --- Status --- */
+@utility text-success { color: var(--color-success); }
+@utility text-warning { color: var(--color-warning); }
+@utility text-danger { color: var(--color-danger); }
+@utility bg-success-soft { background-color: var(--surface-status-ok); }
+@utility bg-warning-soft { background-color: var(--color-warning-soft); }
+@utility bg-danger-soft { background-color: var(--surface-status-bad); }
+@utility bg-success { background-color: var(--color-success); }
+@utility bg-warning { background-color: var(--color-warning); }
+@utility bg-danger { background-color: var(--color-danger); }
+
+/* --- Sustainability --- */
+@utility text-sustain { color: var(--text-sustain); }
+@utility bg-sustain-soft { background-color: var(--surface-sustain-soft); }
+@utility bg-sustain-soft-strong { background-color: var(--surface-sustain-soft-strong); }
+
+/* --- Radius aliases --- */
+@utility rounded-blob { border-radius: var(--radius-blob); }
+@utility rounded-huge { border-radius: var(--radius-huge); }
+@utility rounded-giant { border-radius: var(--radius-giant); }
+
+/* --- Form controls --- */
+@utility accent-heading { accent-color: var(--text-heading); }
+
+/* --- Focus ring --- */
+@utility focus-ring-theme {
+  &:focus-visible { box-shadow: var(--focus-ring); }
+}
+
+/* --- Hover states --- */
+@utility hover-border-primary {
+  &:hover { border-color: var(--color-primary); }
+}
+@utility bg-hover-soft {
+  &:hover { background: var(--surface-hover-soft); }
+}
+
+/* --- Scrollbar --- */
+@utility scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}

@@ -1,0 +1,42 @@
+name: Site UI gate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: site-ui-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DEV_AUTH_BYPASS: "1"
+  NODE_ENV: test
+  NEXT_PUBLIC_SITE_URL: http://localhost:3000
+  SITE_URL: http://localhost:3000
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  PRODUCTS_DATABASE_URL: ${{ secrets.PRODUCTS_DATABASE_URL }}
+  SUPABASE_AUTH_DATABASE_URL: ${{ secrets.SUPABASE_AUTH_DATABASE_URL }}
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run gate:site-ui

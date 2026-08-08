@@ -1,0 +1,15 @@
+/* Admin — flat entry (no barrel index hops). */
+@import "../base/scan.css";
+@import "../base/runtime.css";
+@import "../base/index.css";
+@import "../base/document.css";
+@import "./base/tokens.css";
+@import "./base/shell.css";
+@import "./base/type.css";
+@import "./base/buttons.css";
+@import "./base/primitives.css";
+@import "./components/pages.css";
+@import "./components/entry-hero.css";
+@import "./components/hub.css";
+@import "./components/catalog.css";
+@import "./components/crm.css";

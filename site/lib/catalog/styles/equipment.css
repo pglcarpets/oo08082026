@@ -1,0 +1,12 @@
+:root {
+  /* Plants */
+  --block-plant-base: var(--block-theme-plant-base);
+  --block-plant-dark: var(--block-theme-plant-dark);
+  --block-plant-outline: var(--block-theme-plant-stroke);
+  --block-pot-base: var(--block-theme-surface-secondary);
+
+  /* Equipment (Printers, Whiteboards, Vending) */
+  --block-equip-white: var(--block-theme-surface-primary);
+  --block-equip-gray: var(--block-theme-body-light);
+  --block-equip-dark: var(--block-theme-body-dark);
+}

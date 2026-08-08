@@ -1,0 +1,40 @@
+{
+  "extends": "../config/build/tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "paths": {
+      "@/types/*": ["../site/platform/types/*"],
+      "@/app/*": ["../site/app/*"],
+      "@/components/*": ["../site/components/*"],
+      "@/data/*": ["../site/data/*"],
+      "@/features/*": ["../site/features/*"],
+      "@/lib/*": ["../site/lib/*"],
+      "@/scripts/*": ["../scripts/*"],
+      "@/tests/*": ["../tests/*"],
+      "@focss/*": ["../site/focss/*"],
+      "@planner/components/*": ["../site/components/Planner/*"],
+      "@planner/lib/*": ["../site/lib/Planner/*"],
+      "@planner/hooks/*": ["../site/hooks/Planner/*"],
+      "@planner/store/*": ["../site/store/Planner/*"],
+      "@planner/server/*": ["../site/server/Planner/*"],
+      "@studio/components/*": ["../site/components/Studio/*"],
+      "@studio/lib/*": ["../site/lib/Studio/*"],
+      "@studio/hooks/*": ["../site/hooks/Studio/*"],
+      "@studio/store/*": ["../site/store/Studio/*"],
+      "@studio/server/*": ["../site/server/Studio/*"],
+      "@/*": ["../site/*"]
+    },
+    "types": ["node", "react", "react-dom", "vitest", "@testing-library/jest-dom"]
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "archive/**",
+    "e2e/**",
+    "tech-docs-generator/**",
+    "helpers/svgEditorV2TestWorkspace.ts",
+    "helpers/adminCatalogIsolation.ts"
+  ]
+}

@@ -1,0 +1,40 @@
+/* ==========================================================================
+   Route hero H1 — first authority for marketing page titles
+   --------------------------------------------------------------------------
+   Priority: heading correctness first (one H1, readable, no warp).
+   Loaded after tokens/type; before page-specific sheets (contact-page, etc.).
+   Contact-only density: .page-hero--compact (opt-in on the Hero).
+   Fence: do not edit canonical package CSS only — this soft-overrides wrap quality only.
+   ========================================================================== */
+
+/*
+ * Full route heroes (.page-hero, not compact): use locked route title scale.
+ * Only fix wrap/warp (balance + tight measure made short titles look broken).
+ */
+.page-hero:not(.page-hero--compact) .home-hero-title-route,
+.page-hero:not(.page-hero--compact) .page-hero-title {
+  text-wrap: balance;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
+  /* Match locked route clamps (home-type-fallback / home-base) */
+  font-size: clamp(2.5rem, 8.5vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: var(--type-letter-title);
+  max-width: min(100%, 40rem);
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .page-hero:not(.page-hero--compact) .home-hero-title-route,
+  .page-hero:not(.page-hero--compact) .page-hero-title {
+    font-size: clamp(3rem, 5vw, 4.25rem);
+    max-width: min(100%, 44rem);
+  }
+}
+
+/* Short titles (e.g. 5 words): prefer a single clean line on desktop */
+@media (width >= theme(--breakpoint-md)) {
+  .page-hero:not(.page-hero--compact) .home-hero-title-route {
+    white-space: nowrap;
+  }
+}

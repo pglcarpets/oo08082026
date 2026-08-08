@@ -1,0 +1,23 @@
+/* Shared shell chrome — site + planner (exact same sheets).
+ * No @reference here: this barrel is @import-ed into globals after
+ * @import "tailwindcss" + base. Dual @reference (tailwind + base) after a
+ * real base import strips @layer theme from the compile (tokens never reach :root).
+ */
+@import "./shell-nav.css";
+@import "./shell-footer.css";
+@import "./shell-assistant.css";
+@import "./shell-assistant-bot.css";
+@import "./shell-quick-contact.css";
+@import "./shell-site-fabs.css";
+@import "./shell-cta.css";
+@import "./shell-workspace.css";
+@import "./shell-global-nav.css";
+@import "./shell-access.css";
+@import "./shell-portal.css";
+@import "./portal-svg-catalog.css";
+@import "./marketing-layout.css";
+
+/* Marketing leftovers (not shell chrome — do not confuse with shell-*) */
+@import "./site-footer.css";
+@import "./marketing-nav.css";
+@import "./misc-chrome.css";

@@ -1,0 +1,58 @@
+{
+  "id": "p_untitled-plan_3a5db6",
+  "name": "Untitled Plan",
+  "canvas_json": {
+    "version": "6.5.4",
+    "objects": [
+      {
+        "type": "Line",
+        "version": "6.5.4",
+        "originX": "left",
+        "originY": "top",
+        "left": 296.25,
+        "top": 296.25,
+        "width": 300,
+        "height": 0,
+        "fill": "rgb(0,0,0)",
+        "stroke": "#0B1324",
+        "strokeWidth": 7.5,
+        "strokeDashArray": null,
+        "strokeLineCap": "square",
+        "strokeDashOffset": 0,
+        "strokeLineJoin": "miter",
+        "strokeUniform": false,
+        "strokeMiterLimit": 4,
+        "scaleX": 1,
+        "scaleY": 1,
+        "angle": 0,
+        "flipX": false,
+        "flipY": false,
+        "opacity": 1,
+        "shadow": null,
+        "visible": true,
+        "backgroundColor": "",
+        "fillRule": "nonzero",
+        "paintFirst": "fill",
+        "globalCompositeOperation": "source-over",
+        "skewX": 0,
+        "skewY": 0,
+        "x1": -150,
+        "x2": 150,
+        "y1": 0,
+        "y2": 0
+      }
+    ],
+    "background": "#FFFFFF"
+  },
+  "sheet": {
+    "width_mm": 15000,
+    "height_mm": 10000,
+    "unit": "mm",
+    "scale_px_per_mm": 0.05
+  },
+  "layers": [],
+  "thumbnail_url": "/api/files/projects/p_untitled-plan_3a5db6_thumb.png",
+  "objects_count": 1,
+  "created_at": "2026-07-28T17:44:45.197904+00:00",
+  "updated_at": "2026-07-28T17:44:45.197904+00:00"
+}

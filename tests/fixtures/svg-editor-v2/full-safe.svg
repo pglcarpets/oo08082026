@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80" role="img" aria-labelledby="title desc">
+  <title id="title">Configurable desk</title>
+  <desc id="desc">A safe V2 capability fixture</desc>
+  <defs>
+    <linearGradient id="surface-gradient"><stop offset="0" stop-color="#eee"/><stop offset="1" stop-color="#bbb"/></linearGradient>
+    <clipPath id="surface-clip"><rect x="5" y="5" width="110" height="70" rx="4"/></clipPath>
+    <mask id="surface-mask"><rect width="120" height="80" fill="white"/></mask>
+    <pattern id="grain" width="4" height="4" patternUnits="userSpaceOnUse"><path d="M0 0L4 4" stroke="#999"/></pattern>
+  </defs>
+  <g id="desk" transform="translate(1 1)" clip-path="url(#surface-clip)" mask="url(#surface-mask)">
+    <rect id="surface" x="4" y="4" width="110" height="60" fill="url(#surface-gradient)"/>
+    <rect id="grain-layer" x="4" y="4" width="110" height="60" fill="url(#grain)" opacity="0.2"/>
+    <text id="label" x="60" y="72" text-anchor="middle">Desk</text>
+    <image id="managed-image" x="50" y="20" width="20" height="20" href="/api/admin/svg-assets/018f47ca-8131-7e40-9f1d-6b90f37b1290"/>
+  </g>
+</svg>

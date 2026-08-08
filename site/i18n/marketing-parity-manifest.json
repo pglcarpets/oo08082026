@@ -1,0 +1,39 @@
+{
+  "contractSourcePath": "docs/architecture/stack.md",
+  "allMarketingNamespaces": [
+    "about",
+    "news",
+    "legal",
+    "solutions",
+    "contact",
+    "products",
+    "career",
+    "downloads",
+    "gallery",
+    "planning",
+    "portfolio",
+    "clients",
+    "service",
+    "showrooms",
+    "social",
+    "sustainability",
+    "tracking",
+    "trustedBy",
+    "supportIvr",
+    "home"
+  ],
+  "wave1Locales": ["en", "hi"],
+  "parityLocales": ["hi", "de", "es", "fr"],
+  "wave1Namespaces": ["home", "about", "contact", "products", "solutions"],
+  "batchAConsumerRoutes": ["about", "news", "legal"],
+  "deferredLocales": ["de", "es", "fr"],
+  "i18nConsumerPaths": [
+    "app/(site)/about/page.tsx",
+    "app/(site)/privacy/page.tsx",
+    "app/(site)/terms/page.tsx",
+    "app/(site)/refund-and-return-policy/page.tsx",
+    "app/(site)/solutions/page.tsx",
+    "app/(site)/products/page.tsx",
+    "app/(site)/contact/page.tsx"
+  ]
+}

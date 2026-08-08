@@ -1,0 +1,67 @@
+/*
+ * Homepage premium polish — route-scoped (/ only via #home-hero markers).
+ * Spacing contract: cinema hero fills first viewport; ≤48px mobile / ≤80px desktop seam,
+ * gutters via --container-padding-desktop (40px md+).
+ */
+
+/* Full-bleed cinema hero — image plane must read as the first viewport, not a short strip. */
+.home-hero {
+  min-height: clamp(32rem, 88vh, 52rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--text-inverse);
+}
+
+.home-hero .home-hero__copy,
+.home-hero .home-hero-title-homepage {
+  color: inherit;
+}
+
+/* Absolute still layer fills the taller hero box */
+.home-hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.home-hero__media-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Bronze punctuation: dark hero → ecru collections */
+.home-bronze-rule {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, transparent);
+  padding-block: 0.75rem;
+}
+
+/*
+ * Hero → collections seam (bronze rule is punctuation, not the measured void).
+ * Cap collections pad-start so total gap stays ≤48px mobile / ≤80px desktop.
+ */
+.home-marketing-layout:has(#home-hero) .home-bronze-rule + .home-collections,
+.home-marketing-layout:has([data-testid="homepage-hero"]) .home-bronze-rule + .home-collections {
+  padding-block-start: clamp(1.25rem, 2.5vw, 2.5rem);
+  padding-block-end: var(--section-space-sm);
+}
+
+/* Homepage soft band: ecru paper (not cool white mist from layout fallback) */
+.home-marketing-layout:has(#home-hero) .home-section--soft,
+.home-marketing-layout:has([data-testid="homepage-hero"]) .home-section--soft {
+  background: linear-gradient(
+    165deg,
+    var(--color-ecru-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 24%, var(--color-ecru-100)) 50%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-100) 14%, var(--color-ecru-100)) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__media {
+    transition: none;
+  }
+}

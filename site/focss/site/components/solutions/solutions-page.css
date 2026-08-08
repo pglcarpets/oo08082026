@@ -1,0 +1,234 @@
+/* /solutions — editorial hub, bronze punctuation, asymmetric category grid */
+@import "../shared/editorial-hero.css";
+@import "../about/about-page.css";
+
+.solutions-hero__img {
+  object-position: 55% 42%;
+}
+
+/* ── /solutions premium pass — hero→section seam, gutter align, Oando ecru/bronze/ink ──
+ * Spacing contract: ≤48px mobile / ≤80px desktop hero→section seam.
+ * Gutters via --container-padding-desktop (40px md+) so hero copy aligns with
+ * home-shell-xl section content at every breakpoint (fixes 40px left drift ≥1440px).
+ * Motion is GSAP via gsapMotion.ts (no CSS keyframes on hero copy).
+ */
+
+/* Hero layout: switch to home-shell-xl box model so copy left edge tracks the
+ * section gutter instead of drifting 40px left once the 80rem cap engages. */
+.solutions-hero__layout {
+  width: 100%;
+  max-width: var(--container-home-max, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .solutions-hero__layout {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .solutions-hero__layout {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+/* Hero → craft-strip seam: bronze hairline punctuation + measured breathing room
+ * (dark cinema hero → ecru/bronze wash band). Keeps total seam ≤48px mobile. */
+.solutions-hero {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 38%, transparent);
+  padding-block-end: clamp(1.35rem, 3vw, 2rem);
+}
+
+/* Craft strip — Oando ecru wash + bronze rule + ink type (scheme-accent-wash base) */
+.about-craft-strip.scheme-accent-wash {
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-ecru-50) 70%, transparent) 0%,
+      color-mix(in srgb, var(--color-bronze-300) 10%, var(--color-ecru-100)) 100%
+    );
+  color: var(--text-strong);
+}
+
+.about-craft-strip.scheme-accent-wash .about-craft-quote__text {
+  color: var(--text-heading);
+}
+
+.about-craft-strip.scheme-accent-wash .about-craft-quote__attribution {
+  color: color-mix(in srgb, var(--surface-inverse) 72%, transparent);
+}
+
+.solutions-delivery {
+  display: grid;
+  gap: clamp(1.5rem, 3.2vw, 2.4rem);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .solutions-delivery {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(1.65rem, 4vw, 3rem);
+  }
+
+  .solutions-delivery__copy {
+    padding-block: clamp(0.5rem, 2vw, 1.5rem);
+    padding-inline-start: clamp(0rem, 2vw, 1.5rem);
+  }
+}
+
+.solutions-delivery__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 16 / 11;
+  max-height: 28rem;
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.solutions-delivery__media > span:has(> img),
+.solutions-delivery__media > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+}
+
+.solutions-delivery__img {
+  object-fit: cover;
+}
+
+.solutions-delivery__lead {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.solutions-category-grid {
+  display: grid;
+  gap: clamp(0.85rem, +2vw, 1.25rem);
+}
+
+@media (min-width: 40rem) {
+  .solutions-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1rem, 2vw, 1.35rem);
+  }
+}
+
+@media (min-width: 64rem) {
+  .solutions-category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .solutions-category-card--feature {
+    grid-column: span 2;
+    grid-row: span 2;
+    min-height: clamp(16rem, 32vw, 22rem);
+  }
+}
+
+.solutions-category-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: clamp(11rem, 24vw, 14rem);
+  border-radius: var(--radius-xl);
+}
+
+.solutions-category-card--feature {
+  min-height: clamp(14rem, 38vw, 20rem);
+}
+
+.solutions-category-card > span:has(> img),
+.solutions-category-card > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+}
+
+/* /solutions/[category] — catalog still as hero media (no AI video) */
+.solutions-category-hero__img {
+  object-position: 50% 40%;
+}
+
+.solutions-hero[data-category="seating"] .solutions-category-hero__img {
+  object-position: 50% 38%;
+}
+
+.solutions-hero[data-category="workstations"] .solutions-category-hero__img {
+  object-position: 48% 36%;
+}
+
+.solutions-hero[data-category="tables"] .solutions-category-hero__img {
+  object-position: 52% 42%;
+}
+
+.solutions-hero[data-category="storages"] .solutions-category-hero__img {
+  object-position: 50% 35%;
+}
+
+.solutions-hero[data-category="soft-seating"] .solutions-category-hero__img {
+  object-position: 46% 45%;
+}
+
+.solutions-hero[data-category="education"] .solutions-category-hero__img {
+  object-position: 50% 38%;
+}
+
+.solutions-category-overview {
+  display: grid;
+  gap: clamp(1.5rem, 3.2vw, 2.4rem);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .solutions-category-overview {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(1.65rem, 4vw, 3rem);
+  }
+
+  .solutions-category-overview__copy {
+    padding-block: clamp(0.5rem, 2vw, 1.5rem);
+    padding-inline-start: clamp(0rem, 2vw, 1.5rem);
+  }
+}
+
+.solutions-category-overview__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 16 / 11;
+  max-height: 28rem;
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+.solutions-category-overview__media > span:has(> img),
+.solutions-category-overview__media > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+}
+
+.solutions-category-overview__img {
+  object-fit: cover;
+  object-position: 50% 42%;
+}
+
+.solutions-category-overview__lead {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+.home-marketing-layout [data-section="route-cta"] .page-copy {
+  font-size: clamp(1.05rem, 2.4vw, 1.125rem);
+  line-height: 1.6;
+}

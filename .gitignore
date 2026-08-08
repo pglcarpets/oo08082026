@@ -1,0 +1,57 @@
+# dependencies
+node_modules/
+
+# next.js
+.next/
+out/
+.tmp/
+site/AGENTS.md
+# env
+.env.local
+.env*.local
+# Tech-docs generator output — local/CI only; never commit or push
+generated-documents/
+.agents/
+# Local tool dumps / evidence (dir may exist for layout; never push contents)
+results/
+
+# Agent / Grok session tooling (not product source)
+.superpowers/
+
+# Claude Code — not used; AGENTS.md is the agent front door
+.claude/
+CLAUDE.md
+site/CLAUDE.md
+
+# debug
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# typescript
+*.tsbuildinfo
+
+# vercel
+.vercel
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Agent skills pin (local tooling; not product)
+skills-lock.json
+.env.local*
+
+# Multi-GB recovery media copies (disk only; do not commit binaries)
+site/public/assets/others/legacy/recovery/
+site/public/assets/others/legacy/recovery-merged/
+site/public/assets/others/misc/from-recovery/
+.env*
+
+# Qwen IDE session artifacts
+.qwen/
+
+# IDE / agent session tooling (not product)
+.commandcode/
+

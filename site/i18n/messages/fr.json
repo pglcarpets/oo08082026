@@ -1,0 +1,1060 @@
+{
+  "common": {
+    "signIn": "Se connecter",
+    "signOut": "Se déconnecter",
+    "guest": "Continuer en tant qu'invité",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue"
+  },
+  "home": {
+    "title": "Plateforme Oando",
+    "subtitle": "Outils professionnels de planification et de conception d'espaces",
+    "getStarted": "Commencer",
+    "hero": {
+      "title": [
+        "Des espaces qui travaillent",
+        "aussi dur que",
+        "votre equipe"
+      ],
+      "kicker": "Partout en Inde · Depuis 2011",
+      "primaryCta": {
+        "label": "Concevez votre plan",
+        "href": "/planner"
+      },
+      "secondaryCta": {
+        "label": "Parcourir les produits",
+        "href": "/products"
+      },
+      "glassProof": {
+        "badge": "Ils nous font confiance",
+        "lead": "Plus de 120 espaces de travail livres.",
+        "support": "Catalogue dans le planner · brouillons · BOQ de marque.",
+        "href": "/trusted-by",
+        "cta": "Voir les clients"
+      }
+    },
+    "plannerSuite": {
+      "titleLead": "Oando",
+      "titleAccent": "Planner",
+      "description": "Esquissez un plan, placez du mobilier du catalogue et exportez un amenagement avant de demander un devis.",
+      "loginHref": "/login/?next=%2Fplanner%2Fcanvas%2F",
+      "loginLabel": "Connexion membre",
+      "overviewHref": "/planner",
+      "overviewLabel": "En savoir plus"
+    },
+    "trust": {
+      "logoLabel": "Organisations selectionnees",
+      "logos": [
+        {
+          "name": "Titan",
+          "src": "/assets/marketing/client-logos/Titan.png"
+        },
+        {
+          "name": "L&T",
+          "src": "/assets/marketing/client-logos/LandT.png"
+        },
+        {
+          "name": "JSW",
+          "src": "/assets/marketing/client-logos/JSW.png"
+        },
+        {
+          "name": "Tata Motors",
+          "src": "/assets/marketing/client-logos/TataMotors.jpg"
+        },
+        {
+          "name": "Maruti Suzuki",
+          "src": "/assets/marketing/client-logos/MarutiSuzuki.png"
+        },
+        {
+          "name": "HDFC",
+          "src": "/assets/marketing/client-logos/HDFCLogo.jpg"
+        },
+        {
+          "name": "Canara Bank",
+          "src": "/assets/marketing/client-logos/CanaraBank.jpg"
+        },
+        {
+          "name": "Franklin Templeton",
+          "src": "/assets/marketing/client-logos/FranklinTempleton.jpg"
+        },
+        {
+          "name": "Hyundai",
+          "src": "/assets/marketing/client-logos/HyundaiLogo.jpg"
+        },
+        {
+          "name": "IDBI Bank",
+          "src": "/assets/marketing/client-logos/IDBIBankLogo.png"
+        },
+        {
+          "name": "Usha",
+          "src": "/assets/marketing/client-logos/USHA.png"
+        },
+        {
+          "name": "Bihar Government",
+          "src": "/assets/marketing/client-logos/BiharGovernment.jpg"
+        },
+        {
+          "name": "SAIL",
+          "src": "/assets/marketing/client-logos/SAIL.png"
+        },
+        {
+          "name": "BIS",
+          "src": "/assets/marketing/client-logos/BIS.jpg"
+        },
+        {
+          "name": "Sonalika",
+          "src": "/assets/marketing/client-logos/Sonalika.jpg"
+        },
+        {
+          "name": "Survey of India",
+          "src": "/assets/marketing/client-logos/SurveyofIndia.jpg"
+        },
+        {
+          "name": "CRI Pumps",
+          "src": "/assets/marketing/client-logos/CRIPumps.jpg"
+        },
+        {
+          "name": "MECON",
+          "src": "/assets/marketing/client-logos/MECON.jpg"
+        }
+      ],
+      "projectsCta": "Voir les projets",
+      "kpiLabels": [
+        "Years of experience",
+        "Projects completed",
+        "Selected organisations",
+        "Locations serviced"
+      ]
+    },
+    "brandStatement": {
+      "lead": "Nous concevons et installons des espaces de travail partout en Inde depuis 2011.",
+      "body": "Pas seulement des interieurs, mais des environnements de travail qui aident les equipes a se concentrer, collaborer et rester productives. Conçus pour les organisations qui ne peuvent pas se permettre une planification floue ou une execution fragile."
+    },
+    "collections": {
+      "titleLead": "Parcourir les",
+      "titleAccent": "categories d'espaces de travail",
+      "catalogCta": {
+        "label": "Parcourir le catalogue complet",
+        "href": "/products"
+      },
+      "items": [
+        {
+          "name": "Sieges",
+          "image": "/assets/marketing/ui/categories/seating-clean.webp",
+          "href": "/products/seating"
+        },
+        {
+          "name": "Postes de travail",
+          "image": "/assets/marketing/ui/categories/workstations-clean.webp",
+          "href": "/products/workstations"
+        },
+        {
+          "name": "Tables",
+          "image": "/assets/marketing/ui/categories/tables-clean.webp",
+          "href": "/products/tables"
+        },
+        {
+          "name": "Rangement",
+          "image": "/assets/marketing/ui/categories/storages-clean.webp",
+          "href": "/products/storages"
+        },
+        {
+          "name": "Assises lounge",
+          "image": "/assets/marketing/ui/categories/soft-seating-clean.webp",
+          "href": "/products/soft-seating"
+        },
+        {
+          "name": "Education",
+          "image": "/assets/marketing/ui/categories/education-clean.webp",
+          "href": "/products/education"
+        }
+      ]
+    },
+    "whyChooseUs": {
+      "titleLead": "Nous concevons des",
+      "titleAccent": "espaces de travail",
+      "features": [
+        { "title": "Performance-graded", "tagline": "Load · cycle · ergonomics" },
+        { "title": "Built to last", "tagline": "Warranty by model" },
+        { "title": "Lower rework", "tagline": "Durable materials" },
+        { "title": "Scales cleanly", "tagline": "Pilot to rollout" }
+      ]
+    },
+    "tools": {
+      "kicker": "Workspace planning",
+      "titleLead": "Design your",
+      "titleAccent": "workspace",
+      "description": "True-scale plans with catalog furniture — export before you quote.",
+      "demoAriaLabel": "Example 10 by 8 metre office floor plan",
+      "demoCaption": "Example 10 by 8 metre office floor plan"
+    },
+    "showcase": {
+      "sectionLabel": "Projets selectionnes",
+      "sectionTitleLead": "Livre pour des",
+      "sectionTitleAccent": "organisations de premier plan",
+      "browseCta": {
+        "label": "Voir le portfolio",
+        "href": "/portfolio"
+      },
+      "items": [
+        {
+          "id": "dmrc",
+          "name": "DMRC",
+          "label": "",
+          "image": "/assets/marketing/clients/DMRC/dmrc.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "titan",
+          "name": "Titan",
+          "label": "",
+          "image": "/assets/marketing/clients/Titan/hero.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "tvs",
+          "name": "TVS",
+          "label": "",
+          "image": "/assets/marketing/clients/TVS/hero.webp",
+          "link": "/portfolio"
+        }
+      ]
+    },
+    "contact": {
+      "titleLead": "Share a",
+      "titleAccent": "brief",
+      "subtitle": "City, scope, timeline — we follow up by phone or email.",
+      "image": {
+        "src": "/assets/marketing/hero/pages/contact-oneandonly-bright.webp",
+        "alt": "Corporate workspace installed by One&Only"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "cityLabel": "City",
+        "cityPlaceholder": "Project city",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+91 …",
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@company.com",
+        "briefLabel": "Brief",
+        "briefPlaceholder": "Team size, scope, or timeline — optional detail helps.",
+        "consentText": "I agree that One&Only may use these details to respond to my enquiry.",
+        "consentLink": "Privacy policy",
+        "consentHint": "Required to send. We do not sell contact data.",
+        "channelHint": "Phone or email — at least one is required.",
+        "submitLabel": "Send Brief",
+        "submittingLabel": "Sending..."
+      },
+      "status": {
+        "success": "Brief received. Our team will contact you shortly.",
+        "errorCity": "Please add a project city.",
+        "errorConsent": "Confirm privacy consent before sending.",
+        "errorChannel": "Please add a phone number or email so we can reach you.",
+        "errorGeneric": "Unable to submit now."
+      },
+      "directActions": [
+        { "type": "whatsapp", "label": "WhatsApp now" },
+        { "type": "phone", "label": "Call team" }
+      ]
+    }
+  },
+  "planner": {
+    "title": "Planificateur d'espace",
+    "newProject": "Nouveau projet",
+    "roomPresets": "Préréglages de pièce",
+    "session": {
+      "title": "Plan Sessions",
+      "description": "Save into the shared planner workspace, keep a local draft close at hand, import a canonical planner document, or reopen the same plan in 3D.",
+      "saveCloud": "Save to Cloud",
+      "saveDraft": "Save Local Draft",
+      "saveAsNew": "Save as New Session",
+      "open3d": "Open in 3D Viewer",
+      "importJson": "Import Plan JSON",
+      "exportJson": "Export Plan JSON",
+      "savedPlans": "Saved Plans",
+      "noPlans": "No local draft or cloud plan yet.",
+      "delete": "Delete",
+      "rename": "Rename"
+    }
+  },
+  "about": {
+    "heroTitle": "À propos de One&Only",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Interiors executed",
+    "heroTitleAccent": "with craft.",
+    "heroSubtitle": "Planning, supply, and install for workplaces teams actually use — from brief to handover.",
+    "heroCta": "See our work",
+    "storyKicker": "Who we are",
+    "storyTitleLead": "Trust through",
+    "storyTitleAccent": "delivery.",
+    "storyLead": "One team plans, supplies, and installs — seating, workstations, meeting rooms, and storage for enterprise and institutional teams across the region.",
+    "craftQuote": "The furniture is only half the job. Spacing, install discipline, and handover — that is where trust is earned.",
+    "craftAttribution": "Field team · One&Only",
+    "pillarsKicker": "How we work",
+    "modelPillars": [
+      {
+        "title": "Recommandations guidees par la planification",
+        "detail": "Les decisions de categorie, de budget et d'amenagement sont liees a la maniere dont les equipes utilisent reellement l'espace."
+      },
+      {
+        "title": "Clarte d'execution",
+        "detail": "Le perimetre commercial, les delais, la coordination des livraisons et la preparation a l'installation restent visibles tout au long du projet."
+      },
+      {
+        "title": "Assistance apres remise",
+        "detail": "Les references de garantie, l'orientation du service et l'assistance de suivi restent integrees a la meme relation de livraison."
+      }
+    ],
+    "processKicker": "Notre maniere de travailler",
+    "processTitleLead": "Brief to",
+    "processTitleAccent": "handover",
+    "processSteps": [
+      {
+        "title": "Brief et contexte du site",
+        "detail": "Nous cartographions les effectifs, le type d'espace de travail, les priorites commerciales et le calendrier qui compte pour votre equipe."
+      },
+      {
+        "title": "Specification et alignement",
+        "detail": "Les produits, finitions et repartitions de quantites sont traduits en un parcours clair de planification et d'approbation."
+      },
+      {
+        "title": "Livraison et assistance",
+        "detail": "L'installation, l'orientation du service et le suivi apres-vente restent relies au brief initial."
+      }
+    ],
+    "ctaKicker": "Next step",
+    "ctaTitleLead": "Talk through",
+    "ctaTitleAccent": "your space.",
+    "ctaDescription": "Planning call for layout guidance, or Resource Desk for packs and technical sheets.",
+    "ctaPrimary": "Request planning call",
+    "ctaSecondary": "View clients",
+    "sectionKicker": "Qui nous sommes",
+    "sectionTitle": "Planning-first partner for modern offices",
+    "sectionTitleLead": "Planning-first partner for",
+    "sectionTitleAccent": "modern offices",
+    "paragraphs": [
+      "Nous combinons planification des espaces de travail, selection des produits et accompagnement a l'execution afin que les equipes passent du concept a la remise avec moins de retards et de meilleurs resultats.",
+      "Nos projets couvrent les assises ergonomiques, les postes de travail modulaires, les environnements de reunion, le rangement et les services d'assistance adaptes aux besoins des entreprises et des institutions.",
+      "Chaque mission est geree avec clarte : perimetre documente, calendriers pratiques et assistance apres-vente responsable."
+    ],
+    "confidenceKicker": "Confiance des clients",
+    "confidenceTitle": "La confiance des equipes d'entreprise et institutionnelles.",
+    "confidenceCta": "Voir tous les clients",
+    "modelKicker": "Mode operatoire",
+    "modelTitle": "Une seule equipe, du brief de planification a l'assistance apres installation.",
+    "modelDescription": "Nous relions la planification, l'approvisionnement, l'execution et l'assistance afin que les projets restent clairs depuis les premieres decisions jusqu'a la remise.",
+    "processTitle": "Une sequence pratique pour les projets de bureau.",
+    "supportTitle": "Besoin de planification ou de documentation avant de decider ?",
+    "supportDescription": "Utilisez les parcours de planification ou du Resource Desk lorsque votre equipe a besoin de conseils d'amenagement, de dossiers de categories, de fiches techniques ou d'une etape suivante plus claire avant l'approvisionnement.",
+    "supportPrimaryCta": "Demander un appel de planification",
+    "supportSecondaryCta": "Ouvrir le Resource Desk"
+  },
+  "news": {
+    "heroTitle": "Actualites et mises a jour",
+    "heroSubtitle": "Conseils sur les espaces de travail, themes de projet et mises a jour de service presentes sans pretendre etre une salle de redaction en direct.",
+    "introKicker": "Ce qui a sa place ici",
+    "introTitle": "Un parcours pour l'orientation actuelle, pas pour des annonces fabriquees.",
+    "introDescription": "Cette page doit aider les visiteurs a comprendre sur quoi l'equipe se concentre en matiere de produits, de planification, d'assistance et de livraison de projets. Elle reste ancree dans de vraies categories et des parcours d'assistance actifs plutot que dans un contenu de presse synthetique.",
+    "cards": [
+      {
+        "category": "Priorite de planification",
+        "title": "Comment les equipes abordent les modernisations de lieux de travail par phases",
+        "summary": "De plus en plus de projets avancent par phases, avec planification, validations et decisions de categories reparties sur plusieurs jalons operationnels."
+      },
+      {
+        "category": "Conseils produits",
+        "title": "Choisir des categories qui restent utiles plus longtemps",
+        "summary": "Les sieges de travail, postes modulaires, meubles de collaboration et systemes de rangement sont choisis en tenant compte de cycles de remplacement plus longs."
+      },
+      {
+        "category": "Flux d'assistance",
+        "title": "Un routage plus clair pour la documentation, le suivi et les demandes apres-vente",
+        "summary": "Le systeme de parcours actif oriente desormais les visiteurs vers le bon contact et les bons parcours du Resource Desk au lieu de les laisser deviner."
+      }
+    ],
+    "ctaTitle": "Besoin d'une mise a jour actuelle sur les produits, la planification ou l'assistance ?",
+    "ctaDescription": "Utilisez les parcours de contact et du Resource Desk lorsque vous avez besoin des derniers dossiers de categories, du bon routage de service ou d'un contexte de planification pour un projet en cours.",
+    "primaryCta": "Ouvrir le Resource Desk",
+    "secondaryCta": "Contacter l'equipe"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de confidentialite",
+      "heroSubtitle": "Comment nous traitons les donnees de demande, les cookies d'attribution et les enregistrements de communication dans les flux de planification, de vente et d'assistance.",
+      "overviewKicker": "Confidentialite et consentement",
+      "overviewTitle": "Une politique de confidentialite pratique pour les demandes actives d'espaces de travail.",
+      "overviewDescription": "Nous ne collectons que les informations necessaires pour repondre aux demandes de projet, orienter les conversations d'assistance et conserver les dossiers de service autour des relations clients actives.",
+      "intro": [
+        "One&Only est exploite par One and Only Furniture Private Limited (\"OOFPL\"). Cette politique explique quelles donnees personnelles nous collectons, comment nous les utilisons et quels cookies nous definissons lorsque vous parcourez notre site web ou soumettez une demande.",
+        "Les informations personnelles comprennent les donnees permettant de vous identifier ou de vous contacter, telles que votre nom, votre entreprise, votre adresse e-mail, votre numero de telephone, votre adresse IP et tous les details de demande que vous partagez via nos formulaires."
+      ],
+      "commitmentsTitle": "Ce que couvre cette politique",
+      "commitments": [
+        "Les informations que nous recueillons lorsque vous naviguez, faites une demande ou sollicitez une assistance.",
+        "La maniere dont nous utilisons les informations soumises pour l'orientation, le suivi et la qualite du service.",
+        "Les cookies qui soutiennent le stockage du consentement et les rapports d'attribution."
+      ]
+    },
+    "shared": {
+      "serviceSupport": "Service and support"
+    },
+    "terms": {
+      "title": "Conditions generales",
+      "heroSubtitle": "Conditions du site web, des demandes, des devis, de la livraison, de la garantie et de l'assistance pour One&Only.",
+      "overviewKicker": "Conditions commerciales",
+      "overviewTitle": "Les conditions d'exploitation derriere les devis, les commandes, la livraison et l'assistance.",
+      "overviewDescription": "Ces conditions expliquent comment les informations du site web, les devis commerciaux, l'execution des projets et l'assistance couverte par garantie sont geres en pratique.",
+      "sections": [
+        {
+          "heading": "Conditions generales",
+          "body": "Les presentes Conditions generales regissent l'utilisation de ce site web ainsi que toutes les relations commerciales avec One&Only, y compris les demandes de produits, les devis, la fourniture et les services d'assistance."
+        },
+        {
+          "heading": "1. Portee",
+          "body": "Ces conditions s'appliquent a toutes les relations commerciales avec les clients, sous reserve de tout accord ecrit specifique a un projet signe entre les deux parties."
+        },
+        {
+          "heading": "2. Devis et acceptation",
+          "body": "Les informations sur les produits et services presentes sur ce site web sont fournies a titre informatif. Une transaction contraignante n'intervient qu'apres l'acceptation ecrite du devis et la confirmation de la commande."
+        },
+        {
+          "heading": "3. Livraison et installation",
+          "body": "Les calendriers de livraison sont communiques lors de la confirmation de commande et peuvent varier selon le perimetre du projet, la preparation du site et la disponibilite des materiaux."
+        },
+        {
+          "heading": "4. Garantie et assistance",
+          "body": "L'applicabilite de la garantie depend de la gamme de produits concernee et des conditions convenues. Les demandes de service et d'assistance sont traitees par nos canaux officiels."
+        },
+        {
+          "heading": "5. Responsabilite",
+          "body": "La responsabilite est limitee dans la mesure autorisee par la loi ainsi qu'a la valeur ou aux conditions convenues dans le contrat commercial correspondant."
+        }
+      ],
+      "asideGuidance": "Use this page together with the refund, privacy, and service routes when a client needs clear guidance on commercial handling, support scope, or warranty-backed follow-up.",
+      "viewRefundPolicy": "View refund policy",
+      "privacyPolicy": "Privacy policy",
+      "askCommercialDesk": "Ask commercial desk",
+      "ctaKicker": "Commercial desk",
+      "ctaTitleLead": "Ready to confirm scope",
+      "ctaTitleAccent": "in writing",
+      "ctaDescription": "Quotations, delivery windows, and warranty-backed support follow these terms — reach the desk when a project needs a clear next step.",
+      "ctaPrimary": "Contact team",
+      "ctaSecondary": "Privacy policy"
+    },
+    "imprint": {
+      "title": "Mentions legales",
+      "heroSubtitle": "Identite de l'entreprise, informations sur le representant et coordonnees officielles de One&Only.",
+      "overviewKicker": "Informations sur l'entreprise",
+      "overviewTitle": "Coordonnees officielles de l'entreprise et de contact.",
+      "overviewDescription": "Utilisez cette page lorsque vous avez besoin de l'identification legale de l'entreprise, de l'adresse officielle du bureau ou des responsables et coordonnees associes au site web.",
+      "sections": [
+        {
+          "heading": "Informations legales",
+          "lines": [
+            "One and Only Furniture",
+            "401, Jagat Trade Centre",
+            "Frazer Road",
+            "Patna - 800 001, Bihar",
+            "Inde"
+          ]
+        },
+        {
+          "heading": "Represente par",
+          "lines": [
+            "Direction : Arvind Kumar Singh"
+          ]
+        },
+        {
+          "heading": "Contact",
+          "lines": [
+            "Telephone : +91 90310 22875",
+            "E-mail : sales@oando.co.in"
+          ]
+        },
+        {
+          "heading": "Identification de l'entreprise",
+          "lines": [
+            "Revendeur autorise de grandes marques de mobilier de bureau.",
+            "Enregistre a Patna, Bihar."
+          ]
+        }
+      ]
+    },
+    "refund": {
+      "metadataTitle": "Politique de remboursement et de retour",
+      "metadataDescription": "Politique de remboursement, de retour, de remplacement et d'annulation pour One&Only.",
+      "heroTitle": "Politique de remboursement et de retour",
+      "heroSubtitle": "Conditions relatives aux retours, remplacements, annulations et remboursements.",
+      "overviewKicker": "Conditions de retour et de remplacement",
+      "overviewTitle": "Des indications claires pour les marchandises endommagees, les delais d'annulation et l'eligibilite au remboursement.",
+      "overviewDescription": "Cette politique definit les attentes concernant le signalement des dommages produits, la gestion des remplacements, le calendrier des annulations et les conditions dans lesquelles les remboursements sont traites.",
+      "sections": [
+        {
+          "title": "Politique generale",
+          "tone": "white",
+          "items": [
+            "Les demandes de modification ne sont pas acceptees une fois la livraison terminee, sauf en cas de produits endommages ou defectueux.",
+            "Les echanges ne sont proposes que pour les produits arrives endommages ou defectueux.",
+            "Les images de produits sur le site web sont fournies a titre representatif et certaines caracteristiques peuvent varier sur le produit final.",
+            "L'annulation est autorisee avant l'expedition. Les achats soldes ne peuvent pas etre annules."
+          ]
+        },
+        {
+          "title": "Produits endommages ou defectueux",
+          "tone": "soft",
+          "items": [
+            "Signalez tout dommage dans les 24 heures suivant la livraison par e-mail avec des photos du produit.",
+            "Contact : sales@oando.co.in",
+            "L'enlevement retour et le remplacement pour les produits endommages sont organises par notre equipe.",
+            "Les pieces defectueuses remplaçables sont generalement prises en charge sous 7 jours ; un remplacement complet peut prendre jusqu'a 15 jours selon la disponibilite."
+          ]
+        },
+        {
+          "title": "Retours et remboursements",
+          "tone": "white",
+          "items": [
+            "Les retours sont acceptes uniquement lorsque les produits arrivent endommages.",
+            "Un remboursement n'est emis que si le remplacement ou les pieces de remplacement ne sont pas disponibles pour le meme produit.",
+            "Pour les demandes de remboursement sans dommage, des frais de reconditionnement et de transport peuvent s'appliquer.",
+            "Les remboursements sont effectues par NEFT ou sur le mode de paiement d'origine, generalement sous 7 jours ouvrables."
+          ]
+        },
+        {
+          "title": "Comment lancer un retour ou une annulation",
+          "tone": "soft",
+          "items": [],
+          "contactLines": [
+            "E-mail : sales@oando.co.in",
+            "Telephone : +91 90310 22875",
+            "Siege social : 401, Jagat Trade Centre, Frazer Road, Patna - 800 001, Bihar, Inde"
+          ]
+        }
+      ],
+      "contactSalesDesk": "Contact sales desk",
+      "ctaKicker": "Returns desk",
+      "ctaTitleLead": "Need a replacement or refund",
+      "ctaTitleAccent": "clarified",
+      "ctaDescription": "Damaged goods, cancellation windows, and refund eligibility follow this policy — contact sales when a delivery needs a clear next step.",
+      "ctaPrimary": "Contact sales desk",
+      "ctaSecondary": "View terms"
+    }
+  },
+  "solutions": {
+    "metadataTitle": "Approche de planification des espaces de travail",
+    "metadataDescription": "Decouvrez comment One&Only planifie, specifie et livre des projets d'espaces de travail, du brief a l'assistance apres-vente.",
+    "heroTitle": "Comment nous livrons les projets d'espaces de travail",
+    "heroKicker": "Complete workplaces",
+    "heroTitleLead": "Comment nous livrons",
+    "heroTitleAccent": "les projets d'espaces de travail",
+    "heroSubtitle": "Une approche structuree pour la planification, l'alignement des achats, l'execution et l'assistance.",
+    "heroPrimaryCta": "Planning call",
+    "heroSecondaryCta": "Browse products",
+    "heroBackgroundImage": "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "categoriesTitleLead": "Browse",
+    "categoriesTitleAccent": "solutions",
+    "deliveryKicker": "Modele de livraison",
+    "deliveryTitle": "Conçu pour les equipes qui ont besoin de previsibilite et de rapidite.",
+    "deliveryDescription": "Chaque projet est gere a travers une definition claire du perimetre, des livrables de planification pratiques et une execution responsable sur site. Le resultat : des approbations plus fluides et moins de surprises pendant le deploiement.",
+    "deliveryMedia": {
+      "src": "/assets/marketing/projects/DMRC/dmrc-1.webp",
+      "alt": "Workspace planning and delivery"
+    },
+    "stats": [
+      {
+        "value": "14+",
+        "label": "Annees dans les projets d'espaces de travail"
+      },
+      {
+        "value": "120+",
+        "label": "Projets livres"
+      },
+      {
+        "value": "250+",
+        "label": "Organisations clientes accompagnees"
+      },
+      {
+        "value": "20+",
+        "label": "Villes accompagnees"
+      }
+    ],
+    "phaseLabelTemplate": "Phase {number}",
+    "planningKicker": "Commencer la planification",
+    "planningTitle": "Discutez du brief de votre projet avec notre equipe de planification.",
+    "planningDescription": "Partagez les details du site, les delais et le nombre de places. Nous proposerons une approche pratique pour les produits, l'amenagement et l'execution.",
+    "planningPrimaryCta": "Demander un appel de planification",
+    "planningSecondaryCta": "Parcourir les categories de produits",
+    "planningTertiaryCta": "Ouvrir le Resource Desk",
+    "planningCtas": [
+      {
+        "label": "Demander un appel de planification",
+        "href": "/contact",
+        "variant": "primary"
+      },
+      {
+        "label": "Parcourir les categories de produits",
+        "href": "/products",
+        "variant": "outline"
+      },
+      {
+        "label": "Ouvrir le Resource Desk",
+        "href": "/downloads",
+        "variant": "outline"
+      }
+    ],
+    "categoryHeroKicker": "Solution category",
+    "categoryHeroPrimaryCta": "Browse products",
+    "categoryHeroSecondaryCta": "All solutions",
+    "categoryCraftQuote": "Inventory is the start — layout and circulation decide whether the category works on site.",
+    "categoryCraftAttribution": "Planning desk · One&Only",
+    "categoryBodyKicker": "Specify",
+    "categoryBodyTitle": "From live catalog to layout",
+    "categoryBodyDescription": "{description} Browse the live product catalog or speak with the planning desk for a workspace layout aligned to this category.",
+    "categoryBrowseCta": "Browse products",
+    "categoryAllCta": "All solutions",
+    "categoryContactCta": "Contact planning desk",
+    "categoryDeskKicker": "Next step",
+    "categoryDeskTitle": "Plan this category",
+    "categoryDeskDescription": "Share seat count, timeline, and site constraints — we propose products and a practical layout path.",
+    "categoryDeskPrimaryCta": "Planning call",
+    "categoryDeskSecondaryCta": "Open planner",
+    "categoryDeskTertiaryCta": "All solutions"
+  },
+  "contact": {
+    "heroTitle": "Contactez-nous",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Get in",
+    "heroTitleAccent": "touch.",
+    "heroSubtitle": "Partagez votre besoin d'espace de travail et notre equipe vous repondra avec les prochaines etapes.",
+    "sectionTitle": "Contacts bureau et assistance",
+    "introTitle": "Commencez avec la bonne equipe.",
+    "introDescription": "Partagez votre besoin, votre calendrier ou votre combinaison de categories. Nous l'orienterons vers le bon contact de planification ou de vente et vous repondrons avec des prochaines etapes pratiques.",
+    "resourceDeskLead": "Besoin d'abord de dossiers de categories, de fiches techniques ou de references de planification ?",
+    "resourceDeskCta": "Utiliser le Resource Desk",
+    "resourceDeskTail": "et nous vous enverrons l'ensemble de documents adapte a votre brief.",
+    "quickDeskKicker": "Routage le plus rapide",
+    "quickDeskTitle": "Utilisez le bon parcours des le depart.",
+    "quickDeskDescription": "Les discussions de planification, les demandes de documents et les echanges autour des devis avancent plus vite lorsque la demande atteint d'abord la bonne equipe.",
+    "quickDeskPrimaryCta": "Ouvrir le Resource Desk",
+    "quickDeskSecondaryCta": "Demander un appel de planification",
+    "channelRegionLabel": "Service region",
+    "channelQuotesLabel": "Quotes and planning",
+    "channelSupportLabel": "Support and enquiries",
+    "channelEmailLabel": "Email",
+    "channelsAriaLabel": "Phone, email, and service region",
+    "offices": [
+      {
+        "title": "Siege social",
+        "lines": [
+          "401, Jagat Trade Centre",
+          "Frazer Road",
+          "Patna - 800 013",
+          "Inde"
+        ]
+      },
+      {
+        "title": "Showroom",
+        "lines": [
+          "One and Only Furniture Pvt Ltd",
+          "Opp Patliputra Telephone Exchange",
+          "North Industrial Estate Road",
+          "Patna - 800 010",
+          "Inde"
+        ]
+      }
+    ]
+  },
+  "products": {
+    "heroKicker": "Catalogue produits",
+    "heroSubtitle": "Des categories de mobilier concues pour de vrais flux de travail de bureau, une durabilite a long terme et une croissance evolutive.",
+    "headlineLead": "Conçu pour",
+    "headlineAccent": "performer.",
+    "heroPrimaryCta": "Parcourir les categories",
+    "heroSecondaryCta": "Parler aux ventes",
+    "craftQuote": "Des categories choisies pour la clarte des specifications, la realite d'installation et le support apres remise — pas pour le theatre du showroom.",
+    "craftAttribution": "Catalogue · One&Only",
+    "introKicker": "Inventaire en direct",
+    "introTitleLead": "Photographie et specs depuis",
+    "introTitleAccent": "le catalogue publie",
+    "introDescription": "Chaque tuile de categorie mene a des produits en direct avec une vraie photographie d'installation et des symboles de plan publies — pour aligner achats et planification.",
+    "featureBullets": [
+      "Sieges ergonomiques pour zones de travail, executive et visiteurs.",
+      "Postes de travail modulaires pour des layouts d'equipe evolutifs.",
+      "Mobilier de reunion et de collaboration pour espaces partages.",
+      "Systemes de rangement et accessoires pour des operations organisees."
+    ],
+    "categoryRoutesKicker": "Routes de categorie",
+    "categoryRoutesDescription": "Commencez par une categorie, puis filtrez, comparez et demandez.",
+    "categoryRoutesCta": "Ouvrir la gamme",
+    "rangeKicker": "Entree par categorie",
+    "rangeTitleLead": "Parcourir par",
+    "rangeTitleAccent": "besoins du workspace",
+    "categoriesTitleLead": "Parcourir",
+    "categoriesTitleAccent": "les catégories",
+    "pillarsKicker": "Pourquoi ces categories",
+    "pillarsTitleLead": "Conçues pour",
+    "pillarsTitleAccent": "les vrais flux de travail de bureau",
+    "pillarsIntro": "Chaque catégorie est sélectionnée pour sa durabilité, la clarté de ses spécifications et l’assistance après livraison, pas seulement pour la présentation.",
+    "pillars": [
+      {
+        "title": "Conseils guides par la specification",
+        "detail": "Nous cartographions les effectifs, les usages et le budget pour que les choix produits soient pratiques des le premier jour.",
+        "icon": "check-circle"
+      },
+      {
+        "title": "Delais fiables",
+        "detail": "Les categories modulaires et une planification structuree aident les equipes a passer de l'approbation a l'installation avec maitrise.",
+        "icon": "clock"
+      },
+      {
+        "title": "Confiance apres-vente",
+        "detail": "La couverture de garantie et l'assistance de service sont integrees a chaque proposition, et non traitees apres coup.",
+        "icon": "shield"
+      }
+    ],
+    "deskKicker": "Besoin d'une shortlist ?",
+    "deskTitle": "Associez les categories a votre brief.",
+    "deskDescription": "Partagez effectifs, contraintes de plan et delai — nous vous orientons vers le bon mix produits et les prochaines etapes de planification.",
+    "deskPrimaryCta": "Demander un devis",
+    "deskSecondaryCta": "Explorer les solutions",
+    "deskTertiaryCta": "Telecharger les packs",
+    "categories": {
+      "seating": "Sieges",
+      "workstations": "Postes de travail",
+      "tables": "Tables",
+      "storages": "Rangement",
+      "soft-seating": "Assises lounge",
+      "education": "Education"
+    }
+  },
+  "career": {
+    "heroKicker": "Join the team",
+    "heroTitleLead": "Careers",
+    "heroTitleAccent": "with us.",
+    "heroTitle": "Carrieres",
+    "heroSubtitle": "Rejoignez une equipe qui cree des espaces de travail pratiques et a fort impact pour des organisations a travers l'Inde.",
+    "craftQuote": "Real client briefs, measured ownership, and teams that stay close to delivery.",
+    "craftAttribution": "People · One&Only",
+    "introKicker": "Pourquoi nous rejoindre",
+    "introTitle": "Construisez votre carriere dans la livraison d'espaces de travail.",
+    "introDescription": "Nous travaillons sur la planification, le conseil produit, la livraison de projets et l'assistance. Si vous accordez de l'importance a une execution fiable et aux resultats clients, vous trouverez bien votre place ici.",
+    "pillars": [
+      {
+        "title": "Equipes collaboratives",
+        "detail": "Les ventes, la planification et les operations travaillent en etroite collaboration afin que les decisions soient claires et que l'execution reste rapide.",
+        "icon": "users"
+      },
+      {
+        "title": "Travail axe sur l'apprentissage",
+        "detail": "Vous gagnez une exposition pratique a de vrais briefs clients, cycles d'approvisionnement et realites d'installation.",
+        "icon": "graduation-cap"
+      },
+      {
+        "title": "Responsabilite significative",
+        "detail": "Nous donnons des responsabilites rapidement, avec mentorat et standards clairs de responsabilite.",
+        "icon": "briefcase"
+      }
+    ],
+    "openingsTitle": "Postes ouverts actuellement",
+    "openingsAvailableTemplate": "{count} postes disponibles",
+    "processKicker": "Comment les carrieres evoluent ici",
+    "processTitle": "Un travail qui reste proche des vrais projets et de vraies responsabilites.",
+    "processDescription": "L'equipe intervient sur la planification, le conseil produit, la coordination commerciale, l'execution sur site et l'assistance apres-vente. Cela signifie que les roles restent connectes aux resultats clients reels plutot qu'a des transmissions internes isolees.",
+    "processSteps": [
+      {
+        "title": "Apprentissage au contact des clients",
+        "detail": "Vous apprenez a partir de briefs actifs d'espaces de travail, d'approbations et des realites du terrain plutot qu'a partir de seuls supports de formation internes."
+      },
+      {
+        "title": "Exposition interfonctionnelle",
+        "detail": "Les ventes, la planification, les operations et l'assistance restent suffisamment proches pour accelerer les decisions et clarifier les responsabilites."
+      },
+      {
+        "title": "Responsabilite mesuree",
+        "detail": "Les responsabilites augmentent avec la performance, mais les attentes restent explicites en matiere de qualite de reponse, d'execution et de professionnalisme."
+      }
+    ],
+    "fallbackTitle": "Aucun role correspondant pour le moment ?",
+    "fallbackDescription": "Envoyez votre profil et indiquez-nous comment vous pouvez contribuer. Nous examinons les candidatures pour les fonctions ventes, operations, planification et assistance de facon continue.",
+    "careersEmail": "careers@oando.co.in",
+    "supportTitle": "Vous ne savez pas quel role correspond a votre parcours ?",
+    "supportDescription": "Envoyez une courte note avec votre domaine d'experience et la fonction souhaitee. Nous pouvons vous orienter vers le parcours de planification, de vente, d'operations ou d'assistance le plus pertinent.",
+    "supportPrimaryCta": "Contacter l'equipe",
+    "supportSecondaryCta": "Ouvrir la page de planification",
+    "ctaKicker": "Not sure where you fit?",
+    "ctaTitleLead": "Talk to",
+    "ctaTitleAccent": "the team.",
+    "ctaDescription": "Share your background — we'll route you to the right planning, sales, operations, or support lane.",
+    "ctaPrimary": "Contact the team",
+    "ctaSecondary": "Open planning page"
+  },
+  "downloads": {
+    "metadataTitle": "Bureau des ressources",
+    "metadataDescription": "Demandez des catalogues produits, des fiches techniques et des references de planification adaptes a votre brief d'espace de travail.",
+    "heroTitle": "Bureau des ressources",
+    "heroSubtitle": "Demandez les bons dossiers produits, fiches techniques et references de planification pour votre brief d'espace de travail.",
+    "resourceKicker": "Orientation des ressources",
+    "resourceTitle": "Dites-nous ce que vous planifiez et nous vous enverrons le bon dossier documentaire.",
+    "resourceDescription": "Notre catalogue evolue en permanence selon les categories, finitions et exigences de planification. Au lieu de proposer des telechargements publics obsoletes, nous orientons chaque demande vers le dossier le plus recent pour le perimetre de votre projet.",
+    "processKicker": "Comment cela fonctionne",
+    "processTitle": "Un bureau sur demande conçu pour les projets actifs.",
+    "processSteps": [
+      {
+        "title": "Partagez votre brief d'espace de travail",
+        "detail": "Indiquez-nous les categories, le nombre de places, la ville et le calendrier afin que nous puissions trouver le bon ensemble de produits."
+      },
+      {
+        "title": "Nous preparons le dossier le plus recent",
+        "detail": "Notre equipe envoie les catalogues actuels, fiches techniques et references de planification adaptes a votre besoin."
+      },
+      {
+        "title": "Examinez avec un accompagnement de planification",
+        "detail": "Si necessaire, nous aidons a reduire les options, clarifier les specifications et relier les fichiers a votre amenagement ou a la discussion BOQ."
+      }
+    ],
+    "noteTitle": "Ce que vous pouvez demander",
+    "noteBody": "Les dossiers demandes peuvent inclure des catalogues par categorie, des fiches techniques, des references de planification, des options de finition, des details de garantie et des documents d'assistance specifiques aux modeles lorsqu'ils sont disponibles.",
+    "notePoints": [
+      "Catalogues de produits regroupes par categorie et cas d'usage",
+      "Fiches techniques avec dimensions, materiaux et indications de garantie",
+      "References de planification pour la densite des postes de travail, les amenagements et le flux d'execution"
+    ],
+    "urgentKicker": "Besoin d'une reponse rapide ?",
+    "urgentDescription": "Envoyez votre besoin et les categories souhaitees. Nous repondrons avec le dossier le plus recent disponible et le bon contact de suivi pour votre projet.",
+    "primaryCta": "Demander un dossier documentaire",
+    "secondaryCta": "Envoyer un e-mail au bureau des ventes",
+    "tertiaryCta": "Parler sur WhatsApp"
+  },
+  "gallery": {
+    "heroTitle": "Galerie de projets",
+    "heroSubtitle": "Selections de livraisons d'espaces de travail dans des environnements d'entreprise, publics et institutionnels.",
+    "kicker": "Temps forts visuels recents",
+    "title": "De vrais projets, de vraies installations.",
+    "description": "Parcourez des photos de sites termines pour comprendre la qualite des finitions, les styles d'amenagement et l'echelle de livraison selon les types de projets."
+  },
+  "planning": {
+    "heroTitle": "Service de planification",
+    "heroSubtitle": "Une planification des espaces de travail qui equilibre flux de travail, budget et delais d'execution.",
+    "workflowKicker": "Flux de planification",
+    "workflowTitle": "De l'intention a des plans prets pour la mise en oeuvre.",
+    "deliverablesKicker": "Ce que vous recevez",
+    "deliverablesTitle": "Des livrables clairs que votre equipe peut executer.",
+    "bestForKicker": "Ideal pour",
+    "bestForDescription": "Nouveaux bureaux, extensions d'etage, modernisation des espaces de travail et amenagements d'entreprise ou la qualite de la planification influence directement le cout et le calendrier.",
+    "deskKicker": "Elements d'assistance",
+    "deskTitle": "Rassemblez documents, plans et questions produits dans un seul flux de travail.",
+    "deskDescription": "Si votre equipe a besoin de dossiers de categories, de fiches techniques ou de references d'amenagement avant l'appel de planification, commencez par le Resource Desk et nous integrerons les bons supports dans la meme discussion.",
+    "primaryCta": "Demander un appel de planification",
+    "secondaryCta": "Voir les produits",
+    "tertiaryCta": "Ouvrir le Resource Desk"
+  },
+  "portfolio": {
+    "heroTitle": "Portfolio",
+    "heroSubtitle": "De vraies photos de livraisons regroupees par projets clients.",
+    "eyebrow": "Galerie de projets",
+    "title": "Excellence.",
+    "totalTemplate": "{clients} clients - {photos} photos"
+  },
+  "clients": {
+    "heroTitle": "Clients",
+    "heroSubtitleTemplate": "{clients} organisations dans les secteurs public, financier, energetique, industriel et au-dela.",
+    "featuredLabel": "Organisations selectionnees",
+    "featuredTitle": "Liste de clients",
+    "allLabel": "Repartition par secteur"
+  },
+  "service": {
+    "heroTitle": "Service et assistance",
+    "heroSubtitle": "Une assistance apres-vente concue pour la fiabilite, la responsabilite et la performance a long terme.",
+    "frameworkKicker": "Cadre d'assistance",
+    "frameworkTitle": "Un seul partenaire de service, de l'installation a l'assistance apres-vente.",
+    "channelsKicker": "Canaux de service",
+    "channelsTitle": "Contactez directement notre equipe d'assistance.",
+    "supportKicker": "Besoin d'une assistance immediate ?",
+    "supportDescription": "Partagez votre numero de reference de projet ou de service ainsi qu'un resume du probleme. Notre equipe d'assistance l'orientera vers le bon specialiste et repondra avec les prochaines etapes.",
+    "supportDeskKicker": "Orientation de l'assistance",
+    "supportDeskTitle": "Besoin d'abord de documents, de references de garantie ou d'historiques de planification ?",
+    "supportDeskDescription": "Utilisez le Resource Desk lorsque l'etape la plus rapide consiste a obtenir un dossier documentaire, une fiche technique, une reference de garantie ou un historique de planification lie a votre configuration d'espace de travail.",
+    "primaryCta": "Soumettre une demande d'assistance",
+    "secondaryCta": "Suivre la commande",
+    "tertiaryCta": "Ouvrir le Resource Desk"
+  },
+  "showrooms": {
+    "heroTitle": "Showrooms, parcours et livraisons clients.",
+    "heroSubtitle": "Un regard plus proche sur notre modele d'execution, notre empreinte projet et les equipes qui nous font confiance.",
+    "trustedKicker": "La confiance en un coup d'oeil",
+    "aboutKicker": "A propos de nous",
+    "aboutTitle": "Construire des espaces de travail avec une planification claire, un approvisionnement fiable et une livraison responsable.",
+    "aboutDescription": "Nous avons commence par des projets regionaux de bureaux et nous nous sommes etendus a une execution multi-villes. Notre modele operatoire reste constant : perimetre defini, calendriers pratiques et solide assistance apres-vente.",
+    "clientsKicker": "Clients que nous avons accompagnes",
+    "clientsCta": "Voir la liste complete des clients",
+    "highlightsKicker": "Livraisons signatures",
+    "highlightsCta": "Explorer le portfolio",
+    "sustainabilityTitle": "Conçu de maniere responsable, livre de facon pratique.",
+    "sustainabilitySubtitle": "Durabilite",
+    "sustainabilityDescription": "Des choix de materiaux a la planification de produits a longue duree de vie, nous mettons l'accent sur des systemes d'espaces de travail qui reduisent les dechets et ameliorent la valeur sur le cycle de vie.",
+    "sustainabilityCta": "Lire les engagements de durabilite"
+  },
+  "social": {
+    "heroTitle": "Temps forts sociaux",
+    "heroSubtitle": "Moments de projet, idees d'espaces de travail et inspirations d'usage produit relies a de vraies categories et a des parcours actifs fiables.",
+    "introKicker": "Preuve sociale et inspiration",
+    "introTitle": "Un lien plus propre entre l'inspiration projet et de vrais parcours produits.",
+    "introDescription": "Ce parcours met en avant des idees d'espaces de travail et des environnements realises sans pretendre etre une API sociale en direct. Chaque vignette renvoie vers un vrai parcours du catalogue actuel ou de la surface produit.",
+    "handleLabel": "@OneAndOnlyFurn",
+    "feedKicker": "Temps forts selectionnes",
+    "feedTitle": "Des idees ancrees dans de vraies categories d'espaces de travail.",
+    "feedDescription": "Utilisez cette page pour passer de l'inspiration visuelle a la planification, aux produits ou aux pages de preuve, sans liens casses ni integrations sociales fabriquees.",
+    "ctaTitle": "Besoin d'aide pour transformer une reference en veritable plan d'espace de travail ?",
+    "ctaDescription": "Passez de l'inspiration a des selections de categories, a l'assistance de planification et aux demandes de documentation via les memes parcours actifs produits et Resource Desk.",
+    "primaryCta": "Parcourir les produits",
+    "secondaryCta": "Ouvrir le Resource Desk"
+  },
+  "sustainability": {
+    "heroTitle": "La durabilite en pratique.",
+    "heroSubtitle": "Nous misons sur des systemes d'espaces de travail durables, des choix de materiaux pratiques et moins de reprises entre planification et livraison.",
+    "introTitleLead": "Notre approche pour des ",
+    "introTitleEmphasis": "espaces de travail a longue duree de vie.",
+    "introDescription": "La durabilite dans les projets de bureau depend du choix des materiaux, de la maintenabilite et de la rigueur de planification, de la specification a l'assistance apres-vente.",
+    "introKicker": "La durabilite en pratique",
+    "introTitle": "Des systemes d'espaces de travail a longue duree de vie avec moins de dechets sur l'ensemble du cycle de vie.",
+    "introPoints": [
+      "Nous privilegions les categories durables, les composants remplacables et les choix de planification qui reduisent le renouvellement inutile des produits.",
+      "Le choix des materiaux, l'efficacite du transport et la maintenance a long terme comptent tous, car la durabilite est liee a la maniere dont le produit est reellement utilise.",
+      "Nous evitons de promettre des certifications ou des metriques non etayees lorsque le depot actuel ne fournit pas de preuve formelle."
+    ],
+    "pillars": [
+      {
+        "title": "Specification attentive aux materiaux",
+        "detail": "Nous privilegions les options offrant des informations materiaux plus claires et une meilleure adequation de duree de vie au cas d'usage.",
+        "icon": "leaf"
+      },
+      {
+        "title": "Approche reparation et remplacement",
+        "detail": "Nous preferons les categories et configurations pouvant etre entretenues, reparees ou reconfigurees plutot que remplacees prematurement.",
+        "icon": "recycle"
+      },
+      {
+        "title": "Une planification qui reduit les dechets",
+        "detail": "Une planification claire des quantites et des verifications d'adaptation aident a reduire les ecarts, les retours et les reprises evitables sur site.",
+        "icon": "lightbulb"
+      }
+    ],
+    "ecoScoreTitle": "Notre systeme Eco-Score",
+    "ecoScoreDescription": "Lorsque des donnees de score sont disponibles, l'Eco-Score (1 a 10) est utilise comme signal directionnel de planification aux cotes des specifications et de l'adequation au cas d'usage.",
+    "ecoScoreItems": [
+      {
+        "index": "1",
+        "title": "Materiaux",
+        "detail": "Composition des materiaux, signaux de contenu recycle et adequation liee a la durabilite lorsque les donnees sont disponibles."
+      },
+      {
+        "index": "2",
+        "title": "Fabrication",
+        "detail": "Contexte de fabrication et d'approvisionnement consigne dans les fiches produits actuelles ou dans la documentation partenaire."
+      },
+      {
+        "index": "3",
+        "title": "Longevite",
+        "detail": "Duree de vie attendue, praticite de maintenance et risque de remplacement en usage actif."
+      }
+    ],
+    "badges": [
+      {
+        "title": "Eco-Score: 8+",
+        "detail": "Les produits mieux notes montrent generalement des signaux de cycle de vie plus solides dans les donnees actuelles du catalogue."
+      },
+      {
+        "title": "Eco-Score: 5-7",
+        "detail": "Les scores intermediaires indiquent des signaux partiels de durabilite et doivent etre examines avec le contexte technique complet."
+      }
+    ],
+    "verifiedTitle": "Signaux de durabilite",
+    "verifiedDescription": "Nous presentons des signaux de durabilite appuyes par le catalogue et evitons les affirmations non etayees sur les certifications ou l'impact.",
+    "verifiedLabels": [
+      "Appuye par le catalogue",
+      "Donnees examinees",
+      "Accent sur la longue duree de vie"
+    ],
+    "commitmentsKicker": "Ce que nous privilegions",
+    "commitmentsTitle": "Des engagements pratiques plutot que des declarations generiques.",
+    "commitments": [
+      {
+        "title": "Longue duree de service",
+        "detail": "Les produits et les amenagements doivent rester utilisables plus longtemps afin que les equipes ne remplacent pas prematurement leurs installations."
+      },
+      {
+        "title": "Specification responsable",
+        "detail": "Nous preferons des materiaux et des structures de produits qui equilibrent durabilite, maintenance et impact environnemental plus faible."
+      },
+      {
+        "title": "Efficacite de la planification",
+        "detail": "Une meilleure planification en amont reduit les reprises, les inadéquations et les dechets pendant la livraison et l'installation."
+      }
+    ],
+    "routeNoteTitle": "Besoin d'informations sur la durabilite pour un projet en cours ?",
+    "routeNoteDescription": "Demandez le dossier produit actuel ou une assistance de planification lorsque vous avez besoin de conseils materiaux, de recommandations de categories ou d'une clarification sur l'adaptation au projet.",
+    "routeNotePrimaryCta": "Ouvrir le Resource Desk",
+    "routeNoteSecondaryCta": "Demander un appel de planification"
+  },
+  "tracking": {
+    "heroTitle": "Suivi des commandes et des livraisons",
+    "heroSubtitle": "Utilisez le bon parcours d'assistance pour les demandes de reference de commande, de statut de livraison, d'installation ou de suivi apres-vente.",
+    "introKicker": "Suivi avec les bonnes informations",
+    "introTitle": "Un parcours fiable pour l'assistance sur l'etat des livraisons.",
+    "introDescription": "Cette page ne pretend pas exposer un systeme logistique en direct. Elle explique plutot comment partager la bonne reference de commande ou de projet afin que l'equipe d'assistance puisse repondre avec precision.",
+    "referenceTitle": "Ce qu'il faut inclure dans votre demande",
+    "referenceItems": [
+      "Numero de reference de commande ou identifiant de devis",
+      "Nom du projet ou de l'entreprise",
+      "Ville de livraison ou lieu d'installation",
+      "Votre question principale : expedition, delai de livraison, installation ou suivi de service"
+    ],
+    "lanesTitle": "Choisissez le bon parcours",
+    "lanes": [
+      {
+        "title": "Statut de livraison",
+        "detail": "Utilisez ceci lorsque vous avez besoin du calendrier d'expedition, de la sequence de livraison prevue ou d'une mise a jour sur le statut d'un envoi."
+      },
+      {
+        "title": "Coordination de l'installation",
+        "detail": "Utilisez ceci lorsque la question concerne la preparation du site, le calendrier d'installation ou l'assistance a la remise."
+      },
+      {
+        "title": "Suivi de service ou de probleme",
+        "detail": "Utilisez ceci lorsque vous avez deja recu la livraison et avez besoin d'une assistance apres-vente ou d'une orientation sur un probleme."
+      }
+    ],
+    "supportTitle": "Pret a partager votre reference de commande ?",
+    "supportDescription": "Le chemin le plus rapide consiste a envoyer directement la reference et le resume de votre demande a l'equipe d'assistance au lieu de compter sur un faux suivi public.",
+    "primaryCta": "Soumettre une demande d'assistance",
+    "secondaryCta": "Appeler l'assistance",
+    "tertiaryCta": "Ouvrir le Resource Desk"
+  },
+  "trustedBy": {
+    "heroTitle": "Ils nous font confiance",
+    "heroSubtitle": "La confiance de leaders de l'industrie dans les secteurs public, industriel, financier, automobile, IT et institutionnel.",
+    "overviewKicker": "Preuve de livraison",
+    "overviewTitle": "Une liste de clients gagnee par une execution reproductible.",
+    "overviewDescription": "Nos projets couvrent des bureaux d'entreprise, des institutions publiques, des reseaux financiers, des sites industriels et des deploiements multi-villes d'espaces de travail ou la clarte de planification, la maitrise de la livraison et l'assistance apres-vente comptent toutes.",
+    "statsKicker": "La confiance en un coup d'oeil",
+    "sectorsKicker": "Presence sectorielle",
+    "sectorsTitle": "Une confiance intersectorielle avec une adequation pratique aux projets.",
+    "sectorsDescription": "Des achats publics et operations bancaires aux bureaux industriels et programmes d'ONG, l'exigence commune reste la meme : des produits durables, une livraison responsable et une assistance apres remise.",
+    "rosterKicker": "Organisations selectionnees",
+    "rosterTitle": "Des clients qui comptent sur One&Only."
+  },
+  "supportIvr": {
+    "heroTitle": "Orientation de l'assistance",
+    "heroSubtitle": "Utilisez le menu visuel d'assistance pour atteindre le bon parcours pour les documents, le suivi, le service ou le suivi de planification.",
+    "introKicker": "Menu d'assistance",
+    "introTitle": "Un parcours plus clair vers la bonne conversation d'assistance.",
+    "introDescription": "Cette page fonctionne au mieux lorsqu'elle dirige rapidement les visiteurs vers le bon parcours d'assistance au lieu de forcer des demandes de contact generiques. Elle doit rester alignee sur les flux de service, de suivi et du Resource Desk.",
+    "noteTitle": "Meilleure utilisation",
+    "noteDescription": "Commencez ici lorsque vous savez que vous avez besoin d'aide, mais que vous n'etes pas encore sur de savoir si la demande releve du service, de la documentation, du suivi de livraison ou de l'assistance de planification."
+  },
+  "workspace": {
+    "backToHome": "Back to Home",
+    "accessPanelTitle": "Precision in Planning",
+    "accessPanelDescription": "Experience the Oando Suite. Our architectural tools are designed for accuracy, performance, and clear collaboration across teams."
+  }
+}

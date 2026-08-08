@@ -1,0 +1,258 @@
+/* /clients — executed-work photo portfolio + editorial proof strip + bronze pull-quote band */
+@import "../shared/editorial-hero.css";
+@import "../about/about-page.css";
+
+/* Hero — align copy gutter with home-shell-xl sections (solutions pass) */
+.clients-hero__layout {
+  width: 100%;
+  max-width: var(--container-home-max, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .clients-hero__layout {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .clients-hero__layout {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+.clients-hero {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 38%, transparent);
+  padding-block-end: clamp(1.15rem, 2.4vw, 1.65rem);
+}
+
+.clients-hero__subtitle {
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+/* Editorial proof — horizontal metrics row (not centered 3-up KPI wall) */
+.clients-proof-strip {
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, transparent);
+  background: color-mix(in srgb, var(--color-bronze-300) 8%, var(--color-white-50));
+  padding-block: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+.clients-proof-strip__inner {
+  display: grid;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
+}
+
+.clients-proof-strip__rule {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  background: var(--color-bronze-400);
+}
+
+.clients-proof-strip__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: clamp(1rem, 2.5vw, 2rem);
+  margin: 0;
+}
+
+.clients-proof-strip__item {
+  display: grid;
+  gap: 0.35rem;
+  margin: 0;
+  min-width: 8.5rem;
+  padding-inline-start: clamp(0.85rem, 2vw, 1.15rem);
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+}
+
+.clients-proof-strip__label {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-kicker-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: var(--type-letter-label-wide);
+  text-transform: uppercase;
+  color: var(--text-body);
+  line-height: 1.35;
+}
+
+.clients-proof-strip__value {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 3.2vw, 2.5rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-stat);
+  line-height: 1.08;
+  color: var(--text-heading);
+}
+
+.clients-proof-strip__as-of {
+  margin: 0;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Case study portfolio */
+.clients-work {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 2.75rem);
+}
+
+.clients-work__case {
+  min-width: 0;
+}
+
+.clients-work-caption {
+  display: grid;
+  gap: 0;
+  margin-bottom: clamp(0.85rem, 1.8vw, 1.15rem);
+  max-width: 40rem;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .clients-work-caption {
+    max-width: min(52rem, 100%);
+  }
+}
+
+.clients-work__index.home-kicker {
+  margin: 0;
+}
+
+.clients-work__title.home-heading {
+  margin: clamp(0.5rem, 1vw, 0.65rem) 0 0;
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  line-height: 1.1;
+}
+
+.clients-work__location {
+  margin: 0.35rem 0 0;
+}
+
+.clients-work-caption__scope {
+  margin: clamp(0.65rem, 1.4vw, 0.85rem) 0 0;
+  max-width: 42rem;
+}
+
+/* Mosaic — reliable aspect boxes; asymmetric desktop grid */
+.clients-work__mosaic {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.clients-work__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  min-height: 8.5rem;
+  border-radius: var(--radius-blob, 0.35rem);
+  background: var(--surface-muted);
+}
+
+.clients-work__media--primary {
+  grid-column: span 2;
+  aspect-ratio: 16 / 10;
+  min-height: 12rem;
+}
+
+.clients-work__media--secondary {
+  aspect-ratio: 4 / 3;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .clients-work__mosaic--dual {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    grid-template-rows: repeat(2, minmax(10rem, 1fr));
+    gap: 0.75rem;
+    min-height: clamp(20rem, 34vw, 30rem);
+  }
+
+  .clients-work__mosaic--solo {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    min-height: clamp(18rem, 30vw, 26rem);
+  }
+
+  .clients-work__media {
+    min-height: 0;
+    aspect-ratio: auto;
+    height: 100%;
+  }
+
+  .clients-work__media--primary {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+
+  .clients-work__media--primary-solo {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .clients-work__media--secondary {
+    grid-column: 2;
+  }
+
+  .clients-work__media--secondary-solo {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+}
+
+/* Pull-quote band — reuse about craft strip language */
+.clients-trust-strip.about-craft-strip.scheme-accent-wash {
+  padding-block: clamp(2rem, 4vw, 3rem);
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--color-ecru-50) 70%, transparent) 0%,
+      color-mix(in srgb, var(--color-bronze-300) 10%, var(--color-ecru-100)) 100%
+    );
+}
+
+.clients-pull-quotes {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .clients-pull-quotes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(1.75rem, 3.5vw, 2.5rem);
+  }
+}
+
+.clients-pull-quote.about-craft-quote {
+  max-width: none;
+  padding-inline-start: 0;
+  border-inline-start: 0;
+}
+
+.clients-pull-quote .about-craft-quote__text.home-heading {
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  line-height: 1.28;
+  font-weight: var(--font-weight-display-light);
+  color: var(--text-heading);
+}
+
+.clients-pull-quote .about-craft-quote__attribution {
+  color: color-mix(in srgb, var(--surface-inverse) 72%, transparent);
+}
+
+@media (width < theme(--breakpoint-md)) {
+  .clients-work__title.home-heading {
+    font-size: clamp(1.65rem, 6vw, 2rem);
+  }
+
+  .clients-proof-strip__list {
+    gap: 0.85rem 1.25rem;
+  }
+}

@@ -1,0 +1,34 @@
+"use client";
+import React, { ReactNode } from "react";
+import { IconButton } from "@planner/components/PlannerIconButton";
+import type { ToolRailEntry } from "@planner/lib/plannerTypes";
+
+type ToolRailProps = {
+  tools: ToolRailEntry[];
+  activeTool: string;
+  onSelect: (id: string) => void;
+  extras?: ReactNode;
+};
+
+export const ToolRail = ({ tools, activeTool, onSelect, extras }: ToolRailProps) => (
+  <aside className="tool-rail" data-testid="tool-rail" aria-label="Drawing tools">
+    {tools.map((t, i) =>
+      t.divider ? (
+        <div key={`d${i}`} className="tool-rail__divider" />
+      ) : (
+        <IconButton
+          key={t.id}
+          icon={t.icon}
+          label={t.label + (t.shortcut ? ` (${t.shortcut})` : "")}
+          active={activeTool === t.id}
+          onClick={() => onSelect(t.id)}
+          testId={`tool-${t.id}`}
+        />
+      ),
+    )}
+    <div style={{ flex: 1 }} />
+    {extras}
+  </aside>
+);
+
+export default ToolRail;

@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000004",
+  "slug": "oando-omnia-desk-1800",
+  "sku": "OANDO-OMNIA-DSK-1800",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1800,
+    "depthMm": 900,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1800,
+    "height": 900
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "linear-desk",
+    "widthMm": 1800,
+    "depthMm": 900,
+    "topThicknessMm": 90
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [
+    {
+      "key": "top",
+      "focusSelector": "#desk-top",
+      "label": "Worksurface"
+    }
+  ],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000004,
+  "checksum": "21e889c37a63884840210eb61bcf4d7aa62b8d62668d53ca70a9bbb2fd7fbd7a",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

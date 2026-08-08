@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000015",
+  "slug": "oando-spino-tall-cabinet-900",
+  "sku": "OANDO-SPINO-CAB-T900",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 900,
+    "depthMm": 450,
+    "heightMm": 2100
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 900,
+    "height": 450
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "body",
+      "x": 0,
+      "y": 0,
+      "width": 900,
+      "depth": 450
+    },
+    {
+      "id": "door-l",
+      "x": 20,
+      "y": 20,
+      "width": 410,
+      "depth": 410
+    },
+    {
+      "id": "door-r",
+      "x": 470,
+      "y": 20,
+      "width": 410,
+      "depth": 410
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000031,
+  "checksum": "00e592f5b234a3b46b9fe6ca9e01a3c73036f29202a95fa9eb70a6c2533872ad",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

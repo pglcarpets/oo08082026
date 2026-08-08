@@ -1,0 +1,8 @@
+{
+ "D2_npx": 0,
+ "D3_dead_overrides": 0,
+ "D6_nonportable_in_gate": 0,
+ "P2_csp_unsafe_inline": 2,
+ "P4_migration_no_rollback": 42,
+ "S2_stray_report": 3
+}

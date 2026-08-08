@@ -1,0 +1,161 @@
+/* Homepage soft bands (merged) */
+
+
+/* --- from site/homepage/trust-band.css --- */
+/*
+ * Homepage light trust / KPI strip (cool mist — ecru alternative).
+ * About inverse uses .proof-kpi-band.
+ */
+
+.home-trust-band-light {
+  background: linear-gradient(
+    180deg,
+    var(--color-ecru-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 22%, var(--color-ecru-100)) 100%
+  );
+  border-color: var(--border-soft);
+}
+
+.home-trust-band-light .home-trust-kpi--light {
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-primary) 35%, transparent);
+  padding-inline-start: 0.85rem;
+  background: var(--surface-panel-strong);
+}
+
+.home-trust-band-light .typ-stat {
+  color: var(--color-primary);
+  font-size: var(--type-stat-size);
+}
+
+.home-trust-band-light .typ-label {
+  color: var(--text-muted);
+  font-size: var(--type-label-size);
+}
+
+
+/* --- from site/homepage/proof-kpi.css --- */
+/*
+ * Proof KPI band — inverse midnight strip (about + TrustStrip tone="inverse").
+ */
+
+.proof-kpi-band {
+  width: 100%;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, transparent);
+  background:
+    linear-gradient(
+      105deg,
+      var(--color-dark-midnight-blue-950) 0%,
+      var(--color-dark-midnight-blue-900) 42%,
+      color-mix(in srgb, var(--color-ocean-boat-blue-900) 55%, var(--color-dark-midnight-blue-900)) 100%
+    );
+  color: var(--text-inverse);
+  padding-block: var(--section-space-sm);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--color-white-50) 8%, transparent),
+    0 1.25rem 2.5rem -2rem color-mix(in srgb, var(--color-dark-midnight-blue-950) 55%, transparent);
+}
+
+.proof-kpi-band__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+@media (width >= 64rem) {
+  .proof-kpi-band__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+}
+
+.proof-kpi-band__item {
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+  padding-inline-start: 1.15rem;
+  min-height: 4.5rem;
+}
+
+.proof-kpi-band__value {
+  font-family: var(--font-display);
+  font-size: var(--type-stat-size);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-stat);
+  line-height: var(--type-leading-stat);
+  color: var(--color-bronze-300);
+  text-shadow: 0 0 1.5rem color-mix(in srgb, var(--color-bronze-400) 35%, transparent);
+}
+
+.proof-kpi-band__label {
+  margin-top: 0.55rem;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: var(--type-letter-label-wide);
+  text-transform: uppercase;
+  color: var(--text-inverse-body);
+  line-height: var(--type-leading-label);
+  max-width: 14ch;
+}
+
+
+/* --- from site/homepage/underlap.css --- */
+/*
+ * Fixed site header is h-16 (4rem).
+ * Underlap ONLY the homepage cinema hero — never compact route heroes
+ * (.page-hero / #page-hero). Matching all #page-hero put the fixed navbar
+ * on top of solutions/products H1 titles.
+ */
+
+html {
+  scroll-padding-top: 4rem;
+}
+
+/*
+ * Skip link (WCAG 2.4.1). Off-screen until focused, then pinned over the fixed
+ * header so it is actually visible when a keyboard user tabs to it — a skip link
+ * that stays hidden on focus is worse than none, because it moves focus invisibly.
+ */
+.site-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  padding: 0.75rem 1.25rem;
+  background: var(--surface-page);
+  color: var(--text-body);
+  border: 1px solid currentcolor;
+  border-radius: 0 0 0.375rem 0;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.site-skip-link:focus,
+.site-skip-link:focus-visible {
+  left: 0;
+}
+
+.site-main-under-header {
+  padding-top: 4rem;
+}
+
+/* Workspace routes hide marketing header — do not reserve fixed-header offset. */
+.site-main-under-header:has([data-testid="site-workspace-shell"]),
+.site-main-under-header:has(.workspace-hub),
+.site-main-under-header:has(.shell-access-page) {
+  padding-top: 0;
+}
+
+/* Homepage cinema only (opt-in + HomepageHero marker) */
+.site-main-under-header:has([data-hero-underlap="true"]),
+.site-main-under-header:has([data-testid="homepage-hero"]:first-child) {
+  padding-top: 0;
+}
+
+.site-main-under-header [data-testid="homepage-hero"]:first-child,
+.site-main-under-header [data-hero-underlap="true"] {
+  scroll-margin-top: 0;
+}
+
+/* Compact marketing heroes always clear the fixed header */
+.site-main-under-header:has(.page-hero:first-child),
+.site-main-under-header:has(#page-hero.page-hero:first-child) {
+  padding-top: 4rem;
+}

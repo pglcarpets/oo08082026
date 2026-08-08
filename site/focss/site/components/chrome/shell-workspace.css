@@ -1,0 +1,180 @@
+/* Workspace shell is intentionally separate from app-shell.
+   These read-heavy dashboard/CRM surfaces benefit from a document-style flow
+   rather than the editor rail/stage/inspector frame. */
+.shell-workspace-page {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, color-mix(in srgb, var(--color-ocean-boat-blue-100) 60%, transparent) 0%, transparent 32%),
+    linear-gradient(180deg, var(--color-white-50) 0%, var(--color-white-150) 48%, var(--color-white-200) 100%);
+  color: var(--text-body);
+}
+
+.shell-workspace-hero,
+.shell-workspace-panel,
+.shell-workspace-card,
+.shell-workspace-row,
+.shell-workspace-callout {
+  border: 0.0625rem solid var(--border-soft);
+  background: var(--surface-glass-strong);
+}
+
+.shell-workspace-hero {
+  border-radius: var(--radius-giant);
+  padding: 2rem;
+  box-shadow: 0 1.5rem 5rem color-mix(in srgb, black 22%, transparent);
+}
+
+.shell-workspace-panel {
+  border-radius: 1.8rem;
+  padding: 1.5rem;
+}
+
+.shell-workspace-card {
+  border-radius: 1.6rem;
+  padding: 1.25rem;
+}
+
+.shell-workspace-row {
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  background: color-mix(in srgb, black 10%, transparent);
+}
+
+.shell-workspace-callout {
+  border-radius: var(--radius-xl);
+  padding: 1rem;
+  background: color-mix(in srgb, var(--color-ocean-boat-blue-50) 60%, transparent);
+  color: var(--text-body);
+  border-color: var(--color-ocean-boat-blue-200);
+}
+
+.shell-workspace-eyebrow {
+  color: var(--color-accent);
+}
+
+.shell-workspace-muted {
+  color: var(--text-muted);
+}
+
+.shell-workspace-subtle {
+  color: var(--text-subtle);
+}
+
+.shell-workspace-faint {
+  color: var(--text-subtle);
+}
+
+.shell-workspace-link {
+  color: var(--text-muted);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-workspace-link:hover {
+  color: var(--text-body);
+}
+
+.shell-workspace-auth-page {
+  padding: 4rem 1.5rem;
+}
+
+.shell-workspace-auth-grid {
+  display: grid;
+  width: 100%;
+  gap: 2.5rem;
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .shell-workspace-auth-grid {
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+  }
+}
+
+.shell-workspace-auth-copy {
+  max-width: 42rem;
+}
+
+.shell-workspace-auth-kicker {
+  color: var(--color-accent);
+}
+
+.shell-workspace-auth-title {
+  margin-top: 1.25rem;
+  color: var(--text-heading);
+}
+
+.shell-workspace-auth-body {
+  margin-top: 1.25rem;
+  max-width: 36rem;
+  color: var(--text-muted);
+}
+
+.shell-workspace-auth-form {
+  border-radius: var(--radius-giant);
+  padding: 2rem;
+  box-shadow: 0 24px 80px color-mix(in srgb, black 28%, transparent);
+}
+
+.shell-workspace-auth-form--inverse {
+  border: 1px solid var(--border-inverse);
+  background: var(--overlay-panel-08);
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+  color: var(--text-inverse);
+}
+
+.shell-workspace-auth-form--inverse .shell-workspace-auth-title {
+  color: var(--text-inverse);
+}
+
+.shell-workspace-auth-form--inverse .shell-workspace-muted {
+  color: var(--text-inverse-muted);
+}
+
+.shell-workspace-auth-label {
+  display: block;
+}
+
+.shell-workspace-auth-label-text {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+}
+
+.shell-workspace-auth-input {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-panel-strong);
+  padding: 0.75rem 1rem;
+  color: var(--text-strong);
+  transition: border-color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard),
+              box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.shell-workspace-auth-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.shell-workspace-auth-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  background: var(--surface-soft);
+  box-shadow: var(--focus-ring);
+}
+
+.shell-workspace-auth-alert {
+  border: 1px solid color-mix(in srgb, var(--color-danger) 30%, transparent);
+  border-radius: var(--radius-lg);
+  background: color-mix(in srgb, var(--color-danger) 8%, transparent);
+  color: var(--text-body);
+  padding: 0.75rem 1rem;
+}
+
+.shell-workspace-auth-submit {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  min-height: 3rem;
+}
+

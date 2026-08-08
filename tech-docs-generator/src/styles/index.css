@@ -1,0 +1,27 @@
+/*
+ * Tech-docs shell styles only.
+ * Do not import marketing site chrome here — those sheets assume product
+ * layouts and fight a clean docs theme (light paper FOCSS tokens).
+ */
+
+/* Keyed utility shims used by older components (map onto FOCSS semantics) */
+@layer utilities {
+  .bg-panel {
+    background-color: var(--surface-panel);
+  }
+  .bg-soft {
+    background-color: var(--surface-soft);
+  }
+  .scheme-border {
+    border: 0.0625rem solid var(--border-soft);
+  }
+  .text-body {
+    color: var(--text-body);
+  }
+  .text-muted {
+    color: var(--text-muted);
+  }
+  .text-subtle {
+    color: var(--text-subtle);
+  }
+}

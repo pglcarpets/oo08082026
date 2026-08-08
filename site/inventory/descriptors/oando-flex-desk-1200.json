@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000003",
+  "slug": "oando-flex-desk-1200",
+  "sku": "OANDO-FLEX-DSK-1200",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1200,
+    "depthMm": 600,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1200,
+    "height": 600
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "linear-desk",
+    "widthMm": 1200,
+    "depthMm": 600,
+    "topThicknessMm": 70
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [
+    {
+      "key": "top",
+      "focusSelector": "#desk-top",
+      "label": "Worksurface"
+    }
+  ],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000003,
+  "checksum": "9bff18580475918830a65f08d8864653dbb79fc4ff843465234a04ee0be48328",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

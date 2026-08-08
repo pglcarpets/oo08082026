@@ -1,0 +1,795 @@
+/* Planner workspace — zone-specific UI only (shell in ooshared/workspace-shell.css) */
+
+.ooplanner-root .draw-side-stack {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.ooplanner-root .draw-side-stack .dock-panel {
+  padding: 0;
+}
+
+.ooplanner-root .draw-side-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--surface-panel);
+  overflow: hidden;
+}
+
+.ooplanner-root .draw-side-card__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+}
+
+.ooplanner-root .draw-side-card__title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ooplanner-root .draw-side-card__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.ooplanner-root .draw-side-card__close:hover {
+  background: var(--surface-panel);
+  color: var(--text-strong);
+}
+
+.ooplanner-root .draw-side-card__body {
+  padding: 10px 12px 12px;
+}
+
+.ooplanner-root .draw-side-empty {
+  margin: auto 0;
+  padding: 16px;
+  text-align: center;
+  color: var(--text-subtle);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* Dock tab strip in the canvas overlay (DockPanelButtons). */
+.ooplanner-root .dock-panel-toggles {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  flex-wrap: nowrap;
+}
+
+/* Inline helper text under the AI dock prompt. */
+.ooplanner-root .ai-hint {
+  font-size: 11px;
+  color: var(--text-subtle);
+  font-style: italic;
+}
+
+.ooplanner-root .overlay-toggle-group {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+  gap: 1px;
+}
+
+.ooplanner-root .overlay-toggle-group__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 26px;
+  padding: 3px 9px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.ooplanner-root .overlay-toggle-group__btn:hover {
+  color: var(--text-strong);
+}
+
+.ooplanner-root .overlay-toggle-group__btn[data-active="true"] {
+  background: var(--color-white-50);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-segment-active);
+}
+
+/* Snap status text (from @planner/lib/plannerSnapStatusLabel) */
+.ooplanner-root .overlay-toggle-group__status {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.ooplanner-root .overlay-toggle-group__status[data-active="true"] {
+  color: var(--text-strong);
+}
+
+.ooplanner-root .planner-unit-pill {
+  display: inline-flex;
+  padding: 2px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+  gap: 1px;
+}
+
+.ooplanner-root .planner-unit-pill button {
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+}
+
+.ooplanner-root .planner-unit-pill button[data-active="true"] {
+  background: var(--color-white-50);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-segment-active);
+}
+
+.ooplanner-root .planner-ai-anchor {
+  position: absolute;
+  top: 52px;
+  right: 12px;
+  z-index: 12;
+  width: min(320px, calc(100% - 24px));
+}
+
+/* Command palette now mounts independently of the AI panel (fixed 3b —
+   it previously only rendered inside .planner-ai-anchor, so it never
+   appeared unless the AI panel was open). Fixed-position modal so it
+   still reads as an intentional overlay rather than bare unstyled text. */
+.ooplanner-root .planner-command-palette {
+  position: fixed;
+  top: 15vh;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 150;
+  width: min(420px, calc(100vw - 32px));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: var(--surface-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lift);
+}
+.ooplanner-root .planner-command-palette ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-height: 300px;
+  overflow: auto;
+}
+
+.ooplanner-root .planner-ai-float {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--color-white-50) 94%, transparent);
+  backdrop-filter: blur(8px);
+  box-shadow: var(--shadow-lift);
+}
+
+.ooplanner-root .planner-ai-float__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ooplanner-root .planner-ai-float__head strong {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.ooplanner-root .planner-ai-float__close {
+  display: inline-flex;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.ooplanner-root .planner-ai-float__prompt {
+  width: 100%;
+  min-height: 72px;
+  resize: vertical;
+}
+
+.ooplanner-root .planner-ai-float__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.ooplanner-root .planner-ai-float__chip {
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 11px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ooplanner-root .planner-ai-float__chip:hover {
+  color: var(--text-strong);
+  border-color: var(--border-accent);
+}
+
+.ooplanner-root .planner-ai-float__sketch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-soft);
+}
+
+.ooplanner-root .topbar__project {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.ooplanner-root .topbar__project-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.ooplanner-root .topbar__project-input {
+  width: min(180px, 22vw);
+}
+
+.ooplanner-root .pw-step-bar__step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.ooplanner-root .pw-step-bar__rail {
+  position: absolute;
+  left: -4px;
+  width: 8px;
+  height: 1px;
+  background: var(--border-soft);
+  pointer-events: none;
+}
+
+.ooplanner-root .pw-step-bar__next {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 0;
+}
+
+.ooplanner-root .planner-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.ooplanner-root .planner-stack[data-planner-step="draw"] .side-panel--dock:not(.side-panel--left) {
+  width: 0 !important;
+  min-width: 0;
+  border: none;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ooplanner-root .planner-stack[data-planner-step="draw"] .side-panel--dock:not(.side-panel--left) .side-panel__resize {
+  display: none;
+}
+
+.ooplanner-root .planner-stack[data-planner-step="review"] .side-panel--left {
+  width: 0 !important;
+  min-width: 0;
+  border: none;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ooplanner-root .planner-stack[data-planner-step="review"] .side-panel--left .side-panel__resize {
+  display: none;
+}
+
+.ooplanner-root .pw-step-bar {
+  position: relative;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: var(--surface-panel);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.ooplanner-root .pw-step-bar__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  width: min(72rem, 100%);
+  flex: 0 1 auto;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.ooplanner-root .pw-step-bar__step {
+  min-width: 0;
+}
+
+.ooplanner-root .pw-step-bar__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 40px;
+  padding: 4px 8px;
+  text-align: left;
+  color: var(--text-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.ooplanner-root .pw-step-bar__btn:hover {
+  background: var(--surface-muted);
+}
+
+.ooplanner-root .pw-step-bar__btn[data-active="true"] {
+  color: var(--text-strong);
+  background: color-mix(in srgb, var(--color-primary) 9%, var(--surface-panel));
+  border-color: color-mix(in srgb, var(--color-primary) 38%, var(--border-soft));
+}
+
+.ooplanner-root .pw-step-bar__num {
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--text-muted);
+  border: 1px solid var(--border-soft);
+  border-radius: 999px;
+}
+
+.ooplanner-root .pw-step-bar__btn[data-active="true"] .pw-step-bar__num,
+.ooplanner-root .pw-step-bar__btn[data-completion="complete"] .pw-step-bar__num {
+  color: var(--color-white-50);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.ooplanner-root .pw-step-bar__copy {
+  display: grid;
+  min-width: 0;
+  line-height: 1.25;
+}
+
+.ooplanner-root .pw-step-bar__copy strong {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.ooplanner-root .pw-step-bar__copy small {
+  overflow: hidden;
+  color: var(--text-subtle);
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ooplanner-root .pw-step-bar__done {
+  color: var(--color-primary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* Narrow viewport: stack Continue below steps so it does not overlap step 3. */
+@media (max-width: 639px) {
+  .ooplanner-root .pw-step-bar {
+    flex-wrap: wrap;
+    justify-content: stretch;
+    gap: 6px;
+    padding: 6px 10px 8px;
+  }
+
+  .ooplanner-root .pw-step-bar__steps {
+    width: 100%;
+    gap: 4px;
+  }
+
+  .ooplanner-root .pw-step-bar__copy small {
+    display: none;
+  }
+
+  .ooplanner-root .pw-step-bar__btn {
+    min-height: 44px;
+    padding: 6px 8px;
+    gap: 6px;
+  }
+
+  .ooplanner-root .pw-step-bar__num {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+  }
+
+  .ooplanner-root .pw-step-bar__next {
+    position: static;
+    transform: none;
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+    min-height: 44px;
+  }
+
+  .ooplanner-root .overlay-toggle-group__btn,
+  .ooplanner-root .canvas-overlay .btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 10px;
+  }
+}
+
+.ooplanner-root .pw-step-bar__warn {
+  position: absolute;
+  z-index: 2;
+  top: calc(100% + 4px);
+  right: 16px;
+  max-width: min(34rem, calc(100vw - 32px));
+  margin: 0;
+  padding: 8px 12px;
+  color: var(--text-body);
+  background: var(--surface-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.ooplanner-root .boq-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+
+.ooplanner-root .boq-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.ooplanner-root .boq-panel__title {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.ooplanner-root .boq-panel__meta {
+  font-size: 11px;
+  color: var(--text-subtle);
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+}
+
+.ooplanner-root .boq-panel__empty {
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.ooplanner-root .boq-panel__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-height: 280px;
+  overflow: auto;
+}
+
+.ooplanner-root .boq-panel__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+}
+
+.ooplanner-root .boq-panel__name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 12px;
+  color: var(--text-body);
+}
+
+.ooplanner-root .boq-panel__qty {
+  flex: 0 0 auto;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.ooplanner-root .boq-panel__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.ooplanner-root .canvas-overlay .input { padding: 6px 10px; border-radius: 8px; background: transparent; border: 1px solid transparent; font-family: var(--font-sans); font-size: 12px; font-weight: 500; }
+.ooplanner-root .canvas-overlay .input:hover { border-color: var(--border-soft); }
+.ooplanner-root .canvas-overlay .input:focus { background: var(--color-white-50); border-color: var(--color-focus); }
+
+/* Planner overlay — row 1: panels + project; row 2: tools + export + save (stacks when narrow) */
+.ooplanner-root .canvas-overlay--stacked {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  row-gap: 4px;
+  column-gap: 1px;
+  flex-wrap: nowrap;
+}
+
+.ooplanner-root .canvas-overlay--stacked .canvas-overlay__grip {
+  grid-row: 1 / span 2;
+  grid-column: 1;
+}
+
+.ooplanner-root .canvas-overlay--stacked .canvas-overlay__row {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  min-width: 0;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+}
+
+.ooplanner-root .canvas-overlay--stacked .canvas-overlay__row--nav {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.ooplanner-root .canvas-overlay--stacked .canvas-overlay__row--actions {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+@container canvas-stage (min-width: 640px) {
+  .ooplanner-root .canvas-overlay--stacked {
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto;
+    row-gap: 0;
+  }
+
+  .ooplanner-root .canvas-overlay--stacked .canvas-overlay__grip {
+    grid-row: 1;
+    grid-column: 1;
+  }
+
+  .ooplanner-root .canvas-overlay--stacked .canvas-overlay__row--nav {
+    grid-row: 1;
+    grid-column: 2;
+  }
+
+  .ooplanner-root .canvas-overlay--stacked .canvas-overlay__row--actions {
+    grid-row: 1;
+    grid-column: 3;
+  }
+}
+
+.ooplanner-root .project-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.ooplanner-root .project-menu__trigger {
+  max-width: min(200px, 28vw);
+}
+
+.ooplanner-root .project-menu__trigger-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+}
+
+.ooplanner-root .project-menu__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 80;
+  min-width: 220px;
+  padding: 8px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-lift);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ooplanner-root .project-menu__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 2px 2px 6px;
+}
+
+.ooplanner-root .project-menu__field-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.ooplanner-root .project-menu__input {
+  width: 100%;
+  border: 1px solid var(--border-soft) !important;
+  background: var(--surface-muted) !important;
+}
+
+.ooplanner-root .project-menu__input:focus {
+  background: var(--surface-panel) !important;
+  border-color: var(--color-focus) !important;
+}
+
+.ooplanner-root .project-menu__sep {
+  height: 1px;
+  margin: 2px 0;
+  background: var(--border-soft);
+}
+
+.ooplanner-root .project-menu__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-body);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ooplanner-root .project-menu__item:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+/* Catalog rail */
+.ooplanner-root .catalog-search { width: 100%; padding: 8px 12px; padding-left: 34px; border: 1px solid var(--border-soft); border-radius: 10px; font-size: 13px; background: var(--surface-muted); }
+.ooplanner-root .catalog-search:focus { background: var(--surface-panel); border-color: var(--color-focus); }
+.ooplanner-root .catalog-search-wrap { position: relative; }
+.ooplanner-root .catalog-search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--text-subtle); pointer-events: none; }
+
+.ooplanner-root .catalog-categories { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+
+.ooplanner-root .catalog-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 4px 0; }
+.ooplanner-root .catalog-item { border: 1px solid var(--border-soft); border-radius: 10px; padding: 8px 8px 6px; background: var(--surface-panel); cursor: grab; transition: all 150ms; position: relative; }
+.ooplanner-root .catalog-item:hover { border-color: var(--border-accent); box-shadow: var(--shadow-soft); transform: translateY(-1px); }
+.ooplanner-root .catalog-item:active { cursor: grabbing; }
+.ooplanner-root .catalog-item__thumb { width: 100%; aspect-ratio: 1; display: grid; place-items: center; background: var(--surface-muted); border-radius: 6px; margin-bottom: 6px; overflow: hidden; }
+.ooplanner-root .catalog-item__thumb img,
+.ooplanner-root .catalog-item__thumb svg { width: 80%; height: 80%; object-fit: contain; }
+.ooplanner-root .catalog-item__name { font-size: 11px; font-weight: 500; color: var(--text-strong); line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ooplanner-root .catalog-item__dim { font-size: 10px; color: var(--text-subtle); font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); margin-top: 2px; }
+
+/* Projects list */
+.ooplanner-root .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 24px; }
+
+@media (max-width: 639px) {
+  .ooplanner-root .projects-grid {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 12px;
+  }
+}
+.ooplanner-root .project-card { border: 1px solid var(--border-soft); border-radius: 14px; padding: 14px; background: var(--surface-panel); cursor: pointer; transition: all 200ms; }
+.ooplanner-root .project-card:hover { border-color: var(--border-accent); box-shadow: var(--shadow-panel); transform: translateY(-2px); }
+.ooplanner-root .project-card__thumb { aspect-ratio: 4/3; background: var(--surface-muted); border-radius: 10px; margin-bottom: 12px; display: grid; place-items: center; overflow: hidden; }
+.ooplanner-root .project-card__thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ooplanner-root .project-card__name { font-size: 14px; font-weight: 500; color: var(--text-strong); }
+.ooplanner-root .project-card__meta { font-size: 11px; color: var(--text-subtle); margin-top: 4px; font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); }
+
+/* Alignment mini toolbar */
+.ooplanner-root .align-toolbar {
+  position: absolute;
+  top: 60px;
+  right: 12px;
+  display: none;
+  padding: 3px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-white-50) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  z-index: 5;
+  gap: 1px;
+}
+.ooplanner-root .align-toolbar[data-visible="true"] { display: inline-flex; }

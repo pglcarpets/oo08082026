@@ -1,0 +1,200 @@
+
+/* Client roster badges — trusted-by, projects, about
+   Logo-first: mark area is the visual anchor; name is secondary label. */
+
+.client-badge-group {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .client-badge-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .client-badge-group {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Dense logo wall (trusted-by roster) */
+.client-badge-group--dense {
+  gap: 0.75rem;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .client-badge-group--dense {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .client-badge-group--dense {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .client-badge-group--dense {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (width >= theme(--breakpoint-xl)) {
+  .client-badge-group--dense {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.client-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 0;
+  height: 100%;
+  min-height: 9.5rem;
+  padding: 1.1rem 1.15rem 1.15rem;
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-card);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.client-badge__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: auto;
+  min-width: 0;
+}
+
+/* Logo / monogram stage — fixed height so grid rows align */
+.client-badge__mark {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 3.25rem;
+  min-height: 3.25rem;
+  min-width: 0;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.client-badge__logo {
+  display: block;
+  width: auto !important;
+  max-width: min(100%, 9.5rem);
+  height: 2.75rem !important;
+  max-height: 2.75rem;
+  object-fit: contain;
+  object-position: left center;
+  opacity: 0.94;
+  filter: none;
+}
+
+/* Next/Image often wraps; force contained img inside */
+.client-badge__mark img.client-badge__logo,
+.client-badge__mark :is(img) {
+  width: auto !important;
+  max-width: min(100%, 9.5rem);
+  height: 2.75rem !important;
+  max-height: 2.75rem;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.client-badge__monogram {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 0.65rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-muted);
+  color: var(--text-muted);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.08em;
+}
+
+.client-badge:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.client-badge:hover .client-badge__logo,
+.client-badge:hover .client-badge__mark :is(img) {
+  opacity: 1;
+}
+
+.client-badge--featured {
+  border-color: var(--border-muted);
+}
+
+.client-badge__sector {
+  display: inline-flex;
+  align-self: flex-start;
+  max-width: 100%;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-accent);
+  background: var(--surface-accent-wash);
+  color: var(--text-brand);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.11em;
+  line-height: 1.3;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.client-badge__name {
+  font-size: var(--type-body-sm-size, 0.875rem);
+  font-weight: var(--font-weight-copy-semibold);
+  line-height: 1.3;
+  color: var(--text-strong);
+  overflow-wrap: anywhere;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.client-badge:hover .client-badge__name {
+  color: var(--text-body);
+}
+
+.client-badge__location {
+  margin-top: 0.125rem;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-medium);
+  color: var(--text-muted);
+  overflow-wrap: anywhere;
+}
+
+/* Dense wall: slightly tighter card chrome */
+@media (width >= theme(--breakpoint-xl)) {
+  .client-badge-group--dense .client-badge {
+    padding: 0.95rem 1rem 1rem;
+    min-height: 8.75rem;
+  }
+
+  .client-badge-group--dense .client-badge__mark {
+    height: 3rem;
+    min-height: 3rem;
+  }
+}
+
+/* Reduced motion: no hover elevation noise beyond color */
+@media (prefers-reduced-motion: reduce) {
+  .client-badge {
+    transition: none;
+  }
+}

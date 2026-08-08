@@ -1,0 +1,8 @@
+/* Site layout — marketing / public. NO shadcn. */
+@import "../base/scan.css";
+@import "../base/runtime.css";
+@import "../base/document.css";
+@import "../base/index.css";
+@import "./type-marketing.css";
+@import "./heading-document.css";
+@import "./components/index.css";

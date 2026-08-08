@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000008",
+  "slug": "oando-fluid-ws-lshape-1600",
+  "sku": "OANDO-FLUID-WS-LS1600",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1600,
+    "depthMm": 1600,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1600,
+    "height": 1600
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "l-desk",
+    "widthMm": 1600,
+    "depthMm": 800,
+    "returnWidthMm": 700
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000012,
+  "checksum": "682ae18f795cc03400ec48bdaa0f0cec11d37707d0a12d58981a4b511fde898d",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

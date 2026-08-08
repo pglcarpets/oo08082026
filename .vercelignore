@@ -1,0 +1,40 @@
+# Repo-root deploy ignore list for Vercel CLI uploads.
+# The app itself is the single Next.js project in site/.
+.git
+.vercel
+.agents
+.codex
+.cursor
+.claude
+.tmp
+Documents
+archive
+node_modules
+
+# Canonical site-level ignores, prefixed for repo-root deploys.
+site/node_modules
+site/coverage
+site/reports
+site/backup
+site/backups
+site/chat-logs
+site/playwright-report
+site/test-results
+site/tests
+site/__mocks__
+site/.lh-chrome
+site/.lh-chrome-manual
+site/.lh-profiles
+site/.lh-temp
+site/.swc
+site/.agent
+site/.claude
+site/*.log
+site/*.txt
+
+# Bulk catalog stills — production serves from R2 CDN.
+# Ship marketing + flagship stills + fallback (marketing lives outside catalog/).
+site/public/assets/catalog/**
+!site/public/assets/catalog/flagship/**
+# Legacy public/images tree if still present
+site/public/images

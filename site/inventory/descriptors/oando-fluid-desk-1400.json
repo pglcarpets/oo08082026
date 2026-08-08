@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000001",
+  "slug": "oando-fluid-desk-1400",
+  "sku": "OANDO-FLUID-DSK-1400",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1400,
+    "depthMm": 700,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1400,
+    "height": 700
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "linear-desk",
+    "widthMm": 1400,
+    "depthMm": 700,
+    "topThicknessMm": 80
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [
+    {
+      "key": "top",
+      "focusSelector": "#desk-top",
+      "label": "Worksurface"
+    }
+  ],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000001,
+  "checksum": "48377dff98fc22371b8a6a13b0dd623fc9e8b1e16658e3ff52870288fd3392b6",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

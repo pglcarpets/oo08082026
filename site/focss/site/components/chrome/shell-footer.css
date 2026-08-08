@@ -1,0 +1,49 @@
+@keyframes consent-slide-in {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.footer-logo-marquee {
+  position: relative;
+  overflow: hidden;
+  transition-property: color, background-color;
+  transition-duration: var(--motion-slow);
+}
+
+.footer-logo-marquee::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    var(--surface-panel-strong) 0%,
+    transparent 8%,
+    transparent 92%,
+    var(--surface-panel-strong) 100%
+  );
+  opacity: 1;
+  transition: opacity var(--motion-slow) var(--ease-standard);
+  pointer-events: none;
+}
+
+@utility footer-logo-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 2.5rem;
+  animation: marquee-left var(--marquee-duration, 110s) linear infinite;
+  will-change: transform;
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .footer-logo-marquee__track { gap: 3.5rem; }
+}
+
+.footer-logo-marquee:hover .footer-logo-marquee__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo-marquee__track { animation: none; }
+}
+

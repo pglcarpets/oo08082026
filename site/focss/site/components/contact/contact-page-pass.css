@@ -1,0 +1,212 @@
+/* /contact — pass #1: editorial hero, band rhythm, form-forward layout */
+@import "../shared/editorial-hero.css";
+
+/* Hero layout: align copy left edge with section gutter (solutions/clients parity) */
+.contact-hero__layout {
+  width: 100%;
+  max-width: var(--container-home-max, 80rem);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .contact-hero__layout {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .contact-hero__layout {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+.contact-hero__subtitle {
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+}
+
+/* Kicker on photo scrim — readable at 1920 without relying on inline color utilities */
+.contact-hero .contact-hero__kicker {
+  color: color-mix(in srgb, var(--color-ecru-100) 92%, var(--color-bronze-300));
+  text-shadow:
+    0 1px 12px var(--overlay-inverse-70),
+    0 0 1px var(--overlay-inverse-80);
+}
+
+.contact-summary__intro .page-copy-sm,
+.contact-quick-desk .page-copy-sm {
+  font-size: clamp(1.05rem, 2.4vw, 1.125rem);
+  line-height: 1.6;
+}
+
+.contact-office-card address.page-copy-sm {
+  font-size: clamp(1rem, 2vw, 1.0625rem);
+  line-height: 1.55;
+}
+
+/* Bronze punctuation — inside hero bottom; no separate band void */
+.contact-hero__bronze {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--container-home-max, 80rem));
+  margin-inline: auto;
+  padding-block-start: clamp(0.85rem, 2vw, 1.15rem);
+}
+
+.contact-hero__bronze-inner {
+  padding-inline: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .contact-hero__bronze-inner {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .contact-hero__bronze-inner {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+.contact-hero__bronze .about-craft-quote__rule {
+  margin-block-end: 0;
+}
+
+.contact-main {
+  display: grid;
+  gap: clamp(1.65rem, 3.2vw, 2.4rem);
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .contact-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: start;
+  }
+}
+
+.contact-offices {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.contact-office-card {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: clamp(1rem, 2vw, 1.35rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+  background: transparent;
+}
+
+.contact-office-card:last-child {
+  border-block-end: 0;
+}
+
+@media (min-width: 40rem) {
+  .contact-office-card {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: baseline;
+  }
+}
+
+.contact-office-card__title {
+  margin: 0;
+  font-size: var(--type-kicker-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: var(--type-letter-label-wide);
+  text-transform: uppercase;
+  color: var(--text-body);
+}
+
+.contact-channels-panel {
+  display: grid;
+  gap: 0;
+  margin-block-start: clamp(1rem, 2vw, 1.5rem);
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+  padding: 0;
+  background: transparent;
+}
+
+.contact-channels-panel .contact-channel {
+  padding-block: clamp(0.85rem, 1.8vw, 1.15rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.contact-channels-panel .contact-channel:last-child {
+  border-block-end: 0;
+}
+
+.contact-form-band {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 0;
+}
+
+@media (width < theme(--breakpoint-md)) {
+  .contact-main {
+    gap: 1.35rem;
+  }
+
+  .contact-hero__title {
+    font-size: clamp(1.85rem, 9vw, 2.35rem);
+    line-height: 1.1;
+  }
+
+  .contact-form-band {
+    gap: 1rem;
+  }
+
+  .contact-quick-desk {
+    padding-inline-start: 0.85rem;
+  }
+
+  .contact-channels-panel .contact-channel {
+    gap: 0.75rem;
+  }
+
+  .contact-channel__link {
+    word-break: break-word;
+  }
+}
+
+.contact-form-band__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-form-band__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-title);
+  line-height: 1.12;
+  color: var(--text-heading);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-contact-hero-reveal],
+  [data-contact-form-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .contact-hero__img,
+  .contact-hero__media img {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+/* Hero → body: local override beats catalog section-y mobile reset (≤48px budget) */
+.home-marketing-layout:not(:has(#home-hero)) .contact-hero + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .contact-hero + .home-section.section-y-sm {
+  padding-block-start: var(--editorial-hero-follow-gap);
+  padding-block-end: var(--section-space-md);
+}

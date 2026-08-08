@@ -1,0 +1,57 @@
+{
+  "id": "b2c3d4e5-f6a7-8901-bcde-f12345678901",
+  "slug": "sectional-sofa-001",
+  "name": "Sectional Sofa",
+  "description": "Two overlapping sectional blocks — only the shared overlap region renders (intersection theme).",
+  "variant": "intersection",
+  "sourceProvenance": "native",
+  "schemaVersion": "1.0.0",
+  "generatedAt": 1751631000,
+  "createdBy": "phase-03-executor",
+  "dimensions": {
+    "widthMm": 2800,
+    "depthMm": 1800,
+    "heightMm": 850,
+    "seatHeightMm": 420
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 2800,
+    "height": 1800
+  },
+  "mounting": "floor",
+  "blocks": [
+    {
+      "id": "section-a",
+      "x": 0,
+      "y": 0,
+      "width": 1600,
+      "height": 900
+    },
+    {
+      "id": "section-b",
+      "x": 400,
+      "y": 500,
+      "width": 2400,
+      "height": 1300
+    }
+  ],
+  "themeTokens": {
+    "fill-primary": "currentColor",
+    "stroke-accent": "var(--block-stroke-accent, currentColor)"
+  },
+  "rovingFocus": [
+    {
+      "key": "focus-sectional-a",
+      "focusSelector": "#section-a",
+      "label": "Section A"
+    },
+    {
+      "key": "focus-sectional-b",
+      "focusSelector": "#section-b",
+      "label": "Section B"
+    }
+  ],
+  "liveAnnouncementsCategory": "status"
+}

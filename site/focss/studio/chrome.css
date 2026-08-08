@@ -1,0 +1,278 @@
+.oostudio-root .app-root { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+.oostudio-root .topbar {
+  height: var(--shell-topbar-h);
+  min-height: var(--shell-topbar-h);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  position: relative;
+  z-index: 30;
+  overflow: visible;
+}
+.oostudio-root .topbar__brand { display: flex; align-items: center; gap: 10px; padding-right: 18px; border-right: 1px solid var(--border-soft); margin-right: 4px; min-width: 0; }
+/* Same wordmark as homepage Header: /logo-v2.webp via OneAndOnlyLogo orange */
+.oostudio-root .topbar__brand-logo {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.oostudio-root .topbar__brand-logo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.oostudio-root .topbar__brand-logo-img {
+  height: 1.875rem;
+  max-width: 9.5rem;
+  width: auto;
+}
+.oostudio-root .topbar__brand-logo-img img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+.oostudio-root .topbar__brand-text { font-size: 13px; font-weight: 600; color: var(--text-strong); letter-spacing: -0.01em; white-space: nowrap; }
+.oostudio-root .topbar__brand-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-left: 6px; }
+
+.oostudio-root .topbar__start {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.oostudio-root .topbar__end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 1;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.oostudio-root .topbar__git-user {
+  font-size: 12px;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  color: var(--text-muted);
+  max-width: min(200px, 22vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-left: 8px;
+  border-left: 1px solid var(--border-soft);
+}
+
+.oostudio-root .topbar__spacer { flex: 1; }
+.oostudio-root .topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: visible;
+}
+
+.oostudio-root .topbar__actions .btn[data-active="true"],
+.oostudio-root .panel-toggles .btn[data-active="true"],
+.oostudio-root .canvas-overlay .panel-toggles .btn[data-active="true"] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+.oostudio-root .topbar__actions .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.oostudio-root .export-menu {
+  position: relative;
+  display: inline-flex;
+  /* Keep closed menu out of elevated stacking; only lift while open. */
+  z-index: auto;
+}
+
+/* Dropdown hangs below the topbar over the toolbar/canvas. Elevate the whole
+   topbar only while open so the panel clears dock float host (z 80) and does
+   not permanently sit above workspace chrome when closed. */
+.oostudio-root .topbar:has(.export-menu[data-open="true"]) {
+  z-index: 90;
+}
+
+.oostudio-root .export-menu[data-open="true"] {
+  z-index: 1;
+}
+
+/* Narrow viewport (< design-system sm breakpoint, 640px): the wordmark text and
+   unit pill are secondary to the file actions — hide the text (icon stays for
+   identity) and let the row scroll rather than visually overlap/clip. */
+@media (max-width: 639px) {
+  .oostudio-root .topbar__brand-text,
+  .oostudio-root .topbar__brand-sub {
+    display: none;
+  }
+  .oostudio-root .topbar {
+    gap: 8px;
+    padding: 0 10px;
+    overflow-x: auto;
+  }
+  .oostudio-root .topbar__end {
+    gap: 4px;
+  }
+}
+
+.oostudio-root .export-menu__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  /* Local to .export-menu — do not use a global-scale z-index here. */
+  z-index: 1;
+  min-width: 148px;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-lift);
+  flex-direction: column;
+  gap: 2px;
+}
+
+.oostudio-root .export-menu__panel:not([hidden]) {
+  display: flex;
+}
+
+.oostudio-root .export-menu__panel[hidden] {
+  display: none !important;
+  pointer-events: none;
+}
+
+.oostudio-root .export-menu__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-body);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.oostudio-root .export-menu__item:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.oostudio-root .export-menu__heading {
+  padding: 6px 10px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.oostudio-root .export-menu__sep {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--border-soft);
+}
+
+.oostudio-root .export-menu__section + .export-menu__section .export-menu__heading {
+  margin-top: 0;
+  padding-top: 6px;
+  border-top: none;
+}
+
+.oostudio-root .topbar__unit { display: inline-flex; padding: 2px; border-radius: 8px; border: 1px solid var(--border-soft); background: var(--surface-muted); gap: 1px; }
+.oostudio-root .topbar__unit button { padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; color: var(--text-muted); background: transparent; border: none; cursor: pointer; font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); }
+.oostudio-root .topbar__unit button[data-active="true"] { background: var(--color-white-50); color: var(--text-strong); box-shadow: var(--shadow-segment-active); }
+
+.oostudio-root .topbar__separator { width: 1px; height: 22px; background: var(--border-soft); margin: 0 2px; }
+
+.oostudio-root .toast-viewport { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 8px; }
+.oostudio-root .toast { background: var(--color-midnight-900); color: var(--text-inverse); padding: 10px 14px; border-radius: 10px; font-size: 13px; box-shadow: var(--shadow-lift); animation: toast-in 220ms ease-out; max-width: 320px; }
+.oostudio-root .toast--ok { background: var(--color-midnight-500); }
+.oostudio-root .toast--error { background: var(--color-error); }
+.oostudio-root .toast--leaving { animation: toast-out 180ms ease-in forwards; }
+@keyframes toast-in { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes toast-out { from { transform: translateY(0); opacity: 1; } to { transform: translateY(4px); opacity: 0; } }
+
+.oostudio-root ::-webkit-scrollbar { width: 10px; height: 10px; }
+.oostudio-root ::-webkit-scrollbar-track { background-color: transparent; }
+.oostudio-root ::-webkit-scrollbar-thumb {
+  background-color: var(--color-white-300);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.oostudio-root ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-white-400);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+/* ── Studio top toolbar ────────────────────────────────────────────────────
+   Presentational chrome; buttons carry data-unwired until actions move here. */
+.oostudio-root .oo-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2px;
+  padding: 4px 10px;
+  background: var(--color-white-50);
+  border-bottom: 1px solid var(--border-soft);
+  flex: 0 0 auto;
+}
+.oostudio-root .oo-toolbar__group-wrap { display: flex; align-items: center; }
+.oostudio-root .oo-toolbar__group { display: flex; align-items: center; gap: 2px; }
+.oostudio-root .oo-toolbar__sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 7px;
+  background: var(--border-soft);
+}
+.oostudio-root .oo-toolbar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.oostudio-root .oo-toolbar__btn:hover {
+  background: var(--color-white-150);
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+.oostudio-root .oo-toolbar__btn:focus-visible {
+  outline: 2px solid var(--color-obb-600);
+  outline-offset: 1px;
+}
+.oostudio-root .oo-toolbar__label { white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .oostudio-root .oo-toolbar__label { display: none; }
+  .oostudio-root .oo-toolbar__sep { margin: 4px 4px; }
+}

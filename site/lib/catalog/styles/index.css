@@ -1,0 +1,25 @@
+/**
+ * Catalog block material system
+ *
+ * Import order:
+ * 1. theme.css          — semantic --block-theme-* base mappings
+ * 2. theme-premium-light.css — material overrides (wood/metal/fabric)
+ * 3. component files    — workstations, tables, chairs, storage, …
+ * 4. blocks2d.css       — short names used by lib/catalog/blocks2d.ts
+ *
+ * theme-executive-dark.css is available for dark-shell surfaces; swap the
+ * theme import on .planner-dark-shell when executive materials are needed.
+ */
+
+@import "./theme.css";
+@import "./theme-premium-light.css";
+
+@import "./workstations.css";
+@import "./tables.css";
+@import "./chairs.css";
+@import "./storage.css";
+@import "./soft-seating.css";
+@import "./equipment.css";
+@import "./accessories.css";
+
+@import "./blocks2d.css";

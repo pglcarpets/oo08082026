@@ -1,0 +1,13 @@
+:root {
+  /* Chairs (Task) */
+  --block-chair-seat: var(--block-theme-seat);
+  --block-chair-stroke: var(--block-theme-seat-stroke);
+  --block-chair-contour: var(--block-theme-seat-contour);
+  --block-chair-backrest: var(--block-theme-seat-back);
+  --block-chair-backrest-stroke: var(--block-theme-seat-back-stroke);
+  --block-chair-arm: var(--block-theme-arm);
+  --block-chair-arm-soft: var(--block-theme-arm-soft);
+  --block-chair-caster-base: var(--block-theme-body);
+  --block-chair-caster-spoke: var(--block-theme-body-dark);
+  --block-chair-caster-wheel: var(--block-theme-seat);
+}

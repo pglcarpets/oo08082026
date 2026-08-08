@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["typescript", "react", "import", "unicorn", "jsx-a11y"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "settings": {
+    "react": {
+      "version": "19.0.0"
+    }
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/.next/**",
+    "**/public/**",
+    "**/results/**",
+    "**/site/data/**",
+    "**/site/inventory/**",
+    "**/mcps/**"
+  ],
+  "rules": {
+    "eqeqeq": "error",
+    "no-unused-vars": "off",
+    "typescript/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "typescript/no-explicit-any": "error",
+    "unicorn/no-useless-fallback-in-spread": "error",
+    "unicorn/prefer-string-starts-ends-with": "error",
+    "no-unused-expressions": "error",
+    "jsx-a11y/prefer-tag-over-role": "off",
+    "react-hooks/exhaustive-deps": "off"
+  },
+  "overrides": [
+    {
+      "files": ["tests/**/*.{ts,tsx}", "scripts/**/*.{ts,tsx,mjs,cjs}"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
+}

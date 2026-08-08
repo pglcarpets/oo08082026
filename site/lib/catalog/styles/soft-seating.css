@@ -1,0 +1,7 @@
+:root {
+  /* Soft Seating (Sofas) */
+  --block-sofa-cushion-base: var(--block-theme-sofa-cushion-base);
+  --block-sofa-cushion-shadow: var(--block-theme-sofa-cushion-shadow);
+  --block-sofa-seam-thread: var(--block-theme-sofa-seam-thread);
+  --block-sofa-leg-metal: var(--block-theme-sofa-leg-metal);
+}

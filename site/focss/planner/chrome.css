@@ -1,0 +1,340 @@
+/* App shell chrome — scoped to OO zones */
+.ooplanner-root .app-root { display: flex; flex-direction: column; height: 100vh; overflow: hidden; }
+
+/* Top bar */
+.ooplanner-root .topbar {
+  height: var(--shell-topbar-h);
+  min-height: var(--shell-topbar-h);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  position: relative;
+  z-index: 30;
+  overflow: visible;
+}
+.ooplanner-root .topbar__brand { display: flex; align-items: center; gap: 10px; padding-right: 18px; border-right: 1px solid var(--border-soft); margin-right: 4px; min-width: 0; }
+/* Same wordmark as homepage Header: /logo-v2.webp via OneAndOnlyLogo orange */
+.ooplanner-root .topbar__brand-logo {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+.ooplanner-root .topbar__brand-logo:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+.ooplanner-root .topbar__brand-logo-img {
+  height: 1.875rem; /* 30px — matches marketing h-7.5 / h-8.5 scale */
+  max-width: 9.5rem;
+  width: auto;
+}
+.ooplanner-root .topbar__brand-logo-img img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+.ooplanner-root .topbar__brand-text { font-size: 13px; font-weight: 600; color: var(--text-strong); letter-spacing: -0.01em; white-space: nowrap; }
+.ooplanner-root .topbar__brand-sub { font-size: 11px; color: var(--text-muted); letter-spacing: 0.06em; text-transform: uppercase; margin-left: 6px; }
+
+.ooplanner-root .topbar__start {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
+.ooplanner-root .topbar__end {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 1;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+.ooplanner-root .topbar__git-user {
+  font-size: 12px;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  color: var(--text-muted);
+  max-width: min(200px, 22vw);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+  padding-left: 8px;
+  border-left: 1px solid var(--border-soft);
+}
+
+.ooplanner-root .topbar__spacer { flex: 1; }
+.ooplanner-root .topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: visible;
+}
+
+.ooplanner-root .topbar__actions .btn[data-active="true"],
+.ooplanner-root .panel-toggles .btn[data-active="true"],
+.ooplanner-root .canvas-overlay .panel-toggles .btn[data-active="true"] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+
+.ooplanner-root .topbar__actions .btn {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.ooplanner-root .export-menu {
+  position: relative;
+  display: inline-flex;
+}
+
+.ooplanner-root .export-menu__panel {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 120;
+  min-width: 148px;
+  padding: 4px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  box-shadow: var(--shadow-lift);
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ooplanner-root .export-menu__panel:not([hidden]) {
+  display: flex;
+}
+
+.ooplanner-root .export-menu__panel[hidden] {
+  display: none !important;
+}
+
+.ooplanner-root .export-menu__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-body);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+}
+
+.ooplanner-root .export-menu__item:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.ooplanner-root .export-menu__heading {
+  padding: 6px 10px 4px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.ooplanner-root .export-menu__sep {
+  height: 1px;
+  margin: 4px 6px;
+  background: var(--border-soft);
+}
+
+.ooplanner-root .export-menu__section + .export-menu__section .export-menu__heading {
+  margin-top: 0;
+  padding-top: 6px;
+  border-top: none;
+}
+
+/* Unit pills */
+.ooplanner-root .topbar__unit { display: inline-flex; padding: 2px; border-radius: 8px; border: 1px solid var(--border-soft); background: var(--surface-muted); gap: 1px; }
+.ooplanner-root .topbar__unit button { padding: 3px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; color: var(--text-muted); background: transparent; border: none; cursor: pointer; font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); }
+.ooplanner-root .topbar__unit button[data-active="true"] { background: var(--color-white-50); color: var(--text-strong); box-shadow: var(--shadow-segment-active); }
+
+.ooplanner-root .topbar__separator { width: 1px; height: 22px; background: var(--border-soft); margin: 0 2px; }
+
+/* Toast */
+.ooplanner-root .toast-viewport { position: fixed; bottom: 20px; right: 20px; z-index: 200; display: flex; flex-direction: column; gap: 8px; }
+.ooplanner-root .toast { background: var(--color-midnight-900); color: var(--text-inverse); padding: 10px 14px; border-radius: 10px; font-size: 13px; box-shadow: var(--shadow-lift); animation: toast-in 220ms ease-out; max-width: 320px; }
+.ooplanner-root .toast--ok { background: var(--color-midnight-500); }
+.ooplanner-root .toast--error { background: var(--color-error); }
+.ooplanner-root .toast--leaving { animation: toast-out 180ms ease-in forwards; }
+@keyframes toast-in { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes toast-out { from { transform: translateY(0); opacity: 1; } to { transform: translateY(4px); opacity: 0; } }
+
+/* Zone-scoped scrollbars */
+.ooplanner-root ::-webkit-scrollbar { width: 10px; height: 10px; }
+.ooplanner-root ::-webkit-scrollbar-track { background-color: transparent; }
+.ooplanner-root ::-webkit-scrollbar-thumb {
+  background-color: var(--color-white-300);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+.ooplanner-root ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-white-400);
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}
+
+/* ── Planner top toolbar ────────────────────────────────────────────────────
+   Presentational chrome; buttons carry data-unwired until actions move here. */
+.ooplanner-root .oo-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 2px;
+  padding: 4px 10px;
+  background: var(--color-white-50);
+  border-bottom: 1px solid var(--border-soft);
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 5;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+.ooplanner-root .oo-toolbar__group-wrap { display: flex; align-items: center; flex: 0 0 auto; }
+.ooplanner-root .oo-toolbar__group { display: flex; align-items: center; gap: 2px; flex: 0 0 auto; }
+.ooplanner-root .oo-toolbar__slot { display: inline-flex; flex: 0 0 auto; }
+.ooplanner-root .oo-toolbar__sep {
+  width: 1px;
+  align-self: stretch;
+  margin: 4px 7px;
+  background: var(--border-soft);
+}
+.ooplanner-root .oo-toolbar__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 8px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-secondary);
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ooplanner-root .oo-toolbar__btn:hover {
+  background: var(--color-white-150);
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+}
+.ooplanner-root .oo-toolbar__btn:focus-visible {
+  outline: 2px solid var(--color-obb-600);
+  outline-offset: 1px;
+}
+.ooplanner-root .oo-toolbar__btn[data-active="true"] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+  border-color: color-mix(in srgb, var(--color-primary) 25%, transparent);
+}
+.ooplanner-root .oo-toolbar__btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.ooplanner-root .oo-toolbar__btn--primary {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-inverse);
+}
+.ooplanner-root .oo-toolbar__btn--primary:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--text-inverse);
+}
+.ooplanner-root .oo-toolbar .export-menu {
+  display: inline-flex;
+}
+.ooplanner-root .oo-toolbar__label { white-space: nowrap; }
+
+@media (max-width: 900px) {
+  .ooplanner-root .oo-toolbar__label { display: none; }
+  .ooplanner-root .oo-toolbar__sep { margin: 4px 4px; }
+}
+
+/* Narrow viewport (< design-system sm breakpoint, 640px): the wordmark text
+   is secondary to the file actions (Save / step bar / Continue) — hide it
+   (icon stays for identity) and let the row scroll horizontally rather than
+   visually clip/overlap. Mirrors the Studio topbar fix (focss/studio/chrome.css). */
+@media (max-width: 639px) {
+  .ooplanner-root .topbar__brand-text,
+  .ooplanner-root .topbar__brand-sub {
+    display: none;
+  }
+  .ooplanner-root .topbar {
+    gap: 8px;
+    padding: 0 10px;
+    overflow-x: auto;
+  }
+  .ooplanner-root .topbar__end {
+    gap: 4px;
+  }
+  .ooplanner-root .topbar__project-input {
+    width: min(96px, 26vw);
+  }
+
+  .ooplanner-root .topbar__actions .btn,
+  .ooplanner-root .oo-toolbar__btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 10px;
+  }
+
+  .ooplanner-root .vp-btn {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 10px;
+  }
+
+  .ooplanner-root .tool-rail button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .ooplanner-root .btn--sm {
+    min-height: 44px;
+    padding: 8px 12px;
+  }
+
+  .ooplanner-root .topbar__unit button {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 8px 10px;
+  }
+
+  .ooplanner-root .btn {
+    min-height: 44px;
+  }
+
+  .ooplanner-root .project-menu__trigger {
+    min-height: 44px;
+  }
+}

@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Architecture review — OOplannerOOStudio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral", securityLevel: "loose" });
+</script>
+<style>
+  .seam { stroke-dasharray: 4 4; }
+  .leak { stroke: #dc2626; }
+  .deep { background: linear-gradient(135deg, #0f172a, #1e293b); }
+</style>
+</head>
+<body class="bg-stone-50 text-slate-900 font-sans">
+<main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+
+<header class="border-b border-slate-200 pb-6">
+  <h1 class="text-3xl font-serif font-bold">Architecture review — OOplannerOOStudio</h1>
+  <p class="text-sm text-slate-500 mt-1">2026-08-01 · direction: improve the plan — every candidate maps onto <span class="font-mono">docs/plan/cline/</span></p>
+  <div class="flex flex-wrap gap-4 mt-4 text-xs text-slate-600">
+    <span><span class="inline-block w-3 h-3 border-2 border-slate-700 align-middle mr-1"></span>module</span>
+    <span><span class="inline-block w-3 h-3 border-2 border-dashed border-slate-500 align-middle mr-1"></span>seam</span>
+    <span><span class="inline-block w-3 h-3 bg-red-600 align-middle mr-1"></span>leakage</span>
+    <span><span class="inline-block w-3 h-3 rounded-sm deep align-middle mr-1"></span>deep module</span>
+  </div>
+</header>
+
+<section id="candidates" class="space-y-10">
+
+<article class="bg-white rounded-xl border border-slate-200 p-6 space-y-4" id="c1">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <h2 class="text-xl font-serif font-bold">C1 — One snapshot seam for the tech-docs pipeline</h2>
+    <div class="flex gap-2">
+      <span class="text-xs uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Strong</span>
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">in-process</span>
+    </div>
+  </div>
+  <div class="text-sm font-mono text-slate-600 space-y-0.5">
+    <div>tech-docs-generator/src/data/*.ts — 17 files, ~13 are cast/filter/sort shims</div>
+    <div>tech-docs-generator/scripts/schema.mjs · output-contract.{mjs,d.mts} · emit-renderer-data.mjs</div>
+    <div>tech-docs-generator/src/pages/*.tsx — 12 pages importing the shims</div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">Before</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+        <pre class="mermaid">
+flowchart LR
+  EX["extract-*.mjs ×17"] --> J["16 JSON files (gitignored)"]
+  J --> S["src/data shims ×17"]:::leak
+  S --> P["pages ×12"]
+  classDef leak fill:#fef2f2,stroke:#dc2626,stroke-width:2px;
+        </pre>
+      </div>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">After</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+        <pre class="mermaid">
+flowchart LR
+  EX["extract-*.mjs ×17"] --> SM["Snapshot module — schema.mjs validated, one typed interface"]:::deep
+  SM --> P["pages ×12"]
+  classDef deep fill:#0f172a,color:#fff,stroke:#0f172a;
+        </pre>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 text-sm">
+    <p><span class="font-semibold text-red-700">Problem.</span> The generator→renderer handoff is an implicit filesystem contract: 16 gitignored JSON files imported raw at module load; a missing or stale snapshot renders empty pages silently and data tests collect 0 cases — the F1 failure class.</p>
+    <p><span class="font-semibold text-emerald-700">Solution.</span> One deep snapshot module — the schema.mjs validation already written is enforced at load behind one typed interface; the shims collapse into it; pages cross one seam.</p>
+    <div class="pt-1">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Wins</p>
+      <ul class="list-disc list-inside text-slate-700">
+        <li>one interface, one place to test</li>
+        <li>stale snapshot fails loudly at load</li>
+        <li>delete ~13 shallow shims</li>
+        <li>locality: bugs concentrate in one module</li>
+      </ul>
+    </div>
+  </div>
+</article>
+<article class="bg-white rounded-xl border border-slate-200 p-6 space-y-4" id="c2">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <h2 class="text-xl font-serif font-bold">C2 — One disk adapter for both forks</h2>
+    <div class="flex gap-2">
+      <span class="text-xs uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2 py-1 rounded-full">Strong</span>
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">ports &amp; adapters</span>
+    </div>
+  </div>
+  <div class="text-sm font-mono text-slate-600 space-y-0.5">
+    <div>site/server/Studio/studioStore.ts · site/server/Planner/plannerStore.ts</div>
+    <div>site/lib/Planner/plannerPersistenceMode.ts · site/lib/catalog/furnitureCatalogMode.ts</div>
+    <div>site/lib/catalog/furnitureCatalogStore.supabase.ts · site/lib/Planner/projectsStore.supabase.ts</div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">Before — one seam, two implementations</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2">
+        <div class="border-2 border-slate-700 rounded p-2 text-xs">
+          <p class="font-bold">Studio disk store</p>
+          <p class="font-mono text-red-700">ensureStorageDirs · nowIso · slugify · shortId · readJsonBody · readJson · writeJson · thumbnailFromPng · safeFilename · …</p>
+          <p class="font-mono">+ furniture CRUD</p>
+        </div>
+        <div class="text-center text-xs text-slate-500">vs</div>
+        <div class="border-2 border-slate-700 rounded p-2 text-xs">
+          <p class="font-bold">Planner disk store</p>
+          <p class="font-mono text-red-700">ensureStorageDirs · nowIso · slugify · shortId · readJsonBody · readJson · writeJson · thumbnailFromPng · safeFilename · …</p>
+          <p class="font-mono">+ projects CRUD</p>
+        </div>
+        <div class="border border-red-500 border-dashed rounded p-2 text-xs text-red-700">
+          twin mode-selectors disagree: NEXT_ADMIN_SUPABASE_URL + SUPABASE_ADMIN_SERVICE_ROLE_KEY vs SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">After — one adapter, two thin surfaces</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2">
+        <div class="deep text-white rounded p-2 text-xs">
+          <p class="font-bold">Neutral disk-store module</p>
+          <p class="font-mono">generic helpers once · mode table with per-domain env names</p>
+        </div>
+        <div class="flex gap-2 text-xs">
+          <div class="border-2 border-slate-700 rounded p-2 flex-1">Studio surface<br /><span class="font-mono">furniture CRUD</span></div>
+          <div class="border-2 border-slate-700 rounded p-2 flex-1">Planner surface<br /><span class="font-mono">projects CRUD</span></div>
+        </div>
+        <p class="text-xs text-slate-500">Precedent: furnitureCatalogStore.supabase.ts is already a neutral module both forks import.</p>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 text-sm">
+    <p><span class="font-semibold text-red-700">Problem.</span> ~15 byte-identical helper exports re-declared in both stores, and twin mode-selectors whose env contracts already disagree — one seam implemented twice, free to diverge.</p>
+    <p><span class="font-semibold text-emerald-700">Solution.</span> One neutral disk-store module — generic helpers once, two thin entity surfaces (projects, furniture) — plus one persistence-mode module with a per-domain env-name table; scan:boundaries already permits neutral modules.</p>
+    <div class="pt-1">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Wins</p>
+      <ul class="list-disc list-inside text-slate-700">
+        <li>delete ~15 twin exports</li>
+        <li>env contract stated once</li>
+        <li>two adapters, one seam</li>
+        <li>locality: divergence dies</li>
+      </ul>
+    </div>
+  </div>
+</article>
+<article class="bg-white rounded-xl border border-slate-200 p-6 space-y-4" id="c3">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <h2 class="text-xl font-serif font-bold">C3 — Route domains: one extractor, five shims</h2>
+    <div class="flex gap-2">
+      <span class="text-xs uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Worth exploring</span>
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">in-process</span>
+    </div>
+  </div>
+  <div class="text-sm font-mono text-slate-600 space-y-0.5">
+    <div>tech-docs-generator/scripts/extract-route-domains.mjs — 4 extractors, one file</div>
+    <div>src/data/{codeOrganizationData,performanceData,securityData,workflowsData}.ts + routeDomainTypes.ts</div>
+    <div>src/data/featuresData.ts — three overlapping filter predicates (:22, :26, :35)</div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">Before — the concept is split across five modules</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-1">
+        <div class="band border-slate-400 bg-slate-200 flex items-center px-2 text-xs">1 extractor file</div>
+        <div class="band border-red-400 bg-red-50 flex items-center px-2 text-xs">codeOrganizationData.ts</div>
+        <div class="band border-red-400 bg-red-50 flex items-center px-2 text-xs">performanceData.ts</div>
+        <div class="band border-red-400 bg-red-50 flex items-center px-2 text-xs">securityData.ts</div>
+        <div class="band border-red-400 bg-red-50 flex items-center px-2 text-xs">workflowsData.ts</div>
+        <div class="band border-red-400 bg-red-50 flex items-center px-2 text-xs">routeDomainTypes.ts — the type alone</div>
+      </div>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">After — one module behind the C1 seam</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-1">
+        <div class="deep text-white rounded flex items-center px-2 text-xs h-20">route-domain records — one typed record set, filters live in the generator</div>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 text-sm">
+    <p><span class="font-semibold text-red-700">Problem.</span> The route-domain record is split asymmetrically — one extractor, five modules, four pages — with filters re-encoded by hand, duplicating model.mjs logic.</p>
+    <p><span class="font-semibold text-emerald-700">Solution.</span> The domain modules collapse behind the C1 snapshot interface; each page reads one record set through the same seam.</p>
+    <div class="pt-1">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Wins</p>
+      <ul class="list-disc list-inside text-slate-700">
+        <li>one concept, one home</li>
+        <li>filters stop leaking</li>
+        <li>absorbed by C1</li>
+      </ul>
+    </div>
+  </div>
+</article>
+<article class="bg-white rounded-xl border border-slate-200 p-6 space-y-4" id="c4">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <h2 class="text-xl font-serif font-bold">C4 — One narrative home per fact</h2>
+    <div class="flex gap-2">
+      <span class="text-xs uppercase tracking-wider bg-amber-100 text-amber-800 px-2 py-1 rounded-full">Worth exploring</span>
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">in-process</span>
+    </div>
+  </div>
+  <div class="text-sm font-mono text-slate-600 space-y-0.5">
+    <div>root README.md · START.md · AGENTS.md · CONTENTS.md · DOC-MAP.md</div>
+    <div>docs/architecture/stack.md (12KB) · docs/plan/overview.md (28KB) · docs/governance/*</div>
+    <div>tech-docs SPA pages (TechStack.tsx et al.) — render extracted inventory</div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">Before — the same fact lives in 2–3 homes</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2">
+        <div class="border-2 border-slate-700 rounded p-2 text-xs">README.md<br /><span class="text-red-600">product-layout keywords ×7</span></div>
+        <div class="border-2 border-slate-700 rounded p-2 text-xs">START.md<br /><span class="text-red-600">same keywords ×4</span></div>
+        <div class="border-2 border-slate-700 rounded p-2 text-xs">AGENTS.md<br /><span class="text-red-600">same keywords ×3</span></div>
+        <div class="border border-red-500 border-dashed rounded p-2 text-xs text-red-700">stack.md prose duplicates what the SPA already renders from extraction</div>
+      </div>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">After — one home, four front doors link</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3 space-y-2">
+        <div class="deep text-white rounded p-2 text-xs h-16 flex items-center">one narrative home per fact · duplicates archived (.archive/)</div>
+        <div class="flex gap-2 text-xs">
+          <div class="border-2 border-dashed border-slate-500 rounded p-2 flex-1 text-center">START.md</div>
+          <div class="border-2 border-dashed border-slate-500 rounded p-2 flex-1 text-center">CONTENTS.md</div>
+          <div class="border-2 border-dashed border-slate-500 rounded p-2 flex-1 text-center">DOC-MAP.md</div>
+          <div class="border-2 border-dashed border-slate-500 rounded p-2 flex-1 text-center">RUNBOOK</div>
+        </div>
+        <p class="text-xs text-slate-500">SPA renders only extracted inventory — never narrative.</p>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 text-sm">
+    <p><span class="font-semibold text-red-700">Problem.</span> The same facts are re-typeset in 3+ root files and prose duplicates what the SPA already renders from extraction — every truth-sync rewrites several files, which is why docs churn dominates git history.</p>
+    <p><span class="font-semibold text-emerald-700">Solution.</span> Markdown-as-authority behind the four front doors: one narrative home per fact, duplicates archived, SPA renders only extracted inventory.</p>
+    <div class="pt-1">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Wins</p>
+      <ul class="list-disc list-inside text-slate-700">
+        <li>each fact has one home</li>
+        <li>truth-sync edits one file</li>
+        <li>SPA stops duplicating prose</li>
+      </ul>
+      <p class="text-xs text-amber-700 mt-2">Plan note: phase-5 Track 3 already aims here — this review confirms and sharpens the target (stack.md vs TechStack page).</p>
+    </div>
+  </div>
+</article>
+<article class="bg-white rounded-xl border border-slate-200 p-6 space-y-4" id="c5">
+  <div class="flex items-start justify-between gap-4 flex-wrap">
+    <h2 class="text-xl font-serif font-bold">C5 — Scripts: one deep runner module</h2>
+    <div class="flex gap-2">
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">Speculative</span>
+      <span class="text-xs uppercase tracking-wider bg-slate-100 text-slate-600 px-2 py-1 rounded-full">in-process</span>
+    </div>
+  </div>
+  <div class="text-sm font-mono text-slate-600 space-y-0.5">
+    <div>scripts/ — 104 files + subdirs (AsNeeded, codemods, general, generate-svg, lib)</div>
+    <div>scripts/lib/* — repoRoot.mjs · scriptEnv.mjs · siteUiRouteSources.mjs · vitest-excludes.mjs</div>
+  </div>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">Before — every script is a fresh leaf</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+        <div class="flex items-end justify-around h-24">
+          <div class="w-8 bg-slate-300 h-16"></div>
+          <div class="w-8 bg-slate-300 h-14"></div>
+          <div class="w-8 bg-red-300 h-20" title="re-derives repo facts by hand"></div>
+          <div class="w-8 bg-slate-300 h-10"></div>
+          <div class="w-8 bg-red-300 h-16" title="re-derives env names by hand"></div>
+          <div class="w-8 bg-slate-300 h-12"></div>
+          <div class="w-8 bg-red-300 h-14" title="re-derives watch roots by hand"></div>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">Each new script re-derives repo facts (env names, output-contract roots, watch roots) even though scripts/lib exists — the estate grows because nothing is deep enough to import.</p>
+      </div>
+    </div>
+    <div>
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-2">After — one deep module, thin scripts</p>
+      <div class="rounded-lg border border-slate-200 bg-slate-50 p-3">
+        <div class="flex items-end justify-around h-24">
+          <div class="w-8 bg-slate-400 h-8"></div>
+          <div class="w-8 bg-slate-400 h-10"></div>
+          <div class="w-8 bg-slate-400 h-8"></div>
+          <div class="deep text-white rounded w-24 h-24 flex items-center justify-center text-xs px-1">runner — repo facts · env · paths, one interface</div>
+        </div>
+        <p class="text-xs text-slate-500 mt-2">New scripts import the runner instead of re-deriving; the estate shrinks by leverage, not by ritual.</p>
+      </div>
+    </div>
+  </div>
+  <div class="space-y-2 text-sm">
+    <p><span class="font-semibold text-red-700">Problem.</span> One-off scripts still re-derive repo facts by hand — the estate grows because each new script is a fresh leaf (HEAD commit archived 17, yet the pattern persists).</p>
+    <p><span class="font-semibold text-emerald-700">Solution.</span> After phase-5 Track 2 classification, one deep runner module — repo facts, env, paths behind one interface; new scripts import it.</p>
+    <div class="pt-1">
+      <p class="text-xs uppercase tracking-wider text-slate-500 mb-1">Wins</p>
+      <ul class="list-disc list-inside text-slate-700">
+        <li>repo facts stated once</li>
+        <li>new scripts stop re-deriving</li>
+        <li>estate shrinks by leverage</li>
+      </ul>
+      <p class="text-xs text-slate-500 mt-2">Speculative: depends on Track 2 measurement of what survives archival.</p>
+    </div>
+  </div>
+</article>
+
+<section id="top-recommendation" class="bg-slate-900 text-white rounded-xl p-6 space-y-3">
+  <h2 class="text-2xl font-serif font-bold">Top recommendation — <a href="#c1" class="underline decoration-emerald-400">C1 · one snapshot seam</a></h2>
+  <p class="text-slate-200 text-sm">Tackle C1 first: it is the seam where the F1 failure class lives, so deepening it makes the tech-docs lane deterministic by construction — complementing Fix A's regeneration rather than papering over the handoff. Its leverage is the broadest: every future extraction change lands in one tested interface, and C3 is absorbed by it.</p>
+  <div class="text-xs text-slate-400 space-y-1">
+    <p class="text-slate-300 font-semibold uppercase tracking-wider">What this means for the plan (direction: improve plan)</p>
+    <p>· C1 → phase-1 follow-on (after Fix A/B green) or phase 5 Track 1 — restructure, no new machinery</p>
+    <p>· C2 → phase 5-adjacent trust item; scan:boundaries stays green via the neutral-module precedent</p>
+    <p>· C3 → absorbed by C1 · C4 → confirms phase-5 Track 3 · C5 → phase-5 Track 2 follow-on</p>
+  </div>
+</section>
+
+</section>
+</main>
+</body>
+</html>
+</section>
+</main>
+</body>
+</html>

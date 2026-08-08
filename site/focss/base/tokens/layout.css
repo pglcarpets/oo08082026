@@ -1,0 +1,143 @@
+@theme {
+  /*
+   * Layout tokens — space, radius, motion, shell, z-index.
+   * Prefer rem over raw px. Colour block/canvas aliases map into semantic/palette.
+   */
+
+  /* ── Radius ── */
+  --radius-none: 0;
+  --radius-sm: 0.875rem;
+  --radius-md: 1.125rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 1.75rem;
+  --radius-giant: 1.6rem;
+  --radius-huge: 1.75rem;
+  --radius-blob: 2rem;
+  --radius-full: 9999px;
+  --radius-pill: var(--radius-full);
+  --radius-default: 0.875rem;
+
+  /* ── Control size ── */
+  --control-height-xs: 2.25rem;
+  --control-height-sm: 2.75rem;
+  --control-height-md: 3.125rem;
+  --control-height-lg: 3.625rem;
+  --control-pad-inline-xs: 1.25rem;
+  --control-pad-inline-sm: 1rem;
+  --control-pad-inline-md: 1.5rem;
+  --control-pad-inline-lg: 2rem;
+  --control-pad-block-xs: 0.625rem;
+  --control-pad-block-sm: 0.75rem;
+  --control-pad-block-md: 0.875rem;
+
+  /* ── Section rhythm ── */
+  --section-space-sm: clamp(3rem, 4.5vw, 4rem);
+  --section-space-md: clamp(3.75rem, 5.5vw, 5rem);
+  --section-space-lg: clamp(4.5rem, 6.5vw, 6rem);
+  --section-gap: var(--section-space-md);
+  --section-gap-tight: var(--section-space-sm);
+
+  /* ── Containers ── */
+  --container-max: 105rem;
+  --container-wide-max: 121.25rem;
+  --container-home-max: 82.5rem;
+  --container-padding-mobile: 1.5rem;
+  --container-padding-desktop: 2.5rem;
+
+  /* Tailwind spacing unit */
+  --spacing: 0.25rem;
+
+  /* ── Motion ── */
+  --motion-fast: 260ms;
+  --motion-base: 360ms;
+  --motion-slow: 480ms;
+  --motion-slower: 640ms;
+  --motion-slowest: 820ms;
+  --ease-standard: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+
+  /* ── Z-index ── */
+  --z-canvas: 0;
+  --z-canvas-overlay: 10;
+  --z-toolbar: 50;
+  --z-sidebar: 60;
+  --z-panel: 70;
+  --z-modal: 80;
+  --z-toast: 90;
+  --z-tooltip: 100;
+
+  /* ── Breakpoints ── */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 107.5rem;
+
+  /* ── Space scale ── */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-8: 3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+
+  /* ── Shell chrome ── */
+  --shell-topbar-h: 3.5rem;
+  --shell-rail-w: 4rem;
+  --shell-panel-w: 20rem;
+  --shell-panel-w-wide: 23.75rem;
+
+  /* ── Canvas / block colours (semantic aliases of palette) ── */
+  --color-block-wall: var(--color-dark-midnight-blue-800);
+  --color-block-wall-hover: var(--color-dark-midnight-blue-700);
+  --color-block-wall-active: var(--color-bronze-400);
+
+  --color-block-desk: var(--color-dark-midnight-blue-600);
+  --color-block-desk-hover: var(--color-dark-midnight-blue-500);
+  --color-block-desk-active: var(--color-bronze-400);
+
+  --color-block-chair: var(--color-dark-midnight-blue-400);
+  --color-block-chair-hover: var(--color-dark-midnight-blue-300);
+  --color-block-chair-active: var(--color-bronze-400);
+
+  --color-canvas-bg: var(--color-white-200);
+  --color-canvas-grid: var(--color-white-350);
+
+  /* ── Legacy aliases (buddy / auth / older utilities) ── */
+  --color-surface: var(--surface-page);
+  --color-surface-raised: var(--surface-panel);
+  --color-surface-sunken: var(--surface-soft);
+  --color-border: var(--border-soft);
+  --color-border-strong: var(--border-muted);
+  --color-text: var(--text-strong);
+  --color-text-muted: var(--text-muted);
+  --color-text-subtle: var(--text-subtle);
+  --color-danger-soft: color-mix(in srgb, var(--color-danger) 10%, transparent);
+  --color-success-soft: color-mix(in srgb, var(--color-success) 10%, transparent);
+  --color-warning-soft: color-mix(in srgb, var(--color-warning) 10%, transparent);
+  --color-paper: var(--surface-page);
+  --color-paper-raised: var(--surface-panel);
+  --color-paper-sunken: var(--surface-soft);
+  --color-paper-line: var(--border-soft);
+  --color-blueprint: var(--color-primary);
+  --color-blueprint-strong: var(--color-primary-hover);
+
+  /* Tailwind default neutrals — darkest steps map to true black */
+  --color-neutral-900: var(--color-pure-black);
+  --color-neutral-950: var(--color-pure-black);
+  --color-gray-900: var(--color-pure-black);
+  --color-gray-950: var(--color-pure-black);
+  --color-slate-900: var(--color-pure-black);
+  --color-slate-950: var(--color-pure-black);
+  --color-zinc-900: var(--color-pure-black);
+  --color-zinc-950: var(--color-pure-black);
+  --color-blueprint-soft: var(--surface-accent-wash);
+  --color-blueprint-line: var(--color-primary);
+}

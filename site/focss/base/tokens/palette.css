@@ -1,0 +1,126 @@
+@theme {
+  /* Ocean Boat Blue */
+  --color-ocean-boat-blue-50: #EDF4FA;
+  --color-ocean-boat-blue-100: #DDEAF6;
+  --color-ocean-boat-blue-150: #CDDFEF;
+  --color-ocean-boat-blue-200: #BCD3E8;
+  --color-ocean-boat-blue-250: #ACC7E1;
+  --color-ocean-boat-blue-300: #9BBBDA;
+  --color-ocean-boat-blue-350: #89AFD2;
+  --color-ocean-boat-blue-400: #77A2C9;
+  --color-ocean-boat-blue-450: #6595C0;
+  --color-ocean-boat-blue-500: #5488B6;
+  --color-ocean-boat-blue-550: #4A7CA8;
+  --color-ocean-boat-blue-600: #406F99;
+  --color-ocean-boat-blue-650: #36638A;
+  --color-ocean-boat-blue-700: #2D577B;
+  --color-ocean-boat-blue-750: #244A6A;
+  --color-ocean-boat-blue-800: #1C3D59;
+  --color-ocean-boat-blue-850: #153148;
+  --color-ocean-boat-blue-900: #0F2538;
+  --color-ocean-boat-blue-950: #0A1A29;
+
+  /* Dark Midnight Blue */
+  --color-dark-midnight-blue-50: #CCD6E3;
+  --color-dark-midnight-blue-100: #B2C2D6;
+  --color-dark-midnight-blue-150: #98AEC8;
+  --color-dark-midnight-blue-200: #7E9ABB;
+  --color-dark-midnight-blue-250: #6485AD;
+  --color-dark-midnight-blue-300: #4B719F;
+  --color-dark-midnight-blue-350: #3F628C;
+  --color-dark-midnight-blue-400: #335479;
+  --color-dark-midnight-blue-450: #294566;
+  --color-dark-midnight-blue-500: #1F3653;
+  --color-dark-midnight-blue-550: #1B3049;
+  --color-dark-midnight-blue-600: #182A40;
+  --color-dark-midnight-blue-650: #142436;
+  --color-dark-midnight-blue-700: #111E2D;
+  --color-dark-midnight-blue-750: #0E1925;
+  --color-dark-midnight-blue-800: #0B141D;
+  --color-dark-midnight-blue-850: #091117;
+  --color-dark-midnight-blue-900: #070D12;
+  --color-dark-midnight-blue-950: #05080C;
+
+  /* White scale */
+  --color-white-50: #FFFFFF;
+  --color-white-100: #FAFBFC;
+  --color-white-150: #F5F7FA;
+  --color-white-200: #EEF2F6;
+  --color-white-250: #E6ECF3;
+  --color-white-300: #DDE5ED;
+  --color-white-350: #D2DCE7;
+  --color-white-400: #C6D3E0;
+  --color-white-450: #B9C8D8;
+  --color-white-500: #ACBDD1;
+  --color-white: var(--color-white-50);
+
+  /* --- Ecru neutral scale (50–200 = page/card paper; cooler off-white, not mustard) --- */
+  --color-ecru-50: #FAFAF8;
+  --color-ecru-100: #F3F2EF;
+  --color-ecru-200: #EAE7E1;
+  --color-ecru-300: #DED2B6;
+  --color-ecru-400: #CBB78F;
+  --color-ecru-500: #B7A079;
+  --color-ecru-600: #9C8560;
+  --color-ecru-700: #7E6B4E;
+  --color-ecru-800: #5C4F3B;
+  --color-ecru-900: #3D3528;
+  --color-ecru-950: #221E16;
+
+  /* Bronze */
+  --color-bronze-50: #f5f6f7;
+  --color-bronze-100: #e8ebed;
+  --color-bronze-150: #E8DFD2;
+  --color-bronze-200: #d1d6da;
+  --color-bronze-300: #BEAF9A;
+  --color-bronze-400: #9D876C;
+  --color-bronze-450: #8A755C;
+  --color-bronze-500: #7F6A52;
+  --color-bronze-600: #66533F;
+  --color-bronze-700: #586167;
+  --color-bronze-800: #42494e;
+  --color-bronze-900: #2c3134;
+
+  /* Sustain */
+  --color-sustain-300: #7FAF96;
+  --color-sustain-400: #5E8E74;
+  --color-sustain-500: #476D58;
+
+  /* Support */
+  --color-support-mist: #EEF2F7;
+  --color-support-fog: #E2E8F0;
+
+  /* Absolute anchors (only raw hex ramps beyond brand scales) */
+  --color-pure-black: #000000;
+  /* Near-black for secondary copy / borders — headings use --color-pure-black via text tokens. */
+  --color-black-100: #0B1324;
+  /* Tailwind `text-black` / `bg-black` — true black. */
+  --color-black: var(--color-pure-black);
+  --color-error-red: #972B1A;
+
+  /* Cool ink / slate (UI copy; not brand ramps) */
+  --color-ink-950: #050B17;
+  --color-ink-900: var(--color-black-100);
+  --color-ink-800: #1B2940;
+  --color-ink-700: #3B4756;
+  --color-ink-600: #3F5168;
+  --color-ink-500: #56697E;
+  --color-ink-400: #64748B;
+  --color-ink-300: #94A3B8;
+  --color-ink-200: #CBD5E1;
+  --color-ink-100: #E2E8F0;
+  --color-ink-50: #F1F5F9;
+  --color-ink-25: #F8FAFC;
+
+  /* Hue spectrum for color-picker sliders (zones use var only) */
+  --gradient-hue-spectrum: linear-gradient(
+    to right,
+    hsl(0, 100%, 50%),
+    hsl(60, 100%, 50%),
+    hsl(120, 100%, 50%),
+    hsl(180, 100%, 50%),
+    hsl(240, 100%, 50%),
+    hsl(300, 100%, 50%),
+    hsl(360, 100%, 50%)
+  );
+}

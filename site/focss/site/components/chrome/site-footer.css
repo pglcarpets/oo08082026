@@ -1,0 +1,106 @@
+/* Site footer — site/chrome */
+
+.site-footer {
+  position: relative;
+  background: var(--surface-inverse);
+  color: var(--text-inverse-body);
+}
+
+.site-footer__heading {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-copy-semibold);
+  color: var(--text-inverse-subtle);
+}
+
+.site-footer__link {
+  border-radius: 0.125rem;
+  color: var(--text-inverse-muted);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.site-footer__link:hover {
+  color: var(--text-inverse-body);
+}
+
+.site-footer__social {
+  border-radius: 2px;
+  color: var(--text-inverse-muted);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.site-footer__social:hover {
+  color: var(--text-inverse);
+}
+
+.site-footer__legal {
+  border-radius: 2px;
+  color: var(--text-inverse-muted);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.site-footer__legal:hover {
+  color: var(--text-inverse-body);
+}
+
+.site-footer__divider {
+  border-top: 0.0625rem solid var(--border-inverse);
+  margin-top: 1.5rem;
+}
+
+.site-footer__legal-row {
+  padding-bottom: 2.5rem;
+  padding-left: max(1rem, var(--site-fab-side-left));
+  padding-right: max(1rem, var(--site-fab-side-right));
+  text-align: center;
+}
+
+.site-footer__legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem 1.25rem;
+}
+
+.site-footer__legal-copy {
+  margin: 0;
+  color: var(--text-inverse-muted);
+}
+
+.site-footer .typ-body-sm {
+  color: var(--text-inverse-muted);
+}
+
+.site-footer a.site-footer__link {
+  color: var(--text-inverse-muted);
+}
+
+.site-footer a.site-footer__link:hover {
+  color: var(--text-inverse-body);
+}
+
+.site-footer__contact-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.site-footer__contact-line {
+  font-size: var(--type-body-size);
+  line-height: var(--type-leading-copy-sm, 1.5);
+  color: var(--text-inverse-muted);
+}
+
+.site-footer__social-row {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-top: 0.25rem;
+}
+
+.site-footer__social-icon {
+  width: 1em;
+  height: 1em;
+  font-size: var(--type-body-size);
+}

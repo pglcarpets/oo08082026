@@ -1,0 +1,724 @@
+/*
+ * Design Kit — two design systems on one reference page.
+ * Site: homepage schemes. Product: ecru FOCSS admin chrome.
+ * Loaded only from /admin/design-kit (not global admin entry).
+ */
+
+.design-kit {
+  --dk-gap: var(--space-6);
+  --dk-gap-tight: var(--space-4);
+  --dk-rule: 1px solid var(--border-soft);
+
+  /* Site benchmark tokens (homepage authority) */
+  --dk-site-ecru-50: var(--color-ecru-50);
+  --dk-site-ecru-100: var(--color-ecru-100);
+  --dk-site-ocean-50: var(--color-ocean-boat-blue-50);
+  --dk-site-midnight-900: var(--color-dark-midnight-blue-900);
+  --dk-site-midnight-500: var(--color-dark-midnight-blue-500);
+  --dk-site-bronze-400: var(--color-bronze-400);
+  --dk-site-bronze-300: var(--color-bronze-300);
+  --dk-site-ink-inverse: var(--color-ink-25);
+  --dk-site-ink-muted: var(--color-ink-100);
+
+  /* Product tokens */
+  --dk-ecru-page: var(--surface-page);
+  --dk-ecru-card: var(--surface-card);
+  --dk-cad-paper: var(--color-white-200);
+  --dk-cad-grid-minor: var(--color-white-350);
+  --dk-cad-grid-major: var(--color-white-450);
+
+  max-width: 72rem;
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-4) var(--space-10);
+  color: var(--text-body);
+  background: var(--dk-ecru-page);
+}
+
+.design-kit-hero {
+  display: grid;
+  gap: var(--space-3);
+  padding-block-end: var(--space-6);
+  border-block-end: var(--dk-rule);
+  margin-block-end: var(--dk-gap);
+}
+
+.design-kit-eyebrow {
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.design-kit-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: var(--font-weight-display);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-heading);
+}
+
+.design-kit-lede {
+  max-width: 44rem;
+  font-size: var(--type-body-size);
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.design-kit-lede strong {
+  color: var(--text-strong);
+  font-weight: var(--font-weight-copy-semibold);
+}
+
+.design-kit-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-start: var(--space-2);
+}
+
+.design-kit-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: var(--space-3);
+  border: var(--dk-rule);
+  border-radius: var(--radius-pill);
+  font-size: var(--type-small-size);
+  color: var(--text-strong);
+  text-decoration: none;
+  background: var(--dk-ecru-card);
+  transition:
+    border-color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.design-kit-nav a:hover {
+  border-color: var(--border-strong);
+}
+
+.design-kit-nav a:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.design-kit-section {
+  scroll-margin-top: var(--space-6);
+  padding-block: var(--dk-gap);
+  border-block-end: var(--dk-rule);
+}
+
+.design-kit-section:last-child {
+  border-block-end: 0;
+}
+
+.design-kit-section--site {
+  background: color-mix(in srgb, var(--dk-site-ecru-100) 40%, transparent);
+  margin-inline: calc(-1 * var(--space-4));
+  padding-inline: var(--space-4);
+}
+
+.design-kit-section--product {
+  background: var(--dk-ecru-page);
+}
+
+.design-kit-section-head {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-end: var(--dk-gap-tight);
+}
+
+.design-kit-section-title {
+  font-family: var(--font-display);
+  font-size: var(--type-title-size);
+  font-weight: var(--font-weight-display);
+  color: var(--text-heading);
+}
+
+.design-kit-section-note {
+  font-size: var(--type-small-size);
+  color: var(--text-muted);
+  max-width: 44rem;
+  line-height: 1.5;
+}
+
+.design-kit-section-note code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.8125rem;
+  color: var(--text-strong);
+}
+
+/* ── Materials swatches ── */
+.design-kit-materials {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(10.5rem, 1fr));
+  gap: var(--space-3);
+}
+
+.design-kit-swatch {
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: var(--dk-rule);
+  border-radius: var(--radius-default);
+  background: var(--dk-ecru-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.design-kit-swatch-plate {
+  aspect-ratio: 4 / 3;
+  border-radius: calc(var(--radius-default) - 2px);
+  border: 1px solid color-mix(in srgb, var(--border-soft) 80%, transparent);
+}
+
+.design-kit-swatch-label {
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-strong);
+}
+
+.design-kit-swatch-hex {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-copy-semibold);
+  color: var(--text-heading);
+}
+
+.design-kit-swatch-detail {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.design-kit-swatch-token {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+  word-break: break-all;
+}
+
+.design-kit-swatch-use {
+  margin: 0;
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+/* Site swatches */
+.design-kit-swatch--site-scheme-page .design-kit-swatch-plate {
+  background: linear-gradient(
+    180deg,
+    var(--dk-site-ecru-50) 0%,
+    color-mix(in srgb, var(--dk-site-ocean-50) 22%, var(--dk-site-ecru-100)) 100%
+  );
+}
+
+.design-kit-swatch--site-accent-dark .design-kit-swatch-plate {
+  background: var(--dk-site-midnight-900);
+  box-shadow: inset 0 3px 0 var(--dk-site-bronze-400);
+}
+
+.design-kit-swatch--site-bronze-accent .design-kit-swatch-plate {
+  background: var(--dk-site-bronze-400);
+}
+
+.design-kit-swatch--site-bronze-stat .design-kit-swatch-plate {
+  background: var(--dk-site-bronze-300);
+  box-shadow: 0 0 1.5rem color-mix(in srgb, var(--dk-site-bronze-400) 35%, transparent);
+}
+
+.design-kit-swatch--site-dark-glass .design-kit-swatch-plate {
+  background: color-mix(in srgb, white 6%, var(--dk-site-midnight-900));
+  border-color: color-mix(in srgb, white 14%, transparent);
+}
+
+.design-kit-swatch--site-inverse-text .design-kit-swatch-plate {
+  background: var(--dk-site-midnight-900);
+  color: var(--dk-site-ink-inverse);
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: var(--font-weight-display);
+}
+
+.design-kit-swatch--site-inverse-text .design-kit-swatch-plate::after {
+  content: "Aa";
+  color: var(--dk-site-ink-inverse);
+}
+
+/* Product swatches */
+.design-kit-swatch--product-ecru-page .design-kit-swatch-plate {
+  background: var(--dk-ecru-page);
+}
+
+.design-kit-swatch--product-ecru-card .design-kit-swatch-plate {
+  background: var(--dk-ecru-card);
+}
+
+.design-kit-swatch--product-studio .design-kit-swatch-plate {
+  background: radial-gradient(
+    120% 100% at 50% 18%,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-support-mist) 55%, var(--color-white-150)) 55%,
+    var(--color-white-250) 100%
+  );
+}
+
+.design-kit-swatch--product-cad .design-kit-swatch-plate {
+  background-color: var(--dk-cad-paper);
+  background-image:
+    linear-gradient(to right, var(--dk-cad-grid-major) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--dk-cad-grid-major) 1px, transparent 1px),
+    linear-gradient(to right, var(--dk-cad-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--dk-cad-grid-minor) 1px, transparent 1px);
+  background-size: 50px 50px, 50px 50px, 10px 10px, 10px 10px;
+}
+
+.design-kit-swatch--product-primary .design-kit-swatch-plate {
+  background: var(--dk-site-midnight-500);
+}
+
+.design-kit-swatch--product-bronze .design-kit-swatch-plate {
+  background: var(--dk-site-bronze-400);
+}
+
+/* ── Site surface benchmark (homepage workspace block) ── */
+.design-kit-site-compare {
+  display: grid;
+  gap: var(--dk-gap-tight);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.design-kit-site-light {
+  padding: var(--space-4);
+  border-radius: var(--radius-xl, 1.25rem);
+  background: linear-gradient(
+    180deg,
+    var(--dk-site-ecru-50) 0%,
+    color-mix(in srgb, var(--dk-site-ocean-50) 18%, var(--dk-site-ecru-100)) 55%,
+    color-mix(in srgb, var(--dk-site-ocean-50) 22%, var(--dk-site-ecru-100)) 100%
+  );
+}
+
+.design-kit-scheme-panel-sample {
+  margin: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-xl, 1.25rem);
+  border: 1px solid var(--border-soft);
+  background: var(--dk-ecru-card);
+  box-shadow: var(--shadow-soft);
+}
+
+.design-kit-sample-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: var(--type-body-lg-size, 1.0625rem);
+  font-weight: var(--font-weight-display-regular, 400);
+  color: var(--text-heading);
+}
+
+.design-kit-sample-copy {
+  margin: 0 0 var(--space-4);
+  font-size: var(--type-small-size);
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.design-kit-sample-copy--inverse {
+  color: var(--dk-site-ink-muted);
+}
+
+.design-kit-sample-cta {
+  display: inline-flex;
+}
+
+/* Dark band — self-contained homepage replica */
+.design-kit-site-dark {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: var(--space-5);
+  border-radius: var(--radius-xl, 1.25rem);
+  background: var(--dk-site-midnight-900);
+  color: var(--dk-site-ink-inverse);
+  border-top: 0.125rem solid var(--dk-site-bronze-400);
+}
+
+.design-kit-site-dark::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 85% 65% at 100% 0%,
+      color-mix(in srgb, var(--dk-site-bronze-400) 28%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      ellipse 55% 45% at 0% 100%,
+      color-mix(in srgb, var(--color-ocean-boat-blue-500) 18%, transparent),
+      transparent 52%
+    );
+}
+
+.design-kit-site-dark::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, white 5%, transparent) 0%,
+    transparent 42%,
+    color-mix(in srgb, black 22%, transparent) 100%
+  );
+}
+
+.design-kit-site-dark > * {
+  position: relative;
+  z-index: 1;
+}
+
+.design-kit-density-label {
+  font-size: var(--type-caption-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-block-end: var(--space-3);
+}
+
+.design-kit-density-label--inverse {
+  color: color-mix(in srgb, var(--dk-site-ink-inverse) 65%, transparent);
+}
+
+.design-kit-dark-card-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin-block-end: var(--space-2);
+}
+
+/* Glass CTA card on dark band */
+.design-kit-site-dark .home-tool-card--dark,
+.design-kit-site-dark article.home-tool-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 1.25rem;
+  padding: var(--space-5);
+  border-radius: var(--radius-xl, 1.25rem);
+  border: 1px solid color-mix(in srgb, white 14%, transparent);
+  background: color-mix(in srgb, white 6%, transparent);
+  box-shadow: 0 24px 60px -32px color-mix(in srgb, black 55%, transparent);
+}
+
+.design-kit-site-dark .home-tool-icon--dark-lg {
+  display: flex;
+  height: 3.25rem;
+  width: 3.25rem;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  border: 1px solid color-mix(in srgb, white 16%, transparent);
+  background: color-mix(in srgb, white 8%, transparent);
+  color: var(--dk-site-bronze-400);
+}
+
+.design-kit-site-dark .home-tool-title--dark,
+.design-kit-site-dark .home-tool-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: var(--font-weight-display-regular, 400);
+  color: var(--dk-site-ink-inverse);
+}
+
+.design-kit-site-dark .home-tool-badge--dark {
+  padding: 0.2rem 0.55rem;
+  font-size: 0.62rem;
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid color-mix(in srgb, var(--dk-site-bronze-400) 35%, transparent);
+  background: color-mix(in srgb, var(--dk-site-bronze-400) 12%, transparent);
+  color: var(--dk-site-bronze-400);
+  border-radius: var(--radius-pill);
+}
+
+.design-kit-site-dark .home-tool-link--dark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  margin-top: auto;
+  padding-top: var(--space-4);
+  font-size: var(--type-body-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.04em;
+  color: var(--dk-site-bronze-400);
+  text-decoration: none;
+}
+
+/* ── Product forms & surfaces ── */
+.design-kit-form-showcase {
+  display: grid;
+  gap: var(--dk-gap-tight);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.design-kit-form-card {
+  padding: var(--space-4);
+  border: var(--dk-rule);
+  border-radius: var(--radius-default);
+  background: var(--dk-ecru-card);
+  display: grid;
+  gap: var(--space-3);
+}
+
+.design-kit-form-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.design-kit-form-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.design-kit-product-surfaces {
+  display: grid;
+  gap: var(--dk-gap-tight);
+}
+
+.design-kit-panel-sample {
+  background: var(--dk-ecru-card) !important;
+}
+
+.design-kit-panel-body {
+  padding: var(--space-3);
+  font-size: var(--type-small-size);
+  color: var(--text-muted);
+}
+
+.design-kit-panel-body code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  color: var(--text-strong);
+}
+
+.design-kit-product-tiles {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+}
+
+.design-kit-product-tile {
+  display: grid;
+  gap: var(--space-1);
+  align-content: end;
+  min-height: 6.5rem;
+  padding: var(--space-3);
+  border: var(--dk-rule);
+  border-radius: var(--radius-default);
+}
+
+.design-kit-product-tile-title {
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-semibold);
+  color: var(--text-strong);
+}
+
+.design-kit-product-tile-hex {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.6875rem;
+  color: var(--text-muted);
+}
+
+.design-kit-product-tile--ecru-page {
+  background: var(--dk-ecru-page);
+}
+
+.design-kit-product-tile--ecru-card {
+  background: var(--dk-ecru-card);
+}
+
+.design-kit-product-tile--studio {
+  background: radial-gradient(
+    120% 100% at 50% 18%,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-support-mist) 55%, var(--color-white-150)) 55%,
+    var(--color-white-250) 100%
+  );
+}
+
+.design-kit-product-tile--cad {
+  background-color: var(--dk-cad-paper);
+  background-image:
+    linear-gradient(to right, var(--dk-cad-grid-minor) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--dk-cad-grid-minor) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.design-kit-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.design-kit-row--stack {
+  flex-direction: column;
+  align-items: stretch;
+  max-width: 28rem;
+}
+
+.design-kit-grid-2 {
+  display: grid;
+  gap: var(--dk-gap-tight);
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+}
+
+.design-kit-feedback-stack {
+  max-width: 28rem;
+}
+
+.design-kit-skeleton-bar {
+  height: 2.5rem;
+  width: 100%;
+}
+
+.design-kit-skeleton-bar--short {
+  height: 1.25rem;
+  width: 72%;
+}
+
+/* ── Product density tiers ── */
+.design-kit-density-compare {
+  display: grid;
+  gap: var(--dk-gap-tight);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.design-kit-density-card {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.design-kit-density-panel {
+  background: var(--dk-ecru-card) !important;
+  min-height: 11rem;
+}
+
+.design-kit-density-panel-body {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.design-kit-density-panel-body--default {
+  padding: var(--space-3);
+}
+
+.design-kit-density-panel-body--dense {
+  padding: 0.4rem 0.5rem 0.6rem;
+  gap: 0.35rem;
+}
+
+.design-kit-density-touch-note {
+  margin: 0;
+  font-size: var(--type-small-size);
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.design-kit-density-touch-note code {
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 0.85em;
+}
+
+/* ── Product workspace states ── */
+.design-kit-states-grid {
+  display: grid;
+  gap: var(--dk-gap-tight);
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.design-kit-state-card {
+  background: var(--dk-ecru-card) !important;
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+}
+
+.design-kit-state-empty {
+  display: flex;
+  min-height: 9rem;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: var(--space-4);
+  border: 1px dashed var(--border-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.design-kit-state-empty strong {
+  color: var(--text-strong);
+  font-size: 0.76rem;
+}
+
+.design-kit-state-empty p {
+  max-width: 14rem;
+  margin: 0;
+  font-size: 0.68rem;
+  line-height: 1.45;
+}
+
+.design-kit-state-loading {
+  display: grid;
+  gap: var(--space-2);
+  min-height: 9rem;
+  align-content: center;
+  padding: var(--space-3);
+  border: var(--dk-rule);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--dk-ecru-page) 55%, transparent);
+}
+
+.design-kit-state-loading-icon {
+  color: var(--text-muted);
+  animation: design-kit-spin 0.85s linear infinite;
+}
+
+.design-kit-state-loading-label {
+  font-size: var(--type-small-size);
+  color: var(--text-muted);
+}
+
+@keyframes design-kit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 40rem) {
+  .design-kit {
+    padding-inline: var(--space-3);
+  }
+
+  .design-kit-section--site {
+    margin-inline: calc(-1 * var(--space-3));
+    padding-inline: var(--space-3);
+  }
+}

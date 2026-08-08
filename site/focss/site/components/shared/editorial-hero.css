@@ -1,0 +1,429 @@
+/* Shared editorial route hero — oando-hero-media layer (about, contact, service, clients, showrooms) */
+
+.about-hero,
+.career-hero,
+.clients-hero,
+.contact-hero,
+.service-hero,
+.showrooms-hero,
+.solutions-hero,
+.products-hero,
+.downloads-hero,
+.planning-hero,
+.legal-hero,
+.trusted-by-hero,
+.sustainability-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--surface-inverse);
+  /*
+   * Content-driven height — do not inflate with 100vh.
+   * If a min-height is needed, ceiling is min(56vh, 32rem) (oando-premium-motion).
+   */
+  min-height: clamp(28rem, 50vh, 40rem);
+  /* Top inset clears fixed nav; bottom stays tight to next band */
+  padding-block: clamp(4.25rem, 8vw, 5.25rem) clamp(1rem, 2.5vw, 1.5rem);
+  /* Match shell-container-wide / home-shell-xl gutters (40px md+). */
+  padding-inline: var(--space-4);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .about-hero,
+  .career-hero,
+  .clients-hero,
+  .contact-hero,
+  .service-hero,
+  .showrooms-hero,
+  .solutions-hero,
+  .products-hero,
+  .downloads-hero,
+  .planning-hero,
+  .legal-hero,
+  .trusted-by-hero,
+  .sustainability-hero {
+    padding-inline: var(--space-5);
+  }
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .about-hero,
+  .career-hero,
+  .clients-hero,
+  .contact-hero,
+  .service-hero,
+  .showrooms-hero,
+  .solutions-hero,
+  .products-hero,
+  .downloads-hero,
+  .planning-hero,
+  .legal-hero,
+  .trusted-by-hero,
+  .sustainability-hero {
+    padding-inline: var(--container-padding-desktop);
+  }
+}
+
+.about-hero__ambient,
+.career-hero__ambient,
+.clients-hero__ambient,
+.contact-hero__ambient,
+.service-hero__ambient,
+.showrooms-hero__ambient,
+.solutions-hero__ambient,
+.products-hero__ambient,
+.downloads-hero__ambient,
+.planning-hero__ambient,
+.legal-hero__ambient,
+.trusted-by-hero__ambient,
+.sustainability-hero__ambient {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 72% 38%, color-mix(in srgb, var(--color-bronze-400) 18%, transparent), transparent 68%),
+    radial-gradient(ellipse 55% 45% at 18% 82%, color-mix(in srgb, var(--color-ecru-100) 8%, transparent), transparent 72%);
+  animation: editorial-hero-ambient-drift 18s ease-in-out infinite alternate;
+}
+
+.about-hero__ambient--off,
+.career-hero__ambient--off,
+.clients-hero__ambient--off,
+.contact-hero__ambient--off,
+.service-hero__ambient--off,
+.showrooms-hero__ambient--off,
+.solutions-hero__ambient--off,
+.products-hero__ambient--off,
+.downloads-hero__ambient--off,
+.planning-hero__ambient--off,
+.trusted-by-hero__ambient--off,
+.legal-hero__ambient--off,
+.sustainability-hero__ambient--off {
+  opacity: 0;
+  animation: none;
+}
+
+@keyframes editorial-hero-ambient-drift {
+  from { opacity: 0.55; transform: scale(1) translate3d(0, 0, 0); }
+  to { opacity: 0.85; transform: scale(1.04) translate3d(-1%, 1%, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-hero__ambient,
+  .career-hero__ambient,
+  .clients-hero__ambient,
+  .contact-hero__ambient,
+  .service-hero__ambient,
+  .solutions-hero__ambient,
+  .products-hero__ambient,
+  .downloads-hero__ambient,
+  .planning-hero__ambient,
+  .showrooms-hero__ambient,
+  .trusted-by-hero__ambient,
+  .legal-hero__ambient,
+  .sustainability-hero__ambient {
+    animation: none;
+    opacity: 0.65;
+  }
+}
+
+.about-hero__media,
+.career-hero__media,
+.clients-hero__media,
+.contact-hero__media,
+.service-hero__media,
+.solutions-hero__media,
+.products-hero__media,
+.downloads-hero__media,
+.planning-hero__media,
+.legal-hero__media,
+.showrooms-hero__media,
+.trusted-by-hero__media,
+.sustainability-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Poster / graded still — absolute cover (hero video loops removed) */
+.about-hero__media > span:has(> img),
+.about-hero__media > span:has(img),
+.career-hero__media > span:has(> img),
+.career-hero__media > span:has(img),
+.clients-hero__media > span:has(> img),
+.clients-hero__media > span:has(img),
+.contact-hero__media > span:has(> img),
+.contact-hero__media > span:has(img),
+.service-hero__media > span:has(> img),
+.service-hero__media > span:has(img),
+.showrooms-hero__media > span:has(> img),
+.showrooms-hero__media > span:has(img),
+.solutions-hero__media > span:has(> img),
+.solutions-hero__media > span:has(img),
+.planning-hero__media > span:has(> img),
+.planning-hero__media > span:has(img),
+.legal-hero__media > span:has(> img),
+.legal-hero__media > span:has(img),
+.trusted-by-hero__media > span:has(> img),
+.trusted-by-hero__media > span:has(img),
+.sustainability-hero__media > span:has(> img),
+.sustainability-hero__media > span:has(img),
+.products-hero__media > span:has(> img),
+.products-hero__media > span:has(img),
+.downloads-hero__media > span:has(> img),
+.downloads-hero__media > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+}
+
+.about-hero__img,
+.career-hero__img,
+.clients-hero__img,
+.contact-hero__img,
+.service-hero__img,
+.solutions-hero__img,
+.products-hero__img,
+.downloads-hero__img,
+.planning-hero__img,
+.legal-hero__img,
+.showrooms-hero__img,
+.trusted-by-hero__img,
+.sustainability-hero__img {
+  object-fit: cover;
+}
+
+.about-hero__grade,
+.career-hero__grade,
+.clients-hero__grade,
+.contact-hero__grade,
+.service-hero__grade,
+.showrooms-hero__grade,
+.solutions-hero__grade,
+.planning-hero__grade,
+.trusted-by-hero__grade,
+.legal-hero__grade,
+.products-hero__grade,
+.downloads-hero__grade,
+.sustainability-hero__grade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--surface-inverse) 5%, transparent);
+}
+
+.about-hero__img { object-position: 58% 38%; }
+.career-hero__img { object-position: 42% 36%; }
+.clients-hero__img { object-position: 52% 36%; }
+.contact-hero__img { object-position: 54% 38%; }
+.service-hero__img { object-position: 46% 42%; }
+.showrooms-hero__img { object-position: 52% 38%; }
+.legal-hero__img { object-position: 48% 42%; }
+.trusted-by-hero__img { object-position: 55% 40%; }
+.sustainability-hero__img { object-position: 52% 48%; }
+.products-hero__img { object-position: 48% 40%; }
+.downloads-hero__img { object-position: 48% 42%; }
+
+.about-hero__scrim,
+.career-hero__scrim,
+.clients-hero__scrim,
+.contact-hero__scrim,
+.service-hero__scrim,
+.showrooms-hero__scrim,
+.solutions-hero__scrim,
+.legal-hero__scrim,
+.products-hero__scrim,
+.downloads-hero__scrim,
+.planning-hero__scrim,
+.trusted-by-hero__scrim,
+.sustainability-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, var(--overlay-inverse-12) 0%, var(--overlay-inverse-52) 100%),
+    linear-gradient(90deg, var(--overlay-inverse-64) 0%, var(--overlay-inverse-30) 48%, var(--overlay-inverse-08) 100%);
+}
+
+@media (width < theme(--breakpoint-md)) {
+  .about-hero__scrim,
+  .career-hero__scrim,
+  .clients-hero__scrim,
+  .contact-hero__scrim,
+  .service-hero__scrim,
+  .showrooms-hero__scrim,
+  .solutions-hero__scrim,
+  .legal-hero__scrim,
+  .products-hero__scrim,
+  .downloads-hero__scrim,
+  .planning-hero__scrim,
+  .trusted-by-hero__scrim,
+  .sustainability-hero__scrim {
+    background:
+      linear-gradient(180deg, var(--overlay-inverse-22) 0%, var(--overlay-inverse-58) 100%),
+      linear-gradient(90deg, var(--overlay-inverse-72) 0%, var(--overlay-inverse-42) 52%, var(--overlay-inverse-18) 100%);
+  }
+
+  .about-hero__kicker,
+  .career-hero__kicker,
+  .clients-hero__kicker,
+  .contact-hero__kicker,
+  .service-hero__kicker,
+  .showrooms-hero__kicker,
+  .solutions-hero__kicker,
+  .products-hero__kicker,
+  .downloads-hero__kicker,
+  .planning-hero__kicker,
+  .trusted-by-hero__kicker,
+  .sustainability-hero__kicker {
+    text-shadow: 0 1px 10px var(--overlay-inverse-65), 0 0 1px var(--overlay-inverse-75);
+  }
+}
+
+.about-hero__layout,
+.career-hero__layout,
+.clients-hero__layout,
+.contact-hero__layout,
+.service-hero__layout,
+.solutions-hero__layout,
+.products-hero__layout,
+.downloads-hero__layout,
+.planning-hero__layout,
+.showrooms-hero__layout,
+.legal-hero__layout,
+.trusted-by-hero__layout,
+.sustainability-hero__layout {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--container-home-max, 80rem));
+  margin-inline: auto;
+  display: grid;
+  gap: clamp(1.25rem, 3vw, 2rem);
+  align-content: start;
+}
+
+.about-hero__copy,
+.career-hero__copy,
+.clients-hero__copy,
+.contact-hero__copy,
+.service-hero__copy,
+.solutions-hero__copy,
+.products-hero__copy,
+.downloads-hero__copy,
+.planning-hero__copy,
+.showrooms-hero__copy,
+.legal-hero__copy,
+.trusted-by-hero__copy,
+.sustainability-hero__copy {
+  max-width: 38rem;
+}
+
+.about-hero__title,
+.career-hero__title,
+.clients-hero__title,
+.contact-hero__title,
+.service-hero__title,
+.showrooms-hero__title,
+.solutions-hero__title,
+.products-hero__title,
+.downloads-hero__title,
+.planning-hero__title,
+.legal-hero__title,
+.trusted-by-hero__title,
+.sustainability-hero__title {
+  margin: 0;
+  color: var(--text-inverse);
+  font-size: clamp(2.35rem, 7.5vw, 3.65rem);
+  line-height: 1.08;
+  letter-spacing: var(--type-letter-title, -0.02em);
+  text-wrap: balance;
+  text-shadow: 0 2px 16px var(--overlay-inverse-50), 0 1px 3px var(--overlay-inverse-60);
+}
+
+.about-hero__kicker,
+.career-hero__kicker,
+.clients-hero__kicker,
+.contact-hero__kicker,
+.service-hero__kicker,
+.showrooms-hero__kicker,
+.solutions-hero__kicker,
+.products-hero__kicker,
+.downloads-hero__kicker,
+.planning-hero__kicker,
+.trusted-by-hero__kicker,
+.sustainability-hero__kicker {
+  margin: 0 0 0.75rem;
+  text-shadow: 0 1px 8px var(--overlay-inverse-55);
+}
+
+.about-hero__subtitle,
+.career-hero__subtitle,
+.clients-hero__subtitle,
+.contact-hero__subtitle,
+.service-hero__subtitle,
+.showrooms-hero__subtitle,
+.solutions-hero__subtitle,
+.products-hero__subtitle,
+.downloads-hero__subtitle,
+.planning-hero__subtitle,
+.legal-hero__subtitle,
+.trusted-by-hero__subtitle,
+.sustainability-hero__subtitle {
+  margin: 1rem 0 0;
+  max-width: 32rem;
+  color: var(--text-inverse-body);
+  font-size: clamp(1rem, 2.2vw, 1.125rem);
+  line-height: 1.55;
+  text-shadow: 0 1px 10px var(--overlay-inverse-55);
+}
+
+.about-hero__actions,
+.career-hero__actions,
+.clients-hero__actions,
+.contact-hero__actions,
+.service-hero__actions,
+.showrooms-hero__actions,
+.solutions-hero__actions,
+.products-hero__actions,
+.downloads-hero__actions,
+.planning-hero__actions,
+.trusted-by-hero__actions,
+.sustainability-hero__actions {
+  margin-top: 1.25rem;
+}
+
+@media (width >= 120rem) {
+  .about-hero,
+  .career-hero,
+  .clients-hero,
+  .contact-hero,
+  .service-hero,
+  .showrooms-hero,
+  .solutions-hero,
+  .products-hero,
+  .downloads-hero,
+  .planning-hero,
+  .legal-hero,
+  .trusted-by-hero,
+  .sustainability-hero {
+    padding-block: clamp(4.75rem, 6.5vw, 5.75rem) clamp(1.15rem, 2.2vw, 1.65rem);
+  }
+}
+
+/* Compact legal heroes — keep inverse type, tighter title scale */
+.legal-hero.legal-hero--compact .legal-hero__title {
+  font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+}
+
+.legal-hero.legal-hero--compact .legal-hero__subtitle {
+  max-width: 36rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+}
+
+.contact-hero {
+  /* No CTA row — bronze rule lives inside hero bottom (contact-page-pass.css) */
+  padding-block-end: clamp(0.65rem, 1.5vw, 0.85rem);
+}

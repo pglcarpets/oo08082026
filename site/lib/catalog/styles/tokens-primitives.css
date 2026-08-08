@@ -1,0 +1,10 @@
+/* tokens-primitives.css */
+:root {
+  --block-primitive-white: var(--color-white-50);
+  --block-primitive-black: var(--color-pure-black);
+  --block-primitive-slate-200: var(--text-inverse-body);
+  --block-primitive-slate-400: var(--text-inverse-subtle);
+  --block-primitive-slate-800: var(--text-body);
+  --block-primitive-blue-500: #3b82f6;
+  --block-primitive-lime-600: #65a30d;
+}

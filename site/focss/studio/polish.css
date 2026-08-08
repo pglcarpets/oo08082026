@@ -1,0 +1,289 @@
+.oostudio-root .context-menu {
+  position: fixed;
+  z-index: 200;
+  min-width: 180px;
+  background: var(--color-white-50);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 4px;
+  box-shadow: var(--shadow-context-menu);
+  font-size: 12px;
+  user-select: none;
+  animation: context-menu-in 140ms ease-out;
+  transform-origin: top left;
+}
+@keyframes context-menu-in {
+  from { transform: scale(0.96) translateY(-4px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+.oostudio-root .context-menu__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  color: var(--text-body);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 120ms, color 120ms;
+}
+.oostudio-root .context-menu__item:hover:not(:disabled) {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+.oostudio-root .context-menu__item:active:not(:disabled) {
+  background: var(--color-primary-soft);
+}
+.oostudio-root .context-menu__item:disabled {
+  color: var(--text-subtle);
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+.oostudio-root .context-menu__label { flex: 1; }
+.oostudio-root .context-menu__shortcut {
+  color: var(--text-subtle);
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  font-size: 10px;
+  letter-spacing: 0.02em;
+}
+.oostudio-root .context-menu__sep {
+  height: 1px;
+  margin: 4px 4px;
+  background: var(--border-soft);
+}
+
+.oostudio-root .viewport-controls {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: inline-flex;
+  padding: 3px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-white-50) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  gap: 1px;
+  z-index: 6;
+}
+.oostudio-root .vp-btn {
+  padding: 5px 9px;
+  border-radius: 7px;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  min-width: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+}
+.oostudio-root .vp-btn:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.oostudio-root .vp-btn[data-active="true"] {
+  background: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+.oostudio-root .vp-btn--wide { min-width: 50px; font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); }
+.oostudio-root .vp-sep { width: 1px; margin: 4px 3px; background: var(--border-soft); }
+
+.oostudio-root .ruler {
+  position: absolute;
+  background: var(--color-white-150);
+  z-index: 3;
+  pointer-events: none;
+  color: var(--text-subtle);
+}
+.oostudio-root .ruler--h {
+  top: 0;
+  left: 22px;
+  right: 0;
+  height: 22px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.oostudio-root .ruler--v {
+  left: 0;
+  top: 22px;
+  bottom: 0;
+  width: 22px;
+  border-right: 1px solid var(--border-soft);
+}
+.oostudio-root .ruler-corner,
+.oostudio-root .ruler__corner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--color-white-150);
+  border-right: 1px solid var(--border-soft);
+  border-bottom: 1px solid var(--border-soft);
+  z-index: 4;
+}
+
+.oostudio-root .canvas-stage[data-rulers="true"] .canvas-stage__inner { top: 22px; left: 22px; }
+.oostudio-root .canvas-stage[data-rulers="true"] .canvas-overlay { top: 30px; }
+.oostudio-root .canvas-stage[data-rulers="true"] .canvas-info { bottom: 12px; left: 32px; }
+
+.oostudio-root .side-panel[data-collapsed="true"] { width: 44px !important; }
+/* Studio dock: no leftover strip when panels are closed / collapsed — reopen via overlay tabs. */
+.oostudio-root .side-panel--dock[data-collapsed="true"] {
+  width: 0 !important;
+  min-width: 0 !important;
+  border: none !important;
+  overflow: hidden;
+  padding: 0 !important;
+  pointer-events: none;
+}
+.oostudio-root .side-panel[data-collapsed="true"] .side-panel__section { display: none; }
+.oostudio-root .side-panel[data-collapsed="true"] .side-panel__collapse-bar { justify-content: center; }
+.oostudio-root .side-panel__collapse-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+}
+.oostudio-root .side-panel__collapse-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.oostudio-root .side-panel__collapse-btn:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+.oostudio-root .side-panel__mode {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.oostudio-root .side-panel {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.oostudio-root .side-panel__resize {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  z-index: 50;
+  cursor: col-resize;
+  touch-action: none;
+  background: transparent;
+}
+
+.oostudio-root .side-panel__resize[data-edge="end"] {
+  right: -4px;
+}
+
+.oostudio-root .side-panel__resize[data-edge="start"] {
+  left: -4px;
+}
+
+.oostudio-root .side-panel__resize:hover,
+.oostudio-root .side-panel__resize[data-active="true"] {
+  background: color-mix(in srgb, var(--color-obb-600) 45%, transparent);
+}
+
+.oostudio-root .side-panel[data-collapsed="true"] .side-panel__resize {
+  display: none;
+}
+
+.oostudio-root .canvas-stage__hint {
+  position: absolute;
+  bottom: 48px;
+  right: 12px;
+  padding: 4px 8px;
+  font-size: 10px;
+  color: var(--text-subtle);
+  background: color-mix(in srgb, var(--color-white-50) 90%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: 6px;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  z-index: 3;
+  letter-spacing: 0.02em;
+}
+
+.oostudio-root .canvas-info {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 12px;
+  background: color-mix(in srgb, var(--color-white-50) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  font-size: 11px;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-soft);
+  z-index: 5;
+}
+.oostudio-root .canvas-info strong {
+  color: var(--text-strong);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.oostudio-root .canvas-info__group { display: inline-flex; gap: 4px; align-items: baseline; }
+.oostudio-root .canvas-info__group span {
+  color: var(--text-subtle);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.oostudio-root .overlay-sep { width: 1px; margin: 5px 2px; background: var(--border-soft); }
+
+.oostudio-root .panel-toggles {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.oostudio-root .canvas-overlay { max-width: calc(100% - 24px); flex-wrap: wrap; }
+
+.oostudio-root .canvas-overlay__grip {
+  width: 6px;
+  align-self: stretch;
+  min-height: 22px;
+  margin: 4px 0 4px 2px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  cursor: grab;
+  touch-action: none;
+  background: color-mix(in srgb, var(--text-subtle) 30%, transparent);
+}
+
+.oostudio-root .canvas-overlay__grip:hover {
+  background: color-mix(in srgb, var(--color-primary) 35%, transparent);
+}
+
+.oostudio-root .canvas-overlay[data-dragging="true"] .canvas-overlay__grip {
+  cursor: grabbing;
+  background: color-mix(in srgb, var(--color-primary) 45%, transparent);
+}

@@ -1,0 +1,31 @@
+{
+  "version": "7.0",
+  "objects": [
+    {
+      "type": "line",
+      "left": 150,
+      "top": 150,
+      "x1": 0,
+      "y1": 0,
+      "x2": 200,
+      "y2": 0,
+      "stroke": "#1f2937",
+      "strokeWidth": 2,
+      "originX": "center",
+      "originY": "center",
+      "fill": "",
+      "name": "WALL:1718963400000"
+    },
+    {
+      "type": "rect",
+      "left": 100,
+      "top": 100,
+      "width": 400,
+      "height": 300,
+      "stroke": "#9ca3af",
+      "strokeWidth": 1,
+      "fill": "rgba(0,0,0,0)",
+      "name": "ROOM"
+    }
+  ]
+}

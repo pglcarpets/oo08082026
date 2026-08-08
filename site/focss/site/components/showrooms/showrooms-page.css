@@ -1,0 +1,117 @@
+/* /showrooms — editorial hero, bronze punctuation, visit rows, dark CTA */
+@import "../shared/editorial-hero.css";
+
+.showrooms-content {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+}
+
+@media (min-width: 56rem) {
+  .showrooms-content {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+}
+
+.showrooms-visit-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.showrooms-visit-row {
+  display: flex;
+  gap: 1rem;
+  padding-block: clamp(1rem, 2vw, 1.25rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.showrooms-visit-row:last-child {
+  border-block-end: 0;
+}
+
+.showrooms-visit-row__icon {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-top: 0.2rem;
+  color: var(--color-bronze-400);
+}
+
+.showrooms-visit-row__title {
+  margin: 0;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.showrooms-visit-row__detail {
+  margin: 0.25rem 0 0;
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.showrooms-highlights {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.showrooms-highlight {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: clamp(1.1rem, 2.2vw, 1.5rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.showrooms-highlight:last-child {
+  border-block-end: 0;
+}
+
+@media (min-width: 48rem) {
+  .showrooms-highlight {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr);
+    gap: clamp(0.75rem, 2.5vw, 2rem);
+    align-items: baseline;
+  }
+}
+
+.showrooms-highlight__title {
+  margin: 0;
+}
+
+.showrooms-highlight__detail {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+/* Subtle still drift — replaces removed Ken Burns loop; ambient layer keeps depth. */
+.showrooms-hero__img {
+  animation: showrooms-hero-still-drift 22s ease-in-out infinite alternate;
+  transform-origin: 52% 38%;
+}
+
+@keyframes showrooms-hero-still-drift {
+  from {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: scale(1.055) translate3d(-1.25%, 0.5%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-showrooms-hero-reveal],
+  [data-showrooms-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .showrooms-hero__img {
+    animation: none;
+  }
+}

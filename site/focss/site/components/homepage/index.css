@@ -1,0 +1,17 @@
+/* Homepage section & interaction styles (canonical).
+ * Contact band/teaser load once via site/components/index.css — do not re-import here.
+ */
+
+@import "./home-base.css";
+@import "./home-type-fallback.css";
+@import "./home-layout-fallback.css";
+@import "./home-sections.css";
+@import "./home-extras.css";
+@import "./planner-hero-demo.css";
+@import "./home-projects.css";
+@import "./home-showcase-shared.css";
+@import "./home-showcase-carousel.css";
+@import "./home-marketing-interactions.css";
+@import "./soft-bands.css";
+@import "./home-premium-pass.css";
+@import "./home-mobile.css";

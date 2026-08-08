@@ -1,0 +1,18 @@
+/*
+ * OO Planner — self-contained.
+ * Needs global palette (@theme raw colors) only; own semantic/layout/document.
+ * Does not load marketing base (type, containers, animations) or admin.
+ */
+@import "tailwindcss";
+@import "../base/tokens/palette.css";
+@import "./base/palette.css";
+@import "./base/semantic.css";
+@import "./base/layout.css";
+@import "./base/document.css";
+@import "./chrome.css";
+@import "./controls.css";
+@import "./polish.css";
+@import "./workspace-shell.css";
+@import "./workspace.css";
+/* After workspace so OO tokens win over dockview-react CSS imported from TSX */
+@import "./dock.css";

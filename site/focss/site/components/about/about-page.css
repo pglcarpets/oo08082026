@@ -1,0 +1,214 @@
+/* /about — editorial craft story, bronze punctuation, asymmetric rhythm */
+@import "../shared/editorial-hero.css";
+
+/* Hero title — locked route display scale (home-hero-title-route); layout only here */
+.about-hero {
+  padding-block-end: clamp(0.8rem, 1.9vw, 1.2rem);
+}
+
+.about-hero__title {
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Story — asymmetric editorial */
+.about-story {
+  display: grid;
+  gap: clamp(1.5rem, 3.2vw, 2.4rem);
+  align-items: start;
+}
+
+@media (min-width: 56rem) {
+  .about-story {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    gap: clamp(1.65rem, 4vw, 3rem);
+    align-items: center;
+  }
+
+  .about-story__copy {
+    padding-block: clamp(0.25rem, 1.5vw, 1.25rem);
+    padding-inline-start: clamp(0rem, 2vw, 1.5rem);
+  }
+}
+
+.about-story__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  max-height: 36rem;
+  border-radius: 1rem;
+  background: var(--surface-muted);
+}
+
+@media (min-width: 56rem) {
+  .about-story__media {
+    aspect-ratio: 5 / 6;
+    margin-inline-start: clamp(0rem, 3vw, 2rem);
+  }
+}
+
+.about-story__media > span:has(> img),
+.about-story__media > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+}
+
+.about-story__img {
+  object-fit: cover;
+  object-position: 58% 42%;
+}
+
+.about-story__lead {
+  margin: 0.75rem 0 0;
+  max-width: 34rem;
+  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* Bronze craft strip — punctuation band between white story and pillars */
+.about-craft-strip {
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, transparent);
+  padding-block: clamp(1.35rem, 2.8vw, 2.25rem);
+  background: color-mix(in srgb, var(--color-bronze-300) 9%, var(--color-white-50));
+}
+
+.about-cta-ink {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.about-cta-ink__inner {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2rem);
+  align-items: center;
+}
+
+@media (min-width: 48rem) {
+  .about-cta-ink__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(2rem, 4vw, 3rem);
+  }
+}
+
+.about-cta-ink__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.about-craft-quote {
+  margin: 0;
+  max-width: 46rem;
+}
+
+.about-craft-quote__text {
+  margin: 0;
+}
+
+.about-craft-quote__rule {
+  display: block;
+  width: 3.5rem;
+  height: 2px;
+  margin-block-end: 1.25rem;
+  background: var(--color-bronze-400);
+}
+
+.about-craft-quote__attribution {
+  margin: 1.25rem 0 0;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* Pillars — editorial rows, not centered card grid */
+.about-pillars {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.about-pillar {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.about-pillar:last-child {
+  border-block-end: 0;
+}
+
+@media (min-width: 48rem) {
+  .about-pillar {
+    grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+  }
+}
+
+.about-pillar__title {
+  margin: 0;
+}
+
+.about-pillar__detail {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+/* Process — restrained sequence */
+.about-process {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.about-process__steps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.about-process__step {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: clamp(1rem, 2vw, 1.35rem);
+  padding-inline-start: clamp(1rem, 2.5vw, 1.5rem);
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+}
+
+.about-process__step + .about-process__step {
+  margin-block-start: 0.25rem;
+}
+
+.about-process__step-title {
+  margin: 0;
+  font-size: var(--type-card-title-size);
+  line-height: 1.2;
+}
+
+.about-process__step-detail {
+  margin: 0;
+  max-width: 38rem;
+  font-size: var(--type-body-lg-size);
+  color: var(--text-body);
+  line-height: var(--type-leading-copy);
+}
+
+@media (min-width: 48rem) {
+  .about-process {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(1.65rem, 4vw, 3rem);
+  }
+
+  .about-process__steps {
+    padding-block-start: 0.35rem;
+  }
+}

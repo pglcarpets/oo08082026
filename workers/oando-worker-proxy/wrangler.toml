@@ -1,0 +1,12 @@
+name = "oando-worker-proxy"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "ASSET_BUCKET"
+bucket_name = "oando-asset-cdn"
+
+# Environment variables
+[vars]
+VERCEL_ORIGIN = "https://oostudiooplanner.vercel.app"

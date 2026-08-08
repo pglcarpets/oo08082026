@@ -1,0 +1,29 @@
+/*
+ * Admin semantic overrides — scoped to .shell-admin-layout only.
+ * Paper stack uses base palette --color-ocean-boat-blue-50.
+ * Never set tokens on body (SPA nav leak).
+ */
+.shell-admin-layout {
+  --surface-page: var(--color-ocean-boat-blue-50);
+  --surface-soft: var(--color-ocean-boat-blue-50);
+  --surface-muted: var(--color-ocean-boat-blue-50);
+  --surface-card: var(--color-white-50);
+  --surface-panel: var(--color-white-50);
+  --surface-panel-strong: var(--color-white-50);
+  --surface-panel-soft: var(--color-ocean-boat-blue-50);
+  --surface-hover: var(--color-white-150);
+  --surface-hover-soft: var(--color-white-200);
+  --surface-focus: var(--color-white-200);
+  --surface-relief: linear-gradient(
+    180deg,
+    var(--color-white-50) 0%,
+    var(--color-ocean-boat-blue-50) 100%
+  );
+  --surface-accent-wash: color-mix(
+    in srgb,
+    var(--color-bronze-300) 12%,
+    var(--color-ocean-boat-blue-50)
+  );
+  --border-soft: color-mix(in srgb, var(--color-white-300) 72%, var(--color-support-mist));
+  --border-muted: color-mix(in srgb, var(--color-white-400) 68%, var(--color-support-fog));
+}

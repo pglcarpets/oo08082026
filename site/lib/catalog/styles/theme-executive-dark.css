@@ -1,0 +1,32 @@
+/* theme-executive-dark.css */
+@import "./tokens-wood.css";
+@import "./tokens-metal.css";
+@import "./tokens-fabric.css";
+@import "./tokens-lighting.css";
+@import "./tokens-primitives.css";
+
+:root {
+  /* Workstation Semantic Mapping (Dark Theme) */
+  --block-theme-ws-surface-base: var(--block-wood-walnut-base);
+  --block-theme-ws-surface-grain: var(--block-wood-walnut-grain);
+  --block-theme-ws-edge-banding: var(--block-wood-walnut-edge);
+  --block-theme-ws-leg-metal: var(--block-metal-powder-black);
+  --block-theme-ws-panel-fabric: var(--block-fabric-weave-navy);
+  --block-theme-ws-bevel-highlight: var(--block-light-specular-sharp);
+  --block-theme-ws-ao-shadow: var(--block-light-ao-hard);
+
+  /* Soft Seating Semantic Mapping (Dark Theme) */
+  --block-theme-sofa-cushion-base: var(--block-fabric-leather-black);
+  --block-theme-sofa-cushion-shadow: var(--block-light-ao-hard);
+  --block-theme-sofa-seam-thread: var(--block-fabric-leather-tan);
+  --block-theme-sofa-leg-metal: var(--block-metal-powder-charcoal);
+  
+  /* Chairs (Task) */
+  --block-theme-chair-mesh: var(--block-fabric-mesh-grey);
+  --block-theme-chair-frame: var(--block-metal-powder-charcoal);
+  --block-theme-chair-base-metal: var(--block-metal-powder-black);
+  --block-theme-chair-caster: var(--block-metal-powder-charcoal);
+
+  /* Global Shadows */
+  --block-theme-drop-shadow: var(--block-shadow-color-heavy);
+}

@@ -1,0 +1,6 @@
+:root {
+  /* Storage (Pedestals / Cabinets) */
+  --block-storage: var(--block-theme-body);
+  --block-storage-grad-start: var(--block-theme-body-light);
+  --block-storage-stroke: var(--block-theme-body-dark);
+}

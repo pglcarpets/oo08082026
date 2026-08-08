@@ -1,0 +1,194 @@
+/* Studio workspace — zone-specific UI only (shell in ooshared/workspace-shell.css) */
+
+.oostudio-root .side-panel__section-tight { padding: 12px 14px; }
+
+.oostudio-root .dock-panel-toggles {
+  display: inline-flex;
+  align-items: center;
+  gap: 1px;
+  flex-wrap: nowrap;
+}
+
+/* Align toolbar — top-left of canvas so it does not cover inspector dock tabs */
+.oostudio-root .align-toolbar {
+  position: absolute;
+  top: 72px;
+  left: 12px;
+  right: auto;
+  display: none;
+  padding: 3px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--color-white-50) 94%, transparent);
+  backdrop-filter: blur(6px);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  z-index: 4;
+  gap: 1px;
+  max-width: calc(100% - 24px);
+  flex-wrap: wrap;
+}
+.oostudio-root .align-toolbar[data-visible="true"] { display: inline-flex; }
+.oostudio-root .align-toolbar__sep {
+  width: 1px;
+  margin: 5px 3px;
+  background: var(--border-soft);
+}
+
+/* Color palette */
+.oostudio-root .color-palette { display: flex; flex-direction: column; gap: 8px; }
+.oostudio-root .color-palette__current { display: flex; align-items: center; gap: 6px; }
+.oostudio-root .color-palette__preview { width: 28px; height: 28px; border-radius: 6px; border: 1px solid var(--border-soft); background-clip: padding-box; }
+.oostudio-root .color-palette__picker { width: 28px; height: 28px; padding: 0; border: 1px solid var(--border-soft); border-radius: 6px; cursor: pointer; background: transparent; }
+.oostudio-root .color-palette__picker::-webkit-color-swatch { border-radius: 4px; border: none; }
+.oostudio-root .color-palette__picker::-moz-color-swatch { border-radius: 4px; border: none; }
+.oostudio-root .color-palette__swatches { display: grid; grid-template-columns: repeat(9, 1fr); gap: 4px; }
+.oostudio-root .color-palette__swatch { width: 100%; aspect-ratio: 1; border-radius: 6px; border: 1px solid var(--border-soft); cursor: pointer; padding: 0; transition: transform 100ms; background-clip: padding-box; }
+.oostudio-root .color-palette__swatch:hover { transform: scale(1.08); }
+.oostudio-root .color-palette__swatch[data-active="true"] { border: 2px solid var(--color-primary); }
+
+.oostudio-root .color-palette__hue-wrap { display: flex; flex-direction: column; gap: 4px; width: 100%; }
+.oostudio-root .color-palette__hue-label { font-size: 11px; font-weight: 500; color: var(--text-muted); }
+.oostudio-root .color-palette__hue {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--gradient-hue-spectrum);
+  cursor: pointer;
+}
+.oostudio-root .color-palette__hue:disabled { opacity: 0.45; cursor: not-allowed; }
+.oostudio-root .color-palette__hue::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white-50);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  background: currentColor;
+}
+.oostudio-root .color-palette__hue::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--color-white-50);
+  box-shadow: 0 0 0 1px var(--border-soft);
+  background: currentColor;
+}
+
+/* Floating panel */
+.oostudio-root .floating-panel {
+  position: absolute;
+  top: 56px;
+  left: 12px;
+  z-index: 6;
+  width: min(320px, calc(100% - 24px));
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-white-50) 96%, transparent);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-lift);
+  touch-action: none;
+}
+
+.oostudio-root .floating-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px 8px 12px;
+  border-bottom: 1px solid var(--border-soft);
+  cursor: grab;
+  user-select: none;
+}
+
+.oostudio-root .floating-panel[data-dragging="true"] .floating-panel__header { cursor: grabbing; }
+
+.oostudio-root .floating-panel__title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.oostudio-root .floating-panel__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.oostudio-root .floating-panel__close:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.oostudio-root .floating-panel__body {
+  max-height: min(60vh, 480px);
+  overflow: auto;
+}
+
+.oostudio-root .floating-panel--color {
+  top: 48px;
+  left: 16px;
+  width: min(280px, calc(100% - 32px));
+}
+
+.oostudio-root .floating-panel--color .floating-panel__title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--text-strong);
+}
+
+.oostudio-root .floating-panel--color .floating-panel__body {
+  max-height: none;
+}
+
+.oostudio-root .floating-panel--ai {
+  top: 48px;
+  left: 16px;
+}
+
+/* AI panel */
+.oostudio-root .ai-panel { display: flex; flex-direction: column; gap: 10px; }
+.oostudio-root .ai-prompt { font-family: var(--font-sans); resize: vertical; min-height: 66px; }
+.oostudio-root .ai-examples { display: flex; flex-wrap: wrap; gap: 4px; }
+.oostudio-root .ai-examples .chip { font-size: 10px; padding: 3px 8px; }
+.oostudio-root .ai-hint { font-size: 11px; color: var(--text-subtle); font-style: italic; }
+.oostudio-root .spin { display: inline-flex; align-items: center; gap: 6px; }
+.oostudio-root .spin::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid color-mix(in srgb, var(--color-white-50) 35%, transparent);
+  border-top-color: var(--color-white-50);
+  animation: spin 700ms linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Panel tabs */
+.oostudio-root .panel-tabs { display: inline-flex; padding: 3px; border-radius: 10px; background: var(--surface-muted); border: 1px solid var(--border-soft); gap: 1px; margin-bottom: 12px; width: 100%; }
+.oostudio-root .panel-tabs button { flex: 1; padding: 6px 8px; border-radius: 7px; font-size: 11px; font-weight: 500; color: var(--text-muted); background: transparent; border: none; cursor: pointer; letter-spacing: 0.02em; }
+.oostudio-root .panel-tabs button[data-active="true"] { background: var(--surface-panel); color: var(--text-strong); box-shadow: var(--shadow-segment-active); }
+
+.oostudio-root .opacity-slider { width: 100%; }
+
+/* Studio shell column: top toolbar above the workspace row. */
+.oostudio-root .studio-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}

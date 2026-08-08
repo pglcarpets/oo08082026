@@ -1,0 +1,28 @@
+{
+  "familySlug": "linear-desk-1200",
+  "bookId": "pb-linear-2026-q3",
+  "activeVersionId": null,
+  "versions": [
+    {
+      "versionId": "v1",
+      "effectiveFrom": "2026-07-01",
+      "currency": "INR",
+      "status": "rolled_back",
+      "rules": [
+        {
+          "sku": "OFL-DSK-LIN-1200",
+          "unitPriceMinor": 45000000,
+          "currency": "INR",
+          "uom": "each"
+        },
+        {
+          "sku": "OFL-TBL-001",
+          "unitPriceMinor": 1250000,
+          "currency": "INR",
+          "uom": "each",
+          "adjustmentBps": -500
+        }
+      ]
+    }
+  ]
+}

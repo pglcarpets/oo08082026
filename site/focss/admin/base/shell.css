@@ -1,0 +1,634 @@
+/* Admin app shell owns the viewport Ã¢â‚¬â€ do not let body scroll behind it. */
+html:has(.shell-admin-layout),
+html:has(.shell-admin-layout) body {
+  height: 100% !important;
+  max-height: 100dvh !important;
+  overflow: hidden !important;
+}
+
+/* Fill viewport when NuqsAdapter / other providers wrap the shell. */
+html:has(.shell-admin-layout) body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+}
+
+html:has(.shell-admin-layout) body .shell-admin-layout {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+}
+
+.shell-admin-layout {
+  /* Match public site header band (h-16) so logo scale fits the same way */
+  --admin-header-height: 4rem; /* 64px = Header h-16 */
+  --admin-topbar-control-h: 2.5rem;
+  --admin-topbar-pad-block: 0;
+  --admin-topbar-pad-inline: var(--space-4, 1rem);
+  --admin-topbar-gap: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+  /* FOCSS type floors */
+  --shell-admin-label-size: var(--type-label-size);
+  --shell-admin-hint-size: var(--type-label-size);
+  --shell-admin-link-size: var(--type-small-size);
+  /* Status tones Ã¢â‚¬â€ CRM, queries, publish (semantic only; not marketing palette). */
+  --admin-status-success: var(--color-success);
+  /* Darker success ink for small uppercase badges on ecru (price-books AA). */
+  --admin-status-success-ink: var(--color-ocean-boat-blue-700);
+  --admin-status-warn: var(--color-warning);
+  /* Darker ink for uppercase warn badges on light page surface (WCAG AA). */
+  --admin-status-warn-ink: var(--color-bronze-600);
+  --admin-status-danger: var(--color-error-red);
+  --admin-status-info: var(--color-primary);
+  /* App shell: one viewport. Header row + frame row; main pane scrolls inside frame. */
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  width: 100%;
+  height: 100dvh;
+  max-height: 100dvh;
+  min-height: 0;
+  overflow: hidden;
+  /*
+   * Homepage scheme-page: cool white + light ocean mist (not ecru).
+   * Exact paint from base/schemes.css @utility scheme-page.
+   */
+  background: linear-gradient(
+    180deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 22%, var(--color-white-100)) 55%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 28%, var(--color-white-150)) 100%
+  );
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  transition: color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard);
+}
+
+/* Top chrome — flex child (not sticky: shell-admin-layout is overflow:hidden). */
+.shell-admin-header {
+  position: relative;
+  top: auto;
+  grid-row: 1;
+  flex-shrink: 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--surface-panel) 94%, var(--color-white-100));
+  box-shadow: none;
+}
+
+.shell-admin-header--topbar {
+  background: color-mix(in srgb, var(--surface-panel) 90%, var(--color-white-100));
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* 3-column grid Ã¢â‚¬â€ brand | center packs | actions (same package as planner pw-topbar). */
+.shell-admin-topbar {
+  display: grid;
+  align-items: center;
+  gap: var(--admin-topbar-gap);
+  height: var(--admin-header-height);
+  min-height: var(--admin-header-height);
+  padding: var(--admin-topbar-pad-block) var(--admin-topbar-pad-inline);
+  box-sizing: border-box;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  width: 100%;
+}
+
+.shell-admin-topbar__brand {
+  grid-column: 1;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 0.5rem);
+  min-width: 0;
+}
+
+.shell-admin-topbar__center {
+  grid-column: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2, 0.5rem);
+  min-width: 0;
+}
+
+.shell-admin-topbar__actions {
+  grid-column: 3;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2, 0.5rem);
+  min-width: 0;
+  flex-wrap: nowrap;
+}
+
+/* Phone: brand+actions row, context pack on second row (Planner phone chrome).
+   47.999rem keeps this pack under the same cut as mobile-toggle hide (min-width: 48rem). */
+@media (max-width: 47.999rem) {
+  .shell-admin-layout {
+    /* Measured ~88px two-row topbar — drawer/backdrop inset must match (not 4rem). */
+    --admin-header-height: 5.5rem;
+  }
+
+  .shell-admin-topbar {
+    --admin-header-height: auto;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "brand actions"
+      "center center";
+    row-gap: 0.35rem;
+    padding-block: 0.45rem;
+  }
+
+  .shell-admin-topbar__brand {
+    grid-area: brand;
+  }
+
+  .shell-admin-topbar__center {
+    grid-area: center;
+    justify-content: flex-start;
+  }
+
+  .shell-admin-topbar__actions {
+    grid-area: actions;
+  }
+}
+
+/* Legacy bar hooks (pages / older CSS) still resolve. */
+.shell-admin-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-inline: auto;
+  padding: 0.75rem 1.5rem;
+}
+
+.shell-admin-bar--brand {
+  max-width: none;
+  padding: 0.9rem clamp(1rem, 2.5vw, 1.75rem);
+}
+
+.shell-admin-bar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-left: auto;
+}
+
+.shell-admin-bar__group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.shell-admin-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  min-height: 0;
+  text-decoration: none;
+  color: var(--text-heading, var(--text-body));
+}
+
+.shell-admin-brand__mark {
+  border-radius: 0.45rem;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Height comes from Tailwind on the component (same as public Header). */
+.shell-admin-brand__wordmark {
+  flex-shrink: 0;
+  max-height: 100%;
+}
+
+/*
+ * Console chip Ã¢â‚¬â€ soft white pill beside logo (not competing with wordmark size).
+ */
+.shell-admin-brand__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  padding: 0.25rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  text-transform: none;
+  color: var(--text-strong);
+  white-space: nowrap;
+  box-shadow: none;
+}
+
+/*
+ * Route title in topbar: plain display type, no pill chrome.
+ * (Giant chip + hero type looked like a broken button.)
+ */
+.shell-admin-context {
+  display: inline-flex;
+  margin: 0;
+  flex-direction: row;
+  align-items: center;
+  min-width: 0;
+  min-height: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.shell-admin-context__label {
+  display: none;
+}
+
+.shell-admin-context__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  font-weight: var(--font-weight-display-light);
+  letter-spacing: var(--type-letter-title);
+  line-height: 1.15;
+  color: var(--text-heading, var(--text-body));
+  font-kerning: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(22rem, 42vw);
+}
+
+/* Secondary: quiet text action (homepage outline, topbar density) */
+.shell-admin-header-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: var(--admin-topbar-control-h);
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid transparent;
+  background: transparent;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: var(--type-letter-nav, 0.01em);
+  line-height: 1.3;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-admin-header-link:hover {
+  color: var(--text-strong);
+  background: var(--surface-hover);
+}
+
+/* Primary: solid homepage midnight CTA, compact for topbar */
+.shell-admin-header-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: var(--radius-pill);
+  border: 0.0625rem solid color-mix(in srgb, var(--color-primary) 82%, white);
+  background: var(--color-primary);
+  min-height: var(--admin-topbar-control-h);
+  padding: 0.35rem 1.1rem;
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: var(--type-letter-cta, 0.04em);
+  line-height: 1.3;
+  color: var(--text-inverse);
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-admin-header-cta:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  color: var(--text-inverse);
+}
+
+.shell-admin-header-cta:active {
+  transform: translateY(1px);
+}
+
+.shell-admin-header-link:focus-visible,
+.shell-admin-header-cta:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+/* Unlayered display contract (same pattern as site-header__hamburger in
+   nav.css): Tailwind md:hidden is layered and loses to this sheet's
+   display:inline-flex Ã¢â‚¬â€ hide must be unlayered at the shell breakpoint. */
+.shell-admin-mobile-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.75rem; /* Ã¢â€°Â¥44px */
+  min-height: 2.75rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-pill);
+  background: var(--surface-soft);
+  color: var(--text-heading, var(--text-body));
+  cursor: pointer;
+}
+
+.shell-admin-mobile-toggle:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+/*
+ * Hide mobile chrome at desktop shell width.
+ * Use hard 48rem (768px) Ã¢â‚¬â€ same as .shell-admin-topbar phone pack above Ã¢â‚¬â€
+ * not theme(--breakpoint-md): theme() in this imported sheet can fail to
+ * resolve, leaving the media query dead so unlayered inline-flex wins forever.
+ */
+@media (min-width: 48rem) {
+  .shell-admin-mobile-toggle {
+    display: none;
+  }
+
+  .shell-admin-sidebar-backdrop {
+    display: none;
+  }
+}
+
+.shell-admin-frame {
+  display: flex;
+  grid-row: 2;
+  min-height: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.shell-admin-sidebar {
+  display: flex;
+  width: 16.5rem;
+  flex-shrink: 0;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--border-soft);
+  background: linear-gradient(
+    180deg,
+    var(--surface-panel) 0%,
+    var(--surface-soft) 100%
+  );
+  padding: 0;
+}
+
+.shell-admin-sidebar--open {
+  display: flex;
+}
+
+.shell-admin-sidebar__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 0.65rem 0.55rem 0.5rem;
+  scrollbar-width: thin;
+}
+
+/* Phone drawer Ã¢â‚¬â€ hard 48rem to stay locked with mobile-toggle hide above. */
+@media (max-width: 47.999rem) {
+  .shell-admin-sidebar {
+    position: fixed;
+    inset: var(--admin-header-height) auto 0 0;
+    z-index: 45;
+    display: none;
+    width: min(19rem, 90vw);
+    box-shadow: var(--shadow-float);
+  }
+
+  .shell-admin-sidebar--open {
+    display: flex;
+  }
+
+  .shell-admin-nav-link {
+    min-height: 2.75rem; /* Ã¢â€°Â¥44px phone taps */
+  }
+}
+
+.shell-admin-sidebar-backdrop {
+  position: fixed;
+  inset: var(--admin-header-height) 0 0 0;
+  z-index: 40;
+  border: none;
+  background: var(--shadow-tint-pdp-30);
+  backdrop-filter: blur(0.1875rem);
+}
+
+.shell-admin-nav-group + .shell-admin-nav-group {
+  margin-top: 0.2rem;
+  padding-top: 0.2rem;
+  border-top: 1px solid color-mix(in srgb, var(--border-soft) 70%, transparent);
+}
+
+.shell-admin-nav-group__toggle {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0.45rem 0.55rem 0.3rem;
+  border: none;
+  border-radius: 0.45rem;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  text-align: start;
+}
+
+.shell-admin-nav-group__toggle:hover {
+  background: var(--surface-soft);
+}
+
+.shell-admin-nav-group__toggle:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+.shell-admin-nav-group__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: var(--type-letter-label-wide, 0.08em);
+  line-height: var(--type-leading-label);
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.shell-admin-nav-group--active .shell-admin-nav-group__title {
+  color: var(--color-primary);
+}
+
+.shell-admin-nav-group__chevron {
+  font-size: var(--shell-admin-label-size, 0.75rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text-subtle);
+}
+
+.shell-admin-nav-group__items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding-bottom: 0.25rem;
+}
+
+.shell-admin-nav-link__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-primary) 8%, var(--surface-panel));
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.shell-admin-nav-link--active .shell-admin-nav-link__icon {
+  background: color-mix(in srgb, var(--color-primary) 22%, var(--color-white-50));
+}
+
+.shell-admin-nav-link__text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: 0.05rem;
+}
+
+.shell-admin-nav-link__label {
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.shell-admin-nav-link__hint {
+  display: none;
+  font-size: var(--shell-admin-hint-size, 0.75rem);
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media (min-width: 80rem) {
+  .shell-admin-sidebar {
+    width: 17.5rem;
+  }
+
+  .shell-admin-nav-link__hint {
+    display: block;
+  }
+}
+
+.shell-admin-sidebar__footer {
+  flex-shrink: 0;
+  padding: 0.75rem 0.85rem 0.85rem;
+  border-top: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--surface-page) 92%, var(--color-white-50));
+}
+
+.shell-admin-sidebar__footnote {
+  margin: 0;
+  font-size: var(--shell-admin-label-size, 0.75rem);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.shell-admin-sidebar__current {
+  margin: 0.25rem 0 0;
+  font-size: var(--shell-admin-link-size, 0.8125rem);
+  font-weight: 600;
+  color: var(--text-body);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* typ-overline in admin shell only Ã¢â‚¬â€ enforce same 12px floor */
+.shell-admin-layout .typ-overline,
+[data-admin-layout] .typ-overline {
+  font-size: var(--shell-admin-label-size, 0.75rem);
+}
+
+[data-admin-layout] .shell-admin-sidebar {
+  background: var(--surface-page);
+  border-color: var(--border-soft);
+}
+
+.shell-admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.shell-admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: var(--control-height-xs, 2.25rem);
+  border-radius: var(--radius-pill);
+  padding: 0.45rem 0.75rem;
+  font-family: var(--font-sans);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: var(--type-letter-nav, 0.01em);
+  line-height: var(--type-leading-nav);
+  text-decoration: none;
+  transition: color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard),
+              transform var(--motion-fast) var(--ease-standard);
+}
+
+.shell-admin-nav-link:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+[data-admin-layout] .shell-admin-nav-link {
+  color: var(--text-muted);
+}
+
+[data-admin-layout] .shell-admin-nav-link:hover {
+  background: var(--surface-soft);
+  color: var(--text-body);
+}
+
+.shell-admin-nav-link--active {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  box-shadow: inset 0.1875rem 0 0 var(--color-primary);
+}
+
+[data-admin-layout] .shell-admin-nav-link--active {
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-white-50));
+  font-weight: 700;
+}
+
+[data-admin-layout] .shell-admin-nav-link--active .shell-admin-nav-link__hint {
+  color: color-mix(in srgb, var(--color-primary) 70%, var(--text-subtle));
+}
+
+/* Admin shell Ã¢â‚¬â€ main pane / inventory scroll (split from shell.css) */
+
+@import "./shell-main.css";

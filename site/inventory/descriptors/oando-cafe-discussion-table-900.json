@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000022",
+  "slug": "oando-cafe-discussion-table-900",
+  "sku": "OANDO-CAFE-TBL-900",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 900,
+    "depthMm": 900,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 900,
+    "height": 900
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "tabletop",
+      "x": 80,
+      "y": 80,
+      "width": 740,
+      "depth": 740
+    },
+    {
+      "id": "base",
+      "x": 350,
+      "y": 350,
+      "width": 200,
+      "depth": 200
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000053,
+  "checksum": "e71fb00dcfea335f828e7990c50dc335ea4a3287625170632d70cc531e24b45b",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

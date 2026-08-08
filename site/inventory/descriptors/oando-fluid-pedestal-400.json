@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000018",
+  "slug": "oando-fluid-pedestal-400",
+  "sku": "OANDO-FLUID-PED-400",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 400,
+    "depthMm": 560,
+    "heightMm": 720
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 400,
+    "height": 560
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "body",
+      "x": 0,
+      "y": 0,
+      "width": 400,
+      "depth": 560
+    },
+    {
+      "id": "drawer-1",
+      "x": 20,
+      "y": 40,
+      "width": 360,
+      "depth": 140
+    },
+    {
+      "id": "drawer-2",
+      "x": 20,
+      "y": 200,
+      "width": 360,
+      "depth": 140
+    },
+    {
+      "id": "drawer-3",
+      "x": 20,
+      "y": 360,
+      "width": 360,
+      "depth": 140
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000040,
+  "checksum": "50d657242e08a6d8d45f9fc9d4cea793f58e769fcbefad798aca4671f8ebc6c1",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

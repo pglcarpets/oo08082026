@@ -1,0 +1,24 @@
+:root {
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-pill: 999px;
+
+  --font-display: var(--font-cisco-sans), sans-serif;
+  --font-sans: var(--font-helvetica-neue), sans-serif;
+  /* Numeric readouts: keep one typeface, stop digit jitter with tabular figures. */
+  --font-numeric: var(--font-sans);
+  --numeric-figures: tabular-nums;
+
+  --shell-topbar-h: 56px;
+  --shell-rail-w: 60px;
+  --shell-panel-w: 300px;
+  --shell-catalog-w: 320px;
+
+  /* Semantic canvas aliases (hex lives in palette.css) */
+  --canvas-bg: var(--color-white-50);
+  --canvas-selection: var(--color-obb-600);
+  --canvas-door-fill: color-mix(in srgb, var(--color-obb-300) 16%, transparent);
+}

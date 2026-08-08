@@ -1,0 +1,105 @@
+/*
+ * Shared contact teaser band (ContactTeaser).
+ * Class prefix home-contact-band is legacy; ownership is site/contact.
+ * Cool mist surfaces (ecru alternative).
+ */
+
+.home-contact-band {
+  width: 100%;
+  border-block: 1px solid var(--border-soft);
+  background: linear-gradient(
+    165deg,
+    var(--color-ecru-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 28%, var(--color-ecru-100)) 52%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-100) 16%, var(--color-ecru-100)) 100%
+  );
+  /* Vertical padding from section-y utility on the element — do not redeclare. */
+}
+
+.home-contact-band .contact-teaser__shell {
+  border: 1px solid color-mix(in srgb, var(--color-ocean-boat-blue-200) 36%, var(--border-soft));
+  border-radius: var(--radius-xl);
+  background: var(--surface-panel-strong);
+  box-shadow:
+    0 1.25rem 2.75rem -2rem color-mix(in srgb, var(--color-dark-midnight-blue-700) 24%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--color-white-50) 90%, transparent);
+  padding: var(--space-4, 1.25rem);
+  padding-inline-start: calc(var(--space-4, 1.25rem) + 0.45rem);
+  position: relative;
+  overflow: visible;
+  max-width: none;
+  width: 100%;
+}
+
+@media (width >= 48rem) {
+  .home-contact-band .contact-teaser__shell {
+    padding: var(--space-5, 1.5rem);
+    padding-inline-start: calc(var(--space-5, 1.5rem) + 0.45rem);
+  }
+}
+
+.home-contact-band .contact-teaser__shell::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.85rem;
+  inset-inline-start: 0;
+  width: 0.2rem;
+  border-radius: 0 0.25rem 0.25rem 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-bronze-400),
+    var(--color-ocean-boat-blue-500)
+  );
+  pointer-events: none;
+}
+
+.home-contact-band .contact-teaser {
+  max-width: none;
+  width: 100%;
+}
+
+.home-contact-band .contact-teaser__layout {
+  min-width: 0;
+}
+
+.home-contact-band .contact-teaser__intro,
+.home-contact-band .contact-teaser__form {
+  min-width: 0;
+}
+
+.home-contact-band .contact-teaser__form {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-card);
+  padding: var(--space-5, 1.5rem);
+  box-shadow: var(--shadow-soft);
+}
+
+.home-contact-band .contact-teaser__input {
+  border-color: var(--border-muted);
+  background: var(--color-white-50);
+  color: var(--text-body);
+  min-height: 3.125rem;
+}
+
+.home-contact-band .contact-teaser__input:focus,
+.home-contact-band .contact-teaser__input:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.home-contact-band .typ-subsection-title {
+  color: var(--text-heading);
+  line-height: 1.25;
+  overflow: visible;
+  max-width: none;
+}
+
+.home-contact-band .contact-teaser__intro .page-copy {
+  overflow: visible;
+  max-width: none;
+}
+
+.contact-teaser .typ-section {
+  margin-bottom: 0.5rem;
+}

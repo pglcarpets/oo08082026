@@ -1,0 +1,13 @@
+{
+  "extends": "../../tech-docs-generator/tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "vitest/globals"]
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+    "../../tech-docs-generator/src/**/*.ts",
+    "../../tech-docs-generator/src/**/*.tsx",
+    "../../tech-docs-generator/scripts/**/*.mjs"
+  ]
+}

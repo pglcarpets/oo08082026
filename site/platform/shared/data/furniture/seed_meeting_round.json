@@ -1,0 +1,26 @@
+{
+  "id": "seed_meeting_round",
+  "name": "Round Table 1200",
+  "category": "Tables",
+  "subcategory": "Meeting",
+  "tags": [
+    "round"
+  ],
+  "dimensions": {
+    "width_mm": 1200,
+    "depth_mm": 1200,
+    "height_mm": 750
+  },
+  "notes": null,
+  "is_custom": false,
+  "thumbnail_url": "/api/files/furniture/seed_meeting_round_top.svg",
+  "top_png_url": null,
+  "top_svg_url": "/api/files/furniture/seed_meeting_round_top.svg",
+  "front_png_url": null,
+  "side_png_url": null,
+  "top_fabric_json": null,
+  "front_fabric_json": null,
+  "side_fabric_json": null,
+  "created_at": "2026-07-30T16:58:34.140Z",
+  "updated_at": "2026-07-30T16:58:34.140Z"
+}

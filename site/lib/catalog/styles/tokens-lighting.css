@@ -1,0 +1,15 @@
+/* tokens-lighting.css */
+:root {
+  /* Ambient Occlusion (Contact Shadows) */
+  --block-light-ao-soft: var(--scrim-black-20);
+  --block-light-ao-medium: var(--scrim-black-20);
+  --block-light-ao-hard: var(--hero-btn-secondary-shadow);
+
+  /* Specular Highlights (Bevels & Glare) */
+  --block-light-specular-soft: var(--glass-white-20);
+  --block-light-specular-sharp: var(--overlay-panel-72);
+
+  /* Drop Shadows (Elevation) */
+  --block-shadow-color-light: var(--overlay-inverse-12);
+  --block-shadow-color-heavy: var(--shadow-tint-pdp-28);
+}

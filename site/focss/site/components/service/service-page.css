@@ -1,0 +1,127 @@
+/* /service — editorial hero, bronze punctuation, pillar/channel rows, dark CTA */
+@import "../shared/editorial-hero.css";
+@import "../about/about-page.css";
+
+/* Craft strip hugs hero — avoid dead air before bronze punctuation (oando-premium-motion) */
+.service-hero {
+  padding-block-end: clamp(0.75rem, 1.8vw, 1.15rem);
+}
+
+.service-pillars {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.service-pillar {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.service-pillar:last-child {
+  border-block-end: 0;
+}
+
+@media (min-width: 48rem) {
+  .service-pillar {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+  }
+}
+
+.service-pillar__title {
+  margin: 0;
+}
+
+.service-pillar__detail {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.service-channels-layout {
+  display: grid;
+  gap: clamp(1.65rem, 3.2vw, 2.5rem);
+}
+
+@media (min-width: 56rem) {
+  .service-channels-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: clamp(2rem, 4vw, 3rem);
+    align-items: start;
+  }
+}
+
+.service-channels {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.service-channel-row {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: clamp(0.95rem, 2vw, 1.25rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.service-channel-row:last-child {
+  border-block-end: 0;
+}
+
+.service-channel-row:hover .service-channel-row__value {
+  color: var(--color-bronze-500);
+}
+
+@media (min-width: 40rem) {
+  .service-channel-row {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr);
+    gap: clamp(1rem, 3vw, 2rem);
+    align-items: baseline;
+  }
+}
+
+.service-channel-row__label {
+  margin: 0;
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.service-channel-row__value {
+  margin: 0;
+  font-size: clamp(1.05rem, 2vw, 1.25rem);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.service-support-note {
+  margin: 0;
+  padding-block-start: clamp(0.5rem, 1.5vw, 1rem);
+  max-width: 34rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+.service-support-panel {
+  display: grid;
+  gap: 1rem;
+  padding-inline-start: clamp(1rem, 2.5vw, 1.5rem);
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+}
+
+.service-support-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}

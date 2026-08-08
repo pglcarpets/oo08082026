@@ -1,0 +1,82 @@
+/* Published plan-symbol inline previews — site PDP, portal catalog, planner thumbs */
+
+.plan-symbol-preview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  color: var(--color-primary);
+}
+
+.plan-symbol-preview__stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 2.5rem;
+  overflow: hidden;
+}
+
+.plan-symbol-preview__stage--loading {
+  background: color-mix(in srgb, var(--text-muted) 8%, transparent);
+  border-radius: var(--radius-sm);
+}
+
+.plan-symbol-preview__stage > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  shape-rendering: geometricPrecision;
+}
+
+.plan-symbol-preview--thumb .plan-symbol-preview__stage > svg {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.plan-symbol-preview--panel .plan-symbol-preview__stage {
+  min-height: 5rem;
+  padding: 0.5rem;
+}
+
+.plan-symbol-preview--panel .plan-symbol-preview__stage > svg {
+  width: auto;
+  height: auto;
+  max-width: min(100%, 28rem);
+  max-height: min(100%, 16rem);
+}
+
+.pdp-plan-svg-thumb.plan-symbol-preview--panel {
+  color: var(--text-strong);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--surface-soft) 90%, var(--color-bronze-150) 10%) 0%,
+      var(--surface-panel) 100%
+    );
+  border: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, var(--border-soft));
+}
+
+.pdp-plan-svg-thumb .plan-symbol-preview__stage {
+  min-height: 7.5rem;
+}
+
+.pdp-plan-symbol-block {
+  margin-block-start: var(--space-3, 0.75rem);
+  padding: var(--space-3, 0.75rem);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--surface-panel) 88%, var(--color-bronze-150) 12%);
+}
+
+.pdp-plan-symbol-block__label {
+  margin-block-end: var(--space-2, 0.5rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}

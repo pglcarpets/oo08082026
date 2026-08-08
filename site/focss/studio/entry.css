@@ -1,0 +1,13 @@
+/* OO Studio zone — product foundation (no shadcn) + this app's workspace stack. */
+@import "../base/scan.css";
+@import "../base/runtime.css";
+@import "../base/index.css";
+@import "../base/document.css";
+@import "./base/index.css";
+@import "./chrome.css";
+@import "./controls.css";
+@import "./polish.css";
+@import "./workspace-shell.css";
+@import "./workspace.css";
+/* After workspace so OO tokens win over dockview-react CSS imported from TSX */
+@import "./dock.css";

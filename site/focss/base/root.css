@@ -1,0 +1,3 @@
+/* Root layout — tokens + Tailwind for skip-link. No zone CSS, no shadcn, no document. */
+@import "./scan.css";
+@import "./index.css";

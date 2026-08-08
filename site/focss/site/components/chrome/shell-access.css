@@ -1,0 +1,108 @@
+/* Signed-out /access — split auth chrome (static visual panel, no decorative video). */
+.shell-access-page {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.shell-access-form-side {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.shell-access-back {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.shell-access-form-wrap {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .shell-access-form-wrap {
+    padding: 3rem;
+  }
+}
+
+.shell-access-form-panel {
+  width: 100%;
+  max-width: 28rem;
+}
+
+.shell-access-bronze-mark {
+  margin-bottom: 1.5rem;
+  height: 1px;
+  width: 3.5rem;
+  background: var(--color-bronze-400);
+}
+
+.shell-access-visual-side {
+  position: relative;
+  display: none;
+  width: 50%;
+  overflow: hidden;
+  border-left: 1px solid var(--border-soft);
+  background: var(--surface-soft);
+}
+
+.shell-access-visual-poster {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.34;
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .shell-access-visual-side {
+    display: block;
+  }
+}
+
+.shell-access-visual-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.2;
+  color: var(--text-muted);
+}
+
+.shell-access-visual-rule {
+  pointer-events: none;
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1;
+  height: 1px;
+  background: color-mix(in srgb, var(--color-bronze-400) 40%, transparent);
+}
+
+.shell-access-visual-copy {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 3rem;
+  color: var(--text-strong);
+}
+
+.shell-access-visual-panel {
+  max-width: 28rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--surface-panel-strong) 92%, transparent);
+  padding: 2rem;
+}

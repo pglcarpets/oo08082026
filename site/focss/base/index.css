@@ -1,0 +1,8 @@
+/* Global base — tokens, type, containers. Loaded by site/admin/planner/studio entries. */
+@import "./tokens/palette.css";
+@import "./tokens/semantic.css";
+@import "./type/typography.css";
+@import "./tokens/layout.css";
+@import "./type/type.css";
+@import "./animations.css";
+@import "./containers.css";

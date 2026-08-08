@@ -1,0 +1,197 @@
+/* Member-suite header (dashboard, portal, CRM) — matches admin/public wordmark chrome. */
+.shell-global-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  border-bottom: 0.0625rem solid var(--border-soft);
+  background: var(--surface-glass-strong);
+  -webkit-backdrop-filter: blur(0.75rem);
+  backdrop-filter: blur(12px);
+}
+
+.shell-global-nav .shell-top-accent {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.shell-global-nav__inner {
+  display: flex;
+  min-height: 4rem;
+  min-width: 0;
+  align-items: center;
+  gap: 0.75rem;
+  padding-inline: 1rem;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .shell-global-nav__inner {
+    padding-inline: 1.5rem;
+    gap: 1rem;
+  }
+}
+
+.shell-global-nav__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 0;
+  min-width: 0;
+  max-width: 100%;
+  text-decoration: none;
+  transition: opacity var(--motion-fast) var(--ease-standard);
+}
+
+.shell-global-nav__brand:hover {
+  opacity: 0.92;
+}
+
+.shell-global-nav__brand:focus-visible {
+  outline: 0.125rem solid var(--color-primary);
+  outline-offset: 0.125rem;
+  border-radius: var(--radius-sm);
+}
+
+.shell-global-nav__wordmark {
+  flex-shrink: 0;
+  max-height: 100%;
+}
+
+.shell-global-nav__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-soft);
+  background: var(--surface-panel);
+  padding: 0.25rem 0.85rem;
+  font-family: var(--font-sans);
+  font-size: var(--type-small-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.01em;
+  line-height: 1.25;
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+.shell-global-nav__menu-toggle {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background: var(--surface-panel);
+  color: var(--text-strong);
+  cursor: pointer;
+  transition:
+    background-color var(--motion-fast) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-global-nav__menu-toggle:hover {
+  background: var(--surface-hover);
+}
+
+.shell-global-nav__menu-toggle:focus-visible {
+  outline: 0.125rem solid var(--color-primary);
+  outline-offset: 0.125rem;
+}
+
+.shell-global-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.shell-global-nav__links--desktop {
+  display: none;
+  flex-shrink: 1;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.shell-global-nav__links--desktop::-webkit-scrollbar {
+  display: none;
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .shell-global-nav__menu-toggle {
+    display: none;
+  }
+
+  .shell-global-nav__links--desktop {
+    display: flex;
+  }
+
+  .shell-global-nav__mobile {
+    display: none !important;
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) and (width < theme(--breakpoint-xl)) {
+  .shell-global-nav__link {
+    padding-inline: 0.625rem;
+    font-size: var(--type-small-size);
+  }
+
+  .shell-global-nav__badge {
+    display: none;
+  }
+}
+
+.shell-global-nav__mobile {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.5rem 1rem 1rem;
+  border-top: 0.0625rem solid var(--border-soft);
+  background: var(--surface-glass-strong);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .shell-global-nav__mobile {
+    padding-inline: 1.5rem;
+  }
+}
+
+.shell-global-nav__mobile .shell-global-nav__link {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.shell-global-nav__link {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border-radius: var(--radius-lg);
+  padding: 0.5rem 0.75rem;
+  font-size: var(--type-nav-size);
+  font-weight: var(--font-weight-copy-medium);
+  color: var(--text-body);
+  text-decoration: none;
+  transition:
+    color var(--motion-fast) var(--ease-standard),
+    background-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-global-nav__link:hover {
+  color: var(--text-strong);
+  background: var(--surface-hover);
+}
+
+.shell-global-nav__link--active {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-copy-semibold);
+  background: var(--surface-soft);
+}

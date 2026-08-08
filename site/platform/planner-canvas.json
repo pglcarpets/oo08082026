@@ -1,0 +1,28 @@
+{
+  "scale": {
+    "mmPerCanvasUnit": 10
+  },
+  "bounds": {
+    "maxExtentMeters": 1000,
+    "minRoomDimensionMm": 1000,
+    "minCanvasUnit": 0
+  },
+  "layout": {
+    "defaultOriginCanvasUnits": 120,
+    "estimateRoomMinWidthMm": 6000,
+    "estimateRoomMinDepthMm": 5000
+  },
+  "viewport": {
+    "fitPaddingPx": 48,
+    "containerPadPx": 32,
+    "minContainerWidthPx": 280,
+    "minContainerHeightPx": 200,
+    "zoomMinPercent": 20,
+    "zoomMaxPercent": 150,
+    "fitMaxZoomFactor": 1.5,
+    "wheelZoomMin": 0.2,
+    "wheelZoomMax": 1.5,
+    "defaultZoomPercent": 100,
+    "emptyViewportFitMeters": 30
+  }
+}

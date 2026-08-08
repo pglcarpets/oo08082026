@@ -1,0 +1,126 @@
+
+/* ==========================================================================
+   SOURCE: focss/css/components-stats.css
+   ========================================================================== */
+
+.stats-block {
+  display: grid;
+  gap: 2rem;
+  background: var(--surface-soft);
+  color: var(--text-body);
+  padding: calc(var(--spacing) * 4);
+  border-radius: var(--radius-default);
+}
+
+.stats-block__value {
+  font-size: clamp(2.5rem, 5vw, 4.2rem);
+  font-weight: 275;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  color: var(--text-strong);
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-block__label {
+  margin-top: 0.35rem;
+  font-size: var(--type-body-size);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+}
+
+.section-divider {
+  position: relative;
+}
+
+.section-divider::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: min(11.25rem, 32vw);
+  height: 0.0625rem;
+  background: var(--color-contrast-accent);
+}
+
+.page-hero {
+  border-bottom: 1px solid var(--border-muted);
+}
+
+.font-slogan {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.typ-lead {
+  max-width: 66ch;
+}
+
+.shell-search-meta {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-muted);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.shell-search-badge {
+  border-radius: var(--radius-pill);
+  background: var(--surface-soft);
+  padding: 0.125rem 0.5rem;
+  color: var(--text-body);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.shell-search-kind {
+  color: var(--text-subtle);
+  font-size: var(--type-tiny-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.14em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.shell-search-note {
+  color: var(--text-muted);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.shell-utility-copy {
+  color: var(--text-subtle);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.shell-utility-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  color: var(--text-muted);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}
+
+.shell-count {
+  color: var(--text-subtle);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+}

@@ -1,0 +1,204 @@
+/* CRM feature surfaces â€” hub, subnav, list views, quotes board. */
+
+.crm-subnav {
+  margin-bottom: 1rem;
+  min-width: 0;
+}
+
+.crm-subnav__list {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.35rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.25rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised, var(--color-white-50));
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+}
+
+.crm-subnav__item {
+  flex: 0 0 auto;
+}
+
+.crm-subnav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.25rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: calc(var(--radius-sm) - 0.1rem);
+  font-size: var(--type-small-size);
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.12s, color 0.12s;
+}
+
+.crm-subnav__link:hover {
+  background: var(--surface-soft);
+  color: var(--text-body);
+}
+
+.crm-subnav__link--active {
+  background: color-mix(in srgb, var(--color-primary) 12%, transparent);
+  color: var(--color-primary);
+}
+
+.crm-subnav__link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.crm-workspace-banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.crm-panel-action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: 0.5rem;
+  font-size: var(--type-small-size);
+  font-weight: 600;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.crm-panel-action:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+@media (max-width: 48rem) {
+  .crm-subnav__link {
+    min-height: 2.75rem;
+  }
+}
+
+/* CRM list surfaces â€” shared responsive KPI + toolbar density */
+.crm-projects-view,
+.crm-clients-view,
+.crm-quotes-view {
+  width: 100%;
+  min-width: 0;
+}
+
+.crm-projects-kpi-grid,
+.crm-clients-kpi-grid,
+.crm-quotes-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.crm-clients-kpi-grid {
+  grid-template-columns: 1fr;
+}
+
+.crm-quotes-kpi-grid {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 40rem) {
+  .crm-projects-kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .crm-clients-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  .crm-quotes-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+.crm-projects-kpi,
+.crm-clients-kpi,
+.crm-quotes-kpi {
+  min-width: 0;
+}
+
+.crm-projects-toolbar,
+.crm-clients-toolbar,
+.crm-quotes-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+@media (min-width: 40rem) {
+  .crm-projects-toolbar,
+  .crm-clients-toolbar,
+  .crm-quotes-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.crm-projects-toolbar__hint,
+.crm-clients-toolbar__hint,
+.crm-quotes-toolbar__hint {
+  margin: 0;
+}
+
+/* Quotes pipeline: horizontal scroll board on narrow viewports */
+.crm-quotes-board {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  min-width: 0;
+}
+
+@media (min-width: 48rem) {
+  .crm-quotes-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 80rem) {
+  .crm-quotes-board {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Phone: swipe across status columns without crushing cards */
+@media (max-width: 47.99rem) {
+  .crm-quotes-board {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scroll-snap-type: x mandatory;
+  }
+
+  .crm-quotes-column {
+    flex: 0 0 min(18.5rem, 88vw);
+    max-width: min(18.5rem, 88vw);
+    scroll-snap-align: start;
+  }
+}
+
+/* Customer queries ops â€” server inbox (embedded CRM + standalone page). */
+
+.customer-queries-ops__list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}

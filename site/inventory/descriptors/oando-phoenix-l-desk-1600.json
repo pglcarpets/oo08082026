@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000005",
+  "slug": "oando-phoenix-l-desk-1600",
+  "sku": "OANDO-PHOENIX-L-1600",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1600,
+    "depthMm": 1600,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1600,
+    "height": 1600
+  },
+  "mounting": [
+    "floor"
+  ],
+  "maker": {
+    "recipe": "l-desk",
+    "widthMm": 1600,
+    "depthMm": 800,
+    "returnWidthMm": 600
+  },
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [
+    {
+      "key": "main",
+      "focusSelector": "#main",
+      "label": "Main run"
+    }
+  ],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000005,
+  "checksum": "a9aa1398de7cb375c7eace33c3ccb4c7ad3f76389f60c27945333964310810b8",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

@@ -1,0 +1,143 @@
+/* Admin hub — dashboard KPI strip + sectioned nav cards (shadcn AdminKpiLink / AdminHubLinkCard). */
+
+.admin-kpi-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 40rem) {
+  .admin-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .admin-kpi-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.admin-kpi {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-height: 5.5rem;
+  padding: 0.85rem 1rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-soft);
+  background: var(--color-surface-raised, var(--color-white-50));
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.12s ease, background-color 0.12s ease;
+}
+
+.admin-kpi:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 35%, var(--border-soft));
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-surface-raised, var(--color-white-50)));
+}
+
+.admin-kpi:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.admin-kpi__label {
+  font-size: var(--type-small-size);
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.admin-kpi__hint {
+  font-size: var(--type-label-size);
+  color: var(--text-muted);
+  flex: 1 1 auto;
+}
+
+.admin-kpi__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: var(--type-label-size);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.admin-kpi--warn {
+  border-inline-start: 0.2rem solid var(--admin-status-warn, var(--color-warning));
+}
+
+.admin-kpi--info {
+  border-inline-start: 0.2rem solid var(--admin-status-info, var(--color-primary));
+}
+
+.admin-kpi--success {
+  border-inline-start: 0.2rem solid var(--admin-status-success, var(--color-success));
+}
+
+.admin-kpi--neutral {
+  border-inline-start: 0.2rem solid var(--border-soft);
+}
+
+/* Dashboard hub: compact sectioned card grid */
+
+.shell-admin-dashboard.admin-page {
+  gap: 1.35rem;
+  max-width: 72rem;
+  /* shell-admin-main already pads; keep a small top breath under the topbar */
+  padding: var(--space-4, 1rem) 0 0;
+}
+
+.admin-hub-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.admin-hub-section__title {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.shell-admin-dashboard .shell-admin-card {
+  min-height: 0;
+  gap: 0.4rem;
+  padding: 0.9rem 0.95rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised);
+}
+
+.shell-admin-dashboard .shell-admin-card__icon {
+  height: 2rem;
+  width: 2rem;
+  border-radius: var(--radius-sm);
+}
+
+.shell-admin-dashboard .shell-admin-card__title {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.25;
+  color: var(--text-strong);
+}
+
+.shell-admin-dashboard .shell-admin-card__desc {
+  margin: 0;
+  font-size: var(--type-small-size);
+  line-height: 1.4;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.shell-admin-dashboard .shell-admin-card__cta {
+  padding-top: 0.45rem;
+  font-size: 0.7rem;
+}

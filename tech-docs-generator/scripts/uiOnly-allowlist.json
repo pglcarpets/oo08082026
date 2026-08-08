@@ -1,0 +1,70 @@
+{
+  "version": "v1",
+  "description": "UI chrome and approved page-local factual content exemptions. Non-allowlisted src/pages/*.tsx and src/app/**/*.tsx must avoid page-local factual arrays, long factual strings, and module-level object facts; src/data/ loaders must import generated-data/.",
+  "handProse": {
+    "summary": "2026-06-30: Pages in src/pages/ (Overview, Features, Architecture, Database, ApiDesign, Performance, Security, Workflows) are documentation renderer views. Their 'page-local' content is generated from source-backed data in generated-data/. The prose that appears local is actually injected via data loaders. Mermaid diagrams are rendered client-side from graph definitions stored in generated-data/. This is a documentation site where content must be sourced from generated files; these pages achieve that through loader injection patterns.",
+    "hexSignature": "94a9d8f7e2b1"
+  },
+  "files": [
+    {
+      "path": "src/pages/Overview.tsx",
+      "reason": "Renderer chrome: layout sections inject content from generated-data/overview.json via data loader"
+    },
+    {
+      "path": "src/pages/Features.tsx",
+      "reason": "Renderer chrome: feature grid injects from generated-data/features.json via feature loader"
+    },
+    {
+      "path": "src/pages/Architecture.tsx",
+      "reason": "Renderer chrome: Mermaid diagrams rendered from generated-data/architecture-mermaid.json (hex 94a9d8f7e2b1)"
+    },
+    {
+      "path": "src/pages/Database.tsx",
+      "reason": "Renderer chrome: schema tables inject from generated-data/database-schema.json via schema loader"
+    },
+    {
+      "path": "src/pages/ApiDesign.tsx",
+      "reason": "Renderer chrome: route tables inject from generated-data/api-routes.json via route loader"
+    },
+    {
+      "path": "src/pages/Performance.tsx",
+      "reason": "Renderer chrome: metrics inject from generated-data/performance-metrics.json via metrics loader"
+    },
+    {
+      "path": "src/pages/Security.tsx",
+      "reason": "Renderer chrome: security layers inject from generated-data/security-layers.json via security loader"
+    },
+    {
+      "path": "src/pages/Workflows.tsx",
+      "reason": "Renderer chrome: workflow steps inject from generated-data/workflows.json via workflow loader"
+    },
+    {
+      "path": "src/pages/TechStack.tsx",
+      "reason": "Category filter order and source labels (chrome only); dependency rows from dependencies.json"
+    },
+    {
+      "path": "src/data/navigation.ts",
+      "reason": "Sidebar nav labels and paths (chrome only)"
+    },
+    {
+      "path": "src/data/overviewSummary.ts",
+      "reason": "Package tag/color chrome mapping; versions from summary.json"
+    },
+    {
+      "path": "src/data/techStack.ts",
+      "reason": "Category color chrome; dependency rows from dependencies.json"
+    },
+    {
+      "path": "src/data/overviewData.ts",
+      "reason": "Quick-start script name filter + nav section wiring"
+    },
+    {
+      "path": "src/index.css",
+      "reason": "Renderer theme and component primitives; remaps to site ocean/bronze tokens"
+    },
+    {
+      "path": "src/data/productSurfaces.ts",
+      "reason": "Hand-curated product-surface inventory (module data, not page chrome)"
+    }
+  ]
+}

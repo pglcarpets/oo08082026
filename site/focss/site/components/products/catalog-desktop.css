@@ -1,0 +1,108 @@
+/* Catalog — tablet landscape through ultra-wide density and rhythm */
+
+@media (width >= theme(--breakpoint-md)) {
+  .catalog-product-grid {
+    gap: 1rem;
+  }
+
+  .catalog-lane .catalog-toolbar {
+    gap: var(--space-4);
+  }
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .catalog-lane .grid {
+    gap: clamp(1.5rem, 2.2vw, 2rem);
+    align-items: start;
+  }
+
+  /* Sticky filter rail — scroll long facet lists without losing context */
+  .catalog-lane .grid > div:first-child .scheme-panel {
+    max-height: calc(100dvh - 6.5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--color-bronze-500) 35%, transparent)
+      transparent;
+  }
+
+  .catalog-lane .grid > div:first-child .scheme-panel::-webkit-scrollbar {
+    width: 0.375rem;
+  }
+
+  .catalog-lane .grid > div:first-child .scheme-panel::-webkit-scrollbar-thumb {
+    border-radius: var(--radius-pill);
+    background: color-mix(in srgb, var(--color-bronze-500) 40%, transparent);
+  }
+
+  .catalog-lane .catalog-page-header {
+    max-width: 40rem;
+  }
+
+  .catalog-lane .catalog-toolbar {
+    position: sticky;
+    top: 4.25rem;
+    z-index: 15;
+    padding-block: var(--space-3) var(--space-4);
+    margin-bottom: var(--space-1);
+    border-bottom-color: color-mix(in srgb, var(--color-bronze-400) 22%, var(--border-soft));
+    background: color-mix(in srgb, var(--surface-page) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .catalog-card--compact .catalog-card__body {
+    padding: 1.125rem 1.25rem 0.875rem;
+  }
+
+  .catalog-card--compact .catalog-card__footer {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (width >= theme(--breakpoint-xl)) {
+  .catalog-product-grid {
+    gap: 1.125rem;
+  }
+
+  .catalog-lane .catalog-page-header {
+    max-width: 44rem;
+    margin-bottom: var(--space-9, 2.25rem);
+  }
+
+  .catalog-card--compact .catalog-card__body .typ-h3 {
+    font-size: clamp(1.05rem, 0.5vw + 0.95rem, 1.2rem);
+  }
+}
+
+@media (width >= theme(--breakpoint-2xl)) {
+  .catalog-product-grid {
+    gap: 1.25rem;
+  }
+
+  .catalog-lane .grid {
+    gap: 2.25rem;
+  }
+
+  .catalog-lane .catalog-page-header {
+    max-width: 46rem;
+  }
+}
+
+/* Ultra-wide — fifth column + wider filter rail */
+@media (width >= 120rem) {
+  .catalog-product-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.125rem;
+  }
+
+  .catalog-lane.home-shell-xl {
+    padding-block-start: var(--space-8, 2rem);
+  }
+
+  .catalog-lane .grid {
+    grid-template-columns: 17.5rem minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+}

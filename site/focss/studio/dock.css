@@ -1,0 +1,274 @@
+/* Studio dockview 7 theme */
+
+.oostudio-root .dock-shell.dockview-theme-light,
+.oostudio-root .dock-shell .dockview-theme-light {
+  --dv-paneview-active-outline-color: var(--color-obb-600);
+  --dv-tabs-and-actions-container-font-size: 12px;
+  --dv-tabs-and-actions-container-height: 34px;
+  --dv-drag-over-background-color: color-mix(in srgb, var(--color-obb-600) 10%, transparent);
+  --dv-drag-over-border-color: var(--color-obb-600);
+  --dv-tabs-container-scrollbar-color: var(--color-white-400);
+  --dv-icon-hover-background-color: var(--color-white-200);
+  --dv-floating-box-shadow: var(--shadow-lift);
+  --dv-floating-border: 1px solid var(--border-soft);
+  --dv-tab-font-size: 12px;
+  --dv-border-radius: 0px;
+  --dv-tab-margin: 0;
+  --dv-sash-color: var(--border-soft);
+  --dv-active-sash-color: var(--color-obb-600);
+  --dv-active-sash-transition-duration: 0.08s;
+  --dv-active-sash-transition-delay: 0s;
+  --dv-spacing-padding: 0px;
+  --dv-tab-border-radius: 0px;
+  --dv-sash-border-radius: 0px;
+  --dv-dropdown-border-radius: 8px;
+  --dv-floating-group-border: 1px solid var(--border-soft);
+  --dv-drag-over-border: 1px solid var(--color-obb-600);
+  --dv-floating-titlebar-background-color: var(--color-white-150);
+  --dv-floating-titlebar-border-bottom: 1px solid var(--border-soft);
+
+  --dv-group-view-background-color: var(--color-white-50);
+  --dv-tabs-and-actions-container-background-color: var(--color-white-150);
+  --dv-activegroup-visiblepanel-tab-background-color: var(--color-white-50);
+  --dv-activegroup-hiddenpanel-tab-background-color: var(--color-ink-50);
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--color-white-50);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: var(--color-white-150);
+  --dv-tab-divider-color: var(--color-white-300);
+  --dv-activegroup-visiblepanel-tab-color: var(--color-ink-900);
+  --dv-activegroup-hiddenpanel-tab-color: var(--color-ink-400);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--color-ink-600);
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--color-ink-300);
+  --dv-separator-border: var(--color-white-300);
+  --dv-paneview-header-border-color: var(--border-soft);
+  --dv-scrollbar-background-color: color-mix(in srgb, var(--color-ink-900) 18%, transparent);
+  --dv-scrollbar-hover-background-color: color-mix(in srgb, var(--color-ink-900) 28%, transparent);
+
+  color: var(--text-body);
+  font-family: var(--font-sans);
+}
+
+.oostudio-root .dock-shell.dockview-theme-abyss,
+.oostudio-root .dock-shell .dockview-theme-abyss {
+  --dv-paneview-active-outline-color: var(--color-obb-400);
+  --dv-tabs-and-actions-container-font-size: 12px;
+  --dv-tabs-and-actions-container-height: 34px;
+  --dv-drag-over-background-color: color-mix(in srgb, var(--color-obb-400) 16%, transparent);
+  --dv-drag-over-border-color: var(--color-obb-400);
+  --dv-tabs-container-scrollbar-color: var(--color-midnight-400);
+  --dv-icon-hover-background-color: color-mix(in srgb, var(--color-white-50) 12%, transparent);
+  --dv-floating-box-shadow: var(--shadow-lift);
+  --dv-floating-border: 1px solid var(--color-midnight-600);
+  --dv-sash-color: var(--color-midnight-600);
+  --dv-active-sash-color: var(--color-obb-400);
+  --dv-active-sash-transition-duration: 0.08s;
+  --dv-active-sash-transition-delay: 0s;
+
+  --dv-group-view-background-color: var(--color-midnight-800);
+  --dv-tabs-and-actions-container-background-color: var(--color-midnight-700);
+  --dv-activegroup-visiblepanel-tab-background-color: var(--color-midnight-800);
+  --dv-activegroup-hiddenpanel-tab-background-color: var(--color-midnight-600);
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--color-midnight-800);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: var(--color-midnight-700);
+  --dv-tab-divider-color: var(--color-midnight-600);
+  --dv-activegroup-visiblepanel-tab-color: var(--color-ink-25);
+  --dv-activegroup-hiddenpanel-tab-color: var(--color-ink-300);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--color-ink-200);
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--color-ink-400);
+  --dv-separator-border: var(--color-midnight-600);
+  --dv-paneview-header-border-color: var(--color-midnight-600);
+  --dv-scrollbar-background-color: color-mix(in srgb, var(--color-white-50) 22%, transparent);
+
+  color: var(--color-ink-25);
+  font-family: var(--font-sans);
+}
+
+.oostudio-root .ff-workspace-dock,
+.oostudio-root .dock-shell {
+  height: 100%;
+  width: 100%;
+  min-height: 0;
+  min-width: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* dockview 7 root does not set height:100% by default — required for resize/layout */
+.oostudio-root .dock-shell > .dv-dockview,
+.oostudio-root .dock-shell .dv-dockview {
+  flex: 1 1 auto;
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* Wider sash hit target so split adjusting feels reliable */
+.oostudio-root .dock-shell .dv-split-view-container.dv-horizontal > .dv-sash-container > .dv-sash {
+  width: 6px;
+}
+.oostudio-root .dock-shell .dv-split-view-container.dv-vertical > .dv-sash-container > .dv-sash {
+  height: 6px;
+}
+.oostudio-root .dock-shell .dv-split-view-container.dv-horizontal > .dv-sash-container > .dv-sash:not(.dv-disabled)::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -6px;
+  right: -6px;
+}
+.oostudio-root .dock-shell .dv-split-view-container.dv-vertical > .dv-sash-container > .dv-sash:not(.dv-disabled)::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -6px;
+  bottom: -6px;
+}
+
+.oostudio-root .dock-shell .dv-tabs-and-actions-container {
+  height: 34px !important;
+}
+
+/* Side-panel docks: match Inspector chrome (white), keep title + close */
+.oostudio-root .side-panel--dock .dv-tabs-and-actions-container {
+  background: var(--surface-panel) !important;
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: none;
+}
+
+.oostudio-root .side-panel--dock .dv-groupview {
+  --dv-tabs-and-actions-container-background-color: var(--surface-panel);
+  --dv-activegroup-visiblepanel-tab-background-color: var(--surface-panel);
+  --dv-activegroup-hiddenpanel-tab-background-color: var(--surface-panel);
+  --dv-inactivegroup-visiblepanel-tab-background-color: var(--surface-panel);
+  --dv-inactivegroup-hiddenpanel-tab-background-color: var(--surface-panel);
+  --dv-tab-divider-color: transparent;
+  --dv-separator-border: var(--border-soft);
+  --dv-activegroup-visiblepanel-tab-color: var(--text-subtle);
+  --dv-activegroup-hiddenpanel-tab-color: var(--text-subtle);
+  --dv-inactivegroup-visiblepanel-tab-color: var(--text-subtle);
+  --dv-inactivegroup-hiddenpanel-tab-color: var(--text-subtle);
+  background: var(--surface-panel);
+}
+
+.oostudio-root .side-panel--dock .dv-content-container {
+  background: var(--surface-panel);
+}
+
+.oostudio-root .side-panel--dock .dv-tab {
+  background: var(--surface-panel) !important;
+  color: var(--text-subtle) !important;
+}
+
+.oostudio-root .side-panel--dock .dv-default-tab-content,
+.oostudio-root .side-panel--dock .dv-default-tab-action,
+.oostudio-root .side-panel--dock .dv-svg {
+  color: var(--text-subtle);
+  fill: currentColor;
+}
+
+.oostudio-root .dock-shell .dv-tab {
+  font-size: 12px !important;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  padding: 0 12px !important;
+}
+
+.oostudio-root .dock-shell .dv-tab.dv-active-tab {
+  box-shadow: inset 0 -2px 0 var(--color-primary);
+}
+
+/* No dark active underline inside side panels — soft border only */
+.oostudio-root .side-panel--dock .dv-tab.dv-active-tab {
+  box-shadow: none;
+}
+
+.oostudio-root .dock-shell .dv-view-container {
+  background: var(--surface-panel);
+}
+
+.oostudio-root .dock-shell .side-panel__title {
+  margin-top: 0;
+}
+
+.oostudio-root .side-panel--dock {
+  padding: 0;
+  /* visible so floated groups can leave the narrow panel over the canvas */
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  z-index: 40;
+}
+
+.oostudio-root .side-panel--dock .dock-shell {
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}
+
+/* dockview root clips floats by default — allow drag-out past the side panel */
+.oostudio-root .side-panel--dock .dv-dockview {
+  overflow: visible !important;
+}
+
+.oostudio-root .side-panel--dock .dv-content-container {
+  overflow: auto;
+}
+
+.oostudio-root .dock-float-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-right: 2px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: grab;
+  flex-shrink: 0;
+  touch-action: none;
+}
+
+.oostudio-root .dock-float-btn:active {
+  cursor: grabbing;
+}
+
+.oostudio-root .dock-float-btn:hover {
+  background: var(--surface-muted);
+  color: var(--text-strong);
+}
+
+.oostudio-root .dock-float-btn[data-floating="true"] {
+  cursor: pointer;
+}
+
+.oostudio-root .dv-right-actions-container {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding-right: 4px;
+}
+
+/*
+ * Barrier fix: dockview sizes `.dv-floating-overlay-host` to the side-panel
+ * grid and clamps floats inside it (~300px). Expand the host to the viewport
+ * so floated panels can be dragged across the canvas.
+ */
+.oostudio-root .side-panel--dock .dv-floating-overlay-host {
+  position: fixed !important;
+  inset: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.oostudio-root .side-panel--dock .dv-floating-overlay-host > .dv-resize-container {
+  pointer-events: auto;
+}

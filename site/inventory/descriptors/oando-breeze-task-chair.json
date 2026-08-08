@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000019",
+  "slug": "oando-breeze-task-chair",
+  "sku": "OANDO-BREEZE-CHR-TSK",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 650,
+    "depthMm": 650,
+    "heightMm": 1100
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 650,
+    "height": 650
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "seat",
+      "x": 100,
+      "y": 140,
+      "width": 450,
+      "depth": 380
+    },
+    {
+      "id": "backrest",
+      "x": 120,
+      "y": 40,
+      "width": 410,
+      "depth": 120
+    },
+    {
+      "id": "base",
+      "x": 200,
+      "y": 500,
+      "width": 250,
+      "depth": 100
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000050,
+  "checksum": "fd715bc84aab56ac417d0a185d2a2087fba0178268d86c0b8dc36db0661e3202",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

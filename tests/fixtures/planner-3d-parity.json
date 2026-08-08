@@ -1,0 +1,67 @@
+{
+  "version": "7.0",
+  "objects": [
+    {
+      "type": "rect",
+      "left": 300,
+      "top": 300,
+      "width": 1200,
+      "height": 600,
+      "stroke": "#9ca3af",
+      "strokeWidth": 1,
+      "fill": "rgba(0,0,0,0)",
+      "name": "ROOM"
+    },
+    {
+      "type": "line",
+      "left": 100,
+      "top": 200,
+      "x1": 0,
+      "y1": 0,
+      "x2": 400,
+      "y2": 0,
+      "stroke": "#1f2937",
+      "strokeWidth": 2,
+      "fill": "",
+      "originX": "center",
+      "originY": "center",
+      "name": "WALL:1234567890"
+    },
+    {
+      "type": "group",
+      "left": 200,
+      "top": 300,
+      "originX": "center",
+      "originY": "center",
+      "name": "FURNITURE:desk-1",
+      "width": 100,
+      "height": 50,
+      "scaleX": 1,
+      "scaleY": 1
+    },
+    {
+      "type": "group",
+      "left": 400,
+      "top": 300,
+      "originX": "center",
+      "originY": "center",
+      "name": "FURNITURE:desk-2",
+      "width": 100,
+      "height": 50,
+      "scaleX": 1,
+      "scaleY": 1
+    },
+    {
+      "type": "group",
+      "left": 600,
+      "top": 400,
+      "originX": "center",
+      "originY": "center",
+      "name": "FURNITURE:desk-3",
+      "width": 100,
+      "height": 50,
+      "scaleX": 1,
+      "scaleY": 1
+    }
+  ]
+}

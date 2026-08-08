@@ -1,0 +1,6 @@
+:root {
+  /* Tables (Meeting / Discussion) */
+  --block-table-surface: var(--block-theme-surface-primary);
+  --block-table-grad-end: var(--block-theme-surface-secondary);
+  --block-table-stroke: var(--block-theme-stroke);
+}

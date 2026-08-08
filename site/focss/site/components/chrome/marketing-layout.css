@@ -1,0 +1,116 @@
+/* ==========================================================================
+   O&O Marketing layout primitives — oando.co.in page rhythm.
+   Token-driven, hex-free. For homepage / product / portal landings.
+   See docs/plans/05-HOMEPAGE-AND-PUBLIC-SURFACES.md.
+   ========================================================================== */
+
+/* ── Vertical section rhythm ── */
+@utility page-section {
+  padding-block: var(--section-gap);
+}
+
+@utility page-section-tight {
+  padding-block: var(--section-gap-tight);
+}
+
+/* ── Full-bleed hero (oando "Spaces that work as hard as your team") ── */
+@utility hero-full {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-block-size: clamp(28rem, 60vh, 44rem);
+  padding: var(--space-8);
+  overflow: hidden;
+  isolation: isolate;
+  color: var(--text-inverse);
+  background-color: var(--surface-inverse);
+}
+
+@utility hero-full-media {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+@utility hero-full-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    var(--surface-inverse-soft) 0%,
+    transparent 45%,
+    var(--surface-inverse) 100%
+  );
+  opacity: 0.78;
+}
+
+@utility hero-full-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-inline-size: 48rem;
+}
+
+@utility hero-full-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-2);
+}
+
+/* ── Image-dominant card grid (product categories / projects) ── */
+@utility card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17.5rem, 1fr));
+  gap: var(--space-5);
+}
+
+@utility card-grid-tight {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+  gap: var(--space-4);
+}
+
+@utility media-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  background-color: var(--surface-card);
+  box-shadow: var(--shadow-soft);
+  transition:
+    transform var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard);
+}
+
+@utility media-card-hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+}
+
+@utility media-card-figure {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.media-card-figure img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transition: transform var(--motion-slow) var(--ease-standard);
+}
+
+@utility media-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}

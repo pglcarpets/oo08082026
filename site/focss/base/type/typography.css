@@ -1,0 +1,75 @@
+@theme {
+  /*
+   * Type tokens (base).
+   * Faces: next/font on <html>/<body> in site/app/layout.tsx defines
+   *   --font-cisco-sans (display) and --font-helvetica-neue (body).
+   * Loaded faces: 300 / 400 / 500 / 700 (semibold aliases to medium).
+   *
+   * Fallbacks use the next/font family names so type still resolves if a
+   * CSS variable is missing on a nested root (e.g. portaled UI).
+   */
+
+  /* ── Families ── */
+  --font-display: var(--font-cisco-sans, "ciscoSans"), ui-sans-serif, sans-serif;
+  --font-sans: var(--font-helvetica-neue, "helveticaNeue"), ui-sans-serif, sans-serif;
+  /* Numeric readouts share Helvetica Neue; tabular figures stop digit jitter. */
+  --font-numeric: var(--font-sans);
+  --numeric-figures: tabular-nums;
+
+  /* ── Weight scale (loaded faces only) ── */
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 500;
+  --font-weight-bold: 700;
+
+  /* Role aliases → scale (do not invent extra faces) */
+  --font-weight-display-light: var(--font-weight-light);
+  --font-weight-display-regular: var(--font-weight-regular);
+  --font-weight-copy-regular: var(--font-weight-regular);
+  --font-weight-copy-medium: var(--font-weight-medium);
+  --font-weight-copy-semibold: var(--font-weight-semibold);
+
+  /* ── Size scale ── */
+  --type-display-size: clamp(4rem, 6.2vw, 5.625rem);
+  --type-title-lg-size: clamp(2rem, 2.3vw, 2.8125rem);
+  --type-title-sm-size: clamp(1.125rem, 1.04rem + 0.24vw, 1.25rem);
+  --type-card-title-size: clamp(1rem, 0.98rem + 0.18vw, 1.15rem);
+  --type-project-title-size: clamp(1.1rem, 1rem + 0.35vw, 1.4rem);
+  --type-project-display-size: clamp(1.75rem, 2.4vw, 2.75rem);
+  --type-partner-title-size: clamp(1.5rem, 1.8vw, 2.1rem);
+  --type-stat-size: clamp(2rem, 3.5vw, 3.25rem);
+  --type-body-lg-size: clamp(1rem, 0.99rem + 0.14vw, 1.0625rem);
+  --type-body-size: 1rem;
+  --type-nav-size: 1rem;
+  --type-kicker-size: 0.875rem;
+  --type-small-size: 0.8125rem;
+  --type-tiny-size: 0.6875rem;
+  --type-label-size: 0.75rem;
+
+  /* ── Letter-spacing ── */
+  --type-letter-tight: -0.05em;
+  --type-letter-title: -0.04em;
+  --type-letter-h3: -0.038em;
+  --type-letter-copy: -0.008em;
+  --type-letter-card: -0.035em;
+  --type-letter-stat: -0.06em;
+  --type-letter-label: 0.05em;
+  --type-letter-label-wide: 0.11em;
+  --type-letter-nav: 0.01em;
+  --type-letter-nav-sm: 0.02em;
+  --type-letter-cta: 0.04em;
+  --type-letter-micro: 0.08em;
+
+  /* ── Line-height ── */
+  --type-leading-display: 0.94;
+  --type-leading-title: 1.08;
+  --type-leading-h3: 1.14;
+  --type-leading-copy: 1.52;
+  --type-leading-copy-sm: 1.6;
+  --type-leading-nav: 1.4;
+  --type-leading-label: 1.3;
+  --type-leading-cta: 1.3;
+  --type-leading-stat: 1;
+  --type-leading-body: 1.7;
+}

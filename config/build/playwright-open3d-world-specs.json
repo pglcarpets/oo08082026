@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Open3d world-standard W-gate browser pack — CI/script truth for trustdata gates (not folder-only). Paths relative to site/.",
+  "workers": 1,
+  "specs": [
+    "tests/e2e/open3d-world-standard-journey.spec.ts",
+    "tests/e2e/open3d-w3-select-delete.spec.ts",
+    "tests/e2e/open3d-w4-orbit-continuity.spec.ts",
+    "tests/e2e/open3d-systems-v0-batch-place.spec.ts",
+    "tests/e2e/open3d-w5-save-honesty.spec.ts"
+  ],
+  "gates": {
+    "W1-W2": "open3d-world-standard-journey.spec.ts",
+    "W3": "open3d-w3-select-delete.spec.ts",
+    "W4": "open3d-w4-orbit-continuity.spec.ts",
+    "W5-W6": "open3d-w5-save-honesty.spec.ts",
+    "systems-v0": "open3d-systems-v0-batch-place.spec.ts"
+  },
+  "evidenceRoot": "results/planner/world-standard-wave/gate-e2e/"
+}

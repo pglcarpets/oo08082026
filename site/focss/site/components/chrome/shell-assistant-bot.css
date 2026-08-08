@@ -1,0 +1,108 @@
+/* Advanced bot shell styling.
+   Kept separate from the shared assistant surface styles so the bot can own
+   its floating launcher, popup shell, and summary card semantics. */
+
+.assistant-bot-launcher {
+  position: fixed;
+  right: 0.75rem;
+  bottom: 5rem;
+  z-index: 40;
+  @apply inline-flex h-11 items-center gap-1.5 rounded-full bg-neutral-900 px-3 text-white shadow-xl transition-colors;
+}
+
+.assistant-bot-launcher:focus-visible,
+.assistant-bot-icon-button:focus-visible,
+.assistant-bot-text-button:focus-visible,
+.assistant-bot-chip:focus-visible,
+.assistant-bot-action:focus-visible {
+  box-shadow: var(--focus-ring);
+  outline: none;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .assistant-bot-launcher {
+    right: 1.5rem;
+    bottom: 6rem;
+    height: 3rem;
+    gap: 0.5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.assistant-bot-panel {
+  position: fixed;
+  right: 0.75rem;
+  bottom: 8rem;
+  z-index: 40;
+  width: min(22rem, calc(100vw - 1.5rem));
+  @apply rounded-2xl border border-neutral-200 bg-white shadow-2xl;
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .assistant-bot-panel {
+    right: 1.5rem;
+    bottom: 10rem;
+    width: 20rem;
+  }
+}
+
+.assistant-bot-panel__header {
+  @apply flex items-center justify-between border-b border-neutral-200 px-4 py-3;
+}
+
+.assistant-bot-panel__title {
+  @apply text-sm font-semibold text-neutral-900;
+}
+
+.assistant-bot-panel__subtitle {
+  @apply text-xs text-neutral-500;
+}
+
+.assistant-bot-panel__body {
+  @apply space-y-3 px-4 py-3 text-sm;
+}
+
+.assistant-bot-panel__footer {
+  @apply flex items-center justify-between border-t border-neutral-200 px-4 py-3;
+}
+
+.assistant-bot-icon-button {
+  @apply rounded-full p-1 text-neutral-500 transition-colors hover:bg-neutral-100;
+}
+
+.assistant-bot-text-button {
+  @apply text-xs text-neutral-600 transition-colors hover:text-neutral-900;
+}
+
+.assistant-bot-text-button--muted {
+  @apply text-neutral-500 hover:text-neutral-800;
+}
+
+.assistant-bot-chip {
+  @apply rounded-full border px-3 py-1.5 text-xs;
+}
+
+.assistant-bot-chip--selected {
+  @apply border-neutral-900 bg-neutral-900 text-white;
+}
+
+.assistant-bot-chip--idle-hover {
+  @apply border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-500;
+}
+
+.assistant-bot-chip--flex {
+  flex: 1 1 0%;
+}
+
+.assistant-bot-summary-card {
+  @apply rounded-md border border-neutral-200 bg-neutral-50 px-3 py-2 text-[0.6875rem] leading-snug text-neutral-700;
+}
+
+.assistant-bot-summary-card__title {
+  @apply mb-1 font-medium;
+}
+
+.assistant-bot-summary-card__preview {
+  @apply whitespace-pre-wrap text-[0.625rem] text-neutral-700;
+}

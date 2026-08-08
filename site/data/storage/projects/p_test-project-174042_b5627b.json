@@ -1,0 +1,18 @@
+{
+  "id": "p_test-project-174042_b5627b",
+  "name": "Updated Project 174042",
+  "canvas_json": {
+    "version": "5.3.0",
+    "objects": []
+  },
+  "sheet": {
+    "width_mm": 10000,
+    "height_mm": 7000,
+    "unit": "mm"
+  },
+  "layers": [],
+  "thumbnail_url": null,
+  "objects_count": 0,
+  "created_at": "2026-07-28T17:40:42.429242+00:00",
+  "updated_at": "2026-07-28T17:40:42.675481+00:00"
+}

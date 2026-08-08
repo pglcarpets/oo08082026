@@ -1,0 +1,17 @@
+{
+  "type": "linear-desk",
+  "widthMm": 1600,
+  "depthMm": 800,
+  "heightMm": 750,
+  "topThicknessMm": 120,
+  "pedestalWidthMm": 200,
+  "pedestalInsetMm": 120,
+  "pedestalTopGapMm": 40,
+  "pedestalBackInsetMm": 80,
+  "pedestalCount": 2,
+  "modesty": true,
+  "name": "Parametric linear desk 1600",
+  "slug": "linear-desk-param-1600",
+  "sku": "PLD-1600",
+  "seriesId": "fluid"
+}

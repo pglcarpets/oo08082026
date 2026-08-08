@@ -1,0 +1,98 @@
+name: Release gate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: release-gate-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  DEV_AUTH_BYPASS: "1"
+  NODE_ENV: test
+  NEXT_PUBLIC_SITE_URL: http://localhost:3000
+  SITE_URL: http://localhost:3000
+  NEXT_PUBLIC_TECH_DOCS_URL: http://localhost:3001
+  ACTIVE_THEME_ID: premium-light
+  SITE_MAINTENANCE_MODE: "off"
+  NEXT_PUBLIC_CRM_DEMO_MODE: "1"
+  SVG_RELEASE_AUTHORITY: db
+  PNG_DISK_MIRROR: "0"
+  LANCE_DB_URI: site/.data/lancedb/catalog
+  NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+  NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+  NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY }}
+  SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+  SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+  PRODUCTS_DATABASE_URL: ${{ secrets.PRODUCTS_DATABASE_URL }}
+  SUPABASE_AUTH_DATABASE_URL: ${{ secrets.SUPABASE_AUTH_DATABASE_URL }}
+  PLANNER_DATABASE_URL: ${{ secrets.PLANNER_DATABASE_URL }}
+  SUPABASE_AUTH_URL: ${{ secrets.SUPABASE_AUTH_URL }}
+  NEXT_ADMIN_SUPABASE_URL: ${{ secrets.NEXT_ADMIN_SUPABASE_URL }}
+  NEXT_ADMIN_SUPABASE_ANON_KEY: ${{ secrets.NEXT_ADMIN_SUPABASE_ANON_KEY }}
+  NEXT_ADMIN_PUBLISHABLE_KEY: ${{ secrets.NEXT_ADMIN_PUBLISHABLE_KEY }}
+  SUPABASE_ADMIN_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_ADMIN_SERVICE_ROLE_KEY }}
+  RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+  EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+  STAFF_NOTIFY_EMAIL: ${{ secrets.STAFF_NOTIFY_EMAIL }}
+  RESEND_INBOX: ${{ secrets.RESEND_INBOX }}
+  ADMIN_EMAILS: ${{ secrets.ADMIN_EMAILS }}
+  OPENROUTER_API_KEY_PRIMARY: ${{ secrets.OPENROUTER_API_KEY_PRIMARY }}
+  OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+  OPENROUTER_API_KEY_BACKUP: ${{ secrets.OPENROUTER_API_KEY_BACKUP }}
+  OPENROUTER_BASE_URL: ${{ secrets.OPENROUTER_BASE_URL }}
+  OPENROUTER_MODEL: ${{ secrets.OPENROUTER_MODEL }}
+  GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+  GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
+  CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+  CLOUDFLARE_R2_CATALOG_BUCKET: ${{ secrets.CLOUDFLARE_R2_CATALOG_BUCKET }}
+  CLOUDFLARE_R2_BUCKET: ${{ secrets.CLOUDFLARE_R2_BUCKET }}
+  CLOUDFLARE_S3_URL: ${{ secrets.CLOUDFLARE_S3_URL }}
+  CLOUDFLARE_R2_ACCESS_KEY_ID: ${{ secrets.CLOUDFLARE_R2_ACCESS_KEY_ID }}
+  CLOUDFLARE_R2_SECRET_ACCESS_KEY: ${{ secrets.CLOUDFLARE_R2_SECRET_ACCESS_KEY }}
+  R2_CATALOG_BUCKET: ${{ secrets.R2_CATALOG_BUCKET }}
+  E2E_SUPABASE_ADMIN_EMAIL: ${{ secrets.E2E_SUPABASE_ADMIN_EMAIL }}
+  E2E_SUPABASE_ADMIN_PASSWORD: ${{ secrets.E2E_SUPABASE_ADMIN_PASSWORD }}
+  E2E_SUPABASE_USER_EMAIL: ${{ secrets.E2E_SUPABASE_USER_EMAIL }}
+  E2E_SUPABASE_USER_PASSWORD: ${{ secrets.E2E_SUPABASE_USER_PASSWORD }}
+  ADMIN_TOKEN: ${{ secrets.ADMIN_TOKEN }}
+  CUSTOMER_QUERIES_ADMIN_TOKEN: ${{ secrets.CUSTOMER_QUERIES_ADMIN_TOKEN }}
+  OPS_PORTAL_USER: ${{ secrets.OPS_PORTAL_USER }}
+  OPS_PORTAL_PASSWORD: ${{ secrets.OPS_PORTAL_PASSWORD }}
+
+jobs:
+  gate-fast:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm run release:gate:fast
+
+  gate-full:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run release:gate

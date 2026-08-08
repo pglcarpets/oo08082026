@@ -1,0 +1,163 @@
+
+/* â”€â”€ Site header â”€â”€
+   Display visibility is enforced in site/components/shared/nav.css (unlayered) so
+   Tailwind .inline-flex / .shell-icon-button cannot keep the hamburger visible
+   on desktop. Utilities here only set non-display chrome. */
+/* site-header__desktop-nav + site-header__hamburger visibility live in
+   site/components/shared/nav.css (unlayered) so utility cascade cannot reopen the menu. */
+
+@utility site-header__search {
+  display: none;
+  min-width: 0;
+  @media (width >= theme(--breakpoint-sm)) {
+    display: block;
+    min-width: 11rem;
+  }
+  @media (width >= theme(--breakpoint-lg)) {
+    min-width: 14rem;
+  }
+  @media (width >= theme(--breakpoint-xl)) {
+    min-width: 16rem;
+  }
+}
+
+/* â”€â”€ Site footer â”€â”€ */
+@utility site-footer {
+  background: linear-gradient(180deg, var(--surface-inverse) 0%,
+    color-mix(in srgb, var(--surface-inverse) 94%, var(--color-primary) 6%) 100%);
+  color: var(--text-inverse-body);
+}
+
+@utility site-footer__heading {
+  color: var(--text-inverse-muted);
+}
+
+@utility site-footer__address {
+  color: var(--text-inverse-muted);
+  font-size: var(--type-body-size);
+  line-height: var(--type-leading-copy);
+}
+
+@utility site-footer__meta {
+  color: var(--text-inverse-muted);
+  font-size: var(--type-body-size);
+}
+
+@utility site-footer__contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@utility site-footer__contact-row {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+  gap: 0.625rem;
+  max-width: 100%;
+  color: var(--text-inverse-body);
+  text-decoration: none;
+}
+
+@utility site-footer__contact-label {
+  display: block;
+  margin-bottom: 0.125rem;
+  color: var(--text-inverse-muted);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-medium);
+  letter-spacing: 0.08em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+@utility site-footer__contact-icon {
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  color: var(--text-inverse-muted);
+}
+
+@utility site-footer__legal-row {
+  color: var(--text-inverse-muted);
+  font-size: var(--type-body-size);
+}
+
+@utility site-footer__columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+  @media (width >= theme(--breakpoint-sm)) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  @media (width >= theme(--breakpoint-lg)) {
+    grid-template-columns: minmax(13.75rem, 1.15fr) repeat(4, minmax(0, 1fr));
+    gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  }
+}
+
+@utility site-footer__brand-col {
+  min-width: 0;
+}
+
+@utility site-footer__nav-col--products {
+  min-width: 0;
+}
+
+@utility site-footer__nav-col {
+  min-width: 0;
+}
+
+/* â”€â”€ Section divider â”€â”€ */
+@utility section-divider {
+  border-bottom: 0.0625rem solid var(--border-soft);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* â”€â”€ Reveal on scroll â”€â”€ */
+@utility reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(1.25rem);
+  transition-property: opacity, transform;
+  transition-duration: 600ms;
+  transition-timing-function: var(--ease-standard);
+  &.visible { opacity: 1; transform: translateY(0); }
+}
+
+/* â”€â”€ Surface overlays (additional) â”€â”€ */
+@utility surface-overlay-24 { background: var(--overlay-inverse-24); }
+@utility surface-overlay-inverse-12 { background: var(--overlay-inverse-12); }
+
+/* â”€â”€ Animations â”€â”€ */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+@utility animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+@utility animate-marquee-reverse {
+  animation: marquee-reverse 30s linear infinite;
+}
+
+/* â”€â”€ Skeleton loading â”€â”€ */
+@utility skeleton {
+  background: linear-gradient(90deg, var(--surface-muted) 25%, var(--surface-hover) 50%, var(--surface-muted) 75%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.5s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+}
+@keyframes skeleton-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* â”€â”€ Home section base â”€â”€ */
+@utility home-section {
+  width: 100%;
+}

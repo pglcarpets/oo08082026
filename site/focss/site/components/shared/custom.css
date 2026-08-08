@@ -1,0 +1,145 @@
+
+/* ==========================================================================
+   Shared custom utilities (not homepage-owned).
+   Homepage soft CSS → site/homepage/
+   Contact teaser band → site/contact/contact-band.css
+   ========================================================================== */
+
+@utility font-slogan {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-standard);
+}
+
+@utility btn-pill {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  min-height: var(--control-height-sm);
+  border-radius: var(--radius-pill);
+  padding-inline: 1.25rem;
+  padding-block: 0.75rem;
+}
+
+@utility btn-pill-compact {
+  font-size: 0.875rem;
+  letter-spacing: 0.05em;
+  min-height: var(--control-height-sm);
+  border-radius: var(--radius-pill);
+  padding-inline: 1.25rem;
+  padding-block: 0.5rem;
+}
+
+@utility badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--radius-full);
+  background: var(--surface-soft);
+  padding: 0.25rem 0.75rem;
+  font-size: var(--type-label-size);
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+@utility surface-panel {
+  background: var(--surface-panel-strong);
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+
+@utility page-hero {
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* Route H1: site/components/shared/route-hero.css */
+
+@utility stats-block {
+  display: grid;
+  gap: 2rem;
+  background-color: var(--surface-soft);
+  color: var(--text-body);
+  padding: calc(var(--spacing) * 4);
+  border-radius: var(--radius-default);
+}
+
+@utility stats-block__label {
+  margin-top: 0.25rem;
+  font-size: var(--type-body-size);
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@utility hero {
+  background-color: var(--surface-page);
+  color: var(--text-body);
+  padding: calc(var(--spacing) * 12);
+  border-radius: var(--radius-default);
+}
+
+@utility footer-conversion__panel {
+  display: grid;
+  gap: 1.5rem;
+  border-width: 1px;
+  padding: 1.5rem;
+  border-radius: var(--radius-xl);
+  border-color: var(--border-soft);
+  background: var(--surface-panel-strong);
+  box-shadow: var(--shadow-panel);
+}
+
+@media (width >= theme(--breakpoint-lg)) {
+  .footer-conversion__panel {
+    grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 0.8fr);
+    padding: 2rem;
+  }
+}
+
+@utility footer-conversion__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@utility footer-conversion__chip {
+  border-radius: 9999px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-hover);
+  padding: 0.25rem 0.75rem;
+  color: var(--text-body);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.12em;
+  line-height: 1.25;
+  text-transform: uppercase;
+}
+
+@utility footer-conversion__contact {
+  border-width: 1px;
+  background: var(--surface-hover);
+  padding: 1rem;
+  border-radius: var(--radius-lg);
+}
+
+@utility footer-conversion__contact-links {
+  margin-top: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: var(--text-body);
+  font-size: var(--type-body-size);
+  font-weight: 375;
+  letter-spacing: var(--type-letter-copy);
+  line-height: 1.6;
+}

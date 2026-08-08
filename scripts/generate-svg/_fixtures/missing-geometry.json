@@ -1,0 +1,28 @@
+{
+  "id": "d4e5f6a7-b8c9-0123-defa-234567890123",
+  "slug": "missing-geom-fallback-001",
+  "name": "Missing Geometry Fallback",
+  "description": "Descriptor with no blocks — triggers cross-hatched fallback path per §03-FIX-05 / PLAN-FAIL-018.",
+  "variant": "union",
+  "sourceProvenance": "native",
+  "schemaVersion": "1.0.0",
+  "generatedAt": 1751631000,
+  "createdBy": "phase-03-executor",
+  "dimensions": {
+    "widthMm": 200,
+    "depthMm": 200,
+    "heightMm": 200
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 200,
+    "height": 200
+  },
+  "mounting": "floor",
+  "blocks": [],
+  "themeTokens": {
+    "fill-primary": "currentColor"
+  },
+  "liveAnnouncementsCategory": "status"
+}

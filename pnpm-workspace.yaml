@@ -1,0 +1,76 @@
+# Workspace: root product + tech-docs. One install from repo root only.
+# (`pnpm install` — never inside site/ or tech-docs-generator/)
+# Note: pnpm rewrites allowBuilds alphabetically; keep each comment on the line
+# directly above the key it describes.
+packages:
+  - "tech-docs-generator"
+
+# Collapse duplicate copies that differ only by patch/minor. Anything differing
+# by major is left alone — the dependents genuinely need those versions.
+overrides:
+  # next pins 8.5.10; tailwind/vite/tech-docs all want 8.5.25
+  postcss: 8.5.25
+  # @tailwindcss/node pins 1.32.0, vite wants 1.33.0 — native binary, ~10 MB a copy
+  lightningcss: 1.33.0
+  # transitive copies at 18.x / 20.x; types-only, dev-time
+  "@types/node": 26.1.2
+  # @huggingface/transformers (under @lancedb/lancedb) pins 0.33.5 while next and
+  # the app want 0.35.3 — two native image libs at ~50 MB each. The transformers
+  # image path never runs here (embeddings are remote), so collapse to next's copy.
+  sharp: 0.35.3
+  # drizzle-kit@1.0.0-rc.4 pins 0.25.12; tsx/vite/vitest all use 0.28.1. Collapsing
+  # drops 26 duplicated @esbuild/* platform packages. Verified against a baseline:
+  # drizzle-kit fails identically with and without this (see drizzle-orm note below).
+  esbuild: 0.28.1
+  # Remaining same-major duplicates, collapsed to the highest stable copy. Note the
+  # 0.x entries are breaking bumps under semver (0.x minor == major) — kept here
+  # because the gate + typecheck pass on them, not because the range allows it.
+  "@swc/helpers": 0.5.23
+  "@workflow/serde": 4.1.0
+  aria-query: 5.3.2
+  dom-accessibility-api: 0.6.3
+  fflate: 0.8.3
+  fsevents: 2.3.3
+  iconv-lite: 0.7.3
+  mime-db: 1.54.0
+  ms: 2.1.3
+  # stable release, not the 1.20.0-dev snapshot @huggingface/transformers pulls
+  onnxruntime-common: 1.19.2
+  unicorn-magic: 0.4.0
+  zod-from-json-schema: 0.5.6
+  # Vitest declares jsdom as an optional peer; fabric lists it for Node canvas tests.
+  # We use happy-dom only — strip jsdom from the graph (pnpm peer-removal override).
+  "vitest>jsdom": "-"
+  jsdom: "-"
+
+ignoredOptionalDependencies:
+  # Belt-and-suspenders with the jsdom override above (fabric optional dep path).
+  - jsdom
+
+allowBuilds:
+  # native file watcher; postinstall resolves its prebuilt binding
+  "@parcel/watcher": true
+  # Next.js compiler — non-functional without its platform binary
+  "@swc/core": true
+  # fabric optional native dep — not needed for browser Fabric; Node 24 often can't build it
+  canvas: false
+  # babel/webpack polyfill postinstall (transitive)
+  core-js: true
+  # postinstall places the platform binary; esbuild cannot run without it
+  esbuild: true
+  # transitive via @lancedb/lancedb -> @huggingface/transformers. Its postinstall
+  # downloads the Linux/x64 CUDA execution provider (~GB, GitHub releases); on
+  # Windows the script exits early and does nothing. Embeddings run through a
+  # remote API (see lib/ai/mastra/embedder.ts), so no local ONNX session is ever
+  # created — this stays false to keep the CUDA download out of Linux deploys.
+  onnxruntime-node: false
+  # pure-JS codegen postinstall (transitive)
+  protobufjs: true
+  # Next.js image pipeline
+  sharp: true
+  # napi-based resolver used by the lint tooling; needs its native binding
+  unrs-resolver: true
+
+# minimumReleaseAgeExclude is written by pnpm itself, not by hand: it records any
+# package installed within pnpm's ~24h release-age window. Entries age out of
+# relevance and can be deleted at any time — pnpm re-adds what it still needs.

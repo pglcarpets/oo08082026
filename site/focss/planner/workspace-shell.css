@@ -1,0 +1,249 @@
+/* Shared workspace shell — dual-scoped; zone files hold app-specific UI only */
+
+.ooplanner-root .workspace { flex: 1; display: flex; min-height: 0; }
+
+.ooplanner-root .tool-rail {
+  width: var(--shell-rail-w);
+  background: var(--surface-panel);
+  border-right: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 0;
+  gap: 4px;
+  z-index: 20;
+}
+.ooplanner-root .tool-rail__divider { width: 24px; height: 1px; background: var(--border-soft); margin: 6px 0; }
+
+.ooplanner-root .canvas-stage {
+  flex: 1;
+  position: relative;
+  background: var(--color-white-100);
+  min-width: 0;
+  overflow: hidden;
+  isolation: isolate;
+}
+.ooplanner-root .canvas-stage { container-type: inline-size; container-name: canvas-stage; }
+.ooplanner-root .canvas-stage__inner { position: absolute; inset: 0; }
+
+.ooplanner-root .side-panel {
+  width: var(--shell-panel-w);
+  background: var(--surface-panel);
+  border-left: 1px solid var(--border-soft);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ooplanner-root .side-panel.side-panel--dock { overflow: visible; }
+.ooplanner-root .side-panel--left { border-left: none; border-right: 1px solid var(--border-soft); width: var(--shell-catalog-w); }
+
+.ooplanner-root .side-panel__section { padding: 14px 16px; border-bottom: 1px solid var(--border-soft); }
+.ooplanner-root .side-panel__section:last-child { border-bottom: none; }
+.ooplanner-root .side-panel__title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 10px 0;
+}
+
+.ooplanner-root .prop-row { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 8px; margin-bottom: 8px; }
+.ooplanner-root .prop-row__label { font-size: 12px; color: var(--text-muted); }
+.ooplanner-root .prop-row__inputs { display: flex; gap: 6px; }
+
+.ooplanner-root .status-bar {
+  height: 28px;
+  min-height: 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 0 16px;
+  border-top: 1px solid var(--border-soft);
+  font-size: 11px;
+  color: var(--text-muted);
+  background: var(--surface-panel);
+  font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
+  letter-spacing: 0.01em;
+}
+.ooplanner-root .status-bar strong { color: var(--text-strong); font-weight: 500; }
+
+.ooplanner-root .dialog-scrim {
+  position: fixed;
+  inset: 0;
+  background: color-mix(in srgb, var(--color-midnight-900) 42%, transparent);
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.ooplanner-root .dialog {
+  background: var(--surface-panel);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  padding: 24px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-lift);
+}
+.ooplanner-root .dialog__title { font-size: 18px; font-weight: 600; color: var(--text-strong); margin: 0 0 4px 0; letter-spacing: -0.02em; }
+.ooplanner-root .dialog__sub { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+.ooplanner-root .dialog__actions { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+
+.ooplanner-root .planner-handoff {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  background: var(--surface-muted);
+  animation: planner-handoff-in 160ms ease-out;
+}
+@keyframes planner-handoff-in {
+  from { transform: translateY(-4px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.ooplanner-root .planner-handoff__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.ooplanner-root .planner-handoff__error {
+  margin: 0;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--color-error) 35%, var(--border-soft));
+  background: color-mix(in srgb, var(--color-error) 10%, var(--surface-panel));
+  color: var(--text-strong);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.ooplanner-root .canvas-overlay {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--color-white-50) 94%, transparent);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  gap: 1px;
+  z-index: 5;
+}
+.ooplanner-root .canvas-overlay .btn {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  box-shadow: none;
+  padding: 6px 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+.ooplanner-root .canvas-overlay .btn:hover { background: var(--surface-muted); color: var(--text-strong); border-color: transparent; box-shadow: none; }
+.ooplanner-root .canvas-overlay .btn[data-active="true"] { background: var(--color-primary-soft); color: var(--color-primary); }
+.ooplanner-root .canvas-overlay .btn--primary { background: var(--color-primary); color: var(--text-inverse); border-color: var(--color-primary); }
+.ooplanner-root .canvas-overlay .btn--primary:hover { background: var(--color-primary-hover); color: var(--text-inverse); }
+
+.ooplanner-root .view-tabs {
+  display: inline-flex;
+  padding: 4px;
+  border-radius: 12px;
+  background: var(--surface-muted);
+  border: 1px solid var(--border-soft);
+  gap: 2px;
+}
+.ooplanner-root .view-tabs button {
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.01em;
+}
+.ooplanner-root .view-tabs button[data-active="true"] {
+  background: var(--surface-panel);
+  color: var(--text-strong);
+  box-shadow: var(--shadow-segment-active);
+}
+
+.ooplanner-root .stroke-swatch { width: 20px; height: 20px; border-radius: 6px; border: 2px solid var(--border-soft); cursor: pointer; }
+.ooplanner-root .stroke-swatch[data-active="true"] { border-color: var(--color-primary); box-shadow: var(--focus-ring); }
+
+/* Layers list (both apps) */
+.ooplanner-root .layer-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+  color: var(--text-body);
+  cursor: pointer;
+}
+.ooplanner-root .layer-item:hover { background: var(--surface-muted); }
+.ooplanner-root .layer-item[data-selected="true"] { background: var(--color-primary-soft); color: var(--color-primary); }
+.ooplanner-root .layer-item__icon-btn {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  border-radius: 6px;
+  color: var(--text-subtle);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+.ooplanner-root .layer-item__icon-btn:hover { background: var(--surface-panel); color: var(--text-strong); }
+
+/* Dock inspector panels */
+.ooplanner-root .dock-panel { padding: 12px; height: 100%; overflow: auto; min-width: 0; }
+.ooplanner-root .dock-panel .prop-row__inputs { min-width: 0; }
+.ooplanner-root .dock-panel .select,
+.ooplanner-root .dock-panel .input {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+}
+.ooplanner-root .dock-panel--stack {
+  padding: 12px;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.ooplanner-root .dock-panel--catalog { height: 100%; display: flex; flex-direction: column; overflow: hidden; }
+.ooplanner-root .dock-panel__unit { font-size: 11px; color: var(--text-subtle); align-self: center; }
+
+.ooplanner-root .segmented--equal { width: 100%; justify-content: stretch; }
+.ooplanner-root .segmented--equal button { flex: 1; }
+
+/* Narrow viewport: keep one-finger vertical scroll inside panels/toolbars. */
+@media (max-width: 639px) {
+  .ooplanner-root .side-panel,
+  .ooplanner-root .dock-panel,
+  .ooplanner-root .draw-side-stack,
+  .ooplanner-root .side-panel--dock .dv-content-container,
+  .ooplanner-root .boq-panel__list {
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .ooplanner-root .topbar,
+  .ooplanner-root .oo-toolbar {
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+}

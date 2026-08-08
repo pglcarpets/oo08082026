@@ -1,0 +1,57 @@
+/**
+ * blocks2d.ts vocabulary bridge
+ *
+ * Procedural blocks in lib/catalog/blocks2d.ts reference short token names
+ * (--block-surface, --block-seat, …). Component styles in this folder use
+ * longer names (--block-ws-surface-base, --block-chair-seat, …).
+ *
+ * Import this file LAST in index.css so aliases resolve against the component
+ * token files above.
+ */
+
+.buddy-editor-surface,
+.buddy-editor-surface .tl-container,
+.buddy-guest-editor,
+.buddy-guest-editor .tl-container,
+.planner-workspace .pw-tldraw-container,
+.planner-workspace .pw-tldraw-container .tl-container,
+:root {
+  --block-surface: var(--block-ws-surface-base, var(--color-ecru-300));
+  --block-surface-grad-end: var(--block-table-grad-end, var(--color-ecru-400));
+  --block-surface-stroke: var(--block-table-stroke, var(--color-ecru-500));
+
+  --block-seat: var(--block-chair-seat, var(--text-muted));
+  --block-seat-stroke: var(--block-chair-stroke, var(--text-body));
+  --block-seat-contour: var(--block-chair-contour, var(--text-subtle));
+  --block-seat-backrest: var(--block-chair-backrest, var(--text-heading-soft));
+  --block-seat-backrest-stroke: var(--block-chair-backrest-stroke, var(--color-dark-midnight-blue-750));
+  --block-armrest: var(--block-chair-arm, var(--text-body));
+  --block-armrest-soft: var(--block-chair-arm-soft, var(--text-heading-soft));
+  --block-caster-base: var(--block-chair-caster-base, var(--text-inverse-body));
+  --block-caster-spoke: var(--block-chair-caster-spoke, var(--text-inverse-subtle));
+  --block-caster-wheel: var(--block-chair-caster-wheel, var(--text-muted));
+
+  --block-sofa: var(--block-sofa-cushion-base, var(--color-bronze-500));
+  --block-sofa-stroke: var(--block-theme-sofa-stroke, var(--color-bronze-800));
+  --block-sofa-arm: var(--block-theme-sofa-arm, var(--color-ecru-800));
+  --block-sofa-seam: var(--block-sofa-seam-thread, var(--color-bronze-300));
+
+  --block-panel: var(--block-theme-panel, var(--text-inverse-subtle));
+  --block-panel-grad-start: var(--block-theme-panel-grad, var(--text-inverse-muted));
+
+  --block-screen-grad-start: var(--block-theme-accent-dark, var(--text-heading-soft));
+  --block-screen-grad-end: var(--block-theme-accent-darker, var(--color-dark-midnight-blue-750));
+
+  --block-shadow-color: var(--block-theme-drop-shadow, var(--shadow-tint-pdp-22));
+
+  --block-storage: var(--block-theme-body, var(--text-inverse-body));
+  --block-storage-grad-start: var(--block-theme-body-light, var(--text-strong));
+  --block-storage-stroke: var(--block-theme-body-dark, var(--text-inverse-subtle));
+
+  --block-glyph: var(--block-theme-body, var(--text-inverse-muted));
+  --block-glyph-dark: var(--block-theme-seat-contour, var(--text-muted));
+
+  --block-equip-white: var(--block-theme-surface-primary, var(--color-white-50));
+  --block-equip-gray: var(--block-theme-body-light, var(--text-inverse-body));
+  --block-equip-dark: var(--block-theme-body-dark, var(--text-subtle));
+}

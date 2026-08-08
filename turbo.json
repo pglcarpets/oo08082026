@@ -1,0 +1,27 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**"]
+    },
+    "test": {
+      "dependsOn": ["build"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "typecheck": {
+      "dependsOn": ["^typecheck"]
+    },
+    "release:gate": {
+      "dependsOn": ["build", "lint", "typecheck", "test"],
+      "outputs": ["results/**"]
+    },
+    "release:gate:fast": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

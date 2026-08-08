@@ -1,0 +1,14 @@
+/* Products package barrel — loaded once via site/index.css (globals).
+   Do not re-import from route layouts (avoids double-load). */
+@import "./products-page.css";
+@import "./catalog-category-hero.css";
+@import "./catalog-cards.css";
+@import "./catalog-filters.css";
+@import "./catalog-mobile.css";
+@import "./catalog-desktop.css";
+@import "./shell-pdp.css";
+@import "./pdp-detail.css";
+@import "./pdp-cta.css";
+@import "./product-viewer.css";
+@import "./choose-product-page.css";
+@import "./workspace-hub.css";

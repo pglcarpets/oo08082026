@@ -1,0 +1,20 @@
+/* Shared marketing primitives — single import surface for site/components/index.css */
+@import "./buttons.css";
+@import "./schemes.css";
+@import "./theme-utils.css";
+@import "./badges.css";
+@import "./cards.css";
+@import "./catalog-card-media.css";
+@import "./plan-symbol-preview.css";
+@import "./catalog-suite-filters.css";
+@import "./home-media-layers.css";
+@import "./stats.css";
+@import "./client-badge.css";
+@import "./nav.css";
+@import "./custom.css";
+@import "./route-hero.css";
+@import "./missing-components.css";
+@import "./contact-page.css";
+@import "./editorial-hero.css";
+@import "./route-spacing.css";
+@import "./mobile-tap-targets.css";

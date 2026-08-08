@@ -1,0 +1,100 @@
+.quick-contact-fab__icon {
+  display: flex;
+  height: 3rem;
+  width: 3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  color: var(--text-inverse);
+}
+
+.quick-contact-panel__footer-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-primary);
+  transition: color var(--motion-fast) var(--ease-standard);
+}
+
+.quick-contact-panel__footer-link:hover {
+  color: var(--color-primary-hover);
+}
+
+.quick-contact-panel__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.quick-contact-panel__title {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-copy-semibold);
+  color: var(--text-strong);
+}
+
+.quick-contact-panel__meta {
+  margin-top: 0.125rem;
+  font-size: var(--type-label-size);
+  color: var(--text-body);
+}
+
+.quick-contact-panel__list {
+  display: grid;
+  gap: 0.625rem;
+}
+
+.quick-contact-panel__action {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 0.875rem 0.9375rem;
+}
+
+.quick-contact-panel__action-icon {
+  display: inline-flex;
+  height: 2.5rem;
+  width: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-accent) 14%, var(--surface-panel));
+  color: var(--color-accent-strong);
+}
+
+.quick-contact-panel__action-copy {
+  min-width: 0;
+  display: grid;
+  gap: 0.125rem;
+  flex: 1;
+}
+
+.quick-contact-panel__action-label {
+  font-size: 0.95rem;
+  font-weight: var(--font-weight-copy-semibold);
+  color: var(--text-strong);
+}
+
+.quick-contact-panel__action-detail {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.quick-contact-panel__action-arrow {
+  flex-shrink: 0;
+  color: var(--text-muted);
+  transition: transform var(--motion-fast) var(--ease-standard),
+              color var(--motion-fast) var(--ease-standard);
+}
+
+.quick-contact-panel__action:hover .quick-contact-panel__action-arrow {
+  transform: translate(0.125rem, -0.125rem);
+  color: var(--color-primary);
+}
+

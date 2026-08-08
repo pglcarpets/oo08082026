@@ -1,0 +1,24 @@
+
+/* --- ========================================================================== focss-components.css Combined CSS from focss/css/ the original design system source of truth. @layer wrappers stripped; all rules kept as plain CSS. ========================================================================== --- */
+
+/* --- @keyframes --- */
+
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+@keyframes hero-slider-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(0.375rem); opacity: 0.4; }
+}
+
+@keyframes consent-slide-in {
+  from { transform: translateY(100%); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}

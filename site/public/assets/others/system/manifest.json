@@ -1,0 +1,37 @@
+{
+  "name": "Oando Platform",
+  "short_name": "Oando",
+  "description": "Professional space planning and design tools for modern workspaces",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b1f3a",
+  "theme_color": "#0b1f3a",
+  "orientation": "any",
+  "categories": ["business", "productivity", "shopping"],
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Space Planner",
+      "url": "/planner",
+      "description": "Launch the workspace planner"
+    },
+    {
+      "name": "Products",
+      "url": "/products",
+      "description": "Browse furniture catalog"
+    }
+  ]
+}

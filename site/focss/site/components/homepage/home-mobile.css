@@ -1,0 +1,89 @@
+/* Homepage — mobile layout, tap targets, and touch polish */
+
+@media (width < theme(--breakpoint-md)) {
+  .home-marketing-layout:has(#home-hero) .home-hero,
+  .home-marketing-layout:has([data-testid="homepage-hero"]) .home-hero {
+    min-height: clamp(28rem, 82dvh, 44rem);
+    padding-top: 4.5rem;
+  }
+
+  .home-hero-title-homepage {
+    font-size: clamp(2rem, 9.5vw, 3.15rem);
+    line-height: 1.08;
+  }
+
+  .home-hero__copy .home-actions {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .home-hero-glass-stack {
+    max-width: 100%;
+    padding-bottom: var(--space-4);
+  }
+
+  .home-collections {
+    padding-bottom: calc(var(--cookie-consent-bar-offset, 0px) + var(--space-2));
+  }
+
+  .home-collections .grid {
+    gap: var(--space-4);
+  }
+
+  .home-collection-card__footer {
+    padding: var(--space-4) var(--space-5);
+  }
+
+  .home-collection-card__arrow {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .home-collections-arrow {
+    min-height: var(--control-height-sm);
+    min-width: var(--control-height-sm);
+  }
+
+  .home-showcase-nav-button {
+    min-height: var(--control-height-sm);
+    min-width: var(--control-height-sm);
+  }
+
+  .home-showcase-browse-link {
+    min-height: var(--control-height-sm);
+    align-items: center;
+    margin-left: 0;
+    margin-top: var(--space-2);
+  }
+
+  .home-faq-question {
+    display: flex;
+    align-items: center;
+    min-height: var(--control-height-sm);
+    padding-block: var(--space-3);
+  }
+
+  .home-solutions-panel {
+    padding: 1.5rem 1.125rem;
+  }
+
+  .home-solutions-title {
+    font-size: clamp(1.75rem, 8vw, 2.35rem);
+  }
+
+  @media (hover: none) {
+    .home-collection-card:hover {
+      transform: none;
+    }
+  }
+}
+
+@media (width < theme(--breakpoint-sm)) {
+  .home-trust-kpi {
+    padding-block: var(--space-2);
+  }
+
+  .home-collections .flex.gap-6 {
+    gap: var(--space-4);
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000020",
+  "slug": "oando-casca-guest-chair",
+  "sku": "OANDO-CASCA-CHR-GST",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 600,
+    "depthMm": 600,
+    "heightMm": 900
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 600,
+    "height": 600
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "seat",
+      "x": 80,
+      "y": 160,
+      "width": 440,
+      "depth": 320
+    },
+    {
+      "id": "backrest",
+      "x": 100,
+      "y": 40,
+      "width": 400,
+      "depth": 140
+    },
+    {
+      "id": "legs",
+      "x": 120,
+      "y": 460,
+      "width": 360,
+      "depth": 80
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000051,
+  "checksum": "50243f511ede22ba03acc68d158b8af0d0948a0c8b1d6542089b01405c3efccb",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

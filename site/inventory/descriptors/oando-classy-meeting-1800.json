@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000011",
+  "slug": "oando-classy-meeting-1800",
+  "sku": "OANDO-CLASSY-MTG-1800",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 1800,
+    "depthMm": 900,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 1800,
+    "height": 900
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "tabletop",
+      "x": 0,
+      "y": 0,
+      "width": 1800,
+      "depth": 900
+    },
+    {
+      "id": "leg-nw",
+      "x": 80,
+      "y": 80,
+      "width": 60,
+      "depth": 60
+    },
+    {
+      "id": "leg-ne",
+      "x": 1660,
+      "y": 80,
+      "width": 60,
+      "depth": 60
+    },
+    {
+      "id": "leg-sw",
+      "x": 80,
+      "y": 760,
+      "width": 60,
+      "depth": 60
+    },
+    {
+      "id": "leg-se",
+      "x": 1660,
+      "y": 760,
+      "width": 60,
+      "depth": 60
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [
+    {
+      "key": "top",
+      "focusSelector": "#tabletop",
+      "label": "Tabletop"
+    }
+  ],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000020,
+  "checksum": "41681ba8684a8ff3997507427712e623b7b8a79769bd280fb5bc8240a8390aa2",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

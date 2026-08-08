@@ -1,0 +1,73 @@
+/* /planning — editorial hero still, bronze seam, tightened deliverables band */
+@import "../shared/editorial-hero.css";
+@import "../about/about-page.css";
+
+.planning-hero__img {
+  object-position: 46% 36%;
+}
+
+/*
+ * Hero → craft-strip seam (oando-premium-motion): content-driven dark band,
+ * bronze hairline punctuation, no dead air before the pull-quote.
+ * Contract: ≤48px mobile / ≤80px desktop hero bottom → next content.
+ */
+.planning-hero {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 38%, transparent);
+  padding-block-end: clamp(0.75rem, 1.8vw, 1.15rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .about-craft-strip {
+  padding-block-start: clamp(0.85rem, 2vw, 1.35rem);
+  padding-block-end: clamp(1rem, 2.2vw, 1.5rem);
+}
+
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .about-craft-strip + .home-section.section-y,
+.home-marketing-layout:not(:has(#home-hero)) .planning-hero + .about-craft-strip + .home-section.section-y-sm {
+  padding-block: clamp(1.1rem, 2.4vw, 2.25rem) var(--section-space-md);
+}
+
+.planning-deliverables {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+@media (min-width: 48rem) {
+  .planning-deliverables {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    align-items: start;
+    gap: clamp(1.65rem, 4vw, 3rem);
+  }
+}
+
+.planning-best-for {
+  display: grid;
+  gap: 0.5rem;
+  margin: 1.25rem 0 0;
+  max-width: 34rem;
+}
+
+.planning-best-for__copy {
+  font-size: clamp(1rem, 2.2vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--text-body);
+}
+
+.planning-deliverables__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.planning-deliverables__item {
+  padding-block: clamp(0.85rem, 2vw, 1.1rem);
+  padding-inline-start: clamp(1rem, 2.5vw, 1.35rem);
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 10%, transparent);
+  color: var(--text-body);
+  line-height: 1.5;
+}
+
+.planning-deliverables__item:last-child {
+  border-block-end: 0;
+}

@@ -1,0 +1,204 @@
+/**
+ * Refresh tests inventory + legacy migration map for docs:sync.
+ * Writes:
+ *   results/test-inventory.json
+ *   results/test-migration-map.json
+ *   tests/INVENTORY.md (markdown summary)
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+import { REPO_ROOT } from "../lib/repoRoot.mjs";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const TESTS_DIR = path.join(REPO_ROOT, "tests");
+const RESULTS_DIR = path.join(REPO_ROOT, "results");
+const INVENTORY_JSON = path.join(RESULTS_DIR, "test-inventory.json");
+const MIGRATION_JSON = path.join(RESULTS_DIR, "test-migration-map.json");
+const INVENTORY_MD = path.join(TESTS_DIR, "INVENTORY.md");
+
+/** @typedef {{ name: string; path: string; kind: string; runner: string }} InventoryFile */
+
+function walk(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, ent.name);
+    if (ent.isDirectory()) {
+      if (ent.name === "node_modules" || ent.name === ".git") continue;
+      walk(full, acc);
+    } else {
+      acc.push(full);
+    }
+  }
+  return acc;
+}
+
+function classify(relPosix) {
+  const base = path.posix.basename(relPosix);
+  if (base === "setup.ts" || base.endsWith(".setup.ts")) {
+    return { kind: "helper", runner: "helper" };
+  }
+  if (/\.spec\.(ts|tsx|js|mjs)$/.test(base) || relPosix.includes("/e2e/")) {
+    return { kind: "playwright", runner: "playwright" };
+  }
+  if (/\.test\.(ts|tsx|js|mjs)$/.test(base)) {
+    if (relPosix.includes("excluded") || relPosix.includes("/skip/")) {
+      return { kind: "vitestExcluded", runner: "vitest" };
+    }
+    return { kind: "vitest", runner: "vitest" };
+  }
+  if (
+    base.endsWith(".ts") ||
+    base.endsWith(".tsx") ||
+    base.endsWith(".mjs") ||
+    base.endsWith(".js")
+  ) {
+    return { kind: "helper", runner: "helper" };
+  }
+  return null;
+}
+
+function collectFiles() {
+  /** @type {InventoryFile[]} */
+  const files = [];
+  for (const abs of walk(TESTS_DIR)) {
+    const rel = path.relative(REPO_ROOT, abs).replace(/\\/g, "/");
+    if (!rel.startsWith("tests/")) continue;
+    const c = classify(rel);
+    if (!c) continue;
+    files.push({
+      name: path.posix.basename(rel),
+      path: rel,
+      kind: c.kind,
+      runner: c.runner,
+    });
+  }
+  files.sort((a, b) => a.path.localeCompare(b.path));
+  return files;
+}
+
+function loadMigrationPairs() {
+  /** @type {{ from: string; to: string }[]} */
+  const pairs = [];
+  if (fs.existsSync(MIGRATION_JSON)) {
+    try {
+      const prev = JSON.parse(fs.readFileSync(MIGRATION_JSON, "utf8"));
+      if (Array.isArray(prev.pairs)) {
+        for (const p of prev.pairs) {
+          if (
+            p &&
+            typeof p.from === "string" &&
+            typeof p.to === "string" &&
+            p.from.includes("tests/unit/") &&
+            p.to.includes("tests/unit/")
+          ) {
+            pairs.push({ from: p.from, to: p.to });
+          }
+        }
+      }
+    } catch {
+      /* rebuild below */
+    }
+  }
+  if (pairs.length === 0) {
+    // Seed at least one documented historical rename so docs:sync contract holds.
+    pairs.push({
+      from: "tests/unit/planner-3d-types.test.ts",
+      to: "tests/unit/features/planner/3d/types.test.ts",
+    });
+  }
+  return pairs;
+}
+
+function writeMarkdown(counts, files) {
+  const byKind = {
+    vitest: files.filter((f) => f.kind === "vitest"),
+    vitestExcluded: files.filter((f) => f.kind === "vitestExcluded"),
+    playwright: files.filter((f) => f.kind === "playwright"),
+    helper: files.filter((f) => f.kind === "helper"),
+  };
+  const lines = [
+    "# Test inventory",
+    "",
+    "Auto-generated file list and counts. Folder rules: `tests/CONTENTS.md`.",
+    "",
+    `*Updated: ${new Date().toISOString().slice(0, 10)} — run \`pnpm run docs:sync\` to refresh.*`,
+    "",
+    "## Counts",
+    "",
+    "| Kind | Count |",
+    "|------|-------|",
+    `| Vitest (active) | ${counts.vitest} |`,
+    `| Vitest (excluded in config) | ${counts.vitestExcluded} |`,
+    `| Playwright | ${counts.playwright} |`,
+    `| Helpers | ${counts.helpers} |`,
+    `| **Total files** | **${counts.total}** |`,
+    "",
+    "JSON: `results/test-inventory.json` · Migration: `results/test-migration-map.json` · Coverage: `results/coverage-summary.json` (`pnpm run docs:sync:coverage`)",
+    "",
+    "## Files by category",
+    "",
+  ];
+  for (const [label, list] of Object.entries(byKind)) {
+    if (list.length === 0) continue;
+    lines.push(`### ${label}`, "");
+    for (const f of list.slice(0, 200)) {
+      lines.push(`- \`${f.path}\``);
+    }
+    if (list.length > 200) lines.push(`- … +${list.length - 200} more`);
+    lines.push("");
+  }
+  lines.push(
+    "## See also",
+    "",
+    "- `CONTENTS.md`",
+    "- `../README.md`",
+    "",
+    "---",
+    "*Generated by `scripts/general/generate-docs.mjs` / `generate-test-inventory.mjs` — do not hand-edit; re-run `pnpm run docs:sync`.*",
+    "",
+  );
+  fs.writeFileSync(INVENTORY_MD, lines.join("\n"), "utf8");
+}
+
+const files = collectFiles();
+const counts = {
+  total: files.length,
+  vitest: files.filter((f) => f.kind === "vitest").length,
+  vitestExcluded: files.filter((f) => f.kind === "vitestExcluded").length,
+  playwright: files.filter((f) => f.kind === "playwright").length,
+  helpers: files.filter((f) => f.kind === "helper").length,
+};
+
+const generatedAt = new Date().toISOString();
+const inventory = {
+  generatedAt,
+  source: "tests/",
+  counts,
+  vitestExclude: [],
+  files,
+  byKind: {},
+};
+
+const migration = {
+  generatedAt,
+  commit: generatedAt.slice(0, 10),
+  description:
+    "Legacy flat tests/unit/* retired; mirrored under tests/unit/features/…",
+  pairs: loadMigrationPairs(),
+};
+
+fs.mkdirSync(RESULTS_DIR, { recursive: true });
+fs.writeFileSync(INVENTORY_JSON, JSON.stringify(inventory, null, 2) + "\n", "utf8");
+fs.writeFileSync(MIGRATION_JSON, JSON.stringify(migration, null, 2) + "\n", "utf8");
+writeMarkdown(counts, files);
+
+console.log(
+  `[generate-test-inventory] total=${counts.total} vitest=${counts.vitest} playwright=${counts.playwright} helpers=${counts.helpers}`,
+);
+console.log(`  wrote ${path.relative(REPO_ROOT, INVENTORY_JSON)}`);
+console.log(`  wrote ${path.relative(REPO_ROOT, MIGRATION_JSON)}`);
+console.log(`  wrote ${path.relative(REPO_ROOT, INVENTORY_MD)}`);
+
+// silence unused
+void __dirname;

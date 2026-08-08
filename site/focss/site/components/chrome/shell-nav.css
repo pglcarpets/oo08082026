@@ -1,0 +1,55 @@
+.shell-nav-link--desktop {
+  font-size: var(--type-nav-size);
+  font-weight: var(--font-weight-copy-medium);
+}
+
+@media (width >= theme(--breakpoint-2xl)) {
+  .shell-nav-link--desktop {
+    font-size: var(--type-nav-size);
+  }
+}
+
+.shell-list-link--mega {
+  font-size: var(--type-kicker-size);
+  font-weight: var(--font-weight-copy-medium);
+  color: var(--text-strong);
+  transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-list-link--mega-sub {
+  font-size: var(--type-kicker-size);
+  font-weight: var(--font-weight-copy-regular);
+  color: var(--text-body);
+  transition: color var(--motion-fast) var(--ease-standard), background-color var(--motion-fast) var(--ease-standard);
+}
+
+.shell-list-link--mega-sub:hover,
+.shell-list-link--mega:hover {
+  color: var(--color-primary);
+  background-color: var(--surface-hover);
+}
+
+.site-footer__nav-heading {
+  color: var(--color-accent1);
+}
+
+.shell-dark-chip {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  border: 0.0625rem solid color-mix(in srgb, white 15%, transparent);
+  background: color-mix(in srgb, white 8%, transparent);
+  padding: 0.625rem 1.25rem;
+  color: color-mix(in srgb, white 88%, transparent);
+  -webkit-backdrop-filter: blur(0.625rem);
+  backdrop-filter: blur(10px);
+}
+
+.shell-dark-chip--label {
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+

@@ -1,0 +1,82 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { HueSlider } from "@studio/components/ui/StudioHueSlider";
+import { OO, OO_SWATCHES, transparentChecker } from "@studio/lib/studioPalette";
+
+type ColorPaletteProps = {
+  fill?: string;
+  stroke?: string;
+  onFillChange?: (c: string) => void;
+  onStrokeChange?: (c: string) => void;
+  /** Prefer Stroke when drawing lines / freehand so picks affect visible outline. */
+  preferredMode?: "fill" | "stroke";
+};
+
+export const ColorPalette = ({ fill, stroke, onFillChange, onStrokeChange, preferredMode }: ColorPaletteProps) => {
+  const [mode, setMode] = useState<"fill" | "stroke">(preferredMode || "fill");
+  useEffect(() => {
+    if (preferredMode) setMode(preferredMode);
+  }, [preferredMode]);
+  const current = mode === "fill" ? fill : stroke;
+  const onPick = (c: string) => {
+    if (mode === "fill") onFillChange?.(c);
+    else onStrokeChange?.(c);
+  };
+  return (
+    <div className="color-palette" data-testid="color-palette">
+      <div className="segmented" style={{ width: "100%", justifyContent: "stretch" }}>
+        <button style={{ flex: 1 }} data-active={mode === "fill"} onClick={() => setMode("fill")} data-testid="cp-fill">Fill</button>
+        <button style={{ flex: 1 }} data-active={mode === "stroke"} onClick={() => setMode("stroke")} data-testid="cp-stroke">Stroke</button>
+      </div>
+      <div className="color-palette__current">
+        <div
+          className="color-palette__preview"
+          style={{ background: current === "transparent" ? transparentChecker(8) : current }}
+        />
+        <input
+          type="color"
+          value={current && current !== "transparent" ? current : OO.colorPickerFallback}
+          onChange={(e) => onPick(e.target.value)}
+          className="color-palette__picker"
+          data-testid="cp-picker"
+          aria-label={`${mode === "fill" ? "Fill" : "Stroke"} color picker`}
+        />
+        <label className="sr-only" htmlFor="studio-cp-hex">
+          {mode === "fill" ? "Fill" : "Stroke"} color hex
+        </label>
+        <input
+          id="studio-cp-hex"
+          className="input input--sm"
+          value={current || ""}
+          onChange={(e) => onPick(e.target.value)}
+          spellCheck={false}
+          data-testid="cp-hex"
+          aria-label={`${mode === "fill" ? "Fill" : "Stroke"} color hex`}
+        />
+      </div>
+      <HueSlider
+        value={current}
+        fallback={OO.colorPickerFallback}
+        onChange={onPick}
+        disabled={current === "transparent"}
+      />
+      <div className="color-palette__swatches">
+        {OO_SWATCHES.map((c) => (
+          <button
+            key={c}
+            type="button"
+            className="color-palette__swatch"
+            style={{ background: c === "transparent" ? transparentChecker(6) : c }}
+            data-active={current === c}
+            onClick={() => onPick(c)}
+            data-testid={`cp-swatch-${c}`}
+            title={c}
+            aria-label={`Color ${c}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default ColorPalette;

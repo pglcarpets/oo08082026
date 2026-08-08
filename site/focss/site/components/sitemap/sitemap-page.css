@@ -1,0 +1,92 @@
+/* /sitemap — utilitarian index chrome (no decorative hero video) */
+
+.sitemap-page {
+  background: var(--surface-page, var(--color-white-50));
+  padding-block-start: var(--site-header-offset, 4rem);
+}
+
+.sitemap-header {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 22%, transparent);
+}
+
+.sitemap-header__inner {
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.sitemap-header__bronze-mark {
+  width: 3.5rem;
+  height: 1px;
+  margin-block-end: 1rem;
+  background: var(--color-bronze-400);
+}
+
+.sitemap-header__title {
+  margin: 0.5rem 0 0;
+  max-width: 36rem;
+}
+
+.sitemap-header__copy {
+  margin: 0.75rem 0 0;
+  max-width: 40rem;
+}
+
+.sitemap-bronze-rule {
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 28%, transparent);
+  padding-block: clamp(0.5rem, 1.2vw, 0.85rem);
+}
+
+.sitemap-grid {
+  display: grid;
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+
+@media (min-width: 40rem) {
+  .sitemap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 64rem) {
+  .sitemap-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.sitemap-section {
+  padding: clamp(1rem, 2vw, 1.25rem);
+  background: var(--surface-panel-strong, var(--color-white-50));
+  border: 1px solid color-mix(in srgb, var(--color-bronze-400) 14%, transparent);
+  border-radius: 0.5rem;
+}
+
+.sitemap-section__title {
+  margin: 0 0 0.75rem;
+}
+
+.sitemap-section__links {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.sitemap-section__link {
+  display: flex;
+  align-items: center;
+  min-height: 2.5rem;
+  padding-block: 0.2rem;
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 10%, transparent);
+  text-decoration: none;
+  color: var(--text-body);
+  transition: color 150ms ease;
+}
+
+.sitemap-section__link:hover {
+  color: var(--text-primary, var(--color-bronze-500));
+}
+
+.sitemap-section__links li:last-child .sitemap-section__link {
+  border-block-end: 0;
+}

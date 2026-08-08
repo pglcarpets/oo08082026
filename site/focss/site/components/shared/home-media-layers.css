@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Homepage media / logo layer polish (NON-LOCKED)
+
+   Scope: collection cards, showcase cards, footer trust logo marquee.
+   Do NOT put under package trees (site/admin/planner). Theme tokens only — no second design system.
+
+   Goals:
+   - Single media paint layer under chrome (no stacked fill images)
+   - Clear z-order: media (0) → overlay (1) → footer/caption (2)
+   - Logo marquee items contain logos; no pre-load 0×0 collapse / overflow
+   ========================================================================== */
+
+/* ── Collection cards ───────────────────────────────────────────────────── */
+
+.home-collection-card {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* next/image `fill` may wrap in a span — pin it to the media layer */
+.home-collection-card > span:has(> img.home-collection-card__media),
+.home-collection-card > span:has(img[class*="home-collection-card__media"]) {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.home-collection-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-collection-card__overlay {
+  z-index: 1;
+}
+
+/* Footer chrome always above scrim (plain rule beats ambiguous utilities) */
+.home-collection-card__footer {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+}
+
+/* ── Showcase carousel cards ────────────────────────────────────────────── */
+
+.home-showcase-card__media-box {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.home-showcase-card__media-box > span:has(> img),
+.home-showcase-card__media-box > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.home-showcase-card__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-showcase-card__media-box .home-showcase-overlay {
+  z-index: 1;
+  pointer-events: none;
+}
+
+.home-showcase-card__media-box .home-showcase-card__caption {
+  z-index: 2;
+}
+
+/* ── Trust / footer logo marquee ────────────────────────────────────────── */
+
+/* Prefer marquee-left + --marquee-duration over animate-marquee (hardcoded 30s) */
+.footer-logo-marquee .footer-logo-marquee__track,
+.home-trust-strip .footer-logo-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: marquee-left var(--marquee-duration, 110s) linear infinite;
+  will-change: transform;
+}
+
+.footer-logo-marquee:hover .footer-logo-marquee__track,
+.home-trust-strip:hover .footer-logo-marquee__track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .footer-logo-marquee .footer-logo-marquee__track,
+  .home-trust-strip .footer-logo-marquee__track {
+    animation: none;
+  }
+}
+
+.footer-logo-marquee__item {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* fill + object-contain: logos always inside the fixed item box */
+.footer-logo-marquee__item > span:has(> img),
+.footer-logo-marquee__item > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.footer-logo-marquee__logo {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  /* inset padding so logos sit inside the cell without edge clipping */
+  padding: 0.35rem 0.5rem;
+  box-sizing: border-box;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* --- from portfolio-media.css --- */
+/* ==========================================================================
+   Portfolio case media — NON-LOCKED (home media-layer language)
+
+   Align /portfolio/ mosaic cells to homepage card media rules:
+   - isolation: isolate on media box
+   - single image paint layer under chrome
+   - next/image fill span pinned absolute
+   Do NOT put under package trees (site/admin/planner).
+   ========================================================================== */
+
+.portfolio-case__media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--surface-muted);
+}
+
+/* next/image `fill` wraps in a span — pin to media layer (z-0) */
+.portfolio-case__media > span:has(> img),
+.portfolio-case__media > span:has(img) {
+  position: absolute !important;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.portfolio-case__img,
+.portfolio-case__media img {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.portfolio-case__mosaic {
+  min-width: 0;
+}

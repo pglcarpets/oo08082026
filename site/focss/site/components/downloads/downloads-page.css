@@ -1,0 +1,121 @@
+/* /downloads — Resource Desk rows + process (hero lives in editorial-hero.css) */
+
+@import "../shared/editorial-hero.css";
+
+.downloads-resources {
+  display: grid;
+  gap: 0;
+  border-block: 1px solid color-mix(in srgb, var(--color-bronze-400) 16%, transparent);
+}
+
+.downloads-resource {
+  display: grid;
+  gap: 0.5rem;
+  padding-block: clamp(1.25rem, 2.5vw, 1.75rem);
+  border-block-end: 1px solid color-mix(in srgb, var(--color-bronze-400) 12%, transparent);
+}
+
+.downloads-resource:last-child {
+  border-block-end: 0;
+}
+
+@media (min-width: 48rem) {
+  .downloads-resource {
+    grid-template-columns: minmax(0, 0.38fr) minmax(0, 1fr) auto;
+    gap: clamp(1rem, 3vw, 2.5rem);
+    align-items: baseline;
+  }
+}
+
+.downloads-resource__title {
+  margin: 0;
+}
+
+.downloads-resource__detail {
+  margin: 0;
+  max-width: 36rem;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.downloads-process {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.downloads-process__steps {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.downloads-process__step {
+  display: grid;
+  gap: 0.35rem;
+  padding-block: clamp(1rem, 2vw, 1.35rem);
+  padding-inline-start: clamp(1rem, 2.5vw, 1.5rem);
+  border-inline-start: 2px solid color-mix(in srgb, var(--color-bronze-400) 55%, transparent);
+}
+
+.downloads-process__step + .downloads-process__step {
+  margin-block-start: 0.25rem;
+}
+
+.downloads-process__index {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-bronze-300) 90%, white);
+}
+
+.downloads-process__title {
+  margin: 0;
+  color: var(--text-inverse);
+}
+
+.downloads-process__detail {
+  margin: 0;
+  max-width: 38rem;
+  color: var(--text-inverse-body);
+  line-height: 1.55;
+}
+
+@media (min-width: 48rem) {
+  .downloads-process {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: clamp(1.65rem, 4vw, 3rem);
+  }
+}
+
+.downloads-note {
+  margin: 0;
+}
+
+.downloads-note__points {
+  margin: 1.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.downloads-note__point {
+  display: grid;
+  grid-template-columns: 0.65rem 1fr;
+  gap: 0.75rem;
+  align-items: start;
+  color: var(--text-body);
+  line-height: 1.55;
+}
+
+.downloads-note__bullet {
+  margin-block-start: 0.55rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-bronze-400);
+}

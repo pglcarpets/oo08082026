@@ -1,0 +1,37 @@
+@import "./tokens.css";
+
+:root {
+  /* Universal Shadows */
+  --block-shadow-color: var(--block-primitive-slate-900);
+
+  /* Semantic Mappings */
+  --block-theme-surface-primary: var(--block-primitive-white);
+  --block-theme-surface-secondary: var(--block-primitive-slate-50);
+  --block-theme-stroke: var(--block-primitive-slate-300);
+  --block-theme-accent-dark: var(--block-primitive-slate-800);
+  --block-theme-accent-darker: var(--block-primitive-slate-900);
+  
+  --block-theme-panel: var(--block-primitive-slate-400);
+  --block-theme-panel-grad: var(--block-primitive-slate-300);
+  
+  --block-theme-body: var(--block-primitive-slate-200);
+  --block-theme-body-dark: var(--block-primitive-slate-400);
+  --block-theme-body-light: var(--block-primitive-slate-100);
+  
+  --block-theme-seat: var(--block-primitive-slate-600);
+  --block-theme-seat-stroke: var(--block-primitive-slate-800);
+  --block-theme-seat-contour: var(--block-primitive-slate-500);
+  --block-theme-seat-back: var(--block-primitive-slate-700);
+  --block-theme-seat-back-stroke: var(--block-primitive-slate-900);
+  --block-theme-arm: var(--block-primitive-slate-800);
+  --block-theme-arm-soft: var(--block-primitive-slate-700);
+  
+  --block-theme-sofa: var(--block-primitive-stone-500);
+  --block-theme-sofa-stroke: var(--block-primitive-stone-700);
+  --block-theme-sofa-arm: var(--block-primitive-stone-600);
+  --block-theme-sofa-seam: var(--block-primitive-stone-400);
+  
+  --block-theme-plant-base: var(--block-primitive-lime-600);
+  --block-theme-plant-dark: var(--block-primitive-lime-800);
+  --block-theme-plant-stroke: var(--block-primitive-lime-900);
+}

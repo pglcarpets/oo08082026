@@ -1,0 +1,249 @@
+/* Tech-docs — Tailwind + FOCSS tokens + light paper docs shell */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* FOCSS foundation (palette + semantic + type) — light is the product default */
+@import "../../site/focss/base/index.css";
+@import "./styles/index.css";
+
+@theme {
+  /*
+   * Site next/font vars are not set in this Vite app — use Inter + system stack.
+   */
+  --font-helvetica-neue: "Inter";
+  --font-cisco-sans: "Inter";
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Fira Code", Consolas, monospace;
+
+  /* Brand scale → ocean boat blue; accent → bronze */
+  --color-brand-50: var(--color-ocean-boat-blue-50);
+  --color-brand-100: var(--color-ocean-boat-blue-100);
+  --color-brand-200: var(--color-ocean-boat-blue-200);
+  --color-brand-300: var(--color-ocean-boat-blue-300);
+  --color-brand-400: var(--color-ocean-boat-blue-400);
+  --color-brand-500: var(--color-ocean-boat-blue-500);
+  --color-brand-600: var(--color-ocean-boat-blue-600);
+  --color-brand-700: var(--color-ocean-boat-blue-700);
+  --color-brand-800: var(--color-ocean-boat-blue-800);
+  --color-brand-900: var(--color-ocean-boat-blue-900);
+  --color-accent-50: var(--color-bronze-50);
+  --color-accent-100: var(--color-bronze-100);
+  --color-accent-200: var(--color-bronze-200);
+  --color-accent-300: var(--color-bronze-300);
+  --color-accent-400: var(--color-bronze-400);
+  --color-accent-500: var(--color-bronze-500);
+  --color-accent-600: var(--color-bronze-600);
+  --color-accent-700: var(--color-bronze-700);
+  --color-accent-800: var(--color-bronze-800);
+  --color-accent-900: var(--color-bronze-900);
+
+  /*
+   * Docs UI aliases — always FOCSS semantic tokens (light paper).
+   * No raw slate hex; no planner canvas (surface-canvas is inverse/dark).
+   */
+  --color-docs-surface: var(--surface-page);
+  --color-docs-surface-raised: var(--surface-panel);
+  --color-docs-surface-strong: var(--surface-soft);
+  --color-docs-border: var(--border-soft);
+  --color-docs-border-hover: var(--border-hover);
+  --color-docs-text: var(--text-body);
+  --color-docs-text-strong: var(--text-heading);
+  --color-docs-text-muted: var(--text-muted);
+  --color-docs-text-subtle: var(--text-subtle);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    color-scheme: light;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--surface-page);
+    color: var(--text-body);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: -0.008em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  #root {
+    min-height: 100vh;
+    background: var(--surface-page);
+  }
+
+  main {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-body);
+    background: transparent;
+  }
+
+  main p,
+  main li {
+    color: var(--text-body);
+  }
+
+  main h1,
+  main h2,
+  main h3,
+  main h4 {
+    color: var(--text-heading);
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+
+  a {
+    color: var(--text-link);
+  }
+
+  a:hover {
+    color: var(--text-link-hover);
+  }
+
+  code:not(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    padding: 0.1em 0.35em;
+    border-radius: 0.25rem;
+    background: var(--surface-soft);
+    color: var(--text-heading);
+    border: 0.0625rem solid var(--border-soft);
+  }
+
+  @media (width < 640px) {
+    pre,
+    code {
+      font-size: 0.8125rem;
+      word-break: break-all;
+    }
+    table {
+      font-size: 0.875rem;
+    }
+  }
+}
+
+@layer components {
+  .docs-auth-shell {
+    background-color: var(--surface-page);
+    background-image:
+      linear-gradient(
+        to bottom,
+        color-mix(in srgb, var(--color-ocean-boat-blue-100) 35%, transparent),
+        transparent 12rem
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 23px,
+        color-mix(in srgb, var(--border-soft) 55%, transparent) 23px,
+        color-mix(in srgb, var(--border-soft) 55%, transparent) 24px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 23px,
+        color-mix(in srgb, var(--border-soft) 55%, transparent) 23px,
+        color-mix(in srgb, var(--border-soft) 55%, transparent) 24px
+      );
+  }
+
+  .docs-auth-card {
+    box-shadow:
+      0 1px 2px color-mix(in srgb, var(--color-black) 4%, transparent),
+      0 12px 40px color-mix(in srgb, var(--color-ocean-boat-blue-900) 6%, transparent);
+  }
+
+  .docs-field::placeholder {
+    color: var(--text-subtle);
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.8125rem;
+    font-weight: 500;
+  }
+
+  .card {
+    background: var(--surface-panel);
+    border: 0.0625rem solid var(--border-soft);
+    border-radius: var(--radius-lg, 0.75rem);
+    padding: 1.25rem;
+    color: var(--text-body);
+    box-shadow: var(--shadow-soft, 0 1px 2px color-mix(in srgb, var(--color-black) 4%, transparent));
+  }
+
+  .section-heading {
+    font-size: clamp(1.5rem, 1.35rem + 0.6vw, 1.875rem);
+    font-weight: 700;
+    color: var(--text-heading);
+    margin-bottom: 0.5rem;
+    line-height: 1.25;
+  }
+
+  .section-subheading {
+    color: var(--text-muted);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    max-width: 48rem;
+  }
+
+  /* Dark canvas surface (planner canvas token) — reserved for inverse surfaces. */
+  .docs-canvas {
+    background: var(--surface-canvas);
+  }
+}
+
+/* Highlight.js — light paper code panels */
+.hljs {
+  background: var(--surface-soft);
+  color: var(--text-body);
+  border-radius: 0 0 var(--radius-lg, 0.75rem) var(--radius-lg, 0.75rem);
+  padding: 1rem 1.125rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  font-family: var(--font-mono);
+  border: none;
+}
+
+.hljs-keyword {
+  color: var(--color-ocean-boat-blue-700);
+  font-weight: 500;
+}
+
+.hljs-string {
+  color: var(--color-sustain-600, var(--color-sustain-300));
+}
+
+.hljs-comment {
+  color: var(--text-subtle);
+  font-style: italic;
+}
+
+.hljs-title {
+  color: var(--color-bronze-600, var(--color-bronze-500));
+  font-weight: 500;
+}
+
+.hljs-number,
+.hljs-literal {
+  color: var(--color-bronze-700, var(--color-bronze-500));
+}
+
+.hljs-built_in,
+.hljs-type {
+  color: var(--color-ocean-boat-blue-600);
+}

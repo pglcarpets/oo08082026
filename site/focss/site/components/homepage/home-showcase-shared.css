@@ -1,0 +1,121 @@
+/* Teaser, hero CTAs, trust KPIs — inner marketing routes + planner landing */
+.group:hover .home-teaser-overlay {
+  background: transparent;
+}
+
+@utility home-testimonial-card {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  gap: 1.25rem;
+  border-radius: var(--radius-lg);
+  border: 0.0625rem solid var(--border-muted);
+  background: var(--surface-panel);
+  padding: 1.75rem;
+  box-shadow: 0 0.5rem 2rem -16px var(--overlay-inverse-12);
+}
+
+@utility home-video-title {
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+@utility home-video-play-button {
+  display: flex;
+  height: 5rem;
+  width: 5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-pill);
+  border: 0.125rem solid var(--text-inverse);
+  background: color-mix(in srgb, white 12%, transparent);
+  transition: transform var(--motion-base) var(--ease-standard),
+              color var(--motion-base) var(--ease-standard),
+              background-color var(--motion-base) var(--ease-standard),
+              border-color var(--motion-base) var(--ease-standard);
+}
+
+.group:hover .home-video-play-button {
+  transform: scale(1.1);
+}
+
+.home-video-play-button--light {
+  border-color: var(--text-strong);
+  background: color-mix(in srgb, white 20%, transparent);
+  color: var(--text-strong);
+}
+
+.home-video-play-button--light:hover {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+}
+
+.home-video-play-button--dark {
+  border-color: var(--text-inverse);
+  background: color-mix(in srgb, white 12%, transparent);
+  color: var(--text-inverse);
+}
+
+.home-video-play-button--dark:hover {
+  background: var(--surface-panel);
+  color: var(--text-strong);
+}
+
+@utility home-video-overlay--light {
+  background: color-mix(in srgb, white 40%, transparent);
+}
+
+@utility home-video-overlay--dark {
+  background: linear-gradient(to bottom, var(--scrim-black-20), var(--scrim-black-40), var(--scrim-black-80));
+}
+
+/* Hero CTA enhancements — compose with btn-primary / btn-outline-light (marketing pill system) */
+.btn-hero-primary,
+.btn-hero-secondary {
+  transition-property: transform, background-color, border-color, box-shadow;
+  transition-duration: var(--motion-fast);
+  transition-timing-function: var(--ease-standard);
+}
+
+.btn-hero-primary.btn-primary {
+  border-color: color-mix(in srgb, var(--color-primary) 90%, var(--color-white) 10%);
+  box-shadow:
+    var(--shadow-lift),
+    0 1.125rem 2.25rem -24px var(--hero-btn-shadow);
+}
+
+.btn-hero-primary.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    var(--shadow-lift),
+    0 1.25rem 2.75rem -20px var(--hero-btn-shadow);
+}
+
+.btn-hero-secondary.btn-outline-light {
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  background: var(--overlay-panel-14);
+  border-color: var(--glass-white-28);
+  color: var(--glass-white-90);
+  box-shadow: 0 12px 1.75rem -24px var(--hero-btn-secondary-shadow);
+}
+
+.btn-hero-secondary.btn-outline-light:hover {
+  transform: translateY(-1px);
+  border-color: var(--glass-white-40);
+  background: var(--glass-white-20);
+}
+
+.btn-hero-primary.btn-primary:active,
+.btn-hero-secondary.btn-outline-light:active {
+  transform: translateY(1px);
+}
+
+.btn-hero-primary.btn-primary:focus-visible,
+.btn-hero-secondary.btn-outline-light:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring), var(--shadow-lift);
+}

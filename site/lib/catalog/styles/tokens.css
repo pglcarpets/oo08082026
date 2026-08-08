@@ -1,0 +1,25 @@
+:root {
+  --block-primitive-white: var(--color-white-50);
+  --block-primitive-slate-50: var(--text-inverse);
+  --block-primitive-slate-100: var(--text-strong);
+  --block-primitive-slate-200: var(--text-inverse-body);
+  --block-primitive-slate-300: var(--text-inverse-muted);
+  --block-primitive-slate-400: var(--text-inverse-subtle);
+  --block-primitive-slate-500: var(--text-subtle);
+  --block-primitive-slate-600: var(--text-muted);
+  --block-primitive-slate-700: var(--text-heading-soft);
+  --block-primitive-slate-800: var(--text-body);
+  --block-primitive-slate-900: var(--color-dark-midnight-blue-750);
+  
+  --block-primitive-stone-400: var(--color-bronze-300);
+  --block-primitive-stone-500: var(--color-bronze-500);
+  --block-primitive-stone-600: var(--color-ecru-800);
+  --block-primitive-stone-700: var(--color-bronze-800);
+  
+  --block-primitive-lime-600: #65a30d;
+  --block-primitive-lime-800: #3f6212;
+  --block-primitive-lime-900: var(--color-ecru-900);
+  
+  --block-primitive-blue-500: #3b82f6;
+  --block-primitive-amber-900: #78350f;
+}

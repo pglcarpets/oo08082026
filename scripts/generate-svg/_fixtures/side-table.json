@@ -1,0 +1,72 @@
+{
+  "id": "c3d4e5f6-a7b8-9012-cdef-123456789012",
+  "slug": "side-table-001",
+  "name": "Side Table",
+  "description": "Table top with four corner leg cutouts subtracted via difference boolean.",
+  "variant": "difference",
+  "sourceProvenance": "native",
+  "schemaVersion": "1.0.0",
+  "generatedAt": 1751631000,
+  "createdBy": "phase-03-executor",
+  "dimensions": {
+    "widthMm": 600,
+    "depthMm": 600,
+    "heightMm": 550
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 600,
+    "height": 600
+  },
+  "mounting": "floor",
+  "blocks": [
+    {
+      "id": "tabletop",
+      "x": 0,
+      "y": 0,
+      "width": 600,
+      "height": 600
+    },
+    {
+      "id": "leg-cutout-nw",
+      "x": 25,
+      "y": 25,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "id": "leg-cutout-ne",
+      "x": 525,
+      "y": 25,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "id": "leg-cutout-sw",
+      "x": 25,
+      "y": 525,
+      "width": 50,
+      "height": 50
+    },
+    {
+      "id": "leg-cutout-se",
+      "x": 525,
+      "y": 525,
+      "width": 50,
+      "height": 50
+    }
+  ],
+  "themeTokens": {
+    "fill-primary": "currentColor",
+    "stroke-accent": "var(--block-stroke-accent, currentColor)"
+  },
+  "rovingFocus": [
+    {
+      "key": "focus-table-top",
+      "focusSelector": "#tabletop",
+      "label": "Tabletop"
+    }
+  ],
+  "liveAnnouncementsCategory": "status"
+}

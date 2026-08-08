@@ -1,0 +1,1060 @@
+{
+  "common": {
+    "signIn": "Anmelden",
+    "signOut": "Abmelden",
+    "guest": "Als Gast fortfahren",
+    "loading": "Wird geladen...",
+    "error": "Ein Fehler ist aufgetreten"
+  },
+  "home": {
+    "title": "Oando Plattform",
+    "subtitle": "Professionelle Raumplanungs- und Designtools",
+    "getStarted": "Jetzt starten",
+    "hero": {
+      "title": [
+        "Räume, die",
+        "so hart arbeiten",
+        "wie Ihr Team"
+      ],
+      "kicker": "Ganz Indien · Seit 2011",
+      "primaryCta": {
+        "label": "Layout gestalten",
+        "href": "/planner"
+      },
+      "secondaryCta": {
+        "label": "Produkte durchsuchen",
+        "href": "/products"
+      },
+      "glassProof": {
+        "badge": "Vertrauen von",
+        "lead": "120+ Arbeitsplätze geliefert.",
+        "support": "Katalog im Planner · Entwürfe · BOQ mit Marke.",
+        "href": "/trusted-by",
+        "cta": "Kunden ansehen"
+      }
+    },
+    "plannerSuite": {
+      "titleLead": "Oando",
+      "titleAccent": "Planner",
+      "description": "Skizzieren Sie einen Grundriss, platzieren Sie Katalogmöbel und exportieren Sie ein Layout, bevor Sie ein Angebot erstellen.",
+      "loginHref": "/login/?next=%2Fplanner%2Fcanvas%2F",
+      "loginLabel": "Mitglieder-Login",
+      "overviewHref": "/planner",
+      "overviewLabel": "Mehr erfahren"
+    },
+    "trust": {
+      "logoLabel": "Ausgewählte Organisationen",
+      "logos": [
+        {
+          "name": "Titan",
+          "src": "/assets/marketing/client-logos/Titan.png"
+        },
+        {
+          "name": "L&T",
+          "src": "/assets/marketing/client-logos/LandT.png"
+        },
+        {
+          "name": "JSW",
+          "src": "/assets/marketing/client-logos/JSW.png"
+        },
+        {
+          "name": "Tata Motors",
+          "src": "/assets/marketing/client-logos/TataMotors.jpg"
+        },
+        {
+          "name": "Maruti Suzuki",
+          "src": "/assets/marketing/client-logos/MarutiSuzuki.png"
+        },
+        {
+          "name": "HDFC",
+          "src": "/assets/marketing/client-logos/HDFCLogo.jpg"
+        },
+        {
+          "name": "Canara Bank",
+          "src": "/assets/marketing/client-logos/CanaraBank.jpg"
+        },
+        {
+          "name": "Franklin Templeton",
+          "src": "/assets/marketing/client-logos/FranklinTempleton.jpg"
+        },
+        {
+          "name": "Hyundai",
+          "src": "/assets/marketing/client-logos/HyundaiLogo.jpg"
+        },
+        {
+          "name": "IDBI Bank",
+          "src": "/assets/marketing/client-logos/IDBIBankLogo.png"
+        },
+        {
+          "name": "Usha",
+          "src": "/assets/marketing/client-logos/USHA.png"
+        },
+        {
+          "name": "Bihar Government",
+          "src": "/assets/marketing/client-logos/BiharGovernment.jpg"
+        },
+        {
+          "name": "SAIL",
+          "src": "/assets/marketing/client-logos/SAIL.png"
+        },
+        {
+          "name": "BIS",
+          "src": "/assets/marketing/client-logos/BIS.jpg"
+        },
+        {
+          "name": "Sonalika",
+          "src": "/assets/marketing/client-logos/Sonalika.jpg"
+        },
+        {
+          "name": "Survey of India",
+          "src": "/assets/marketing/client-logos/SurveyofIndia.jpg"
+        },
+        {
+          "name": "CRI Pumps",
+          "src": "/assets/marketing/client-logos/CRIPumps.jpg"
+        },
+        {
+          "name": "MECON",
+          "src": "/assets/marketing/client-logos/MECON.jpg"
+        }
+      ],
+      "projectsCta": "Projekte ansehen",
+      "kpiLabels": [
+        "Years of experience",
+        "Projects completed",
+        "Selected organisations",
+        "Locations serviced"
+      ]
+    },
+    "brandStatement": {
+      "lead": "Seit 2011 planen und installieren wir Arbeitswelten in ganz Indien.",
+      "body": "Nicht nur Innenräume, sondern Arbeitsumgebungen, die Teams helfen, sich zu konzentrieren, zusammenzuarbeiten und produktiv zu bleiben. Entwickelt für Organisationen, die sich unklare Planung oder schwache Umsetzung nicht leisten können."
+    },
+    "collections": {
+      "titleLead": "Durchsuchen Sie",
+      "titleAccent": "Workspace-Kategorien",
+      "catalogCta": {
+        "label": "Vollständigen Katalog durchsuchen",
+        "href": "/products"
+      },
+      "items": [
+        {
+          "name": "Sitzmöbel",
+          "image": "/assets/marketing/ui/categories/seating-clean.webp",
+          "href": "/products/seating"
+        },
+        {
+          "name": "Arbeitsplätze",
+          "image": "/assets/marketing/ui/categories/workstations-clean.webp",
+          "href": "/products/workstations"
+        },
+        {
+          "name": "Tische",
+          "image": "/assets/marketing/ui/categories/tables-clean.webp",
+          "href": "/products/tables"
+        },
+        {
+          "name": "Stauraum",
+          "image": "/assets/marketing/ui/categories/storages-clean.webp",
+          "href": "/products/storages"
+        },
+        {
+          "name": "Lounge-Sitzmöbel",
+          "image": "/assets/marketing/ui/categories/soft-seating-clean.webp",
+          "href": "/products/soft-seating"
+        },
+        {
+          "name": "Bildung",
+          "image": "/assets/marketing/ui/categories/education-clean.webp",
+          "href": "/products/education"
+        }
+      ]
+    },
+    "whyChooseUs": {
+      "titleLead": "Wir gestalten",
+      "titleAccent": "Arbeitswelten",
+      "features": [
+        { "title": "Performance-graded", "tagline": "Load · cycle · ergonomics" },
+        { "title": "Built to last", "tagline": "Warranty by model" },
+        { "title": "Lower rework", "tagline": "Durable materials" },
+        { "title": "Scales cleanly", "tagline": "Pilot to rollout" }
+      ]
+    },
+    "tools": {
+      "kicker": "Workspace planning",
+      "titleLead": "Design your",
+      "titleAccent": "workspace",
+      "description": "True-scale plans with catalog furniture — export before you quote.",
+      "demoAriaLabel": "Example 10 by 8 metre office floor plan",
+      "demoCaption": "Example 10 by 8 metre office floor plan"
+    },
+    "showcase": {
+      "sectionLabel": "Ausgewählte Projekte",
+      "sectionTitleLead": "Geliefert für",
+      "sectionTitleAccent": "führende Organisationen",
+      "browseCta": {
+        "label": "Portfolio ansehen",
+        "href": "/portfolio"
+      },
+      "items": [
+        {
+          "id": "dmrc",
+          "name": "DMRC",
+          "label": "",
+          "image": "/assets/marketing/clients/DMRC/dmrc.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "titan",
+          "name": "Titan",
+          "label": "",
+          "image": "/assets/marketing/clients/Titan/hero.webp",
+          "link": "/portfolio"
+        },
+        {
+          "id": "tvs",
+          "name": "TVS",
+          "label": "",
+          "image": "/assets/marketing/clients/TVS/hero.webp",
+          "link": "/portfolio"
+        }
+      ]
+    },
+    "contact": {
+      "titleLead": "Share a",
+      "titleAccent": "brief",
+      "subtitle": "City, scope, timeline — we follow up by phone or email.",
+      "image": {
+        "src": "/assets/marketing/hero/pages/contact-oneandonly-bright.webp",
+        "alt": "Corporate workspace installed by One&Only"
+      },
+      "form": {
+        "nameLabel": "Name",
+        "namePlaceholder": "Your name",
+        "cityLabel": "City",
+        "cityPlaceholder": "Project city",
+        "phoneLabel": "Phone",
+        "phonePlaceholder": "+91 …",
+        "emailLabel": "Email",
+        "emailPlaceholder": "you@company.com",
+        "briefLabel": "Brief",
+        "briefPlaceholder": "Team size, scope, or timeline — optional detail helps.",
+        "consentText": "I agree that One&Only may use these details to respond to my enquiry.",
+        "consentLink": "Privacy policy",
+        "consentHint": "Required to send. We do not sell contact data.",
+        "channelHint": "Phone or email — at least one is required.",
+        "submitLabel": "Send Brief",
+        "submittingLabel": "Sending..."
+      },
+      "status": {
+        "success": "Brief received. Our team will contact you shortly.",
+        "errorCity": "Please add a project city.",
+        "errorConsent": "Confirm privacy consent before sending.",
+        "errorChannel": "Please add a phone number or email so we can reach you.",
+        "errorGeneric": "Unable to submit now."
+      },
+      "directActions": [
+        { "type": "whatsapp", "label": "WhatsApp now" },
+        { "type": "phone", "label": "Call team" }
+      ]
+    }
+  },
+  "planner": {
+    "title": "Raumplaner",
+    "newProject": "Neues Projekt",
+    "roomPresets": "Raum-Voreinstellungen",
+    "session": {
+      "title": "Plan Sessions",
+      "description": "Save into the shared planner workspace, keep a local draft close at hand, import a canonical planner document, or reopen the same plan in 3D.",
+      "saveCloud": "Save to Cloud",
+      "saveDraft": "Save Local Draft",
+      "saveAsNew": "Save as New Session",
+      "open3d": "Open in 3D Viewer",
+      "importJson": "Import Plan JSON",
+      "exportJson": "Export Plan JSON",
+      "savedPlans": "Saved Plans",
+      "noPlans": "No local draft or cloud plan yet.",
+      "delete": "Delete",
+      "rename": "Rename"
+    }
+  },
+  "about": {
+    "heroTitle": "Über One&Only",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Interiors executed",
+    "heroTitleAccent": "with craft.",
+    "heroSubtitle": "Planning, supply, and install for workplaces teams actually use — from brief to handover.",
+    "heroCta": "See our work",
+    "storyKicker": "Who we are",
+    "storyTitleLead": "Trust through",
+    "storyTitleAccent": "delivery.",
+    "storyLead": "One team plans, supplies, and installs — seating, workstations, meeting rooms, and storage for enterprise and institutional teams across the region.",
+    "craftQuote": "The furniture is only half the job. Spacing, install discipline, and handover — that is where trust is earned.",
+    "craftAttribution": "Field team · One&Only",
+    "pillarsKicker": "How we work",
+    "modelPillars": [
+      {
+        "title": "Planungsbasierte Empfehlungen",
+        "detail": "Kategorie-, Budget- und Layout-Entscheidungen sind an die tatsächliche Nutzung des Raums durch die Teams gebunden."
+      },
+      {
+        "title": "Ausführungsklarheit",
+        "detail": "Der kommerzielle Umfang, Zeitpläne, Lieferkoordination und Installationsbereitschaft bleiben während des gesamten Projekts sichtbar."
+      },
+      {
+        "title": "Support nach der Übergabe",
+        "detail": "Garantieverweise, Service-Routing und Nachbetreuung bleiben Teil derselben Lieferbeziehung."
+      }
+    ],
+    "processKicker": "Wie wir arbeiten",
+    "processTitleLead": "Brief to",
+    "processTitleAccent": "handover",
+    "processSteps": [
+      {
+        "title": "Anfrage und Standortkontext",
+        "detail": "Wir erfassen Personalzahl, Arbeitsbereichstyp, kommerzielle Prioritäten und die für Ihr Team wichtigen Zeitpunkte."
+      },
+      {
+        "title": "Spezifikation und Abstimmung",
+        "detail": "Produkte, Oberflächen und Mengenmischungen werden in einen klaren Planungs- und Genehmigungsweg übersetzt."
+      },
+      {
+        "title": "Lieferung und Support",
+        "detail": "Installation, Service-Routing und After-Sales-Umsetzung bleiben mit der ursprünglichen Anfrage verbunden."
+      }
+    ],
+    "ctaKicker": "Next step",
+    "ctaTitleLead": "Talk through",
+    "ctaTitleAccent": "your space.",
+    "ctaDescription": "Planning call for layout guidance, or Resource Desk for packs and technical sheets.",
+    "ctaPrimary": "Request planning call",
+    "ctaSecondary": "View clients",
+    "sectionKicker": "Wer wir sind",
+    "sectionTitle": "Planning-first partner for modern offices",
+    "sectionTitleLead": "Planning-first partner for",
+    "sectionTitleAccent": "modern offices",
+    "paragraphs": [
+      "Wir kombinieren Arbeitsplatzplanung, Produktauswahl und Ausführungsunterstützung, damit Teams von der Idee bis zur Übergabe mit weniger Verzögerungen und besseren Ergebnissen voranschreiten können.",
+      "Unsere Projekte umfassen ergonomische Sitzgelegenheiten, modulare Arbeitsstationen, Besprechungsräume, Aufbewahrung und Support-Dienstleistungen, die auf die Bedürfnisse von Unternehmen und Institutionen zugeschnitten sind.",
+      "Jede Zusammenarbeit wird klar strukturiert: dokumentierter Umfang, praxisnahe Zeitpläne und verantwortungsbewusster After-Sales-Support."
+    ],
+    "confidenceKicker": "Kundenvertrauen",
+    "confidenceTitle": "Vertrauenswürdig von Unternehmens- und Institutionsteams.",
+    "confidenceCta": "Alle Kunden ansehen",
+    "modelKicker": "Betriebsmodell",
+    "modelTitle": "Ein Team von der Planungsanfrage bis zum Post-Installations-Support.",
+    "modelDescription": "Wir halten Planung, Beschaffung, Ausführung und Support verbunden, damit Projekte von frühen Entscheidungen bis zur Übergabe klar bleiben.",
+    "processTitle": "Eine praktische Abfolge für Büroprojekte.",
+    "supportTitle": "Benötigen Sie Planung oder Dokumentation, bevor Sie entscheiden?",
+    "supportDescription": "Nutzen Sie die Planungs- oder Resource Desk-Lanes, wenn Ihr Team Layout-Anleitung, Kategorie-Packs, technische Blätter oder einen klareren nächsten Schritt vor dem Einkauf benötigt.",
+    "supportPrimaryCta": "Planungsgespräch anfordern",
+    "supportSecondaryCta": "Resource Desk öffnen"
+  },
+  "news": {
+    "heroTitle": "Nachrichten und Updates",
+    "heroSubtitle": "Arbeitsplatzanleitung, Projektthemen und Service-Updates werden präsentiert, ohne vorzugeben, ein Live-Nachrichtenraum zu sein.",
+    "introKicker": "Was hier gehört",
+    "introTitle": "Ein Weg für aktuelle Richtung, nicht erfundene Ankündigungen",
+    "introDescription": "Diese Seite soll Besuchern helfen zu verstehen, worauf das Team in Bezug auf Produkte, Planung, Support und Projektlieferung fokussiert. Sie bleibt in realen Kategorien und Live-Support-Routen verwurzelt statt synthetischen Presseinhalten.",
+    "cards": [
+      {
+        "category": "Planungsfokus",
+        "title": "Wie Teams phasenweise Arbeitsplatz-Upgrades angehen",
+        "summary": "Mehr Projekte werden in Phasen umgesetzt, wobei Planung, Genehmigungen und Kategoriebescheide über mehrere operative Meilensteine verteilt sind."
+      },
+      {
+        "category": "Produktanleitung",
+        "title": "Auswahl von Kategorien, die länger nützlich bleiben",
+        "summary": "Aufgabenplätze, modulare Arbeitsstationen, Kollaborationsmöbel und Aufbewahrungssysteme werden unter Berücksichtigung längerer Austauschzyklen ausgewählt."
+      },
+      {
+        "category": "Support-Workflow",
+        "title": "Klarere Weiterleitung für Dokumentation, Nachverfolgung und After-Sales-Anfragen",
+        "summary": "Das Live-Routen-System lenkt Besucher jetzt zu den richtigen Kontakten und Resource-Desk-Lanes, anstatt Vermutungen zu erzwingen."
+      }
+    ],
+    "ctaTitle": "Benötigen Sie ein aktuelles Produkt-, Planungs- oder Support-Update?",
+    "ctaDescription": "Verwenden Sie die Kontakt- und Resource-Desk-Routen, wenn Sie die neuesten Kategorie-Packs, Service-Routen oder Planungszusammenhänge für ein Live-Projekt benötigen.",
+    "primaryCta": "Resource Desk öffnen",
+    "secondaryCta": "Team kontaktieren"
+  },
+  "legal": {
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "heroSubtitle": "Wie wir Anfragedaten, Attributions-Cookies und Kommunikationsaufzeichnungen über Planungs-, Vertriebs- und Supportabläufe hinweg verarbeiten.",
+      "overviewKicker": "Datenschutz und Einwilligung",
+      "overviewTitle": "Eine praktische Datenschutzerklärung für aktive Workspace-Anfragen.",
+      "overviewDescription": "Wir erfassen nur die Informationen, die erforderlich sind, um auf Projektanfragen zu antworten, Supportgespräche weiterzuleiten und Serviceunterlagen rund um aktive Kundenbeziehungen zu pflegen.",
+      "intro": [
+        "One&Only wird von One and Only Furniture Private Limited (\"OOFPL\") betrieben. Diese Richtlinie erklärt, welche personenbezogenen Daten wir erfassen, wie wir sie verwenden und welche Cookies wir setzen, wenn Sie unsere Website besuchen oder eine Anfrage senden.",
+        "Personenbezogene Informationen umfassen Daten, mit denen Sie identifiziert oder kontaktiert werden können, wie Ihr Name, Ihr Unternehmen, Ihre E-Mail-Adresse, Ihre Telefonnummer, Ihre IP-Adresse und alle Anfragedetails, die Sie über unsere Formulare mitteilen."
+      ],
+      "commitmentsTitle": "Was diese Richtlinie abdeckt",
+      "commitments": [
+        "Welche Informationen wir erfassen, wenn Sie browsen, anfragen oder Support anfordern.",
+        "Wie wir übermittelte Informationen für Weiterleitung, Nachverfolgung und Servicequalität verwenden.",
+        "Welche Cookies die Speicherung von Einwilligungen und die Attributionsberichterstattung unterstützen."
+      ]
+    },
+    "shared": {
+      "serviceSupport": "Service und Support"
+    },
+    "terms": {
+      "title": "Allgemeine Geschäftsbedingungen",
+      "heroSubtitle": "Bedingungen für Website, Anfragen, Angebote, Lieferung, Garantie und Support für One&Only.",
+      "overviewKicker": "Geschäftsbedingungen",
+      "overviewTitle": "Die Rahmenbedingungen hinter Angeboten, Bestellungen, Lieferung und Support.",
+      "overviewDescription": "Diese Bedingungen erläutern, wie Website-Informationen, kommerzielle Angebote, Projektausführung und garantiegestützter Support in der Praxis gehandhabt werden.",
+      "sections": [
+        {
+          "heading": "Allgemeine Geschäftsbedingungen",
+          "body": "Diese Allgemeinen Geschäftsbedingungen regeln die Nutzung dieser Website und alle geschäftlichen Beziehungen mit One&Only, einschließlich Produktanfragen, Angeboten, Lieferung und Supportleistungen."
+        },
+        {
+          "heading": "1. Geltungsbereich",
+          "body": "Diese Bedingungen gelten für alle Geschäftsbeziehungen mit Kunden, vorbehaltlich einer projektspezifischen schriftlichen Vereinbarung, die von beiden Parteien abgeschlossen wurde."
+        },
+        {
+          "heading": "2. Angebote und Annahme",
+          "body": "Produkt- und Serviceinformationen auf dieser Website dienen nur der Information. Ein verbindliches Geschäft kommt erst nach schriftlicher Angebotsannahme und Auftragsbestätigung zustande."
+        },
+        {
+          "heading": "3. Lieferung und Installation",
+          "body": "Liefertermine werden bei der Auftragsbestätigung mitgeteilt und können je nach Projektumfang, Baustellenbereitschaft und Materialverfügbarkeit variieren."
+        },
+        {
+          "heading": "4. Garantie und Support",
+          "body": "Die Geltung der Garantie richtet sich nach der jeweiligen Produktlinie und den vereinbarten Bedingungen. Service- und Supportanfragen werden über unsere offiziellen Kanäle bearbeitet."
+        },
+        {
+          "heading": "5. Haftung",
+          "body": "Die Haftung ist auf den gesetzlich zulässigen Umfang sowie auf den Wert oder die Bedingungen beschränkt, die im entsprechenden Handelsvertrag vereinbart wurden."
+        }
+      ],
+      "asideGuidance": "Nutzen Sie diese Seite zusammen mit den Routen für Rückerstattung, Datenschutz und Service, wenn Kunden klare Hinweise zu kommerzieller Abwicklung, Supportumfang oder garantiegestütztem Follow-up benötigen.",
+      "viewRefundPolicy": "Rückerstattungsrichtlinie ansehen",
+      "privacyPolicy": "Datenschutzerklärung",
+      "askCommercialDesk": "Kommerzielle Anfrage stellen",
+      "ctaKicker": "Kommerzieller Desk",
+      "ctaTitleLead": "Bereit, den Umfang",
+      "ctaTitleAccent": "schriftlich zu bestätigen",
+      "ctaDescription": "Angebote, Lieferfenster und garantiegestützter Support folgen diesen Bedingungen — wenden Sie sich an den Desk, wenn ein Projekt einen klaren nächsten Schritt braucht.",
+      "ctaPrimary": "Team kontaktieren",
+      "ctaSecondary": "Datenschutzerklärung"
+    },
+    "imprint": {
+      "title": "Impressum",
+      "heroSubtitle": "Unternehmensidentität, Vertreterangaben und offizielle Kontaktdaten für One&Only.",
+      "overviewKicker": "Unternehmensinformationen",
+      "overviewTitle": "Offizielle Unternehmens- und Kontaktdaten.",
+      "overviewDescription": "Nutzen Sie diese Seite, wenn Sie rechtliche Unternehmenskennzeichnungen, die offizielle Geschäftsadresse oder die benannte Geschäftsführung und Kontaktwege hinter der Website benötigen.",
+      "sections": [
+        {
+          "heading": "Rechtliche Informationen",
+          "lines": [
+            "One and Only Furniture",
+            "401, Jagat Trade Centre",
+            "Frazer Road",
+            "Patna - 800 001, Bihar",
+            "India"
+          ]
+        },
+        {
+          "heading": "Vertreten durch",
+          "lines": [
+            "Leitung: Arvind Kumar Singh"
+          ]
+        },
+        {
+          "heading": "Kontakt",
+          "lines": [
+            "Telefon: +91 90310 22875",
+            "E-Mail: sales@oando.co.in"
+          ]
+        },
+        {
+          "heading": "Unternehmensidentifikation",
+          "lines": [
+            "Autorisierter Händler führender Büromöbelmarken.",
+            "Registriert in Patna, Bihar."
+          ]
+        }
+      ]
+    },
+    "refund": {
+      "metadataTitle": "Rückerstattungs- und Rückgaberichtlinie",
+      "metadataDescription": "Rückerstattungs-, Rückgabe-, Ersatz- und Stornierungsrichtlinie für One&Only.",
+      "heroTitle": "Rückerstattungs- und Rückgaberichtlinie",
+      "heroSubtitle": "Bedingungen für Rückgaben, Ersatz, Stornierungen und Rückerstattungen.",
+      "overviewKicker": "Rückgabe- und Ersatzbedingungen",
+      "overviewTitle": "Klare Hinweise zu beschädigten Waren, Stornierungsfristen und Rückerstattungsberechtigung.",
+      "overviewDescription": "Diese Richtlinie legt die Erwartungen für die Meldung von Produktschäden, die Abwicklung von Ersatz, den Zeitpunkt von Stornierungen und die Bedingungen fest, unter denen Rückerstattungen bearbeitet werden.",
+      "sections": [
+        {
+          "title": "Allgemeine Richtlinie",
+          "tone": "weiß",
+          "items": [
+            "Änderungswünsche werden nach abgeschlossener Lieferung nicht akzeptiert, außer bei beschädigten oder mangelhaften Produkten.",
+            "Umtausch wird nur für Produkte angeboten, die beschädigt oder mangelhaft ankommen.",
+            "Produktbilder auf der Website dienen der Veranschaulichung, und einige Merkmale können beim endgültigen Produkt abweichen.",
+            "Eine Stornierung ist vor dem Versand zulässig. Rabattierte Käufe sind von einer Stornierung ausgeschlossen."
+          ]
+        },
+        {
+          "title": "Beschädigte oder mangelhafte Produkte",
+          "tone": "weich",
+          "items": [
+            "Melden Sie Schäden innerhalb von 24 Stunden nach der Lieferung per E-Mail mit Produktfotos.",
+            "Kontakt: sales@oando.co.in",
+            "Die Rückabholung und der Ersatz bei beschädigten Produkten werden von unserem Team organisiert.",
+            "Austauschbare defekte Teile werden in der Regel innerhalb von 7 Tagen organisiert; ein vollständiger Ersatz kann je nach Verfügbarkeit bis zu 15 Tage dauern."
+          ]
+        },
+        {
+          "title": "Rückgaben und Rückerstattungen",
+          "tone": "weiß",
+          "items": [
+            "Rückgaben werden nur akzeptiert, wenn Produkte bei der Ankunft beschädigt sind.",
+            "Eine Rückerstattung erfolgt nur, wenn für dasselbe Produkt kein Ersatz oder keine Ersatzteile verfügbar sind.",
+            "Für Rückerstattungsanfragen ohne Schäden können Verpackungs- und Transportkosten anfallen.",
+            "Rückerstattungen werden über NEFT oder zurück zur ursprünglichen Zahlungsmethode bearbeitet, in der Regel innerhalb von 7 Werktagen."
+          ]
+        },
+        {
+          "title": "Wie man eine Rückgabe oder Stornierung einleitet",
+          "tone": "weich",
+          "items": [],
+          "contactLines": [
+            "E-Mail: sales@oando.co.in",
+            "Telefon: +91 90310 22875",
+            "Hauptsitz: 401, Jagat Trade Centre, Frazer Road, Patna - 800 001, Bihar, India"
+          ]
+        }
+      ],
+      "contactSalesDesk": "Vertriebsdesk kontaktieren",
+      "ctaKicker": "Rückgabe-Desk",
+      "ctaTitleLead": "Ersatz oder Rückerstattung",
+      "ctaTitleAccent": "klären",
+      "ctaDescription": "Beschädigte Ware, Stornierungsfenster und Rückerstattungsberechtigung folgen dieser Richtlinie — kontaktieren Sie den Vertrieb, wenn eine Lieferung einen klaren nächsten Schritt braucht.",
+      "ctaPrimary": "Vertriebsdesk kontaktieren",
+      "ctaSecondary": "AGB ansehen"
+    }
+  },
+  "solutions": {
+    "metadataTitle": "Ansatz zur Arbeitsplatzplanung",
+    "metadataDescription": "Erfahren Sie, wie One&Only Arbeitsplatzprojekte von der Briefingphase bis zum After‑Sales‑Support plant, spezifiziert und liefert.",
+    "heroTitle": "Wie wir Arbeitsplatzprojekte liefern",
+    "heroKicker": "Complete workplaces",
+    "heroTitleLead": "Wie wir liefern",
+    "heroTitleAccent": "Arbeitsplatzprojekte",
+    "heroSubtitle": "Ein strukturierter Ansatz für Planung, Beschaffungsabstimmung, Ausführung und Support.",
+    "heroPrimaryCta": "Planning call",
+    "heroSecondaryCta": "Browse products",
+    "heroBackgroundImage": "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "categoriesTitleLead": "Browse",
+    "categoriesTitleAccent": "solutions",
+    "deliveryKicker": "Liefermodell",
+    "deliveryTitle": "Entworfen für Teams, die Vorhersagbarkeit und Geschwindigkeit benötigen.",
+    "deliveryDescription": "Jedes Projekt wird durch klare Definition des Umfangs, praktische Planungsoutputs und verantwortungsvolle Vor‑Ort‑Ausführung gemanagt. Das Ergebnis sind reibungslosere Genehmigungen und weniger Überraschungen während der Einführung.",
+    "deliveryMedia": {
+      "src": "/assets/marketing/projects/DMRC/dmrc-1.webp",
+      "alt": "Workspace planning and delivery"
+    },
+    "stats": [
+      {
+        "value": "14+",
+        "label": "Jahre in Arbeitsplatzprojekten"
+      },
+      {
+        "value": "120+",
+        "label": "Gelieferte Projekte"
+      },
+      {
+        "value": "250+",
+        "label": "Bediente Kundenorganisationen"
+      },
+      {
+        "value": "20+",
+        "label": "Unterstützte Städte"
+      }
+    ],
+    "phaseLabelTemplate": "Phase {number}",
+    "planningKicker": "Planung starten",
+    "planningTitle": "Diskutieren Sie Ihr Projektbriefing mit unserem Planungsteam.",
+    "planningDescription": "Teilen Sie Standortdetails, Zeitpläne und Sitzanzahl. Wir schlagen einen praktischen Ansatz für Produkte, Layout und Ausführung vor.",
+    "planningPrimaryCta": "Planungsgespräch anfordern",
+    "planningSecondaryCta": "Produktkategorien durchsuchen",
+    "planningTertiaryCta": "Ressourcen-Schalter öffnen",
+    "planningCtas": [
+      {
+        "label": "Planungsgespräch anfordern",
+        "href": "/contact",
+        "variant": "primary"
+      },
+      {
+        "label": "Produktkategorien durchsuchen",
+        "href": "/products",
+        "variant": "outline"
+      },
+      {
+        "label": "Ressourcen-Schalter öffnen",
+        "href": "/downloads",
+        "variant": "outline"
+      }
+    ],
+    "categoryHeroKicker": "Solution category",
+    "categoryHeroPrimaryCta": "Browse products",
+    "categoryHeroSecondaryCta": "All solutions",
+    "categoryCraftQuote": "Inventory is the start — layout and circulation decide whether the category works on site.",
+    "categoryCraftAttribution": "Planning desk · One&Only",
+    "categoryBodyKicker": "Specify",
+    "categoryBodyTitle": "From live catalog to layout",
+    "categoryBodyDescription": "{description} Browse the live product catalog or speak with the planning desk for a workspace layout aligned to this category.",
+    "categoryBrowseCta": "Browse products",
+    "categoryAllCta": "All solutions",
+    "categoryContactCta": "Contact planning desk",
+    "categoryDeskKicker": "Next step",
+    "categoryDeskTitle": "Plan this category",
+    "categoryDeskDescription": "Share seat count, timeline, and site constraints — we propose products and a practical layout path.",
+    "categoryDeskPrimaryCta": "Planning call",
+    "categoryDeskSecondaryCta": "Open planner",
+    "categoryDeskTertiaryCta": "All solutions"
+  },
+  "contact": {
+    "heroTitle": "Kontaktieren Sie uns",
+    "heroKicker": "Patna · Bihar & Jharkhand",
+    "heroTitleLead": "Get in",
+    "heroTitleAccent": "touch.",
+    "heroSubtitle": "Teilen Sie Ihre Arbeitsplatzanforderung mit, und unser Team wird mit den nächsten Schritten antworten.",
+    "sectionTitle": "Büro- und Supportkontakte",
+    "introTitle": "Beginnen Sie mit dem richtigen Team.",
+    "introDescription": "Teilen Sie Ihre Anforderung, Ihren Zeitplan oder Ihre Kategorie-Mischung mit. Wir leiten sie an den richtigen Planungs- oder Vertriebsansprechpartner weiter und antworten mit praktischen nächsten Schritten.",
+    "resourceDeskLead": "Benötigen Sie zunächst Kategoriepakete, technische Datenblätter oder Planungsreferenzen?",
+    "resourceDeskCta": "Nutzen Sie den Resource Desk",
+    "resourceDeskTail": "und wir werden Ihnen die richtige Dokumentensammlung für Ihr Brief zusenden.",
+    "quickDeskKicker": "Schnellste Weiterleitung",
+    "quickDeskTitle": "Nutzen Sie von Anfang an die richtige Spur.",
+    "quickDeskDescription": "Planungsgespräche, Dokumentenanfragen und Angebotsgespräche verlaufen schneller, wenn die Anfrage zuerst beim richtigen Team ankommt.",
+    "quickDeskPrimaryCta": "Öffnen Sie den Resource Desk",
+    "quickDeskSecondaryCta": "Planungsgespräch anfordern",
+    "channelRegionLabel": "Service region",
+    "channelQuotesLabel": "Quotes and planning",
+    "channelSupportLabel": "Support and enquiries",
+    "channelEmailLabel": "Email",
+    "channelsAriaLabel": "Phone, email, and service region",
+    "offices": [
+      {
+        "title": "Firmenbüro",
+        "lines": [
+          "401, Jagat Trade Centre",
+          "Frazer Road",
+          "Patna - 800 013",
+          "Indien"
+        ]
+      },
+      {
+        "title": "Ausstellungsraum",
+        "lines": [
+          "One and Only Furniture Pvt Ltd",
+          "Opp Patliputra Telephone Exchange",
+          "North Industrial Estate Road",
+          "Patna - 800 010",
+          "Indien"
+        ]
+      }
+    ]
+  },
+  "products": {
+    "heroKicker": "Produktkatalog",
+    "heroSubtitle": "Möbelkategorien, die für echte Büroabläufe, langfristige Haltbarkeit und skalierbares Wachstum entwickelt wurden.",
+    "headlineLead": "Gebaut für",
+    "headlineAccent": "Leistung.",
+    "heroPrimaryCta": "Kategorien entdecken",
+    "heroSecondaryCta": "Vertrieb kontaktieren",
+    "craftQuote": "Kategorien für Spezifikationsklarheit, Installationsrealität und Support nach der Übergabe — nicht für Showroom-Theater.",
+    "craftAttribution": "Katalog · One&Only",
+    "introKicker": "Live-Inventar",
+    "introTitleLead": "Fotografie und Spezifikationen aus",
+    "introTitleAccent": "dem veröffentlichten Katalog",
+    "introDescription": "Jede Kategorie verlinkt auf Live-Produkte mit echter Installationsfotografie und veröffentlichten Plansymbolen — damit Beschaffung und Planung ausgerichtet bleiben.",
+    "featureBullets": [
+      "Ergonomische Sitzmöbel für Task-, Executive- und Besucherzonen.",
+      "Modulare Arbeitsplätze für skalierbare Team-Layouts.",
+      "Meeting- und Collaboration-Möbel für gemeinsame Bereiche.",
+      "Stauraumsysteme und Zubehör für organisierte Abläufe."
+    ],
+    "categoryRoutesKicker": "Kategorierouten",
+    "categoryRoutesDescription": "Starten Sie mit einer Kategorie, dann filtern, vergleichen und anfragen.",
+    "categoryRoutesCta": "Range öffnen",
+    "rangeKicker": "Kategorieeinstieg",
+    "rangeTitleLead": "Durchsuchen nach",
+    "rangeTitleAccent": "Workspace-Bedürfnissen",
+    "categoriesTitleLead": "Produktkategorien",
+    "categoriesTitleAccent": "entdecken",
+    "pillarsKicker": "Warum diese Kategorien",
+    "pillarsTitleLead": "Gebaut für",
+    "pillarsTitleAccent": "echte Büroabläufe",
+    "pillarsIntro": "Jede Kategorie wird auf Haltbarkeit, klare Spezifikation und Unterstützung nach der Übergabe ausgewählt, nicht nur auf die Präsentation.",
+    "pillars": [
+      {
+        "title": "Spezifikationsgeleitete Beratung",
+        "detail": "Wir erfassen Mitarbeiterzahl, Nutzungsmuster und Budget, damit Produktauswahl von Tag eins an praktisch ist.",
+        "icon": "check-circle"
+      },
+      {
+        "title": "Zuverlässige Zeitpläne",
+        "detail": "Modulare Kategorien und strukturierte Planung unterstützen Teams beim Übergang von der Genehmigung zur Installation mit Kontrolle.",
+        "icon": "clock"
+      },
+      {
+        "title": "Vertrauen im Kundendienst",
+        "detail": "Garantieleistungen und Service-Support sind in jedes Angebot integriert, nicht als Nachgedanke behandelt.",
+        "icon": "shield"
+      }
+    ],
+    "deskKicker": "Kurzliste benötigt?",
+    "deskTitle": "Kategorien an Ihr Briefing anpassen.",
+    "deskDescription": "Teilen Sie Mitarbeiterzahl, Layout-Grenzen und Zeitplan — wir führen Sie zur richtigen Produktmischung und den nächsten Planungsschritten.",
+    "deskPrimaryCta": "Angebot anfordern",
+    "deskSecondaryCta": "Lösungen erkunden",
+    "deskTertiaryCta": "Pakete herunterladen",
+    "categories": {
+      "seating": "Sitzmöbel",
+      "workstations": "Arbeitsplätze",
+      "tables": "Tische",
+      "storages": "Stauraum",
+      "soft-seating": "Lounge-Sitzmöbel",
+      "education": "Bildung"
+    }
+  },
+  "career": {
+    "heroKicker": "Werden Sie Teil des Teams",
+    "heroTitleLead": "Karriere",
+    "heroTitleAccent": "bei uns.",
+    "heroTitle": "Karriere",
+    "heroSubtitle": "Werden Sie Teil eines Teams, das praktische, wirkungsvolle Arbeitsräume für Organisationen in ganz Indien schafft.",
+    "craftQuote": "Echte Kundenbriefings, messbare Verantwortung und Teams, die nah an der Lieferung bleiben.",
+    "craftAttribution": "Menschen · One&Only",
+    "introKicker": "Warum zu uns",
+    "introTitle": "Bauen Sie Ihre Karriere im Bereich Workspace-Delivery auf.",
+    "introDescription": "Wir arbeiten in den Bereichen Planung, Produktberatung, Projektdelivery und Support. Wenn Sie Wert auf zuverlässige Ausführung und Kundenergebnisse legen, passen Sie gut zu uns.",
+    "pillars": [
+      {
+        "title": "Kollaborative Teams",
+        "detail": "Vertrieb, Planung und Operations arbeiten eng zusammen, damit Entscheidungen klar sind und die Ausführung schnell bleibt.",
+        "icon": "users"
+      },
+      {
+        "title": "Lernorientierte Arbeit",
+        "detail": "Sie erhalten praktische Einblicke in echte Kundenbriefings, Beschaffungszyklen und Installationsrealitäten.",
+        "icon": "graduation-cap"
+      },
+      {
+        "title": "Bedeutungsvolle Verantwortung",
+        "detail": "Wir übertragen frühzeitig Verantwortung, begleitet von Mentoring und klaren Rechenschaftsstandards.",
+        "icon": "briefcase"
+      }
+    ],
+    "openingsTitle": "Aktuelle Stellen",
+    "openingsAvailableTemplate": "{count} Rollen verfügbar",
+    "processKicker": "Wie Karrieren hier wachsen",
+    "processTitle": "Arbeit, die nah an echten Projekten und echter Verantwortung bleibt.",
+    "processDescription": "Das Team arbeitet in den Bereichen Planung, Produktberatung, kommerzielle Koordination, Vor-Ort-Ausführung und After-Sales-Support. Das bedeutet, dass Rollen mit tatsächlichen Kundenergebnissen verbunden bleiben, statt isolierter interner Übergaben.",
+    "processSteps": [
+      {
+        "title": "Kundenorientiertes Lernen",
+        "detail": "Sie lernen aus aktiven Workspace-Briefings, Genehmigungen und Vor-Ort-Delivery-Realitäten statt nur aus internem Schulungsmaterial."
+      },
+      {
+        "title": "Fachübergreifende Einblicke",
+        "detail": "Vertrieb, Planung, Operations und Support bleiben eng genug verbunden für schnellere Entscheidungen und klarere Verantwortlichkeit."
+      },
+      {
+        "title": "Messbare Verantwortung",
+        "detail": "Verantwortung wächst mit der Leistung, aber Erwartungen bleiben explizit bezüglich Reaktionsqualität, Ausführung und Professionalität."
+      }
+    ],
+    "fallbackTitle": "Noch keine passende Rolle?",
+    "fallbackDescription": "Senden Sie uns Ihr Profil und teilen Sie uns mit, wo Sie beitragen können. Wir prüfen Bewerbungen für Vertrieb, Operations, Planung und Support laufend.",
+    "careersEmail": "careers@oando.co.in",
+    "supportTitle": "Unsicher, welche Rolle zu Ihrem Hintergrund passt?",
+    "supportDescription": "Senden Sie eine kurze Notiz mit Ihrem Erfahrungsbereich und Ihrer bevorzugten Funktion. Wir können Sie in den relevantesten Planungs-, Vertriebs-, Operations- oder Support-Bereich leiten.",
+    "supportPrimaryCta": "Team kontaktieren",
+    "supportSecondaryCta": "Planungsseite öffnen",
+    "ctaKicker": "Unsicher, wo Sie passen?",
+    "ctaTitleLead": "Sprechen Sie mit",
+    "ctaTitleAccent": "dem Team.",
+    "ctaDescription": "Teilen Sie Ihren Hintergrund — wir leiten Sie in die richtige Planungs-, Vertriebs-, Operations- oder Support-Spur.",
+    "ctaPrimary": "Team kontaktieren",
+    "ctaSecondary": "Planungsseite öffnen"
+  },
+  "downloads": {
+    "metadataTitle": "Ressourcen-Schalter",
+    "metadataDescription": "Fordern Sie Produktkataloge, technische Blätter und Planungsreferenzen an, die auf Ihre Arbeitsplatzbeschreibung zugeschnitten sind.",
+    "heroTitle": "Ressourcen-Schalter",
+    "heroSubtitle": "Fordern Sie die richtigen Produktpakete, technischen Blätter und Planungsreferenzen für Ihre Arbeitsplatzbeschreibung an.",
+    "resourceKicker": "Ressourcen-Routing",
+    "resourceTitle": "Sagen Sie uns, was Sie planen, und wir senden das richtige Dokumentationspaket.",
+    "resourceDescription": "Unser Katalog entwickelt sich ständig weiter in Kategorien, Oberflächen und Planungsanforderungen. Anstatt veraltete öffentliche Downloads anzubieten, leiten wir jede Anfrage an das neueste Paket für Ihren Projektumfang weiter.",
+    "processKicker": "So funktioniert es",
+    "processTitle": "Ein auf Anfragen basierender Schalter, der für aktive Projekte entwickelt wurde.",
+    "processSteps": [
+      {
+        "title": "Teilen Sie Ihre Arbeitsplatzbeschreibung",
+        "detail": "Teilen Sie uns die Kategorien, Sitzanzahl, Stadt und Zeitplan mit, damit wir das passende Produktsortiment auswählen können."
+      },
+      {
+        "title": "Wir kuratieren das neueste Paket",
+        "detail": "Unser Team sendet aktuelle Kataloge, technische Blätter und Planungsreferenzen, die Ihren Anforderungen entsprechen."
+      },
+      {
+        "title": "Überprüfung mit Planungsunterstützung",
+        "detail": "Falls nötig, helfen wir dabei, Optionen einzugrenzen, Spezifikationen zu klären und die Dateien mit Ihrem Layout oder Ihrer BOQ-Diskussion zu verknüpfen."
+      }
+    ],
+    "noteTitle": "Was Sie anfordern können",
+    "noteBody": "Anfragepakete können Kategorie-Kataloge, technische Blätter, Planungsreferenzen, Oberflächenoptionen, Garantieinformationen und modellbezogene Unterstützungsdokumente enthalten, sofern verfügbar.",
+    "notePoints": [
+      "Produktkataloge, gruppiert nach Kategorie und Anwendungsfall",
+      "Technische Blätter mit Abmessungen, Materialien und Garantieanweisungen",
+      "Planungsreferenzen für Arbeitsstationsdichte, Layouts und Ausführungsfluss"
+    ],
+    "urgentKicker": "Brauchen Sie eine schnelle Antwort?",
+    "urgentDescription": "Senden Sie Ihre Anforderungen und die benötigten Kategorien. Wir antworten mit dem neuesten verfügbaren Paket und dem richtigen Nachverfolgungskontakt für Ihr Projekt.",
+    "primaryCta": "Fordern Sie ein Dokumentationspaket an",
+    "secondaryCta": "E-Mail an den Verkaufsschalter",
+    "tertiaryCta": "Sprechen Sie über WhatsApp"
+  },
+  "gallery": {
+    "heroTitle": "Projektgalerie",
+    "heroSubtitle": "Ausgewählte Arbeitsplatzlieferungen in Unternehmens-, öffentlichen und institutionellen Umgebungen.",
+    "kicker": "Aktuelle visuelle Highlights",
+    "title": "Reale Projekte, reale Installationen.",
+    "description": "Durchsuchen Sie Fotos<pad>fertiggestellter Standorte, um die Oberflächenqualität, Layout-Stile und den Lieferumfang bei verschiedenen Projekttypen zu verstehen."
+  },
+  "planning": {
+    "heroTitle": "Planungsservice",
+    "heroSubtitle": "Die Arbeitsplatzplanung, die Workflow, Budget und Ausführungszeitpläne ausbalanciert.",
+    "workflowKicker": "Planungsworkflow",
+    "workflowTitle": "Von der Absicht zu umsetzungsbereiten Plänen.",
+    "deliverablesKicker": "Was Sie erhalten",
+    "deliverablesTitle": "Klare Ergebnisse, die Ihr Team umsetzen kann.",
+    "bestForKicker": "Am besten geeignet für",
+    "bestForDescription": "Neue Büros, Etagenerweiterungen, Modernisierung von Arbeitsplätzen und Unternehmensausbauten, bei denen die Planungsqualität direkt Kosten und Zeitplan beeinflusst.",
+    "deskKicker": "Support-Eingaben",
+    "deskTitle": "Bringen Sie Dokumente Sie Produktfragen in einen Workflow ein.",
+    "deskDescription": "Wenn Ihr Team vor dem Planungstermin Kategoriepakete, technische Blätter oder Layout-Referenzen benötigt, beginnen Sie beim Resource Desk, und wir leiten das passende Material in dieselbe Diskussion weiter.",
+    "primaryCta": "Planungsgespräch anfordern",
+    "secondaryCta": "Produkte ansehen",
+    "tertiaryCta": "Resource Desk öffnen"
+  },
+  "portfolio": {
+    "heroTitle": "Portfolio",
+    "heroSubtitle": "Echte Lieferfotos gruppiert nach Kundenprojekten.",
+    "eyebrow": "Projektgalerie",
+    "title": "Exzellenz.",
+    "totalTemplate": "{clients} Kunden - {photos} Fotos"
+  },
+  "clients": {
+    "heroTitle": "Kunden",
+    "heroSubtitleTemplate": "{clients} Organisationen in Regierung, Finanzen, Energie, Fertigung und mehr.",
+    "featuredLabel": "Ausgewählte Organisationen",
+    "featuredTitle": "Kundenliste",
+    "allLabel": "Sektorübersicht"
+  },
+  "service": {
+    "heroTitle": "Service und Support",
+    "heroSubtitle": "After-Sales-Support, ausgelegt auf Zuverlässigkeit, Verantwortlichkeit und langfristige Leistung.",
+    "frameworkKicker": "Support-Rahmen",
+    "frameworkTitle": "Ein Servicepartner von der Installation bis zum After-Sales-Support.",
+    "channelsKicker": "Servicekanäle",
+    "channelsTitle": "Erreichen Sie unser Support-Team direkt.",
+    "supportKicker": "Benötigen Sie sofortige Unterstützung?",
+    "supportDescription": "Teilen Sie Ihre Projekt- oder Service-Referenznummer und eine Zusammenfassung des Problems mit. Unser Support-Team leitet es an den richtigen Spezialisten weiter und antwortet mit den nächsten Schritten.",
+    "supportDeskKicker": "Support-Weiterleitung",
+    "supportDeskTitle": "Benötigen Sie zuerst Unterlagen, Garantiereferenzen oder Planungsunterlagen?",
+    "supportDeskDescription": "Nutzen Sie den Resource Desk, wenn der schnellste nächste Schritt ein Dokumentenpaket, ein technisches Datenblatt, eine Garantiereferenz oder eine Planungsunterlage ist, die mit Ihrem Workspace-Setup verknüpft ist.",
+    "primaryCta": "Supportanfrage stellen",
+    "secondaryCta": "Bestellung verfolgen",
+    "tertiaryCta": "Resource Desk öffnen"
+  },
+  "showrooms": {
+    "heroTitle": "Showrooms, Entwicklung und Kundenauslieferung.",
+    "heroSubtitle": "Ein genauerer Blick auf unser Ausführungsmodell, unsere Projektpräsenz und die Teams, die uns vertrauen.",
+    "trustedKicker": "Vertrauen auf einen Blick",
+    "aboutKicker": "Über uns",
+    "aboutTitle": "Wir schaffen Arbeitswelten mit klarer Planung, zuverlässiger Lieferung und verantwortlicher Umsetzung.",
+    "aboutDescription": "Wir haben mit regionalen Büroprojekten begonnen und uns auf die Umsetzung in mehreren Städten ausgeweitet. Unser Betriebsmodell bleibt konstant: definierter Umfang, praktikable Zeitpläne und starker After-Sales-Support.",
+    "clientsKicker": "Kunden, die wir betreut haben",
+    "clientsCta": "Vollständige Kundenliste ansehen",
+    "highlightsKicker": "Markante Umsetzungen",
+    "highlightsCta": "Portfolio entdecken",
+    "sustainabilityTitle": "Verantwortungsvoll geplant, praktisch geliefert.",
+    "sustainabilitySubtitle": "Nachhaltigkeit",
+    "sustainabilityDescription": "Von der Materialauswahl bis zur Planung langlebiger Produkte konzentrieren wir uns auf Workspace-Systeme, die Abfall reduzieren und den Lebenszykluswert verbessern.",
+    "sustainabilityCta": "Nachhaltigkeitszusagen lesen"
+  },
+  "social": {
+    "heroTitle": "Social Highlights",
+    "heroSubtitle": "Projektmomente, Workspace-Ideen und Inspiration für die Produktnutzung, die an reale Kategorien und echte Routen gebunden sind.",
+    "introKicker": "Sozialer Nachweis und Inspiration",
+    "introTitle": "Eine sauberere Brücke zwischen Projektinspiration und echten Produktrouten.",
+    "introDescription": "Diese Route hebt Arbeitsplatzideen und fertiggestellte Umgebungen hervor, ohne vorzugeben, eine Live-Social-API zu sein. Jede Kachel verweist zurück auf eine echte Route im aktuellen Katalog oder auf der Produktoberfläche.",
+    "handleLabel": "@OneAndOnlyFurn",
+    "feedKicker": "Ausgewählte Highlights",
+    "feedTitle": "Ideen mit Bezug zu realen Workspace-Kategorien.",
+    "feedDescription": "Nutzen Sie diese Seite, um von visueller Inspiration zu Planung, Produkten oder Nachweisseiten zu gelangen, ohne defekte Links oder erfundene soziale Integrationen.",
+    "ctaTitle": "Brauchen Sie Hilfe dabei, eine Referenz in einen echten Workspace-Plan zu verwandeln?",
+    "ctaDescription": "Wechseln Sie von Inspiration zu Kategorie-Shortlists, Planungsunterstützung und Dokumentationsanfragen über dieselben Live-Produkt- und Resource-Desk-Routen.",
+    "primaryCta": "Produkte durchsuchen",
+    "secondaryCta": "Resource Desk öffnen"
+  },
+  "sustainability": {
+    "heroTitle": "Nachhaltigkeit in der Praxis.",
+    "heroSubtitle": "Wir konzentrieren uns auf langlebige Workspace-Systeme, praktikable Materialentscheidungen und weniger Nacharbeit bei Planung und Lieferung.",
+    "introTitleLead": "Unser Ansatz für ",
+    "introTitleEmphasis": "langlebige Arbeitswelten.",
+    "introDescription": "Nachhaltigkeit in Büroprojekten hängt von Materialwahl, Wartbarkeit und Planungsdisziplin ab, von der Spezifikation bis zum After-Sales-Support.",
+    "introKicker": "Nachhaltigkeit in der Praxis",
+    "introTitle": "Langlebige Workspace-Systeme mit weniger Abfall über den Lebenszyklus.",
+    "introPoints": [
+      "Wir priorisieren langlebige Kategorien, austauschbare Komponenten und Planungsentscheidungen, die unnötigen Produktwechsel reduzieren.",
+      "Materialauswahl, Transporteffizienz und langfristige Wartung sind alle wichtig, weil Nachhaltigkeit damit verbunden ist, wie das Produkt tatsächlich genutzt wird.",
+      "Wir vermeiden das Versprechen nicht belegter Zertifizierungen oder Kennzahlen, wenn das aktuelle Repository keine formalen Nachweise liefert."
+    ],
+    "pillars": [
+      {
+        "title": "Materialsensible Spezifikation",
+        "detail": "Wir priorisieren Optionen mit klareren Materialinformationen und besserer Eignung für die Lebensdauer in jedem Anwendungsfall.",
+        "icon": "leaf"
+      },
+      {
+        "title": "Denkweise zu Reparatur und Ersatz",
+        "detail": "Wir bevorzugen Kategorien und Konfigurationen, die gewartet, repariert oder neu konfiguriert werden können, anstatt frühzeitig ersetzt zu werden.",
+        "icon": "recycle"
+      },
+      {
+        "title": "Planung, die Abfall reduziert",
+        "detail": "Klare Mengenplanung und Passformprüfungen helfen, Fehlanpassungen, Rücksendungen und vermeidbare Nacharbeit vor Ort zu reduzieren.",
+        "icon": "lightbulb"
+      }
+    ],
+    "ecoScoreTitle": "Unser Eco-Score-System",
+    "ecoScoreDescription": "Wo Bewertungsdaten verfügbar sind, wird der Eco-Score (1 bis 10) als richtungsweisendes Planungssignal zusammen mit Spezifikationen und der Eignung für den Anwendungsfall verwendet.",
+    "ecoScoreItems": [
+      {
+        "index": "1",
+        "title": "Materialien",
+        "detail": "Materialzusammensetzung, Signale zum Recyclinganteil und Haltbarkeitsbezug, sofern Daten verfügbar sind."
+      },
+      {
+        "index": "2",
+        "title": "Herstellung",
+        "detail": "Herstellungs- und Beschaffungskontext, der in aktuellen Produktunterlagen oder Partnerdokumentationen erfasst ist."
+      },
+      {
+        "index": "3",
+        "title": "Langlebigkeit",
+        "detail": "Erwartete Lebensdauer, praktische Wartung und Ersatzrisiko im aktiven Einsatz."
+      }
+    ],
+    "badges": [
+      {
+        "title": "Eco-Score: 8+",
+        "detail": "Höher bewertete Produkte zeigen im aktuellen Katalog in der Regel stärkere Signale über den Lebenszyklus."
+      },
+      {
+        "title": "Eco-Score: 5-7",
+        "detail": "Mittlere Bewertungen weisen auf teilweise Nachhaltigkeitssignale hin und sollten im vollständigen technischen Kontext geprüft werden."
+      }
+    ],
+    "verifiedTitle": "Nachhaltigkeitssignale",
+    "verifiedDescription": "Wir präsentieren kataloggestützte Nachhaltigkeitssignale und vermeiden nicht belegte Zertifizierungs- oder Wirkungsbehauptungen.",
+    "verifiedLabels": [
+      "Kataloggestützt",
+      "Daten geprüft",
+      "Fokus auf Langlebigkeit"
+    ],
+    "commitmentsKicker": "Was wir priorisieren",
+    "commitmentsTitle": "Praktische Verpflichtungen statt allgemeiner Behauptungen.",
+    "commitments": [
+      {
+        "title": "Lange Nutzungsdauer",
+        "detail": "Produkte und Layouts sollten länger nutzbar bleiben, damit Teams Ausstattungen nicht vorzeitig ersetzen müssen."
+      },
+      {
+        "title": "Verantwortungsvolle Spezifikation",
+        "detail": "Wir bevorzugen Materialien und Produktstrukturen, die Haltbarkeit, Wartung und geringere Umweltbelastung ausbalancieren."
+      },
+      {
+        "title": "Planungseffizienz",
+        "detail": "Bessere frühzeitige Planung reduziert Nacharbeit, Fehlanpassungen und Abfall während Lieferung und Installation."
+      }
+    ],
+    "routeNoteTitle": "Benötigen Sie Nachhaltigkeitsinformationen für ein laufendes Projekt?",
+    "routeNoteDescription": "Fragen Sie nach dem aktuellen Produktpaket oder nach Planungsunterstützung, wenn Sie Materialhinweise, Kategorieempfehlungen oder Klarheit zur Projekteignung benötigen.",
+    "routeNotePrimaryCta": "Resource Desk öffnen",
+    "routeNoteSecondaryCta": "Planungsanruf anfordern"
+  },
+  "tracking": {
+    "heroTitle": "Bestell- und Lieferverfolgung",
+    "heroSubtitle": "Nutzen Sie den richtigen Support-Kanal für Anfragen zu Bestellreferenzen, Lieferstatus, Installation oder After-Sales-Nachverfolgung.",
+    "introKicker": "Verfolgung mit den richtigen Angaben",
+    "introTitle": "Eine ehrliche Route für Support zum Lieferstatus.",
+    "introDescription": "Diese Seite gibt nicht vor, ein Live-Logistiksystem anzuzeigen. Stattdessen erklärt sie, wie Sie die richtige Bestell- oder Projektreferenz mitteilen, damit das Support-Team präzise antworten kann.",
+    "referenceTitle": "Was Sie in Ihre Anfrage aufnehmen sollten",
+    "referenceItems": [
+      "Bestellreferenznummer oder Angebots-ID",
+      "Projekt- oder Firmenname",
+      "Lieferstadt oder Installationsort",
+      "Ihre Hauptfrage: Versand, Lieferzeitpunkt, Installation oder Service-Nachverfolgung"
+    ],
+    "lanesTitle": "Wählen Sie die richtige Route",
+    "lanes": [
+      {
+        "title": "Lieferstatus",
+        "detail": "Nutzen Sie dies, wenn Sie Versandzeitpunkt, erwartete Lieferabfolge oder ein Update zum Sendungsstatus benötigen."
+      },
+      {
+        "title": "Installationskoordination",
+        "detail": "Nutzen Sie dies, wenn sich die Frage auf Baustellenbereitschaft, Installationszeitpunkt oder Übergabeunterstützung bezieht."
+      },
+      {
+        "title": "Service- oder Problem-Nachverfolgung",
+        "detail": "Nutzen Sie dies, wenn Sie die Lieferung bereits erhalten haben und After-Sales-Support oder Problemweiterleitung benötigen."
+      }
+    ],
+    "supportTitle": "Bereit, Ihre Bestellreferenz mitzuteilen?",
+    "supportDescription": "Der schnellste Weg besteht darin, die Referenz und die Zusammenfassung Ihrer Anfrage direkt an das Support-Team zu senden, statt sich auf einen unechten öffentlichen Tracker zu verlassen.",
+    "primaryCta": "Supportanfrage stellen",
+    "secondaryCta": "Support anrufen",
+    "tertiaryCta": "Resource Desk öffnen"
+  },
+  "trustedBy": {
+    "heroTitle": "Unternehmen, die uns vertrauen",
+    "heroSubtitle": "Vertrauen von Branchenführern aus Behörden, Fertigung, Finanzen, Automobil, IT und institutionellen Sektoren.",
+    "overviewKicker": "Nachweis der Umsetzung",
+    "overviewTitle": "Eine Kundenliste, verdient durch wiederholbar gute Umsetzung.",
+    "overviewDescription": "Unsere Projekte erstrecken sich über Unternehmensbüros, öffentliche Institutionen, Finanznetzwerke, Industriestandorte und Arbeitsplatz-Rollouts in mehreren Städten, bei denen klare Planung, Lieferkontrolle und After-Sales-Support gleichermaßen wichtig sind.",
+    "statsKicker": "Vertrauen auf einen Blick",
+    "sectorsKicker": "Branchenverteilung",
+    "sectorsTitle": "Branchenübergreifendes Vertrauen mit praktischer Projekteignung.",
+    "sectorsDescription": "Von öffentlicher Beschaffung und Bankbetrieb bis zu Fertigungsbüros und NGO-Programmen bleibt die gemeinsame Anforderung dieselbe: langlebige Produkte, verantwortliche Lieferung und Support nach der Übergabe.",
+    "rosterKicker": "Ausgewählte Organisationen",
+    "rosterTitle": "Kunden, die auf One&Only vertrauen."
+  },
+  "supportIvr": {
+    "heroTitle": "Support-Weiterleitung",
+    "heroSubtitle": "Nutzen Sie das visuelle Support-Menü, um den richtigen Weg für Dokumente, Tracking, Service oder Planungs-Nachverfolgung zu erreichen.",
+    "introKicker": "Support-Menü",
+    "introTitle": "Ein klarerer Weg in das richtige Support-Gespräch.",
+    "introDescription": "Diese Seite funktioniert am besten, wenn sie Besucher schnell in den richtigen Support-Kanal leitet, statt generische Kontaktanfragen zu erzwingen. Sie sollte auf Service-, Tracking- und Resource-Desk-Abläufe abgestimmt bleiben.",
+    "noteTitle": "Beste Nutzung",
+    "noteDescription": "Beginnen Sie hier, wenn Sie wissen, dass Sie Hilfe benötigen, aber noch nicht sicher sind, ob Ihre Anfrage zu Service, Dokumentation, Lieferverfolgung oder Planungsunterstützung gehört."
+  },
+  "workspace": {
+    "backToHome": "Back to Home",
+    "accessPanelTitle": "Precision in Planning",
+    "accessPanelDescription": "Experience the Oando Suite. Our architectural tools are designed for accuracy, performance, and clear collaboration across teams."
+  }
+}

@@ -1,0 +1,197 @@
+
+/* PDP CTAs + spec tables — token-only */
+
+.pdp-cta-panel {
+  border: 0.0625rem solid var(--border-muted);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.pdp-cta-primary,
+.pdp-cta-secondary {
+  width: 100%;
+  min-height: 3.15rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  padding: 0.9rem 1rem;
+  transition: border-color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard),
+              color var(--motion-fast) var(--ease-standard),
+              transform var(--motion-fast) var(--ease-standard),
+              box-shadow var(--motion-fast) var(--ease-standard);
+}
+
+.pdp-cta-primary {
+  border-color: var(--surface-inverse);
+  background: linear-gradient(180deg, var(--surface-inverse-soft) 0%, var(--surface-inverse) 100%);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-inverse);
+}
+
+.pdp-cta-primary:hover {
+  background: var(--surface-inverse-soft);
+  transform: translateY(-1px);
+}
+
+.pdp-cta-secondary {
+  border-color: var(--border-muted);
+  background: var(--surface-glass-strong);
+  color: var(--text-body);
+  box-shadow: var(--shadow-soft);
+}
+
+.pdp-cta-secondary:hover {
+  border-color: var(--border-strong);
+  color: var(--text-strong);
+}
+
+.pdp-cta-secondary--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.pdp-cta-secondary--active:hover {
+  background: var(--color-primary-hover, var(--color-primary));
+  color: var(--text-inverse);
+}
+
+.pdp-bronze-rule {
+  width: 2.75rem;
+  height: 0.125rem;
+  margin: 0 0 var(--space-4, 1rem);
+  background: var(--color-bronze-400);
+}
+
+.pdp-model-viewer {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.pdp-swatch-image--fallback {
+  visibility: hidden;
+}
+
+.pdp-spec-table {
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-soft);
+}
+
+.pdp-spec-row {
+  display: flex;
+  align-items: start;
+  gap: 1rem;
+  padding: 0.95rem 1rem;
+}
+
+.pdp-details-stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.pdp-disclosure {
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-panel-strong);
+  box-shadow: var(--shadow-soft);
+}
+
+.pdp-disclosure__summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.95rem 1rem;
+}
+
+.pdp-disclosure__summary::after {
+  content: "+";
+  color: var(--text-subtle);
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.pdp-disclosure[open] .pdp-disclosure__summary::after {
+  content: "-";
+}
+
+.pdp-disclosure__summary::-webkit-details-marker {
+  display: none;
+}
+
+.pdp-disclosure__body {
+  border-top: 1px solid var(--border-soft);
+  padding: 1rem;
+}
+
+/* Gallery layout lives in pdp-detail.css (single authority). */
+
+/* ── Mobile sticky action bar (PDP) ─────────────────────────────────────── */
+
+.pdp-mobile-bar {
+  position: fixed;
+  z-index: 40;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-2);
+  border-top: 1px solid var(--border-soft);
+  background: color-mix(in srgb, var(--surface-panel-strong) 92%, transparent);
+  padding: var(--space-3);
+  padding-bottom: max(var(--space-3), env(safe-area-inset-bottom));
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 -4px 24px color-mix(in srgb, var(--surface-inverse) 8%, transparent);
+}
+
+.pdp-mobile-bar__primary {
+  display: inline-flex;
+  min-height: var(--control-height-sm);
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--surface-inverse);
+  background: linear-gradient(180deg, var(--surface-inverse-soft) 0%, var(--surface-inverse) 100%);
+  color: var(--text-inverse);
+  font-size: var(--type-label-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.pdp-mobile-bar__secondary {
+  display: inline-flex;
+  min-height: var(--control-height-sm);
+  min-width: var(--control-height-sm);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-muted);
+  background: var(--surface-panel-strong);
+  color: var(--text-body);
+}
+
+.pdp-mobile-bar__secondary--active {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pdp-mobile-bar__primary,
+  .pdp-mobile-bar__secondary {
+    transition: none;
+  }
+}
+

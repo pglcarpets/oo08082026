@@ -1,0 +1,70 @@
+/* Standalone CSS for 2D Block Geometry Tokens */
+
+:root {
+  /* Workstations */
+  --block-ws-surface: var(--color-white-50);
+  --block-ws-grad-end: var(--text-inverse);
+  --block-ws-stroke: var(--text-inverse-muted);
+  --block-ws-panel: var(--text-inverse-subtle);
+  --block-ws-panel-grad: var(--text-inverse-muted);
+  --block-ws-screen: var(--text-body);
+  --block-ws-screen-grad: var(--color-dark-midnight-blue-750);
+  
+  /* Tables (Meeting / Discussion) */
+  --block-table-surface: var(--color-white-50);
+  --block-table-grad-end: var(--text-inverse);
+  --block-table-stroke: var(--text-inverse-muted);
+
+  /* Storage (Pedestals / Cabinets) */
+  --block-storage: var(--text-inverse-body);
+  --block-storage-grad-start: var(--text-strong);
+  --block-storage-stroke: var(--text-inverse-subtle);
+  
+  /* Chairs (Task) */
+  --block-chair-seat: var(--text-muted);
+  --block-chair-stroke: var(--text-body);
+  --block-chair-contour: var(--text-subtle);
+  --block-chair-backrest: var(--text-heading-soft);
+  --block-chair-backrest-stroke: var(--color-dark-midnight-blue-750);
+  --block-chair-arm: var(--text-body);
+  --block-chair-arm-soft: var(--text-heading-soft);
+  --block-chair-caster-base: var(--text-inverse-body);
+  --block-chair-caster-spoke: var(--text-inverse-subtle);
+  --block-chair-caster-wheel: var(--text-muted);
+  
+  /* Soft Seating (Sofas) */
+  --block-sofa: var(--color-bronze-400);
+  --block-sofa-stroke: var(--color-ecru-800);
+  --block-sofa-arm: var(--color-bronze-500);
+  --block-sofa-seam: var(--color-bronze-400);
+  
+  /* Plants */
+  --block-plant-base: #65a30d;
+  --block-plant-dark: #4d7c0f;
+  --block-plant-outline: #3f6212;
+  --block-pot-base: var(--text-inverse);
+
+  /* Equipment (Printers, Whiteboards, Vending) */
+  --block-equip-white: var(--color-white-50);
+  --block-equip-gray: var(--text-strong);
+  --block-equip-dark: var(--text-inverse-subtle);
+  
+  /* Accessories & Glyphs */
+  --block-glyph: var(--text-inverse-body);
+  --block-glyph-dark: var(--text-subtle);
+  --block-acc-mousepad: var(--text-heading-soft);
+  --block-acc-phone: var(--text-body);
+  --block-acc-phone-stroke: var(--text-inverse-subtle);
+  --block-acc-laptop: var(--text-inverse-muted);
+  --block-acc-laptop-kb: var(--text-body);
+  --block-acc-cup: var(--color-white-50);
+  --block-acc-coffee: #78350f;
+  --block-acc-notebook: var(--color-white-50);
+  --block-acc-notebook-stroke: var(--text-inverse-body);
+  --block-acc-notebook-bind: #3b82f6;
+  --block-acc-kb-base: var(--color-white-50);
+  --block-acc-kb-keys: var(--text-strong);
+
+  /* Universal Shadows */
+  --block-shadow-color: var(--color-dark-midnight-blue-750);
+}

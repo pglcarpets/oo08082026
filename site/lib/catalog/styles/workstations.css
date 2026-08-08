@@ -1,0 +1,10 @@
+:root {
+  /* Workstations */
+  --block-ws-surface-base: var(--block-theme-ws-surface-base);
+  --block-ws-surface-grain: var(--block-theme-ws-surface-grain);
+  --block-ws-edge-banding: var(--block-theme-ws-edge-banding);
+  --block-ws-leg-metal: var(--block-theme-ws-leg-metal);
+  --block-ws-panel-fabric: var(--block-theme-ws-panel-fabric);
+  --block-ws-bevel-highlight: var(--block-theme-ws-bevel-highlight);
+  --block-ws-ao-shadow: var(--block-theme-ws-ao-shadow);
+}

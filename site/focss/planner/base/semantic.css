@@ -1,0 +1,37 @@
+:root {
+  /* Semantic */
+  --surface-page: var(--color-white-50);
+  --surface-panel: var(--color-white-50);
+  --surface-soft: var(--color-white-100);
+  --surface-muted: var(--color-white-150);
+  --surface-inverse: var(--color-midnight-900);
+  --surface-accent-wash: color-mix(in srgb, var(--color-bronze-300) 8%, var(--color-white-50));
+
+  --text-strong: var(--color-pure-black);
+  --text-body: var(--color-pure-black);
+  --text-muted: var(--color-ink-600);
+  --text-subtle: var(--color-ink-500);
+  --text-inverse: var(--color-ink-25);
+
+  --border-soft: color-mix(in srgb, var(--color-white-300) 72%, var(--color-white-200));
+  --border-muted: color-mix(in srgb, var(--color-white-400) 65%, var(--color-white-200));
+  --border-strong: var(--color-midnight-300);
+  --border-accent: color-mix(in srgb, var(--color-midnight-500) 22%, transparent);
+
+  --color-primary: var(--color-midnight-500);
+  --color-primary-hover: var(--color-midnight-600);
+  --color-primary-soft: color-mix(in srgb, var(--color-midnight-500) 10%, var(--color-white-50));
+  --color-accent: var(--color-bronze-400);
+  --color-accent-soft: color-mix(in srgb, var(--color-bronze-300) 20%, var(--color-white-50));
+  --color-focus: var(--color-obb-600);
+
+  --shadow-soft: 0 1px 2px color-mix(in srgb, var(--color-ink-900) 4%, transparent),
+    0 8px 24px -12px color-mix(in srgb, var(--color-ink-900) 8%, transparent);
+  --shadow-panel: 0 12px 32px -24px color-mix(in srgb, var(--color-ink-900) 18%, transparent),
+    0 1px 2px color-mix(in srgb, var(--color-ink-900) 4%, transparent);
+  --shadow-lift: 0 20px 40px -28px color-mix(in srgb, var(--color-midnight-500) 32%, transparent);
+  --shadow-segment-active: 0 1px 2px color-mix(in srgb, var(--color-ink-900) 6%, transparent);
+  --shadow-context-menu: 0 20px 40px -18px color-mix(in srgb, var(--color-ink-900) 22%, transparent),
+    0 2px 4px color-mix(in srgb, var(--color-ink-900) 6%, transparent);
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-focus) 25%, transparent);
+}

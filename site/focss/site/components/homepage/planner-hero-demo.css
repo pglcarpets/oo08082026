@@ -1,0 +1,231 @@
+/*
+ * Immersive planner floor-plan demo (homepage tools band).
+ * Plain selectors — imported via homepage/index.css.
+ */
+
+.planner-hero-demo {
+  position: relative;
+  width: min(33rem, 100%);
+  overflow: hidden;
+  border-radius: 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--color-white) 18%, transparent);
+  background: var(--surface-panel);
+  box-shadow:
+    0 3.125rem 6.875rem -36px var(--hero-btn-secondary-shadow),
+    0 1.125rem 2.75rem -24px var(--hero-btn-secondary-shadow);
+  animation: planner-demo-float 7s ease-in-out infinite;
+}
+
+@keyframes planner-demo-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .planner-hero-demo {
+    animation: none;
+  }
+}
+
+.planner-hero-demo__chrome {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.85rem;
+  border-bottom: 1px solid var(--border-soft);
+  background: var(--surface-soft);
+}
+
+.planner-hero-demo__dots {
+  display: inline-flex;
+  gap: 0.3rem;
+}
+
+.planner-hero-demo__dots i {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--text-muted) 36%, transparent);
+}
+
+.planner-hero-demo__title {
+  flex: 1;
+  font-size: 0.7rem;
+  font-weight: 650;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.planner-hero-demo__segment {
+  display: inline-flex;
+  gap: 0.125rem;
+  padding: 0.16rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.5rem;
+  background: var(--surface-panel);
+}
+
+.planner-hero-demo__segment i {
+  padding: 0.18rem 0.55rem;
+  border-radius: 0.35rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.planner-hero-demo__segment i[data-active="true"] {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+.planner-hero-demo__canvas {
+  position: relative;
+  aspect-ratio: 8 / 5;
+  background-color: var(--surface-panel);
+  background-image: radial-gradient(
+    color-mix(in srgb, var(--text-muted) 22%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 1.0625rem 1.0625rem;
+}
+
+.planner-hero-demo__canvas svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+}
+
+.planner-hero-demo__canvas .pl-wall {
+  fill: none;
+  stroke: var(--text-strong);
+  stroke-width: 3;
+  stroke-linecap: square;
+}
+
+.planner-hero-demo__canvas .pl-door {
+  fill: none;
+  stroke: var(--text-muted);
+  stroke-width: 1.25;
+  stroke-dasharray: 3 3;
+}
+
+.planner-hero-demo__canvas .pl-desk {
+  fill: color-mix(in srgb, var(--color-bronze-300) 38%, var(--surface-panel));
+  stroke: var(--text-strong);
+  stroke-width: 1.4;
+}
+
+.planner-hero-demo__canvas .pl-chair {
+  fill: color-mix(in srgb, var(--text-strong) 58%, transparent);
+}
+
+.planner-hero-demo__canvas .pl-storage {
+  fill: color-mix(in srgb, var(--text-muted) 22%, transparent);
+  stroke: var(--text-muted);
+  stroke-width: 1;
+}
+
+.planner-hero-demo__canvas .pl-zone {
+  fill: color-mix(in srgb, var(--color-primary) 7%, transparent);
+  stroke: color-mix(in srgb, var(--color-primary) 55%, transparent);
+  stroke-width: 1.25;
+  stroke-dasharray: 5 4;
+}
+
+.planner-hero-demo__canvas .pl-zone--alt {
+  fill: color-mix(in srgb, var(--color-bronze-300) 12%, transparent);
+  stroke: color-mix(in srgb, var(--color-bronze-500) 60%, transparent);
+}
+
+.planner-hero-demo__canvas .pl-zone-label {
+  font-size: 0.46875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  fill: var(--text-muted);
+}
+
+.planner-hero-demo__canvas .pl-room-label {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  fill: var(--text-muted);
+}
+
+.planner-hero-demo__canvas .pl-dim-line {
+  stroke: var(--text-muted);
+  stroke-width: 1;
+}
+
+.planner-hero-demo__canvas .pl-dim-badge {
+  fill: var(--surface-panel);
+  stroke: var(--border-soft);
+  stroke-width: 1;
+}
+
+.planner-hero-demo__canvas .pl-dim-text {
+  font-size: 9px;
+  font-weight: 650;
+  fill: var(--text-muted);
+}
+
+.planner-hero-demo__canvas .pl-cursor {
+  fill: var(--text-strong);
+  stroke: var(--surface-panel);
+  stroke-width: 1;
+}
+
+.planner-hero-demo__canvas .pl-selection {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 1.25;
+  stroke-dasharray: 5 3;
+}
+
+.planner-hero-demo__saved {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.7rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-success) 35%, transparent);
+  background: color-mix(in srgb, var(--color-success) 10%, var(--surface-panel));
+  font-size: var(--type-label-size);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-success);
+}
+
+.planner-hero-demo__status {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1rem;
+  padding: 0.45rem 0.9rem;
+  border-top: 1px solid var(--border-soft);
+  background: var(--surface-soft);
+  font-size: var(--type-label-size);
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.planner-hero-demo__status strong {
+  color: var(--text-strong);
+  font-weight: 650;
+}
+
+.planner-hero-demo__status-right {
+  margin-left: auto;
+  color: var(--color-primary);
+}

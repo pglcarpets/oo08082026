@@ -1,0 +1,105 @@
+/* Marketing route interactions — panel hover + scroll reveal (homepage contract on all routes) */
+
+.home-section :is(article, div).scheme-panel {
+  transition:
+    transform var(--motion-base) var(--ease-standard),
+    box-shadow var(--motion-base) var(--ease-standard),
+    border-color var(--motion-fast) var(--ease-standard);
+}
+
+.home-section :is(article, div).scheme-panel:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: var(--border-strong);
+}
+
+/* Dark CTA bands — same chrome as legacy shell-dark-cta-panel, home typography */
+.marketing-cta-band {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-giant);
+  padding: 2rem;
+  border: 0.0625rem solid var(--border-inverse);
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-inverse);
+}
+
+@media (width >= theme(--breakpoint-md)) {
+  .marketing-cta-band {
+    padding: 2.5rem;
+  }
+}
+
+.marketing-cta-band::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  right: 0;
+  width: 50%;
+  background: radial-gradient(
+    circle at top right,
+    color-mix(in srgb, var(--color-primary) 16%, transparent) 0%,
+    transparent 58%
+  );
+  pointer-events: none;
+}
+
+.marketing-cta-band > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* One-shot reveal ≤900ms; only when motion is OK */
+@media (prefers-reduced-motion: no-preference) {
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel) {
+    animation: home-reveal-up 720ms var(--ease-standard) forwards;
+    opacity: 0;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(1) {
+    animation-delay: 0.04s;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(2) {
+    animation-delay: 0.09s;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(3) {
+    animation-delay: 0.14s;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(4) {
+    animation-delay: 0.19s;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(5) {
+    animation-delay: 0.24s;
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel):nth-child(6) {
+    animation-delay: 0.29s;
+  }
+
+  .marketing-cta-band {
+    animation: home-reveal-up 640ms var(--ease-standard) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-section :is(article, div).scheme-panel {
+    transition: none;
+  }
+
+  .home-section :is(article, div).scheme-panel:hover {
+    transform: none;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .home-section [class*="grid"] > :is(article.scheme-panel, div.scheme-panel),
+  .marketing-cta-band {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

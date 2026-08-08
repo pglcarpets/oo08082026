@@ -1,0 +1,246 @@
+@theme {
+  /*
+   * Semantic tokens — roles only.
+   * Values must reference palette tokens (or color-mix of them). No raw hex here.
+   */
+
+  /* ── Brand / action ── */
+  --color-primary: var(--color-dark-midnight-blue-500);
+  --color-primary-hover: var(--color-dark-midnight-blue-550);
+  --color-primary-active: var(--color-dark-midnight-blue-600);
+  --color-focus: var(--color-ocean-boat-blue-600);
+
+  --color-accent: var(--color-bronze-400);
+  --color-accent-hover: var(--color-bronze-500);
+  --color-accent-soft: var(--color-bronze-300);
+  --color-accent-strong: var(--color-bronze-500);
+  --color-accent1: var(--color-bronze-400);
+  --color-accent2: var(--color-ocean-boat-blue-600);
+
+  --color-contrast-accent: var(--color-bronze-500);
+  --color-contrast-accent-soft: var(--color-bronze-300);
+  --color-contrast-accent-strong: var(--color-bronze-600);
+
+  /* ── Status ── */
+  --color-success: var(--color-ocean-boat-blue-550);
+  --color-warning: var(--color-bronze-400);
+  --color-danger: var(--color-dark-midnight-blue-450);
+  /* --color-error-red lives on the palette (raw) */
+
+  /* ── Channel accents ── */
+  --color-whatsapp: var(--color-bronze-400);
+  --color-whatsapp-hover: var(--color-bronze-500);
+  --color-whatsapp-footer-hover: var(--color-bronze-600);
+
+  /* ── Surfaces (light) — cool white ground; ecru reserved for accent panels ── */
+  --surface-page: var(--color-white-100);
+  --surface-soft: var(--color-white-150);
+  --surface-muted: color-mix(in srgb, var(--color-white-200) 62%, var(--color-white-50));
+  --surface-card: var(--color-white-50);
+  --surface-panel: var(--color-white-50);
+  --surface-panel-strong: var(--color-white-50);
+  --surface-panel-soft: var(--color-white-100);
+  --surface-hover: var(--color-white-150);
+  --surface-hover-soft: var(--color-white-200);
+  --surface-focus: var(--color-white-200);
+
+  /* Product thumbs / catalog media only — never under page chrome */
+  --surface-studio: var(--color-white-150);
+  --surface-studio-highlight: var(--color-white-50);
+  --surface-studio-edge: var(--color-white-250);
+  --surface-studio-field: radial-gradient(
+    120% 100% at 50% 18%,
+    var(--surface-studio-highlight) 0%,
+    color-mix(in srgb, var(--color-support-mist) 55%, var(--surface-studio)) 55%,
+    var(--surface-studio-edge) 100%
+  );
+
+  --surface-content-column: var(--color-white-100);
+  --surface-content-elevated: var(--color-white-50);
+  --surface-relief: linear-gradient(
+    180deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 14%, var(--color-white-100)) 100%
+  );
+
+  --surface-inverse: var(--color-dark-midnight-blue-900);
+  --surface-inverse-soft: var(--color-dark-midnight-blue-800);
+  --surface-canvas: var(--color-dark-midnight-blue-950);
+  --surface-canvas-soft: var(--color-dark-midnight-blue-900);
+  --surface-canvas-panel: var(--color-dark-midnight-blue-800);
+
+  --surface-accent-wash: color-mix(
+    in srgb,
+    var(--color-bronze-300) 12%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 22%, var(--color-white-150))
+  );
+  --surface-glass: color-mix(in srgb, var(--color-white-50) 78%, transparent);
+  --surface-glass-strong: color-mix(in srgb, var(--color-white-50) 88%, transparent);
+  --surface-tint-soft: color-mix(in srgb, var(--color-white-100) 90%, transparent);
+  --surface-tint-muted: color-mix(in srgb, var(--color-white-150) 80%, transparent);
+  --surface-status-ok: color-mix(in srgb, var(--color-ocean-boat-blue-200) 28%, var(--color-white-50));
+  --surface-status-bad: color-mix(in srgb, var(--color-bronze-200) 22%, var(--color-white-50));
+  --surface-sustain-soft: color-mix(in srgb, var(--color-sustain-300) 8%, transparent);
+  --surface-sustain-soft-strong: color-mix(in srgb, var(--color-sustain-300) 14%, transparent);
+  --surface-sustain-glow: color-mix(in srgb, var(--color-sustain-300) 20%, transparent);
+  --surface-sustain-glow-strong: color-mix(in srgb, var(--color-sustain-300) 28%, transparent);
+
+  /* ── Text ── */
+  --text-strong: var(--color-pure-black);
+  --text-heading: var(--color-pure-black);
+  --text-heading-soft: var(--color-ink-700);
+  --text-body: var(--color-pure-black);
+  --text-muted: var(--color-ink-600);
+  --text-subtle: var(--color-ink-500);
+  --text-brand: var(--color-primary);
+  --text-link: var(--color-ocean-boat-blue-600);
+  --text-link-hover: var(--color-ocean-boat-blue-700);
+  --text-inverse: var(--color-ink-25);
+  --text-inverse-body: var(--color-ink-100);
+  --text-inverse-muted: var(--color-ink-200);
+  --text-inverse-subtle: var(--color-ink-300);
+  --text-sustain: var(--color-sustain-300);
+
+  /* ── Borders ── */
+  --border-soft: color-mix(in srgb, var(--color-white-300) 72%, var(--color-support-mist));
+  --border-muted: color-mix(in srgb, var(--color-white-400) 68%, var(--color-support-fog));
+  --border-strong: var(--color-dark-midnight-blue-300);
+  --border-accent: color-mix(in srgb, var(--color-dark-midnight-blue-500) 22%, transparent);
+  --border-hover: color-mix(in srgb, var(--color-dark-midnight-blue-500) 32%, transparent);
+  --border-inverse: color-mix(in srgb, var(--color-white-50) 28%, transparent);
+  --border-sustain-soft: color-mix(in srgb, var(--color-sustain-300) 32%, transparent);
+  --border-contrast-accent: color-mix(in srgb, var(--color-bronze-500) 24%, transparent);
+
+  /* ── Overlays (inverse / panel alpha steps) ── */
+  --overlay-inverse-06: color-mix(in srgb, var(--color-dark-midnight-blue-900) 6%, transparent);
+  --overlay-inverse-08: color-mix(in srgb, var(--color-dark-midnight-blue-900) 8%, transparent);
+  --overlay-inverse-12: color-mix(in srgb, var(--color-dark-midnight-blue-900) 12%, transparent);
+  --overlay-inverse-18: color-mix(in srgb, var(--color-dark-midnight-blue-900) 18%, transparent);
+  --overlay-inverse-24: color-mix(in srgb, var(--color-dark-midnight-blue-900) 24%, transparent);
+  --overlay-inverse-30: color-mix(in srgb, var(--color-dark-midnight-blue-900) 30%, transparent);
+  --overlay-inverse-35: color-mix(in srgb, var(--color-dark-midnight-blue-900) 35%, transparent);
+  --overlay-inverse-42: color-mix(in srgb, var(--color-dark-midnight-blue-900) 42%, transparent);
+  --overlay-inverse-50: color-mix(in srgb, var(--color-dark-midnight-blue-900) 50%, transparent);
+  --overlay-inverse-52: color-mix(in srgb, var(--color-dark-midnight-blue-900) 52%, transparent);
+  --overlay-inverse-55: color-mix(in srgb, var(--color-dark-midnight-blue-900) 55%, transparent);
+  --overlay-inverse-60: color-mix(in srgb, var(--color-dark-midnight-blue-900) 60%, transparent);
+  --overlay-inverse-64: color-mix(in srgb, var(--color-dark-midnight-blue-900) 64%, transparent);
+  --overlay-inverse-78: color-mix(in srgb, var(--color-dark-midnight-blue-900) 78%, transparent);
+  --overlay-inverse-92: color-mix(in srgb, var(--color-dark-midnight-blue-900) 92%, transparent);
+
+  --overlay-panel-08: color-mix(in srgb, var(--color-white-50) 8%, transparent);
+  --overlay-panel-10: color-mix(in srgb, var(--color-white-50) 10%, transparent);
+  --overlay-panel-12: color-mix(in srgb, var(--color-white-50) 12%, transparent);
+  --overlay-panel-14: color-mix(in srgb, var(--color-white-50) 14%, transparent);
+  --overlay-panel-72: color-mix(in srgb, var(--color-white-50) 72%, transparent);
+  --overlay-panel-88: color-mix(in srgb, var(--color-white-50) 88%, transparent);
+  --overlay-panel-92: color-mix(in srgb, var(--color-white-50) 92%, transparent);
+  --overlay-panel-95: color-mix(in srgb, var(--color-white-50) 95%, transparent);
+  --overlay-panel-98: color-mix(in srgb, var(--color-white-50) 98%, transparent);
+
+  /* ── Scrim / glass / one-off surface helpers ── */
+  --scrim-black-20: color-mix(in srgb, var(--color-pure-black) 20%, transparent);
+  --scrim-black-40: color-mix(in srgb, var(--color-pure-black) 40%, transparent);
+  --scrim-black-80: color-mix(in srgb, var(--color-pure-black) 80%, transparent);
+  --glass-white-18: color-mix(in srgb, var(--color-white-50) 18%, transparent);
+  --glass-white-20: color-mix(in srgb, var(--color-white-50) 20%, transparent);
+  --glass-white-28: color-mix(in srgb, var(--color-white-50) 28%, transparent);
+  --glass-white-40: color-mix(in srgb, var(--color-white-50) 40%, transparent);
+  --glass-white-90: color-mix(in srgb, var(--color-white-50) 90%, transparent);
+  --hero-btn-bg: color-mix(in srgb, var(--color-dark-midnight-blue-900) 90%, transparent);
+  --hero-btn-bg-hover: color-mix(in srgb, var(--color-dark-midnight-blue-950) 98%, transparent);
+  --hero-btn-shadow: color-mix(in srgb, var(--color-pure-black) 95%, transparent);
+  --hero-btn-secondary-shadow: color-mix(in srgb, var(--color-dark-midnight-blue-950) 55%, transparent);
+  --panel-frost-96: color-mix(in srgb, var(--color-ink-25) 96%, transparent);
+  --shadow-tint-pdp-22: color-mix(in srgb, var(--color-dark-midnight-blue-700) 22%, transparent);
+  --shadow-tint-pdp-28: color-mix(in srgb, var(--color-dark-midnight-blue-700) 28%, transparent);
+  --shadow-tint-pdp-30: color-mix(in srgb, var(--color-dark-midnight-blue-700) 30%, transparent);
+
+  /* ── Elevation ── */
+  --shadow-sm: 0 1px 2px color-mix(in srgb, var(--color-dark-midnight-blue-900) 6%, transparent);
+  --shadow-soft: 0 16px 3rem -28px color-mix(in srgb, var(--color-dark-midnight-blue-700) 24%, transparent);
+  --shadow-panel: 0 1.5rem 3.5rem -38px color-mix(in srgb, var(--color-dark-midnight-blue-700) 28%, transparent);
+  --shadow-lift: 0 1.375rem 2.75rem -28px color-mix(in srgb, var(--color-dark-midnight-blue-500) 36%, transparent);
+  --shadow-float: 0 32px 5rem -44px color-mix(in srgb, var(--color-dark-midnight-blue-700) 34%, transparent);
+  --shadow-inverse: 0 1.75rem 4.5rem -48px color-mix(in srgb, var(--color-dark-midnight-blue-700) 60%, transparent);
+  --focus-ring: 0 0 0 0.1875rem color-mix(in srgb, var(--color-ocean-boat-blue-600) 25%, transparent);
+
+  /* ── Blur ── */
+  --blur-sm: 0.5rem;
+  --blur-md: 1rem;
+  --blur-lg: 1.5rem;
+  --blur-xl: 2.5rem;
+}
+
+/* Dark scheme — html.dark (planner WorkspaceThemeProvider) */
+html.dark {
+  --color-primary: var(--color-ocean-boat-blue-400);
+  --color-primary-hover: var(--color-ocean-boat-blue-350);
+  --color-primary-active: var(--color-ocean-boat-blue-300);
+
+  --color-accent: var(--color-bronze-300);
+  --color-accent-hover: var(--color-bronze-400);
+  --color-accent-soft: var(--color-bronze-500);
+
+  --surface-page: var(--color-dark-midnight-blue-950);
+  --surface-soft: var(--color-dark-midnight-blue-900);
+  --surface-muted: var(--color-dark-midnight-blue-850);
+  --surface-card: var(--color-dark-midnight-blue-800);
+  --surface-panel: var(--color-dark-midnight-blue-800);
+  --surface-panel-strong: var(--color-dark-midnight-blue-750);
+  --surface-panel-soft: var(--color-dark-midnight-blue-850);
+  --surface-hover: var(--color-dark-midnight-blue-750);
+  --surface-hover-soft: var(--color-dark-midnight-blue-700);
+  --surface-focus: var(--color-dark-midnight-blue-700);
+  --surface-inverse: var(--color-white-100);
+  --surface-inverse-soft: var(--color-white-150);
+  --surface-accent-wash: color-mix(
+    in srgb,
+    var(--color-ocean-boat-blue-500) 14%,
+    var(--color-dark-midnight-blue-900)
+  );
+  --surface-glass: color-mix(in srgb, var(--color-dark-midnight-blue-800) 85%, transparent);
+  --surface-glass-strong: color-mix(in srgb, var(--color-dark-midnight-blue-700) 92%, transparent);
+  --surface-status-ok: color-mix(
+    in srgb,
+    var(--color-ocean-boat-blue-500) 18%,
+    var(--color-dark-midnight-blue-900)
+  );
+  --surface-status-bad: color-mix(
+    in srgb,
+    var(--color-bronze-400) 12%,
+    var(--color-dark-midnight-blue-900)
+  );
+
+  --text-strong: var(--color-ink-50);
+  --text-heading: var(--color-ink-25);
+  --text-heading-soft: var(--color-ink-200);
+  --text-body: var(--color-ink-100);
+  --text-muted: var(--color-ink-300);
+  --text-subtle: var(--color-ink-400);
+  --text-link: var(--color-ocean-boat-blue-300);
+  --text-link-hover: var(--color-ocean-boat-blue-200);
+
+  --border-soft: var(--color-dark-midnight-blue-700);
+  --border-muted: var(--color-dark-midnight-blue-650);
+  --border-strong: var(--color-dark-midnight-blue-500);
+  --border-accent: color-mix(in srgb, var(--color-ocean-boat-blue-400) 24%, transparent);
+  --border-hover: color-mix(in srgb, var(--color-ocean-boat-blue-400) 40%, transparent);
+
+  --shadow-soft: 0 16px 48px -30px color-mix(in srgb, var(--color-pure-black) 40%, transparent);
+  --shadow-panel: 0 24px 56px -42px color-mix(in srgb, var(--color-pure-black) 45%, transparent);
+  --shadow-lift: 0 22px 44px -30px color-mix(in srgb, var(--color-pure-black) 35%, transparent);
+  --shadow-float: 0 32px 80px -48px color-mix(in srgb, var(--color-pure-black) 50%, transparent);
+  --focus-ring: 0 0 0 0.1875rem color-mix(in srgb, var(--color-ocean-boat-blue-400) 40%, transparent);
+
+  --color-block-wall: var(--color-dark-midnight-blue-600);
+  --color-block-wall-hover: var(--color-dark-midnight-blue-500);
+  --color-block-desk: var(--color-dark-midnight-blue-500);
+  --color-block-desk-hover: var(--color-dark-midnight-blue-400);
+  --color-block-chair: var(--color-dark-midnight-blue-400);
+  --color-block-chair-hover: var(--color-dark-midnight-blue-350);
+
+  /* CAD paper stays light even in dark UI chrome */
+  --color-canvas-bg: var(--color-white-200);
+  --color-canvas-grid: var(--color-white-350);
+}

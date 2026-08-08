@@ -1,0 +1,205 @@
+/* Catalog admin — drawer chrome, asset preview, field groups.
+ * Product chrome only. No marketing motion or decorative media. */
+
+.admin-drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  justify-content: flex-end;
+  background: color-mix(in srgb, var(--text-strong) 42%, transparent);
+}
+
+.admin-drawer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 42rem;
+  height: 100dvh;
+  border-left: 1px solid var(--border-soft);
+  background: var(--surface-card, var(--surface-panel));
+  box-shadow: var(--shadow-lift, none);
+}
+
+.admin-drawer__header,
+.admin-drawer__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.75rem;
+  flex: 0 0 auto;
+  padding: 0.85rem 1rem;
+  border-color: var(--border-soft);
+  background: color-mix(in srgb, var(--surface-soft) 40%, var(--surface-panel));
+}
+
+.admin-drawer__header {
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.admin-drawer__footer {
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-soft);
+}
+
+.admin-drawer__title {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  font-weight: 650;
+  line-height: 1.3;
+  color: var(--text-heading);
+}
+
+.admin-drawer__body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 1rem;
+  background: var(--surface-card, var(--surface-panel));
+}
+
+@media (min-width: 40rem) {
+  .admin-drawer__header,
+  .admin-drawer__footer,
+  .admin-drawer__body {
+    padding-inline: 1.35rem;
+  }
+
+  .admin-drawer__body {
+    padding-block: 1.25rem;
+  }
+}
+
+.admin-field-group {
+  margin: 0;
+  padding: 0.85rem 1rem 1rem;
+  display: grid;
+  gap: 0.85rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-raised, var(--surface-panel));
+  min-width: 0;
+}
+
+.admin-field-group__title {
+  padding: 0 0.2rem;
+  font-family: var(--font-sans);
+  font-size: var(--type-label-size);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.admin-asset-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-top: 0.35rem;
+}
+
+.admin-asset-preview__frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 14rem;
+  aspect-ratio: 4 / 3;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background:
+    repeating-conic-gradient(
+      color-mix(in srgb, var(--text-strong) 5%, transparent) 0% 25%,
+      transparent 0% 50%
+    )
+    50% / 10px 10px;
+}
+
+/* next/image fill target for the operator URL preview. */
+.admin-asset-preview__image {
+  object-fit: contain;
+  background: var(--surface-card, var(--surface-panel));
+}
+
+.admin-asset-preview__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: var(--surface-card, var(--surface-panel));
+}
+
+.admin-asset-preview__frame[data-state="broken"],
+.admin-asset-preview__frame[data-state="empty"],
+.admin-asset-preview__frame[data-state="unsupported"] {
+  background: var(--surface-soft, var(--color-white-150));
+}
+
+.admin-asset-preview__status {
+  margin: 0;
+  font-size: var(--type-small-size);
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.admin-asset-preview__status[data-tone="danger"] {
+  color: var(--color-error-red);
+}
+
+.admin-catalog-advanced-json {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-soft, var(--color-white-150));
+}
+
+.admin-catalog-advanced-json__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.admin-catalog-advanced-json__title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+.admin-catalog-advanced-json__copy {
+  margin: 0.25rem 0 0;
+  font-size: var(--type-small-size);
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.admin-catalog-advanced-json__status {
+  margin: 0;
+  font-size: var(--type-small-size);
+  color: var(--text-muted);
+}
+
+.admin-catalog-advanced-json__status[data-tone="danger"] {
+  color: var(--color-error-red);
+}
+
+/* Catalog list paging (was inventory.css — SVG inventory UI deleted) */
+.admin-catalog-paging {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  font-size: var(--type-small-size);
+  color: var(--text-muted);
+  padding: 0.35rem 0.5rem 0.5rem;
+}

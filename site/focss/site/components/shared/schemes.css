@@ -1,0 +1,83 @@
+/* --- Scheme: page & section backgrounds (cool studio + ocean mist) --- */
+@utility scheme-page {
+  /* Shared site ground — light cool mist, same family on home + routes */
+  background: linear-gradient(
+    180deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 14%, var(--color-white-100)) 55%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 18%, var(--color-white-150)) 100%
+  );
+  color: var(--text-body);
+  font-family: var(--font-sans);
+  font-size: var(--type-body-size);
+  line-height: var(--type-leading-body);
+  letter-spacing: var(--type-letter-copy);
+}
+@utility scheme-section-soft {
+  background: linear-gradient(
+    165deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 32%, var(--color-white-100)) 50%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-100) 18%, var(--color-white-150)) 100%
+  );
+}
+@utility scheme-soft {
+  background: linear-gradient(
+    165deg,
+    var(--color-white-50) 0%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-50) 32%, var(--color-white-100)) 50%,
+    color-mix(in srgb, var(--color-ocean-boat-blue-100) 18%, var(--color-white-150)) 100%
+  );
+}
+
+@utility scheme-section-muted { background: var(--surface-muted); }
+@utility scheme-section-inverse {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+}
+@utility scheme-section-primary {
+  background: var(--color-primary);
+  color: var(--text-inverse);
+}
+
+/* --- Scheme: panels --- */
+@utility scheme-panel {
+  background: var(--surface-panel-strong);
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-soft);
+  border-width: 1px;
+  border-style: solid;
+}
+@utility scheme-panel-soft {
+  background: var(--surface-soft);
+  border-color: var(--border-soft);
+  box-shadow: var(--shadow-soft);
+}
+@utility scheme-panel-dark {
+  background: var(--surface-inverse);
+  color: var(--text-inverse);
+  border-color: var(--border-inverse);
+  box-shadow: var(--shadow-inverse);
+}
+
+/* --- Scheme: borders --- */
+@utility scheme-border { border-color: var(--border-soft); }
+@utility scheme-border-soft { border-color: var(--border-muted); }
+@utility scheme-border-brand-soft { border-color: var(--border-accent); }
+@utility scheme-border-inverse { border-color: var(--border-inverse); }
+@utility scheme-accent-wash { background-color: var(--surface-accent-wash); }
+
+/* --- Footer scheme --- */
+@utility site-footer__link {
+  color: var(--text-inverse-muted);
+  &:hover { color: var(--text-inverse-body); }
+}
+@utility site-footer__social {
+  color: var(--text-inverse-muted);
+  &:hover { color: var(--text-inverse); }
+}
+@utility site-footer__divider { border-color: var(--border-inverse); }
+@utility site-footer__legal {
+  color: var(--text-inverse-muted);
+  &:hover { color: var(--text-inverse-body); }
+}

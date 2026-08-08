@@ -1,0 +1,56 @@
+/* /planner/ marketing — mobile touch UX and layout refinements */
+
+@media (width < theme(--breakpoint-md)) {
+  .planner-landing-features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .planner-landing-feature {
+    padding: 1.125rem;
+  }
+
+  .planner-landing-step {
+    padding: 1.125rem;
+  }
+
+  .planner-landing-cta {
+    padding: 1.5rem 1.125rem;
+    text-align: center;
+  }
+
+  .planner-landing-cta .home-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 20rem;
+    margin-inline: auto;
+  }
+
+  .planner-landing-cta .home-actions > * {
+    width: 100%;
+  }
+
+  .planner-landing-cta .home-actions a,
+  .planner-landing-cta .home-actions button {
+    justify-content: center;
+    min-height: var(--control-height-sm);
+  }
+
+  @media (hover: none) {
+    .planner-landing-feature:hover {
+      transform: none;
+      box-shadow: none;
+    }
+  }
+}
+
+@media (width < theme(--breakpoint-sm)) {
+  .planner-landing-proof-cell {
+    padding: 1rem 0.75rem;
+  }
+
+  .planner-hero-demo__status {
+    font-size: max(0.625rem, var(--type-label-size));
+    gap: 0.5rem;
+  }
+}

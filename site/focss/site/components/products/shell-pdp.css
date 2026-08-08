@@ -1,0 +1,157 @@
+.pdp-reviews-shell {
+  overflow: hidden;
+  border: 0.0625rem solid var(--border-soft);
+  border-radius: 2rem;
+  background: color-mix(in srgb, white 94%, transparent);
+  box-shadow: 0 2rem 4.5rem -60px var(--shadow-tint-pdp-28);
+}
+
+.pdp-reviews-kicker {
+  margin-bottom: 0.75rem;
+  color: var(--text-muted);
+  font-size: var(--type-tiny-size);
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.pdp-reviews-summary {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+  padding: 0.75rem 1rem;
+  text-align: right;
+}
+
+.pdp-reviews-count {
+  color: var(--text-muted);
+  font-size: var(--type-label-size);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pdp-reviews-empty {
+  border: 1px dashed var(--border-muted);
+  border-radius: 1.5rem;
+  background: var(--surface-soft);
+  padding: 1.5rem 1.25rem;
+}
+
+.pdp-reviews-item {
+  border: 1px solid var(--border-soft);
+  border-radius: 1.5rem;
+  background: var(--surface-panel-strong);
+  padding: 1.25rem;
+  box-shadow: 0 0.75rem 1.875rem -28px var(--shadow-tint-pdp-30);
+}
+
+.pdp-reviews-date {
+  display: block;
+  margin-top: 0.25rem;
+  color: color-mix(in srgb, var(--text-muted) 82%, white);
+  font-size: var(--type-tiny-size);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pdp-reviews-form-panel {
+  background: linear-gradient(180deg, var(--panel-frost-96), var(--overlay-panel-98));
+}
+
+.pdp-reviews-form-card {
+  border: 1px solid var(--border-soft);
+  border-radius: 1.75rem;
+  background: var(--surface-panel-strong);
+  padding: 1.25rem;
+  box-shadow: 0 1.5rem 3.25rem -42px var(--shadow-tint-pdp-22);
+}
+
+@media (width >= theme(--breakpoint-sm)) {
+  .pdp-reviews-form-card {
+    padding: 1.5rem;
+  }
+}
+
+.pdp-reviews-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  font-size: var(--type-tiny-size);
+  font-weight: var(--font-weight-copy-semibold);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pdp-reviews-input {
+  width: 100%;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface-soft);
+  padding: 0.75rem 1rem;
+  color: var(--text-strong);
+  outline: none;
+  transition: border-color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pdp-reviews-input::placeholder {
+  color: var(--text-subtle);
+}
+
+.pdp-reviews-input:focus {
+  border-color: color-mix(in srgb, var(--color-primary) 50%, transparent);
+  background: var(--surface-panel-strong);
+}
+
+.pdp-reviews-input--textarea {
+  resize: none;
+}
+
+.pdp-reviews-submit {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  background: var(--text-heading);
+  padding: 0.875rem 1.25rem;
+  color: var(--text-inverse);
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-copy-semibold);
+  transition: background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pdp-reviews-submit:hover {
+  background: color-mix(in srgb, var(--text-heading) 88%, white);
+}
+
+.pdp-reviews-submit:disabled {
+  background: color-mix(in srgb, var(--text-muted) 60%, transparent);
+}
+
+.pdp-reviews-star-button {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-pill);
+  background: var(--surface-soft);
+  padding: 0.5rem;
+  transition: border-color var(--motion-fast) var(--ease-standard),
+              background-color var(--motion-fast) var(--ease-standard);
+}
+
+.pdp-reviews-star-button:hover {
+  border-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  background: color-mix(in srgb, var(--color-primary) 5%, transparent);
+}
+
+.pdp-reviews-star-button:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+.pdp-viewer-spinner {
+  height: 3rem;
+  width: 3rem;
+  border-radius: var(--radius-pill);
+  border: 0.125rem solid var(--color-primary);
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}

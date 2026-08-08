@@ -1,0 +1,60 @@
+{
+  "schemaVersion": "2026-07-04.v2",
+  "id": "a81e3a1b-16f4-4000-8000-000000000009",
+  "slug": "oando-sway-ws-bench-2400",
+  "sku": "OANDO-SWAY-WS-B2400",
+  "sourceProvenance": "native",
+  "createdBy": "seed-block-descriptors-brand-heroes",
+  "geometry": {
+    "widthMm": 2400,
+    "depthMm": 1400,
+    "heightMm": 750
+  },
+  "viewBox": {
+    "x": 0,
+    "y": 0,
+    "width": 2400,
+    "height": 1400
+  },
+  "mounting": [
+    "floor"
+  ],
+  "blocks": [
+    {
+      "id": "run-a",
+      "x": 0,
+      "y": 0,
+      "width": 2400,
+      "depth": 600
+    },
+    {
+      "id": "run-b",
+      "x": 0,
+      "y": 800,
+      "width": 2400,
+      "depth": 600
+    },
+    {
+      "id": "screen",
+      "x": 40,
+      "y": 620,
+      "width": 2320,
+      "depth": 160
+    }
+  ],
+  "themeTokens": {
+    "currentColor": "currentColor",
+    "--fill-primary": "var(--color-surface-raised)",
+    "--stroke-accent": "var(--color-border)"
+  },
+  "rovingFocus": [],
+  "liveAnnouncementCategories": [
+    "status"
+  ],
+  "generatedAt": 1752000013,
+  "checksum": "230a197cbada5a37a18e90e7d94dc000149060c7479a80f75a37dffc89dca616",
+  "variant": "fixed",
+  "fixed": {
+    "sizingType": "fixed"
+  }
+}

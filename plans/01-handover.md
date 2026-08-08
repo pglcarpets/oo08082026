@@ -2,24 +2,22 @@
 
 **Date:** 2026-08-08
 **Branch:** main
-**Status:** ACTIVE — Phase 05 Drizzle schema drift fixed; script repo references aligned.
+**Status:** ACTIVE — repo docs, plans, scripts, and Drizzle schema aligned with live two-DB architecture; all plan-referenced scripts verified on disk.
 
 ---
 
-## 1. What Changed
+## 1. What Changed (this session, in order)
 
 | # | Change | Files | Evidence |
 |---|--------|-------|----------|
-| 1 | Fixed Drizzle schema drift: removed phantom `profiles.email`/`profiles.role`; added `furniture_catalog` + `block_descriptors` to Admin schema; removed non-existent `review_links`/`review_comments` | `site/platform/drizzle/schema/planner.ts` | Unit test 3/3 pass |
-| 2 | Removed invalid `profiles_email_idx`/`profiles_role_idx` from migration | `site/platform/drizzle/migrations/0001_add_missing_indexes.sql` | Migration syntax valid |
-| 3 | Updated unit test imports for new Admin tables | `tests/unit/platform/drizzle/schema/planner.test.ts` | 3/3 pass |
-| 4 | Aligned all scripts with live repo (`oo08082026`/`pglcarpets`) and two-DB architecture | `scripts/*.ps1`, `scripts/*.mjs`, `scripts/*.ts`, `scripts/*.bat` | Syntax check pass |
-| 5 | Fixed `check-supabase-missing-images.mjs` to query `furniture_catalog` from Admin DB | `scripts/check-supabase-missing-images.mjs` | Admin client added |
-| 6 | Fixed `db_test_connection.ts` to expect `block_descriptors` in Admin, not Products | `scripts/db_test_connection.ts` | Row hint query aligned |
-| 7 | Fixed `db_sync_drizzle_schema.ts` table expectations | `scripts/db_sync_drizzle_schema.ts` | `block_descriptors` → Admin |
-| 8 | Fixed `pushSvgCatalogToDb.ts` header to say Admin DB | `scripts/pushSvgCatalogToDb.ts` | Comment updated |
-| 9 | Updated plan file blocker taxonomy and related markdowns | `plans/*.md`, `docs/**/*.md`, `*.md` | F1/F2 → P0-1/P0-2 |
-| 10 | Removed stale `review_links`/`review_comments` drift from schema docs | `docs/database/schema.md` | Known drift updated |
+| 1 | **Audited database structure** — confirmed two Supabase projects (Products `erpweaiypimorcunaimz` / Admin `rxzpznmxbaoxpikowmfc`), 19 Products tables (incl. legacy `furniture_catalog` + `block_descriptors`), 23 Admin tables (canonical copies migrated in Phase 05), RLS + `archive` schema | `docs/database/*` · `site/platform/types/*` | Two-DB report |
+| 2 | **Aligned all markdown to repo truth** — `block_descriptors` + `furniture_catalog` location (Products → Admin) across root, docs, Agents | `AGENTS.md`, `README.md`, `START.md`, `docs/**/*.md`, `Agents/*.md` | Zero stale product-DB refs remain |
+| 3 | **Updated `docs/architecture/`** and removed a stale generated file | `docs/architecture/{README,product-map,stack,source-map,tech-docs-link,routes-pages}.md`, deleted `sitemap-routes.csv` | Dir clean; 9 files + `.gitkeep` |
+| 4 | **Updated all plans + related MDs** — blocker taxonomy F1/F2 → P0-1/P0-2/P0-3, `HANDOVER.md` → `plans/01-handover.md`, purity count 6→8, checklist UTF-16→UTF-8 | `plans/*.md`, `Failures.md`, `CONTENTS.md`, `DOC-MAP.md` | `check-plans-purity` OK |
+| 5 | **Updated all scripts** — repo refs `oo05082026`/`ayushonmicrosoft` → `oo08082026`/`pglcarpets`, wrong local path, `block_descriptors`/`furniture_catalog` moved to Admin in DB-check/seed/descriptor scripts | `scripts/*.{ps1,bat,mjs,ts}` | `node --check` all pass |
+| 6 | **Fixed 7 Drizzle-schema / migration drift items** — removed phantom `profiles.email`/`profiles.role` + their indexes, removed non-existent `review_links`/`review_comments`, added `furnitureCatalog` + `blockDescriptors` to Admin schema, updated unit test | `site/platform/drizzle/schema/planner.ts`, `migrations/0001_add_missing_indexes.sql`, `tests/unit/platform/drizzle/schema/planner.test.ts` | Unit test 3/3 pass |
+| 7 | **Updated plan files + related docs** — F1/F2 → P0-1/P0-2 in runbook, testing handbook, stack, restore, benchmarks; removed resolved drift from `docs/database/schema.md` | `OPERATIONS_RUNBOOK.md`, `Testing-handbook.md`, `docs/**/*.md` | 0 stale F1/F2 refs |
+| 8 | **Added "Scripts — when to run what"** consolidated table to the plans index | `plans/00-README.md` | `check-plans-purity` OK |
 
 ---
 
@@ -27,44 +25,63 @@
 
 | Gate | Command | Result | Evidence |
 |------|---------|--------|----------|
-| Planner schema test | `pnpm exec vitest run tests/unit/platform/drizzle/schema/planner.test.ts` | 3/3 pass | Table names match live Admin DB |
-| Script syntax | `node --check` on modified `.mjs` files | All pass | No parse errors |
-| Plans purity | `node scripts/general/check-plans-purity.mjs` | OK | README + 8 plan docs |
+| Planner schema unit | `pnpm exec vitest run tests/unit/platform/drizzle/schema/planner.test.ts` | **3/3 pass** | Table names match live Admin DB |
+| Modified `.mjs` syntax | `node --check` on changed scripts | **All pass** | No parse errors |
+| Plans purity | `node scripts/general/check-plans-purity.mjs` | **OK** | README + 8 plan docs, no subfolders |
+| Script existence | `Test-Path` on all plan-referenced scripts | **All present** | 10/10 on disk |
+| Stale ref scan | grep for F1/F2, `HANDOVER.md`, `oo05082026`, product-DB descriptor refs | **Clean** | 0 remaining |
 
 ---
 
-## 3. Open Items (from current session)
+## 3. Current Architecture (quick reference)
 
-| Priority | Item | Owner | Plan |
-|----------|------|-------|------|
-| P0 | Product page hydration mismatches (6 routes) | Site | 06-site-plan.md #4 |
-| P0 | Catalog DB missing `catalog_categories` and `catalog_products` tables | Database | 04-database-plan.md #1 |
-| P0 | Worker proxy 404s for catalog assets | Ops | 03-ops-deploy-plan.md #1 |
-| P1 | Test result JSON stale (overwritten) | Testing | 02-testing-plan.md #1 |
-| P1 | Theme fetch fails | Site | 06-site-plan.md |
-| P1 | Auth handler errors + 401s from `127.0.0.1` | Testing | 02-testing-plan.md #2 |
-| P1 | pnpm lockfile version mismatch | Ops | 03-ops-deploy-plan.md #5 |
-| P2 | Full `pnpm run gate` re-proof | Testing | 02-testing-plan.md |
+- **Two DBs:** Products (catalog/configurator/themes/flags — legacy furniture + descriptor copies remain) · Admin/Planner (plans, profiles, handoffs, teams, price books, queries, audit, **furniture_catalog + block_descriptors canonical**).
+- **`profiles` has no `email`/`role`** — writing either returns PGRST204 (previously broke every Planner save).
+- **`archive.plans` is not the Planner store — `public.oando_plans` is.**
+- **Every migration needs a `-- rollback` section** (governance baseline `P4_migration_no_rollback = 42`); grants + policies both required.
+- **Persistence is exclusive-mode** — disk under `DEV_AUTH_BYPASS=1`, Supabase otherwise; never dual-write.
+---
+
+## 4. Active Blockers (from `Failures.md`, 8 rows)
+
+| ID | Priority | Blocker |
+|----|----------|---------|
+| F3 | P0 | `docs.oando.co.in` no public DNS (NXDOMAIN) |
+| P0-1 | P0 | Product page hydration mismatches (6 routes) |
+| P0-2 | P0 | Catalog DB missing `catalog_categories`/`catalog_products` |
+| P0-3 | P0 | Worker proxy 404s for catalog assets |
+| P1-1 | P1 | Test result JSON stale / overwritten |
+| P1-2 | P1 | Theme fetch fails (falls back to local tokens) |
+| P1-3 | P1 | Auth `withAuth:mirror:throw` + rate-limit 401s from `127.0.0.1` |
+| P1-4 | P1 | `pnpm-lock.yaml` v9.0 vs `packageManager` pnpm@11.20.0 |
+
+Blocker → plan mapping: hydration → 06-site-plan #4 · catalog DB → 04-database-plan #1 · worker 404 → 03-ops-deploy-plan #1 · tests JSON → 02-testing-plan #1 · theme → 06-site-plan · auth 127.0.0.1 → 02-testing-plan #2 · lockfile → 03-ops-deploy-plan #5.
 
 ---
 
-## 4. Artifacts
+## 5. Where to Go Next
 
-| What | Where |
-|------|-------|
-| Audit findings | `Failures.md` (primary source of truth) |
-| Drizzle schema | `site/platform/drizzle/schema/planner.ts` |
-| Migration fix | `site/platform/drizzle/migrations/0001_add_missing_indexes.sql` |
-| Test result | `tests/unit/platform/drizzle/schema/planner.test.ts` |
+| Priority | Item | Plan / Doc |
+|----------|------|------------|
+| P0 | Apply migrations to Products (fixes P0-2) then seed furniture once per env | [04-database-plan.md](./04-database-plan.md) |
+| P0 | Close click-to-place (audit-3b) with live Supabase proof | [05-workspaces-plan.md](./05-workspaces-plan.md) |
+| P0 | Re-prove both Vitest lanes and `release:gate` | [02-testing-plan.md](./02-testing-plan.md) |
+| P0 | F3 docs DNS CNAME in Cloudflare | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
+| P1 | Regenerate DB types (`ops db:types:admin` / `db:types`) and reconcile | [04-database-plan.md](./04-database-plan.md) |
+| P1 | Fix marketing hydration + ledger findings | [06-site-plan.md](./06-site-plan.md) |
+| P2 | Full `pnpm run gate` on current commit | [02-testing-plan.md](./02-testing-plan.md) |
+
+**Scripts — when to run what:** consolidated table in [00-README.md](./00-README.md#scripts--when-to-run-what); full inventory via `pnpm run ops list`.
 
 ---
 
-## 5. Quick Start for Next Session
+## 6. Quick Start for Next Session
 
-1. Read this handover
-2. Read `Failures.md` (7 active blockers)
-3. Run Fast Gate from `08-oo-start-checklist.md`
-4. Pick programme plan from `plans/00-README.md`
+1. Read this handover.
+2. Read `Failures.md` (8 rows — 4 P0 + 4 P1).
+3. Run the Fast Gate from `08-oo-start-checklist.md`.
+4. Pick a programme from `plans/00-README.md` (suggested: 04-database-plan to clear P0-2).
+5. Bump plan `AUDITED` dates and existing artifacts under `results/` as items land.
 
 ---
 

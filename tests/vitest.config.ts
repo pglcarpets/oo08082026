@@ -68,13 +68,18 @@ export default defineConfig({
     maxWorkers: 4,
     globals: true,
     environment: "happy-dom",
-    // Auth/session tests import `node:url`, `node:path`, `node:crypto` via
-    // `site/lib/auth/session` and `tests/setup.ts`. Running them under
-    // happy-dom externalizes `node:` and fails with "No such built-in module".
-    // Override: auth tests run in node env (matches root vitest.config.ts).
     // @ts-expect-error -- vitest 4.x public types omit environmentMatchGlobs
-    // (present in 3.x and runtime 4.1.10). Re-validate when bumping.
-    environmentMatchGlobs: [["tests/unit/lib/auth/**/*.test.ts", "node"]],
+    environmentMatchGlobs: [
+      ["**/unit/lib/auth/**/*.test.ts", "node"],
+      ["**/unit/planner/plannerStore.test.ts", "node"],
+      ["**/unit/studio/studioStore.test.ts", "node"],
+      ["**/unit/studio/authorizeStudioCatalogTopPng.test.ts", "node"],
+      ["**/unit/studio/prepareStudioFurnitureCatalogFiles.test.ts", "node"],
+      ["**/unit/studio/renderTopPngFromSvg.test.ts", "node"],
+      ["**/unit/studio/studioCatalogTopPngPersist.test.ts", "node"],
+      ["**/unit/planner/plannerExportMenu.test.tsx", "node"],
+      ["**/unit/studio/studioExportMenu.test.tsx", "node"],
+    ],
     setupFiles: [VITEST_SETUP_FILE],
     reporters: [
       "default",

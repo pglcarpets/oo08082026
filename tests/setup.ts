@@ -7,23 +7,14 @@ import { cleanup } from "@testing-library/react";
 import { MockNextImage } from "./helpers/mockNextImage";
 import { MockNextLink } from "./helpers/mockNextLink";
 
-/**
- * Vitest is launched from monorepo root, but product paths (app/, features/, …)
- * live under site/. Align cwd with vitest `root` so process.cwd() + "app/…" works.
- * Absolute monorepo paths (fileURLToPath-based) are unaffected.
- */
 const monorepoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const sitePackageRoot = path.join(monorepoRoot, "site");
 if (process.cwd() !== sitePackageRoot) {
   process.chdir(sitePackageRoot);
 }
 
-// happy-dom has no Web Crypto; Node's implementation is test-only (never bundled for browser).
 if (!globalThis.crypto?.subtle) {
-  Object.defineProperty(globalThis, "crypto", {
-    value: webcrypto,
-    configurable: true,
-  });
+  Object.defineProperty(globalThis, "crypto", { value: webcrypto, configurable: true });
 }
 
 // Cleanup DOM after each test

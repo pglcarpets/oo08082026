@@ -2,7 +2,7 @@
 """Generate session docs: checklists, handovers, and implementation sub-plans.
 
 Usage:
-    python generate-session-docs.py --checklist > oo-start-checklist.md
+    python generate-session-docs.py --checklist > 08-oo-start-checklist.md
     python generate-session-docs.py --handover  > handover-YYYY-MM-DD.md
     python generate-session-docs.py --subplan testing > implementation_plan_sub_testing.md
 """
@@ -150,7 +150,7 @@ HANDOVER = """# Handover -- Session Close
 
 1. Read this handover
 2. Read `Failures.md`
-3. Run Fast Gate from `oo-start-checklist.md`
+3. Run Fast Gate from `08-oo-start-checklist.md`
 4. Pick programme plan from `plans/README.md`
 
 ---

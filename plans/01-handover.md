@@ -12,7 +12,7 @@
 |---|--------|-------|----------|
 | 1 | Updated all programme plans with real audit findings | plans/*.md | git diff --stat plans/ |
 | 2 | Added handover template to plans/ | plans/01-handover.md | check-plans-purity OK |
-| 3 | Added oo-start-checklist to repo root | oo-start-checklist.md | check-docs-all pass |
+| 3 | Added oo-start-checklist to repo root | 08-oo-start-checklist.md | check-docs-all pass |
 | 4 | Updated Failures.md with 7 real blockers | Failures.md | Live artifact analysis |
 | 5 | Added repo-state audit findings | Failures.md (primary source of truth) | Forensics from logs |
 | 6 | Added session doc generator script | scripts/general/generate-session-docs.py | Tested --checklist, --handover |
@@ -64,7 +64,7 @@
 1. Read this handover
 2. Read Failures.md (now has 7 real blockers)
 3. Read Failures.md (primary source of truth)
-4. Run Fast Gate from oo-start-checklist.md
+4. Run Fast Gate from 08-oo-start-checklist.md
 5. Pick programme plan from plans/00-README.md
 
 ---

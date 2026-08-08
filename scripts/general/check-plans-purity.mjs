@@ -15,6 +15,7 @@ const planLabel = "plans";
  * Fold working notes into programme plans or `Failures.md`.
  */
 const rootPlanDocs = [
+  "08-oo-start-checklist.md",
   "04-database-plan.md",
   "01-handover.md",
   "03-ops-deploy-plan.md",
@@ -88,5 +89,5 @@ if (violations.length) {
 }
 
 console.log(
-  "check:plans-purity OK - README + seven plan docs, no subfolders or retired plan docs",
+  "check:plans-purity OK - README + eight plan docs, no subfolders or retired plan docs",
 );

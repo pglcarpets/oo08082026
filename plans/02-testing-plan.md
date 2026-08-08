@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — fast checks green on 2026-08-07; default lane STALE (JSON overwritten by focused run, 180 tests vs full 2784); tech-docs GREEN (195 tests). Playwright OPEN. **P1:** Auth withAuth:mirror:throw errors + rate limit 401s from 127.0.0.1.
 **Owner / when to use:** Anyone running gates, Vitest, or Playwright before merge or release.
-**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [05-workspaces-plan.md](./05-05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md) · [`HANDOVER.md`](../HANDOVER.md)
+**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [`HANDOVER.md`](../HANDOVER.md)
 
 ---
 
@@ -18,7 +18,7 @@ Green `pnpm run gate` (alias `release:gate:fast`) and both Vitest lanes (default
 |------|----------------|
 | Developer | Run step-by-step commands locally; fix failures in scope of their change |
 | Release owner | Re-prove both Vitest lanes + `release:gate` before ship |
-| Workspace owner | Planner/Studio e2e (`audit-2a`, `audit-3b/3c`) per [05-workspaces-plan.md](./05-05-workspaces-plan.md) |
+| Workspace owner | Planner/Studio e2e (`audit-2a`, `audit-3b/3c`) per [05-workspaces-plan.md](./05-workspaces-plan.md) |
 
 ---
 
@@ -65,7 +65,7 @@ Run from repo root in PowerShell. Stop on first failure; fix before continuing.
    ```powershell
    pnpm --filter oando-tech-docs gate
    ```
-   **Expect:** exit 0. See [07-tech-docs-plan.md](./07-07-tech-docs-plan.md).
+   **Expect:** exit 0. See [07-tech-docs-plan.md](./07-tech-docs-plan.md).
 
 5. **Static analysis bundle**
    ```powershell
@@ -93,13 +93,13 @@ Run from repo root in PowerShell. Stop on first failure; fix before continuing.
      tests/e2e/audit-2a-studio-journey.spec.ts `
      tests/e2e/audit-4a-marketing-journey.spec.ts
    ```
-   **Expect:** `audit-3b` #4 places ≥1 layer. **If 0 layers:** see [05-workspaces-plan.md](./05-05-workspaces-plan.md) and [04-database-plan.md](./04-04-database-plan.md) (`feature_flags` grants).
+   **Expect:** `audit-3b` #4 places ≥1 layer. **If 0 layers:** see [05-workspaces-plan.md](./05-workspaces-plan.md) and [04-database-plan.md](./04-database-plan.md) (`feature_flags` grants).
 
 8. **E2E route census** (before bulk spec edits)
    ```powershell
    Select-String -Path tests/e2e/*.spec.ts -Pattern 'page\.goto\("/planner/(guest|canvas)'
    ```
-   **Expect:** decide with [05-workspaces-plan.md](./05-05-workspaces-plan.md) whether to update specs to `/ooplanner` or keep marketing redirects.
+   **Expect:** decide with [05-workspaces-plan.md](./05-workspaces-plan.md) whether to update specs to `/ooplanner` or keep marketing redirects.
 
 9. **Scripts hygiene**
    ```powershell

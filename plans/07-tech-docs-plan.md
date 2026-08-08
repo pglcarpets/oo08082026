@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — tech-docs Vitest lane green (195 tests) and package gate green; snapshot seam included in lane; production host blocked by F3 DNS.
 **Owner / when to use:** Anyone changing `tech-docs-generator/`, snapshot data, or docs deployment.
-**Related:** [`Failures.md`](../Failures.md) (F3) · [03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md) · [04-database-plan.md](./04-04-database-plan.md) · [`HANDOVER.md`](../HANDOVER.md) · `tech-docs-generator/00-README.md` · `docs/architecture/tech-docs-link.md`
+**Related:** [`Failures.md`](../Failures.md) (F3) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [04-database-plan.md](./04-database-plan.md) · [`HANDOVER.md`](../HANDOVER.md) · `tech-docs-generator/00-README.md` · `docs/architecture/tech-docs-link.md`
 
 **App:** `tech-docs-generator/` · **Prod target:** `docs.oando.co.in` (currently NXDOMAIN — F3)
 
@@ -19,7 +19,7 @@ Internal tech stack documentation stays source-backed: generated inventory from 
 | Role | Responsibility |
 |------|----------------|
 | Docs maintainer | Snapshot seam (C1), tech-docs Vitest lane |
-| Infra owner | F3 DNS + docs deploy ([03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md)) |
+| Infra owner | F3 DNS + docs deploy ([03-ops-deploy-plan.md](./03-ops-deploy-plan.md)) |
 | Any developer | Update `activeBlockers.ts` when F-rows change |
 
 ---
@@ -34,7 +34,7 @@ Internal tech stack documentation stays source-backed: generated inventory from 
 | `oando-tech-docs gate` | Included in root `pnpm run test` tech-docs lane; 195 tests passed | **GREEN — verified 2026-08-08** |
 | Tech Stack → Database boundaries | Admin vs Products IDs documented | **DOC UPDATE 2026-08-08** |
 | Tech Stack → Active blockers | Mirrors `Failures.md` via `activeBlockers.ts` | **WIRED — verify on F3 change** |
-| `docs.oando.co.in` | F3 NXDOMAIN | **BLOCKED — [03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md)** |
+| `docs.oando.co.in` | F3 NXDOMAIN | **BLOCKED — [03-ops-deploy-plan.md](./03-ops-deploy-plan.md)** |
 
 ---
 
@@ -57,7 +57,7 @@ Internal tech stack documentation stays source-backed: generated inventory from 
    ```powershell
    pnpm run test
    ```
-   **Expect:** tech-docs lane summary in `results/tests/summary.json` with `failed: 0`. See [02-testing-plan.md](./02-02-testing-plan.md).
+   **Expect:** tech-docs lane summary in `results/tests/summary.json` with `failed: 0`. See [02-testing-plan.md](./02-testing-plan.md).
 
 4. **Verify blocker mirror** — when editing [`Failures.md`](../Failures.md):
    - Update `tech-docs-generator/src/data/activeBlockers.ts` to match.
@@ -94,7 +94,7 @@ Save artifacts: `results/tech-docs/snapshot-test.log`, gate output on same commi
 
 ## Open items
 
-1. **P0:** F3 — docs DNS ([03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md)).
+1. **P0:** F3 — docs DNS ([03-ops-deploy-plan.md](./03-ops-deploy-plan.md)).
 2. **P1:** Re-run `snapshot.test.ts` in isolation with dedicated artifact under `results/tech-docs/` (lane green, but isolate artifact for completeness).
 3. **P2:** Ship docs host separately per `docs/architecture/tech-docs-link.md` after DNS.
 

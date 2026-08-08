@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — mode-aware wrappers verified; asset-cutover smoke pass; contact DB smoke pass; Products bucket retirement, type regen, and Supabase-mode Planner proof OPEN. **P0:** Catalog DB missing catalog_categories and catalog_products tables — migration 20260801130000_create_furniture_catalog.sql exists but not applied.
 **Owner / when to use:** Anyone touching Supabase migrations, persistence selectors, or R2/CDN asset cutover.
-**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [05-workspaces-plan.md](./05-05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md) · `docs/database/schema.md` · `site/platform/supabase/migrations*/`
+**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · `docs/database/schema.md` · `site/platform/supabase/migrations*/`
 
 **Databases:** Admin `rxzpznmxbaoxpikowmfc` · Products `erpweaiypimorcunaimz`
 
@@ -20,7 +20,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 |------|----------------|
 | DBA / infra | Apply migrations (`db:apply`, `db:apply:admin`); retire Products buckets after smoke |
 | Feature dev | Use wrappers (`writeFurnitureItem`, planner store, etc.) — never raw disk helpers in routes |
-| Workspace owner | Prove `feature_flags` grants unblock Planner place-furniture ([05-workspaces-plan.md](./05-05-workspaces-plan.md)) |
+| Workspace owner | Prove `feature_flags` grants unblock Planner place-furniture ([05-workspaces-plan.md](./05-workspaces-plan.md)) |
 
 ---
 
@@ -56,7 +56,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
    ```
    **Expect:** `all up to date` or success; entry in `_local_migration_history`.
 
-3. **Prove `feature_flags` unblocks Planner** — after grants, re-run [05-workspaces-plan.md](./05-05-workspaces-plan.md) `audit-3b` with `DEV_AUTH_BYPASS=0` on preview.
+3. **Prove `feature_flags` unblocks Planner** — after grants, re-run [05-workspaces-plan.md](./05-workspaces-plan.md) `audit-3b` with `DEV_AUTH_BYPASS=0` on preview.
 
 4. **Asset cutover smokes**
    ```powershell
@@ -81,7 +81,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
    ```
    **Expect:** re-apply hand-patches from `site/platform/types/patches/*.json` if CLI overwrote furniture/descriptor shapes.
 
-7. **Retire Products furniture bucket** — only after apex catalog smoke green ([03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md)) + R2 decode 824/824:
+7. **Retire Products furniture bucket** — only after apex catalog smoke green ([03-ops-deploy-plan.md](./03-ops-deploy-plan.md)) + R2 decode 824/824:
    - Delete Products `furniture_catalog` rows, `catalog-assets` objects, and `f_vitest_*` junk in one window.
    - Update `docs/database/schema.md`.
 
@@ -102,7 +102,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 
 ## Open items
 
-1. **P0:** Re-prove Planner `placeFurnitureAt` after Admin `feature_flags` grants (with [05-workspaces-plan.md](./05-05-workspaces-plan.md)).
+1. **P0:** Re-prove Planner `placeFurnitureAt` after Admin `feature_flags` grants (with [05-workspaces-plan.md](./05-workspaces-plan.md)).
 2. **P1:** Retire Products `furniture_catalog` + `catalog-assets` after apex catalog smoke green (verified) + R2 decode 824/824 (verify `results/asset-cutover/smoke-report.json`).
 3. **P1:** Regenerate types and reconcile patches.
 4. **P2:** Decide symbols/GLB — Admin vs Products; document in schema.

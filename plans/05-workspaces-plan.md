@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — code fixes verified by read; Studio findings fixed in 2b/2c; Planner click-to-place wiring exists but live Supabase proof OPEN; undo/BOQ/390px canvas blockers missing from open list.
 **Owner / when to use:** Anyone changing `/ooplanner` or `/oostudio` — **forks never import each other** (`pnpm run scan:boundaries`).
-**Related:** [02-testing-plan.md](./02-02-testing-plan.md) · [04-database-plan.md](./04-04-database-plan.md) · [06-site-plan.md](./06-06-site-plan.md) (track C2) · [`Failures.md`](../Failures.md) · `agent-reports/{planner,studio}-ledger.md`
+**Related:** [02-testing-plan.md](./02-testing-plan.md) · [04-database-plan.md](./04-database-plan.md) · [06-site-plan.md](./06-site-plan.md) (track C2) · [`Failures.md`](../Failures.md) · `agent-reports/{planner,studio}-ledger.md`
 
 **Routes:** `/ooplanner` (Planner) · `/oostudio` (Studio)
 
@@ -20,8 +20,8 @@ Both workspaces are fully interactive at 1280×800 and 390×844: draw/edit, plac
 |------|----------------|
 | Planner owner | `audit-3b/3c`, `placeFurnitureAt`, route truth |
 | Studio owner | `audit-2a`, responsive audit, catalog draft API proof |
-| DBA | `feature_flags` grants on Admin ([04-database-plan.md](./04-04-database-plan.md)) |
-| UI owner | Workspace chrome polish ([06-site-plan.md](./06-06-site-plan.md) C2) |
+| DBA | `feature_flags` grants on Admin ([04-database-plan.md](./04-database-plan.md)) |
+| UI owner | Workspace chrome polish ([06-site-plan.md](./06-site-plan.md) C2) |
 
 ---
 
@@ -136,9 +136,9 @@ Save artifacts: `results/planner/audit-3b-*/`, `results/studio/audit-2a/`.
 3. **P0:** BOQ dock panel never renders on Review step — fix verified by read; live re-run to prove (planner-ledger #2).
 4. **P0:** 390px Place-furniture step: narrow viewport canvas/chrome issues — fix verified by read; live audit-3b to prove (planner-ledger #6).
 5. **P0:** Re-run `audit-3c`, `audit-2a` with dated results.
-6. **P1:** Document route-truth contract in e2e spec headers if any legacy comment references remain ([02-testing-plan.md](./02-02-testing-plan.md)).
+6. **P1:** Document route-truth contract in e2e spec headers if any legacy comment references remain ([02-testing-plan.md](./02-testing-plan.md)).
 7. **P2:** Deferred: guest flow, multi-room, wall post-edit, offline sync, sketch-to-plan, 100+ item perf, 3D preview tab.
-8. **P2:** Workspace chrome UI ([06-site-plan.md](./06-06-site-plan.md) C2).
+8. **P2:** Workspace chrome UI ([06-site-plan.md](./06-site-plan.md) C2).
 9. **P2:** Decide fate of `PlannerProjectMenu.tsx` — orphaned dead code per planner-ledger #9; either wire or delete.
 
 ---

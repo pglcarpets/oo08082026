@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — member suite landings claimed 2026-08-06; marketing ledger has 10 open findings; responsive audit not re-run 2026-08-08; console audit reveals product-page hydration mismatches + 404 resource errors on 6 routes; theme fetch fails (falls back to local tokens); full gate OPEN.
 **Owner / when to use:** Anyone changing marketing `(site)` routes, i18n, member suite shell, or cross-route FOCSS polish.
-**Related:** [05-workspaces-plan.md](./05-05-workspaces-plan.md) (track C2) · [02-testing-plan.md](./02-02-testing-plan.md) (`audit-4a`) · [04-database-plan.md](./04-04-database-plan.md) (asset cutover Phase 09) · [`Agents/07-css.md`](../Agents/07-css.md) · `site/focss/site/` · `agent-reports/marketing-ledger.md`
+**Related:** [05-workspaces-plan.md](./05-workspaces-plan.md) (track C2) · [02-testing-plan.md](./02-testing-plan.md) (`audit-4a`) · [04-database-plan.md](./04-database-plan.md) (asset cutover Phase 09) · [`Agents/07-css.md`](../Agents/07-css.md) · `site/focss/site/` · `agent-reports/marketing-ledger.md`
 
 ---
 
@@ -19,7 +19,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 | Marketing owner | `(site)` pages, `audit-4a`, ledger in `agent-reports/marketing-ledger.md` |
 | i18n owner | `home.*` keys, locale switch e2e, hardcoded string grep |
 | Member suite owner | Tracks A–B shell and portal CSS |
-| Workspace UI | Track C2 — delegate to [05-workspaces-plan.md](./05-05-workspaces-plan.md) |
+| Workspace UI | Track C2 — delegate to [05-workspaces-plan.md](./05-workspaces-plan.md) |
 
 ---
 
@@ -89,7 +89,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 
 6. **Track C — per-route polish**
    - **C1:** Marketing `(site)` pages — page-by-page FOCSS.
-   - **C2:** Planner + Studio chrome — coordinate with [05-workspaces-plan.md](./05-05-workspaces-plan.md).
+   - **C2:** Planner + Studio chrome — coordinate with [05-workspaces-plan.md](./05-workspaces-plan.md).
    - **C3:** Admin `AdminLayoutShell` token parity.
    - **C5:** Close ledger when C1–C3 land.
 
@@ -97,7 +97,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
    ```powershell
    pnpm run gate
    ```
-   See [02-testing-plan.md](./02-02-testing-plan.md) for lane details.
+   See [02-testing-plan.md](./02-testing-plan.md) for lane details.
 
 ---
 
@@ -123,9 +123,9 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 5. **P1:** i18n e2e locale switch; grep hardcoded strings.
 6. **P1:** Re-prove member suite landings (A1–A8) — claimed not verified 2026-08-08.
 7. **P2:** Track C1 marketing FOCSS page-by-page.
-8. **P2:** Track C2 workspace chrome ([05-workspaces-plan.md](./05-05-workspaces-plan.md)).
+8. **P2:** Track C2 workspace chrome ([05-workspaces-plan.md](./05-workspaces-plan.md)).
 9. **P2:** Track C3 admin token parity.
-10. **P2:** Asset cutover Phase 09 (`home.*` i18n) — [04-database-plan.md](./04-04-database-plan.md).
+10. **P2:** Asset cutover Phase 09 (`home.*` i18n) — [04-database-plan.md](./04-database-plan.md).
 
 ---
 

@@ -26,9 +26,10 @@ double_fixes = {
     '07-07-tech-docs-plan.md': '07-tech-docs-plan.md',
 }
 
-# Fix HANDOVER.md link (it's in parent dir, not plans/)
+# Fix HANDOVER.md link (it's now 01-handover.md in the same dir)
 handover_fix = {
-    './HANDOVER.md': '../HANDOVER.md',
+    './HANDOVER.md': '01-handover.md',
+    '../HANDOVER.md': '01-handover.md',
 }
 
 expected = [

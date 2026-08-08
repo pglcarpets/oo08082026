@@ -1,4 +1,4 @@
-# Shallow history: one commit, private ayushonmicrosoft/oo05082026, no prior remote history
+# Shallow history: one commit, private pglcarpets/oo08082026, no prior remote history
 $ErrorActionPreference = 'Continue'
 $root = Split-Path $PSScriptRoot -Parent
 $log  = Join-Path $root 'results\shallow-push.log'
@@ -16,18 +16,18 @@ WL "Logged in as: $ghUser"
 
 WL "`n========== Create private repo if missing =========="
 $repoCreated = $false
-gh repo view ayushonmicrosoft/oo05082026 2>&1 | ForEach-Object { WL $_ }
+gh repo view pglcarpets/oo08082026 2>&1 | ForEach-Object { WL $_ }
 if ($LASTEXITCODE -ne 0) {
-  gh repo create oo05082026 --private --description 'OO Studio / Planner' 2>&1 | ForEach-Object { WL $_ }
+  gh repo create oo08082026 --private --description 'OO Studio / Planner' 2>&1 | ForEach-Object { WL $_ }
   $repoCreated = ($LASTEXITCODE -eq 0)
 } else {
   WL 'Repo already exists'
 }
 WL "REPO_CREATED=$repoCreated"
 
-WL "`n========== Origin: ayushonmicrosoft only =========="
+WL "`n========== Origin: pglcarpets only =========="
 git remote remove origin 2>$null
-git remote add origin https://github.com/ayushonmicrosoft/oo05082026.git
+git remote add origin https://github.com/pglcarpets/oo08082026.git
 WL (git remote -v 2>&1 | Out-String)
 
 WL "`n========== Orphan branch (single commit) =========="

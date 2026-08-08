@@ -13,11 +13,11 @@ export const EXPECTED_PLANNER_TABLES = [
   "audit_events",
   "price_books",
   "price_book_versions",
+  "block_descriptors",
 ] as const;
 
 export const EXPECTED_PRODUCTS_TABLES = [
   "catalog_products",
-  "block_descriptors",
   "svg_revisions",
   "svg_revision_artifacts",
 ] as const;

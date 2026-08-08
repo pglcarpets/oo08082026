@@ -1,5 +1,5 @@
 /**
- * Manual Products DB push for inventory descriptors (PNG release-record path).
+ * Manual Admin DB push for inventory descriptors (PNG release-record path).
  *
  * Retargeted in Phase 5 D8: writes the `block_descriptors` release record via
  * `persistReleaseRecord` / `upsertBlockDescriptorRelease`. Does **not** run the
@@ -10,7 +10,7 @@
  *   pnpm exec tsx scripts/pushSvgCatalogToDb.ts --slug=oando-linear-desk-1600
  *   pnpm exec tsx scripts/pushSvgCatalogToDb.ts --all
  *
- * Requires: PRODUCTS_DATABASE_URL.
+ * Requires: ADMIN_DATABASE_URL (or SUPABASE_AUTH_DATABASE_URL).
  * Does NOT set SVG_RELEASE_AUTHORITY=db. Does NOT write public/svg-catalog.
  */
 import { createRequire } from "node:module";

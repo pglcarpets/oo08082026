@@ -21,6 +21,16 @@ const sb = createClient(url, key, {
   auth: { persistSession: false, autoRefreshToken: false },
 });
 
+const adminUrl =
+  process.env.NEXT_ADMIN_SUPABASE_URL?.trim() ||
+  process.env.SUPABASE_AUTH_DATABASE_URL?.trim();
+const adminKey = process.env.SUPABASE_ADMIN_SERVICE_ROLE_KEY?.trim();
+const adminSb = adminUrl && adminKey
+  ? createClient(adminUrl, adminKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    })
+  : null;
+
 const assetsRoot = resolve(process.cwd(), "site/public");
 
 const FAMILY_PREFIX = [
@@ -186,14 +196,18 @@ async function main() {
   else console.log("product_images:", pie.message);
 
   let furniture = [];
-  const { data: fur, error: fe } = await sb
-    .from("furniture_catalog")
-    .select(
-      "id,name,thumbnail_url,top_png_url,front_png_url,side_png_url,top_svg_url",
-    )
-    .limit(5000);
-  if (!fe) furniture = fur || [];
-  else console.log("furniture_catalog:", fe.message);
+  if (adminSb) {
+    const { data: fur, error: fe } = await adminSb
+      .from("furniture_catalog")
+      .select(
+        "id,name,thumbnail_url,top_png_url,front_png_url,side_png_url,top_svg_url",
+      )
+      .limit(5000);
+    if (!fe) furniture = fur || [];
+    else console.log("furniture_catalog (admin):", fe.message);
+  } else {
+    console.log("furniture_catalog: skipped — admin Supabase env vars missing");
+  }
 
   const emptyImages = [];
   const brokenLocal = [];

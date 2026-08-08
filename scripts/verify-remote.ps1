@@ -1,4 +1,4 @@
-# Verify remote ayushonmicrosoft/oo05082026 has all files
+# Verify remote pglcarpets/oo08082026 has all files
 $ErrorActionPreference = 'Continue'
 Set-Location (Split-Path $PSScriptRoot -Parent)
 New-Item -ItemType Directory -Force -Path results | Out-Null
@@ -10,15 +10,15 @@ function L($m) { $lines.Add($m); Write-Host $m }
 L "Remote verify $(Get-Date -Format o)"
 L ""
 
-$repo = gh repo view ayushonmicrosoft/oo05082026 --json name,isPrivate,url,defaultBranchRef,pushedAt 2>&1
+$repo = gh repo view pglcarpets/oo08082026 --json name,isPrivate,url,defaultBranchRef,pushedAt 2>&1
 L "=== Repo ==="
 L ($repo | Out-String)
 
 L "=== Remote commit ==="
-L (gh api repos/ayushonmicrosoft/oo05082026/commits/main --jq '.sha, .commit.message' 2>&1 | Out-String)
+L (gh api repos/pglcarpets/oo08082026/commits/main --jq '.sha, .commit.message' 2>&1 | Out-String)
 
 L "=== Remote tree file count ==="
-$tree = gh api 'repos/ayushonmicrosoft/oo05082026/git/trees/main?recursive=1' --jq '.truncated, (.tree | length)' 2>&1
+$tree = gh api 'repos/pglcarpets/oo08082026/git/trees/main?recursive=1' --jq '.truncated, (.tree | length)' 2>&1
 L ($tree | Out-String)
 
 $head = (git rev-parse HEAD).Trim()

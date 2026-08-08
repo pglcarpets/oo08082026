@@ -13,12 +13,11 @@ const PRODUCTS_EXPECTED = [
   "catalog_categories",
   "planner_managed_products",
   "configurator_products",
-  "block_descriptors",
   "svg_revisions",
   "svg_revision_artifacts",
 ] as const;
 
-const PLANNER_EXPECTED = ["oando_plans", "audit_events"] as const;
+const PLANNER_EXPECTED = ["oando_plans", "audit_events", "block_descriptors"] as const;
 
 export type DbTargetResult =
   | { ok: true; label: string; tables: string[]; rowHint?: string }
@@ -135,9 +134,7 @@ export async function checkDatabaseConnection(
     rowHintQuery: async (sql) => {
       const [{ n }] =
         await sql`SELECT count(*)::int AS n FROM catalog_products`;
-      const [{ b }] =
-        await sql`SELECT count(*)::int AS b FROM block_descriptors`;
-      return `✅ Products catalog_products=${n as number} block_descriptors=${b as number}`;
+      return `✅ Products catalog_products=${n as number}`;
     },
   });
 

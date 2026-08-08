@@ -1,4 +1,4 @@
-# One-time: create ayushonmicrosoft/oo05082026 and push (no link to pglcarpets)
+# One-time: create pglcarpets/oo08082026 and push (no link to ayushonmicrosoft)
 $ErrorActionPreference = "Stop"
 Set-Location $PSScriptRoot\..
 
@@ -10,27 +10,27 @@ $ghUser = gh api user --jq ".login"
 Write-Host "Logged in as: $ghUser"
 $ghUser | Set-Content results\gh-user.txt
 
-if ($ghUser -ne "ayushonmicrosoft") {
-  Write-Warning "Expected ayushonmicrosoft but logged in as $ghUser. Run: gh auth login"
+if ($ghUser -ne "pglcarpets") {
+  Write-Warning "Expected pglcarpets but logged in as $ghUser. Run: gh auth login"
 }
 
 Write-Host "=== Create repo (skip if exists) ==="
 $repoExists = $false
 try {
-  gh repo view ayushonmicrosoft/oo05082026 *> $null
+  gh repo view pglcarpets/oo08082026 *> $null
   $repoExists = $LASTEXITCODE -eq 0
 } catch {}
 
 if (-not $repoExists) {
-  gh repo create oo05082026 --private --description "OO Studio / Planner"
+  gh repo create oo08082026 --private --description "OO Studio / Planner"
   if ($LASTEXITCODE -ne 0) { throw "gh repo create failed" }
 } else {
-  Write-Host "Repo ayushonmicrosoft/oo05082026 already exists"
+  Write-Host "Repo pglcarpets/oo08082026 already exists"
 }
 
-Write-Host "=== Point origin at ayushonmicrosoft only ==="
+Write-Host "=== Point origin at pglcarpets only ==="
 git remote remove origin 2>$null
-git remote add origin https://github.com/ayushonmicrosoft/oo05082026.git
+git remote add origin https://github.com/pglcarpets/oo08082026.git
 
 Write-Host "=== Push main ==="
 git push -u origin main
@@ -40,4 +40,4 @@ if ($LASTEXITCODE -ne 0) {
 }
 
 git remote -v | Tee-Object results\remote-setup.txt
-Write-Host "Done. Default remote: https://github.com/ayushonmicrosoft/oo05082026.git"
+Write-Host "Done. Default remote: https://github.com/pglcarpets/oo08082026.git"

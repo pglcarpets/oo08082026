@@ -10,8 +10,8 @@ import {
   priceBooks,
   priceBookVersions,
   auditEvents,
-  reviewLinks,
-  reviewComments,
+  furnitureCatalog,
+  blockDescriptors,
 } from "@/platform/drizzle/schema/planner";
 
 describe("platform/drizzle/schema/planner", () => {
@@ -24,8 +24,8 @@ describe("platform/drizzle/schema/planner", () => {
     { table: priceBooks, name: "price_books" },
     { table: priceBookVersions, name: "price_book_versions" },
     { table: auditEvents, name: "audit_events" },
-    { table: reviewLinks, name: "review_links" },
-    { table: reviewComments, name: "review_comments" },
+    { table: furnitureCatalog, name: "furniture_catalog" },
+    { table: blockDescriptors, name: "block_descriptors" },
   ];
 
   it("exports pgTable symbols for planner/admin tables", () => {

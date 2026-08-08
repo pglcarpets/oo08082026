@@ -9,8 +9,6 @@
 -- also serves as the index for team_id lookups; the user_id side gets
 -- a separate btree for reverse membership lookups.
 --> statement-breakpoint
-create index if not exists "profiles_email_idx" on "profiles" ("email");--> statement-breakpoint
-create index if not exists "profiles_role_idx" on "profiles" ("role");--> statement-breakpoint
 create index if not exists "profiles_created_at_idx" on "profiles" ("created_at");--> statement-breakpoint
 create index if not exists "plans_user_id_idx" on "plans" ("user_id");--> statement-breakpoint
 create index if not exists "plans_status_idx" on "plans" ("status");--> statement-breakpoint

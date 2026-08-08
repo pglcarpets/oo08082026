@@ -189,7 +189,7 @@ async function main() {
         check.worker = { error: e.message || String(e) };
       }
 
-      // Phase-04 bar: object exists in clean bucket and decodes. Worker may lag (F1).
+      // Phase-04 bar: object exists in clean bucket and decodes. Worker may lag (P0-1).
       check.pass =
         check.s3Head?.ok === true &&
         check.s3Get?.ok === true &&

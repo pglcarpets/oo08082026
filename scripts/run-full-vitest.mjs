@@ -45,7 +45,7 @@ if (mainStatus !== 0) {
 /**
  * Regenerate the tech-docs data before its lane. The generator's src/data/*.ts
  * import gitignored generated-documents/data/*.json at module load; without this
- * the lane asserts against whatever stale (or absent) bytes are on disk — F1.
+ * the lane asserts against whatever stale (or absent) bytes are on disk — P0-1.
  * Mirrors the package's own typecheck/build/gate scripts, which all generate
  * first. A generate failure fails the run rather than testing a stale tree.
  */

@@ -20,8 +20,8 @@ fixes = {
     '00-00-README.md': '00-README.md',
     '01-01-handover.md': '01-handover.md',
     '08-08-oo-start-checklist.md': '08-oo-start-checklist.md',
-    '.../HANDOVER.md': '../HANDOVER.md',
-    '(`.../HANDOVER.md`)': '(../HANDOVER.md)',
+    '.../HANDOVER.md': '01-handover.md',
+    '(`.../HANDOVER.md`)': '(01-handover.md)',
 }
 
 # Also fix remaining old-style references in text

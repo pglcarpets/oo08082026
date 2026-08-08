@@ -51,7 +51,7 @@ pnpm run p0:unit
 ## 4. Blockers & Plans
 
 - [ ] Read `Failures.md` -- know the active blockers
-- [ ] Read `HANDOVER.md` -- understand last session state
+- [ ] Read `plans/01-handover.md` -- understand last session state
 - [ ] Pick the relevant programme plan from `plans/`
 
 ## 5. Dev Server (if UI work)

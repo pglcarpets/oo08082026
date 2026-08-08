@@ -1,14 +1,11 @@
-import { date, pgTable, text, timestamp, jsonb, uuid, index, primaryKey, uniqueIndex } from "drizzle-orm/pg-core";
+import { boolean, date, integer, pgTable, text, timestamp, jsonb, uuid, index, primaryKey, uniqueIndex } from "drizzle-orm/pg-core";
 
 export const profiles = pgTable("profiles", {
   id: uuid("id").primaryKey(),
-  email: text("email").notNull(),
-  name: text("name"),
-  role: text("role").notNull().default("user"),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+  displayName: text("display_name"),
+  avatarUrl: text("avatar_url"),
+  createdAt: timestamp("created_at"),
 }, (table) => [
-  index("profiles_email_idx").on(table.email),
-  index("profiles_role_idx").on(table.role),
   index("profiles_created_at_idx").on(table.createdAt),
 ]);
 
@@ -109,32 +106,43 @@ export const auditEvents = pgTable("audit_events", {
   index("audit_events_team_id_created_at_idx").on(table.teamId, table.createdAt),
 ]);
 
-export const reviewLinks = pgTable("review_links", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  planId: uuid("plan_id").notNull().references(() => plans.id, { onDelete: "cascade" }),
-  token: text("token").notNull(),
-  permission: text("permission").notNull().default("view"),
-  expiresAt: timestamp("expires_at"),
-  isRevoked: text("is_revoked").notNull().default("false"),
-  createdBy: uuid("created_by").notNull().references(() => profiles.id),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+/** Phase 05 — shared Studio/Planner furniture library (migrated from Products DB). */
+export const furnitureCatalog = pgTable("furniture_catalog", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  category: text("category").notNull().default("uncategorized"),
+  subcategory: text("subcategory"),
+  tags: text("tags").array().notNull().default([]),
+  dimensions: jsonb("dimensions").notNull().default({}),
+  notes: text("notes"),
+  isCustom: boolean("is_custom").notNull().default(true),
+  thumbnailUrl: text("thumbnail_url"),
+  topPngUrl: text("top_png_url"),
+  topSvgUrl: text("top_svg_url"),
+  frontPngUrl: text("front_png_url"),
+  sidePngUrl: text("side_png_url"),
+  topPngChecksum: text("top_png_checksum"),
+  topFabricJson: jsonb("top_fabric_json"),
+  frontFabricJson: jsonb("front_fabric_json"),
+  sideFabricJson: jsonb("side_fabric_json"),
+  createdBy: uuid("created_by"),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
 }, (table) => [
-  uniqueIndex("review_links_token_uidx").on(table.token),
-  index("review_links_plan_id_idx").on(table.planId),
-  index("review_links_created_by_idx").on(table.createdBy),
+  index("furniture_catalog_category_idx").on(table.category),
+  index("furniture_catalog_is_custom_idx").on(table.isCustom),
+  index("furniture_catalog_name_idx").on(table.name),
 ]);
 
-export const reviewComments = pgTable("review_comments", {
-  id: uuid("id").primaryKey().defaultRandom(),
-  planId: uuid("plan_id").notNull().references(() => plans.id, { onDelete: "cascade" }),
-  linkId: uuid("link_id").references(() => reviewLinks.id, { onDelete: "set null" }),
-  objectId: text("object_id"),
-  objectType: text("object_type"),
-  authorName: text("author_name").notNull(),
-  text: text("text").notNull(),
-  createdAt: timestamp("created_at").notNull().defaultNow(),
+/** Phase 05 — published descriptor release record (migrated from Products DB). */
+export const blockDescriptors = pgTable("block_descriptors", {
+  slug: text("slug").primaryKey(),
+  currentVersion: integer("current_version").notNull(),
+  currentChecksum: text("current_checksum"),
+  descriptor: jsonb("descriptor").notNull(),
+  lifecycle: text("lifecycle").notNull().default("live"),
+  updatedAt: timestamp("updated_at", { withTimezone: true }).notNull().defaultNow(),
+  updatedBy: text("updated_by"),
 }, (table) => [
-  index("review_comments_plan_id_idx").on(table.planId),
-  index("review_comments_link_id_idx").on(table.linkId),
-  index("review_comments_created_at_idx").on(table.createdAt),
+  index("block_descriptors_lifecycle_idx").on(table.lifecycle),
 ]);

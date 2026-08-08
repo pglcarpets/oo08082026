@@ -12,8 +12,7 @@ const resolvedSiteUrl =
     : "http://localhost:3000");
 
 /** Catalog photography is CDN-backed — not shipped in git (see scripts/downloadCdnAssets.ts). */
-const DEFAULT_ASSET_CDN_BASE_URL =
-  process.env.NODE_ENV === "production" ? "https://oando.co.in" : "";
+const DEFAULT_ASSET_CDN_BASE_URL = "https://oando.co.in";
 
 const configuredAssetBaseUrl =
   process.env.NEXT_PUBLIC_ASSET_BASE_URL ||

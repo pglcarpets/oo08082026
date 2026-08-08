@@ -69,6 +69,7 @@ export const WORKSTATION_DEFAULTS = {
   PNG_DISK_MIRROR: "0",
   NEXT_PUBLIC_TECH_DOCS_URL: "http://localhost:3001",
   CLOUDFLARE_R2_CATALOG_BUCKET: "oando-asset-cdn",
+  NEXT_PUBLIC_ASSET_BASE_URL: "https://oando.co.in",
   LANCE_DB_URI: "site/.data/lancedb/catalog",
 };
 

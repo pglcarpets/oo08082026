@@ -171,6 +171,19 @@ describe("r2Catalog", () => {
     expect(mod.resolveR2CredentialSource()).toBe("cloudflare-r2");
   });
 
+  it("catalogAssetR2Keys strips gallery/ and maps assets/catalog to catalog R2 keys", async () => {
+    const { catalogAssetR2Keys } = await import("@/lib/storage/r2Catalog");
+    const keys = catalogAssetR2Keys(
+      "/assets/catalog/workstations/oando-workstations--adaptable/gallery/image-1.webp",
+    );
+    expect(keys).toContain(
+      "catalog/workstations/oando-workstations--adaptable/image-1.webp",
+    );
+    expect(keys).toContain(
+      "assets/catalog/workstations/oando-workstations--adaptable/image-1.webp",
+    );
+  });
+
   it("maps content types by object key extension", async () => {
     const { contentTypeForKey } = await import("@/lib/storage/r2Catalog");
     expect(contentTypeForKey("a.JSON")).toBe("application/json");

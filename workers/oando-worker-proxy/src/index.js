@@ -13,7 +13,11 @@ export default {
           r2Keys.push(baseKey.slice('assets/'.length));
         }
         if (baseKey.includes('/gallery/')) {
-          r2Keys.push(baseKey.replace(/\/gallery\//, '/'));
+          const withoutGallery = baseKey.replace(/\/gallery\//, '/');
+          r2Keys.push(withoutGallery);
+          if (withoutGallery.startsWith('assets/catalog/')) {
+            r2Keys.push(withoutGallery.slice('assets/'.length));
+          }
         }
 
         let object = null;

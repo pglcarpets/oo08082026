@@ -140,7 +140,27 @@ describe('assetPaths', () => {
   it('should resolve canaret webp to CDN path when local file is absent', () => {
     expect(
       assetPaths.normalizeAssetPath('/assets/catalog/seating/fabric/oando-seating--canaret/gallery/image-01.webp'),
-    ).toBe('https://cdn.example.com/assets/catalog/seating/fabric/oando-seating--canaret/gallery/image-01.webp');
+    ).toBe('https://cdn.example.com/assets/catalog/seating/fabric/oando-seating--canaret/image-01.webp');
+  });
+
+  it('strips erroneous gallery/ for workstations (R2 SKU-root layout)', () => {
+    expect(
+      assetPaths.normalizeAssetPath(
+        '/assets/catalog/workstations/oando-workstations--adaptable/gallery/image-1.webp',
+      ),
+    ).toBe(
+      'https://cdn.example.com/assets/catalog/workstations/oando-workstations--adaptable/image-1.webp',
+    );
+  });
+
+  it('keeps gallery/ for leather|non-leather seating SKUs', () => {
+    expect(
+      assetPaths.normalizeAssetPath(
+        '/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp',
+      ),
+    ).toBe(
+      'https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp',
+    );
   });
 
   it('should resolve phoenix seating webp on mesh path', () => {
@@ -148,7 +168,7 @@ describe('assetPaths', () => {
       '/assets/catalog/seating/mesh/oando-seating--phoenix/gallery/image-1.webp',
     );
     expect(phoenix).toBe(
-      'https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--phoenix/gallery/image-1.webp',
+      'https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--phoenix/image-1.webp',
     );
     // Non-catalog path (no CDN fallback) resolves to raster fallback.
     expect(assetPaths.normalizeAssetPath('/assets/catalog/not-a-real-sku/image-4.webp', DISK_PROBE)).toBe(

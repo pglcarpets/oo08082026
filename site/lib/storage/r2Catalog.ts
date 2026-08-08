@@ -23,7 +23,11 @@ export function catalogAssetR2Keys(webPath: string): string[] {
     keys.add(trimmed.slice("assets/".length));
   }
   if (trimmed.includes("/gallery/")) {
-    keys.add(trimmed.replace(/\/gallery\//, "/"));
+    const withoutGallery = trimmed.replace(/\/gallery\//, "/");
+    keys.add(withoutGallery);
+    if (withoutGallery.startsWith("assets/catalog/")) {
+      keys.add(withoutGallery.slice("assets/".length));
+    }
   }
 
   const numbered = trimmed.match(/^(.*\/image-)0*(\d+)(\.[a-z0-9]+)$/i);

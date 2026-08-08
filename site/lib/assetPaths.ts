@@ -631,6 +631,20 @@ function rewriteDeepAssetFolders(assetPath: string): string {
   return p;
 }
 
+/**
+ * Clean R2 layout stores image-N at the SKU root. Only leather|non-leather seating
+ * SKUs use a gallery/ subfolder — strip erroneous gallery/ elsewhere (DB leftovers).
+ */
+function stripErroneousCatalogGallery(assetPath: string): string {
+  if (!/\/gallery\//i.test(assetPath)) {
+    return assetPath;
+  }
+  if (/\/assets\/catalog\/seating\/(?:leather|non-leather)\//i.test(assetPath)) {
+    return assetPath;
+  }
+  return assetPath.replace(/\/gallery\//gi, "/");
+}
+
 export type NormalizeAssetPathOptions = {
   /**
    * When true, probe site/public on the server for existing variants/siblings.
@@ -694,6 +708,11 @@ export function normalizeAssetPath(
   // After chairs/nest rewrites, apply gallery/ deep paths again.
   if (candidateLower.startsWith("/assets/catalog/")) {
     candidatePath = rewriteDeepAssetFolders(candidatePath);
+    candidateLower = candidatePath.toLowerCase();
+  }
+
+  if (candidateLower.startsWith("/assets/catalog/")) {
+    candidatePath = stripErroneousCatalogGallery(candidatePath);
     candidateLower = candidatePath.toLowerCase();
   }
 

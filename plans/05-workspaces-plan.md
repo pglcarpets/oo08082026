@@ -1,160 +1,212 @@
-﻿# Workspaces plan — Planner + Studio — AUDITED 2026-08-08
+﻿# Workspaces plan — Planner + Studio vertical slices
 
-**Status:** PARTIAL — code fixes verified by read; Studio findings fixed in 2b/2c; Planner click-to-place wiring exists but live Supabase proof OPEN; undo/BOQ/390px canvas blockers missing from open list.
-**Owner / when to use:** Anyone changing `/ooplanner` or `/oostudio` — **forks never import each other** (`pnpm run scan:boundaries`).
-**Related:** [02-testing-plan.md](./02-testing-plan.md) · [04-database-plan.md](./04-database-plan.md) · [06-site-plan.md](./06-site-plan.md) (track C2) · [`Failures.md`](../Failures.md) · `agent-reports/{planner,studio}-ledger.md`
+**AUDITED:** 2026-08-08 · **Routes:** `/ooplanner` · `/oostudio` · **Fork rule:** never cross-import (`pnpm run scan:boundaries`).  
+**Related:** [`05-workspaces-plan.md`](./05-workspaces-plan.md) · `agent-reports/planner-ledger.md` · [`02-testing-plan.md`](./02-testing-plan.md).
 
-**Routes:** `/ooplanner` (Planner) · `/oostudio` (Studio)
-
----
-
-## Goal
-
-Both workspaces are fully interactive at 1280×800 and 390×844: draw/edit, place furniture (Planner), BOQ on Review, undo/redo, toolbars, persistence across hard refresh, and Studio save→catalog draft — proven by Playwright audits with dated `results/planner/` and `results/studio/` artifacts.
+**Browser:** `http://localhost:3000` only.
 
 ---
 
-## Who does what
+## DONE slices
 
-| Role | Responsibility |
-|------|----------------|
-| Planner owner | `audit-3b/3c`, `placeFurnitureAt`, route truth |
-| Studio owner | `audit-2a`, responsive audit, catalog draft API proof |
-| DBA | `feature_flags` grants on Admin ([04-database-plan.md](./04-database-plan.md)) |
-| UI owner | Workspace chrome polish ([06-site-plan.md](./06-site-plan.md) C2) |
+### WRK-S12 — Boundaries on workspace edit
 
----
-
-## Current state — Floor Planner (`/ooplanner`)
-
-| # | Area | Code evidence | Verdict |
-|---|------|---------------|---------|
-| 1 | Undo keeps sheet/grid | `Planner.tsx` grid flags + `usePlannerHistory` restore | **FIX VERIFIED — needs live re-run (planner-ledger #1)** |
-| 2 | BOQ dock on Review | `rightPanelsForStep` + `plannerBoqPanel` flag | **FIX VERIFIED — needs live re-run (planner-ledger #2)** |
-| 3 | Catalog click/keyboard place | `placeFurnitureAt` wiring exists | **WIRING OK — live FAILED 2026-08-06 (0 layers)** |
-| 4 | Top toolbar (15 handlers) | `toolbarHandlers` in `Planner.tsx` | **WIRING OK — blocked by #3** |
-| 5 | Ctrl+K palette | `commandOpen` independent of `aiOpen` | **FIX VERIFIED** |
-| 6 | 390px canvas width | `matchMedia` collapses side panels | **FIX VERIFIED — needs audit-3b (planner-ledger #6)** |
-| 7 | AI panel Escape | `useKeyboardShortcuts` + AiPanel | **PARTIAL — AiPanel not re-read** |
-| 8 | Hard refresh project | `PLANNER_LAST_PROJECT_KEY` in localStorage | **FIX VERIFIED** |
-| 9 | Project menu | `PlannerProjectMenu` wired in overlay | **FIX VERIFIED** |
-
-**Live blocker:** `audit-3b` #4 — 0 layers after click on 2026-08-06; logs showed `permission denied for table feature_flags`. Admin grants migration applied 2026-08-07; disk-mode Playwright may pass; Supabase-mode proof still required.
-
-**Route truth FIXED:** `route-contract.json` and `productSuite.ts` correctly redirect `/planner/guest|canvas` → `/ooplanner`. E2E specs navigate to `/ooplanner`; only 2 specs mention legacy routes in comments (not navigation).
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S12 |
+| **Seam** | `pnpm run scan:boundaries` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | 0 cross-product edges (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE |
 
 ---
 
-## Current state — Furniture Studio (`/oostudio`)
+## OPEN slices — audit-3b (`tests/e2e/audit-3b-planner-fixes.spec.ts`)
 
-| Area | Evidence | Verdict |
-|------|----------|---------|
-| 390px canvas | `Studio.tsx` panel collapse mirrors Planner | **WIRING OK — needs responsive audit** |
-| Draw → auto-select | `onUp` sets select tool + active object | **WIRING OK** |
-| AI Escape | shortcuts + `FloatingPanel onClose` | **WIRING OK** |
-| Toolbar handlers | `toolbarHandlers` gated by `studio*` flags | **WIRING OK** |
-| Import/save → catalog | `doSave` → `studioApi.createFurniture` + `publishFurniture goLive:false` | **WIRING OK — needs live proof** |
-| `audit-2a` Playwright | Not green in last session | **OPEN** |
+Each case = one vertical slice. Run **one failing test** → fix → re-run.
+
+### WRK-S01 — Undo keeps grid (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S01 |
+| **Seam** | Playwright test `fix #1 — undo removes exactly the last wall and keeps the grid` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-3b-planner-fixes.spec.ts -g "fix #1"` — grid flags lost after undo |
+| **Green** | Fix `usePlannerHistory` / grid restore in `site/components/Planner/Planner.tsx` (single concern) |
+| **Evidence** | `results/planner/audit-3b/` screenshot + test pass |
+| **Depends on** | CHK-S05 |
+| **Status** | OPEN — planner-ledger #1 |
+
+### WRK-S02 — BOQ dock on Review (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S02 |
+| **Seam** | Playwright test `fix #2 — clicking the BOQ tab mounts the dock shell and BOQ panel` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #2"` — BOQ panel not mounted on Review step |
+| **Green** | Fix `rightPanelsForStep` / `plannerBoqPanel` flag wiring |
+| **Evidence** | audit-3b case #2 pass + DOM dump in `results/planner/audit-3b/` |
+| **Depends on** | WRK-S01 |
+| **Status** | OPEN — planner-ledger #2 |
+
+### WRK-S03 — 390px Place step (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S03 |
+| **Seam** | Playwright test `fix #3 — 390px Place furniture step keeps the canvas usable` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #3"` at viewport 390×844 — canvas width 0 or Auto-arrange unreachable |
+| **Green** | Fix `matchMedia` panel collapse in `Planner.tsx` |
+| **Evidence** | `results/planner/audit-3b/03-narrow-place.png` + pass |
+| **Depends on** | — |
+| **Status** | OPEN — planner-ledger #6 |
+
+### WRK-S04 — Click/keyboard place (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S04 |
+| **Seam** | Playwright test `fix #4 — clicking and Enter/Space on a catalog item place it on the canvas` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #4"` — `layerCount` 0 after click; `$env:DEV_AUTH_BYPASS="1"` |
+| **Green** | Fix `placeFurnitureAt` / `CatalogRail onItemClick` at wiring seam |
+| **Evidence** | `results/planner/audit-3b/click-log.txt` shows placement; test pass |
+| **Depends on** | DB-S02 |
+| **Status** | OPEN — **0 layers** on 2026-08-06 run |
+
+### WRK-S05 — Top toolbar wired
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S05 |
+| **Seam** | Playwright test `fix #5 — PlannerTopToolbar buttons are wired` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #5"` — handler no-op |
+| **Green** | Wire single toolbar handler in `toolbarHandlers` map |
+| **Evidence** | audit-3b #5 pass |
+| **Depends on** | WRK-S04 |
+| **Status** | OPEN — code wired; live re-run needed |
+
+### WRK-S06 — Ctrl+K palette
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S06 |
+| **Seam** | Playwright test `fix #6 — Ctrl+K opens the command palette` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #6"` — palette not visible |
+| **Green** | Fix `commandOpen` independent of `aiOpen` |
+| **Evidence** | audit-3b #6 pass |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### WRK-S07 — Escape closes AI
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S07 |
+| **Seam** | Playwright test `fix #7 — Escape closes the AI panel` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #7"` |
+| **Green** | Fix `PlannerAiPanel` keydown handler |
+| **Evidence** | audit-3b #7 pass |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### WRK-S08 — Hard refresh project name
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S08 |
+| **Seam** | Playwright test `fix #8 — a hard refresh after Save keeps the project name bound` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `-g "fix #8"` |
+| **Green** | Fix `PLANNER_LAST_PROJECT_KEY` restore |
+| **Evidence** | audit-3b #8 pass |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### WRK-S09 — Supabase mode audit-3b (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S09 |
+| **Seam** | Full `audit-3b-planner-fixes.spec.ts` on **preview** with `DEV_AUTH_BYPASS=0` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Preview URL + no bypass; fix #4 fails (feature_flags or auth) |
+| **Green** | DB grants + auth fix at API seam |
+| **Evidence** | `results/planner/audit-3b-supabase/` dated run |
+| **Depends on** | DB-S02, WRK-S04 |
+| **Status** | OPEN |
+
+### WRK-S10 — Studio audit-2a (P2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S10 |
+| **Seam** | `SEAM-E2E-STUDIO-2A` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-2a-studio-journey.spec.ts` |
+| **Green** | Fix failing Studio journey step |
+| **Evidence** | `results/studio/audit-2a/` |
+| **Depends on** | CHK-S05 |
+| **Status** | OPEN |
+
+### WRK-S11 — audit-3c polish (P2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S11 |
+| **Seam** | `tests/e2e/audit-3c-planner-polish.spec.ts` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | First failing polish spec |
+| **Green** | One polish fix |
+| **Evidence** | `results/planner/audit-3c/` |
+| **Depends on** | WRK-S04 |
+| **Status** | OPEN |
+
+### WRK-S13 — Responsive audit workspaces (P1)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S13 |
+| **Seam** | `node scripts/responsive-audit.mjs` for `/ooplanner` and `/oostudio` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Overflow or touch target fail at 390px |
+| **Green** | FOCSS fix at reported route |
+| **Evidence** | `results/site/responsive-audit.txt` |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### WRK-S14 — PlannerProjectMenu orphan (P2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | WRK-S14 |
+| **Seam** | Owner decision — wire `PlannerProjectMenu` or delete file |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Dead code grep or unused import audit fails |
+| **Green** | Wire in overlay OR delete component + update ledger |
+| **Evidence** | PR note + `scan:boundaries` pass |
+| **Depends on** | — |
+| **Status** | OPEN — planner-ledger #9 |
 
 ---
 
-## Step-by-step instructions
+## Key paths
 
-### Planner
-
-1. **Apply Admin grants** (if not already)
-   ```powershell
-   pnpm run ops db:apply:admin -- --dry
-   pnpm run ops db:apply:admin
-   ```
-
-2. **Start dev server** — `http://localhost:3000` only
-   ```powershell
-   pnpm dev
-   ```
-
-3. **Disk-mode Playwright** (instrumented traces)
-   ```powershell
-   $env:DEV_AUTH_BYPASS = "1"
-   pnpm exec playwright test -c config/build/playwright.config.ts `
-     tests/e2e/audit-3b-planner-fixes.spec.ts `
-     tests/e2e/audit-3c-planner-polish.spec.ts --reporter=html
-   ```
-   **Expect:** #4 places ≥1 layer; console shows `[planner/place]` traces. **If 0 layers:** check `fabricRef` null, `catalogSidebar` flag, viewport centre off-canvas.
-
-4. **Supabase mode** — preview deploy without bypass; re-run `audit-3b`.
-
-5. **Boundary + responsive gates**
-   ```powershell
-   pnpm run scan:boundaries
-   node scripts/responsive-audit.mjs
-   pnpm run p0:unit
-   ```
-
-6. **Planner catalog lane** (includes audit specs)
-   ```powershell
-   pnpm run test:planner-catalog
-   ```
-
-### Studio
-
-7. **Studio journey audit**
-   ```powershell
-   pnpm exec playwright test -c config/build/playwright.config.ts `
-     tests/e2e/audit-2a-studio-journey.spec.ts --reporter=html
-   ```
-
-8. **FOCSS + boundaries**
-   ```powershell
-   pnpm run verify:focss
-   pnpm run scan:boundaries
-   ```
-
-9. **Catalog draft contract** — prove `POST /api/Studio/furniture` + publish `goLive:false` creates `block_descriptors` draft (integration test or manual with `DEV_AUTH_BYPASS=1`).
-
-Save artifacts: `results/planner/audit-3b-*/`, `results/studio/audit-2a/`.
-
----
-
-## Verification checklist
-
-- [ ] `scan:boundaries` — 0 Studio ↔ Planner cross-imports
-- [ ] `audit-3b` #4 — ≥1 furniture layer on click + keyboard
-- [ ] `audit-3b/3c` — full spec green (disk mode)
-- [ ] `audit-3b` — green on Supabase preview (no bypass)
-- [ ] `audit-2a` — Studio journey green
-- [ ] `responsive-audit.mjs` — 1920 / 1280 / 390 / 320
-- [ ] Route decision documented: `/planner/*` vs `/ooplanner` for e2e
-- [ ] `test:planner-catalog` lane includes audit-3b/3c (9 specs in `package.json`)
-
----
-
-## Open items
-
-1. **P0:** Re-run `audit-3b` with instrumentation; close click-to-place blocker.
-2. **P0:** Planner undo/redo strips sheet/grid — fix verified by read; live re-run to prove (planner-ledger #1).
-3. **P0:** BOQ dock panel never renders on Review step — fix verified by read; live re-run to prove (planner-ledger #2).
-4. **P0:** 390px Place-furniture step: narrow viewport canvas/chrome issues — fix verified by read; live audit-3b to prove (planner-ledger #6).
-5. **P0:** Re-run `audit-3c`, `audit-2a` with dated results.
-6. **P1:** Document route-truth contract in e2e spec headers if any legacy comment references remain ([02-testing-plan.md](./02-testing-plan.md)).
-7. **P2:** Deferred: guest flow, multi-room, wall post-edit, offline sync, sketch-to-plan, 100+ item perf, 3D preview tab.
-8. **P2:** Workspace chrome UI ([06-site-plan.md](./06-site-plan.md) C2).
-9. **P2:** Decide fate of `PlannerProjectMenu.tsx` — orphaned dead code per planner-ledger #9; either wire or delete.
-
----
-
-## Key paths & commands
-
-| Item | Path / command |
-|------|----------------|
+| Item | Path |
+|------|------|
 | Planner shell | `site/components/Planner/Planner.tsx` |
 | Studio shell | `site/components/Studio/Studio.tsx` |
-| Feature flags | `site/lib/featureFlags.ts` |
-| Planner history | `site/hooks/Planner/usePlannerHistory.ts` |
-| Route contract | `site/platform/route-contract.json` |
-| Product suite routes | `site/features/site/data/productSuite.ts` |
-| Boundary scan | `pnpm run scan:boundaries` |
-| Planner e2e lane | `pnpm run test:planner-catalog` |
-| Responsive audit | `node scripts/responsive-audit.mjs` |
+| E2E 3b | `tests/e2e/audit-3b-planner-fixes.spec.ts` |
+| Guest setup | `tests/e2e/guestProjectSetup.ts` |
+| Boundaries | `pnpm run scan:boundaries` |
 
-*Fork rule: Studio and Planner never import each other. Blockers: [`Failures.md`](../Failures.md) only.*
+*Fork rule: Studio ↔ Planner never import each other.*

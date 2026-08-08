@@ -28,9 +28,9 @@ describe("app/api/_lib/public.ts", () => {
       expect(getPublicApiIp(req)).toBe("10.0.0.1");
     });
 
-    it("defaults to 127.0.0.1 when no proxy headers", () => {
+    it("defaults to localhost when no proxy headers", () => {
       const req = new NextRequest("http://localhost");
-      expect(getPublicApiIp(req)).toBe("127.0.0.1");
+      expect(getPublicApiIp(req)).toBe("localhost");
     });
   });
 

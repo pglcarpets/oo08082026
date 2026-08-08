@@ -1,123 +1,147 @@
-﻿# OO Start Checklist -- Pre-session Onboarding
+﻿# OO Start Checklist — slice map
 
-**For:** Any developer or agent beginning work on the ooplanner-oostudio monorepo
+**AUDITED:** 2026-08-08 · **Location:** `e:\oo08082026` (repo root only).  
+**Master registry:** [`00-README.md`](./00-README.md#slice-registry-all-programmes).
 
-**Location:** `e:\oo08082026` (never `e:\Websites\oo05082026`)
-
-**Authority:** user instruction > live code > `AGENTS.md` > `docs/`
+Each checkbox maps to a **vertical slice** — confirm seam before red when executing work slices.
 
 ---
 
-## 1. Environment Verification
+## CHK-S01 — Environment
 
-- [ ] Working directory is `e:\oo08082026`
+- [ ] **CHK-S01** — Working directory is `e:\oo08082026`
+- [ ] `.env.local` at repo root with Admin + Products Supabase URLs/keys
+- [ ] `node --version` v24+
+- [ ] `pnpm --version` 11.20.0+
 
-- [ ] `.env.local` exists at repo root with required Supabase keys (Admin + Products)
+**Slice seam:** shell cwd + env files · **Evidence:** `Get-Location` + `Test-Path .env.local`
 
-- [ ] `pnpm` is available: `pnpm --version` (expected: 11.20.0+)
+---
 
-- [ ] `node` is available: `node --version` (expected: v24+)
+## CHK-S02 — Install
 
-
-## 2. Install & Health
-
-```cmd
+```powershell
 pnpm install
 ```
 
-- [ ] Install runs from **repo root only** -- never inside `site/` or `tech-docs-generator/`
+- [ ] **CHK-S02** — Install from **repo root only** (never `site/` or `tech-docs-generator/`)
+- [ ] No nested `node_modules` under `site/`
 
-- [ ] No nested `node_modules` inside `site/`
+**Depends on:** CHK-S01 · **Evidence:** `pnpm run check:layout` layout section pass
 
+---
 
-## 3. Fast Gate (5-minute smoke)
+## CHK-S03 — Fast gate quartet
 
-```cmd
+```powershell
 pnpm run check:layout
 pnpm run verify:focss
 pnpm run typecheck
 pnpm run p0:unit
 ```
 
-- [ ] `check:layout` -> exit 0
+| Check | Slice ID | Expect |
+|-------|----------|--------|
+| Layout | TST-S09 (subset) | exit 0 |
+| FOCSS | SITE-S14 | 141+ stylesheets |
+| Typecheck | TST-S01 | exit 0 |
+| P0 unit | TST-S03 | 23 files / 146 tests |
 
-- [ ] `verify:focss` -> 141+ stylesheets OK
+- [ ] **CHK-S03** — All four commands green
 
-- [ ] `typecheck` -> exit 0
+**Evidence:** `results/tests/vitest-p0-results.json` · **Depends on:** CHK-S02
 
-- [ ] `p0:unit` -> 23 files / 146 tests pass
+---
 
+## CHK-S04 — Blockers & handover
 
-## 4. Blockers & Plans
+- [x] **CHK-S04** — Read [`Failures.md`](../Failures.md) (**1 active row:** F3; P0-1–P1-4 in resolved table)
+- [ ] Read [`01-handover.md`](./01-handover.md)
+- [ ] Pick one OPEN slice from [`00-README.md`](./00-README.md) registry
 
-- [ ] Read `Failures.md` -- know the active blockers
+**Depends on:** —
 
-- [ ] Read `plans/01-handover.md` -- understand last session state
+---
 
-- [ ] Pick the relevant programme plan from `plans/`
+## CHK-S05 — Dev server (UI work)
 
-
-## 5. Dev Server (if UI work)
-
-```cmd
+```powershell
 pnpm dev
 ```
 
-- [ ] Server starts on `http://localhost:3000` (**never** `127.0.0.1`)
-
-- [ ] Marketing `/` loads
-
-- [ ] `/ooplanner` loads (guest mode with `DEV_AUTH_BYPASS=1`)
-
+- [ ] **CHK-S05** — Server at `http://localhost:3000` (**never** `127.0.0.1`)
+- [ ] `/` loads
+- [ ] `/ooplanner` loads (`DEV_AUTH_BYPASS=1` for guest)
 - [ ] `/oostudio` loads
 
+**Seam:** `SEAM-CONSOLE-ROUTE` / E2E base URL · **Depends on:** CHK-S02
 
-## 6. Fork Isolation
+---
 
-```cmd
+## CHK-S06 — Fork isolation
+
+```powershell
 pnpm run scan:boundaries
 ```
 
-- [ ] **0 cross-product edges**
+- [ ] **CHK-S06** — **0** Studio ↔ Planner cross-imports (slice **TST-S10** / **WRK-S12**)
 
+---
 
-## 7. Database Awareness
+## CHK-S07 — Database awareness
 
-- [ ] Two Supabase projects: **Admin** and **Products**
+- [ ] **CHK-S07** — Two projects: Admin `rxzpznmxbaoxpikowmfc` · Products `erpweaiypimorcunaimz`
+- [ ] Every migration has `-- rollback` section
+- [ ] Mode-aware wrappers — no raw `fs` in production API paths
 
-- [ ] Every migration needs a `-- rollback` section
+**Related slices:** DB-S01, DB-S10 · **Depends on:** CHK-S01
 
-- [ ] Use mode-aware wrappers -- **never** raw `fs` in production API paths
+---
 
+## CHK-S08 — Testing awareness
 
-## 8. Testing Awareness
+- [ ] **CHK-S08** — `pnpm run test` runs **two** Vitest lanes (TST-S06, TST-S07)
+- [ ] Playwright uses `http://localhost:3000` only (TST-S16–TST-S19)
 
-- [ ] `pnpm run test` runs **two Vitest lanes**
+---
 
-- [ ] Playwright uses `http://localhost:3000` only
+## CHK-S09 — Before committing plan/doc edits
 
-
-## 9. Before Committing
-
-```cmd
+```powershell
 node scripts/general/check-plans-purity.mjs
 pnpm run check:docs-all
 ```
 
-- [ ] Both exit 0
+- [ ] **CHK-S09** — Both exit 0 (slices **HO-S04** + governance)
 
+---
 
-## 10. Common Mistakes
+## CHK-S10 — Pick work slice
 
-| Mistake | Why |
-|---------|-----|
-| `127.0.0.1` instead of `localhost` | Breaks auth cookies |
-| `pnpm install` inside `site/` | Nested node_modules; breaks layout check |
-| Raw `fs` in API routes | Fails in production (read-only Supabase FS) |
-| No `-- rollback` in migrations | Fails `check:governance` |
-| Studio <-> Planner imports | Violates fork isolation |
-| Trusting one Vitest summary | Two lanes run; check both |
-| `plans/` subfolders | `check-plans-purity` rejects |
+- [ ] **CHK-S10** — One OPEN slice selected; **seam confirmation** checkbox ticked in programme plan before red
+
+**P0 starters (if unsure):**
+
+| Slice | Focus |
+|-------|--------|
+| OPS-S01 | F3 docs DNS |
+| SITE-S01 | Workstations hydration (**PARTIAL** — run `SEAM-CONSOLE-ROUTE`) |
+| WRK-S04 | Planner click-to-place |
+| DB-S02 | feature_flags grants |
+
+---
+
+## Common mistakes → slice
+
+| Mistake | Slice / rule |
+|---------|----------------|
+| `127.0.0.1` for browser | CHK-S05 — rate-limit IP fixed (**TST-S20 DONE**) |
+| `pnpm install` in `site/` | CHK-S02 |
+| Raw `fs` in API routes | CHK-S07, DB plan |
+| No migration rollback | CHK-S07 |
+| Studio ↔ Planner import | CHK-S06 |
+| One Vitest summary only | CHK-S08 |
+| `plans/` subfolders | CHK-S09 |
 
 ---
 

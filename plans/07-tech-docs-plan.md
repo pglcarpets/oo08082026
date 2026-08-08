@@ -1,117 +1,106 @@
-# Tech-docs plan — AUDITED 2026-08-08
+# Tech-docs plan — vertical slices
 
-**Status:** PARTIAL — tech-docs Vitest lane green (195 tests) and package gate green; snapshot seam included in lane; production host blocked by F3 DNS.
-**Owner / when to use:** Anyone changing `tech-docs-generator/`, snapshot data, or docs deployment.
-**Related:** [`Failures.md`](../Failures.md) (F3) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [04-database-plan.md](./04-database-plan.md) · `tech-docs-generator/00-README.md` · `docs/architecture/tech-docs-link.md`
-
-**App:** `tech-docs-generator/` · **Prod target:** `docs.oando.co.in` (currently NXDOMAIN — F3)
+**AUDITED:** 2026-08-08 · **App:** `tech-docs-generator/` · **Prod:** `docs.oando.co.in` (F3 blocked).  
+**Related:** [`docs/architecture/tech-docs-link.md`](../docs/architecture/tech-docs-link.md) · [`07-tech-docs-plan.md`](./07-tech-docs-plan.md).
 
 ---
 
-## Goal
+## DONE slices
 
-Internal tech stack documentation stays source-backed: generated inventory from lockfile, live database table summaries, and **active blockers** mirrored from [`Failures.md`](../Failures.md). "Done" means `pnpm --filter oando-tech-docs gate` green and snapshot tests passing with artifacts in `results/tech-docs/`.
+### TECH-S02 — Package gate
 
----
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S02 |
+| **Seam** | `pnpm --filter oando-tech-docs gate` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | Included in tech-docs Vitest lane; exit 0 (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE |
 
-## Who does what
+### TECH-S03 — Root test lane includes tech-docs
 
-| Role | Responsibility |
-|------|----------------|
-| Docs maintainer | Snapshot seam (C1), tech-docs Vitest lane |
-| Infra owner | F3 DNS + docs deploy ([03-ops-deploy-plan.md](./03-ops-deploy-plan.md)) |
-| Any developer | Update `activeBlockers.ts` when F-rows change |
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S03 |
+| **Seam** | `pnpm run test` → `results/tests/summary.json` lane `tech-docs` `failed:0` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | **195 tests passed** in `vitest-tech-docs-results.json` |
+| **Depends on** | — |
+| **Status** | DONE |
 
----
+### TECH-S06 — Database boundaries page
 
-## Current state
-
-| Item | Evidence | Verdict |
-|------|----------|---------|
-| C1 snapshot validation | `tech-docs-generator/src/data/snapshot.ts` throws on bad JSON | **CODE EXISTS — not re-proven 2026-08-08** |
-| `techStack.ts` consumes validated data | Wired to snapshot module | **ASSUMED — needs test run** |
-| `snapshot.test.ts` (~17 tests) | Included in tech-docs lane; `results/tests/vitest-tech-docs-results.json` shows 195 passed | **GREEN — verified 2026-08-08** |
-| `oando-tech-docs gate` | Included in root `pnpm run test` tech-docs lane; 195 tests passed | **GREEN — verified 2026-08-08** |
-| Tech Stack → Database boundaries | Admin vs Products IDs documented | **DOC UPDATE 2026-08-08** |
-| Tech Stack → Active blockers | Mirrors `Failures.md` via `activeBlockers.ts` | **WIRED — verify on F3 change** |
-| `docs.oando.co.in` | F3 NXDOMAIN | **BLOCKED — [03-ops-deploy-plan.md](./03-ops-deploy-plan.md)** |
-
----
-
-## Step-by-step instructions
-
-1. **Snapshot unit tests**
-   ```powershell
-   pnpm exec vitest run --config tests/vitest.tech-docs.config.ts `
-     tests/tech-docs-generator/snapshot.test.ts
-   ```
-   **Expect:** ~17 passed, exit 0. **If fail:** fix `tech-docs-generator/src/data/snapshot.ts` or snapshot JSON source; tests must throw on invalid data.
-
-2. **Tech-docs package gate**
-   ```powershell
-   pnpm --filter oando-tech-docs gate
-   ```
-   **Expect:** exit 0 (lint, typecheck, tests for package). **If fail:** read package `package.json` scripts for exact chain.
-
-3. **Full repo tech-docs lane** (included in root `pnpm run test`)
-   ```powershell
-   pnpm run test
-   ```
-   **Expect:** tech-docs lane summary in `results/tests/summary.json` with `failed: 0`. See [02-testing-plan.md](./02-testing-plan.md).
-
-4. **Verify blocker mirror** — when editing [`Failures.md`](../Failures.md):
-   - Update `tech-docs-generator/src/data/activeBlockers.ts` to match.
-   - Re-run snapshot tests.
-
-5. **Local preview** (before DNS)
-   ```powershell
-   pnpm --filter oando-tech-docs dev
-   ```
-   Open the URL printed in terminal; confirm Database page shows two-project table and Active blockers section.
-
-6. **Production deploy** (after F3 closed)
-   - Follow `docs/architecture/tech-docs-link.md`.
-   ```powershell
-   curl.exe -sI https://docs.oando.co.in
-   ```
-   **Expect:** 200. Remove F3 only with DNS proof.
-
-Save artifacts: `results/tech-docs/snapshot-test.log`, gate output on same commit as code.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S06 |
+| **Seam** | Tech-docs UI shows Admin `rxzpznmxbaoxpikowmfc` vs Products `erpweaiypimorcunaimz` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | Doc update 2026-08-08 in architecture docs |
+| **Depends on** | — |
+| **Status** | DONE |
 
 ---
 
-## Verification checklist
+## PARTIAL slices
 
-- [ ] `snapshot.test.ts` — all pass under `vitest.tech-docs.config.ts`
-- [ ] `pnpm --filter oando-tech-docs gate` — exit 0
-- [ ] Tech-docs lane in `pnpm run test` — `failed: 0`
-- [ ] Database boundaries page — Admin `rxzpznmxbaoxpikowmfc` vs Products `erpweaiypimorcunaimz`
-- [ ] Active blockers match [`Failures.md`](../Failures.md)
-- [ ] `docs.oando.co.in` — 200 after F3 DNS (production)
-- [ ] Dated `results/tech-docs/*` before marking COMPLETE
+### TECH-S01 — Snapshot test isolate artifact (P1)
 
----
-
-## Open items
-
-1. **P0:** F3 — docs DNS ([03-ops-deploy-plan.md](./03-ops-deploy-plan.md)).
-2. **P1:** Re-run `snapshot.test.ts` in isolation with dedicated artifact under `results/tech-docs/` (lane green, but isolate artifact for completeness).
-3. **P2:** Ship docs host separately per `docs/architecture/tech-docs-link.md` after DNS.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S01 |
+| **Seam** | `SEAM-TECH-SNAPSHOT` — `tests/tech-docs-generator/snapshot.test.ts` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Break `tech-docs-generator/src/data/snapshot.ts` validation — tests fail |
+| **Green** | Fix snapshot loader throw on bad JSON |
+| **Evidence** | Lane green; **dedicated** `results/tech-docs/snapshot-test.log` still missing |
+| **Depends on** | — |
+| **Status** | PARTIAL — lane GREEN; isolate artifact OPEN |
 
 ---
 
-## Key paths & commands
+## OPEN slices
 
-| Item | Path / command |
-|------|----------------|
-| Generator app | `tech-docs-generator/` |
-| Snapshot loader | `tech-docs-generator/src/data/snapshot.ts` |
-| Tech stack data | `tech-docs-generator/src/data/techStack.ts` |
-| Active blockers | `tech-docs-generator/src/data/activeBlockers.ts` |
-| Snapshot tests | `tests/tech-docs-generator/snapshot.test.ts` |
-| Vitest config | `tests/vitest.tech-docs.config.ts` |
-| Package gate | `pnpm --filter oando-tech-docs gate` |
-| Package dev | `pnpm --filter oando-tech-docs dev` |
-| Docs deploy doc | `docs/architecture/tech-docs-link.md` |
+### TECH-S04 — activeBlockers mirror Failures.md
 
-*Blockers: [`Failures.md`](../Failures.md) only. Do not claim COMPLETE without dated `results/tech-docs/` on `main`.*
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S04 |
+| **Seam** | `tech-docs-generator/src/data/activeBlockers.ts` IDs match `Failures.md` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Stale multi-row mirror vs single F3 row |
+| **Green** | Sync `activeBlockers.ts` to `Failures.md` (F3 only) |
+| **Evidence** | `activeBlockers.ts` + `Failures.md` aligned 2026-08-08; HO-S05 |
+| **Depends on** | HO-S02 |
+| **Status** | DONE |
+
+### TECH-S05 — Production docs host after F3 (P0)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TECH-S05 |
+| **Seam** | `curl.exe -sI https://docs.oando.co.in` → 200 |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | NXDOMAIN / non-200 |
+| **Green** | Complete OPS-S01; deploy per `tech-docs-link.md` |
+| **Evidence** | `results/tech-docs/prod-curl.txt` |
+| **Depends on** | OPS-S01 |
+| **Status** | OPEN — `Failures.md` F3 |
+
+---
+
+## Key commands
+
+| Command | Purpose |
+|---------|---------|
+| `pnpm exec vitest run --config tests/vitest.tech-docs.config.ts tests/tech-docs-generator/snapshot.test.ts` | Snapshot seam |
+| `pnpm --filter oando-tech-docs dev` | Local preview (:3001 typical) |
+| `pnpm --filter oando-tech-docs gate` | Package gate |
+
+*Blockers: [`Failures.md`](../Failures.md) only.*

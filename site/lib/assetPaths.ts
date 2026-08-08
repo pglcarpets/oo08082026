@@ -314,15 +314,11 @@ function resolveNearestSiblingImage(assetPath: string): string | null {
   return first && localAssetExists(first.webPath) ? first.webPath : null;
 }
 
-function resolveLocalImageVariant(assetPath: string): string {
+function resolveLocalImageVariant(assetPath: string, probeDisk: boolean): string {
   const numbered = expandImagePathCandidates(assetPath);
 
-  // Client: no FS. Keep the original path — do **not** force-unpad.
-  // Aggressive image-01 → image-1 rewrite breaks folders that only ship
-  // zero-padded webps (or image-01.webp + image-1.jpg without image-1.webp).
-  // Catalog adapters normalize server-side with FS; client re-entry must not
-  // destroy those resolved paths (FilterGrid calls normalize again).
-  if (!isServer()) {
+  // Client + SSR of client components: deterministic paths only (hydration-safe).
+  if (!probeDisk || !isServer()) {
     return assetPath;
   }
 
@@ -635,8 +631,21 @@ function rewriteDeepAssetFolders(assetPath: string): string {
   return p;
 }
 
-export function normalizeAssetPath(assetPath: string | null | undefined): string {
+export type NormalizeAssetPathOptions = {
+  /**
+   * When true, probe site/public on the server for existing variants/siblings.
+   * Default false — safe for client components (SSR + hydration must match).
+   * Server-only catalog/API callers pass true when disk truth is required.
+   */
+  probeDisk?: boolean;
+};
+
+export function normalizeAssetPath(
+  assetPath: string | null | undefined,
+  options?: NormalizeAssetPathOptions,
+): string {
   if (!assetPath) {return "";}
+  const probeDisk = options?.probeDisk === true;
   const normalized = String(assetPath).trim();
   if (!normalized) {return "";}
   if (hasAbsoluteUrl(normalized)) {return normalized;}
@@ -693,7 +702,7 @@ export function normalizeAssetPath(assetPath: string | null | undefined): string
   const catalogFolderMatch = candidatePath.match(
     /^(\/assets\/catalog\/(?:(?:seating|workstations|tables|storage|soft-seating|educational|collaborative)\/)?)([^/]+)(\/image-[^/]+)$/i,
   );
-  if (catalogFolderMatch && isServer()) {
+  if (catalogFolderMatch && probeDisk && isServer()) {
     const resolvedFolder = resolveCatalogFolderWebPath(catalogFolderMatch[2]);
     if (resolvedFolder) {
       candidatePath = `${resolvedFolder}${catalogFolderMatch[3]}`;
@@ -743,7 +752,7 @@ export function normalizeAssetPath(assetPath: string | null | undefined): string
 
   // Resolve to an existing local variant when possible.
   if (candidatePath.startsWith("/assets/") && hasImageExtension) {
-    const resolvedVariant = resolveLocalImageVariant(candidatePath);
+    const resolvedVariant = resolveLocalImageVariant(candidatePath, probeDisk);
     if (!resolvedVariant) {return applyAssetBase(PRODUCT_IMAGE_FALLBACK);}
     return applyAssetBase(resolvedVariant);
   }
@@ -822,10 +831,11 @@ function rewriteLegacyPublicImagePath(assetPath: string): string {
 
 export function normalizeAssetList(
   values: Array<string | null | undefined> | null | undefined,
+  options?: NormalizeAssetPathOptions,
 ): string[] {
   if (!Array.isArray(values)) {return [PRODUCT_IMAGE_FALLBACK];}
   const resolved = values
-    .map((value) => normalizeAssetPath(value))
+    .map((value) => normalizeAssetPath(value, options))
     .filter(Boolean) as string[];
   return resolved.length > 0 ? resolved : [PRODUCT_IMAGE_FALLBACK];
 }
@@ -1038,7 +1048,10 @@ function probeCdnCatalogImage(folderWebPath: string): string | null {
     "image-01.jpeg",
   ];
   for (const imageName of imageNames) {
-    const probe = normalizeAssetPath(`${folderWebPath.replace(/\/+$/, "")}/${imageName}`);
+    const probe = normalizeAssetPath(
+      `${folderWebPath.replace(/\/+$/, "")}/${imageName}`,
+      { probeDisk: true },
+    );
     if (
       probe &&
       !isProductImageFallback(probe) &&
@@ -1056,7 +1069,7 @@ export function resolveProductCatalogAssets(
   preferredImages?: Array<string | null | undefined> | null,
 ): { flagship_image: string; images: string[] } {
   const normalizedPreferred = (Array.isArray(preferredImages) ? preferredImages : [])
-    .map((value) => normalizeAssetPath(value))
+    .map((value) => normalizeAssetPath(value, { probeDisk: true }))
     .filter((value): value is string => Boolean(value) && !isProductImageFallback(value));
 
   const publishablePreferred = filterProductCatalogMedia(normalizedPreferred);
@@ -1064,7 +1077,7 @@ export function resolveProductCatalogAssets(
     /\/assets\/catalog\/oando-/i.test(path),
   );
 
-  let flagship = preferredFlagship ? normalizeAssetPath(preferredFlagship) : "";
+  let flagship = preferredFlagship ? normalizeAssetPath(preferredFlagship, { probeDisk: true }) : "";
   if (flagship && (isProductImageFallback(flagship) || !isProductCatalogMediaPath(flagship))) {
     flagship = "";
   }

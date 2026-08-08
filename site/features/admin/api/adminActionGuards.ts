@@ -5,17 +5,18 @@
 
 import { headers } from "next/headers";
 import { returnServerError } from "next-safe-action";
+import { normalizeClientIp } from "@/lib/clientIp";
 import { rateLimit } from "@/lib/rateLimit";
 import { ApiError } from "@/features/shared/api/ApiError";
 import { resolveAuthContext } from "@/features/shared/api/withAuth";
 
 /** Resolve client IP from edge / proxy headers (same order as API rate limiting). */
 export function resolveClientIp(headerStore: Headers): string {
-  return (
+  const raw =
     headerStore.get("cf-connecting-ip") ||
     headerStore.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    "127.0.0.1"
-  );
+    "127.0.0.1";
+  return normalizeClientIp(raw);
 }
 
 /** Require an authenticated admin; maps failures to safe-action serverError. */

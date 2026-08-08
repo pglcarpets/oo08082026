@@ -1,230 +1,312 @@
-﻿# Testing plan — AUDITED 2026-08-09
+﻿# Testing plan — vertical slices
 
-**Status:** COMPLETE — gate-level ship criteria met (`p0:unit` 23/23, both Vitest lanes green, `audit-hollow-tests` ok, `pnpm run gate` exit 0, `scan:boundaries` 0 edges, coverage gate 100% lines, `summary.json` generated, asset-cutover smoke `overall:"pass"`, no full-suite JSON overwrite). Follow-up: expand strict 90% inventory coverage (P1) and E2E `audit-3b/3c/2a/4a` (P2).
-**Owner / when to use:** Anyone running gates, Vitest, or Playwright before merge or release.
-**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [00-README.md](./00-README.md#scripts--when-to-run-what) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [04-database-plan.md](./04-database-plan.md)
+**AUDITED:** 2026-08-08 · **Owner:** gates, Vitest, Playwright before merge/release.  
+**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [`00-README.md`](./00-README.md).
 
----
-
-## Goal (strict, fail-closed)
-
-- Green `pnpm run gate` (`release:gate:fast`) = `typecheck` + `typecheck:tests` + `p0:unit` (23/23) + `hollow` + `gate-skips` + **both** Vitest lanes (default + tech-docs) + **>90% coverage** + `check:docs-all` + `scan:boundaries` on **same commit**.
-- No hardcoded repo paths (`VITEST_REPO_ROOT` / `vitest.shared.ts` / `site/lib/paths/sitePackageRoot.ts` only), no hollow `expect(true)` / sole `toBeTruthy` / mocked-only suites, no `vitest-results.json` overwrite.
-- R2/Storage paths audited: local disk vs Supabase Storage `catalog-assets` vs R2 bucket via env only (no `|| "oando-assets-clean-…"` in code), worker `/assets/catalog/*` 200 parity proven.
-
-"Done" = dated `results/tests/summary.json` (both lanes `{failed:0}`) + `results/tests/vitest-results.json` + `results/tests/vitest-tech-docs-results.json` + `results/coverage/coverage-summary.json` (`total.lines.pct >=90`, gate files `>=95`) + `results/coverage-reports/**` + no hollow findings, on `main` at same SHA. Not a `tail` of output.
+**Rule:** One slice at a time. Confirm seam → red → green. No horizontal “write all E2E first”.
 
 ---
 
-## Who does what
+## DONE slices (gate evidence on `main`)
 
-| Role | Responsibility |
-|------|----------------|
-| Developer | Derive paths (no `oo08082026` literal), keep `// @vitest-environment` headers, expand tests before lowering gates |
-| Release owner | Re-prove both lanes + coverage + hollow + `pnpm run gate` on same commit before ship |
-| Workspace owner | Planner/Studio e2e (`audit-3b/3c/2a`) on `http://localhost:3000` only |
+### TST-S01 — Typecheck
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S01 |
+| **Seam** | `SEAM-GATE-TYPECHECK` — `pnpm run typecheck` |
+| **Seam confirmation** | - [x] Owner confirms seam (gate seam) |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | `pnpm run typecheck` exit 0 (2026-08-08 gate) |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S02 — Typecheck tests
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S02 |
+| **Seam** | `pnpm run typecheck:tests` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | Included in `pnpm run gate` chain |
+| **Depends on** | TST-S01 |
+| **Status** | DONE |
+
+### TST-S03 — P0 unit slice
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S03 |
+| **Seam** | `SEAM-GATE-P0UNIT` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | `pnpm run p0:unit` with one of 23 files failing |
+| **Green** | Fix minimal file; 23/23 pass |
+| **Evidence** | `pnpm run p0:unit` → **23 passed, 146 tests** → `results/tests/vitest-p0-results.json` (2026-08-08) |
+| **Depends on** | TST-S01 |
+| **Status** | DONE |
+
+### TST-S04 — Hollow tests audit
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S04 |
+| **Seam** | `node scripts/general/audit-hollow-tests.mjs` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Add `expect(true).toBe(true)` in a unit test; run audit — exit 1 |
+| **Green** | Remove hollow assertion |
+| **Evidence** | `node scripts/general/audit-hollow-tests.mjs` → `audit-hollow-tests: ok` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S05 — Gate-skips audit
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S05 |
+| **Seam** | `node scripts/general/audit-gate-skips.mjs` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Introduce forbidden skip pattern; audit fails |
+| **Green** | Remove skip |
+| **Evidence** | `audit-gate-skips: ok` via `pnpm run test:audit:fast` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S06 — Vitest default lane
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S06 |
+| **Seam** | `SEAM-GATE-LANES` lane `default` in `results/tests/summary.json` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Break one default-lane test; `pnpm run test` → `failed > 0` |
+| **Green** | Fix test or code at seam |
+| **Evidence** | `results/tests/summary.json` `{lane:"default",failed:0}` (2026-08-08) |
+| **Depends on** | TST-S03 |
+| **Status** | DONE |
+
+### TST-S07 — Vitest tech-docs lane
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S07 |
+| **Seam** | `SEAM-GATE-LANES` lane `tech-docs` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Break `tests/tech-docs-generator/snapshot.test.ts`; lane fails |
+| **Green** | Fix snapshot data or test |
+| **Evidence** | `results/tests/summary.json` `{lane:"tech-docs",failed:0}`; **195 tests** in `vitest-tech-docs-results.json` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S08 — Coverage gate
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S08 |
+| **Seam** | `pnpm run test:coverage` → `results/coverage/coverage-summary.json` `total.lines.pct` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Lower coverage below 90% on gate include set |
+| **Green** | Add tests at public seams (not lower gate) |
+| **Evidence** | `total.lines.pct` **100%** on gate files (2026-08-08) |
+| **Depends on** | TST-S06 |
+| **Status** | DONE |
+
+### TST-S09 — Fast release gate
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S09 |
+| **Seam** | `SEAM-GATE-FULL` — `pnpm run gate` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Any sub-step in `release:gate:fast` fails |
+| **Green** | Fix failing sub-gate |
+| **Evidence** | `pnpm run gate` exit 0 (2026-08-08) |
+| **Depends on** | TST-S01–TST-S08, TST-S04, TST-S05 |
+| **Status** | DONE |
+
+### TST-S10 — Fork boundaries
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S10 |
+| **Seam** | `pnpm run scan:boundaries` — 0 Studio ↔ Planner edges |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Add cross-import; scan reports edge |
+| **Green** | Remove import |
+| **Evidence** | **931 files / 0 edges** (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S11 — Asset cutover smoke
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S11 |
+| **Seam** | `node scripts/asset-cutover-smoke.mjs` → `results/asset-cutover/smoke-report.json` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Break R2 env; `overall` ≠ `pass` |
+| **Green** | Fix env or worker path |
+| **Evidence** | `smoke-report.json` `overall:"pass"` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S12 — R2 bucket fail-closed (code review)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S12 |
+| **Seam** | `SEAM-R2-BUCKET` — exported `resolveCatalogBucketName()` in `site/lib/storage/r2Catalog.ts` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | `pnpm exec vitest run --config tests/vitest.config.ts tests/unit/lib/storage/r2Catalog.test.ts` — test `throws when bucket env is missing and dev bypass is off` |
+| **Green** | `resolveCatalogBucketName()` throws when `DEV_AUTH_BYPASS` off and no bucket env |
+| **Evidence** | `r2Catalog.test.ts` pass; `test:priority-7` includes file; no hardcoded `oando-assets-clean-*` in `r2Catalog.ts` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S13 — Playwright report path + gitignore (code review)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S13 |
+| **Seam** | `SEAM-PLAYWRIGHT-REPORT` — `config/build/playwright.config.ts` HTML reporter + root `.gitignore` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | `pnpm exec vitest run --config tests/vitest.config.ts tests/unit/config/root-configs.test.ts` — expects `results/playwright-report` |
+| **Green** | Playwright `outputFolder: ../../results/playwright-report`; `.gitignore` lists `playwright-report/` |
+| **Evidence** | `root-configs.test.ts` pass; `.gitignore` line 19 `playwright-report/` |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S14 — P0 results file isolation
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S14 |
+| **Seam** | `pnpm run p0:unit` writes `vitest-p0-results.json` not `vitest-results.json` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Change `p0:unit` output to `vitest-results.json`; full lane overwrites |
+| **Green** | `--outputFile.json=../results/tests/vitest-p0-results.json` in `package.json` |
+| **Evidence** | `package.json` `p0:unit` script; JSON written 2026-08-08 |
+| **Depends on** | TST-S03 |
+| **Status** | DONE |
+
+### TST-S20 — Rate-limit IP normalization (P1-3)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S20 |
+| **Seam** | `SEAM-CLIENT-IP` — `normalizeClientIp()` in `site/lib/clientIp.ts`; used by `withAuth`, `getPublicApiIp`, `resolveClientIp` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | `getPublicApiIp` without headers returned `127.0.0.1` — split rate-limit buckets vs `localhost` |
+| **Green** | Map `127.0.0.1` / `::1` → `localhost` before rate-limit keys |
+| **Evidence** | `pnpm exec vitest run tests/unit/lib/clientIp.test.ts tests/unit/app/api/_lib/public.test.ts` pass (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### TST-S21 — withAuth test scope (P1-3 false stderr)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S21 |
+| **Seam** | `tests/unit/features/shared/api/withAuth.test.ts` stderr during error-serialization test |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | `rateLimitScope: "mirror:throw"` produced `[withAuth:mirror:throw]` in audit stderr — misread as prod blocker |
+| **Green** | Rename scope to `handler-serialize-error`; keep intentional error-serialization test |
+| **Evidence** | `withAuth.test.ts` pass; no `mirror:throw` in stderr (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE |
 
 ---
 
-## Current state (2026-08-08)
+## OPEN slices
 
-| Area | Evidence | Verdict |
-|------|----------|---------|
-| Schema `blockDescriptors` duplicate export | `site/platform/drizzle/schema/index.ts:2` did `export * from "./catalog"; export * from "./planner"` → `block_descriptors` in both → `typecheck` TS2308 | **FIXED — `typecheck` green** (catalog `export *`, planner explicit `adminBlockDescriptors`) |
-| `p0:unit` (23 files / 146 tests) | `pnpm run p0:unit` → 23 passed, 146 tests, ExportMenu 10/10 pass | **FIXED — act polyfill working** |
-| `session.test.ts` (10 tests) | `pnpm exec vitest run --config tests/vitest.config.ts tests/unit/lib/auth/session.test.ts` → 10 pass | **GREEN** |
-| `devAuthBypass.test.ts` | Needed `// @vitest-environment node` (imports `withAuth` → `node:`) | **FIXED — 7/7 pass** |
-| `renderTopPngFromSvg` et al (`sharp`/`node:fs`) | Added `// @vitest-environment node` to 6 files (`plannerStore`, `studioStore`, `authorizeStudioCatalogTopPng`, `prepareStudioFurnitureCatalogFiles`, `renderTopPngFromSvg`, `studioCatalogTopPngPersist`) | **FIXED — 57 pass** |
-| Full `pnpm run test` (both lanes) | Default 558 files / 2785 tests pass; tech-docs 32 files / 195 tests pass; `scripts/run-full-vitest.mjs` now writes dated `results/tests/summary.json` | **FIXED — P1-1 closed** |
-| `audit-hollow-tests` | `scripts/general/run-test-audits.mjs --preset=fast` → `audit-hollow-tests: ok` | **FIXED** |
-| Coverage gate | `tests/vitest.shared.ts` 7 files at 95% (`COVERAGE_GATE_PLANNER`); `pnpm run test:coverage` → total lines 100% | **FIXED — gate met; strict 90% inventory expansion remains P1** |
-| Hardcoded path | `tests/setup.ts` / `setup.node.ts` derive site root from cwd/env (no `/oo08082026` literal); `site/lib/storage/r2Catalog.ts` uses env-only bucket resolution | **FIXED in code paths** |
-| R2/local/Supabase paths | `node scripts/asset-cutover-smoke.mjs` → `overall:"pass"`; `https://oando.co.in/assets/catalog/*` HEAD 200 + `x-oando-proxy: cloudflare-worker` | **FIXED — P0-3 closed** |
-| E2E `audit-3b` click-to-place | 0 layers 2026-08-06, `feature_flags` grants wired | **OPEN** |
-| `scan:boundaries`, `verify:focss`, `check:governance`, `check:layout` | 931 files / 0 edges, 141 stylesheets, `P4_migration_no_rollback=42`, layout OK, gate exit 0 | **GREEN** |
+### TST-S15 — Strict 90% inventory coverage
 
-**Root cause why tests pass when they should fail:** `happy-dom` + statically imported `node:crypto`/`node:fs`/`sharp` externalize `node:` → act frozen `undefined` polyfilled to no-op → `ExportMenu` rendered `<div />` empty → `Unable to find [data-testid]` masked as `p0:unit` 21/23 not noticed because `vitest-results.json` overwritten and plan claimed GREEN. No hollow ban catches mocked-only suites.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S15 |
+| **Seam** | `scripts/coverage-policy.mjs` `COVERAGE_GATE_STRICT` 90% on expanded include list |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Add `site/lib/catalog/` file to strict inventory without tests; `pnpm run test:coverage` fails strict threshold |
+| **Green** | Add unit tests at exported function seams only |
+| **Evidence** | `results/coverage/coverage-summary.json` strict inventory ≥90% |
+| **Depends on** | TST-S08 |
+| **Status** | OPEN |
 
----
+### TST-S16 — Playwright audit-3b (full spec)
 
-## Path ownership (local vs Supabase vs R2 vs worker)
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S16 |
+| **Seam** | `SEAM-E2E-PLANNER-3B` — `tests/e2e/audit-3b-planner-fixes.spec.ts` @ `http://localhost:3000` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `pnpm dev` then `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-3b-planner-fixes.spec.ts` — expect fail on fix #4 or #1–#3 |
+| **Green** | Minimal Planner fix per failing case; one case at a time |
+| **Evidence** | `results/planner/audit-3b/click-log.txt` + Playwright exit 0 |
+| **Depends on** | WRK-S04, DB-S02 |
+| **Status** | OPEN |
 
-| Domain | Dev disk (`DEV_AUTH_BYPASS=1`) | Prod (Supabase) | Mode selector | Bucket / env | Systems check |
-|--------|-------------------------------|-----------------|---------------|--------------|---------------|
-| Furniture JSON | `site/platform/shared/data/furniture/*.json` | Admin `public.furniture_catalog` (`rxzpznmxbaoxpikowmfc`) | `lib/catalog/furnitureCatalogMode.ts` → `isDevAuthBypassEnabled()` (exclusive, never dual-write) | `FURNITURE_DIR` vs `furniture_catalog` table | `pnpm exec vitest run --config tests/vitest.config.ts tests/unit/studio/studioStore.test.ts` (`@studio/server/studioStore` disk guard) |
-| Asset bytes | `site/public/assets/catalog/**` (git, `.vercelignore` excludes bulk `catalog/**` from Vercel) | Storage `catalog-assets` bucket (`furniture-library/*`, `planner-symbols/*`, `generated/*`, `planner-exports/*`) | `features/shared/catalog/catalogAssetStorage.server.ts:9` `CATALOG_ASSETS_BUCKET="catalog-assets"` + `SUPABASE_SERVICE_ROLE_KEY` (Admin for `furniture-library`, Products for rest) | `catalog-assets` on **Admin** per `docs/database/schema.md:17` | `resolvePublicDir()` (`site/lib/paths/sitePackageRoot.ts`) probes `focss` + `features/Planner` |
-| CDN/R2 | — | R2 bucket via `CLOUDFLARE_R2_CATALOG_BUCKET` (fallback `CLOUDFLARE_R2_BUCKET`/`R2_CATALOG_BUCKET`) | `site/lib/storage/r2Catalog.ts:resolveCatalogBucketName()` + `resolveR2Endpoint()` | `CLOUDFLARE_R2_CATALOG_BUCKET` / `CLOUDFLARE_ACCOUNT_ID` / `NEXT_PUBLIC_ASSET_BASE_URL` (`config/build/next.config.js:19`, `site/lib/assetPaths.ts:12`) | `r2Catalog.ts:probeR2CatalogAccess()` → `missing_r2_config` vs `ListObjectsV2` 200 |
-| Worker | — | `workers/oando-worker-proxy/src/index.js` proxies `/assets/catalog/*` → R2 | `CLOUDFLARE_R2_*` + `CF-Cache-Status` | `VERCEL_ORIGIN` | `curl -I https://oando.co.in/assets/catalog/flagship/categories/soft-seating.webp` → 200 + `x-oando-proxy: cloudflare-worker` (P0-3 404 vs S3 200 was prefix `catalog-assets/` vs `/assets/catalog/`) |
-| Local FS fallback | — | Never in prod (read-only FS) | `site/lib/assetPaths.ts:resolveLocalImageVariant()` → `localAssetExists()` → `PRODUCT_IMAGE_FALLBACK` | `getPublicDirCandidates()` tries `cwd/public` + `cwd/site/public` | `assetPaths.test.ts`, `asset-cutover-r2.smoke.test.ts` |
+### TST-S17 — Playwright audit-3c
 
-**Rule:** Code never hardcodes `oo08082026`, `oando-assets-clean-20260805`, or `oando-asset-cdn`. Bucket from `process.env.CLOUDFLARE_R2_CATALOG_BUCKET` only (throw if missing in prod; dev fallback only when `DEV_AUTH_BYPASS=1`).
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S17 |
+| **Seam** | `tests/e2e/audit-3c-planner-polish.spec.ts` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Run spec; first failing test |
+| **Green** | Fix one polish issue |
+| **Evidence** | `results/planner/audit-3c/` dated folder |
+| **Depends on** | TST-S16 |
+| **Status** | OPEN |
 
----
+### TST-S18 — Playwright audit-2a Studio
 
-## Step-by-step instructions
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S18 |
+| **Seam** | `SEAM-E2E-STUDIO-2A` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-2a-studio-journey.spec.ts` |
+| **Green** | Fix failing journey step |
+| **Evidence** | `results/studio/audit-2a/` |
+| **Depends on** | — |
+| **Status** | OPEN |
 
-Run from **repo root `e:\oo08082026`** (Windows PowerShell). `pnpm` only, never inside `site/`. Stop on first failure.
+### TST-S19 — Playwright audit-4a marketing
 
-### 0. Prereqs
-
-```powershell
-node --version   # v24+
-pnpm --version   # 11.20.0+
-Get-ChildItem .env.local   # Admin + Products URLs + R2 keys present
-```
-
-### 1. Static analysis (no hardcodes)
-
-```powershell
-pnpm run typecheck
-pnpm run typecheck:tests
-pnpm run scan:boundaries
-pnpm run verify:focss
-pnpm run check:layout
-node scripts/general/check-plans-purity.mjs
-```
-
-**Expect:** `typecheck` exit 0 (`adminBlockDescriptors` alias, no TS2308); `verify:focss` 141 stylesheets; `scan:boundaries` 931 files / 0 edges; `check:plans-purity` OK (README + 8 plans, no subfolders).
-
-### 2. P0 unit slice — all 23 files must pass
-
-```powershell
-pnpm run p0:unit
-```
-
-**Expect:** 23 files / 146 tests, **exit 0**. Includes `plannerExportMenu` + `studioExportMenu` (5+5) which require fixing `React.act` (see § Pitfalls). **If fail:** check `// @vitest-environment` headers and `environmentMatchGlobs` — `node:fs`/`sharp` suites must be `node`, DOM suites `happy-dom`. **Artifact:** `results/tests/vitest-p0-results.json` (not overwriting `vitest-results.json`).
-
-### 3. Hollow + gate-skips (very strict, no workarounds)
-
-```powershell
-node scripts/general/audit-hollow-tests.mjs
-node scripts/general/audit-gate-skips.mjs
-```
-
-**Expect:** `audit-hollow-tests: ok`, `audit-gate-skips: ok`. Fails on `expect(true).toBe(true)`, sole `toBeTruthy`, empty `catch`, zero `expect`, **and** mocked-only suites (`expect(vi.fn()).toHaveBeenCalled*` without DOM/state `screen.*`/`toHaveAttribute`/`toEqual` on real output). Tests should *fail* when logic is weak — do not add `expect(true)` to silence.
-
-### 4. Both Vitest lanes (never trust one summary)
-
-```powershell
-pnpm run test
-```
-
-Runs `scripts/run-full-vitest.mjs`: lane 1 `tests/vitest.config.ts` (default), regenerates tech-docs data, lane 2 `tests/vitest.tech-docs.config.ts`.
-
-**Expect:** `results/tests/summary.json` with **two** entries `[{lane:"default",failed:0},{lane:"tech-docs",failed:0}]` + `results/tests/vitest-results.json` + `results/tests/vitest-tech-docs-results.json`, **exit 0**. **If fail:** read both lane outputs (not `Select-Object -Last`). **Rule:** `p0:unit` writes `vitest-p0-results.json`; never overwrite full `vitest-results.json`.
-
-### 5. Coverage — strict >90% (fail-closed)
-
-```powershell
-pnpm run test:coverage
-node scripts/generate-coverage-report.mjs planner
-node scripts/generate-coverage-report.mjs site
-```
-
-**Expect:**
-- Gate `planner` (allowlist `VITEST_PLANNER_GATE_COVERAGE_INCLUDE` 7 + expanded 90% strict inventory): `total.lines.pct >=95` on gate, `>=90` on strict inventory (`scripts/coverage-policy.mjs` `COVERAGE_GATE_STRICT 90%`).
-- `results/coverage/coverage-summary.json` `total.lines.pct >=90`, `results/coverage-reports/planner/coverage-report.html` present.
-- **If <90%:** expand tests, do not lower gate. SVG/scripts/public assets excluded via `VITEST_PLANNER_GATE_COVERAGE_EXCLUDE`.
-
-### 6. Fast release gate (includes 1–5)
-
-```powershell
-pnpm run gate
-```
-
-Runs `release:gate:fast`: `prune-site-dumps` → `check:layout` → `verify:focss` → `typecheck` → `typecheck:tests` → `p0:unit` → `test:priority-7/8` → `test:audit:fast` (hollow + gate-skips) → `lint` → `lint:ui:strict` → `check:ui-assets` → `check:launch` → `check:docs-all` → `check:style-tokens` → `check:governance`.
-
-**Expect:** exit 0 on **same commit** as lanes + coverage.
-
-### 7. Tech-docs lane isolate (if touched `tech-docs-generator/`)
-
-```powershell
-pnpm exec vitest run --config tests/vitest.tech-docs.config.ts tests/tech-docs-generator/snapshot.test.ts
-pnpm --filter oando-tech-docs gate
-```
-
-**Expect:** ~17 snapshot tests + tech-docs gate exit 0. See [07-tech-docs-plan.md](./07-tech-docs-plan.md).
-
-### 8. Targeted Playwright audits (dev server `http://localhost:3000` only, never `127.0.0.1`)
-
-```powershell
-pnpm dev   # http://localhost:3000
-pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-3b-planner-fixes.spec.ts tests/e2e/audit-3c-planner-polish.spec.ts tests/e2e/audit-2a-studio-journey.spec.ts tests/e2e/audit-4a-marketing-journey.spec.ts
-```
-
-**Expect:** `audit-3b` #4 places ≥1 layer (`feature_flags` grants per [04-database-plan.md](./04-database-plan.md)). Save to `results/planner/audit-3b-*/` + `results/studio/audit-2a/`.
-
-### 9. R2 / Supabase / worker smoke (proves correct paths)
-
-```powershell
-node scripts/asset-cutover-smoke.mjs
-pnpm exec vitest run --config tests/vitest.config.ts tests/unit/lib/assetPaths.test.ts tests/unit/scripts/asset-cutover-r2.smoke.test.ts
-```
-
-**Expect:** `results/asset-cutover/smoke-report.json` `overall:"pass"`, R2 200 parity, worker not 404 (see Path ownership table). Required before closing P0-3 and retiring Products `furniture_catalog` + `catalog-assets` per [04-database-plan.md](./04-database-plan.md).
-
-### 10. Scripts hygiene + boundaries
-
-```powershell
-node scripts/AsNeeded/_audit-stale-scripts.mjs
-pnpm run scan:boundaries
-```
-
-**Expect:** 0 stale scripts, 0 cross-product edges (Studio ↔ Planner).
-
-Save dated artifacts: `results/tests/vitest-results.json`, `vitest-tech-docs-results.json`, `vitest-p0-results.json`, `summary.json`, `results/coverage/**/coverage-report.*`, `results/asset-cutover/smoke-report.json`.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | TST-S19 |
+| **Seam** | `SEAM-E2E-MARKETING-4A` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Run `audit-4a-marketing-journey.spec.ts`; fail on responsive or CTA case |
+| **Green** | Fix marketing component at failing seam |
+| **Evidence** | `results/marketing/audit-4a/` |
+| **Depends on** | SITE-S08–SITE-S10 |
+| **Status** | OPEN |
 
 ---
 
-## Verification checklist
+## Path ownership (reference)
 
-- [x] `pnpm run typecheck` + `typecheck:tests` — exit 0 (no `blockDescriptors` TS2308)
-- [x] `pnpm run p0:unit` — 23 files / 146 tests pass (ExportMenu 10/10, `React.act` fixed, no hardcode)
-- [x] `node scripts/general/audit-hollow-tests.mjs` — `ok`
-- [x] `node scripts/general/audit-gate-skips.mjs` — `ok`
-- [x] `pnpm run test` — both lanes `failed:0`, `summary.json` has two entries, separate JSONs not overwritten
-- [x] `pnpm run test:coverage` + `generate-coverage-report.mjs` — `total.lines.pct >=90` (gate 95%), HTML/CSV/JSON in `results/coverage-reports/**`
-- [x] `pnpm run gate` — exit 0 on same commit as lanes
-- [x] `pnpm run scan:boundaries` — 0 cross-product edges (930+ files)
-- [x] `node scripts/asset-cutover-smoke.mjs` — `overall:"pass"` (R2/local/worker parity, P0-3 closure evidence)
-- [x] `pnpm run verify:focss` — 141+ stylesheets OK
-- [x] No `oo08082026`, `oando-assets-clean-20260805`, or `oando-asset-cdn` literal in `site/lib/**` or `tests/setup.ts` (`grep` clean)
-- [x] `results/tests/summary.json` + coverage + asset-cutover dated on `main`
+| Domain | Dev disk | Prod | Mode selector |
+|--------|----------|------|----------------|
+| Furniture JSON | `platform/shared/data/furniture/` | Admin `furniture_catalog` | `furnitureCatalogMode.ts` |
+| Asset bytes | `site/public/assets/catalog/**` | Storage `catalog-assets` | `catalogAssetStorage.server.ts` |
+| CDN/R2 | — | `CLOUDFLARE_R2_CATALOG_BUCKET` | `r2Catalog.ts` |
+
+**Rule:** No literals `oo08082026`, `oando-assets-clean-20260805`, `oando-asset-cdn` in `site/lib/**` or `tests/setup.ts`.
 
 ---
 
-## Open items
+## Key commands
 
-1. ~~**P0:** Fix `ExportMenu` `React.act` (frozen `undefined` in React 19.2.8 CJS `react.production.js:542` vs `act-compat.js` → `React.act` is not a function) so `p0:unit` 23/23.~~ **FIXED**
-2. ~~**P0:** Remove hardcodes `const slug = "/oo08082026"` (`tests/setup.ts:75`, `setup.node.ts:10`) and `|| "oando-assets-clean-20260805"` (`r2Catalog.ts`, `asset-cutover-smoke.mjs`, `r2-*.mjs`) → derive from `VITEST_REPO_ROOT` / `sitePackageRoot` / `CLOUDFLARE_R2_CATALOG_BUCKET` only.~~ **FIXED in code paths**
-3. ~~**P0:** Re-prove both lanes `pnpm run test` with dated `summary.json` + coverage `>=90%` (currently STALE + 180 overwritten).~~ **FIXED — `summary.json` generated by `run-full-vitest.mjs`; coverage 100% total lines on gate files**
-4. ~~**P1:** Very strict hollow audit (`sole-mocked-call`, `no-assertion-on-behavior`) + `test:audit:fast` enforcement.~~ **FIXED — `test:audit:fast` passes**
-5. ~~**P1:** Close P0-3 worker 404 — prove `curl -I https://oando.co.in/assets/catalog/*` 200 + `x-oando-proxy: cloudflare-worker` vs S3 `HeadObject` 200 (bucket from env, not code).~~ **FIXED — `asset-cutover-smoke.mjs` overall `"pass"`; apex `https://oando.co.in/assets/catalog/*` HEAD 200 with `x-oando-proxy: cloudflare-worker`**
-6. **P1:** Inventory coverage strict 90% (`coverage-policy.mjs` `COVERAGE_GATE_STRICT`) — expand `VITEST_PLANNER_GATE_COVERAGE_INCLUDE` to catalog/r2/withAuth/ui, fail-closed (expand tests, not lower).
-7. **P2:** Re-run `audit-3b/3c/2a/4a` on `http://localhost:3000` with `DEV_AUTH_BYPASS=1` vs preview (no `127.0.0.1`), dated `results/`.
-8. ~~**P2:** Separate `vitest-p0-results.json` so `p0:unit` never overwrites full `vitest-results.json` (P1-1 closure).~~ **FIXED — `p0:unit` writes `../results/tests/vitest-p0-results.json`; `prune-site-dumps.mjs` keeps `site/results` out of tree**
+| Command | Artifact |
+|---------|----------|
+| `pnpm run p0:unit` | `results/tests/vitest-p0-results.json` |
+| `pnpm run test` | `results/tests/summary.json` (2 lanes) |
+| `pnpm run gate` | composite exit 0 |
+| `node scripts/asset-cutover-smoke.mjs` | `results/asset-cutover/smoke-report.json` |
 
----
-
-## Key paths & commands
-
-| Item | Path / command |
-|------|----------------|
-| Vitest config | `tests/vitest.config.ts` — `environmentMatchGlobs: [["tests/unit/lib/auth/**","node"]]` + `// @vitest-environment node` headers on `sharp`/`fs` files |
-| Vitest shared (no hardcodes) | `tests/vitest.shared.ts` — `VITEST_WORKSPACE_ROOT = path.resolve(TESTS_DIR,"..")`, `VITEST_REPO_ROOT = path.join(…, "site")`, `VITEST_SETUP_FILE = path.resolve(TESTS_DIR,"setup.ts")` |
-| Site root (derive) | `site/lib/paths/sitePackageRoot.ts` — `resolveSitePackageRoot()` probes `existsSync(focss)` + `features/Planner\|Studio` + `app`; `resolvePublicDir()` |
-| Test setup (derive) | `tests/setup.ts` — `process.chdir(VITEST_REPO_ROOT)`, `globalThis.IS_REACT_ACT_ENVIRONMENT=true` before React, `webcrypto` via `node:crypto` (no `oo08082026` literal) |
-| R2 catalog (env only) | `site/lib/storage/r2Catalog.ts` — `resolveCatalogBucketName()` → `CLOUDFLARE_R2_CATALOG_BUCKET`/`CLOUDFLARE_R2_BUCKET`/`R2_CATALOG_BUCKET`; `resolveCatalogAssetBuckets()`; no default `oando-asset-*` literal |
-| Supabase storage | `site/features/shared/catalog/catalogAssetStorage.server.ts` — `CATALOG_ASSETS_BUCKET="catalog-assets"` (`planner-symbols`, `furniture-library`, `generated`) |
-| Asset path | `site/lib/assetPaths.ts` — `NEXT_PUBLIC_ASSET_BASE_URL` + `getPublicDirCandidates()` (`cwd/public` + `cwd/site/public`) |
-| Hollow audit (strict) | `scripts/general/hollow-test-patterns.mjs` + `scripts/general/audit-hollow-tests.mjs` — ban `expect(true)`, sole `toBeTruthy`, `empty-catch`, `zero-expect`, mocked-only |
-| Coverage gates | `scripts/coverage-policy.mjs` — `COVERAGE_GATE_PLANNER 95%`, `COVERAGE_GATE_STRICT 90%` (strict >90%); `scripts/generate-coverage-report.mjs planner/site` |
-| Worker proxy | `workers/oando-worker-proxy/src/index.js` + `wrangler.toml` — `VERCEL_ORIGIN`, `/assets/catalog/*` → R2 |
-| Drizzle schema | `site/platform/drizzle/schema/planner.ts` vs `catalog.ts` — `blockDescriptors` in both, barrel `index.ts` aliases `adminBlockDescriptors` |
-| P0 slice | `pnpm run p0:unit` → `vitest-p0-results.json` (never `vitest-results.json`) |
-| Both lanes | `pnpm run test` (`scripts/run-full-vitest.mjs`) → `summary.json` two entries |
-| Coverage | `pnpm run test:coverage` + `node scripts/generate-coverage-report.mjs planner` → `results/coverage-summary.json` |
-| Full gate | `pnpm run gate` (`release:gate:fast`) |
-| Governance | `pnpm run check:governance` — `P4_migration_no_rollback=42` |
-
-*Blockers: [`Failures.md`](../Failures.md) only. Mark COMPLETE only with dated `results/tests/summary.json` + `results/coverage/coverage-summary.json` (`>=90%`) + zero hollow on `main` at same SHA. Do not claim GREEN when 21/23.*
+*Blockers: [`Failures.md`](../Failures.md) only.*

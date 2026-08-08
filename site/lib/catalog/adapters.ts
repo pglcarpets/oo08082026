@@ -46,7 +46,7 @@ export function normalizeProducts(rows: Product[]): Product[] {
       id: normalizeCatalogProductId(product.id, product.slug),
       images,
       flagship_image,
-      "3d_model": normalizeAssetPath(product["3d_model"]),
+      "3d_model": normalizeAssetPath(product["3d_model"], { probeDisk: true }),
       category_id: product.category_id,
     };
   });
@@ -65,7 +65,7 @@ export function toCompatProduct(product: Product): CompatProduct {
   const specsFeatures = Array.isArray(specsObject.features)
     ? specsObject.features.map((item) => String(item).trim()).filter(Boolean)
     : [];
-  const modelPath = normalizeAssetPath(product["3d_model"]);
+  const modelPath = normalizeAssetPath(product["3d_model"], { probeDisk: true });
   const explicitAlt =
     product.alt_text ||
     product.metadata?.ai_alt_text ||

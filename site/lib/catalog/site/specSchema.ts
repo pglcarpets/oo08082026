@@ -164,7 +164,7 @@ export function getProductCategorySchema(categoryId: string): ProductCategorySch
 export function collectProductImages(product: CompatProduct): string[] {
   const seen = new Set<string>();
   const images = [
-    normalizeAssetPath(product.flagshipImage),
+    normalizeAssetPath(product.flagshipImage, { probeDisk: true }),
     ...normalizeAssetList(Array.isArray(product.images) ? product.images : []),
     ...normalizeAssetList(Array.isArray(product.sceneImages) ? product.sceneImages : []),
     ...(Array.isArray(product.variants)
@@ -224,7 +224,8 @@ export function auditCompatProduct(
   const sustainabilityScore =
     toNumber(product.metadata?.sustainabilityScore) ?? toNumber(specs.sustainability_score);
   const images = collectProductImages(product);
-  const primaryImage = normalizeAssetPath(toText(product.flagshipImage)) || images[0] || "";
+  const primaryImage =
+    normalizeAssetPath(toText(product.flagshipImage), { probeDisk: true }) || images[0] || "";
   const altText =
     toText(product.altText) ||
     toText(product.metadata?.ai_alt_text) ||

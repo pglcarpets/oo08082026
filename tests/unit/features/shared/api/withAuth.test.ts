@@ -177,7 +177,7 @@ describe("withAuth", () => {
       throw new Error("handler failed");
     });
     const wrapped = withAuth(handler, {
-      rateLimitScope: "mirror:throw",
+      rateLimitScope: "handler-serialize-error",
       role: "guest",
     });
     const response = await wrapped(

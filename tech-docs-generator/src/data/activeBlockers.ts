@@ -13,7 +13,7 @@ export const activeBlockers: ActiveBlocker[] = [
   {
     id: 'F3',
     blocker: 'docs.oando.co.in has no public DNS (NXDOMAIN)',
-    evidence: 'Resolve-DnsName / curl → could not resolve host. Separate from apex Worker.',
+    evidence: 'nslookup docs.oando.co.in 2026-08-08 — no A record (SOA only). Separate from apex Worker.',
     ownerAction:
       'Add Cloudflare DNS for docs → tech-docs host. See docs/architecture/tech-docs-link.md.',
   },

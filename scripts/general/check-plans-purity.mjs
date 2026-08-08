@@ -15,6 +15,7 @@ const planLabel = "plans";
  * Fold working notes into programme plans or `Failures.md`.
  */
 const rootPlanDocs = [
+  "README.md",
   "08-oo-start-checklist.md",
   "04-database-plan.md",
   "01-handover.md",

@@ -1,86 +1,119 @@
-# Handover -- Session Close
+# Handover — session close slices
 
-**Date:** 2026-08-08
-**Branch:** main
-**Status:** ACTIVE — repo docs, plans, scripts, and Drizzle schema aligned with live two-DB architecture; all plan-referenced scripts verified on disk.
-
----
-
-## 1. What Changed (this session, in order)
-
-| # | Change | Files | Evidence |
-|---|--------|-------|----------|
-| 1 | **Audited database structure** — confirmed two Supabase projects (Products `erpweaiypimorcunaimz` / Admin `rxzpznmxbaoxpikowmfc`), 19 Products tables (incl. legacy `furniture_catalog` + `block_descriptors`), 23 Admin tables (canonical copies migrated in Phase 05), RLS + `archive` schema | `docs/database/*` · `site/platform/types/*` | Two-DB report |
-| 2 | **Aligned all markdown to repo truth** — `block_descriptors` + `furniture_catalog` location (Products → Admin) across root, docs, Agents | `AGENTS.md`, `README.md`, `START.md`, `docs/**/*.md`, `Agents/*.md` | Zero stale product-DB refs remain |
-| 3 | **Updated `docs/architecture/`** and removed a stale generated file | `docs/architecture/{README,product-map,stack,source-map,tech-docs-link,routes-pages}.md`, deleted `sitemap-routes.csv` | Dir clean; 9 files + `.gitkeep` |
-| 4 | **Updated all plans + related MDs** — blocker taxonomy F1/F2 → P0-1/P0-2/P0-3, `HANDOVER.md` → `plans/01-handover.md`, purity count 6→8, checklist UTF-16→UTF-8 | `plans/*.md`, `Failures.md`, `CONTENTS.md`, `DOC-MAP.md` | `check-plans-purity` OK |
-| 5 | **Updated all scripts** — repo refs `oo05082026`/`ayushonmicrosoft` → `oo08082026`/`pglcarpets`, wrong local path, `block_descriptors`/`furniture_catalog` moved to Admin in DB-check/seed/descriptor scripts | `scripts/*.{ps1,bat,mjs,ts}` | `node --check` all pass |
-| 6 | **Fixed 7 Drizzle-schema / migration drift items** — removed phantom `profiles.email`/`profiles.role` + their indexes, removed non-existent `review_links`/`review_comments`, added `furnitureCatalog` + `blockDescriptors` to Admin schema, updated unit test | `site/platform/drizzle/schema/planner.ts`, `migrations/0001_add_missing_indexes.sql`, `tests/unit/platform/drizzle/schema/planner.test.ts` | Unit test 3/3 pass |
-| 7 | **Updated plan files + related docs** — F1/F2 → P0-1/P0-2 in runbook, testing handbook, stack, restore, benchmarks; removed resolved drift from `docs/database/schema.md` | `OPERATIONS_RUNBOOK.md`, `Testing-handbook.md`, `docs/**/*.md` | 0 stale F1/F2 refs |
-| 8 | **Added "Scripts — when to run what"** consolidated table to the plans index | `plans/00-README.md` | `check-plans-purity` OK |
+**AUDITED:** 2026-08-08 · **Scope:** session-close only — no feature work.  
+**Related:** [`00-README.md`](./00-README.md) slice registry · [`Failures.md`](../Failures.md).
 
 ---
 
-## 2. Verification
+## Session-close vertical slices
 
-| Gate | Command | Result | Evidence |
-|------|---------|--------|----------|
-| Planner schema unit | `pnpm exec vitest run tests/unit/platform/drizzle/schema/planner.test.ts` | **3/3 pass** | Table names match live Admin DB |
-| Modified `.mjs` syntax | `node --check` on changed scripts | **All pass** | No parse errors |
-| Plans purity | `node scripts/general/check-plans-purity.mjs` | **OK** | README + 8 plan docs, no subfolders |
-| Script existence | `Test-Path` on all plan-referenced scripts | **All present** | 10/10 on disk |
-| Stale ref scan | grep for F1/F2, `HANDOVER.md`, `oo05082026`, product-DB descriptor refs | **Clean** | 0 remaining |
+### HO-S01 — P0 unit evidence on close
 
----
-
-## 3. Current Architecture (quick reference)
-
-- **Two DBs:** Products (catalog/configurator/themes/flags — legacy furniture + descriptor copies remain) · Admin/Planner (plans, profiles, handoffs, teams, price books, queries, audit, **furniture_catalog + block_descriptors canonical**).
-- **`profiles` has no `email`/`role`** — writing either returns PGRST204 (previously broke every Planner save).
-- **`archive.plans` is not the Planner store — `public.oando_plans` is.**
-- **Every migration needs a `-- rollback` section** (governance baseline `P4_migration_no_rollback = 42`); grants + policies both required.
-- **Persistence is exclusive-mode** — disk under `DEV_AUTH_BYPASS=1`, Supabase otherwise; never dual-write.
----
-
-## 4. Active Blockers (from `Failures.md`, 5 rows)
-
-| ID | Priority | Blocker |
-|----|----------|---------|
-| F3 | P0 | `docs.oando.co.in` no public DNS (NXDOMAIN) |
-| P0-1 | P0 | Product page hydration mismatches (6 routes) |
-| P1-2 | P1 | Theme fetch fails (falls back to local tokens) |
-| P1-3 | P1 | Auth `withAuth:mirror:throw` + rate-limit 401s from `127.0.0.1` |
-| P1-4 | P1 | `pnpm-lock.yaml` v9.0 vs `packageManager` pnpm@11.20.0 |
-
-Blocker → plan mapping: hydration → 06-site-plan #4 · theme → 06-site-plan · auth 127.0.0.1 → 02-testing-plan #2 · lockfile → 03-ops-deploy-plan #5.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S01 |
+| **Seam** | `SEAM-GATE-P0UNIT` — `pnpm run p0:unit` exit code + `results/tests/vitest-p0-results.json` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Delete or rename `results/tests/vitest-p0-results.json`; run `pnpm run p0:unit` — expect non-zero exit or missing artifact |
+| **Green** | Restore green run only if code broke; otherwise re-run: `pnpm run p0:unit` |
+| **Evidence** | `pnpm run p0:unit` → `results/tests/vitest-p0-results.json` — **23 files / 146 tests passed** (2026-08-08) |
+| **Depends on** | — |
+| **Status** | DONE — `results/tests/vitest-p0-results.json` |
 
 ---
 
-## 5. Where to Go Next
+### HO-S02 — Failures.md row hygiene
 
-| Priority | Item | Plan / Doc |
-|----------|------|------------|
-| P0 | Close click-to-place (audit-3b) with live Supabase proof | [05-workspaces-plan.md](./05-workspaces-plan.md) |
-| P0 | F3 docs DNS CNAME in Cloudflare | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
-| P1 | Regenerate DB types (`ops db:types:admin` / `db:types`) and reconcile | [04-database-plan.md](./04-database-plan.md) |
-| P1 | Fix marketing hydration + ledger findings | [06-site-plan.md](./06-site-plan.md) |
-| P1 | Theme fetch fails (falls back to local tokens) | [06-site-plan.md](./06-site-plan.md) |
-| P1 | Auth `withAuth:mirror:throw` + rate-limit 401s from `127.0.0.1` | [02-testing-plan.md](./02-testing-plan.md) |
-| P1 | `pnpm-lock.yaml` v9.0 vs `packageManager` pnpm@11.20.0 | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
-| P2 | Expand strict 90% inventory coverage + E2E `audit-3b/3c/2a/4a` | [02-testing-plan.md](./02-testing-plan.md) |
-
-**Scripts — when to run what:** consolidated table in [00-README.md](./00-README.md#scripts--when-to-run-what); full inventory via `pnpm run ops list`.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S02 |
+| **Seam** | [`Failures.md`](../Failures.md) table rows — evidence column must cite `results/` path |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Add a row with fake evidence path; run `node scripts/general/check-failures.mjs` (via `check:docs-all`) — expect fail if checker validates paths |
+| **Green** | Remove row or fix evidence to real artifact |
+| **Evidence** | `pnpm run check:docs-all` exit 0; **1 active row** in `Failures.md` (F3); resolved table documents P0-1, P1-2, P1-3, P1-4 |
+| **Depends on** | — |
+| **Status** | DONE — 2026-08-08 |
 
 ---
 
-## 6. Quick Start for Next Session
+### HO-S03 — Plan AUDITED dates
 
-1. Read this handover.
-2. Read `Failures.md` (5 rows — 1 P0 + 4 P1).
-3. Run the Fast Gate from `08-oo-start-checklist.md`.
-4. Pick a programme from `plans/00-README.md` (suggested: 05-workspaces-plan for audit-3b, or 06-site-plan for hydration/theme/auth).
-5. Bump plan `AUDITED` dates and existing artifacts under `results/` as items land.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S03 |
+| **Seam** | `AUDITED YYYY-MM-DD` header in each `plans/*.md` programme file |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Set `AUDITED: 2020-01-01` in one plan; grep registry in `00-README.md` for stale date note |
+| **Green** | Bump `AUDITED` to session close date on every touched programme plan |
+| **Evidence** | `plans/00-README.md` **AUDITED: 2026-08-08** |
+| **Depends on** | Programme slices landed in session |
+| **Status** | DONE — 2026-08-08 rewrite |
 
 ---
+
+### HO-S04 — Plans purity before close
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S04 |
+| **Seam** | `node scripts/general/check-plans-purity.mjs` exit code |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Add `plans/notes.md`; run checker — expect exit 1 |
+| **Green** | Remove extra file; flat Markdown only |
+| **Evidence** | `node scripts/general/check-plans-purity.mjs` → `check:plans-purity OK` (2026-08-08 rewrite + follow-up) |
+| **Depends on** | — |
+| **Status** | DONE |
+
+---
+
+### HO-S05 — Active blockers mirror (tech-docs)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S05 |
+| **Seam** | `tech-docs-generator/src/data/activeBlockers.ts` ↔ `Failures.md` IDs |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Change F3 text in `Failures.md` only; run `pnpm exec vitest run --config tests/vitest.tech-docs.config.ts tests/tech-docs-generator/snapshot.test.ts` — expect fail if snapshot asserts blocker text |
+| **Green** | Update `activeBlockers.ts` to match; re-run snapshot lane |
+| **Evidence** | `activeBlockers.ts` mirrors F3 only; matches `Failures.md` 2026-08-08 |
+| **Depends on** | HO-S02 |
+| **Status** | DONE |
+
+---
+
+### HO-S06 — Handover status table
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | HO-S06 |
+| **Seam** | This file + `00-README.md` registry statuses agree |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Mark a DONE slice OPEN in registry without evidence |
+| **Green** | Align registry with evidence refs only |
+| **Evidence** | `plans/00-README.md` slice registry table |
+| **Depends on** | HO-S01, HO-S03, HO-S04, HO-S05 |
+| **Status** | PARTIAL — registry synced 2026-08-08; complete when HO-S01 closed |
+
+---
+
+## Blocker → slice map (from `Failures.md` 2026-08-08)
+
+| Failures ID | Slice IDs | Notes |
+|-------------|-----------|-------|
+| F3 | OPS-S01, TECH-S05 | Active — DNS NXDOMAIN |
+| P0-1 | SITE-S01, SITE-S02 | **PARTIAL** — `probeDisk` fix; console audit pending |
+| P1-2 | SITE-S11 | **DONE** — preset theme API |
+| P1-3 | TST-S20, TST-S21 | **DONE** |
+| P1-4 | OPS-S06 | **DONE** |
+
+---
+
+## Quick start (next session)
+
+1. Run [`08-oo-start-checklist.md`](./08-oo-start-checklist.md) (`CHK-S01`–`CHK-S03`).
+2. Pick one **OPEN** slice from [`00-README.md`](./00-README.md) registry.
+3. Confirm seam checkbox → red → green → evidence in `results/`.
+4. Close with `HO-S01`–`HO-S06`.
 
 *Generated: 2026-08-08*

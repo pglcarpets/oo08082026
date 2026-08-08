@@ -51,7 +51,7 @@ describe("adminActionGuards", () => {
         }),
       ),
     ).toBe("198.51.100.7");
-    expect(resolveClientIp(new Headers())).toBe("127.0.0.1");
+    expect(resolveClientIp(new Headers())).toBe("localhost");
 
     await expect(requireAdminAction()).resolves.toBeUndefined();
     expect(resolveAuthContext).toHaveBeenCalledWith("admin");

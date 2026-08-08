@@ -1,148 +1,262 @@
-# Site plan — marketing, i18n, UI polish — AUDITED 2026-08-08
+# Site plan — marketing & hydration vertical slices
 
-**Status:** PARTIAL — member suite landings claimed 2026-08-06; marketing ledger has 10 open findings; responsive audit not re-run 2026-08-08; console audit reveals product-page hydration mismatches + 404 resource errors on 6 routes; theme fetch fails (falls back to local tokens); full gate OPEN.
-**Owner / when to use:** Anyone changing marketing `(site)` routes, i18n, member suite shell, or cross-route FOCSS polish.
-**Related:** [05-workspaces-plan.md](./05-workspaces-plan.md) (track C2) · [02-testing-plan.md](./02-testing-plan.md) (`audit-4a`) · [04-database-plan.md](./04-database-plan.md) (asset cutover Phase 09) · [`Agents/07-css.md`](../Agents/07-css.md) · `site/focss/site/` · `agent-reports/marketing-ledger.md`
+**AUDITED:** 2026-08-08 · **Owner:** `(site)` routes, i18n, member suite, FOCSS.  
+**Related:** [`06-site-plan.md`](./06-site-plan.md) · `agent-reports/marketing-ledger.md` · [`Failures.md`](../Failures.md) P0-1.
 
----
-
-## Goal
-
-One brand across marketing and member suite: Cisco Sans display, Helvetica Neue body, FOCSS tokens, responsive 320–1920, locale-aware homepage where `next-intl` is wired — with `pnpm run gate` green and `responsive-audit.mjs` passing on the same commit.
+**Browser:** `http://localhost:3000` only.
 
 ---
 
-## Who does what
+## DONE slices
 
-| Role | Responsibility |
-|------|----------------|
-| Marketing owner | `(site)` pages, `audit-4a`, ledger in `agent-reports/marketing-ledger.md` |
-| i18n owner | `home.*` keys, locale switch e2e, hardcoded string grep |
-| Member suite owner | Tracks A–B shell and portal CSS |
-| Workspace UI | Track C2 — delegate to [05-workspaces-plan.md](./05-workspaces-plan.md) |
+### SITE-S14 — FOCSS verify on site CSS
 
----
-
-## Current state
-
-| Area | Status | Notes |
-|------|--------|-------|
-| Marketing `/` | **OPEN** | Ledger #1 assistant off-canvas, #2 header overflow, #3 `/trusted-by` abort, #5 contact hydration, #6 empty headings, #7 image loading, #8 link name, #9 duplicate labels, #10 enquiry notification (see `agent-reports/marketing-ledger.md`) |
-| Product pages | **OPEN** | Console audit 2026-08-08: hydration mismatch on `/products/workstations/` and `/products/seating/` (`results/console-audit/errors.json`) |
-| i18n `home.*` | **PARTIAL** | `next-intl` wired; e2e locale switch missing |
-| Desktop UI (1920) | **PARTIAL** | Tokens claimed; `responsive-audit` not re-run |
-| Mobile UI (390) | **PARTIAL** | Planner canvas fixed in workspaces; marketing #1 assistant off-canvas, #2 header overflow open |
-| Member suite A1–A8 | **CLAIMED** | Not re-proven 2026-08-08 |
-| Portal CSS B1–B4 | **CLAIMED** | `shell-portal.css`, FOCSS registered |
-| Track C1/C2/C3 | **OPEN** | Marketing polish, workspace chrome, admin tokens |
-| Track C4, D1–D2 | **DONE** | Portal/legal; header decomposition |
-| Track E1–E4 | **GREEN on 2026-08-07** | Re-run on release |
-| Track E5–E6 | **OPEN** | `responsive-audit`, full `gate` |
-
-### Locked constraints
-
-| Rule | Detail |
-|------|--------|
-| Typography | Cisco Sans display, Helvetica Neue body |
-| CSS | FOCSS zones + tokens — [`Agents/07-css.md`](../Agents/07-css.md) |
-| Forks | Studio ↔ Planner never import each other |
-| Browser | `http://localhost:3000` only (never `127.0.0.1`) |
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S14 |
+| **Seam** | `pnpm run verify:focss` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | _(completed)_ |
+| **Green** | _(completed)_ |
+| **Evidence** | 141+ stylesheets OK (2026-08-08 gate) |
+| **Depends on** | — |
+| **Status** | DONE |
 
 ---
 
-## Step-by-step instructions
+## OPEN slices — console / hydration (`results/console-audit/errors.json`)
 
-1. **Start dev server**
-   ```powershell
-   pnpm dev
-   ```
-   Open `http://localhost:3000` — verify marketing home and member entry routes load.
+### SITE-S01 — `/products/workstations/` hydration (P0-1)
 
-2. **FOCSS + layout gates**
-   ```powershell
-   pnpm run verify:focss
-   pnpm run check:layout
-   pnpm run scan:boundaries
-   pnpm run lint
-   ```
-   **Expect:** all exit 0. **If `verify:focss` fails:** fix token/zone violations under `site/focss/`.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S01 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `http://localhost:3000/products/workstations/` — no React hydration mismatch in console |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Add Playwright test `tests/e2e/audit-4a-marketing-pages.spec.ts` or new spec: goto route; `page.on('console')` must not receive `hydration-mismatch` / `srcSet` attribute mismatch |
+| **Green** | `normalizeAssetPath(..., { probeDisk: false })` default — SSR matches client (`site/lib/assetPaths.ts`); optional `SEAM-CONSOLE-ROUTE` Playwright test |
+| **Evidence** | `pnpm exec vitest run tests/unit/lib/assetPaths.test.ts` pass (2026-08-08); **console audit on route still OPEN** |
+| **Depends on** | CHK-S05 |
+| **Status** | PARTIAL — code fix landed; `SEAM-CONSOLE-ROUTE` evidence pending |
 
-3. **Responsive audit** (all breakpoints)
-   ```powershell
-   node scripts/responsive-audit.mjs
-   ```
-   **Expect:** pass at 1920, 1280, 390, 320. **If fail:** note route + viewport in `results/site/responsive-audit.txt`.
+### SITE-S02 — `/products/seating/` hydration (P0-1)
 
-4. **Marketing Playwright**
-   ```powershell
-   pnpm exec playwright test -c config/build/playwright.config.ts `
-     tests/e2e/audit-4a-marketing-journey.spec.ts
-   ```
-   Cross-check failures against `agent-reports/marketing-ledger.md`.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S02 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/products/seating/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Same console listener test for seating route |
+| **Green** | Same `probeDisk` hydration fix as SITE-S01 |
+| **Evidence** | `assetPaths.test.ts` pass; console audit on route still OPEN |
+| **Depends on** | SITE-S01 |
+| **Status** | PARTIAL |
 
-5. **i18n parity check**
-   ```powershell
-   Select-String -Path site/components/site, site/app/(site) -Pattern "home\." -Recurse
-   Select-String -Path site/components/site, site/app/(site) -Pattern '"[A-Z][a-z]+ [a-z]+"' -Recurse | Select-Object -First 20
-   ```
-   **Expect:** user-facing strings use `next-intl` keys where wired; document gaps as OPEN.
+### SITE-S03 — `/contact/` hydration (ledger #5)
 
-6. **Track C — per-route polish**
-   - **C1:** Marketing `(site)` pages — page-by-page FOCSS.
-   - **C2:** Planner + Studio chrome — coordinate with [05-workspaces-plan.md](./05-workspaces-plan.md).
-   - **C3:** Admin `AdminLayoutShell` token parity.
-   - **C5:** Close ledger when C1–C3 land.
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S03 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/contact/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Console hydration error on contact page |
+| **Green** | Fix contact page client/server branch at public component seam |
+| **Evidence** | `results/console-audit/errors.json` + marketing ledger #5 closed |
+| **Depends on** | — |
+| **Status** | OPEN |
 
-7. **Full gate**
-   ```powershell
-   pnpm run gate
-   ```
-   See [02-testing-plan.md](./02-testing-plan.md) for lane details.
+### SITE-S04 — `/dashboard/` console clean
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S04 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/dashboard/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | 404 or console errors in `errors.json` for route |
+| **Green** | Fix asset or auth redirect at route/layout seam |
+| **Evidence** | Console audit route entry removed or empty |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S05 — `/portal/` console clean
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S05 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/portal/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Console 404s on portal route |
+| **Green** | Fix portal layout asset or link |
+| **Evidence** | Console audit clean |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S06 — `/planning/` console clean
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S06 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/planning/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Errors in console audit for `/planning/` |
+| **Green** | Fix at planning route seam |
+| **Evidence** | Console audit clean |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S07 — `/` homepage console clean
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S07 |
+| **Seam** | `SEAM-CONSOLE-ROUTE` — `/` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Console errors on marketing home |
+| **Green** | Fix reported component |
+| **Evidence** | Console audit clean for `/` |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S08 — Assistant off-canvas @390px (ledger #1)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S08 |
+| **Seam** | Playwright `audit-4a` test `5. responsive matrix` — assistant launcher visible @390px |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Launcher not in viewport or not clickable at 390×844 |
+| **Green** | Fix `UnifiedAssistant` / launcher CSS in `site/focss/site/` |
+| **Evidence** | `results/marketing/audit-4a/` screenshot + test pass |
+| **Depends on** | SITE-S12 |
+| **Status** | OPEN |
+
+### SITE-S09 — Assistant header overflow @390px (ledger #2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S09 |
+| **Seam** | Same responsive test — header text within bounds |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Horizontal overflow on assistant header |
+| **Green** | CSS fix at assistant header seam |
+| **Evidence** | audit-4a responsive pass |
+| **Depends on** | SITE-S08 |
+| **Status** | OPEN |
+
+### SITE-S10 — `/trusted-by` abort (ledger #3)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S10 |
+| **Seam** | `GET http://localhost:3000/trusted-by` — no `ERR_ABORTED` in Playwright navigation |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | `audit-4a` CTA test or dedicated goto aborts |
+| **Green** | Fix route handler or redirect for `/trusted-by` |
+| **Evidence** | Navigation 200 + audit pass |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S11 — Theme API presets (P1-2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S11 |
+| **Seam** | `GET /api/theme/active/` — `site/app/api/theme/active/route.ts` |
+| **Seam confirmation** | - [x] Owner confirms seam |
+| **Red** | Misread as missing `block_themes` seed |
+| **Green** | Public theme API serves preset tokens via `getActiveThemeId()`; `ThemeProvider` warn+fallback is intentional |
+| **Evidence** | `route.ts` uses presets; `Failures.md` P1-2 resolved 2026-08-08 |
+| **Depends on** | — |
+| **Status** | DONE |
+
+### SITE-S12 — Responsive audit site (P1)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S12 |
+| **Seam** | `node scripts/responsive-audit.mjs` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Fail at 1920 / 1280 / 390 / 320 |
+| **Green** | Per-route FOCSS fix |
+| **Evidence** | `results/site/responsive-audit.txt` all pass |
+| **Depends on** | CHK-S05 |
+| **Status** | OPEN |
+
+### SITE-S13 — Marketing audit-4a journey (P2)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S13 |
+| **Seam** | `SEAM-E2E-MARKETING-4A` — full `audit-4a-marketing-journey.spec.ts` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Any of 6 tests fail |
+| **Green** | One test at a time |
+| **Evidence** | `results/marketing/audit-4a/` |
+| **Depends on** | SITE-S08–SITE-S10 |
+| **Status** | OPEN |
+
+### SITE-S15 — i18n locale switch e2e (P1)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S15 |
+| **Seam** | E2E: switch locale on `/` — `next-intl` message change visible |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Add failing e2e in `tests/e2e/` — locale cookie/header does not change `home.*` string |
+| **Green** | Wire locale switcher at public UI seam |
+| **Evidence** | New e2e pass + `results/site/i18n-locale.txt` |
+| **Depends on** | — |
+| **Status** | OPEN |
+
+### SITE-S16 — Enquiry notification (ledger #10)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S16 |
+| **Seam** | `POST /api/customer-queries` → staff notification path |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Test: submit enquiry — no notification event |
+| **Green** | Wire notification at API/service seam |
+| **Evidence** | Integration test or manual proof in `results/site/enquiry-notify.txt` |
+| **Depends on** | DB-S06 |
+| **Status** | OPEN |
+
+### SITE-S17 — Empty homepage headings (ledger #6)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S17 |
+| **Seam** | Playwright `audit-4a` test `4. marketing sections walk` — no empty `h2`/`h3` |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | Section headings empty in DOM dump |
+| **Green** | Fix CMS/i18n keys for those sections |
+| **Evidence** | audit-4a section dump pass |
+| **Depends on** | — |
+| **Status** | OPEN — P2 |
+
+### SITE-S18 — Image lazy-load scroll (ledger #7)
+
+| Field | Value |
+|-------|-------|
+| **Slice ID** | SITE-S18 |
+| **Seam** | audit-4a test `4` — images load after full scroll |
+| **Seam confirmation** | - [ ] Owner confirms seam before red |
+| **Red** | 23/48 images never load |
+| **Green** | Fix lazy-load or src at image component seam |
+| **Evidence** | audit-4a image counts in dump |
+| **Depends on** | SITE-S01 |
+| **Status** | OPEN — P2 |
 
 ---
 
-## Verification checklist
+## Key paths
 
-- [ ] `pnpm run verify:focss` — 141+ stylesheets OK
-- [ ] `pnpm run check:layout` — exit 0
-- [ ] `node scripts/responsive-audit.mjs` — all breakpoints
-- [ ] `audit-4a-marketing-journey.spec.ts` — green
-- [ ] i18n — no new hardcoded homepage strings without keys
-- [ ] Member suite routes load (`/ooplanner` entry, portal/dashboard layouts)
-- [ ] Track C1–C3 — owner sign-off or OPEN list updated
-- [ ] `pnpm run gate` — exit 0 on release commit
-
----
-
-## Open items
-
-1. **P0:** `responsive-audit.mjs` + `audit-4a` with dated artifacts (marketing ledger #1–#10 must be addressed or consciously deferred).
-2. **P1:** Fix marketing assistant off-canvas @390px (ledger #1) and header text overflow (ledger #2).
-3. **P1:** Fix `/trusted-by` intermittent abort (ledger #3) and `/contact` hydration mismatch (ledger #5).
-4. **P1:** Fix product-page hydration mismatches on `/products/workstations/` and `/products/seating/` (`results/console-audit/errors.json`).
-5. **P1:** i18n e2e locale switch; grep hardcoded strings.
-6. **P1:** Re-prove member suite landings (A1–A8) — claimed not verified 2026-08-08.
-7. **P2:** Track C1 marketing FOCSS page-by-page.
-8. **P2:** Track C2 workspace chrome ([05-workspaces-plan.md](./05-workspaces-plan.md)).
-9. **P2:** Track C3 admin token parity.
-10. **P2:** Asset cutover Phase 09 (`home.*` i18n) — [04-database-plan.md](./04-database-plan.md).
-
----
-
-## Key paths & commands
-
-| Item | Path / command |
-|------|----------------|
+| Item | Path |
+|------|------|
 | Marketing app | `site/app/(site)/` |
-| Site components | `site/components/site/` |
-| FOCSS site zone | `site/focss/site/` |
-| Member routes | `site/features/site/memberSuiteRoutes.ts` |
-| Member shell | `site/components/site/MemberSuiteShell` |
-| Portal CSS | `site/focss/site/shell-portal.css` |
+| FOCSS site | `site/focss/site/` |
+| Console audit | `results/console-audit/errors.json` |
 | Marketing ledger | `agent-reports/marketing-ledger.md` |
 | Dev server | `pnpm dev` → `http://localhost:3000` |
-| CSS verify | `pnpm run verify:focss` |
-| Responsive audit | `node scripts/responsive-audit.mjs` |
-| Full gate | `pnpm run gate` |
 
 *Blockers: [`Failures.md`](../Failures.md) only.*

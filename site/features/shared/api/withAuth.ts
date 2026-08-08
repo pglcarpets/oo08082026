@@ -31,6 +31,7 @@ import {
   DEV_BYPASS_USER,
   isDevAuthBypassEnabled,
 } from "@/lib/auth/devAuthBypass";
+import { normalizeClientIp } from "@/lib/clientIp";
 import { validateCsrfRequest } from "@/lib/security/csrf";
 import { CSRF_REJECTION_HEADER_NAME } from "@/lib/security/csrfConstants";
 
@@ -67,11 +68,11 @@ export type WithAuthOptions = {
 
 /** Extract a normalized client IP from common proxy headers. */
 function getClientIp(req: NextRequest | Request): string {
-  return (
+  const raw =
     req.headers.get("cf-connecting-ip") ||
     req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
-    "127.0.0.1"
-  );
+    "127.0.0.1";
+  return normalizeClientIp(raw);
 }
 
 /**

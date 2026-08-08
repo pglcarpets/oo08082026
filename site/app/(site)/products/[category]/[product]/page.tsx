@@ -150,8 +150,8 @@ export async function generateMetadata({
   const description = product.description || descriptionFallback;
   const images = Array.isArray(product.images) ? product.images : [];
   const image =
-    normalizeAssetPath(images.length > 0 ? images[0] : null) ||
-    normalizeAssetPath(product.flagship_image) ||
+    normalizeAssetPath(images.length > 0 ? images[0] : null, { probeDisk: true }) ||
+    normalizeAssetPath(product.flagship_image, { probeDisk: true }) ||
     PRODUCT_IMAGE_FALLBACK;
   const canonicalProductUrlKey =
     preferredCanonicalSlug || productResolution.canonicalSlug || productUrlKey;
@@ -225,17 +225,18 @@ async function ProductContent({
         .filter(Boolean)
     : [];
   const imageBundle = imagesMap.get(p.id);
+  const diskProbe = { probeDisk: true } as const;
   const mergedFlagship =
-    imageBundle?.flagshipImage || normalizeAssetPath(p.flagship_image);
+    imageBundle?.flagshipImage || normalizeAssetPath(p.flagship_image, diskProbe);
   const mergedImages =
     imageBundle?.images && imageBundle.images.length > 0
       ? imageBundle.images
-      : normalizeAssetList(p.images);
+      : normalizeAssetList(p.images, diskProbe);
   const mergedSceneImages =
     imageBundle?.sceneImages && imageBundle.sceneImages.length > 0
       ? imageBundle.sceneImages
       : Array.isArray(p.scene_images)
-        ? normalizeAssetList(p.scene_images)
+        ? normalizeAssetList(p.scene_images, diskProbe)
         : [];
 
   const resolvedCategoryId = resolveRequestedCategoryId(
@@ -270,8 +271,8 @@ async function ProductContent({
           return {
             id: v.id || `variant-${idx + 1}`,
             variantName: v.variantName || `Option ${idx + 1}`,
-            galleryImages: normalizeAssetList(v.galleryImages),
-            threeDModelUrl: normalizeAssetPath(v.threeDModelUrl) || undefined,
+            galleryImages: normalizeAssetList(v.galleryImages, diskProbe),
+            threeDModelUrl: normalizeAssetPath(v.threeDModelUrl, diskProbe) || undefined,
           };
         })
         .filter((variant) => variant.galleryImages.length > 0 || variant.threeDModelUrl)
@@ -287,6 +288,7 @@ async function ProductContent({
     images: mergedImages,
     threeDModelUrl: normalizeAssetPath(
       variantList.find((v) => v.threeDModelUrl)?.threeDModelUrl || p["3d_model"],
+      diskProbe,
     ),
     variants: variantList,
     detailedInfo: {

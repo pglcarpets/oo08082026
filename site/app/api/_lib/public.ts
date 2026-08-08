@@ -1,14 +1,15 @@
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
+import { normalizeClientIp } from "@/lib/clientIp";
 import { rateLimit } from "@/lib/rateLimit";
 
 export function getPublicApiIp(req: Request | NextRequest): string {
-  return (
+  const raw =
     req.headers.get("cf-connecting-ip") ??
     req.headers.get("x-forwarded-for")?.split(",")[0].trim() ??
     req.headers.get("x-real-ip")?.trim() ??
-    "127.0.0.1"
-  );
+    "127.0.0.1";
+  return normalizeClientIp(raw);
 }
 
 export async function enforcePublicApiRateLimit(

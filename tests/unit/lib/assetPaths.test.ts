@@ -32,6 +32,8 @@ type GlobalWithNonWebpackRequire = typeof globalThis & {
 const BRAND_PRODUCT_FALLBACK =
   '/assets/marketing/brand/logos/logo-sharp.png';
 
+const DISK_PROBE = { probeDisk: true } as const;
+
 describe('assetPaths', () => {
   let assetPaths: typeof assetPathsType0;
 
@@ -72,7 +74,7 @@ describe('assetPaths', () => {
   it('returns placeholder for legacy catalog export paths when local file is absent', () => {
     const legacySeg = String.fromCharCode(97, 102, 99);
     const legacy = `/assets/${legacySeg}/chair.webp`;
-    expect(assetPaths.normalizeAssetPath(legacy)).toBe(
+    expect(assetPaths.normalizeAssetPath(legacy, DISK_PROBE)).toBe(
       '/assets/marketing/brand/logos/logo-sharp.png',
     );
   });
@@ -84,7 +86,7 @@ describe('assetPaths', () => {
       return false;
     });
     expect(
-      assetPaths.normalizeAssetPath('/media/planner/planner-landing-poster.webp'),
+      assetPaths.normalizeAssetPath('/media/planner/planner-landing-poster.webp', DISK_PROBE),
     ).toBe(
       'https://cdn.example.com/assets/planner/media/posters/planner-landing-poster.webp',
     );
@@ -95,13 +97,13 @@ describe('assetPaths', () => {
       if (String(p).includes('/assets/marketing/hero/pages/Planner-oneandonly-bright.webp')) return true;
       return false;
     });
-    expect(assetPaths.normalizeAssetPath('/media/hero/hero-1.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/media/hero/hero-1.webp', DISK_PROBE)).toBe(
       '/assets/marketing/hero/pages/Planner-oneandonly-bright.webp',
     );
   });
 
   it('returns placeholder for legacy products paths when local file is absent', () => {
-    expect(assetPaths.normalizeAssetPath('/products/table.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/products/table.webp', DISK_PROBE)).toBe(
       '/assets/marketing/brand/logos/logo-sharp.png',
     );
   });
@@ -115,7 +117,7 @@ describe('assetPaths', () => {
         return true;
       return false;
     });
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/chairs/breeze/image-1.jpg')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/chairs/breeze/image-1.jpg', DISK_PROBE)).toBe(
       'https://cdn.example.com/assets/catalog/seating/oando-seating--breeze/image-1.jpg',
     );
   });
@@ -149,34 +151,34 @@ describe('assetPaths', () => {
       'https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--phoenix/gallery/image-1.webp',
     );
     // Non-catalog path (no CDN fallback) resolves to raster fallback.
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/not-a-real-sku/image-4.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/not-a-real-sku/image-4.webp', DISK_PROBE)).toBe(
       BRAND_PRODUCT_FALLBACK,
     );
   });
 
   it('should resolve local variants for webp when server-side', () => {
     // exists.webp exists, so it should return it with cdn base
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists.webp', DISK_PROBE)).toBe(
       'https://cdn.example.com/assets/catalog/exists.webp',
     );
 
     // exists-jpg.webp does not exist, but exists-jpg.jpg does
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-jpg.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-jpg.webp', DISK_PROBE)).toBe(
       'https://cdn.example.com/assets/catalog/exists-jpg.jpg',
     );
 
     // exists-jpeg.webp does not exist, but exists-jpeg.jpeg does
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-jpeg.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-jpeg.webp', DISK_PROBE)).toBe(
       'https://cdn.example.com/assets/catalog/exists-jpeg.jpeg',
     );
 
     // exists-png.webp does not exist, but exists-png.png does
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-png.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/exists-png.webp', DISK_PROBE)).toBe(
       'https://cdn.example.com/assets/catalog/exists-png.png',
     );
 
     // non-existing resolves to raster fallback (next/image rejects SVG)
-    expect(assetPaths.normalizeAssetPath('/assets/catalog/not-here.webp')).toBe(
+    expect(assetPaths.normalizeAssetPath('/assets/catalog/not-here.webp', DISK_PROBE)).toBe(
       BRAND_PRODUCT_FALLBACK,
     );
   });
@@ -188,10 +190,10 @@ describe('assetPaths', () => {
       return false;
     });
     expect(
-      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp'),
+      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp', DISK_PROBE),
     ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-1.webp');
     expect(
-      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--canaret/gallery/image-01.webp'),
+      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--canaret/gallery/image-01.webp', DISK_PROBE),
     ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--canaret/gallery/image-1.jpg');
   });
 
@@ -201,7 +203,7 @@ describe('assetPaths', () => {
       return false;
     });
     expect(
-      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--arvo/gallery/image-01.webp'),
+      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--arvo/gallery/image-01.webp', DISK_PROBE),
     ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--arvo/gallery/image-01.webp');
   });
 
@@ -225,7 +227,7 @@ describe('assetPaths', () => {
       return [];
     });
     expect(
-      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--casca/gallery/image-1.jpg'),
+      assetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--casca/gallery/image-1.jpg', DISK_PROBE),
     ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--casca/gallery/image-2.jpg');
   });
 
@@ -248,7 +250,7 @@ describe('assetPaths', () => {
   it('should normalize asset list', () => {
     expect(assetPaths.normalizeAssetList(null)).toEqual([BRAND_PRODUCT_FALLBACK]);
     expect(assetPaths.normalizeAssetList([])).toEqual([BRAND_PRODUCT_FALLBACK]);
-    expect(assetPaths.normalizeAssetList(['/assets/catalog/exists.webp', null, ''])).toEqual([
+    expect(assetPaths.normalizeAssetList(['/assets/catalog/exists.webp', null, ''], DISK_PROBE)).toEqual([
       'https://cdn.example.com/assets/catalog/exists.webp',
     ]);
   });

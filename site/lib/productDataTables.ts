@@ -90,7 +90,7 @@ export async function fetchProductImagesMap(
     }
 
     for (const row of rows) {
-      const normalized = normalizeAssetPath(row.image_url);
+      const normalized = normalizeAssetPath(row.image_url, { probeDisk: true });
       if (!normalized) {continue;}
 
       const current = result.get(row.product_id) || {

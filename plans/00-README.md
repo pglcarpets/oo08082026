@@ -29,6 +29,41 @@ Cross-links: workspace chrome → [06-site-plan.md](./06-site-plan.md) track C2;
 
 ---
 
+## Scripts — when to run what
+
+Every user-invocable script (everything invocable by hand, plus the ones the plans call
+out) and **when** each should be run. Gate entrypoints live under `scripts/general/`
+(see its `README.md` for the npm-script mapping); one-shots live under `scripts/AsNeeded/`
+(allow-listed in `ALLOWLIST.md`). All commands run from the **repo root**.
+
+| When | Command | Plan doc |
+|------|---------|----------|
+| **Before any commit** | `pnpm run check:layout` | [02-testing-plan.md](./02-testing-plan.md) · [08-oo-start-checklist.md](./08-oo-start-checklist.md) |
+| **Before any commit** | `pnpm run typecheck && pnpm run gate` | [08-oo-start-checklist.md](./08-oo-start-checklist.md) |
+| **Before touching Studio ↔ Planner** | `pnpm run scan:boundaries` | [05-workspaces-plan.md](./05-workspaces-plan.md) · [08-oo-start-checklist.md](./08-oo-start-checklist.md) |
+| **After CSS changes** | `pnpm run verify:focss` (+ `lint:ui:strict`, `check:composer-styles`, `check:style-tokens`) | [06-site-plan.md](./06-site-plan.md) |
+| **After editing plans** | `node scripts/general/check-plans-purity.mjs` | [00-README.md](./00-README.md) · [08-oo-start-checklist.md](./08-oo-start-checklist.md) |
+| **Scripts hygiene pass** | `node scripts/AsNeeded/_audit-stale-scripts.mjs` | [02-testing-plan.md](./02-testing-plan.md) |
+| **Fast unit slice** | `pnpm run p0:unit` | [02-testing-plan.md](./02-testing-plan.md) · [08-oo-start-checklist.md](./08-oo-start-checklist.md) |
+| **Both vitest lanes** | `pnpm run test` | [02-testing-plan.md](./02-testing-plan.md) |
+| **Auth session unit** | `pnpm exec vitest run --config tests/vitest.config.ts tests/unit/lib/auth/session.test.ts` | [02-testing-plan.md](./02-testing-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
+| **Targeted e2e audits** (`audit-3b/3c/2a/4a`) | `pnpm exec playwright test -c config/build/playwright.config.ts …` | [02-testing-plan.md](./02-testing-plan.md) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [06-site-plan.md](./06-site-plan.md) |
+| **Tech-docs snapshot tests** | `pnpm exec vitest run --config tests/vitest.tech-docs.config.ts …` | [07-tech-docs-plan.md](./07-tech-docs-plan.md) |
+| **Responsive pass (all breakpoints)** | `node scripts/responsive-audit.mjs` | [05-workspaces-plan.md](./05-workspaces-plan.md) · [06-site-plan.md](./06-site-plan.md) |
+| **Product migrations (dry-run first)** | `pnpm run ops db:apply -- --dry` → `pnpm run ops db:apply` | [04-database-plan.md](./04-database-plan.md) |
+| **Admin/Planner migrations** | `pnpm run ops db:apply:admin -- --dry` → `pnpm run ops db:apply:admin` | [04-database-plan.md](./04-database-plan.md) |
+| **Seed furniture (once per env)** | `pnpm run seed:furniture` (after `db:apply:admin`) | [04-database-plan.md](./04-database-plan.md) |
+| **Connection smoke** | `pnpm run ops db:test` | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) |
+| **Type regeneration** | `pnpm run ops db:types:admin` → `pnpm run ops db:types` | [04-database-plan.md](./04-database-plan.md) |
+| **Asset cutover smoke** | `node scripts/asset-cutover-smoke.mjs` | [04-database-plan.md](./04-database-plan.md) |
+| **Apex / Worker origin drift** | `node scripts/general/check-worker-origin.mjs` | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
+| **Full ship gate** | `pnpm run release:gate` (fast: `pnpm run gate`) | [02-testing-plan.md](./02-testing-plan.md) |
+
+*Repo inventory: `pnpm run ops list` for every operational command; `scripts/general/README.md`
+for the gate-entrypoint mapping; `scripts/AsNeeded/ALLOWLIST.md` for the one-shot allowlist.*
+
+---
+
 ## Programmes
 
 | # | Programme | Plan | Focus |

@@ -228,6 +228,6 @@ Ops examples (`pnpm run ops list`):
 | `ops gate:site-ui` | Marketing site-ui CI workflow |
 | `ops gate:open3d` | Open3D world e2e pack |
 
-Known blockers: [`Failures.md`](./Failures.md) F1–F3 (deploy: Worker origin /
-apex catalog / docs DNS) as of 2026-08-06. The tech-docs gate needs a fresh
+Known blockers: [`Failures.md`](./Failures.md) P0-1–P0-3 and F3 (deploy: Worker origin /
+apex catalog / docs DNS) as of 2026-08-08. The tech-docs gate needs a fresh
 exit-0 run — no longer tracked under an F-id.

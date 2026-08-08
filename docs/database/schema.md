@@ -112,11 +112,7 @@ Every migration needs a `-- rollback` section; `check:governance` ratchets
 
 ## Known drift
 
-- `site/platform/drizzle/schema/planner.ts` declares `review_links` and `review_comments`.
-  Neither exists in the live admin DB.
-- `site/platform/types/database.types.ts` (products) is Supabase-CLI generated;
-  `furniture_catalog` and `block_descriptors` were added by hand and will be
-  reproduced on the next CLI run.
+- `site/platform/types/database.types.ts` (products) is Supabase-CLI generated.
 - `db:types:admin` writes `site/platform/types/database.admin.types.ts` — the path the
   app actually imports. It previously wrote `config/database/types/`, which
   nothing reads.

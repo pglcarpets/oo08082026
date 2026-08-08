@@ -88,9 +88,9 @@ check both, or read the JSON:
 ```
 
 Current state: check both lane summaries (or the JSON reports under `results/tests/`).
-Blockers: `Failures.md` — note F1–F3 are deploy blockers (Worker origin / apex
-catalog / docs DNS) as of 2026-08-06, not test-lane blockers; `session.test.ts`
-passed 10/10 on 2026-08-06.
+Blockers: `Failures.md` — note P0-1–P0-3 and F3 are deploy blockers (Worker origin / apex
+catalog / docs DNS) as of 2026-08-08, not test-lane blockers; `session.test.ts`
+passed 10/10 on 2026-08-08.
 
 Use the **smallest command** that proves the claim.  
 Do not run broad gates for tiny changes.

@@ -8,9 +8,9 @@ that assume Admin Product Studio / FlexLayout must be re-mapped to live
 `/oostudio` + `/ooplanner` + residual admin before they can gate this checkout.
 `site/proxy.ts` **is** present (Next 16 edge entry) — do not re-map that one away.
 
-> **Staleness banner (2026-08-06):** status cells below are frozen at
+> **Staleness banner (2026-08-08):** status cells below are frozen at
 > 2026-07-26/28 and must not be read as current. Blocker IDs **B1–B4 no longer
-> exist** — `Failures.md` now tracks only F1–F3 (deploy blockers). The full gate
+> exist** — `Failures.md` now tracks P0-1–P0-3 and F3 (deploy blockers). The full gate
 > has NOT been re-run since; treat every "exit 0" here as historical.
 
 Instruments that measure persistence must run with `DEV_AUTH_BYPASS` unset;

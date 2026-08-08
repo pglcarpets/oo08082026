@@ -92,7 +92,7 @@ Migrations are applied as work lands, so the databases can sit ahead of the
 deployed build. Rolling code back past a schema change without also running that
 migration's `-- rollback` section can point old code at tables that have moved to
 `archive`. Check the active rows in `Failures.md` before rolling back (as of
-2026-08-06 these are deploy blockers F1–F3, not schema items).
+2026-08-08 these are deploy blockers P0-1–P0-3 and F3, not schema items).
 
 ## Ownership
 

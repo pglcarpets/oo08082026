@@ -49,7 +49,7 @@ function importerLabel(importer: string) {
 
 /** Chrome only — category tile colors; rows stay source-backed. */
 const categoryColors: Record<TechCategory, string> = {
-  Runtime: 'bg-brand-500 text-docs-text-strong',
+  Runtime: 'bg-brand-500 text-inverse',
   'Dev tooling': 'bg-docs-surface-strong text-docs-text-strong',
   'Docs package': 'bg-accent-500/80 text-docs-text-strong',
   Workspace: 'bg-docs-surface text-docs-text-strong',

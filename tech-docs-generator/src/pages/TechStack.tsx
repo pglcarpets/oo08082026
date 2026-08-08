@@ -233,7 +233,7 @@ export function TechStack() {
               key={cat}
               onClick={() => setFilter(cat)}
               className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                filter === cat ? 'bg-brand-500 text-docs-text-strong' : 'bg-docs-surface text-docs-text-muted hover:text-docs-text-strong border border-docs-border'
+                filter === cat ? 'bg-brand-500 text-inverse' : 'bg-docs-surface text-docs-text-muted hover:text-docs-text-strong border border-docs-border'
               }`}
             >
               {cat} ({count})

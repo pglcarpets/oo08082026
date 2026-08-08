@@ -69,7 +69,7 @@ export function LoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             aria-invalid={error ? true : undefined}
-            className="docs-field w-full rounded-lg border border-docs-border bg-docs-surface px-3 py-2.5 text-sm text-docs-text transition-colors focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+            className="docs-field w-full rounded-lg border border-docs-border bg-docs-surface px-3 py-2.5 text-sm text-docs-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </label>
         <label className="block space-y-1.5">
@@ -83,13 +83,13 @@ export function LoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             aria-invalid={error ? true : undefined}
-            className="docs-field w-full rounded-lg border border-docs-border bg-docs-surface px-3 py-2.5 text-sm text-docs-text transition-colors focus:border-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600/20"
+            className="docs-field w-full rounded-lg border border-docs-border bg-docs-surface px-3 py-2.5 text-sm text-docs-text transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
           />
         </label>
         <button
           type="submit"
           disabled={busy}
-          className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-primary bg-primary px-4 py-2.5 text-sm font-semibold text-inverse transition hover:bg-primary-hover hover:border-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
         >
           {busy ? <Loader2 size={16} className="animate-spin" aria-hidden /> : null}
           Sign in

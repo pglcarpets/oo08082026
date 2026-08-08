@@ -17,7 +17,7 @@ const FORBIDDEN_RENDERER_HEX = [
 ]
 
 const REQUIRED_ALIASES = [
-  '--color-brand-500: var(--color-ocean-boat-blue-500)',
+  '--color-brand-500: var(--color-dark-midnight-blue-500)',
   '--color-accent-500: var(--color-bronze-500)',
   'background: var(--surface-canvas)',
 ]

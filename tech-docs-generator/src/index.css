@@ -16,17 +16,20 @@
   --font-display: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "Fira Code", Consolas, monospace;
 
-  /* Brand scale → ocean boat blue; accent → bronze */
-  --color-brand-50: var(--color-ocean-boat-blue-50);
-  --color-brand-100: var(--color-ocean-boat-blue-100);
-  --color-brand-200: var(--color-ocean-boat-blue-200);
-  --color-brand-300: var(--color-ocean-boat-blue-300);
-  --color-brand-400: var(--color-ocean-boat-blue-400);
-  --color-brand-500: var(--color-ocean-boat-blue-500);
-  --color-brand-600: var(--color-ocean-boat-blue-600);
-  --color-brand-700: var(--color-ocean-boat-blue-700);
-  --color-brand-800: var(--color-ocean-boat-blue-800);
-  --color-brand-900: var(--color-ocean-boat-blue-900);
+  /*
+   * Brand scale → dark midnight blue (matches site --color-primary / btn-primary).
+   * Links and focus rings stay ocean via semantic --text-link / --focus-ring.
+   */
+  --color-brand-50: var(--color-dark-midnight-blue-50);
+  --color-brand-100: var(--color-dark-midnight-blue-100);
+  --color-brand-200: var(--color-dark-midnight-blue-200);
+  --color-brand-300: var(--color-dark-midnight-blue-300);
+  --color-brand-400: var(--color-dark-midnight-blue-400);
+  --color-brand-500: var(--color-dark-midnight-blue-500);
+  --color-brand-600: var(--color-dark-midnight-blue-600);
+  --color-brand-700: var(--color-dark-midnight-blue-700);
+  --color-brand-800: var(--color-dark-midnight-blue-800);
+  --color-brand-900: var(--color-dark-midnight-blue-900);
   --color-accent-50: var(--color-bronze-50);
   --color-accent-100: var(--color-bronze-100);
   --color-accent-200: var(--color-bronze-200);
@@ -137,7 +140,7 @@
     background-image:
       linear-gradient(
         to bottom,
-        color-mix(in srgb, var(--color-ocean-boat-blue-100) 35%, transparent),
+        color-mix(in srgb, var(--color-dark-midnight-blue-100) 35%, transparent),
         transparent 12rem
       ),
       repeating-linear-gradient(
@@ -159,7 +162,7 @@
   .docs-auth-card {
     box-shadow:
       0 1px 2px color-mix(in srgb, var(--color-black) 4%, transparent),
-      0 12px 40px color-mix(in srgb, var(--color-ocean-boat-blue-900) 6%, transparent);
+      0 12px 40px color-mix(in srgb, var(--color-dark-midnight-blue-900) 6%, transparent);
   }
 
   .docs-field::placeholder {

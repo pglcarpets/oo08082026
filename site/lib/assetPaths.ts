@@ -130,6 +130,20 @@ function localAssetExists(assetPath: string): boolean {
  */
 function expandImagePathCandidates(assetPath: string): string[] {
   const candidates = [assetPath];
+  if (
+    /\/assets\/catalog\//i.test(assetPath) &&
+    /\/image-/i.test(assetPath) &&
+    !/\/gallery\//i.test(assetPath)
+  ) {
+    const gallery = assetPath.replace(/\/(image-[^/]+)$/i, "/gallery/$1");
+    candidates.push(gallery);
+    const galleryPadded = gallery.match(/^(.*\/image-)0+(\d+)(\.[a-z0-9]+)$/i);
+    if (galleryPadded) {
+      candidates.push(
+        `${galleryPadded[1]}${Number.parseInt(galleryPadded[2], 10)}${galleryPadded[3]}`,
+      );
+    }
+  }
   const padded = assetPath.match(/^(.*\/image-)0+(\d+)(\.[a-z0-9]+)$/i);
   if (padded) {
     candidates.push(`${padded[1]}${Number.parseInt(padded[2], 10)}${padded[3]}`);
@@ -246,7 +260,7 @@ function shouldPreferCdnFallback(assetPath: string): boolean {
   // Canonical published catalog tree — CDN may have assets not in git.
   return (
     lower.startsWith("/assets/catalog/oando-") ||
-    /\/assets\/catalog\/(seating\/(?:cafe|fabric|leather|mesh)|workstations|tables|storage|soft-seating|educational|collaborative)\/oando-/i.test(
+    /\/assets\/catalog\/(seating\/(?:cafe|fabric|leather|mesh|non-leather)|workstations|tables|storage|soft-seating|educational|collaborative)\/oando-/i.test(
       lower,
     ) ||
     /\/assets\/catalog\/seating\/oando-/i.test(lower)
@@ -319,7 +333,7 @@ function resolveLocalImageVariant(assetPath: string, probeDisk: boolean): string
 
   // Client + SSR of client components: deterministic paths only (hydration-safe).
   if (!probeDisk || !isServer()) {
-    return assetPath;
+    return stripErroneousCatalogGallery(assetPath);
   }
 
   for (const base of numbered) {
@@ -610,13 +624,8 @@ function rewriteDeepAssetFolders(assetPath: string): string {
     "$1items/$2",
   );
 
-  // SKU root image-N → gallery/image-N (not already under gallery|detail|_quarantine)
-  // Seating SKUs live under seating/leather|non-leather/{sku}/
-  // Only leather/non-leather seating SKUs use a gallery/ subfolder on disk/CDN.
-  p = p.replace(
-    /^(\/assets\/catalog\/seating\/(?:leather|non-leather)\/[^/]+)\/(image-[^/]+)$/i,
-    "$1/gallery/$2",
-  );
+  // SKU root image-N → gallery/image-N only when disk already uses gallery/ (legacy).
+  // Clean R2 layout keeps images at SKU root — do not force gallery/ here.
 
   // planner media flat
   p = p.replace(
@@ -632,17 +641,24 @@ function rewriteDeepAssetFolders(assetPath: string): string {
 }
 
 /**
- * Clean R2 layout stores image-N at the SKU root. Only leather|non-leather seating
- * SKUs use a gallery/ subfolder — strip erroneous gallery/ elsewhere (DB leftovers).
+ * Clean R2 layout stores image-N at the SKU root — strip erroneous gallery/ (DB leftovers).
  */
 function stripErroneousCatalogGallery(assetPath: string): string {
   if (!/\/gallery\//i.test(assetPath)) {
     return assetPath;
   }
-  if (/\/assets\/catalog\/seating\/(?:leather|non-leather)\//i.test(assetPath)) {
+  if (!/\/assets\/catalog\//i.test(assetPath)) {
     return assetPath;
   }
   return assetPath.replace(/\/gallery\//gi, "/");
+}
+
+/** CDN/R2 clean layout uses SKU-root images — strip gallery/ before publishing URLs. */
+function toPublishedCatalogAssetPath(assetPath: string): string {
+  if (!shouldPreferCdnFallback(assetPath)) {
+    return assetPath;
+  }
+  return stripErroneousCatalogGallery(assetPath);
 }
 
 export type NormalizeAssetPathOptions = {
@@ -711,11 +727,6 @@ export function normalizeAssetPath(
     candidateLower = candidatePath.toLowerCase();
   }
 
-  if (candidateLower.startsWith("/assets/catalog/")) {
-    candidatePath = stripErroneousCatalogGallery(candidatePath);
-    candidateLower = candidatePath.toLowerCase();
-  }
-
   // CMS folder slugs (e.g. sleek-workstation) → canonical oando-* catalog dirs on disk.
   // Match both flat and nested: /assets/catalog/{folder}/image-N or /assets/catalog/{fam}/{folder}/image-N
   const catalogFolderMatch = candidatePath.match(
@@ -751,7 +762,9 @@ export function normalizeAssetPath(
       return applyAssetBase(PRODUCT_IMAGE_FALLBACK);
     }
     return applyAssetBase(
-      `/assets/catalog/seating/oando-seating--phoenix/gallery/image-${imageIndex}.jpg`,
+      toPublishedCatalogAssetPath(
+        `/assets/catalog/seating/oando-seating--phoenix/gallery/image-${imageIndex}.jpg`,
+      ),
     );
   }
 
@@ -773,10 +786,10 @@ export function normalizeAssetPath(
   if (candidatePath.startsWith("/assets/") && hasImageExtension) {
     const resolvedVariant = resolveLocalImageVariant(candidatePath, probeDisk);
     if (!resolvedVariant) {return applyAssetBase(PRODUCT_IMAGE_FALLBACK);}
-    return applyAssetBase(resolvedVariant);
+    return applyAssetBase(toPublishedCatalogAssetPath(resolvedVariant));
   }
 
-  return applyAssetBase(candidatePath);
+  return applyAssetBase(toPublishedCatalogAssetPath(candidatePath));
 }
 
 /**

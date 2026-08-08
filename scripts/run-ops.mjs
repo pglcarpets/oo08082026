@@ -23,7 +23,12 @@ if (argv[0] === "--") {
 function run(command, args, opts = {}) {
   // Windows resolves pnpm/vercel via .cmd shims; spawn without a shell → ENOENT.
   const useShell = opts.shell ?? process.platform === "win32";
-  const result = spawnSync(command, args, {
+  // When using cmd.exe, the command itself must be quoted if it contains spaces
+  // (e.g. "C:\Program Files\nodejs\node.exe"), otherwise spawnSync truncates it.
+  const cmd = useShell && /\s/.test(command) && !command.startsWith('"')
+    ? `"${command}"`
+    : command;
+  const result = spawnSync(cmd, args, {
     cwd: ROOT,
     stdio: "inherit",
     shell: useShell,
@@ -41,17 +46,18 @@ function run(command, args, opts = {}) {
 
 /** @param {string} rel @param {string[]} args */
 function runNode(rel, args = []) {
-  run(process.execPath, [path.join(ROOT, "scripts", rel), ...args]);
+  // Node is a real executable; skip the shell to avoid cmd path/quoting issues.
+  run(process.execPath, [path.join(ROOT, "scripts", rel), ...args], { shell: false });
 }
 
 /** @param {string} rel @param {string[]} args */
 function runGeneral(rel, args = []) {
-  run(process.execPath, [path.join(ROOT, "scripts/general", rel), ...args]);
+  run(process.execPath, [path.join(ROOT, "scripts/general", rel), ...args], { shell: false });
 }
 
 /** @param {string} rel @param {string[]} args */
 function runAsNeeded(rel, args = []) {
-  run(process.execPath, [path.join(ROOT, "scripts/AsNeeded", rel), ...args]);
+  run(process.execPath, [path.join(ROOT, "scripts/AsNeeded", rel), ...args], { shell: false });
 }
 
 /** @param {string} rel @param {string[]} args */

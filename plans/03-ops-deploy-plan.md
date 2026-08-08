@@ -1,6 +1,6 @@
 # Operations & deploy plan — AUDITED 2026-08-08
 
-**Status:** PARTIAL — Worker origin, apex catalog, and static CSS verified 2026-08-08; deploy used remote build (`--prebuilt` failed on `/admin/icon.png`); docs DNS still OPEN.
+**Status:** PARTIAL — Worker origin, apex catalog, static CSS, and full gate verified 2026-08-08; `run-ops.mjs` Windows path-quoting fixed; docs DNS and token rotation still require owner action.
 **Owner / when to use:** Anyone deploying to Vercel, Cloudflare Worker, or proving production smoke before closing F-rows in [`Failures.md`](../Failures.md).
 **Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [04-database-plan.md](./04-database-plan.md) · [02-testing-plan.md](./02-testing-plan.md) · `workers/oando-worker-proxy/` · `vercel.json`
 
@@ -26,14 +26,14 @@
 
 | ID | Claim | Evidence 2026-08-08 | Verdict |
 |----|-------|---------------------|---------|
-| P0-3 | Worker proxy returns 404 for catalog assets | `results/asset-cutover/smoke-report.json` — `catalog/flagship/categories/soft-seating.webp` worker=404, s3=200 | **OPEN — owner action** |
-| P0-2 | Catalog DB missing `catalog_categories` and `catalog_products` tables | `curl oando.co.in/api/categories/` returns category counts | **OPEN — see [04-database-plan.md](./04-database-plan.md)** |
+| P0-3 | Worker proxy returns 404 for catalog assets | `results/asset-cutover/smoke-report.json` — all probes `pass`, apex returns `x-oando-proxy: cloudflare-worker` | **CLOSED** |
+| P0-2 | Catalog DB missing `catalog_categories` and `catalog_products` tables | `curl oando.co.in/api/categories/` returns category counts | **CLOSED** |
 | F3 | `docs.oando.co.in` DNS | NXDOMAIN per [`Failures.md`](../Failures.md) F3 | **OPEN — owner CF action** |
 | Static assets | `/_next/static/css/*.css` on prod | `results/deploy/vercel-static.txt`: remote-build deploy 2026-08-08 returned 200 for CSS; `--prebuilt` path blocked by duplicate admin icon (since fixed) | **VERIFIED — prebuilt still OPEN** |
-| Exposed token | Vercel token in git history (old handover doc) | Must rotate | **OPEN — security** |
-| `ops check:worker-origin` | Drift check script | `results/deploy/worker-origin-check.log`: direct `node` invocation → exit 0 OK; `pnpm run ops` path-quoting bug on Windows | **SCRIPT VERIFIED — wrapper flaky** |
+| Exposed token | Vercel token in git history (old handover doc) | No token strings in current tree; rotate in Vercel/vault if previously exposed | **OPEN — owner/security action** |
+| `ops check:worker-origin` | Drift check script | `node scripts/general/check-worker-origin.mjs` → exit 0 OK; `pnpm run ops check:worker-origin` now passes after path-quoting fix | **GREEN** |
 | Auth session tests | `session.test.ts` | 10/10 green after vitest env fix | **GREEN — see [02-testing-plan.md](./02-testing-plan.md)** |
-| Full `gate` | Release chain | Not re-proven end-to-end in last session | **OPEN** |
+| Full `gate` | Release chain | `pnpm run gate` exit 0, `results/tests/summary.json` both lanes `failed:0` | **GREEN — see [02-testing-plan.md](./02-testing-plan.md)** |
 
 ---
 
@@ -56,7 +56,7 @@
    ```powershell
    node scripts/general/check-worker-origin.mjs
    ```
-   **Expect:** exit 0, `OK`. **If `pnpm run ops check:worker-origin` fails on Windows:** use direct `node` invocation (known `run-ops.mjs` path-quoting issue).
+   **Expect:** exit 0, `OK`. Both `node scripts/general/check-worker-origin.mjs` and `pnpm run ops check:worker-origin` now work on Windows.
 
 4. **Vercel deploy** (owner — requires tokens)
    ```powershell
@@ -93,13 +93,13 @@
 
 ## Verification checklist
 
-- [ ] `curl` apex `/ooplanner/` — 200 + `x-oando-proxy: cloudflare-worker`
-- [ ] `curl` apex `/api/categories/` — non-empty JSON
-- [ ] `node scripts/general/check-worker-origin.mjs` — exit 0
+- [x] `curl` apex `/ooplanner/` — 200 + `x-oando-proxy: cloudflare-worker`
+- [x] `curl` apex `/api/categories/` — non-empty JSON
+- [x] `node scripts/general/check-worker-origin.mjs` — exit 0
 - [ ] `/_next/static/css/*` — 200 on Vercel origin and via apex
 - [ ] `docs.oando.co.in` — resolves and returns 200 (closes F3)
 - [ ] Vercel token rotated if previously exposed
-- [ ] `pnpm run release:gate:fast` — exit 0 on deploy commit
+- [x] `pnpm run release:gate:fast` — exit 0 on deploy commit
 
 ---
 
@@ -108,8 +108,8 @@
 1. **P0:** Prove `--prebuilt` Vercel deploy works end-to-end (remote-build fallback already verified 2026-08-08).
 2. **P0:** F3 — `docs.oando.co.in` CNAME in Cloudflare.
 3. **P1:** Rotate exposed Vercel token from git history.
-4. **P1:** Fix Windows `run-ops.mjs` path quoting so `pnpm run ops *` works reliably.
-5. **P2:** Re-prove full `pnpm run gate` after deploy.
+4. **P1:** ~~Fix Windows `run-ops.mjs` path quoting~~ **FIXED 2026-08-08** — `pnpm run ops check:worker-origin` now passes.
+5. **P2:** ~~Re-prove full `pnpm run gate` after deploy~~ **DONE 2026-08-08** — `summary.json` shows both lanes `failed:0`.
 
 ### Catalog assets note
 

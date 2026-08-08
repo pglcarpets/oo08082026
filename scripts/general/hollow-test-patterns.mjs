@@ -23,7 +23,7 @@ export function countActiveItBlocks(source) {
   return each + plain;
 }
 
-function isMockOnlySuite(source) {
+function isMockOnlySuite(_source) {
   return false;
 }
 

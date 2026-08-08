@@ -42,20 +42,17 @@
 - **Persistence is exclusive-mode** — disk under `DEV_AUTH_BYPASS=1`, Supabase otherwise; never dual-write.
 ---
 
-## 4. Active Blockers (from `Failures.md`, 8 rows)
+## 4. Active Blockers (from `Failures.md`, 5 rows)
 
 | ID | Priority | Blocker |
 |----|----------|---------|
 | F3 | P0 | `docs.oando.co.in` no public DNS (NXDOMAIN) |
 | P0-1 | P0 | Product page hydration mismatches (6 routes) |
-| P0-2 | P0 | Catalog DB missing `catalog_categories`/`catalog_products` |
-| P0-3 | P0 | Worker proxy 404s for catalog assets |
-| P1-1 | P1 | Test result JSON stale / overwritten |
 | P1-2 | P1 | Theme fetch fails (falls back to local tokens) |
 | P1-3 | P1 | Auth `withAuth:mirror:throw` + rate-limit 401s from `127.0.0.1` |
 | P1-4 | P1 | `pnpm-lock.yaml` v9.0 vs `packageManager` pnpm@11.20.0 |
 
-Blocker → plan mapping: hydration → 06-site-plan #4 · catalog DB → 04-database-plan #1 · worker 404 → 03-ops-deploy-plan #1 · tests JSON → 02-testing-plan #1 · theme → 06-site-plan · auth 127.0.0.1 → 02-testing-plan #2 · lockfile → 03-ops-deploy-plan #5.
+Blocker → plan mapping: hydration → 06-site-plan #4 · theme → 06-site-plan · auth 127.0.0.1 → 02-testing-plan #2 · lockfile → 03-ops-deploy-plan #5.
 
 ---
 
@@ -63,13 +60,14 @@ Blocker → plan mapping: hydration → 06-site-plan #4 · catalog DB → 04-dat
 
 | Priority | Item | Plan / Doc |
 |----------|------|------------|
-| P0 | Apply migrations to Products (fixes P0-2) then seed furniture once per env | [04-database-plan.md](./04-database-plan.md) |
 | P0 | Close click-to-place (audit-3b) with live Supabase proof | [05-workspaces-plan.md](./05-workspaces-plan.md) |
-| P0 | Re-prove both Vitest lanes and `release:gate` | [02-testing-plan.md](./02-testing-plan.md) |
 | P0 | F3 docs DNS CNAME in Cloudflare | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
 | P1 | Regenerate DB types (`ops db:types:admin` / `db:types`) and reconcile | [04-database-plan.md](./04-database-plan.md) |
 | P1 | Fix marketing hydration + ledger findings | [06-site-plan.md](./06-site-plan.md) |
-| P2 | Full `pnpm run gate` on current commit | [02-testing-plan.md](./02-testing-plan.md) |
+| P1 | Theme fetch fails (falls back to local tokens) | [06-site-plan.md](./06-site-plan.md) |
+| P1 | Auth `withAuth:mirror:throw` + rate-limit 401s from `127.0.0.1` | [02-testing-plan.md](./02-testing-plan.md) |
+| P1 | `pnpm-lock.yaml` v9.0 vs `packageManager` pnpm@11.20.0 | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) |
+| P2 | Expand strict 90% inventory coverage + E2E `audit-3b/3c/2a/4a` | [02-testing-plan.md](./02-testing-plan.md) |
 
 **Scripts — when to run what:** consolidated table in [00-README.md](./00-README.md#scripts--when-to-run-what); full inventory via `pnpm run ops list`.
 
@@ -78,9 +76,9 @@ Blocker → plan mapping: hydration → 06-site-plan #4 · catalog DB → 04-dat
 ## 6. Quick Start for Next Session
 
 1. Read this handover.
-2. Read `Failures.md` (8 rows — 4 P0 + 4 P1).
+2. Read `Failures.md` (5 rows — 1 P0 + 4 P1).
 3. Run the Fast Gate from `08-oo-start-checklist.md`.
-4. Pick a programme from `plans/00-README.md` (suggested: 04-database-plan to clear P0-2).
+4. Pick a programme from `plans/00-README.md` (suggested: 05-workspaces-plan for audit-3b, or 06-site-plan for hydration/theme/auth).
 5. Bump plan `AUDITED` dates and existing artifacts under `results/` as items land.
 
 ---

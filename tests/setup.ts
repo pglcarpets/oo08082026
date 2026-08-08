@@ -1,21 +1,26 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
+import { createRequire } from "node:module";
 import { MockNextImage } from "./helpers/mockNextImage";
 import { MockNextLink } from "./helpers/mockNextLink";
+
+const req = createRequire(import.meta.url) as (id: string) => Record<string, unknown>;
 
 try {
   (globalThis as unknown as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
   if (typeof window !== "undefined") (window as unknown as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
   const g = globalThis as unknown as Record<string, unknown>;
-  const actStub = (cb: () => unknown) => {
+  const actStub = (cb: () => unknown): unknown => {
     const prev = g.IS_REACT_ACT_ENVIRONMENT;
     g.IS_REACT_ACT_ENVIRONMENT = true;
     try {
-      const res = cb() as unknown as { then?: unknown } | null;
+      const res = cb();
       if (res !== null && typeof res === "object" && typeof (res as { then?: unknown }).then === "function") {
-        const p = res as Promise<unknown>;
-        return { then: (resolve: (v: unknown) => void, reject: (e: unknown) => void) => p.then((v) => { g.IS_REACT_ACT_ENVIRONMENT = prev; resolve(v); }, (e) => { g.IS_REACT_ACT_ENVIRONMENT = prev; reject(e); }) };
+        return (res as Promise<unknown>).then(
+          (v) => { g.IS_REACT_ACT_ENVIRONMENT = prev; return v; },
+          (e) => { g.IS_REACT_ACT_ENVIRONMENT = prev; throw e; }
+        );
       }
       g.IS_REACT_ACT_ENVIRONMENT = prev;
       return res;
@@ -24,7 +29,6 @@ try {
       throw e;
     }
   };
-  const req = eval("require") as (id: string) => Record<string, unknown>;
   for (const mid of ["react", "react/cjs/react.production.js", "react/cjs/react.development.js"]) {
     try {
       const mod = req(mid);

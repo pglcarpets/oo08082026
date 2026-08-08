@@ -53,7 +53,7 @@ Production uses a read-only filesystem (Supabase). Dev uses disk (`DEV_AUTH_BYPA
 |------|------------|-----------------|---------------|
 | Planner projects | `platform/Planner/data/projects/` | `oando_plans` (Admin) | `lib/Planner/plannerPersistenceMode.ts` |
 | Furniture library | `platform/shared/data/furniture/` | `furniture_catalog` (Admin) | `lib/catalog/furnitureCatalogMode.ts` |
-| Published desc. | `site/inventory/descriptors/` | `block_descriptors` (Prod.)| (Same as furniture) |
+| Published desc. | `site/inventory/descriptors/` | `block_descriptors` (Admin)| (Same as furniture) |
 
 *Note: Seeding is off the read path via `pnpm run seed:furniture`.*
 

@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — tech-docs Vitest lane green (195 tests) and package gate green; snapshot seam included in lane; production host blocked by F3 DNS.
 **Owner / when to use:** Anyone changing `tech-docs-generator/`, snapshot data, or docs deployment.
-**Related:** [`Failures.md`](../Failures.md) (F3) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [04-database-plan.md](./04-database-plan.md) · [`HANDOVER.md`](../HANDOVER.md) · `tech-docs-generator/00-README.md` · `docs/architecture/tech-docs-link.md`
+**Related:** [`Failures.md`](../Failures.md) (F3) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [04-database-plan.md](./04-database-plan.md) · `tech-docs-generator/00-README.md` · `docs/architecture/tech-docs-link.md`
 
 **App:** `tech-docs-generator/` · **Prod target:** `docs.oando.co.in` (currently NXDOMAIN — F3)
 

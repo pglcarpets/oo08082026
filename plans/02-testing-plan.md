@@ -1,8 +1,8 @@
 ﻿# Testing plan — AUDITED 2026-08-08
 
-**Status:** PARTIAL — fast checks green on 2026-08-07; default lane STALE (JSON overwritten by focused run, 180 tests vs full 2784); tech-docs GREEN (195 tests). Playwright OPEN. **P1:** Auth withAuth:mirror:throw errors + rate limit 401s from 127.0.0.1.
+**Status:** PARTIAL — fast checks green on 2026-08-07; default lane STALE (JSON overwritten by focused run, 180 tests vs full 2784); tech-docs GREEN (195 tests). Playwright OPEN. **P1-3:** Auth `withAuth:mirror:throw` errors + rate limit 401s from `127.0.0.1`.
 **Owner / when to use:** Anyone running gates, Vitest, or Playwright before merge or release.
-**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) · [`HANDOVER.md`](../HANDOVER.md)
+**Related:** [`Testing-handbook.md`](../Testing-handbook.md) · [`Agents/02-testing.md`](../Agents/02-testing.md) · [05-workspaces-plan.md](./05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-ops-deploy-plan.md)
 
 ---
 

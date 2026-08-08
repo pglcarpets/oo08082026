@@ -2,7 +2,7 @@
 
 Seven active programmes plus this index. **Flat folder only** — no subfolders, no extra files. Blockers live in [`Failures.md`](../Failures.md) only.
 
-**Authority:** user instruction > live code > this tree > [`HANDOVER.md`](../HANDOVER.md).
+**Authority:** user instruction > live code > this tree > [`plans/01-handover.md`](./01-handover.md).
 
 ---
 
@@ -44,7 +44,7 @@ Cross-links: workspace chrome → [06-site-plan.md](./06-site-plan.md) track C2;
 
 ## Purity gate
 
-`plans/` must contain **exactly** `00-README.md` plus the six `*-plan.md` files above. No subfolders. Markdown only.
+`plans/` must contain **exactly** `00-README.md` plus the eight plan documents above. No subfolders. Markdown only.
 
 ```powershell
 # From repo root

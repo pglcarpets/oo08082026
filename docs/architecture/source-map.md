@@ -26,7 +26,7 @@ authoritative.
 | Studio / Planner route entries | `site/app/oostudio/*`, `site/app/ooplanner/*` → `features/{Studio,Planner}` |
 | Plan-symbol PNG contract | `site/lib/catalog/planSymbolPngContract.ts` |
 | Local PNG mirror | `site/public/png-catalog/` |
-| Descriptors | `site/inventory/descriptors/` (dev) · `block_descriptors` (prod) |
+| Descriptors | `site/inventory/descriptors/` (dev) · `block_descriptors` (prod — admin DB) |
 | Persistence selectors | `site/lib/Planner/plannerPersistenceMode.ts` · `site/lib/catalog/furnitureCatalogMode.ts` |
 | Supabase stores | `site/lib/Planner/projectsStore.supabase.ts` · `site/lib/catalog/furnitureCatalogStore.supabase.ts` · `site/lib/catalog/blockDescriptorStore.supabase.ts` |
 | Catalog asset bucket | `site/features/shared/catalog/catalogAssetStorage.server.ts` |

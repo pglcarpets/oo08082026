@@ -128,7 +128,7 @@ Selectors: `lib/Planner/plannerPersistenceMode.ts`, `lib/catalog/furnitureCatalo
 | DB | Project ref | Holds |
 |----|-------------|-------|
 | **Products** | `erpweaiypimorcunaimz` | Catalog, configurator, descriptors, flags |
-| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, queries, audit, furniture library (`furniture_catalog` + `catalog-assets` bucket — moved here in cutover) |
+| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, queries, audit, furniture library (`furniture_catalog` + `catalog-assets` bucket — moved here in cutover), published descriptors |
 
 Picking the wrong one is the most common database mistake here. Rule of thumb:
 **anything a customer or staff member owns** is Admin; **anything in the catalog**

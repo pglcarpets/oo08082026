@@ -55,8 +55,7 @@
 - `/login` → `app/(site)/login/page.tsx`
 
 **Note (2026-08-06):** the old "missing `@/features/planner/*` imports" item is no
-longer tracked in `Failures.md` (F1–F3 are deploy blockers); re-verify if a build
-error appears.
+longer tracked in `Failures.md`; re-verify if a build error appears.
 
 ## Admin (live app routes)
 

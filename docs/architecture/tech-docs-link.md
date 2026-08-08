@@ -7,9 +7,8 @@
 > **Status 2026-08-02 (blocker note refreshed 2026-08-06):** Inventory SPA is
 > optional to the product. Generate **writes directly** into
 > `generated-documents/{docs,data}` (no `.tmp` staging swap for those surfaces).
-> Vite writes `generated-documents/site` directly. Blockers: root `Failures.md`
-> F1–F3 are **deploy** blockers (Cloudflare Worker origin / empty apex catalog /
-> `docs.oando.co.in` DNS — F3 is the docs-surface one). The old tech-docs gate
+> Vite writes `generated-documents/site` directly. Blockers: see root `Failures.md`
+> for current deploy blockers (F3 is the docs-surface one: `docs.oando.co.in` DNS). The old tech-docs gate
 > blocker is no longer tracked under any F-id; run `pnpm run tech-docs:gate`
 > fresh for gate truth (unexecuted as of 2026-08-06). Product code wins if the
 > SPA disagrees.

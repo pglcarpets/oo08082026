@@ -182,7 +182,7 @@ everything else selects Supabase. Never both.
 |------|-----------------|------------|
 | Planner projects | `oando_plans` (admin DB) | `platform/Planner/data/projects/` |
 | Furniture library | `furniture_catalog` + `catalog-assets` bucket (admin DB) | `platform/shared/data/furniture/` |
-| Published descriptors | `block_descriptors` (products DB) | `site/inventory/descriptors/` |
+| Published descriptors | `block_descriptors` (admin DB) | `site/inventory/descriptors/` |
 
 Selectors: `lib/Planner/plannerPersistenceMode.ts`,
 `lib/catalog/furnitureCatalogMode.ts`. Route handlers call the mode-aware store
@@ -199,7 +199,7 @@ Planner rail renders and looks healthy while every save fails.
 |-------|------|
 | Contract | `lib/catalog/planSymbolPngContract.ts` — `planSymbolPngUrl` + checksum (+ mime), 2 px/mm, 40 mm pad |
 | Bytes | Supabase Storage `catalog-assets` via `features/shared/catalog/catalogAssetStorage.server.ts` |
-| Release record | `block_descriptors` (Supabase mode) or `site/inventory/descriptors/` (disk) |
+| Release record | `block_descriptors` (Supabase mode — admin DB) or `site/inventory/descriptors/` (disk) |
 | Dev mirror | `site/public/assets/others/legacy/png-catalog/` — never release authority |
 
 Quality gate before publish: `assertPlanSymbolPngQuality` + `checksumPngBuffer`.

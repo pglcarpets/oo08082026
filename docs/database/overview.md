@@ -33,7 +33,7 @@ filesystem is read-only.
 |------|-----------------|------------|
 | Planner projects | `oando_plans` (admin) | `platform/Planner/data/projects/` |
 | Furniture library | `furniture_catalog` + `catalog-assets` bucket (admin) | `platform/shared/data/furniture/` |
-| Published descriptors | `block_descriptors` (products) | `site/inventory/descriptors/` |
+| Published descriptors | `block_descriptors` (admin) | `site/inventory/descriptors/` |
 
 Selectors: `lib/Planner/plannerPersistenceMode.ts`, `lib/catalog/furnitureCatalogMode.ts`.
 Never dual-write.

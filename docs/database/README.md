@@ -17,8 +17,8 @@ convention. Choosing the wrong one is the most common mistake here.
 
 | Role | Ref | Owns | Env |
 |------|-----|------|-----|
-| **Products** | `erpweaiypimorcunaimz` | Marketing catalog, configurator, themes, flags (furniture moved to Admin in cutover) | `PRODUCTS_DATABASE_URL` |
-| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, customer queries, audit | `SUPABASE_AUTH_DATABASE_URL` |
+| **Products** | `erpweaiypimorcunaimz` | Marketing catalog, configurator, themes, flags (furniture + descriptors moved to Admin in cutover) | `PRODUCTS_DATABASE_URL` |
+| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, customer queries, audit, furniture library, descriptors | `SUPABASE_AUTH_DATABASE_URL` |
 
 Rule of thumb: anything a customer or staff member **owns** is Admin; anything in
 the **catalog** is Products.

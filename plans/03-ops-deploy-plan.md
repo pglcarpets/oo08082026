@@ -2,7 +2,7 @@
 
 **Status:** PARTIAL — Worker origin, apex catalog, and static CSS verified 2026-08-08; deploy used remote build (`--prebuilt` failed on `/admin/icon.png`); docs DNS still OPEN.
 **Owner / when to use:** Anyone deploying to Vercel, Cloudflare Worker, or proving production smoke before closing F-rows in [`Failures.md`](../Failures.md).
-**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [`HANDOVER.md`](../HANDOVER.md) · [04-database-plan.md](./04-database-plan.md) · [02-testing-plan.md](./02-testing-plan.md) · `workers/oando-worker-proxy/` · `vercel.json`
+**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [04-database-plan.md](./04-database-plan.md) · [02-testing-plan.md](./02-testing-plan.md) · `workers/oando-worker-proxy/` · `vercel.json`
 
 ---
 
@@ -26,11 +26,11 @@
 
 | ID | Claim | Evidence 2026-08-08 | Verdict |
 |----|-------|---------------------|---------|
-| F1 | Worker proxies to correct Vercel origin | `wrangler.toml` `VERCEL_ORIGIN = https://oostudiooplanner.vercel.app`; curl `oando.co.in/ooplanner/` → 200, `x-oando-proxy: cloudflare-worker` | **VERIFIED** — `results/deploy/worker-headers.txt` |
-| F2 | Catalog data on apex | `curl oando.co.in/api/categories/` returns category counts | **VERIFIED** — same artifact |
+| P0-3 | Worker proxy returns 404 for catalog assets | `results/asset-cutover/smoke-report.json` — `catalog/flagship/categories/soft-seating.webp` worker=404, s3=200 | **OPEN — owner action** |
+| P0-2 | Catalog DB missing `catalog_categories` and `catalog_products` tables | `curl oando.co.in/api/categories/` returns category counts | **OPEN — see [04-database-plan.md](./04-database-plan.md)** |
 | F3 | `docs.oando.co.in` DNS | NXDOMAIN per [`Failures.md`](../Failures.md) F3 | **OPEN — owner CF action** |
 | Static assets | `/_next/static/css/*.css` on prod | `results/deploy/vercel-static.txt`: remote-build deploy 2026-08-08 returned 200 for CSS; `--prebuilt` path blocked by duplicate admin icon (since fixed) | **VERIFIED — prebuilt still OPEN** |
-| Exposed token | Vercel token in git history (`HANDOVER`) | Must rotate | **OPEN — security** |
+| Exposed token | Vercel token in git history (old handover doc) | Must rotate | **OPEN — security** |
 | `ops check:worker-origin` | Drift check script | `results/deploy/worker-origin-check.log`: direct `node` invocation → exit 0 OK; `pnpm run ops` path-quoting bug on Windows | **SCRIPT VERIFIED — wrapper flaky** |
 | Auth session tests | `session.test.ts` | 10/10 green after vitest env fix | **GREEN — see [02-testing-plan.md](./02-testing-plan.md)** |
 | Full `gate` | Release chain | Not re-proven end-to-end in last session | **OPEN** |
@@ -50,7 +50,7 @@
    ```powershell
    curl.exe -s https://oando.co.in/api/categories/ | Select-String "seating"
    ```
-   **Expect:** JSON with category counts. **If empty:** see [04-database-plan.md](./04-database-plan.md) seeding and F1 origin.
+   **Expect:** JSON with category counts. **If empty:** see [04-database-plan.md](./04-database-plan.md) seeding and worker origin.
 
 3. **Worker origin drift check**
    ```powershell

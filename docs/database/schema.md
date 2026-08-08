@@ -30,13 +30,13 @@ Clients: `@/platform/supabase/supabaseAdmin.ts` (products, service role),
 | `configurator_products` | Parametric catalog (separate from marketing) |
 | `planner_managed_products` | Admin-curated planner library |
 | `furniture_catalog` | **Shared Studio/Planner furniture library** — moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
-| `block_descriptors` | Published descriptor release record + `lifecycle` |
+| `block_descriptors` | Published descriptor release record + `lifecycle` — moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
 | `block_themes` | Theme tokens |
 | `svg_revisions` · `svg_revision_artifacts` | Legacy SVG revision schema — residual |
 | `feature_flags` | Flag rows (mirrored in both DBs) |
 | `_local_migration_history` | Local apply bookkeeping |
 
-## Admin / Planner DB — 21 tables
+## Admin / Planner DB — 23 tables
 
 | Table | Role |
 |-------|------|
@@ -51,6 +51,8 @@ Clients: `@/platform/supabase/supabaseAdmin.ts` (products, service role),
 | `workspace_editor_configs` · `workspace_editor_config_audit` | Workspace editor store |
 | `admin_modules` · `feature_flags` | Admin module registry / flags |
 | `audit_events` · `user_history` | Audit |
+| `furniture_catalog` | Shared Studio/Planner furniture library (migrated from Products DB in phase 05 cutover, 2026-08-06) |
+| `block_descriptors` | Published descriptor release record + `lifecycle` (migrated from Products DB in phase 05 cutover, 2026-08-06) |
 | `_local_migration_history` | Local apply bookkeeping |
 
 `profiles` has **no `email` and no `role` column.** Writing either returns
@@ -78,10 +80,10 @@ Enabled on every table in both databases.
   (anonymous captures) are service-role only — staff read them through admin.
 - **Service-role-only by design** (RLS on, zero policies), recorded as table
   comments and pinned by `tests/unit/platform/serviceRoleOnlyTables.db.test.ts`:
-  - admin — `product_studio_templates`, `product_studio_template_audit`,
+  - admin — `block_descriptors`, `product_studio_templates`, `product_studio_template_audit`,
     `workspace_editor_configs`, `workspace_editor_config_audit`,
     `_local_migration_history`
-  - products — `block_descriptors`, `block_themes`, `svg_revisions`,
+  - products — `block_themes`, `svg_revisions`,
     `svg_revision_artifacts`
 
 A policy alone is not enough: Supabase also needs the table **grant**.

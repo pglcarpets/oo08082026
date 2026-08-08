@@ -42,7 +42,7 @@ Short, high-traffic, and the only files a newcomer must read.
 | [`README.md`](./README.md) | Product reference, fork rules, API map, root vs `ops` commands |
 | [`Testing-handbook.md`](./Testing-handbook.md) | How to test, two lanes, audits, focused runs via `ops` |
 | [`Failures.md`](./Failures.md) | What is broken right now |
-| [`HANDOVER.md`](./HANDOVER.md) | Latest session handover — typography/chrome (`27a51e6`) + portal shell (`33254ea`) |
+| [`plans/01-handover.md`](./plans/01-handover.md) | Latest session handover — plans alignment + execution order (2026-08-08) |
 
 ### 2. `Agents/` — how a session works
 

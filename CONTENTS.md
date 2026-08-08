@@ -20,8 +20,8 @@ Truth-synced 2026-08-06 against live code, root commands (`ops`), and both live 
 | 05 | [`AGENTS.md`](./AGENTS.md) | Process floor, product layout, persistence, verification, agent meta-rules |
 | 06 | [`README.md`](./README.md) | Product reference, API map, UI policy, root vs `ops` commands |
 | 07 | [`Testing-handbook.md`](./Testing-handbook.md) | Test rules, two lanes, audits, `ops` for focused e2e |
-| 08 | [`Failures.md`](./Failures.md) | Active blockers only â€” F1â€“F3 deploy blockers (Worker origin / apex catalog / docs DNS) |
-| 09 | [`HANDOVER.md`](./HANDOVER.md) | Session handover â€” plans alignment + execution order (2026-08-06); superseded 2026-08-03 handover retained below it |
+| 08 | [`Failures.md`](./Failures.md) | Active blockers only — P0 deploy blockers (hydration / catalog DB / worker 404s / docs DNS) |
+| 09 | [`plans/01-handover.md`](./plans/01-handover.md) | Latest session handover — plans alignment + execution order (2026-08-08) |
 | 10 | [`.github/skills/README.md`](./.github/skills/README.md) | Pinned agent skills registry (16 global skills) |
 
 ## `Agents/` â€” session handbooks

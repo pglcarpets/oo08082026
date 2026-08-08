@@ -87,7 +87,7 @@ Planner rail →  GET /api/Planner/catalog    →  server/Planner/plannerStore.t
 ```
 
 A second path — `POST /api/Studio/furniture/[id]/publish` — writes versioned
-descriptors (`block_descriptors` in prod, `site/inventory/descriptors/` in dev)
+descriptors (`block_descriptors` in prod [admin DB], `site/inventory/descriptors/` in dev)
 plus lifecycle. **The Planner rail does not read descriptors**; that path feeds
 catalog release, not the rail.
 
@@ -119,7 +119,7 @@ Shared rules: semantic tokens; distinct loading/empty/error states; no silent fa
 | Plan symbol (2D) contract | PNG fields via `planSymbolPngContract.ts`; local files under `site/public/assets/others/legacy/png-catalog/` (dev mirror only) |
 | Persistence | Exclusive mode — disk under `DEV_AUTH_BYPASS=1`, else Supabase. Never dual-write |
 | Descriptors | `site/inventory/descriptors/*.json` present |
-| Legacy `/planner` app routes | **absent** — no longer tracked in `Failures.md` (F1–F3 are deploy blockers); re-verify residual `@/features/planner/*` imports if a build error appears |
+| Legacy `/planner` app routes | **absent** — no longer tracked in `Failures.md`; re-verify residual `@/features/planner/*` imports if a build error appears |
 | Product Studio admin (`/admin/product-studio`) | **absent** |
 | Edge | **`site/proxy.ts` present** (Next 16); no `middleware.ts` |
 | i18n | **`site/i18n/` present** — config + messages; plugin `./i18n/request.ts`; root `i18n/request.ts` re-exports for monorepo `process.cwd()` |

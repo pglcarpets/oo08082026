@@ -10,7 +10,7 @@
 | Marketing catalog | `pnpm run ops seed` | Products |
 | Configurator catalog | `pnpm run ops seed:configurator` | Products |
 | Planner managed rows | `pnpm run ops seed:managed` | Products (after `ops db:apply`) |
-| Furniture library | `pnpm run seed:furniture` | Products (after `ops db:apply`) |
+| Furniture library | `pnpm run seed:furniture` | Admin (after `ops db:apply:admin`) |
 | Products migrations | `pnpm run ops db:apply` | Products |
 | Admin migrations | `pnpm run ops db:apply:admin` | Admin |
 | Admin schema verify | `pnpm run ops db:sync-drizzle` | Admin |

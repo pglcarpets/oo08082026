@@ -18,10 +18,10 @@
 ## Catalog symbols
 - Contract: `site/lib/catalog/planSymbolPngContract.ts` when present.
 - Descriptors: `site/inventory/descriptors/` (disk mode) or `block_descriptors`
-  (Supabase mode). PNG mirror on disk: `site/public/assets/others/legacy/png-catalog/`
+  (Supabase mode — admin DB). PNG mirror on disk: `site/public/assets/others/legacy/png-catalog/`
   (public URL stays `/png-catalog` via rewrite) — dev only.
 - Furniture library: `platform/shared/data/furniture/` (disk) or
-  `furniture_catalog` + the `catalog-assets` bucket (Supabase).
+  `furniture_catalog` + the `catalog-assets` bucket (Supabase — admin DB).
 
 ## Studio → Planner
 

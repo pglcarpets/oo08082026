@@ -125,7 +125,7 @@ Exclusive mode — one or the other, never both.
 | | Selected when | Planner projects | Furniture library | Descriptors |
 |---|---|---|---|---|
 | **disk** | `DEV_AUTH_BYPASS=1`, non-production | `platform/Planner/data/projects/` | `platform/shared/data/furniture/` | `site/inventory/descriptors/` |
-| **supabase** | everything else | `oando_plans` | `furniture_catalog` + `catalog-assets` (admin) | `block_descriptors` (products) |
+| **supabase** | everything else | `oando_plans` | `furniture_catalog` + `catalog-assets` (admin) | `block_descriptors` (admin) |
 
 **Production's filesystem is read-only.** The failure mode is quiet: seed content
 is committed to git, so the Planner rail renders and looks healthy while every
@@ -193,7 +193,7 @@ Two Supabase projects. Picking the wrong one is the most common mistake here.
 
 | Role | Ref | Holds |
 |------|-----|-------|
-| Products | `erpweaiypimorcunaimz` | Marketing catalog, configurator, themes, flags (furniture moved to Admin in cutover) |
+| Products | `erpweaiypimorcunaimz` | Marketing catalog, configurator, themes, flags (furniture + descriptors moved to Admin in cutover) |
 | Admin | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, queries, audit |
 
 Rule of thumb: anything a customer or staff member owns is **Admin**; anything in

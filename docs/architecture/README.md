@@ -12,8 +12,6 @@ Where code lives, what runs it, and what serves each route.
 | [`routes-api.md`](./routes-api.md) | Every API route, with its auth role |
 | [`tech-docs-link.md`](./tech-docs-link.md) | The admin → tech-docs SPA link |
 
-`sitemap-routes.csv` is generated (`pnpm run ops docs:sync:sitemap-csv`), not prose.
-
 ## The two facts that shape everything
 
 **The fork.** Studio (`/oostudio`) and Planner (`/ooplanner`) are separate trees

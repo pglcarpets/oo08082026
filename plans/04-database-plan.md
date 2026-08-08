@@ -30,7 +30,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 |------|------------|-----------------|---------------|---------|
 | Planner projects | `platform/Planner/data/projects/` | Admin `oando_plans` | `lib/Planner/plannerPersistenceMode.ts` | Wrapper exists — **not live-proven in Supabase preview** |
 | Furniture library | `platform/shared/data/furniture/` | Admin DB + `catalog-assets` | `lib/catalog/furnitureCatalogMode.ts` | Admin path live; Products `furniture_catalog` + bucket **still exist** — not retired |
-| Descriptors | `site/inventory/descriptors/` | Products `block_descriptors` | `blockDescriptorStore.supabase.ts` | Supabase select path wired |
+| Descriptors | `site/inventory/descriptors/` | Admin `block_descriptors` | `blockDescriptorStore.supabase.ts` | Supabase select path wired |
 | Contact queries | — | Admin `customer_queries` | Admin client | DB smoke **pass** (`results/asset-cutover/smoke-report.json` contact → 201); unit smoke re-run optional |
 | Planner symbols/GLB | — | Products `catalog-assets` | — | **OPEN — migrate to Admin or document keep** |
 | `feature_flags` grants | — | Products + Admin migrations | `20260806120000_feature_flags_grants.sql` | Both Admin and Products migrations created; Admin applied locally — **live Planner proof OPEN** |

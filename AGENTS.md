@@ -22,6 +22,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 *   **Code Quality:** Make the smallest sound change. Preserve unrelated code. No handwritten `any`.
 *   **Secrets:** Store only in `.env.local` (and `site/.env.local`).
 *   **UI Testing:** Strict use of `http://localhost:3000` (Auth cookies are host-bound. Never use `127.0.0.1`).
+*   **Agent parallelism:** Cap at **2 subagents in parallel** (Task tool / explore agents). Independent tracks (e.g. site console audit + tech-docs gate) may run as two agents; **3+ tracks** → start two, queue the rest after one finishes. **Dependent steps** stay single-threaded — no extra agents when output of one step feeds the next.
 
 ## 3. Product Layout & Architecture
 **CRITICAL:** Studio (`/oostudio`) and Planner (`/ooplanner`) are strictly forked. **They never import each other.** Run `pnpm run scan:boundaries` before committing changes to either tree.
@@ -96,3 +97,4 @@ Production uses a read-only filesystem (Supabase). Dev uses disk (`DEV_AUTH_BYPA
 | `.github/instructions/boundaries.instructions.md`| `site/**/{Studio,Planner}/**` | Fork isolation rules |
 | `.github/instructions/migrations.instructions.md`| `**/supabase/migrations/**/*.sql`| Rollbacks, Supabase grants |
 | `.github/skills/README.md` | Agent skills | 16 pinned skills (Note: no `/gate` or `/new-test` commands exist) |
+| `.cursor/rules/agent-parallelism.mdc` | All agent sessions | Max 2 parallel subagents; queue or single-thread when dependent |

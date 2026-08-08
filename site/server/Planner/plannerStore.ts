@@ -86,7 +86,10 @@ export async function readJson<T>(filePath: string): Promise<T> {
 }
 
 export async function writeJson(filePath: string, data: unknown): Promise<void> {
-  await fs.writeFile(filePath, JSON.stringify(data, null, 2), "utf8");
+  const handle = await fs.open(filePath, "w");
+  await handle.writeFile(JSON.stringify(data, null, 2), "utf8");
+  await handle.sync();
+  await handle.close();
 }
 
 export async function writeBytes(filePath: string, data: Buffer): Promise<void> {

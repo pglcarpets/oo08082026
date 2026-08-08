@@ -1187,6 +1187,9 @@ const Planner = () => {
         setProjectId(created.id);
         try { localStorage.setItem(PLANNER_LAST_PROJECT_KEY, created.id); } catch { /* noop */ }
         router.replace(`/ooplanner/projects/${created.id}`);
+        // Yield so the browser processes the history update before we tell
+        // the caller (and tests) that saving is fully done.
+        await new Promise((r) => requestAnimationFrame(() => r(undefined)));
         showToast(`Saved "${created.name}"`);
       }
     } catch (e) {
@@ -1223,10 +1226,16 @@ const Planner = () => {
           refreshLayers();
           showToast(`Loaded "${proj.name}"`);
         });
-      } catch {
-        // Stale/deleted id — don't keep retrying it on every future mount.
-        try { localStorage.removeItem(PLANNER_LAST_PROJECT_KEY); } catch { /* noop */ }
-        if (routeId) showToast(`Failed to load project`, "error");
+      } catch (e) {
+        const msg = e instanceof Error ? e.message : String(e);
+        console.error("[Planner] load project failed:", msg, { effectiveId, routeId });
+        // Only clear localStorage if the project is actually gone (404).
+        // Transient errors (network hiccups, disk races) should not wipe the
+        // fallback key — the user can reload again and it may succeed.
+        if (msg.includes("404") || msg.includes("not found") || msg.includes("Not Found")) {
+          try { localStorage.removeItem(PLANNER_LAST_PROJECT_KEY); } catch { /* noop */ }
+        }
+        showToast(`Failed to load project${msg ? `: ${msg}` : ""}`, "error");
       }
     })();
   }, [ready, routeId]);

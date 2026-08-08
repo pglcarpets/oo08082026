@@ -5,7 +5,7 @@
 | Need | Open |
 |------|------|
 | Process floor | `AGENTS.md` |
-| Plan | `plans/README.md` |
+| Plan | `plans/00-README.md` |
 | Blockers | `Failures.md` |
 | Doc index | `CONTENTS.md` |
 | Structure | `DOC-MAP.md` |
@@ -19,4 +19,4 @@
   `ops-deploy-plan.md`, `site-plan.md`, `tech-docs-plan.md`, `testing-plan.md`,
   `workspaces-plan.md`). `check:plans-purity` rejects subfolders, extra files,
   and retired plan names (OUTSTANDING/FINISH-PLAN/CHECKLIST/…).
-  `plans/README.md` numbers the six programmes in execution order.
+  `plans/00-README.md` numbers the six programmes in execution order.

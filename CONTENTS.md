@@ -75,13 +75,13 @@ Truth-synced 2026-08-06 against live code, root commands (`ops`), and both live 
 
 | № | File | Covers |
 |---|------|--------|
-| 38 | [`plans/README.md`](./plans/README.md) | Programme plan index |
-| 39 | [`plans/testing-plan.md`](./plans/testing-plan.md) | Testing, gates, scripts hygiene |
-| 40 | [`plans/ops-deploy-plan.md`](./plans/ops-deploy-plan.md) | Deploy, Worker, DNS, auth/session |
-| 41 | [`plans/database-plan.md`](./plans/database-plan.md) | Database, persistence, R2/CDN cutover |
-| 42 | [`plans/workspaces-plan.md`](./plans/workspaces-plan.md) | Planner `/ooplanner` + Studio `/oostudio` |
-| 43 | [`plans/site-plan.md`](./plans/site-plan.md) | Marketing, i18n, member suite, UI polish |
-| 44 | [`plans/tech-docs-plan.md`](./plans/tech-docs-plan.md) | Tech-docs generator, snapshot seam |
+| 38 | [`plans/00-README.md`](./plans/00-README.md) | Programme plan index |
+| 39 | [`plans/02-testing-plan.md`](./plans/02-testing-plan.md) | Testing, gates, scripts hygiene |
+| 40 | [`plans/03-ops-deploy-plan.md`](./plans/03-ops-deploy-plan.md) | Deploy, Worker, DNS, auth/session |
+| 41 | [`plans/04-database-plan.md`](./plans/04-database-plan.md) | Database, persistence, R2/CDN cutover |
+| 42 | [`plans/05-workspaces-plan.md`](./plans/05-workspaces-plan.md) | Planner `/ooplanner` + Studio `/oostudio` |
+| 43 | [`plans/06-site-plan.md`](./plans/06-site-plan.md) | Marketing, i18n, member suite, UI polish |
+| 44 | [`plans/07-tech-docs-plan.md`](./plans/07-tech-docs-plan.md) | Tech-docs generator, snapshot seam |
 
 ## Other packages
 

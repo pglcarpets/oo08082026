@@ -1,8 +1,8 @@
 ﻿# Database & persistence plan — AUDITED 2026-08-08
 
-**Status:** PARTIAL — mode-aware wrappers verified; Products bucket retirement, type regen, and smokes OPEN.
+**Status:** PARTIAL — mode-aware wrappers verified; asset-cutover smoke pass; contact DB smoke pass; Products bucket retirement, type regen, and Supabase-mode Planner proof OPEN. **P0:** Catalog DB missing catalog_categories and catalog_products tables — migration 20260801130000_create_furniture_catalog.sql exists but not applied.
 **Owner / when to use:** Anyone touching Supabase migrations, persistence selectors, or R2/CDN asset cutover.
-**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [workspaces-plan.md](./workspaces-plan.md) · [ops-deploy-plan.md](./ops-deploy-plan.md) · `docs/database/schema.md` · `site/platform/supabase/migrations*/`
+**Related:** [`Failures.md`](../Failures.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [05-workspaces-plan.md](./05-05-workspaces-plan.md) · [03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md) · `docs/database/schema.md` · `site/platform/supabase/migrations*/`
 
 **Databases:** Admin `rxzpznmxbaoxpikowmfc` · Products `erpweaiypimorcunaimz`
 
@@ -20,7 +20,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 |------|----------------|
 | DBA / infra | Apply migrations (`db:apply`, `db:apply:admin`); retire Products buckets after smoke |
 | Feature dev | Use wrappers (`writeFurnitureItem`, planner store, etc.) — never raw disk helpers in routes |
-| Workspace owner | Prove `feature_flags` grants unblock Planner place-furniture ([workspaces-plan.md](./workspaces-plan.md)) |
+| Workspace owner | Prove `feature_flags` grants unblock Planner place-furniture ([05-workspaces-plan.md](./05-05-workspaces-plan.md)) |
 
 ---
 
@@ -31,9 +31,9 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 | Planner projects | `platform/Planner/data/projects/` | Admin `oando_plans` | `lib/Planner/plannerPersistenceMode.ts` | Wrapper exists — **not live-proven in Supabase preview** |
 | Furniture library | `platform/shared/data/furniture/` | Admin DB + `catalog-assets` | `lib/catalog/furnitureCatalogMode.ts` | Admin path live; Products `furniture_catalog` + bucket **still exist** — not retired |
 | Descriptors | `site/inventory/descriptors/` | Products `block_descriptors` | `blockDescriptorStore.supabase.ts` | Supabase select path wired |
-| Contact queries | — | Admin `customer_queries` | Admin client | DB smokes **stale — re-run needed** |
+| Contact queries | — | Admin `customer_queries` | Admin client | DB smoke **pass** (`results/asset-cutover/smoke-report.json` contact → 201); unit smoke re-run optional |
 | Planner symbols/GLB | — | Products `catalog-assets` | — | **OPEN — migrate to Admin or document keep** |
-| `feature_flags` grants | — | Products + Admin migrations | `20260806120000_feature_flags_grants.sql` | Admin migration created + applied locally — **live Planner proof OPEN** |
+| `feature_flags` grants | — | Products + Admin migrations | `20260806120000_feature_flags_grants.sql` | Both Admin and Products migrations created; Admin applied locally — **live Planner proof OPEN** |
 | Type drift | Hand-patches in `database.types.ts` | CLI regen overwrites | `pnpm run ops db:types*` | **OPEN regen + patch merge** |
 
 **Migration governance:** baseline `P4_migration_no_rollback = 42`; new migrations need `-- rollback` section.
@@ -56,7 +56,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
    ```
    **Expect:** `all up to date` or success; entry in `_local_migration_history`.
 
-3. **Prove `feature_flags` unblocks Planner** — after grants, re-run [workspaces-plan.md](./workspaces-plan.md) `audit-3b` with `DEV_AUTH_BYPASS=0` on preview.
+3. **Prove `feature_flags` unblocks Planner** — after grants, re-run [05-workspaces-plan.md](./05-05-workspaces-plan.md) `audit-3b` with `DEV_AUTH_BYPASS=0` on preview.
 
 4. **Asset cutover smokes**
    ```powershell
@@ -64,7 +64,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
    pnpm exec vitest run --config tests/vitest.config.ts tests/unit/scripts/asset-cutover-r2.smoke.test.ts
    node scripts/asset-cutover-smoke.mjs
    ```
-   **Expect:** exit 0. Artifacts under `results/asset-cutover/`.
+   **Expect:** exit 0. Artifacts under `results/asset-cutover/` — verify `overall: "pass"` in `smoke-report.json`.
 
 5. **Contact DB smokes** (requires live Admin keys in `.env.local`)
    ```powershell
@@ -81,7 +81,7 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
    ```
    **Expect:** re-apply hand-patches from `site/platform/types/patches/*.json` if CLI overwrote furniture/descriptor shapes.
 
-7. **Retire Products furniture bucket** — only after apex catalog smoke green ([ops-deploy-plan.md](./ops-deploy-plan.md)) + R2 decode 824/824:
+7. **Retire Products furniture bucket** — only after apex catalog smoke green ([03-ops-deploy-plan.md](./03-03-ops-deploy-plan.md)) + R2 decode 824/824:
    - Delete Products `furniture_catalog` rows, `catalog-assets` objects, and `f_vitest_*` junk in one window.
    - Update `docs/database/schema.md`.
 
@@ -102,8 +102,8 @@ One source of truth per data domain: dev disk (`DEV_AUTH_BYPASS=1`) vs Supabase 
 
 ## Open items
 
-1. **P0:** Re-prove Planner `placeFurnitureAt` after Admin `feature_flags` grants (with [workspaces-plan.md](./workspaces-plan.md)).
-2. **P1:** Retire Products `furniture_catalog` + `catalog-assets` after apex + R2 smoke.
+1. **P0:** Re-prove Planner `placeFurnitureAt` after Admin `feature_flags` grants (with [05-workspaces-plan.md](./05-05-workspaces-plan.md)).
+2. **P1:** Retire Products `furniture_catalog` + `catalog-assets` after apex catalog smoke green (verified) + R2 decode 824/824 (verify `results/asset-cutover/smoke-report.json`).
 3. **P1:** Regenerate types and reconcile patches.
 4. **P2:** Decide symbols/GLB — Admin vs Products; document in schema.
 5. **P2:** Split `assetPaths.ts` into `assetAliases`, `catalogNesting`, `imageVariant`, `legacyRewrite`.

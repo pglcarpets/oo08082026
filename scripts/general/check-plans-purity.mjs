@@ -11,19 +11,20 @@ const root = process.env.PLANS_PURITY_ROOT
 const planRoot = path.join(root, "plans");
 const planLabel = "plans";
 /**
- * `plans/` is pinned to README + six root programme plans only. No subfolders.
+ * `plans/` is pinned to README + six root programme plans + handover. No subfolders.
  * Fold working notes into programme plans or `Failures.md`.
  */
 const rootPlanDocs = [
-  "database-plan.md",
-  "ops-deploy-plan.md",
-  "site-plan.md",
-  "tech-docs-plan.md",
-  "testing-plan.md",
-  "workspaces-plan.md",
+  "04-database-plan.md",
+  "01-handover.md",
+  "03-ops-deploy-plan.md",
+  "06-site-plan.md",
+  "07-tech-docs-plan.md",
+  "02-testing-plan.md",
+  "05-workspaces-plan.md",
 ];
 const requiredPlanDocs = [];
-const allowedPlanDocs = new Set(["README.md", ...rootPlanDocs, ...requiredPlanDocs]);
+const allowedPlanDocs = new Set(["00-README.md", ...rootPlanDocs, ...requiredPlanDocs]);
 const violations = [];
 
 if (!fs.existsSync(planRoot)) {
@@ -43,7 +44,7 @@ function collect(dir) {
 const allFiles = collect(planRoot);
 const markdown = allFiles.filter((file) => file.endsWith(".md"));
 
-if (!markdown.includes("README.md")) {
+if (!markdown.includes("00-README.md")) {
   violations.push(`missing: ${planLabel}/README.md`);
 }
 
@@ -87,5 +88,5 @@ if (violations.length) {
 }
 
 console.log(
-  "check:plans-purity OK - README + six programme plans, no subfolders or retired plan docs",
+  "check:plans-purity OK - README + seven plan docs, no subfolders or retired plan docs",
 );

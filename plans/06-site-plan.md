@@ -1,8 +1,8 @@
 # Site plan — marketing, i18n, UI polish — AUDITED 2026-08-08
 
-**Status:** PARTIAL — member suite landings claimed 2026-08-06; marketing bugs, responsive audit, and full gate OPEN.
+**Status:** PARTIAL — member suite landings claimed 2026-08-06; marketing ledger has 10 open findings; responsive audit not re-run 2026-08-08; console audit reveals product-page hydration mismatches + 404 resource errors on 6 routes; theme fetch fails (falls back to local tokens); full gate OPEN.
 **Owner / when to use:** Anyone changing marketing `(site)` routes, i18n, member suite shell, or cross-route FOCSS polish.
-**Related:** [workspaces-plan.md](./workspaces-plan.md) (track C2) · [testing-plan.md](./testing-plan.md) (`audit-4a`) · [database-plan.md](./database-plan.md) (asset cutover Phase 09) · [`Agents/07-css.md`](../Agents/07-css.md) · `site/focss/site/` · `agent-reports/marketing-ledger.md`
+**Related:** [05-workspaces-plan.md](./05-05-workspaces-plan.md) (track C2) · [02-testing-plan.md](./02-02-testing-plan.md) (`audit-4a`) · [04-database-plan.md](./04-04-database-plan.md) (asset cutover Phase 09) · [`Agents/07-css.md`](../Agents/07-css.md) · `site/focss/site/` · `agent-reports/marketing-ledger.md`
 
 ---
 
@@ -19,7 +19,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 | Marketing owner | `(site)` pages, `audit-4a`, ledger in `agent-reports/marketing-ledger.md` |
 | i18n owner | `home.*` keys, locale switch e2e, hardcoded string grep |
 | Member suite owner | Tracks A–B shell and portal CSS |
-| Workspace UI | Track C2 — delegate to [workspaces-plan.md](./workspaces-plan.md) |
+| Workspace UI | Track C2 — delegate to [05-workspaces-plan.md](./05-05-workspaces-plan.md) |
 
 ---
 
@@ -27,10 +27,11 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 
 | Area | Status | Notes |
 |------|--------|-------|
-| Marketing `/` | **OPEN** | Assistant @390, hydration, `/trusted-by` per marketing ledger |
+| Marketing `/` | **OPEN** | Ledger #1 assistant off-canvas, #2 header overflow, #3 `/trusted-by` abort, #5 contact hydration, #6 empty headings, #7 image loading, #8 link name, #9 duplicate labels, #10 enquiry notification (see `agent-reports/marketing-ledger.md`) |
+| Product pages | **OPEN** | Console audit 2026-08-08: hydration mismatch on `/products/workstations/` and `/products/seating/` (`results/console-audit/errors.json`) |
 | i18n `home.*` | **PARTIAL** | `next-intl` wired; e2e locale switch missing |
 | Desktop UI (1920) | **PARTIAL** | Tokens claimed; `responsive-audit` not re-run |
-| Mobile UI (390) | **PARTIAL** | Planner canvas fixed in workspaces; marketing #1/#2 open |
+| Mobile UI (390) | **PARTIAL** | Planner canvas fixed in workspaces; marketing #1 assistant off-canvas, #2 header overflow open |
 | Member suite A1–A8 | **CLAIMED** | Not re-proven 2026-08-08 |
 | Portal CSS B1–B4 | **CLAIMED** | `shell-portal.css`, FOCSS registered |
 | Track C1/C2/C3 | **OPEN** | Marketing polish, workspace chrome, admin tokens |
@@ -88,7 +89,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 
 6. **Track C — per-route polish**
    - **C1:** Marketing `(site)` pages — page-by-page FOCSS.
-   - **C2:** Planner + Studio chrome — coordinate with [workspaces-plan.md](./workspaces-plan.md).
+   - **C2:** Planner + Studio chrome — coordinate with [05-workspaces-plan.md](./05-05-workspaces-plan.md).
    - **C3:** Admin `AdminLayoutShell` token parity.
    - **C5:** Close ledger when C1–C3 land.
 
@@ -96,7 +97,7 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
    ```powershell
    pnpm run gate
    ```
-   See [testing-plan.md](./testing-plan.md) for lane details.
+   See [02-testing-plan.md](./02-02-testing-plan.md) for lane details.
 
 ---
 
@@ -115,14 +116,16 @@ One brand across marketing and member suite: Cisco Sans display, Helvetica Neue 
 
 ## Open items
 
-1. **P0:** `responsive-audit.mjs` + `audit-4a` with dated artifacts.
-2. **P1:** Marketing assistant @390 and hydration issues (ledger).
-3. **P1:** i18n e2e locale switch; grep hardcoded strings.
-4. **P1:** Re-prove member suite landings (A1–A8) — claimed not verified 2026-08-08.
-5. **P2:** Track C1 marketing FOCSS page-by-page.
-6. **P2:** Track C2 workspace chrome ([workspaces-plan.md](./workspaces-plan.md)).
-7. **P2:** Track C3 admin token parity.
-8. **P2:** Asset cutover Phase 09 (`home.*` i18n) — [database-plan.md](./database-plan.md).
+1. **P0:** `responsive-audit.mjs` + `audit-4a` with dated artifacts (marketing ledger #1–#10 must be addressed or consciously deferred).
+2. **P1:** Fix marketing assistant off-canvas @390px (ledger #1) and header text overflow (ledger #2).
+3. **P1:** Fix `/trusted-by` intermittent abort (ledger #3) and `/contact` hydration mismatch (ledger #5).
+4. **P1:** Fix product-page hydration mismatches on `/products/workstations/` and `/products/seating/` (`results/console-audit/errors.json`).
+5. **P1:** i18n e2e locale switch; grep hardcoded strings.
+6. **P1:** Re-prove member suite landings (A1–A8) — claimed not verified 2026-08-08.
+7. **P2:** Track C1 marketing FOCSS page-by-page.
+8. **P2:** Track C2 workspace chrome ([05-workspaces-plan.md](./05-05-workspaces-plan.md)).
+9. **P2:** Track C3 admin token parity.
+10. **P2:** Asset cutover Phase 09 (`home.*` i18n) — [04-database-plan.md](./04-04-database-plan.md).
 
 ---
 

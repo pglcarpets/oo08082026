@@ -1,8 +1,8 @@
 ﻿# Workspaces plan — Planner + Studio — AUDITED 2026-08-08
 
-**Status:** PARTIAL — code fixes verified by read; live Playwright proof and click-to-place OPEN.
+**Status:** PARTIAL — code fixes verified by read; Studio findings fixed in 2b/2c; Planner click-to-place wiring exists but live Supabase proof OPEN; undo/BOQ/390px canvas blockers missing from open list.
 **Owner / when to use:** Anyone changing `/ooplanner` or `/oostudio` — **forks never import each other** (`pnpm run scan:boundaries`).
-**Related:** [testing-plan.md](./testing-plan.md) · [database-plan.md](./database-plan.md) · [site-plan.md](./site-plan.md) (track C2) · [`Failures.md`](../Failures.md) · `agent-reports/{planner,studio}-ledger.md`
+**Related:** [02-testing-plan.md](./02-02-testing-plan.md) · [04-database-plan.md](./04-04-database-plan.md) · [06-site-plan.md](./06-06-site-plan.md) (track C2) · [`Failures.md`](../Failures.md) · `agent-reports/{planner,studio}-ledger.md`
 
 **Routes:** `/ooplanner` (Planner) · `/oostudio` (Studio)
 
@@ -20,8 +20,8 @@ Both workspaces are fully interactive at 1280×800 and 390×844: draw/edit, plac
 |------|----------------|
 | Planner owner | `audit-3b/3c`, `placeFurnitureAt`, route truth |
 | Studio owner | `audit-2a`, responsive audit, catalog draft API proof |
-| DBA | `feature_flags` grants on Admin ([database-plan.md](./database-plan.md)) |
-| UI owner | Workspace chrome polish ([site-plan.md](./site-plan.md) C2) |
+| DBA | `feature_flags` grants on Admin ([04-database-plan.md](./04-04-database-plan.md)) |
+| UI owner | Workspace chrome polish ([06-site-plan.md](./06-06-site-plan.md) C2) |
 
 ---
 
@@ -29,19 +29,19 @@ Both workspaces are fully interactive at 1280×800 and 390×844: draw/edit, plac
 
 | # | Area | Code evidence | Verdict |
 |---|------|---------------|---------|
-| 1 | Undo keeps sheet/grid | `Planner.tsx` grid flags + `usePlannerHistory` restore | **FIX VERIFIED — needs live re-run** |
-| 2 | BOQ dock on Review | `rightPanelsForStep` + `plannerBoqPanel` flag | **FIX VERIFIED — needs live re-run** |
+| 1 | Undo keeps sheet/grid | `Planner.tsx` grid flags + `usePlannerHistory` restore | **FIX VERIFIED — needs live re-run (planner-ledger #1)** |
+| 2 | BOQ dock on Review | `rightPanelsForStep` + `plannerBoqPanel` flag | **FIX VERIFIED — needs live re-run (planner-ledger #2)** |
 | 3 | Catalog click/keyboard place | `placeFurnitureAt` wiring exists | **WIRING OK — live FAILED 2026-08-06 (0 layers)** |
 | 4 | Top toolbar (15 handlers) | `toolbarHandlers` in `Planner.tsx` | **WIRING OK — blocked by #3** |
 | 5 | Ctrl+K palette | `commandOpen` independent of `aiOpen` | **FIX VERIFIED** |
-| 6 | 390px canvas width | `matchMedia` collapses side panels | **FIX VERIFIED — needs audit-3b** |
+| 6 | 390px canvas width | `matchMedia` collapses side panels | **FIX VERIFIED — needs audit-3b (planner-ledger #6)** |
 | 7 | AI panel Escape | `useKeyboardShortcuts` + AiPanel | **PARTIAL — AiPanel not re-read** |
 | 8 | Hard refresh project | `PLANNER_LAST_PROJECT_KEY` in localStorage | **FIX VERIFIED** |
 | 9 | Project menu | `PlannerProjectMenu` wired in overlay | **FIX VERIFIED** |
 
-**Live blocker:** `audit-3b` #4 — 0 layers after click; logs showed `permission denied for table feature_flags`. Admin grants migration added — **re-prove required**. Instrumentation traces added to `Planner.tsx:836-878` (`[planner/place]`); **awaiting browser capture**.
+**Live blocker:** `audit-3b` #4 — 0 layers after click on 2026-08-06; logs showed `permission denied for table feature_flags`. Admin grants migration applied 2026-08-07; disk-mode Playwright may pass; Supabase-mode proof still required.
 
-**Route truth OPEN:** `route-contract.json` and `productSuite.ts` still list `/planner/guest|canvas`; Next 308s to `/ooplanner`. E2E mixes both — see [testing-plan.md](./testing-plan.md).
+**Route truth FIXED:** `route-contract.json` and `productSuite.ts` correctly redirect `/planner/guest|canvas` → `/ooplanner`. E2E specs navigate to `/ooplanner`; only 2 specs mention legacy routes in comments (not navigation).
 
 ---
 
@@ -132,10 +132,14 @@ Save artifacts: `results/planner/audit-3b-*/`, `results/studio/audit-2a/`.
 ## Open items
 
 1. **P0:** Re-run `audit-3b` with instrumentation; close click-to-place blocker.
-2. **P0:** Re-run `audit-3c`, `audit-2a` with dated results.
-3. **P1:** Decide route truth — update e2e or keep marketing redirects ([testing-plan.md](./testing-plan.md)).
-4. **P2:** Deferred: guest flow, multi-room, wall post-edit, offline sync, sketch-to-plan, 100+ item perf, 3D preview tab.
-5. **P2:** Workspace chrome UI ([site-plan.md](./site-plan.md) C2).
+2. **P0:** Planner undo/redo strips sheet/grid — fix verified by read; live re-run to prove (planner-ledger #1).
+3. **P0:** BOQ dock panel never renders on Review step — fix verified by read; live re-run to prove (planner-ledger #2).
+4. **P0:** 390px Place-furniture step: narrow viewport canvas/chrome issues — fix verified by read; live audit-3b to prove (planner-ledger #6).
+5. **P0:** Re-run `audit-3c`, `audit-2a` with dated results.
+6. **P1:** Document route-truth contract in e2e spec headers if any legacy comment references remain ([02-testing-plan.md](./02-02-testing-plan.md)).
+7. **P2:** Deferred: guest flow, multi-room, wall post-edit, offline sync, sketch-to-plan, 100+ item perf, 3D preview tab.
+8. **P2:** Workspace chrome UI ([06-site-plan.md](./06-06-site-plan.md) C2).
+9. **P2:** Decide fate of `PlannerProjectMenu.tsx` — orphaned dead code per planner-ledger #9; either wire or delete.
 
 ---
 

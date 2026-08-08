@@ -32,7 +32,7 @@ describe("root-surface-purity", () => {
     const tmp = makeRootFixture();
     try {
       fs.writeFileSync(path.join(tmp, "handoff.md"), "# handoff\n");
-      fs.writeFileSync(path.join(tmp, "handover.md"), "# handover\n");
+      fs.writeFileSync(path.join(tmp, "01-handover.md"), "# handover\n");
       expect(findRootSurfaceViolations(tmp)).toEqual([]);
     } finally {
       fs.rmSync(tmp, { recursive: true, force: true });
@@ -43,7 +43,7 @@ describe("root-surface-purity", () => {
     const tmp = makeRootFixture();
     try {
       fs.writeFileSync(path.join(tmp, "handoff.md"), "# handoff\n");
-      fs.writeFileSync(path.join(tmp, "handover.md"), "# handover\n");
+      fs.writeFileSync(path.join(tmp, "01-handover.md"), "# handover\n");
       expect(findRootSurfaceViolations(tmp)).toEqual([]);
       expect(OPTIONAL_ROOT_MD.size).toBe(0);
     } finally {
@@ -55,7 +55,7 @@ describe("root-surface-purity", () => {
     const tmp = makeRootFixture();
     try {
       fs.writeFileSync(path.join(tmp, "handoff.md"), "# handoff\n");
-      fs.writeFileSync(path.join(tmp, "handover.md"), "# handover\n");
+      fs.writeFileSync(path.join(tmp, "01-handover.md"), "# handover\n");
       fs.writeFileSync(path.join(tmp, "notes.md"), "# notes\n");
       fs.writeFileSync(
         path.join(tmp, "security_best_practices_report.md"),

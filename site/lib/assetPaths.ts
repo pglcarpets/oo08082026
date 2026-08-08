@@ -160,15 +160,6 @@ function withAlternateExtensions(assetPath: string): string[] {
   return out;
 }
 
-function isCdnBackedAssetRoot(assetPath: string): boolean {
-  const lower = assetPath.toLowerCase();
-  return (
-    lower.startsWith("/assets/catalog/") ||
-    lower.startsWith("/assets/catalog/products/") ||
-    lower.startsWith("/assets/catalog/chairs/")
-  );
-}
-
 const CATALOG_FAMILIES = [
   "seating",
   "workstations",

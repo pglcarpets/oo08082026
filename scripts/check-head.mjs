@@ -25,7 +25,7 @@ for (const [label, args] of [
   if (label === 'gh runs') {
     const r = spawnSync(
       'gh',
-      ['run', 'list', '--repo', 'ayushonmicrosoft/oo05082026', '--limit', '10'],
+      ['run', 'list', '--repo', 'pglcarpets/oo08082026', '--limit', '10'],
       { cwd: root, encoding: 'utf8', shell: true },
     );
     lines.push(`${r.stdout ?? ''}${r.stderr ?? ''}`.trimEnd() || '(no output)');

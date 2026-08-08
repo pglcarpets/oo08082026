@@ -1,6 +1,6 @@
 # Finish open repo matters: clear git lock, commit, push, show CI status.
 $ErrorActionPreference = 'Stop'
-Set-Location 'E:\Websites\oo05082026'
+Set-Location 'E:\oo08082026'
 
 $lock = Join-Path (Get-Location) '.git\index.lock'
 if (Test-Path -LiteralPath $lock) {
@@ -28,7 +28,6 @@ $paths = @(
   'CONTENTS.md',
   'DOC-MAP.md',
   'Failures.md',
-  'HANDOVER.md',
   'START.md',
   'Agents',
   'docs'
@@ -46,12 +45,11 @@ git diff --cached --stat
 $null = git diff --cached --quiet
 if ($LASTEXITCODE -ne 0) {
   git commit -m @"
-feat: member suite shell, UI polish close-out, CI pnpm/node fix
+docs: align repository documentation and scripts with live architecture
 
-- MemberSuiteShell + memberSuiteRoutes for dashboard/portal suite nav
-- Split shell-portal.css; portal button tokens; Header search/mega extract
-- RouteCtaBand data-section=route-cta; plans execution status
-- CI: drop duplicate pnpm version (use package.json packageManager); Node 24
+- Update script paths, repo references, and DB table locations
+- Remove stale HANDOVER.md references; fix blocker IDs (F1 -> P0)
+- Align furniture_catalog and block_descriptors checks with Admin DB
 "@
 } else {
   Write-Host 'Nothing to commit.'

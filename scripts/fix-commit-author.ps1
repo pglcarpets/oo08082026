@@ -1,4 +1,4 @@
-# Fix blank/unlinked commit author and re-push to ayushonmicrosoft/oo05082026
+# Fix blank/unlinked commit author and re-push to pglcarpets/oo08082026
 $ErrorActionPreference = 'Continue'
 $root = Split-Path $PSScriptRoot -Parent
 Set-Location $root
@@ -20,7 +20,7 @@ if ($fileCount -eq 0) {
 }
 
 WL '=== Switch GitHub account ==='
-& gh auth switch -u ayushonmicrosoft 2>&1 | ForEach-Object { WL $_ }
+& gh auth switch -u pglcarpets 2>&1 | ForEach-Object { WL $_ }
 & gh auth setup-git 2>&1 | ForEach-Object { WL $_ }
 
 WL '=== Amend author (keep message and tree) ==='
@@ -36,4 +36,4 @@ if ($LASTEXITCODE -ne 0) { throw 'git push --force failed' }
 
 WL '=== Done ==='
 WL (git rev-parse HEAD)
-WL 'https://github.com/ayushonmicrosoft/oo05082026'
+WL 'https://github.com/pglcarpets/oo08082026'

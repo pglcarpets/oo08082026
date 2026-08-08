@@ -1,4 +1,4 @@
-# Create private ayushonmicrosoft/oo05082026 and push shallow main (fixes wrong GitHub account on push)
+# Create private pglcarpets/oo08082026 and push shallow main (fixes wrong GitHub account on push)
 $ErrorActionPreference = 'Continue'
 $root = Split-Path $PSScriptRoot -Parent
 Set-Location $root
@@ -21,16 +21,16 @@ function Run-External {
 
 Set-Content $log "Create private repo $(Get-Date -Format o)"
 
-WL '=== Use ayushonmicrosoft for git + gh ==='
-Run-External @('gh', 'auth', 'switch', '-u', 'ayushonmicrosoft')
+WL '=== Use pglcarpets for git + gh ==='
+Run-External @('gh', 'auth', 'switch', '-u', 'pglcarpets')
 Run-External @('gh', 'auth', 'setup-git')
 $ghUser = (gh api user --jq '.login').ToString().Trim()
 WL "Active GitHub user: $ghUser"
 
 WL '=== Create private repo (skip if exists) ==='
-$viewExit = Run-External @('gh', 'repo', 'view', 'ayushonmicrosoft/oo05082026') -AllowFail
+$viewExit = Run-External @('gh', 'repo', 'view', 'pglcarpets/oo08082026') -AllowFail
 if ($viewExit -ne 0) {
-  Run-External @('gh', 'repo', 'create', 'ayushonmicrosoft/oo05082026', '--private', '--description', 'OO Studio / Planner')
+  Run-External @('gh', 'repo', 'create', 'pglcarpets/oo08082026', '--private', '--description', 'OO Studio / Planner')
   WL 'Created private repo'
 } else {
   WL 'Repo already exists'
@@ -38,7 +38,7 @@ if ($viewExit -ne 0) {
 
 WL '=== Origin ==='
 git remote remove origin 2>$null
-git remote add origin https://github.com/ayushonmicrosoft/oo05082026.git
+git remote add origin https://github.com/pglcarpets/oo08082026.git
 Run-External @('git', 'remote', '-v')
 
 WL '=== Push main (shallow history) ==='
@@ -46,4 +46,4 @@ Run-External @('git', 'push', '-u', 'origin', 'main', '--force')
 
 WL '=== Done ==='
 Run-External @('git', 'log', '--oneline', '-1')
-WL 'https://github.com/ayushonmicrosoft/oo05082026'
+WL 'https://github.com/pglcarpets/oo08082026'

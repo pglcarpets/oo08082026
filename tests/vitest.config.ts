@@ -58,6 +58,7 @@ export default defineConfig({
   test: {
     env: {
       ...loadEnv("test", VITEST_WORKSPACE_ROOT, ""),
+      NODE_ENV: "test",
       // Intentionally "true" (not "1"): unit tests exercise real withAuth gates.
       // Local/E2E servers use DEV_AUTH_BYPASS=1 when bypass is wanted.
       DEV_AUTH_BYPASS: "true",

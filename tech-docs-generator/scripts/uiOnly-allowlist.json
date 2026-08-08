@@ -63,6 +63,14 @@
       "reason": "Renderer theme and component primitives; remaps to site ocean/bronze tokens"
     },
     {
+      "path": "src/data/activeBlockers.ts",
+      "reason": "Mirror of repo-root Failures.md active blockers (factual data, not page chrome)"
+    },
+    {
+      "path": "src/data/databaseBoundaries.ts",
+      "reason": "Two-database boundary facts mirrored from AGENTS.md (factual data, not page chrome)"
+    },
+    {
       "path": "src/data/productSurfaces.ts",
       "reason": "Hand-curated product-surface inventory (module data, not page chrome)"
     }

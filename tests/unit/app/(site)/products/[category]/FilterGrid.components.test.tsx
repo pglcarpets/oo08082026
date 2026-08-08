@@ -185,8 +185,7 @@ describe('FilterGrid.components', () => {
       },
     } satisfies FlatProduct;
 
-    const expectedCardImage =
-      '/assets/catalog/office-chairs/oando-office-chairs--awesome-chair/image-1.webp';
+    const expectedCardImage = '/img1.jpg';
 
     it('renders product details correctly', () => {
       render(

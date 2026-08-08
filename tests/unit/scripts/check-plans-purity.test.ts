@@ -17,20 +17,22 @@ const scriptPath = path.join(
 );
 
 const ROOT_PLANS = [
-  "database-plan.md",
-  "ops-deploy-plan.md",
-  "site-plan.md",
-  "tech-docs-plan.md",
-  "testing-plan.md",
-  "workspaces-plan.md",
+  "04-database-plan.md",
+  "03-ops-deploy-plan.md",
+  "06-site-plan.md",
+  "07-tech-docs-plan.md",
+  "02-testing-plan.md",
+  "05-workspaces-plan.md",
 ];
 
-/** Layout pinned by check:plans-purity: README + six root programme plans only. */
+/** Layout pinned by check:plans-purity: 00-README.md + eight root programme plans only. */
 function makeFixture(): string {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "check-plans-purity-"));
   const planRoot = path.join(tmp, "plans");
   fs.mkdirSync(planRoot, { recursive: true });
-  fs.writeFileSync(path.join(planRoot, "README.md"), "# root\n");
+  fs.writeFileSync(path.join(planRoot, "00-README.md"), "# root\n");
+  fs.writeFileSync(path.join(planRoot, "08-oo-start-checklist.md"), "# checklist\n");
+  fs.writeFileSync(path.join(planRoot, "01-handover.md"), "# handover\n");
   for (const doc of ROOT_PLANS) {
     fs.writeFileSync(path.join(planRoot, doc), `# ${doc}\n`);
   }
@@ -78,7 +80,7 @@ describe("check-plans-purity", () => {
   it("fails when README.md is missing", () => {
     const tmp = makeFixture();
     try {
-      fs.rmSync(path.join(tmp, "plans", "README.md"));
+      fs.rmSync(path.join(tmp, "plans", "00-README.md"));
       expect(runExpectFail(tmp)).toContain("missing: plans/README.md");
     } finally {
       fs.rmSync(tmp, { recursive: true, force: true });

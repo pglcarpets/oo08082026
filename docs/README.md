@@ -54,7 +54,7 @@ How the doc system is shaped: [`../DOC-MAP.md`](../DOC-MAP.md).
 
 | Programme rules + enforcement | [`governance/rules.md`](./governance/rules.md) |
 
-| Plan direction | [`../plans/`](../plans/) · [`../HANDOVER.md`](../HANDOVER.md) |
+| Plan direction | [`../plans/`](../plans/) · [`../plans/01-handover.md`](../plans/01-handover.md) |
 
 | Blockers | [`../Failures.md`](../Failures.md) |
 

@@ -66,10 +66,12 @@ describe("r2Catalog", () => {
     process.argv = originalArgv;
   });
 
+  const DEFAULT_BUCKET = "r2-catalog-bucket-not-configured";
+
   it("defaults bucket name and accepts --bucket CLI override", async () => {
     const mod = await import("@/lib/storage/r2Catalog");
-    expect(mod.DEFAULT_CATALOG_BUCKET).toBe("oando-asset-cdn");
-    expect(mod.resolveCatalogBucketName()).toBe("oando-asset-cdn");
+    expect(mod.DEFAULT_CATALOG_BUCKET).toBe(DEFAULT_BUCKET);
+    expect(mod.resolveCatalogBucketName()).toBe(DEFAULT_BUCKET);
 
     process.argv = ["node", "script", "--bucket=custom-bucket"];
     expect(mod.resolveCatalogBucketName()).toBe("custom-bucket");
@@ -235,7 +237,7 @@ describe("r2Catalog", () => {
 
     expect(PutObjectCommand).toHaveBeenCalledWith(
       expect.objectContaining({
-        Bucket: "oando-asset-cdn",
+        Bucket: DEFAULT_BUCKET,
         Key: "svg-revisions/r1/symbol.svg",
         Body: "<svg/>",
         ContentType: "image/svg+xml",

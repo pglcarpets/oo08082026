@@ -17,7 +17,7 @@ const PRODUCTS_EXPECTED = [
   "svg_revision_artifacts",
 ] as const;
 
-const PLANNER_EXPECTED = ["oando_plans", "audit_events", "block_descriptors"] as const;
+const PLANNER_EXPECTED = ["oando_plans", "audit_events"] as const;
 
 export type DbTargetResult =
   | { ok: true; label: string; tables: string[]; rowHint?: string }

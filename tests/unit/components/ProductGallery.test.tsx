@@ -23,9 +23,9 @@ describe('ProductGallery Component', () => {
 
   it('uses fallback placeholder when images array is empty', () => {
     render(<ProductGallery images={[]} productName={productName} />);
-    const fallbackImg = screen.getByAltText('Primary product gallery image of Chair');
-    expect(fallbackImg).toBeInTheDocument();
-    expect(fallbackImg).toHaveAttribute('src', '/assets/marketing/brand/logos/logo-sharp.png');
+    const fallback = screen.getByRole('img', { name: `${productName} image unavailable` });
+    expect(fallback).toBeInTheDocument();
+    expect(screen.getByText('Photo coming soon')).toBeInTheDocument();
   });
 
   it('changes selected image on thumbnail click', () => {

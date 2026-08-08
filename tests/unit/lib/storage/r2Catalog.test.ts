@@ -47,6 +47,8 @@ describe("r2Catalog", () => {
     ListObjectsV2Command.mockClear();
     process.env = { ...originalEnv };
     process.argv = [...originalArgv];
+    // Bucket fallback is dev-bypass-only (plans/02-testing-plan.md §60).
+    process.env.DEV_AUTH_BYPASS = "1";
     delete process.env.CLOUDFLARE_R2_CATALOG_BUCKET;
     delete process.env.CLOUDFLARE_R2_BUCKET;
     delete process.env.R2_CATALOG_BUCKET;
@@ -68,13 +70,19 @@ describe("r2Catalog", () => {
 
   const DEFAULT_BUCKET = "r2-catalog-bucket-not-configured";
 
-  it("defaults bucket name and accepts --bucket CLI override", async () => {
+  it("defaults bucket name under dev bypass and accepts --bucket CLI override", async () => {
     const mod = await import("@/lib/storage/r2Catalog");
     expect(mod.DEFAULT_CATALOG_BUCKET).toBe(DEFAULT_BUCKET);
     expect(mod.resolveCatalogBucketName()).toBe(DEFAULT_BUCKET);
 
     process.argv = ["node", "script", "--bucket=custom-bucket"];
     expect(mod.resolveCatalogBucketName()).toBe("custom-bucket");
+  });
+
+  it("throws when bucket env is missing and dev bypass is off", async () => {
+    delete process.env.DEV_AUTH_BYPASS;
+    const mod = await import("@/lib/storage/r2Catalog");
+    expect(() => mod.resolveCatalogBucketName()).toThrow(/Missing catalog R2 bucket/i);
   });
 
   it("resolves R2 endpoint from explicit URL or account id", async () => {

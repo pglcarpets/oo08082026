@@ -4,8 +4,13 @@ import {
   PutObjectCommand,
   S3Client,
 } from "@aws-sdk/client-s3";
+import { isDevAuthBypassEnabled } from "@/lib/auth/devAuthBypass";
 
-export const DEFAULT_CATALOG_BUCKET = process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() || "r2-catalog-bucket-not-configured";
+/** Dev-only placeholder when bucket env is unset under `DEV_AUTH_BYPASS=1`. */
+export const DEV_FALLBACK_CATALOG_BUCKET = "r2-catalog-bucket-not-configured";
+
+/** @deprecated Use `DEV_FALLBACK_CATALOG_BUCKET` — kept for scripts/tests. */
+export const DEFAULT_CATALOG_BUCKET = DEV_FALLBACK_CATALOG_BUCKET;
 
 /** Web path `/assets/catalog/...` → candidate R2 object keys (clean-bucket layout). */
 export function catalogAssetR2Keys(webPath: string): string[] {
@@ -34,17 +39,32 @@ export function resolveCatalogAssetBuckets(): string[] {
   return [resolveCatalogBucketName()];
 }
 
+function readCatalogBucketFromEnv(): string | null {
+  return (
+    process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+    process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+    process.env.R2_CATALOG_BUCKET?.trim() ||
+    null
+  );
+}
+
 export function resolveCatalogBucketName(): string {
   const cliArg = process.argv.find((arg) => arg.startsWith("--bucket="));
   if (cliArg) {
     return cliArg.slice("--bucket=".length).trim();
   }
 
-  return (
-    process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
-    process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
-    process.env.R2_CATALOG_BUCKET?.trim() ||
-    DEFAULT_CATALOG_BUCKET
+  const fromEnv = readCatalogBucketFromEnv();
+  if (fromEnv) {
+    return fromEnv;
+  }
+
+  if (isDevAuthBypassEnabled()) {
+    return DEV_FALLBACK_CATALOG_BUCKET;
+  }
+
+  throw new Error(
+    "Missing catalog R2 bucket: set CLOUDFLARE_R2_CATALOG_BUCKET (or CLOUDFLARE_R2_BUCKET / R2_CATALOG_BUCKET).",
   );
 }
 

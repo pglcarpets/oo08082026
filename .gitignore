@@ -15,6 +15,13 @@ generated-documents/
 # Local tool dumps / evidence (dir may exist for layout; never push contents)
 results/
 
+# Playwright / E2E artifacts (never commit trace bundles)
+playwright-report/
+test-results/
+
+# Supabase CLI local link state
+supabase/.temp/
+
 # Agent / Grok session tooling (not product source)
 .superpowers/
 

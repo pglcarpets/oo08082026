@@ -20,7 +20,12 @@ function creds() {
   return { accessKeyId, secretAccessKey };
 }
 const client = new S3Client({ region: "auto", endpoint: endpoint(), credentials: creds(), forcePathStyle: true });
-const bucket = process.env.R2_NEW_BUCKET || "oando-assets-clean-20260805";
+const bucket =
+  process.env.R2_NEW_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+  "";
+if (!bucket) throw new Error("Missing R2 bucket: set R2_NEW_BUCKET or CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
 
 async function main() {
   let token, total = 0;

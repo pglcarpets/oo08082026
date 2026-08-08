@@ -115,9 +115,10 @@ async function uploadDir(localRoot, bucket, keyPrefix = "") {
 }
 
 const mode = process.argv[2] || "all";
-const OLD = process.env.R2_OLD_BUCKET || "oando-asset-cdn";
-const NEW = process.env.R2_NEW_BUCKET || "oando-assets-clean-20260805";
-const BACKUP = process.env.R2_BACKUP_DIR || "E:/Websites/OandO-backups/r2-oando-asset-cdn-20260805";
+const OLD = process.env.R2_OLD_BUCKET?.trim() || process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() || "";
+const NEW = process.env.R2_NEW_BUCKET?.trim() || process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() || "";
+const BACKUP = process.env.R2_BACKUP_DIR || "";
+if (!OLD || !NEW) throw new Error("Missing R2 buckets: set R2_OLD_BUCKET and R2_NEW_BUCKET or CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
 const ASSETS = path.resolve("site/public/assets");
 
 async function main() {

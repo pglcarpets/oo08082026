@@ -14,7 +14,11 @@ import {
 } from "@aws-sdk/client-s3";
 import sharp from "sharp";
 
-const BUCKET = process.env.R2_NEW_BUCKET || "oando-assets-clean-20260805";
+const BUCKET =
+  process.env.R2_NEW_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+  "";
 
 const hasR2 =
   Boolean(process.env.CLOUDFLARE_ACCOUNT_ID?.trim() || process.env.CLOUDFLARE_S3_URL?.trim()) &&
@@ -60,7 +64,7 @@ async function firstImageKey(client: S3Client, prefix: string) {
   return null;
 }
 
-describe.runIf(hasR2)(`R2 clean bucket ${BUCKET} (live)`, () => {
+describe.runIf(hasR2 && Boolean(BUCKET))(`R2 clean bucket ${BUCKET || "(bucket not configured)"} (live)`, () => {
   it("heads bucket and decodes sample marketing + catalog keys", async () => {
     const client = r2Client();
     await expect(client.send(new HeadBucketCommand({ Bucket: BUCKET }))).resolves.toBeDefined();

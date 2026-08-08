@@ -131,7 +131,9 @@ function parseArgs(argv) {
   let bucket =
     process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
     process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
-    "oando-asset-cdn";
+    process.env.R2_CATALOG_BUCKET?.trim() ||
+    "";
+  if (!bucket) throw new Error("Missing R2 bucket: set CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
   let limit = 0;
   let help = false;
 

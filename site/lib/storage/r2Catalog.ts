@@ -5,10 +5,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 
-export const DEFAULT_CATALOG_BUCKET = "oando-asset-cdn";
-
-const CLEAN_CATALOG_BUCKET =
-  process.env.R2_NEW_BUCKET?.trim() || "oando-assets-clean-20260805";
+export const DEFAULT_CATALOG_BUCKET = process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() || "r2-catalog-bucket-not-configured";
 
 /** Web path `/assets/catalog/...` → candidate R2 object keys (clean-bucket layout). */
 export function catalogAssetR2Keys(webPath: string): string[] {
@@ -34,12 +31,7 @@ export function catalogAssetR2Keys(webPath: string): string[] {
 }
 
 export function resolveCatalogAssetBuckets(): string[] {
-  const primary = resolveCatalogBucketName();
-  const buckets = [primary];
-  if (CLEAN_CATALOG_BUCKET && CLEAN_CATALOG_BUCKET !== primary) {
-    buckets.push(CLEAN_CATALOG_BUCKET);
-  }
-  return buckets;
+  return [resolveCatalogBucketName()];
 }
 
 export function resolveCatalogBucketName(): string {

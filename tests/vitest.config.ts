@@ -69,17 +69,7 @@ export default defineConfig({
     globals: true,
     environment: "happy-dom",
     // @ts-expect-error -- vitest 4.x public types omit environmentMatchGlobs
-    environmentMatchGlobs: [
-      ["**/unit/lib/auth/**/*.test.ts", "node"],
-      ["**/unit/planner/plannerStore.test.ts", "node"],
-      ["**/unit/studio/studioStore.test.ts", "node"],
-      ["**/unit/studio/authorizeStudioCatalogTopPng.test.ts", "node"],
-      ["**/unit/studio/prepareStudioFurnitureCatalogFiles.test.ts", "node"],
-      ["**/unit/studio/renderTopPngFromSvg.test.ts", "node"],
-      ["**/unit/studio/studioCatalogTopPngPersist.test.ts", "node"],
-      ["**/unit/planner/plannerExportMenu.test.tsx", "node"],
-      ["**/unit/studio/studioExportMenu.test.tsx", "node"],
-    ],
+    environmentMatchGlobs: [["tests/unit/lib/auth/**/*.test.ts", "node"]],
     setupFiles: [VITEST_SETUP_FILE],
     reporters: [
       "default",

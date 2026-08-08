@@ -18,7 +18,12 @@ import sharp from "sharp";
 dotenv.config({ path: ".env.local" });
 
 const OUT = path.resolve("results/asset-cutover/smoke-report.json");
-const BUCKET = process.env.R2_NEW_BUCKET || "oando-assets-clean-20260805";
+const BUCKET =
+  process.env.R2_NEW_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+  "";
+if (!BUCKET) throw new Error("Missing R2 bucket: set R2_NEW_BUCKET or CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
 const DEV_BASE = "http://localhost:3000";
 const WORKER_BASE = (
   process.env.NEXT_PUBLIC_ASSET_BASE_URL ||

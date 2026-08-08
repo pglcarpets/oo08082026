@@ -37,8 +37,14 @@ function resolveIntactCredentials() {
   return null;
 }
 
-const bucket =
-  process.argv[2] || process.env.CLOUDFLARE_R2_CATALOG_BUCKET || "oando-asset-cdn";
+const bucketArg = process.argv[2]?.trim();
+const bucketEnv =
+  process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+  process.env.R2_CATALOG_BUCKET?.trim() ||
+  "";
+const bucket = bucketArg || bucketEnv;
+if (!bucket) throw new Error("Missing R2 bucket: pass as argv or set CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
 
 const endpoint =
   process.env.CLOUDFLARE_S3_URL?.trim() ||

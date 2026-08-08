@@ -1,28 +1,46 @@
 import "@testing-library/jest-dom/vitest";
-import { webcrypto } from "node:crypto";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
 import { MockNextImage } from "./helpers/mockNextImage";
 import { MockNextLink } from "./helpers/mockNextLink";
 
-const monorepoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const sitePackageRoot = path.join(monorepoRoot, "site");
-if (process.cwd() !== sitePackageRoot) {
-  process.chdir(sitePackageRoot);
+try {
+  (globalThis as unknown as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
+} catch {}
+
+try {
+  const cwd = process.cwd().replace(/\\/g, "/");
+  if (!cwd.endsWith("/site")) {
+    const siteFromEnv = (process.env.VITEST_REPO_ROOT ?? "").replace(/\\/g, "/");
+    if (siteFromEnv.endsWith("/site")) {
+      try {
+        process.chdir(siteFromEnv);
+      } catch {}
+    } else {
+      const marker = "/site";
+      const idx = cwd.lastIndexOf(marker);
+      const base = idx >= 0 ? cwd.slice(0, idx + marker.length) : `${cwd}/site`;
+      try {
+        process.chdir(base);
+      } catch {}
+    }
+  }
+} catch {}
+
+if (typeof globalThis.crypto === "undefined" || !globalThis.crypto?.subtle) {
+  try {
+    const { webcrypto } = await import("node:crypto");
+    Object.defineProperty(globalThis, "crypto", {
+      value: webcrypto as unknown as Crypto,
+      configurable: true,
+    });
+  } catch {}
 }
 
-if (!globalThis.crypto?.subtle) {
-  Object.defineProperty(globalThis, "crypto", { value: webcrypto, configurable: true });
-}
-
-// Cleanup DOM after each test
 afterEach(() => {
   cleanup();
 });
 
-// Mock Next.js font modules — they use Node APIs unavailable in happy-dom
 vi.mock("next/font/local", () => ({
   default: () => ({ className: "mock-font", style: { fontFamily: "mock" } }),
 }));
@@ -31,7 +49,6 @@ vi.mock("next/font/google", () => ({
   Outfit: () => ({ className: "mock-font", style: { fontFamily: "mock" } }),
 }));
 
-// server-only is a no-op in tests
 vi.mock("server-only", () => ({}));
 
 vi.mock("next/image", () => ({
@@ -81,32 +98,32 @@ vi.mock("next-intl", () => {
 });
 
 vi.mock("next-intl/server", () => ({
-    getTranslations: async (namespace?: string) => {
-      const t = (key: string, values?: Record<string, unknown>) => {
-        const fullKey = namespace ? `${namespace}.${key}` : key;
-        let text = fullKey as string;
-        if (values) {
-          Object.entries(values).forEach(([k, v]) => {
-            text = text.replace(`{${k}}`, String(v));
-          });
+  getTranslations: async (namespace?: string) => {
+    const t = (key: string, values?: Record<string, unknown>) => {
+      const fullKey = namespace ? `${namespace}.${key}` : key;
+      let text = fullKey as string;
+      if (values) {
+        Object.entries(values).forEach(([k, v]) => {
+          text = text.replace(`{${k}}`, String(v));
+        });
+      }
+      return text;
+    };
+    (t as typeof t & { raw: (key: string) => unknown }).raw = (key: string) => {
+      const fullKey = namespace ? `${namespace}.${key}` : key;
+      const parts = fullKey.split(".");
+      let current: unknown = enMessages;
+      for (const part of parts) {
+        if (current && typeof current === "object" && part in (current as Record<string, unknown>)) {
+          current = (current as Record<string, unknown>)[part];
+        } else {
+          return [];
         }
-        return text;
-      };
-      (t as typeof t & { raw: (key: string) => unknown }).raw = (key: string) => {
-        const fullKey = namespace ? `${namespace}.${key}` : key;
-        const parts = fullKey.split(".");
-        let current: unknown = enMessages;
-        for (const part of parts) {
-          if (current && typeof current === "object" && part in (current as Record<string, unknown>)) {
-            current = (current as Record<string, unknown>)[part];
-          } else {
-            return [];
-          }
-        }
-        return current;
-      };
-      return t;
-    },
+      }
+      return current;
+    };
+    return t;
+  },
   getMessages: async () => enMessages,
   getLocale: async () => "en",
 }));

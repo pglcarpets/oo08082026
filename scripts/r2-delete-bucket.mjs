@@ -29,7 +29,14 @@ const client = new S3Client({
   forcePathStyle: true,
 });
 
-const bucket = process.argv[2] || "oando-assets-clean-20260805";
+const bucketArg = process.argv[2]?.trim();
+const bucketEnv =
+  process.env.R2_NEW_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_CATALOG_BUCKET?.trim() ||
+  process.env.CLOUDFLARE_R2_BUCKET?.trim() ||
+  "";
+const bucket = bucketArg || bucketEnv;
+if (!bucket) throw new Error("Missing R2 bucket: pass as argv or set R2_NEW_BUCKET / CLOUDFLARE_R2_CATALOG_BUCKET in .env.local");
 
 async function emptyBucket() {
   let token, total = 0;

@@ -88,7 +88,7 @@ flowchart TD
 
 | Slice ID | Plan | Seam / focus | Priority | Status |
 |----------|------|--------------|----------|--------|
-| HO-S01 | 01 | `SEAM-GATE-P0UNIT` evidence on close | — | OPEN |
+| HO-S01 | 01 | `SEAM-GATE-P0UNIT` evidence on close | — | DONE |
 | HO-S02 | 01 | `Failures.md` row removal only with evidence | — | DONE |
 | HO-S03 | 01 | Plan `AUDITED` date bump | — | DONE |
 | HO-S04 | 01 | `check-plans-purity` | — | DONE |

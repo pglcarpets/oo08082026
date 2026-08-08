@@ -1,4 +1,4 @@
-export type Json =
+﻿export type Json =
   | string
   | number
   | boolean
@@ -56,6 +56,33 @@ export type Database = {
           slug?: string
           updated_at?: string
           updated_by?: string | null
+        }
+        Relationships: []
+      }
+      block_themes: {
+        Row: {
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          tokens: Json
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          tokens: Json
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          tokens?: Json
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -463,6 +490,96 @@ export type Database = {
           },
         ]
       }
+      configurator_products: {
+        Row: {
+          active: boolean
+          brand_name: string | null
+          category: string
+          created_at: string
+          default_footprint: Json | null
+          derived_rules: Json | null
+          description: string | null
+          family: string | null
+          id: string
+          materials: string[]
+          model_3d_url: string | null
+          name: string
+          size_options: Json
+          sizing_type: string
+          slug: string
+          thumbnail_url: string | null
+          updated_at: string
+          workstation: Json | null
+        }
+        Insert: {
+          active?: boolean
+          brand_name?: string | null
+          category: string
+          created_at?: string
+          default_footprint?: Json | null
+          derived_rules?: Json | null
+          description?: string | null
+          family?: string | null
+          id?: string
+          materials?: string[]
+          model_3d_url?: string | null
+          name: string
+          size_options?: Json
+          sizing_type: string
+          slug: string
+          thumbnail_url?: string | null
+          updated_at?: string
+          workstation?: Json | null
+        }
+        Update: {
+          active?: boolean
+          brand_name?: string | null
+          category?: string
+          created_at?: string
+          default_footprint?: Json | null
+          derived_rules?: Json | null
+          description?: string | null
+          family?: string | null
+          id?: string
+          materials?: string[]
+          model_3d_url?: string | null
+          name?: string
+          size_options?: Json
+          sizing_type?: string
+          slug?: string
+          thumbnail_url?: string | null
+          updated_at?: string
+          workstation?: Json | null
+        }
+        Relationships: []
+      }
+      feature_flags: {
+        Row: {
+          description: string
+          enabled: boolean
+          key: string
+          module_group: string
+          rollout_percentage: number
+          updated_at: string
+        }
+        Insert: {
+          description?: string
+          enabled?: boolean
+          key: string
+          module_group?: string
+          rollout_percentage?: number
+          updated_at?: string
+        }
+        Update: {
+          description?: string
+          enabled?: boolean
+          key?: string
+          module_group?: string
+          rollout_percentage?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
       furniture_catalog: {
         Row: {
           category: string
@@ -532,6 +649,78 @@ export type Database = {
         }
         Relationships: []
       }
+      planner_managed_products: {
+        Row: {
+          active: boolean
+          category: string
+          category_id: string
+          category_name: string
+          created_at: string
+          created_by: string | null
+          description: string
+          flagship_image: string
+          id: string
+          images: string[]
+          legacy_product_id: string | null
+          metadata: Json
+          name: string
+          planner_source_slug: string
+          price: number
+          published_svg_revision_id: string | null
+          series_id: string
+          series_name: string
+          slug: string
+          specs: Json
+          updated_at: string
+        }
+        Insert: {
+          active?: boolean
+          category: string
+          category_id: string
+          category_name: string
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          flagship_image?: string
+          id?: string
+          images?: string[]
+          legacy_product_id?: string | null
+          metadata?: Json
+          name: string
+          planner_source_slug: string
+          price?: number
+          published_svg_revision_id?: string | null
+          series_id: string
+          series_name: string
+          slug: string
+          specs?: Json
+          updated_at?: string
+        }
+        Update: {
+          active?: boolean
+          category?: string
+          category_id?: string
+          category_name?: string
+          created_at?: string
+          created_by?: string | null
+          description?: string
+          flagship_image?: string
+          id?: string
+          images?: string[]
+          legacy_product_id?: string | null
+          metadata?: Json
+          name?: string
+          planner_source_slug?: string
+          price?: number
+          published_svg_revision_id?: string | null
+          series_id?: string
+          series_name?: string
+          slug?: string
+          specs?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       series: {
         Row: {
           created_at: string
@@ -556,6 +745,98 @@ export type Database = {
           image_url?: string | null
           name?: string
           tier?: Database["public"]["Enums"]["tier"]
+        }
+        Relationships: []
+      }
+      svg_revision_artifacts: {
+        Row: {
+          checksum: string
+          created_at: string
+          id: string
+          kind: string
+          revision_id: string
+          storage_key: string
+          width: number | null
+        }
+        Insert: {
+          checksum: string
+          created_at?: string
+          id?: string
+          kind: string
+          revision_id: string
+          storage_key: string
+          width?: number | null
+        }
+        Update: {
+          checksum?: string
+          created_at?: string
+          id?: string
+          kind?: string
+          revision_id?: string
+          storage_key?: string
+          width?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "svg_revision_artifacts_revision_id_fkey"
+            columns: ["revision_id"]
+            isOneToOne: false
+            referencedRelation: "svg_revisions"
+            referencedColumns: ["revision_id"]
+          },
+        ]
+      }
+      svg_revisions: {
+        Row: {
+          actor_id: string
+          artifact_checksums: Json | null
+          compiler_version: string | null
+          definition: Json
+          definition_type_id: string
+          definition_version: number
+          published_at: string
+          reason: string | null
+          released_product: Json | null
+          revision_id: string
+          schema_version: number
+          slug: string
+          source_revision: number | null
+          validation: Json | null
+          version: number
+        }
+        Insert: {
+          actor_id: string
+          artifact_checksums?: Json | null
+          compiler_version?: string | null
+          definition: Json
+          definition_type_id: string
+          definition_version: number
+          published_at?: string
+          reason?: string | null
+          released_product?: Json | null
+          revision_id: string
+          schema_version: number
+          slug: string
+          source_revision?: number | null
+          validation?: Json | null
+          version: number
+        }
+        Update: {
+          actor_id?: string
+          artifact_checksums?: Json | null
+          compiler_version?: string | null
+          definition?: Json
+          definition_type_id?: string
+          definition_version?: number
+          published_at?: string
+          reason?: string | null
+          released_product?: Json | null
+          revision_id?: string
+          schema_version?: number
+          slug?: string
+          source_revision?: number | null
+          validation?: Json | null
+          version?: number
         }
         Relationships: []
       }

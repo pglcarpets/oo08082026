@@ -38,6 +38,12 @@ export const VITEST_REPORT_PATHS = {
     csv: path.resolve(VITEST_RESULTS_DIR, "vitest-site-results.csv"),
     html: path.resolve(VITEST_RESULTS_DIR, "vitest-site-results.html"),
   },
+  p0: {
+    json: path.resolve(VITEST_RESULTS_DIR, "vitest-p0-results.json"),
+    console: path.resolve(VITEST_RESULTS_DIR, "vitest-p0-console.json"),
+    csv: path.resolve(VITEST_RESULTS_DIR, "vitest-p0-results.csv"),
+    html: path.resolve(VITEST_RESULTS_DIR, "vitest-p0-results.html"),
+  },
 } as const;
 
 export const VITEST_CONSOLE_REPORTER = path.resolve(

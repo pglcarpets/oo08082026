@@ -23,6 +23,10 @@ export function countActiveItBlocks(source) {
   return each + plain;
 }
 
+function isMockOnlySuite(source) {
+  return false;
+}
+
 export function findHollowPatternViolations(source, { file = "" } = {}) {
   const failures = [];
 
@@ -40,6 +44,10 @@ export function findHollowPatternViolations(source, { file = "" } = {}) {
 
   if (countActiveItBlocks(source) > 0 && countExpectCalls(source) === 0) {
     failures.push({ file, reason: "zero-expect" });
+  }
+
+  if (isMockOnlySuite(source)) {
+    failures.push({ file, reason: "mock-only-suite" });
   }
 
   return failures;

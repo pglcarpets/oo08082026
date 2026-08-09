@@ -244,11 +244,10 @@
     "category_id": "oando-seating",
     "name": "Arvo",
     "images": [
-      "/assets/catalog/seating/fabric/oando-seating--arvo/1.webp",
       "/assets/catalog/seating/fabric/oando-seating--arvo/image-08.webp",
       "/assets/catalog/seating/fabric/oando-seating--arvo/image-09.webp"
     ],
-    "flagship_image": "/assets/catalog/seating/fabric/oando-seating--arvo/1.webp"
+    "flagship_image": "/assets/catalog/seating/fabric/oando-seating--arvo/image-08.webp"
   },
   {
     "id": "0cbf8369-c51d-d6a5-f628-b37519a331d7",

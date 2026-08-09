@@ -1,11 +1,16 @@
 import "@testing-library/jest-dom/vitest";
 import { afterEach, vi } from "vitest";
 import { cleanup } from "@testing-library/react";
-import { createRequire } from "node:module";
 import { MockNextImage } from "./helpers/mockNextImage";
 import { MockNextLink } from "./helpers/mockNextLink";
 
-const req = createRequire(import.meta.url) as (id: string) => Record<string, unknown>;
+type RequireLike = (id: string) => Record<string, unknown>;
+
+let req: RequireLike | null = null;
+try {
+  const { createRequire } = await import("node:module");
+  req = createRequire(import.meta.url) as RequireLike;
+} catch {}
 
 try {
   (globalThis as unknown as Record<string, unknown>).IS_REACT_ACT_ENVIRONMENT = true;
@@ -31,6 +36,7 @@ try {
   };
   for (const mid of ["react", "react/cjs/react.production.js", "react/cjs/react.development.js"]) {
     try {
+      if (!req) continue;
       const mod = req(mid);
       const desc = (() => { try { return Object.getOwnPropertyDescriptor(mod, "act"); } catch { return undefined; } })();
       if (typeof mod.act !== "function" || (desc && desc.configurable === false && desc.value === undefined)) {
@@ -44,6 +50,7 @@ try {
   }
   for (const mid of ["react-dom/test-utils", "react-dom/cjs/react-dom-test-utils.production.js", "react-dom/cjs/react-dom-test-utils.development.js"]) {
     try {
+      if (!req) continue;
       const mod = req(mid);
       if (mod && typeof (mod as Record<string, unknown>).act === "function" && String((mod as Record<string, unknown>).act).includes("React.act")) {
         try { Object.defineProperty(mod, "act", { value: actStub, configurable: true, writable: true }); } catch { (mod as Record<string, unknown>).act = actStub; }

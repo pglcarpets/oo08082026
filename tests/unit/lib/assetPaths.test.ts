@@ -161,12 +161,12 @@ describe('assetPaths', () => {
     ).toBe('https://cdn.example.com/assets/catalog/seating/leather/oando-seating--grace/image-01.webp');
   });
 
-  it('strips gallery/ for non-leather seating on CDN paths', () => {
+  it('remaps legacy non-leather seating to fabric/mesh on CDN paths', () => {
     expect(
       assetPaths.normalizeAssetPath(
         '/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp',
       ),
-    ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--fluid-x/image-01.webp');
+    ).toBe('https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--fluid-x/image-01.webp');
   });
 
   it('should resolve phoenix seating webp on mesh path', () => {
@@ -213,6 +213,8 @@ describe('assetPaths', () => {
     mockFs.existsSync.mockImplementation((p: string) => {
       if (String(p).includes('/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-1.webp')) return true;
       if (String(p).includes('/assets/catalog/seating/non-leather/oando-seating--canaret/gallery/image-1.jpg')) return true;
+      if (String(p).endsWith('/assets/catalog/seating/non-leather/oando-seating--fluid-x')) return true;
+      if (String(p).endsWith('/assets/catalog/seating/non-leather/oando-seating--canaret')) return true;
       return false;
     });
     expect(
@@ -226,6 +228,7 @@ describe('assetPaths', () => {
   it('should keep zero-padded path when padded file exists on disk', () => {
     mockFs.existsSync.mockImplementation((p: string) => {
       if (String(p).includes('/assets/catalog/seating/non-leather/oando-seating--arvo/gallery/image-01.webp')) return true;
+      if (String(p).endsWith('/assets/catalog/seating/non-leather/oando-seating--arvo')) return true;
       return false;
     });
     expect(
@@ -267,10 +270,10 @@ describe('assetPaths', () => {
     // Client must not rewrite image-01 → image-1 (destroys SSR-resolved padded paths).
     expect(
       clientAssetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--arvo/gallery/image-01.webp'),
-    ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--arvo/image-01.webp');
+    ).toBe('https://cdn.example.com/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp');
     expect(
       clientAssetPaths.normalizeAssetPath('/assets/catalog/seating/non-leather/oando-seating--fluid-x/gallery/image-01.webp'),
-    ).toBe('https://cdn.example.com/assets/catalog/seating/non-leather/oando-seating--fluid-x/image-01.webp');
+    ).toBe('https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--fluid-x/image-01.webp');
   });
 
   it('should normalize asset list', () => {

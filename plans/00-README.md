@@ -133,10 +133,10 @@ flowchart TD
 | DB-S08 | 04 | Planner Supabase persistence proof | P1 | OPEN |
 | DB-S09 | 04 | Types UTF-8 / no BOM on write | — | DONE |
 | DB-S10 | 04 | `db:test` connection smoke | — | OPEN |
-| WRK-S01 | 05 | 3b fix #1 undo/grid | P0 | OPEN |
-| WRK-S02 | 05 | 3b fix #2 BOQ dock | P0 | OPEN |
-| WRK-S03 | 05 | 3b fix #3 390px place step | P0 | OPEN |
-| WRK-S04 | 05 | 3b fix #4 click/keyboard place | **P0** | OPEN |
+| WRK-S01 | 05 | 3b fix #1 undo/grid | P0 | DONE |
+| WRK-S02 | 05 | 3b fix #2 BOQ dock | P0 | DONE |
+| WRK-S03 | 05 | 3b fix #3 390px place step | P0 | DONE |
+| WRK-S04 | 05 | 3b fix #4 click/keyboard place | **P0** | DONE |
 | WRK-S05 | 05 | 3b fix #5 toolbar handlers | — | OPEN |
 | WRK-S06 | 05 | 3b fix #6 Ctrl+K palette | — | OPEN |
 | WRK-S07 | 05 | 3b fix #7 Escape closes AI | — | OPEN |

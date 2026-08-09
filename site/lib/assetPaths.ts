@@ -192,6 +192,23 @@ const SEATING_LEATHER_SLUGS = new Set([
   "rider",
 ]);
 
+/** Products DB legacy bucket — CDN uses cafe|fabric|leather|mesh only. */
+function rewriteLegacyNonLeatherSeatingPath(assetPath: string): string {
+  return assetPath.replace(
+    /^\/assets\/catalog\/seating\/non-leather\/(oando-seating--[^/]+)/i,
+    (_full, sku: string) =>
+      `/assets/catalog/seating/${seatingSubcategory(sku)}/${sku}`,
+  );
+}
+
+function localNonLeatherSeatingFolderExists(sku: string): boolean {
+  if (!isServer()) {return false;}
+  const fsMod = getFs();
+  if (!fsMod) {return false;}
+  const dirWeb = `/assets/catalog/seating/non-leather/${sku}`;
+  return toPublicFsPaths(dirWeb).some((fsPath) => fsMod.existsSync(fsPath));
+}
+
 function seatingSubcategory(skuFolder: string): string {
   const m = skuFolder.match(/^oando-seating--(.+)$/i);
   if (!m) {
@@ -727,6 +744,19 @@ export function normalizeAssetPath(
     candidateLower = candidatePath.toLowerCase();
   }
 
+  const legacyNonLeather = candidatePath.match(
+    /^\/assets\/catalog\/seating\/non-leather\/(oando-seating--[^/]+)/i,
+  );
+  if (legacyNonLeather) {
+    const sku = legacyNonLeather[1];
+    const keepLegacy =
+      probeDisk && isServer() && localNonLeatherSeatingFolderExists(sku);
+    if (!keepLegacy) {
+      candidatePath = rewriteLegacyNonLeatherSeatingPath(candidatePath);
+      candidateLower = candidatePath.toLowerCase();
+    }
+  }
+
   // CMS folder slugs (e.g. sleek-workstation) → canonical oando-* catalog dirs on disk.
   // Match both flat and nested: /assets/catalog/{folder}/image-N or /assets/catalog/{fam}/{folder}/image-N
   const catalogFolderMatch = candidatePath.match(
@@ -1071,14 +1101,17 @@ function catalogFolderWebPathCandidates(slug: string): string[] {
 }
 
 function probeCdnCatalogImage(folderWebPath: string): string | null {
-  const imageNames = [
-    "image-1.webp",
-    "image-01.webp",
+  const imageNames: string[] = [];
+  for (let i = 1; i <= 15; i += 1) {
+    const padded = String(i).padStart(2, "0");
+    imageNames.push(`image-${i}.webp`, `image-${padded}.webp`);
+  }
+  imageNames.push(
     "image-1.jpg",
     "image-01.jpg",
     "image-1.jpeg",
     "image-01.jpeg",
-  ];
+  );
   for (const imageName of imageNames) {
     const probe = normalizeAssetPath(
       `${folderWebPath.replace(/\/+$/, "")}/${imageName}`,
@@ -1093,6 +1126,10 @@ function probeCdnCatalogImage(folderWebPath: string): string | null {
     }
   }
   return null;
+}
+
+function isLegacyNonLeatherCatalogPath(assetPath: string | null | undefined): boolean {
+  return /\/assets\/catalog\/seating\/non-leather\//i.test(String(assetPath || ""));
 }
 
 export function resolveProductCatalogAssets(
@@ -1130,14 +1167,20 @@ export function resolveProductCatalogAssets(
     return { flagship_image: flagship, images: publishablePreferred };
   }
 
-  for (const folder of catalogFolderWebPathCandidates(String(slug || "").trim())) {
-    const probed = probeCdnCatalogImage(folder);
-    if (probed) {
-      const images = Array.from(new Set([probed, ...catalogPreferred]));
-      return {
-        flagship_image: flagship || probed,
-        images: images.length > 0 ? images : [probed],
-      };
+  const needsProbe =
+    !flagship ||
+    isLegacyNonLeatherCatalogPath(preferredFlagship) ||
+    isLegacyNonLeatherCatalogPath(flagship);
+  if (needsProbe) {
+    for (const folder of catalogFolderWebPathCandidates(String(slug || "").trim())) {
+      const probed = probeCdnCatalogImage(folder);
+      if (probed) {
+        const images = Array.from(new Set([probed, ...catalogPreferred]));
+        return {
+          flagship_image: probed,
+          images: images.length > 0 ? images : [probed],
+        };
+      }
     }
   }
 

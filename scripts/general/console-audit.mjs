@@ -62,7 +62,7 @@ async function auditRoute(page, route) {
   });
 
   try {
-    await page.goto(url, { waitUntil: "networkidle", timeout: 15000 });
+    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 45000 });
     // Wait a bit for hydration errors to surface
     await page.waitForTimeout(2000);
   } catch (e) {

@@ -5,7 +5,28 @@ import {
 import { filterProductCatalogMedia } from "@/lib/catalog/site/catalogProductFilters";
 import { resolveDisplayEcoScore } from "@/lib/catalog/site/ecoScore";
 import { normalizeCatalogProductId } from "@/lib/uuid/normalizeUuid";
+import localCatalogIndex from "@/features/site/data/localCatalogIndex.json";
 import type { CompatProduct, Product } from "./types";
+
+type LocalCatalogIndexRow = {
+  slug: string;
+  flagship_image?: string;
+  images?: string[];
+};
+
+function catalogIndexAssetsForSlug(slug: string): {
+  flagship?: string;
+  images?: string[];
+} {
+  const entry = (localCatalogIndex as LocalCatalogIndexRow[]).find(
+    (row) => row.slug === slug,
+  );
+  if (!entry) {return {};}
+  return {
+    flagship: entry.flagship_image,
+    images: entry.images,
+  };
+}
 
 export function isMissingTableError(message: string, tableName?: string): boolean {
   const normalized = (message || "").toLowerCase();
@@ -33,10 +54,16 @@ export function isMissingTableError(message: string, tableName?: string): boolea
 
 export function normalizeProducts(rows: Product[]): Product[] {
   return (rows ?? []).map((product) => {
+    const indexAssets = catalogIndexAssetsForSlug(product.slug);
+    const preferredFlagship =
+      indexAssets.flagship ?? product.flagship_image;
+    const preferredImages = indexAssets.images
+      ? [...indexAssets.images, ...(product.images ?? [])]
+      : product.images;
     const assets = resolveProductCatalogAssets(
       product.slug,
-      product.flagship_image,
-      product.images,
+      preferredFlagship,
+      preferredImages,
     );
     const images = filterProductCatalogMedia(assets.images);
     const flagshipCandidates = filterProductCatalogMedia([assets.flagship_image]);

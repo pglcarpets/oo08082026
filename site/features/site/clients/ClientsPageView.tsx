@@ -17,7 +17,7 @@ import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 const CLIENTS_JSON_LD = buildPageJsonLd(SITE_URL, {
   path: "/clients",
   title:
-    "Trusted clients | Office furniture delivery Patna, Bihar & Jharkhand | One&Only",
+    "Trusted clients | Office furniture delivery India | One&Only",
   description: CLIENTS_PAGE_COPY.heroSubtitle,
   pageType: "CollectionPage",
 });

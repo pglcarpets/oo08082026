@@ -27,7 +27,7 @@ describe("SITE_BRAND", () => {
     expect(SITE_BRAND.companyName).toBe("One&Only");
     expect(SITE_BRAND.defaultTitle).toContain("One&Only");
     expect(SITE_BRAND.ogImage).toMatch(/^\//);
-    expect(SITE_BRAND.description).toMatch(/Patna/i);
+    expect(SITE_BRAND.description).toMatch(/India/i);
   });
 });
 

@@ -33,7 +33,7 @@ export default async function ContactPage({
 
   const contactJsonLd = buildPageJsonLd(SITE_URL, {
     path: "/contact",
-    title: "Contact office furniture sales | Patna, Ranchi, Bihar & Jharkhand | One&Only",
+    title: "Contact office furniture sales | India | One&Only",
     description: t("heroSubtitle"),
     pageType: "ContactPage",
   });

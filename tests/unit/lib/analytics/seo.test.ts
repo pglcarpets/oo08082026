@@ -30,7 +30,7 @@ describe("SITE_BRAND", () => {
     expect(SITE_BRAND.titleSuffix).toBe("One&Only");
     expect(SITE_BRAND.siteName).toBe("One&Only");
     expect(SITE_BRAND.defaultTitle).toContain("One&Only");
-    expect(SITE_BRAND.description).toMatch(/Ranchi/i);
+    expect(SITE_BRAND.description).toMatch(/India/i);
     expect(SITE_BRAND.localBusinessDescription).toMatch(/Steelcase/i);
     expect(SITE_BRAND.ogImage.startsWith("/assets/")).toBe(true);
   });

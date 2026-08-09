@@ -23,7 +23,7 @@ export default async function CareerPage() {
 
   const careerPageJsonLd = buildPageJsonLd(SITE_URL, {
     path: "/career",
-    title: "Careers | Office furniture jobs Patna, Ranchi, Bihar & Jharkhand | One&Only",
+    title: "Careers | Office furniture jobs India | One&Only",
     description: t("heroSubtitle"),
     pageType: "WebPage",
   });

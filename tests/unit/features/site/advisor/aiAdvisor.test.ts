@@ -67,7 +67,7 @@ describe("buildConfiguratorContextSummary", () => {
       roomClearanceMm: 900,
       fitStatus: "fits with minor adjustments",
       budgetBand: "mid",
-      siteLocation: "Patna",
+      siteLocation: "India",
       estimatedBudget: "₹42L – ₹58L",
       keyOptions: ["mesh back", "cable tray"],
     });
@@ -85,7 +85,7 @@ describe("buildConfiguratorContextSummary", () => {
     expect(summary).toContain("Clearance: 900 mm");
     expect(summary).toContain("Fit status: fits with minor adjustments");
     expect(summary).toContain("Budget band: mid");
-    expect(summary).toContain("Site location: Patna");
+    expect(summary).toContain("Site location: India");
     expect(summary).toContain("Indicative budget: ₹42L – ₹58L");
     expect(summary).toContain("Selected options: mesh back, cable tray");
   });

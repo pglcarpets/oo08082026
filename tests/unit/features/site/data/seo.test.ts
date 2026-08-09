@@ -93,9 +93,22 @@ describe('buildSiteMetadata', () => {
     expect(twitterFields(meta).card).toBe('summary_large_image');
   });
 
-  it('has robots allowing index and follow', () => {
+  it('has robots allowing index and follow (incl. googleBot previews)', () => {
     const meta = buildSiteMetadata(TEST_SITE_URL);
-    expect(meta.robots).toEqual({ index: true, follow: true });
+    expect(meta.robots).toMatchObject({
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+      },
+    });
+  });
+
+  it('exposes web app manifest for install/share surfaces', () => {
+    const meta = buildSiteMetadata(TEST_SITE_URL);
+    expect(meta.manifest).toBe("/site.webmanifest");
   });
 });
 
@@ -364,26 +377,27 @@ describe('buildPageJsonLd', () => {
 });
 
 describe('buildCareerJobsJsonLd', () => {
-  it('emits JobPosting graph for office furniture openings', () => {
+  it('emits JobPosting graph for office furniture openings (India-wide)', () => {
     const ld = buildCareerJobsJsonLd(TEST_SITE_URL, [
       {
         title: 'Workspace Planner',
         department: 'Planning and Design',
-        location: 'Patna',
+        location: 'India',
       },
       {
         title: 'Project Sales Manager',
         department: 'Enterprise Sales',
-        location: 'Patna / Ranchi',
+        location: 'India (multi-city)',
       },
     ]);
     expect(ld['@context']).toBe('https://schema.org');
     expect(ld['@graph']).toHaveLength(2);
     expect(ld['@graph'][0]['@type']).toBe('JobPosting');
     expect(ld['@graph'][0].industry).toBe('Office Furniture');
-    expect(ld['@graph'][0].jobLocation.address.addressLocality).toBe('Patna');
-    expect(ld['@graph'][0].jobLocation.address.addressRegion).toBe('Bihar');
-    expect(ld['@graph'][1].description).toMatch(/Ranchi|Bihar|Jharkhand/i);
+    expect(ld['@graph'][0].jobLocation.address.addressCountry).toBe('IN');
+    expect(ld['@graph'][0].jobLocation.address.addressLocality).toBe('India');
+    expect(ld['@graph'][1].description).toMatch(/India/i);
+    expect(ld['@graph'][1].description).not.toMatch(/Patna|Ranchi|Jharkhand|Bihar/i);
   });
 });
 
@@ -459,7 +473,7 @@ describe('buildGlobalJsonLd', () => {
     expect(website.publisher?.['@id']).toBe(`${TEST_SITE_URL}#organization`);
   });
 
-  it('local business node includes address, geo, and hours', () => {
+  it('local business node includes address, geo, hours, and social sameAs', () => {
     const ld = buildGlobalJsonLd(TEST_SITE_URL);
     const store = ld['@graph'].find((node: { '@type': string }) => node['@type'] === 'FurnitureStore');
     expect(store).toBeDefined();
@@ -470,6 +484,15 @@ describe('buildGlobalJsonLd', () => {
     expect(store.geo?.latitude).toBe(SITE_CONTACT.geo.latitude);
     expect(store.openingHours).toBe(SITE_CONTACT.openingHours);
     expect(store.priceRange).toBe(SITE_CONTACT.priceRange);
+    expect(store.image).toContain(SITE_BRAND.ogImage);
+    expect(store.sameAs?.length).toBeGreaterThan(0);
+  });
+
+  it('website node lists primary commercial ReadAction targets', () => {
+    const ld = buildGlobalJsonLd(TEST_SITE_URL);
+    const website = ld['@graph'].find((node: { '@type': string }) => node['@type'] === 'WebSite');
+    expect(website?.potentialAction?.['@type']).toBe('ReadAction');
+    expect(website?.potentialAction?.target).toContain(`${TEST_SITE_URL}/products/`);
   });
 
   it('uses custom image when provided in buildPageMetadata', () => {

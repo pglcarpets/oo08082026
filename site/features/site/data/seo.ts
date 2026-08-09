@@ -308,17 +308,22 @@ export function buildSiteMetadata(siteUrl: string): Metadata {
     },
     description: SITE_BRAND.description,
     keywords: [
-      "office furniture Patna",
-      "premium office furniture Bihar",
-      "ergonomic chairs India",
-      "modular workstations Patna",
-      "office furniture Bihar",
+      "office furniture India",
+      "premium office furniture",
+      "commercial office furniture India",
+      "ergonomic office chairs India",
+      "modular office workstations",
+      "office furniture manufacturer supplier India",
+      "corporate office furniture",
       "One&Only",
       "oando furniture",
-      "office chairs Patna",
-      "meeting tables Bihar",
-      "office furniture Jharkhand",
-      "storage solutions India",
+      "meeting tables office India",
+      "office storage solutions",
+      "soft seating office",
+      "Steelcase Featherlite Humanscale dealer",
+      "workspace planning furniture",
+      "turnkey office furniture India",
+      "enterprise office fit-out",
     ],
     authors: [{ name: SITE_BRAND.companyName, url: origin }],
     creator: SITE_BRAND.companyName,
@@ -329,7 +334,31 @@ export function buildSiteMetadata(siteUrl: string): Metadata {
       address: false,
       telephone: false,
     },
-    robots: { index: true, follow: true },
+    robots: {
+      index: true,
+      follow: true,
+      // Rich-result friendliness for Google (main marketing surface only).
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    // Optional Search Console / Bing verification — set in env, never hardcode secrets.
+    verification: {
+      ...(process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim()
+        ? { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.trim() }
+        : {}),
+      ...(process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION?.trim()
+        ? {
+            other: {
+              "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION.trim(),
+            },
+          }
+        : {}),
+    },
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "any" },
@@ -339,6 +368,7 @@ export function buildSiteMetadata(siteUrl: string): Metadata {
       shortcut: "/favicon.ico",
       apple: "/icon.png",
     },
+    manifest: "/site.webmanifest",
     alternates: {
       canonical: "/",
       languages: buildLocaleAlternates(origin, "/"),
@@ -492,20 +522,15 @@ export function buildCareerJobsJsonLd(
   return {
     "@context": "https://schema.org",
     "@graph": jobs.map((job, index) => {
-      const locality = job.location.includes("Ranchi") && !job.location.includes("Patna")
-        ? "Ranchi"
-        : job.location.includes("Patna")
-          ? "Patna"
-          : job.location.split(/[/,]/)[0]?.trim() || "Patna";
-      const region =
-        locality.toLowerCase() === "ranchi" ? "Jharkhand" : "Bihar";
+      // National hiring signal — do not hard-code East-India-only localities.
+      const jobCountry = "IN";
       return {
         "@type": "JobPosting",
         "@id": `${pageUrl}#job-${index + 1}`,
         title: job.title,
         description:
           job.description ||
-          `${job.title} (${job.department}) at One&Only — office furniture careers serving Patna, Ranchi, Bihar and Jharkhand. Location: ${job.location}.`,
+          `${job.title} (${job.department}) at One&Only — office furniture careers across India. Location: ${job.location}.`,
         employmentType: "FULL_TIME",
         industry: "Office Furniture",
         hiringOrganization: {
@@ -518,10 +543,15 @@ export function buildCareerJobsJsonLd(
           "@type": "Place",
           address: {
             "@type": "PostalAddress",
-            addressLocality: locality,
-            addressRegion: region,
-            addressCountry: "IN",
+            addressCountry: jobCountry,
+            addressRegion: "IN",
+            addressLocality: "India",
           },
+        },
+        jobLocationType: "TELECOMMUTE",
+        applicantLocationRequirements: {
+          "@type": "Country",
+          name: "India",
         },
         directApply: false,
         url: pageUrl,
@@ -587,6 +617,11 @@ export function buildGlobalJsonLd(siteUrl: string) {
         description: SITE_BRAND.description,
         inLanguage: "en-IN",
         publisher: { "@id": organizationId },
+        // No free-text search route yet — point crawlers at primary commercial hub.
+        potentialAction: {
+          "@type": "ReadAction",
+          target: [`${siteUrl}/products/`, `${siteUrl}/planning/`, `${siteUrl}/contact/`],
+        },
       },
       {
         "@type": "FurnitureStore",
@@ -595,6 +630,8 @@ export function buildGlobalJsonLd(siteUrl: string) {
         url: siteUrl,
         description: SITE_BRAND.localBusinessDescription,
         parentOrganization: { "@id": organizationId },
+        image: `${siteUrl}${SITE_BRAND.ogImage}`,
+        logo: `${siteUrl}/logo-v2.webp`,
         address: {
           "@type": "PostalAddress",
           ...SITE_CONTACT.address,
@@ -605,6 +642,7 @@ export function buildGlobalJsonLd(siteUrl: string) {
         openingHours: SITE_CONTACT.openingHours,
         priceRange: SITE_CONTACT.priceRange,
         areaServed: SITE_CONTACT.areaServed,
+        sameAs: SITE_CONTACT.socialLinks.map((link) => link.href),
       },
     ],
   };

@@ -13,6 +13,11 @@ describe("robots.ts (stable import)", () => {
     const rules = Array.isArray(config.rules) ? config.rules : [config.rules];
     const first = rules[0];
     expect(first?.userAgent).toBe("*");
+    // Explicit major crawlers share the same allow/disallow map.
+    const agents = rules.map((rule) => rule?.userAgent);
+    expect(agents).toEqual(
+      expect.arrayContaining(["*", "Googlebot", "Bingbot", "Googlebot-Image"]),
+    );
     const sitemaps = Array.isArray(config.sitemap)
       ? config.sitemap
       : config.sitemap

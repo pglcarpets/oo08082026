@@ -5,15 +5,18 @@ import { SITE_URL } from "@/lib/siteUrl";
 const BASE_URL = SITE_URL;
 
 export default function robots(): MetadataRoute.Robots {
+  const disallow = [...ROBOTS_DISALLOW_PREFIXES];
+  const host = BASE_URL.replace(/\/+$/, "");
+  // Explicit major crawlers (same rules) — helps Bing/Google discover allow/disallow cleanly.
+  const crawlers = ["*", "Googlebot", "Bingbot", "Googlebot-Image"] as const;
+
   return {
-    rules: [
-      {
-        userAgent: "*",
-        allow: "/",
-        disallow: [...ROBOTS_DISALLOW_PREFIXES],
-      },
-    ],
-    sitemap: [`${BASE_URL.replace(/\/+$/, "")}/sitemap.xml`],
-    host: BASE_URL.replace(/\/+$/, ""),
+    rules: crawlers.map((userAgent) => ({
+      userAgent,
+      allow: "/",
+      disallow,
+    })),
+    sitemap: [`${host}/sitemap.xml`],
+    host,
   };
 }

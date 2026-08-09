@@ -470,7 +470,7 @@ export const HOMEPAGE_FAQ_CONTENT = {
   items: [
     {
       q: "Which cities do you serve?",
-      a: "We are based in Patna and serve Bihar, Jharkhand, and multi-city rollout briefs across India. Delivery logistics are handled directly - no third-party intermediaries.",
+      a: "We deliver commercial office furniture across India, including multi-city and multi-floor rollouts. Logistics are coordinated by our team — no third-party intermediaries.",
     },
     {
       q: "How long does delivery and installation take?",
@@ -482,7 +482,7 @@ export const HOMEPAGE_FAQ_CONTENT = {
     },
     {
       q: "What warranty do you offer?",
-      a: "Products carry manufacturer warranty (typically 2-5 years depending on the range). After-sales support is managed by our Patna team directly.",
+      a: "Products carry manufacturer warranty (typically 2-5 years depending on the range). After-sales support is managed by our team directly.",
     },
     {
       q: "Can you handle large or phased office rollouts?",

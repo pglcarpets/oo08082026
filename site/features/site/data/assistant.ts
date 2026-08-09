@@ -2,7 +2,7 @@ export const AI_ASSISTANT_WELCOME_MESSAGE =
   "Hi, I am your workspace AI assistant. Share your requirement and I will suggest practical options.";
 
 export const AI_ASSISTANT_STARTERS = [
-  "Recommend workstations for a 60-person operations team in Patna.",
+  "Recommend workstations for a 60-person operations team.",
   "Suggest a storage plan for HR and finance records in one floor.",
   "Need seating and collaboration furniture for a growing sales office.",
   "Budget-focused workspace options for 40 users with 3-month timeline.",
@@ -28,8 +28,8 @@ export const AI_ASSISTANT_REFINERS = [
 ] as const;
 
 export const AI_ADVISOR_SAMPLE_QUERIES = [
-  "Ergonomic seating for Bihar government project, 50 people",
-  "Modular workstations for a 20-person tech startup in Patna",
+  "Ergonomic seating for a 50-person government project",
+  "Modular workstations for a 20-person tech startup",
   "Conference room furniture for corporate head office",
   "Complete office setup for 100-seat BPO centre",
 ] as const;
@@ -41,7 +41,7 @@ export const AI_ADVISOR_COPY = {
   surpriseLabel: "Try a sample",
   loading: "Analysing catalog and engineering your recommendations...",
   placeholder:
-    "e.g. Ergonomic seating for Bihar government project, 50 people...",
+    "e.g. Ergonomic seating for a 50-person corporate project...",
 } as const;
 
 export const GUIDED_PLANNER_COPY = {

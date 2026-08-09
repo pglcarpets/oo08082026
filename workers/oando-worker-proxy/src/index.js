@@ -59,6 +59,8 @@ export default {
     const targetUrl = new URL(pathname + url.search, origin);
     
     const upstreamRequest = new Request(targetUrl.toString(), request);
+    // Vercel routes by Host = deployment hostname; custom domain is preserved
+    // in x-forwarded-host for app logic.
     upstreamRequest.headers.set('host', new URL(origin).host);
     upstreamRequest.headers.set('x-forwarded-host', url.host);
     upstreamRequest.headers.set('x-forwarded-proto', url.protocol.replace(':', ''));
@@ -72,6 +74,25 @@ export default {
 
     const responseHeaders = new Headers(upstreamResponse.headers);
     responseHeaders.set('x-oando-proxy', 'cloudflare-worker');
+
+    // CRITICAL (indexing): vercel.json sets X-Robots-Tag: noindex on Host
+    // *.vercel.app. We must set Host to the Vercel origin for routing, so that
+    // header is applied to apex traffic too. Strip it for public custom domains
+    // so Google/Bing can index https://oando.co.in (not preview hosts).
+    // See: Google Search Central — X-Robots-Tag noindex blocks indexing.
+    const publicHost = url.hostname.toLowerCase();
+    const isPublicApex =
+      publicHost === 'oando.co.in' ||
+      publicHost === 'www.oando.co.in' ||
+      (env.PUBLIC_INDEXABLE_HOSTS || '')
+        .split(',')
+        .map((h) => h.trim().toLowerCase())
+        .filter(Boolean)
+        .includes(publicHost);
+
+    if (isPublicApex) {
+      responseHeaders.delete('x-robots-tag');
+    }
     
     return new Response(upstreamResponse.body, {
       status: upstreamResponse.status,

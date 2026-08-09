@@ -5,10 +5,10 @@ export const SITE_BRAND = {
   utilityTagline: "",
   defaultTitle: "One&Only | Premium Office Solutions",
   description:
-    "Premium ergonomic office furniture in Patna, Ranchi, Bihar and Jharkhand. Workstations, seating, storage, tables and soft seating.",
+    "Premium ergonomic office furniture for modern workplaces across India. Workstations, seating, storage, tables, and soft seating — planning-led delivery nationwide.",
   organizationDescription:
-    "Planning-led office furniture systems for modern workplaces across Patna, Ranchi, Bihar, Jharkhand, and multi-city rollouts.",
+    "Planning-led office furniture systems for modern workplaces across India, multi-city rollouts, and enterprise projects.",
   localBusinessDescription:
-    "Premium ergonomic office furniture in Patna, Ranchi, Bihar and Jharkhand, India. Authorized dealer for Steelcase, Featherlite, Humanscale, and other leading office furniture brands.",
+    "Premium ergonomic office furniture for commercial workplaces across India. Authorized dealer for Steelcase, Featherlite, Humanscale, and other leading office furniture brands.",
   ogImage: "/assets/marketing/hero/slides/Titan-Oneandonly-bright.webp",
 } as const;

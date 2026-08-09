@@ -4,7 +4,7 @@ import { buildWhatsAppHref } from "@/features/site/data/contact";
 export const ABOUT_PAGE_COPY = {
   heroTitle: "About us",
   heroSubtitle:
-    "Planning, supply, and install for workplaces across Patna, Bihar, and Jharkhand — from brief to handover.",
+    "Planning, supply, and install for workplaces across India — from brief to handover.",
   sectionKicker: "Who we are",
   sectionTitle: "Planning-first partner",
   paragraphs: [
@@ -64,7 +64,7 @@ export const ABOUT_PAGE_COPY = {
 
 export const CONTACT_PAGE_COPY = {
   heroTitle: "Contact",
-  heroSubtitle: "Quotes, planning, and support for Patna, Ranchi, Bihar & Jharkhand.",
+  heroSubtitle: "Quotes, planning, and support for commercial workplaces across India.",
   sectionTitle: "Offices",
   introTitle: "Offices & channels",
   introDescription: "",
@@ -332,10 +332,10 @@ export const CLIENTS_WORK = [
 
 export const SHOWROOMS_PAGE_COPY = {
   heroTitle: "Showrooms",
-  heroKicker: "Patna showroom",
+  heroKicker: "Showroom",
   heroTitleLead: "Visit",
   heroTitleAccent: "us.",
-  heroSubtitle: "Hours, directions, and signature deliveries from our Patna space.",
+  heroSubtitle: "Hours, directions, and signature deliveries from our showroom space.",
   craftQuote:
     "See seating, finishes, and systems in context — then brief the planning team with clarity.",
   craftAttribution: "Jagat Trade Centre · Frazer Road",
@@ -566,7 +566,7 @@ export const CAREER_PAGE_COPY = {
   heroTitleLead: "Careers",
   heroTitleAccent: "with us.",
   heroSubtitle:
-    "Sales, planning, operations, and support across Patna, Ranchi, Bihar, and Jharkhand.",
+    "Sales, planning, operations, and support for commercial projects across India.",
   craftQuote:
     "Real client briefs, measured ownership, and teams that stay close to delivery.",
   craftAttribution: "People · One&Only",
@@ -640,22 +640,22 @@ export const CAREER_PAGE_JOBS = [
   {
     title: "Project Sales Manager",
     department: "Enterprise Sales",
-    location: "Patna / Ranchi",
+    location: "India (multi-city)",
   },
   {
     title: "Workspace Planner",
     department: "Planning and Design",
-    location: "Patna",
+    location: "India",
   },
   {
     title: "Site Execution Coordinator",
     department: "Operations",
-    location: "Patna, Ranchi and travel",
+    location: "India — travel",
   },
   {
     title: "Customer Support Executive",
     department: "After-sales Support",
-    location: "Patna",
+    location: "India",
   },
 ] as const;
 
@@ -872,7 +872,7 @@ export const LEGAL_PAGE_COPY = {
   terms: {
     title: "Terms & Conditions",
     heroSubtitle:
-      "Website, enquiry, quotation, delivery, warranty, and support terms for One&Only office furniture in Patna, Ranchi, Bihar and Jharkhand.",
+      "Website, enquiry, quotation, delivery, warranty, and support terms for One&Only office furniture across India.",
     overviewKicker: "Commercial terms",
     overviewTitle: "The operating terms behind quotations, orders, delivery, and support.",
     overviewDescription:
@@ -1062,7 +1062,7 @@ export const COMPARE_ROUTE_COPY = {
   bodyHeading: "Specification review",
   bodyPopulatedHint: "Read the shortlist side by side.",
   description:
-    "Compare up to four office furniture products — category, materials, warranty, certification, and features — before you request a quote or BOQ. Built for shortlists in Patna, Ranchi, Bihar, and Jharkhand.",
+    "Compare up to four office furniture products — category, materials, warranty, certification, and features — before you request a quote or BOQ. Built for shortlists across India.",
   countLabel: "Comparing {count} products",
   mobileHint: "Swipe horizontally on smaller screens to read every specification column.",
   browseCta: "Browse products",

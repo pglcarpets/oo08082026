@@ -30,7 +30,7 @@ import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 const COMPARE_PAGE_JSON_LD = buildPageJsonLd(SITE_URL, {
   path: "/compare",
   title:
-    "Compare office furniture | Patna, Ranchi, Bihar & Jharkhand | One&Only",
+    "Compare office furniture | One&Only",
   description: COMPARE_ROUTE_COPY.description,
   pageType: "WebPage",
 });

@@ -24,7 +24,7 @@ describe("assistant welcome and starters", () => {
 });
 
 describe("assistant refiners", () => {
-  const sampleQuery = "60-person operations team in Patna";
+  const sampleQuery = "60-person operations team";
 
   it("exposes four refiner labels", () => {
     expect(AI_ASSISTANT_REFINERS).toHaveLength(4);

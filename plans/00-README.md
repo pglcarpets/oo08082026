@@ -104,6 +104,7 @@ Gates: `SEAM-GATE-TYPECHECK` · `P0UNIT` · `FULL` · `LANES` · E2E: `PLANNER-3
 | OPS-S03 | 03 | Apex `/api/categories/` JSON | — | DONE |
 | OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
+| OPS-S09 | 03 | Apex strip X-Robots noindex (Worker) | **P0** | OPEN |
 | OPS-S06 | 03 | Lockfile pnpm 11.20.0 | P1 | DONE |
 | OPS-S07 | 03 | Apex `/ooplanner/` worker header | — | DONE |
 | OPS-S08 | 03 | Apex catalog asset HEAD 200 | — | DONE |
@@ -170,8 +171,7 @@ Gates: `SEAM-GATE-TYPECHECK` · `P0UNIT` · `FULL` · `LANES` · E2E: `PLANNER-3
 | PX-S05 | 09 | `SEAM-API-ADMIN-AUTH` inventory | P1 | DONE |
 | PX-S06 | 09 | `SEAM-PROXY-HEADERS` + docs | P2 | DONE |
 
-**Totals:** 97 slices · **P0 still open:** OPS-S01, OPS-S04, WRK-S09, TECH-S05 (blocked on S01).  
-**Closed this session:** DB-S01, DB-S02, WRK-S08.
+**Totals:** 98 slices · **P0 still open:** OPS-S01, OPS-S04, **OPS-S09** (apex noindex — deploy Worker), WRK-S09, TECH-S05 (blocked on S01).
 
 **Removed as duplicates (2026-08-09):** WRK-S10 → use **TST-S18**; WRK-S11 → use **TST-S17**; SITE-S13 → use **TST-S19** (same e2e seams).
 

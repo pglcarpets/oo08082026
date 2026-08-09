@@ -11,12 +11,16 @@ describe("SITE_BRAND", () => {
     expect(SITE_BRAND.siteName).toBe("One&Only");
     expect(SITE_BRAND.titleSuffix).toBe("One&Only");
     expect(SITE_BRAND.defaultTitle).toContain("One&Only");
-    expect(SITE_BRAND.description).toMatch(/Patna/i);
+    expect(SITE_BRAND.description).toMatch(/India/i);
+    expect(SITE_BRAND.description).not.toMatch(/Patna|Ranchi|Jharkhand|Bihar/i);
     expect(SITE_BRAND.ogImage).toMatch(/^\//);
   });
 
   it("includes organization and local-business descriptions for structured data", () => {
     expect(SITE_BRAND.organizationDescription.length).toBeGreaterThan(20);
-    expect(SITE_BRAND.localBusinessDescription).toMatch(/Bihar/i);
+    expect(SITE_BRAND.localBusinessDescription).toMatch(/India/i);
+    expect(SITE_BRAND.organizationDescription).not.toMatch(
+      /Patna|Ranchi|Jharkhand|Bihar/i,
+    );
   });
 });

@@ -12,7 +12,6 @@ import { ContactTeaser } from "@/components/shared/ContactTeaser";
 
 import { SITE_BRAND } from "@/lib/analytics/seo";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/analytics/seo";
-import { buildLocalBusinessJsonLd } from "@/features/site/data/seo";
 import { getBusinessStats } from "@/features/crm/businessStats";
 import { SITE_URL } from "@/lib/siteUrl";
 import { sanitizeJsonForScript } from "@/lib/security/sanitize";
@@ -26,13 +25,13 @@ export const metadata: Metadata = buildPageMetadata(SITE_URL, {
 export default async function Home() {
   const t = await getTranslations("home");
   const { stats } = await getBusinessStats();
+  // Organization / FurnitureStore live in (site)/layout sitewide graph — home only adds WebPage.
   const homeJsonLd = buildPageJsonLd(SITE_URL, {
     path: "/",
     title: SITE_BRAND.defaultTitle,
     description: SITE_BRAND.description,
     pageType: "WebPage",
   });
-  const localBusinessJsonLd = buildLocalBusinessJsonLd(SITE_URL);
 
   const sectionLabel = t("showcase.sectionLabel");
   const sectionTitleLead = t("showcase.sectionTitleLead");
@@ -50,10 +49,6 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(homeJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(localBusinessJsonLd) }}
       />
 
       <HomepageHero />

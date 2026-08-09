@@ -71,6 +71,15 @@ describe('assetPaths', () => {
     expect(assetPaths.normalizeAssetPath('mailto:info@oando.co.in')).toBe('mailto:info@oando.co.in');
   });
 
+  it('normalizes bare numeric catalog filenames to the published image-N form', () => {
+    expect(
+      assetPaths.normalizeAssetPath('/assets/catalog/seating/mesh/oando-seating--spino/1.webp'),
+    ).toBe('https://cdn.example.com/assets/catalog/seating/mesh/oando-seating--spino/image-1.webp');
+    expect(
+      assetPaths.normalizeAssetPath('https://oando.co.in/assets/catalog/seating/mesh/oando-seating--spino/1.webp'),
+    ).toBe('https://oando.co.in/assets/catalog/seating/mesh/oando-seating--spino/image-1.webp');
+  });
+
   it('returns placeholder for legacy catalog export paths when local file is absent', () => {
     const legacySeg = String.fromCharCode(97, 102, 99);
     const legacy = `/assets/${legacySeg}/chair.webp`;
@@ -376,7 +385,7 @@ describe('assetPaths', () => {
       ['/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp'],
     );
     expect(arvo.flagship_image).toContain('/oando-seating--arvo/');
-    expect(arvo.flagship_image).toMatch(/\/1\.webp$/);
+    expect(arvo.flagship_image).toMatch(/\/image-1\.webp$/);
     expect(arvo.flagship_image).not.toContain('image-01');
 
     const arvoShortSlug = assetPaths.resolveProductCatalogAssets(
@@ -384,6 +393,6 @@ describe('assetPaths', () => {
       '/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp',
       ['/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp'],
     );
-    expect(arvoShortSlug.flagship_image).toMatch(/\/1\.webp$/);
+    expect(arvoShortSlug.flagship_image).toMatch(/\/image-1\.webp$/);
   });
 });

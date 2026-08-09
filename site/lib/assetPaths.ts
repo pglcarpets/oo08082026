@@ -54,6 +54,15 @@ function toWebAssetPath(assetPath: string): string {
   return trimmed;
 }
 
+/** Catalog objects use `image-N`; normalize stale DB URLs that use bare `N`. */
+function normalizeBareCatalogImageName(assetPath: string): string {
+  return assetPath.replace(
+    /^(https?:\/\/[^/]+)?(\/assets\/catalog\/[^?\s#]*\/)(\d+)(\.(?:webp|png|jpe?g|gif|avif))([?#].*)?$/i,
+    (_full, origin: string | undefined, folder: string, index: string, extension: string, suffix: string | undefined) =>
+      `${origin ?? ""}${folder}image-${index}${extension}${suffix ?? ""}`,
+  );
+}
+
 function isServer(): boolean {
   return typeof window === "undefined";
 }
@@ -720,7 +729,7 @@ export function normalizeAssetPath(
 ): string {
   if (!assetPath) {return "";}
   const probeDisk = options?.probeDisk === true;
-  const normalized = String(assetPath).trim();
+  const normalized = normalizeBareCatalogImageName(String(assetPath).trim());
   if (!normalized) {return "";}
   if (hasAbsoluteUrl(normalized)) {return normalized;}
   const hasImageExtension = /\.(webp|png|jpe?g|gif|avif|svg)$/i.test(normalized);

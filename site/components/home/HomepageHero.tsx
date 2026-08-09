@@ -3,25 +3,21 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
 import { ArrowRight, SealCheck } from "@phosphor-icons/react";
 
 import {
   DEFAULT_HERO_FALLBACK,
   HOMEPAGE_HERO_CONTENT,
   HOMEPAGE_HERO_IMAGES,
+  HOMEPAGE_HERO_IMAGE_SIZES,
   resolveHeroTitleLines,
 } from "@/features/site/data/homepage";
 import { TrackedLink } from "@/components/ui/TrackedLink";
-import {
-  gsapReducedMotion,
-  GSAP_EASE_OUT,
-  GSAP_REVEAL,
-  registerGsapPlugins,
-} from "@/lib/helpers/gsapMotion";
+import { runAfterIdleOrInteraction } from "@/lib/client/afterIdle";
+import { gsapReducedMotion } from "@/lib/helpers/gsapMotion";
 
-registerGsapPlugins();
+const SLIDE_MS = 5000;
+const POSTER = HOMEPAGE_HERO_IMAGES[0];
 
 export function HomepageHero() {
   const t = useTranslations("home");
@@ -37,46 +33,40 @@ export function HomepageHero() {
     support: t("hero.glassProof.support"),
     href: t("hero.glassProof.href"),
     cta: t("hero.glassProof.cta"),
-    source: HOMEPAGE_HERO_CONTENT.glassProof.source,
-    owner: HOMEPAGE_HERO_CONTENT.glassProof.owner,
-    reviewDate: HOMEPAGE_HERO_CONTENT.glassProof.reviewDate,
   };
 
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const copyRef = useRef<HTMLDivElement>(null);
-  const glassRef = useRef<HTMLDivElement>(null);
-  const hasMountedImageRef = useRef(false);
 
-  const [motionReady, setMotionReady] = useState(false);
+  const [carouselEnabled, setCarouselEnabled] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [failedImageSrc, setFailedImageSrc] = useState<string | null>(null);
   const [bgVisible, setBgVisible] = useState(true);
 
-  const currentImage = HOMEPAGE_HERO_IMAGES[currentIndex] ?? HOMEPAGE_HERO_IMAGES[0];
+  const currentImage = HOMEPAGE_HERO_IMAGES[currentIndex] ?? POSTER;
   const resolvedImageSrc =
-    failedImageSrc === currentImage.src && String(currentImage.src) !== String(DEFAULT_HERO_FALLBACK)
+    failedImageSrc === currentImage.src &&
+    String(currentImage.src) !== String(DEFAULT_HERO_FALLBACK)
       ? DEFAULT_HERO_FALLBACK
       : currentImage.src;
 
+  const showSlideImage = carouselEnabled && currentIndex > 0;
+
+  // Defer carousel + motion until idle or first interaction (protect LCP).
   useEffect(() => {
-    const id = requestAnimationFrame(() => {
-      setMotionReady(true);
-    });
-    return () => cancelAnimationFrame(id);
+    return runAfterIdleOrInteraction(() => {
+      setCarouselEnabled(true);
+    }, { timeoutMs: 2800 });
   }, []);
 
+  // Crossfade only when the active slide src changes after carousel is live.
   useEffect(() => {
-    if (gsapReducedMotion()) {
-      const frameId = requestAnimationFrame(() => {
-        setBgVisible(true);
-      });
-      return () => {
-        cancelAnimationFrame(frameId);
-      };
+    if (!carouselEnabled || currentIndex === 0) {
+      setBgVisible(true);
+      return;
     }
-    if (!hasMountedImageRef.current) {
-      hasMountedImageRef.current = true;
+    if (gsapReducedMotion()) {
+      setBgVisible(true);
       return;
     }
     let innerId = 0;
@@ -90,75 +80,55 @@ export function HomepageHero() {
       cancelAnimationFrame(outerId);
       cancelAnimationFrame(innerId);
     };
-  }, [resolvedImageSrc]);
+  }, [carouselEnabled, resolvedImageSrc, currentIndex]);
 
+  // Auto-advance only after carousel is enabled.
   useEffect(() => {
-    const timer = setInterval(() => {
+    if (!carouselEnabled || HOMEPAGE_HERO_IMAGES.length < 2) return;
+    const timer = window.setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % HOMEPAGE_HERO_IMAGES.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, [currentIndex]);
+    }, SLIDE_MS);
+    return () => window.clearInterval(timer);
+  }, [carouselEnabled, currentIndex]);
 
-  useGSAP(
-    () => {
-      if (!motionReady || !bgRef.current || gsapReducedMotion()) return;
-      gsap.fromTo(
-        bgRef.current,
-        { opacity: 0.75, scale: 1.045 },
-        { opacity: 1, scale: 1, duration: 2.2, ease: "power2.out" }
-      );
-    },
-    { scope: sectionRef, dependencies: [currentIndex, motionReady] }
-  );
+  // Dynamic GSAP after LCP — parallax only. Do not animate copy from opacity 0
+  // (text already painted for LCP/a11y; late from() would flash and shift layout).
+  useEffect(() => {
+    if (!carouselEnabled || gsapReducedMotion()) return;
 
-  useGSAP(
-    () => {
-      if (!motionReady || gsapReducedMotion()) {
-        return;
-      }
+    let cancelled = false;
+    let revert: (() => void) | undefined;
 
-      const revealTargets = copyRef.current?.querySelectorAll("[data-hero-reveal]");
-      if (!revealTargets?.length) {
-        return;
-      }
+    void (async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([
+        import("gsap"),
+        import("gsap/ScrollTrigger"),
+      ]);
+      if (cancelled || !sectionRef.current || !bgRef.current) return;
+
+      gsap.registerPlugin(ScrollTrigger);
 
       const ctx = gsap.context(() => {
-        gsap.from(revealTargets, {
-          y: GSAP_REVEAL.y,
-          opacity: GSAP_REVEAL.opacity,
-          duration: GSAP_REVEAL.duration,
-          stagger: GSAP_REVEAL.stagger,
-          ease: GSAP_EASE_OUT,
+        gsap.to(bgRef.current, {
+          yPercent: 14,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+          },
         });
-
-        if (glassRef.current) {
-          gsap.from(glassRef.current, {
-            y: 20,
-            opacity: 0,
-            duration: 0.9,
-            delay: 0.35,
-            ease: GSAP_EASE_OUT,
-          });
-        }
-
-        if (bgRef.current && sectionRef.current) {
-          gsap.to(bgRef.current, {
-            yPercent: 14,
-            ease: "none",
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-              end: "bottom top",
-              scrub: true,
-            },
-          });
-        }
       }, sectionRef);
 
-      return () => ctx.revert();
-    },
-    { scope: sectionRef, dependencies: [motionReady] },
-  );
+      revert = () => ctx.revert();
+    })();
+
+    return () => {
+      cancelled = true;
+      revert?.();
+    };
+  }, [carouselEnabled]);
 
   return (
     <section
@@ -174,28 +144,52 @@ export function HomepageHero() {
         className="home-hero__media absolute inset-0 h-[115%] w-full -top-[7%] origin-center transition-opacity duration-500 ease-out"
         style={{ opacity: bgVisible || gsapReducedMotion() ? 1 : 0 }}
       >
+        {/* Stable LCP poster — always mounted, never swapped off the tree. */}
         <Image
-          src={resolvedImageSrc}
-          alt={currentImage.alt}
+          src={
+            failedImageSrc === POSTER.src &&
+            String(POSTER.src) !== String(DEFAULT_HERO_FALLBACK)
+              ? DEFAULT_HERO_FALLBACK
+              : POSTER.src
+          }
+          alt={POSTER.alt}
           fill
-          priority={currentIndex === 0}
-          fetchPriority={currentIndex === 0 ? "high" : "auto"}
-          loading={currentIndex === 0 ? "eager" : undefined}
-          sizes="(max-width: 640px) 640px, (max-width: 1080px) 1080px, (max-width: 1920px) 1920px, 1920px"
-          className="home-hero__media-img object-cover object-center md:object-[64%_48%]"
-          onError={() => setFailedImageSrc(currentImage.src)}
+          priority
+          fetchPriority="high"
+          sizes={HOMEPAGE_HERO_IMAGE_SIZES}
+          quality={75}
+          className={`home-hero__media-img object-cover object-center md:object-[64%_48%] ${
+            showSlideImage ? "opacity-0" : "opacity-100"
+          }`}
+          onError={() => setFailedImageSrc(POSTER.src)}
         />
+
+        {/* Secondary slides only after idle/interaction; never priority. */}
+        {showSlideImage ? (
+          <Image
+            key={resolvedImageSrc}
+            src={resolvedImageSrc}
+            alt={currentImage.alt}
+            fill
+            loading="lazy"
+            fetchPriority="low"
+            sizes={HOMEPAGE_HERO_IMAGE_SIZES}
+            quality={75}
+            className="home-hero__media-img object-cover object-center md:object-[64%_48%]"
+            onError={() => setFailedImageSrc(currentImage.src)}
+          />
+        ) : null}
+
         <div className="absolute inset-0 bg-gradient-to-t from-black/88 via-black/62 to-black/48 lg:bg-gradient-to-r lg:from-black/86 lg:via-black/58 lg:to-black/18" />
         <div className="absolute inset-x-0 bottom-0 h-52 bg-gradient-to-t from-black/78 via-black/28 to-transparent" />
       </div>
 
       <div className="home-hero__layout relative z-10 w-full py-10 pb-14 md:py-14 md:pb-16 lg:py-16 lg:pb-20">
-        <div ref={copyRef} className="home-hero__copy w-full max-w-4xl space-y-5 md:space-y-6">
+        <div className="home-hero__copy w-full max-w-4xl space-y-5 md:space-y-6">
           <h1 id="home-hero-heading" className="home-hero-title-homepage text-inverse">
             {title.map((line, i) => (
               <span key={`${i}-${line}`} className="block overflow-hidden">
                 <span
-                  data-hero-reveal
                   className={`inline-block${i === title.length - 1 ? " text-accent-italic-on-dark" : ""}`}
                 >
                   {i < title.length - 1 ? `${line} ` : line}
@@ -204,11 +198,11 @@ export function HomepageHero() {
             ))}
           </h1>
 
-          <p data-hero-reveal className="home-kicker text-[color:var(--color-bronze-300)]">
+          <p className="home-kicker text-[color:var(--color-bronze-300)]">
             {kicker}
           </p>
 
-          <div data-hero-reveal className="home-actions">
+          <div className="home-actions">
             <TrackedLink
               href={secondaryCta.href}
               label={secondaryCta.label}
@@ -220,7 +214,7 @@ export function HomepageHero() {
           </div>
         </div>
 
-        <div ref={glassRef} className="home-hero-glass-stack">
+        <div className="home-hero-glass-stack">
           <TrackedLink
             href={glassProof.href}
             label={glassProof.cta}
@@ -252,6 +246,7 @@ export function HomepageHero() {
             key={i}
             type="button"
             onClick={() => {
+              setCarouselEnabled(true);
               setCurrentIndex(i);
             }}
             aria-label={`Show project image ${i + 1} of ${HOMEPAGE_HERO_IMAGES.length}`}

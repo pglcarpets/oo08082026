@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+// Avoid Zod v4 JIT `new Function` probe on marketing pages (strict CSP, no unsafe-eval).
+z.config({ jitless: true });
+
 /** Preferred contact channel (matches live API + form). */
 export const preferredContactSchema = z.enum([
   "any",

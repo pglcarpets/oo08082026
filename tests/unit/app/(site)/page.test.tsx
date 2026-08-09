@@ -39,6 +39,17 @@ vi.mock("@/components/home/TrustStrip", () => ({
   ),
 }));
 
+vi.mock("@/components/home/HomeDeferredSections", () => ({
+  HomeDeferredSections: () => (
+    <div data-testid="HomeDeferredSections">
+      <div data-testid="InteractiveTools" />
+      <div data-testid="WhyChooseUs" />
+      <div data-testid="ShowcaseCarousel" />
+      <div data-testid="ContactTeaser" />
+    </div>
+  ),
+}));
+
 vi.mock("@/components/home/InteractiveTools", () => ({
   InteractiveTools: () => <div data-testid="InteractiveTools" />,
 }));

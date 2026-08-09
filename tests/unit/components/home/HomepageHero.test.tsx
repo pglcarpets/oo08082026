@@ -63,6 +63,17 @@ vi.mock('@/lib/helpers/gsapMotion', async (importOriginal) => {
   };
 });
 
+vi.mock('@/lib/client/afterIdle', () => ({
+  runAfterIdle: (task: () => void) => {
+    task();
+    return () => {};
+  },
+  runAfterIdleOrInteraction: (task: () => void) => {
+    task();
+    return () => {};
+  },
+}));
+
 describe('HomepageHero Component', () => {
   it('exposes exact accessible h1 name with spaces between animated lines (SF-01 / SITE-HOME-02 / SITE-SEO-01)', () => {
     render(<HomepageHero />);

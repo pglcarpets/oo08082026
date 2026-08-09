@@ -13,12 +13,12 @@ export const HOMEPAGE_HERO_MEDIA = {
   poster: "/assets/marketing/hero/slides/Dmrc-Oneandonly-bright.webp",
 } as const;
 
+/** Full-bleed hero slides. Index 0 is the LCP poster (must stay first, no duplicates). */
 export const HOMEPAGE_HERO_IMAGES = [
   {
     src: HOMEPAGE_HERO_MEDIA.poster,
     alt: "DMRC office workstations installed by One&Only",
   },
-  { src: "/assets/marketing/hero/slides/Dmrc-Oneandonly-bright.webp", alt: "DMRC office workstations installed by One&Only" },
   { src: "/assets/marketing/hero/slides/TVS-Oneandonly-bright.webp", alt: "TVS Motors regional office fit-out by One&Only" },
   { src: "/assets/marketing/hero/slides/TVS2-Oneandonly-bright.webp", alt: "TVS Motors workspace installation by One&Only" },
   { src: "/assets/marketing/hero/slides/TVS3-Oneandonly-bright.webp", alt: "TVS Motors enterprise fit-out by One&Only" },
@@ -26,6 +26,9 @@ export const HOMEPAGE_HERO_IMAGES = [
   { src: "/assets/marketing/hero/slides/Titan2-Oneandonly-bright.webp", alt: "Titan collaborative office by One&Only" },
   { src: "/assets/marketing/hero/slides/Usha-Oneandonly-bright.webp", alt: "Usha Workspace collaboration zones by One&Only" },
 ] as const;
+
+/** Full-bleed LCP `sizes` — browser picks width from viewport × DPR (not fixed 1920 on phones). */
+export const HOMEPAGE_HERO_IMAGE_SIZES = "100vw";
 
 export interface HomepageHeroGlassProof {
   badge: string;

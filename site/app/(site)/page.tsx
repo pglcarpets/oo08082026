@@ -2,13 +2,10 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 /* Homepage CSS loaded once via site/index.css → homepage/index.css (globals). */
 import { HomepageHero } from "@/components/home/HomepageHero";
+import { HomeDeferredSections } from "@/components/home/HomeDeferredSections";
 import { HomeMarketingLayout } from "@/components/home/layout";
 import { Collections } from "@/components/home/Collections";
 import { TrustStrip } from "@/components/home/TrustStrip";
-import { ShowcaseCarousel } from "@/components/home/ShowcaseCarousel";
-import { InteractiveTools } from "@/components/home/InteractiveTools";
-import { WhyChooseUs } from "@/components/home/WhyChooseUs";
-import { ContactTeaser } from "@/components/shared/ContactTeaser";
 
 import { SITE_BRAND } from "@/lib/analytics/seo";
 import { buildPageJsonLd, buildPageMetadata } from "@/lib/analytics/seo";
@@ -55,24 +52,21 @@ export default async function Home() {
       <div className="home-bronze-rule scheme-accent-wash" aria-hidden="true" />
       <Collections />
       <TrustStrip stats={stats} />
-      <InteractiveTools />
-      <WhyChooseUs />
-      <ShowcaseCarousel
-        sectionLabel={sectionLabel}
-        sectionAriaLabel={`${sectionTitleLead} ${sectionTitleAccent}`}
-        sectionTitle={
-          <>
-            {sectionTitleLead}{" "}
-            <span className="text-accent-italic">
-              {sectionTitleAccent}
-            </span>
-          </>
-        }
-        items={[...showcaseItems]}
-        browseLink={t("showcase.browseCta.href")}
-        browseLabel={t("showcase.browseCta.label")}
+      <HomeDeferredSections
+        showcase={{
+          sectionLabel,
+          sectionAriaLabel: `${sectionTitleLead} ${sectionTitleAccent}`,
+          sectionTitle: (
+            <>
+              {sectionTitleLead}{" "}
+              <span className="text-accent-italic">{sectionTitleAccent}</span>
+            </>
+          ),
+          items: [...showcaseItems],
+          browseLink: t("showcase.browseCta.href"),
+          browseLabel: t("showcase.browseCta.label"),
+        }}
       />
-      <ContactTeaser />
     </HomeMarketingLayout>
   );
 }

@@ -72,26 +72,39 @@ export default {
       }
     });
 
-    const responseHeaders = new Headers(upstreamResponse.headers);
+    // Rebuild headers so we can fully control indexing directives.
+    // CRITICAL: vercel.json sets X-Robots-Tag: noindex when Host is *.vercel.app.
+    // We must set Host to the Vercel origin for routing, so that header would
+    // poison apex traffic unless we remove/override it for public hosts.
+    const responseHeaders = new Headers();
+    upstreamResponse.headers.forEach((value, key) => {
+      const lower = key.toLowerCase();
+      // Drop every robots tag from origin; re-apply only for non-public hosts.
+      if (lower === 'x-robots-tag') return;
+      // Avoid hop-by-hop / encoding issues when streaming body as-is.
+      if (lower === 'content-encoding' || lower === 'content-length' || lower === 'transfer-encoding') {
+        return;
+      }
+      responseHeaders.append(key, value);
+    });
     responseHeaders.set('x-oando-proxy', 'cloudflare-worker');
 
-    // CRITICAL (indexing): vercel.json sets X-Robots-Tag: noindex on Host
-    // *.vercel.app. We must set Host to the Vercel origin for routing, so that
-    // header is applied to apex traffic too. Strip it for public custom domains
-    // so Google/Bing can index https://oando.co.in (not preview hosts).
-    // See: Google Search Central — X-Robots-Tag noindex blocks indexing.
-    const publicHost = url.hostname.toLowerCase();
+    const publicHost = url.hostname.toLowerCase().replace(/^www\./, '');
+    const extraHosts = (env.PUBLIC_INDEXABLE_HOSTS || '')
+      .split(',')
+      .map((h) => h.trim().toLowerCase().replace(/^www\./, ''))
+      .filter(Boolean);
     const isPublicApex =
       publicHost === 'oando.co.in' ||
-      publicHost === 'www.oando.co.in' ||
-      (env.PUBLIC_INDEXABLE_HOSTS || '')
-        .split(',')
-        .map((h) => h.trim().toLowerCase())
-        .filter(Boolean)
-        .includes(publicHost);
+      extraHosts.includes(publicHost) ||
+      extraHosts.includes(url.hostname.toLowerCase());
 
     if (isPublicApex) {
-      responseHeaders.delete('x-robots-tag');
+      // Explicit allow — do not leave noindex from Vercel preview config.
+      responseHeaders.set('X-Robots-Tag', 'all');
+      responseHeaders.set('x-oando-indexable', '1');
+    } else if (publicHost.endsWith('.vercel.app') || publicHost.endsWith('.workers.dev')) {
+      responseHeaders.set('X-Robots-Tag', 'noindex, nofollow');
     }
     
     return new Response(upstreamResponse.body, {

@@ -12,11 +12,13 @@ import { SITE_URL } from "@/lib/siteUrl";
 const BASE_URL = SITE_URL.replace(/\/+$/, "");
 
 /** Public marketing/product paths only — never admin/api/private shells. */
-const STATIC_SITEMAP_PATHS = [
-  ...PUBLIC_INDEXABLE_STATIC_PATHS,
-  ...PLANNER_MARKETING_SITEMAP_PATHS,
-  ...SOLUTION_CATEGORY_SITEMAP_PATHS,
-];
+const STATIC_SITEMAP_PATHS = Array.from(
+  new Set<string>([
+    ...PUBLIC_INDEXABLE_STATIC_PATHS,
+    ...PLANNER_MARKETING_SITEMAP_PATHS,
+    ...SOLUTION_CATEGORY_SITEMAP_PATHS,
+  ]),
+);
 
 /** Catalog id/slug segments — reject host injection and path traversal. */
 function isSafeSitemapSegment(segment: unknown): segment is string {
@@ -111,5 +113,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Keep static sitemap if catalog fetch fails.
   }
 
-  return entries;
+  // Dedupe by canonical URL (static lists can overlap; catalog may re-emit categories).
+  const seen = new Set<string>();
+  return entries.filter((entry) => {
+    if (seen.has(entry.url)) return false;
+    seen.add(entry.url);
+    return true;
+  });
 }

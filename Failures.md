@@ -12,7 +12,7 @@ Also mirrored in tech-docs: **Tech Stack — Active blockers** (`tech-docs-gener
 | ID | Priority | Blocker | Evidence | Owner action |
 |----|----------|---------|----------|--------------|
 | **F3** | P0 | `docs.oando.co.in` has **no public DNS** (NXDOMAIN). | `nslookup docs.oando.co.in` 2026-08-08 — no A record (SOA only). Separate from apex Worker. | Add CF DNS for `docs` → tech-docs host; ship docs separately per `docs/architecture/tech-docs-link.md`. |
-| **F4** | **P0** | Apex `https://oando.co.in` sends **`X-Robots-Tag: noindex, nofollow`** — Google/Bing will not index. | `curl -sI https://oando.co.in/` 2026-08-09 shows `x-robots-tag: noindex`. Cause: CF Worker sets Host to `*.vercel.app`; Vercel preview noindex applies. | Deploy Worker fix (`workers/oando-worker-proxy` strips header for apex). Then GSC/Bing submit sitemap. |
+| **F4** | **P0** | ~~Apex `X-Robots-Tag: noindex`~~ **FIXED 2026-08-09** — Worker strips/overrides noindex for public hosts. | Before: `curl -sI https://oando.co.in/` had `x-robots-tag: noindex`. After Worker deploy `03e0a0e6…`: header gone / `X-Robots-Tag: all` on apex; preview `*.vercel.app` still noindex. | GSC/Bing: resubmit sitemap; request re-index of home + /products/. |
 
 **Not blockers for the reported 404s:** Page Rules / WAF inventing path 404s (unverified via API — token lacks zone DNS/rules read — but Worker is a transparent proxy and `CF-Cache-Status: DYNAMIC`; 404s carry `x-matched-path: /404` + `x-vercel-cache: HIT` from origin). Local Next routes for portal/dashboard/ooplanner **exist** under `site/app/`.
 

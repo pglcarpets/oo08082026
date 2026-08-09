@@ -104,7 +104,7 @@ Gates: `SEAM-GATE-TYPECHECK` · `P0UNIT` · `FULL` · `LANES` · E2E: `PLANNER-3
 | OPS-S03 | 03 | Apex `/api/categories/` JSON | — | DONE |
 | OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
-| OPS-S09 | 03 | Apex strip X-Robots noindex (Worker) | **P0** | OPEN |
+| OPS-S09 | 03 | Apex strip X-Robots noindex (Worker) | **P0** | DONE |
 | OPS-S06 | 03 | Lockfile pnpm 11.20.0 | P1 | DONE |
 | OPS-S07 | 03 | Apex `/ooplanner/` worker header | — | DONE |
 | OPS-S08 | 03 | Apex catalog asset HEAD 200 | — | DONE |

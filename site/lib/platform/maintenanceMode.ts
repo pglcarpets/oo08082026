@@ -16,6 +16,6 @@ export function isMaintenanceReadonly(): boolean {
 
 export function maintenanceModeLabel(): string {
   return isMaintenanceReadonly()
-    ? "Read-only maintenance — browsing works; admin login and cloud saves are paused."
+    ? "Read-only maintenance — member hubs stay browseable; admin is offline; cloud saves and other API writes are paused."
     : "";
 }

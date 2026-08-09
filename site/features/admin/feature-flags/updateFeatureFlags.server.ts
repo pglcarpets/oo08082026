@@ -49,11 +49,21 @@ export type ListFeatureFlagsResult = {
   source: "local" | "supabase+local";
 };
 
+/**
+ * Admin `feature_flags` table lives on the **Admin** project
+ * (`NEXT_ADMIN_SUPABASE_URL` + `SUPABASE_ADMIN_SERVICE_ROLE_KEY`).
+ * Using Products URL/key hits the wrong DB (or lacks grants) →
+ * "permission denied for table feature_flags".
+ */
 function createFeatureFlagsAdminClient() {
   const supabaseUrl =
+    process.env.NEXT_ADMIN_SUPABASE_URL?.trim() ||
+    process.env.SUPABASE_AUTH_URL?.trim() ||
     process.env.SUPABASE_URL?.trim() ||
     process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const serviceRoleKey =
+    process.env.SUPABASE_ADMIN_SERVICE_ROLE_KEY?.trim() ||
+    process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
 
   if (!supabaseUrl || !serviceRoleKey) {
     return null;

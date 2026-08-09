@@ -11,7 +11,7 @@ const root = process.env.PLANS_PURITY_ROOT
 const planRoot = path.join(root, "plans");
 const planLabel = "plans";
 /**
- * `plans/` is pinned to README + six root programme plans + handover. No subfolders.
+ * `plans/` is pinned to README + programme plans + handover. No subfolders.
  * Fold working notes into programme plans or `Failures.md`.
  */
 const rootPlanDocs = [
@@ -24,6 +24,7 @@ const rootPlanDocs = [
   "07-tech-docs-plan.md",
   "02-testing-plan.md",
   "05-workspaces-plan.md",
+  "09-proxy-auth-hardening-plan.md",
 ];
 const requiredPlanDocs = [];
 const allowedPlanDocs = new Set(["00-README.md", ...rootPlanDocs, ...requiredPlanDocs]);
@@ -90,5 +91,5 @@ if (violations.length) {
 }
 
 console.log(
-  "check:plans-purity OK - README + eight plan docs, no subfolders or retired plan docs",
+  "check:plans-purity OK - README + programme plan docs, no subfolders or retired plan docs",
 );

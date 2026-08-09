@@ -19,7 +19,9 @@ export default function PlannerLayout({
   return (
     <main id="main-content" className="ooplanner-root" tabIndex={-1}>
       <div className="app-root">
-        <TopBar />
+        <div data-testid="planner-topbar">
+          <TopBar />
+        </div>
         {children}
         <Toast />
       </div>

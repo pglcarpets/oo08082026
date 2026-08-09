@@ -1,11 +1,9 @@
-import { redirect } from "next/navigation";
 import { DashboardClient } from "@/features/shared/dashboard/DashboardClient";
 import { getOptionalUser } from "@/lib/auth/session";
-import { buildAccessRedirect } from "@/lib/auth/plannerRedirect";
 
 /**
- * Critical authenticated hub. Metadata lives in layout (noindex + absolute title).
- * Unauthenticated visitors return here after sign-in via sanitized `next`.
+ * Critical authenticated hub. Metadata + session gate live in layout.
+ * Re-reads user for display email (layout already required a session).
  */
 export default async function DashboardPage({
   searchParams,
@@ -14,10 +12,6 @@ export default async function DashboardPage({
 }) {
   const user = await getOptionalUser();
 
-  if (!user) {
-    redirect(buildAccessRedirect("/dashboard"));
-  }
-
   const resolved = searchParams ? await searchParams : {};
   const rawError = resolved.error;
   const accessError =
@@ -25,7 +19,7 @@ export default async function DashboardPage({
 
   return (
     <DashboardClient
-      userEmail={user.email || "workspace user"}
+      userEmail={user?.email || "workspace user"}
       accessError={accessError}
     />
   );

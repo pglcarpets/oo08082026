@@ -17,4 +17,4 @@ Also mirrored in tech-docs: **Tech Stack — Active blockers** (`tech-docs-gener
 
 ---
 
-*Last updated: 2026-08-08*
+*Last updated: 2026-08-09 (session close — F3 still active; no new blockers)*

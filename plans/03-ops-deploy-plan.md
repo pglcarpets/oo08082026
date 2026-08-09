@@ -1,129 +1,31 @@
-# Operations & deploy plan — vertical slices
+# Operations & deploy
 
-**AUDITED:** 2026-08-08 · **Owner:** Vercel, Cloudflare Worker, DNS, production smoke.  
-**Related:** [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · [`Failures.md`](../Failures.md) · [`03-ops-deploy-plan.md`](./03-ops-deploy-plan.md).
-
----
-
-## DONE slices
-
-### OPS-S02 — Worker origin drift
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S02 |
-| **Seam** | `node scripts/general/check-worker-origin.mjs` exit code |
-| **Seam confirmation** | - [x] Owner confirms seam |
-| **Red** | _(completed)_ |
-| **Green** | _(completed)_ |
-| **Evidence** | `node scripts/general/check-worker-origin.mjs` → `OK` exit 0 (2026-08-08) |
-| **Depends on** | — |
-| **Status** | DONE |
-
-### OPS-S03 — Apex categories API
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S03 |
-| **Seam** | `SEAM-OPS-CURL` — `GET https://oando.co.in/api/categories/` |
-| **Seam confirmation** | - [x] Owner confirms seam |
-| **Red** | _(completed)_ |
-| **Green** | _(completed)_ |
-| **Evidence** | `curl.exe -s https://oando.co.in/api/categories/` returns JSON with category keys (2026-08-08) |
-| **Depends on** | — |
-| **Status** | DONE |
-
-### OPS-S07 — Apex Planner worker header
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S07 |
-| **Seam** | `curl.exe -sI https://oando.co.in/ooplanner/` |
-| **Seam confirmation** | - [x] Owner confirms seam |
-| **Red** | _(completed)_ |
-| **Green** | _(completed)_ |
-| **Evidence** | Response includes `x-oando-proxy: cloudflare-worker` |
-| **Depends on** | OPS-S02 |
-| **Status** | DONE |
-
-### OPS-S08 — Apex catalog asset HEAD
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S08 |
-| **Seam** | `curl.exe -sI https://oando.co.in/assets/catalog/...` |
-| **Seam confirmation** | - [x] Owner confirms seam |
-| **Red** | _(completed)_ |
-| **Green** | _(completed)_ |
-| **Evidence** | `results/asset-cutover/smoke-report.json` apex HEAD 200 + worker header |
-| **Depends on** | TST-S11 |
-| **Status** | DONE |
-
-### OPS-S06 — Lockfile pnpm 11.20.0 (P1-4)
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S06 |
-| **Seam** | `pnpm-lock.yaml` + `package.json` `packageManager` |
-| **Seam confirmation** | - [x] Owner confirms seam |
-| **Red** | Reported mismatch `lockfileVersion: '9.0'` vs `pnpm@11.20.0` |
-| **Green** | Verify install — no regen required |
-| **Evidence** | `pnpm@11.20.0` + `pnpm install --frozen-lockfile` exit 0 (2026-08-08) |
-| **Depends on** | — |
-| **Status** | DONE |
+**AUDITED:** 2026-08-09 · Registry: [`00-README.md`](./00-README.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md)
 
 ---
 
-## OPEN slices
+## DONE
 
-### OPS-S01 — F3 docs DNS (P0)
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S01 |
-| **Seam** | `SEAM-OPS-CURL` — `curl.exe -sI https://docs.oando.co.in` |
-| **Seam confirmation** | - [ ] Owner confirms seam before red |
-| **Red** | `Resolve-DnsName docs.oando.co.in` → NXDOMAIN; curl fails resolve |
-| **Green** | Cloudflare CNAME `docs` → tech-docs host (proxied); curl returns 200 |
-| **Evidence** | `results/deploy/docs-dns.txt` with DNS + curl output; remove F3 from `Failures.md` |
-| **Depends on** | — |
-| **Status** | OPEN — `Failures.md` F3 |
-
-### OPS-S04 — Vercel prebuilt + static CSS 200 (P0)
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S04 |
-| **Seam** | `npx vercel deploy --prod --prebuilt` then `curl.exe -sI https://oostudiooplanner.vercel.app/_next/static/css/` |
-| **Seam confirmation** | - [ ] Owner confirms seam before red |
-| **Red** | Prebuilt deploy fails OR static CSS returns 404 |
-| **Green** | `pnpm run build:site` exit 0; prebuilt deploy success; CSS 200 on Vercel + apex |
-| **Evidence** | `results/deploy/vercel-static.txt` with status codes |
-| **Depends on** | TST-S09 |
-| **Status** | OPEN — remote-build verified 2026-08-08; prebuilt path OPEN |
-
-### OPS-S05 — Vercel token rotation (P1)
-
-| Field | Value |
-|-------|-------|
-| **Slice ID** | OPS-S05 |
-| **Seam** | Vercel dashboard token lifecycle (no token in git tree) |
-| **Seam confirmation** | - [ ] Owner confirms seam before red |
-| **Red** | Grep repo for exposed token pattern in docs |
-| **Green** | Revoke old token; store in vault / Vercel env only |
-| **Evidence** | Owner sign-off note in `results/deploy/token-rotation.txt` |
-| **Depends on** | — |
-| **Status** | OPEN — security owner action |
+| ID | Seam / evidence |
+|----|-----------------|
+| OPS-S02 | `check-worker-origin.mjs` OK |
+| OPS-S03 | apex `GET /api/categories/` JSON |
+| OPS-S06 | pnpm 11.20.0 + frozen lockfile |
+| OPS-S07 | apex `/ooplanner/` has `x-oando-proxy: cloudflare-worker` |
+| OPS-S08 | apex catalog asset HEAD 200 |
 
 ---
 
-## Key paths
+## OPEN
 
-| Item | Path |
-|------|------|
-| Worker | `workers/oando-worker-proxy/` |
-| Vercel | `vercel.json` |
-| Build | `pnpm run build:site` |
-| Ops list | `pnpm run ops list` |
+| ID | Pri | Seam | Red → green | Evidence |
+|----|-----|------|-------------|----------|
+| **OPS-S01** | P0 | `docs.oando.co.in` DNS (**F3**) | NXDOMAIN → CF CNAME + 200 | `results/deploy/docs-dns.txt`; drop F3 |
+| **OPS-S04** | P0 | `vercel deploy --prod --prebuilt` + static CSS | 404 CSS → build + prebuilt + 200 | `results/deploy/vercel-static.txt` |
+| **OPS-S05** | P1 | Vercel token lifecycle | exposed token risk → revoke; vault only | `results/deploy/token-rotation.txt` |
 
-*Remove F-rows only after curl evidence in `results/deploy/`.*
+---
+
+## Paths
+
+`workers/oando-worker-proxy/` · `vercel.json` · `pnpm run build:site` · `pnpm run ops list`

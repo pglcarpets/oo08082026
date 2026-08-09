@@ -11,10 +11,10 @@ vi.mock('next/server', () => {
 
   const mockNextResponse = {
     next: vi.fn(() => ({ status: 200, headers: new StubHeaders() })),
-    redirect: vi.fn((url: string | URL) => {
+    redirect: vi.fn((url: string | URL, status = 307) => {
       const h = new StubHeaders();
       h.set('location', url.toString());
-      return { status: 307, headers: h };
+      return { status, headers: h };
     }),
     json: vi.fn((data: unknown, options?: { status?: number }) => ({ status: options?.status || 200, headers: new StubHeaders() }))
   };
@@ -62,7 +62,10 @@ vi.mock('next-intl/middleware', () => {
 
 import {
   isPlannerGuestAllowedPath,
+  isGuestProductSurfacePath,
   isRetiredPortalSvgCatalogPath,
+  isRetiredAdminStudioPath,
+  resolveLegacyMemberShellRedirect,
   isPublicPortalGuestPath,
   isProtectedPath,
   hasSessionAuthCookies,
@@ -70,6 +73,7 @@ import {
   buildContentSecurityPolicy,
   isCanvasHeavyPath,
   isMemberOnlyWriteApi,
+  isMaintenanceMutationAllowed,
   isGuestProductContext,
 } from '../../site/proxy';
 import { NextRequest } from 'next/server';
@@ -91,22 +95,20 @@ import { isMaintenanceReadonly } from '../../site/lib/platform/maintenanceMode';
 import { isDevAuthBypassEnabled } from '../../site/lib/auth/devAuthBypass';
 
 describe('proxy.ts', () => {
-  describe('isPlannerGuestAllowedPath', () => {
-    it('should allow /ooplanner/projects', () => {
-      expect(isPlannerGuestAllowedPath('/ooplanner/projects')).toBe(true);
-    });
-
-    it('should allow /ooplanner/projects', () => {
-      expect(isPlannerGuestAllowedPath('/ooplanner/projects')).toBe(true);
-      expect(isProtectedPath('/ooplanner/projects')).toBe(false);
-    });
-
-    it('should allow /planner', () => {
+  describe('guest product surfaces', () => {
+    it('treats full /ooplanner tree as planner guest-allowed (not protected)', () => {
       expect(isPlannerGuestAllowedPath('/ooplanner')).toBe(true);
+      expect(isPlannerGuestAllowedPath('/ooplanner/projects')).toBe(true);
+      expect(isPlannerGuestAllowedPath('/ooplanner/projects/abc')).toBe(true);
+      expect(isProtectedPath('/ooplanner/projects')).toBe(false);
+      expect(isPlannerGuestAllowedPath('/oostudio')).toBe(false);
+      expect(isPlannerGuestAllowedPath('/other')).toBe(false);
     });
 
-    it('should not allow /other', () => {
-      expect(isPlannerGuestAllowedPath('/other')).toBe(false);
+    it('classifies both product shells as guest surfaces', () => {
+      expect(isGuestProductSurfacePath('/ooplanner')).toBe(true);
+      expect(isGuestProductSurfacePath('/oostudio/workspace')).toBe(true);
+      expect(isGuestProductSurfacePath('/admin')).toBe(false);
     });
   });
 
@@ -122,9 +124,14 @@ describe('proxy.ts', () => {
     it('classifies retired /portal/svg-catalog as retired (Phase 7 Stage B)', () => {
       expect(isRetiredPortalSvgCatalogPath('/portal/svg-catalog')).toBe(true);
       expect(isRetiredPortalSvgCatalogPath('/portal/svg-catalog/side-table-001')).toBe(true);
-      // Auth gate never applies — proxy short-circuits 308 before isProtectedPath.
-      expect(isProtectedPath('/portal/svg-catalog')).toBe(true);
-      expect(isProtectedPath('/portal/svg-catalog/side-table-001')).toBe(true);
+    });
+
+    it('classifies retired admin studio paths (not login walls)', () => {
+      expect(isRetiredAdminStudioPath('/admin/svg-editor')).toBe(true);
+      expect(isRetiredAdminStudioPath('/admin/product-studio/x')).toBe(true);
+      expect(isProtectedPath('/admin/svg-editor')).toBe(false);
+      expect(resolveLegacyMemberShellRedirect('/crm')).toBe('/admin/crm/');
+      expect(resolveLegacyMemberShellRedirect('/ops/x')).toBe('/admin/');
     });
 
     it('should return false for public guest portal entry', () => {
@@ -144,12 +151,13 @@ describe('proxy.ts', () => {
       expect(isProtectedPath('/admin')).toBe(true);
     });
 
-    it('protects nested /admin/* page paths', () => {
+    it('protects nested /admin/* page paths (except retired studio short-circuits)', () => {
       expect(isProtectedPath('/admin/')).toBe(true);
-      expect(isProtectedPath('/admin/svg-editor')).toBe(true);
       expect(isProtectedPath('/admin/crm')).toBe(true);
       expect(isProtectedPath('/admin/crm/projects')).toBe(true);
       expect(isProtectedPath('/admin/catalog')).toBe(true);
+      // Retired Product Studio URLs are not login walls — 308 to /oostudio.
+      expect(isProtectedPath('/admin/svg-editor')).toBe(false);
     });
 
     it('does not edge-protect /api/admin (JSON auth via requireAdminSession/withAuth)', () => {
@@ -159,12 +167,9 @@ describe('proxy.ts', () => {
       expect(isProtectedPath('/api/admin/product-studio')).toBe(false);
     });
 
-    it('should return true for /crm', () => {
-      expect(isProtectedPath('/crm')).toBe(true);
-    });
-
-    it('should return true for /ops', () => {
-      expect(isProtectedPath('/ops')).toBe(true);
+    it('does not treat dead top-level /crm or /ops as protected (308 short-circuit instead)', () => {
+      expect(isProtectedPath('/crm')).toBe(false);
+      expect(isProtectedPath('/ops')).toBe(false);
     });
 
     it('should return false for /public', () => {
@@ -187,15 +192,33 @@ describe('proxy.ts', () => {
       }
     });
 
-    it('allows unsafe-eval only on canvas-heavy paths', () => {
+    it('allows unsafe-eval only on canvas-heavy product shells', () => {
       expect(isCanvasHeavyPath('/ooplanner/projects')).toBe(true);
+      expect(isCanvasHeavyPath('/oostudio')).toBe(true);
+      expect(isCanvasHeavyPath('/admin')).toBe(false);
+      expect(isCanvasHeavyPath('/dashboard')).toBe(false);
+      expect(isCanvasHeavyPath('/catalog')).toBe(false);
+      expect(isCanvasHeavyPath('/contact')).toBe(false);
       expect(buildContentSecurityPolicy('/ooplanner/projects')).toContain("'unsafe-eval'");
+      expect(buildContentSecurityPolicy('/admin')).not.toContain("'unsafe-eval'");
     });
 
     it('allows Vercel Analytics and Speed Insights (dev scripts on va.vercel-scripts.com)', () => {
       const csp = buildContentSecurityPolicy('/contact');
       expect(csp).toContain('https://va.vercel-scripts.com');
       expect(csp).toContain('https://vitals.vercel-insights.com');
+      expect(csp).toContain('https://static.cloudflareinsights.com');
+    });
+
+    it('omits unused CDNs and bare http images from CSP', () => {
+      const csp = buildContentSecurityPolicy('/contact');
+      expect(csp).not.toContain('esm.sh');
+      expect(csp).not.toContain('unpkg.com');
+      expect(csp).not.toContain('cdn.tldraw.com');
+      expect(csp).not.toContain('googletagmanager.com');
+      expect(csp).not.toContain('google-analytics.com');
+      expect(csp).toContain("img-src 'self' data: blob: https:");
+      expect(csp).not.toMatch(/img-src[^;]*http:/);
     });
   });
 
@@ -208,6 +231,10 @@ describe('proxy.ts', () => {
       expect(response).toBeDefined();
       expect(response.headers.get('X-Content-Type-Options')).toBe('nosniff');
       expect(response.headers.get('X-Frame-Options')).toBe('SAMEORIGIN');
+      expect(response.headers.get('Cross-Origin-Opener-Policy')).toBe(
+        'same-origin-allow-popups',
+      );
+      expect(response.headers.get('Cross-Origin-Resource-Policy')).toBe('same-site');
       expect(response.headers.get('Content-Security-Policy')).not.toContain("'unsafe-eval'");
     });
 
@@ -240,12 +267,7 @@ describe('proxy.ts', () => {
       }
     });
 
-    it.each([
-      '/admin/svg-editor',
-      '/admin/crm',
-      '/admin/catalog',
-      '/admin/plans',
-    ] as const)(
+    it.each(['/admin/crm', '/admin/catalog', '/admin/plans'] as const)(
       'redirects unauthenticated %s to /access when DEV_AUTH_BYPASS is off',
       async (path) => {
         const prevBypass = process.env.DEV_AUTH_BYPASS;
@@ -272,7 +294,7 @@ describe('proxy.ts', () => {
       process.env.DEV_AUTH_BYPASS = '1';
       setNodeEnv('production');
       try {
-        const request = new NextRequest('http://localhost/admin/svg-editor');
+        const request = new NextRequest('http://localhost/admin/catalog');
         const response = await proxy(request as unknown as NextRequest);
         expect(response.status).toBe(307);
         const location = response.headers.get('location') ?? '';
@@ -289,7 +311,7 @@ describe('proxy.ts', () => {
       process.env.DEV_AUTH_BYPASS = '1';
       setNodeEnv('development');
       try {
-        const request = new NextRequest('http://localhost/admin/svg-editor');
+        const request = new NextRequest('http://localhost/admin/catalog');
         const response = await proxy(request as unknown as NextRequest);
         expect(response.status).toBe(200);
         expect(response.headers.get('location')).toBeNull();
@@ -299,18 +321,38 @@ describe('proxy.ts', () => {
       }
     });
 
-    it('should redirect retired /portal/svg-catalog to /products/ (Phase 7 Stage B)', async () => {
+    it('short-circuits retired /admin/svg-editor to /oostudio/ without auth (308)', async () => {
+      const request = new NextRequest('http://localhost/admin/svg-editor');
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(308);
+      expect(response.headers.get('location')).toMatch(/\/oostudio\/?$/);
+    });
+
+    it('short-circuits retired /admin/product-studio to /oostudio/ without auth (308)', async () => {
+      const request = new NextRequest('http://localhost/admin/product-studio/abc');
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(308);
+      expect(response.headers.get('location')).toMatch(/\/oostudio\/?$/);
+    });
+
+    it('short-circuits dead /crm to /admin/crm/ (308)', async () => {
+      const request = new NextRequest('http://localhost/crm/projects');
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(308);
+      expect(response.headers.get('location')).toMatch(/\/admin\/crm\/?$/);
+    });
+
+    it('should redirect retired /portal/svg-catalog to /products/ (308)', async () => {
       const request = new NextRequest('http://localhost/portal/svg-catalog');
       const response = await proxy(request as unknown as NextRequest);
-      // Proxy uses NextResponse.redirect (307); permanent 308 lives in next.config.
-      expect([307, 308]).toContain(response.status);
+      expect(response.status).toBe(308);
       expect(response.headers.get('location')).toMatch(/\/products\/?$/);
     });
 
     it('should redirect retired /portal/svg-catalog/[slug] to /products/', async () => {
       const request = new NextRequest('http://localhost/portal/svg-catalog/side-table-001');
       const response = await proxy(request as unknown as NextRequest);
-      expect([307, 308]).toContain(response.status);
+      expect(response.status).toBe(308);
       expect(response.headers.get('location')).toMatch(/\/products\/?$/);
     });
 
@@ -329,13 +371,13 @@ describe('proxy.ts', () => {
       expect(response.headers.get('location')).toBeNull();
     });
 
-    it('detects Supabase and legacy Appwrite session cookies', () => {
+    it('detects Supabase session cookies only (Appwrite a_session_* dropped)', () => {
       expect(
         hasSessionAuthCookies([{ name: 'sb-project-auth-token', value: 'x' }]),
       ).toBe(true);
       expect(
         hasSessionAuthCookies([{ name: 'a_session_legacy', value: 'x' }]),
-      ).toBe(true);
+      ).toBe(false);
       expect(
         hasSessionAuthCookies([{ name: 'planner_guest', value: 'x' }]),
       ).toBe(false);
@@ -393,6 +435,36 @@ describe('proxy.ts', () => {
       expect(response.headers.get('x-site-maintenance')).toBe('readonly');
     });
 
+    it('returns 503 for previously unlisted API writes during maintenance (fail-closed)', async () => {
+      vi.mocked(isMaintenanceReadonly).mockReturnValueOnce(true);
+      const request = new NextRequest('http://localhost/api/products', {
+        method: 'POST',
+      });
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(503);
+      expect(response.headers.get('x-site-maintenance')).toBe('readonly');
+    });
+
+    it('allows log-error POST during maintenance (observability allowlist)', async () => {
+      vi.mocked(isMaintenanceReadonly).mockReturnValueOnce(true);
+      const request = new NextRequest('http://localhost/api/log-error', {
+        method: 'POST',
+      });
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(200);
+      expect(response.headers.get('x-site-maintenance')).toBe('readonly');
+    });
+
+    it('policy A: keeps /dashboard browseable during maintenance', async () => {
+      vi.mocked(isMaintenanceReadonly).mockReturnValueOnce(true);
+      const request = new NextRequest('http://localhost/dashboard');
+      request.cookies.set('sb-project-auth-token', 'session');
+      const response = await proxy(request as unknown as NextRequest);
+      expect(response.status).toBe(200);
+      expect(response.headers.get('location')).toBeNull();
+      expect(response.headers.get('x-site-maintenance')).toBe('readonly');
+    });
+
     it('redirects /admin to /offline during maintenance', async () => {
       vi.mocked(isMaintenanceReadonly).mockReturnValueOnce(true);
       const request = new NextRequest('http://localhost/admin/');
@@ -412,12 +484,28 @@ describe('proxy.ts', () => {
   });
 
   describe('member-only / guest helpers', () => {
-    it('classifies member write APIs', () => {
+    it('classifies member write APIs by prefix and path segments (not substrings)', () => {
       expect(isMemberOnlyWriteApi('/api/plans')).toBe(true);
       expect(isMemberOnlyWriteApi('/api/plans/abc')).toBe(true);
       expect(isMemberOnlyWriteApi('/api/admin/features')).toBe(true);
+      expect(isMemberOnlyWriteApi('/api/exports')).toBe(true);
+      expect(isMemberOnlyWriteApi('/api/Studio/furniture/abc/publish')).toBe(true);
+      expect(isMemberOnlyWriteApi('/api/files/exports/e_foo.json')).toBe(true);
+      // Guest fork surfaces stay open at the edge
       expect(isMemberOnlyWriteApi('/api/Planner/projects')).toBe(false);
       expect(isMemberOnlyWriteApi('/api/Studio/furniture')).toBe(false);
+      // Substring trap: must not treat "export" embedded in a longer segment
+      expect(isMemberOnlyWriteApi('/api/Studio/furniture/exportable-desk')).toBe(
+        false,
+      );
+    });
+
+    it('maintenance mutation allowlist is fail-closed', () => {
+      expect(isMaintenanceMutationAllowed('/api/log-error')).toBe(true);
+      expect(isMaintenanceMutationAllowed('/api/log-error/extra')).toBe(true);
+      expect(isMaintenanceMutationAllowed('/api/Planner/projects')).toBe(false);
+      expect(isMaintenanceMutationAllowed('/api/products')).toBe(false);
+      expect(isMaintenanceMutationAllowed('/api/health')).toBe(false);
     });
 
     it('detects guest product context from path and referer', () => {
@@ -428,6 +516,24 @@ describe('proxy.ts', () => {
         isGuestProductContext('/api/plans', false, 'http://localhost/ooplanner/'),
       ).toBe(true);
       expect(isGuestProductContext('/about', false, null)).toBe(false);
+    });
+
+    it('blocks guest server actions only on product surface paths', async () => {
+      const guestProduct = new NextRequest('http://localhost/ooplanner', {
+        method: 'POST',
+        headers: { 'next-action': 'some-action' },
+      });
+      guestProduct.cookies.set(PLANNER_GUEST_COOKIE, 'true');
+      expect((await proxy(guestProduct as unknown as NextRequest)).status).toBe(403);
+
+      // Guest cookie + non-product path + server action: not product-surface gated
+      // (member-only write rules may still apply for /api/*).
+      const marketing = new NextRequest('http://localhost/about', {
+        method: 'POST',
+        headers: { 'next-action': 'some-action' },
+      });
+      marketing.cookies.set(PLANNER_GUEST_COOKIE, 'true');
+      expect((await proxy(marketing as unknown as NextRequest)).status).toBe(200);
     });
   });
 });

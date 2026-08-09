@@ -184,6 +184,10 @@ const PRIMARY_CONTROL_SELECTORS: Array<{ id: string; selector: string }> = [
     id: "tool-furniture",
     selector: '[data-testid="planner-mobile-bottom-chrome"] [data-testid="canvas-tool-furniture"]',
   },
+  {
+    id: "more-actions",
+    selector: '[data-testid="planner-more-actions"]',
+  },
 ];
 
 async function samplePrimaryControls(page: Page): Promise<ControlSample[]> {
@@ -282,6 +286,50 @@ test.describe("Planner phone chrome composition (UI-MOB browser proof)", () => {
       projectName: "E2E phone chrome",
     });
     await waitForPhoneShell(page);
+    await expect(page.getByTestId("planner-mobile-bottom-chrome")).toBeVisible();
+    const mobileShellMetrics = await page.getByTestId("planner-mobile-shell").evaluate((el) => ({
+      scrollWidth: el.scrollWidth,
+      clientWidth: el.clientWidth,
+    }));
+    expect(mobileShellMetrics.scrollWidth).toBeLessThanOrEqual(mobileShellMetrics.clientWidth);
+
+    const selectTool = page.getByTestId("canvas-tool-select");
+    const wallTool = page.getByTestId("canvas-tool-wall");
+    const furnitureTool = page.getByTestId("canvas-tool-furniture");
+    await expect(selectTool).toHaveAttribute("aria-pressed", "false");
+    await expect(wallTool).toHaveAttribute("aria-pressed", "true");
+    await wallTool.click();
+    await expect(wallTool).toHaveAttribute("aria-pressed", "true");
+    await selectTool.click();
+    await expect(selectTool).toHaveAttribute("aria-pressed", "true");
+    await expect(wallTool).toHaveAttribute("aria-pressed", "false");
+    await furnitureTool.click();
+    await expect(furnitureTool).toHaveAttribute("aria-pressed", "true");
+    await expect(page.getByTestId("planner-workflow-bar")).toHaveAttribute("data-current", "place");
+
+    const moreActions = page.getByTestId("planner-more-actions");
+    await expect(moreActions).toHaveAttribute("aria-expanded", "false");
+    await moreActions.click();
+    await expect(moreActions).toHaveAttribute("aria-expanded", "true");
+    await expect(page.getByTestId("planner-more-menu")).toBeVisible();
+    await expect(page.getByRole("menuitem", { name: /Enable|Disable grid/i })).toBeVisible();
+    await expect(page.getByRole("menuitem", { name: /Save plan/i })).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(moreActions).toHaveAttribute("aria-expanded", "false");
+
+    const inventoryToggle = page.getByTestId("planner-toggle-inventory");
+    await expect(inventoryToggle).toHaveAttribute("aria-pressed", "false");
+    await inventoryToggle.click();
+    await expect(inventoryToggle).toHaveAttribute("aria-pressed", "true");
+    await inventoryToggle.click();
+    await expect(inventoryToggle).toHaveAttribute("aria-pressed", "false");
+
+    const propertiesToggle = page.getByTestId("planner-toggle-properties");
+    await expect(propertiesToggle).toHaveAttribute("aria-pressed", "false");
+    await propertiesToggle.click();
+    await expect(propertiesToggle).toHaveAttribute("aria-pressed", "true");
+    await propertiesToggle.click();
+    await expect(propertiesToggle).toHaveAttribute("aria-pressed", "false");
 
     // Dismiss slide-over panels so canvas metrics reflect resting composition.
     for (const name of [/Toggle inventory panel/i, /Toggle properties panel/i]) {

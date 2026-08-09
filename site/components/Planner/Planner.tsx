@@ -1180,11 +1180,18 @@ const Planner = () => {
       const payload = { name: projectName || "Untitled Plan", canvas_json: canvasJson, sheet, layers: [], thumbnail_png: thumb };
       if (projectId) {
         const updated = await updateProject(projectId, payload);
+        setProjectName(updated.name || payload.name);
         try { localStorage.setItem(PLANNER_LAST_PROJECT_KEY, projectId); } catch { /* noop */ }
+        // Keep URL bound to the project so hard refresh reloads by routeId.
+        if (!routeId || routeId !== projectId) {
+          router.replace(`/ooplanner/projects/${projectId}`);
+          await new Promise((r) => requestAnimationFrame(() => r(undefined)));
+        }
         showToast(`Saved "${updated.name}"`);
       } else {
         const created = await createProject(payload);
         setProjectId(created.id);
+        setProjectName(created.name || payload.name);
         try { localStorage.setItem(PLANNER_LAST_PROJECT_KEY, created.id); } catch { /* noop */ }
         router.replace(`/ooplanner/projects/${created.id}`);
         // Yield so the browser processes the history update before we tell
@@ -1195,7 +1202,7 @@ const Planner = () => {
     } catch (e) {
       showToast(`Save failed: ${errMessage(e)}`, "error");
     } finally { setSaving(false); }
-  }, [fabricRef, projectId, projectName, sheet, router, showToast]);
+  }, [fabricRef, projectId, projectName, sheet, routeId, router, showToast]);
 
   // Load project by URL id, falling back to the last-saved project id from
   // localStorage. The URL is the primary binding (shareable, matches the
@@ -1426,6 +1433,42 @@ const Planner = () => {
     focusDockPanel("right", "boq");
   }, [plannerStep, applyPlannerStep, focusDockPanel]);
 
+  const toggleMobilePanel = useCallback(
+    (side: "left" | "right", panelId: string, step: PlannerStep) => {
+      const isLeft = side === "left";
+      const isOpen = isLeft
+        ? !leftCollapsed && activeLeftDock === panelId
+        : !rightCollapsed && activeRightDock === panelId;
+      if (plannerStep !== step) {
+        applyPlannerStep(step);
+        if (isLeft) {
+          setActiveLeftDock(panelId);
+          setLeftCollapsed(false);
+        } else {
+          setActiveRightDock(panelId);
+          setRightCollapsed(false);
+        }
+        queueMicrotask(() => focusDockPanel(side, panelId));
+        return;
+      }
+      if (isOpen) {
+        if (isLeft) setLeftCollapsed(true);
+        else setRightCollapsed(true);
+        return;
+      }
+      focusDockPanel(side, panelId);
+    },
+    [
+      activeLeftDock,
+      activeRightDock,
+      applyPlannerStep,
+      focusDockPanel,
+      leftCollapsed,
+      plannerStep,
+      rightCollapsed,
+    ],
+  );
+
   const toolbarHandlers: Record<string, ToolbarItemHandler> = {
     new: { onClick: newProject },
     open: { onClick: () => router.push("/ooplanner/projects") },
@@ -1516,6 +1559,106 @@ const Planner = () => {
         planMetrics={planMetrics}
       />
     <div className="workspace" data-testid="planner-workspace">
+      <div className="planner-mobile-shell" data-testid="planner-mobile-shell">
+        <div className="planner-mobile-canvas" data-testid="planner-mobile-canvas" aria-hidden="true" />
+        <div className="planner-mobile-bottom-chrome" data-testid="planner-mobile-bottom-chrome" data-mobile-chrome="bottom">
+          <button
+            type="button"
+            className="planner-mobile-action"
+            data-testid="canvas-tool-select"
+            data-active={tool === "select" ? "true" : "false"}
+            aria-label="Select tool"
+            aria-pressed={tool === "select"}
+            onClick={() => selectDrawTool("select")}
+          >
+            <PhIcon name="cursor" size={18} /><span>Select</span>
+          </button>
+          <button
+            type="button"
+            className="planner-mobile-action"
+            data-testid="canvas-tool-wall"
+            data-active={plannerStep === "draw" && tool === "wall" ? "true" : "false"}
+            aria-label="Wall tool"
+            aria-pressed={plannerStep === "draw" && tool === "wall"}
+            onClick={() => selectDrawTool("wall")}
+          >
+            <PhIcon name="wall" size={18} /><span>Wall</span>
+          </button>
+          <button
+            type="button"
+            className="planner-mobile-action"
+            data-testid="canvas-tool-furniture"
+            data-active={plannerStep === "place" ? "true" : "false"}
+            aria-label="Furniture tool"
+            aria-pressed={plannerStep === "place"}
+            onClick={() => applyPlannerStep("place")}
+          >
+            <PhIcon name="rect" size={18} /><span>Furniture</span>
+          </button>
+          <button
+            type="button"
+            className="planner-mobile-action"
+            data-testid="planner-toggle-inventory"
+            data-active={plannerStep === "place" && !leftCollapsed ? "true" : "false"}
+            aria-label="Toggle inventory panel"
+            aria-pressed={plannerStep === "place" && !leftCollapsed}
+            onClick={() => toggleMobilePanel("left", "catalog", "place")}
+          >
+            <PhIcon name="layers" size={18} /><span>Inventory</span>
+          </button>
+          <button
+            type="button"
+            className="planner-mobile-action"
+            data-testid="planner-toggle-properties"
+            data-active={(plannerStep === "place" || plannerStep === "review") && !rightCollapsed && activeRightDock === "props" ? "true" : "false"}
+            aria-label="Toggle properties panel"
+            aria-pressed={(plannerStep === "place" || plannerStep === "review") && !rightCollapsed && activeRightDock === "props"}
+            onClick={() => toggleMobilePanel("right", "props", plannerStep === "review" ? "review" : "place")}
+          >
+            <PhIcon name="properties" size={18} /><span>Properties</span>
+          </button>
+          <ExportMenu
+            label="More"
+            triggerIcon="gear"
+            triggerClassName="planner-mobile-more-trigger"
+            testId="planner-more-actions"
+            panelTestId="planner-more-menu"
+            sections={[
+              {
+                id: "view",
+                heading: "View",
+                items: [
+                  { id: "grid", label: showGrid ? "Disable grid" : "Enable grid", onSelect: toggleGrid, testId: "planner-more-grid" },
+                  { id: "snap", label: snapEnabled ? "Disable snap" : "Enable snap", onSelect: toggleSnap, testId: "planner-more-snap" },
+                  { id: "fit", label: "Fit plan", onSelect: core.fitToContent, testId: "planner-more-fit" },
+                  { id: "autofit", label: autoFit ? "Disable auto-fit" : "Enable auto-fit", onSelect: () => setAutoFit((value) => !value), testId: "planner-more-autofit" },
+                  { id: "fullscreen", label: fullscreen ? "Exit fullscreen" : "Enter fullscreen", onSelect: toggleFullscreen, testId: "planner-more-fullscreen" },
+                ],
+              },
+              {
+                id: "plan",
+                heading: "Plan",
+                items: [
+                  { id: "save", label: saving ? "Saving…" : "Save plan", onSelect: () => { void saveProject(); }, testId: "planner-more-save" },
+                  { id: "import", label: "Import SVG", onSelect: doImportSvg, testId: "planner-more-import" },
+                  ...(flag("plannerExportPng") ? [{ id: "png", label: "Export PNG", onSelect: doExportPNG, testId: "planner-more-export-png" }] : []),
+                  ...(flag("plannerExportPdf") ? [{ id: "pdf", label: "Export PDF", onSelect: doExportPDF, testId: "planner-more-export-pdf" }] : []),
+                  ...(flag("plannerExportSvg") ? [{ id: "svg", label: "Export SVG", onSelect: doExportSVG, testId: "planner-more-export-svg" }] : []),
+                  ...(flag("plannerExportDxf") ? [{ id: "dxf", label: "Export DXF", onSelect: doExportDXF, testId: "planner-more-export-dxf" }] : []),
+                ],
+              },
+              {
+                id: "review",
+                heading: "Review",
+                items: [
+                  { id: "boq", label: "Open BOQ", onSelect: openBoqPanel, testId: "planner-more-boq" },
+                  { id: "commands", label: "Command palette", onSelect: () => setCommandOpen(true), testId: "planner-more-commands" },
+                ],
+              },
+            ]}
+          />
+        </div>
+      </div>
       <aside
         className="side-panel side-panel--left side-panel--dock"
         data-testid="catalog-rail"
@@ -1564,7 +1707,10 @@ const Planner = () => {
           count={selectedIds.length}
           onAction={applyAlign}
         />
-        <DraggableCanvasOverlay storageKey="ooplanner.canvas-overlay.v2">
+        <DraggableCanvasOverlay
+          storageKey="ooplanner.canvas-overlay.v2"
+          className="canvas-overlay canvas-overlay--planner"
+        >
           <ProjectMenu
             projectName={projectName}
             onProjectNameChange={setProjectName}

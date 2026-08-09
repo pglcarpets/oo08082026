@@ -36,6 +36,7 @@ export function PlannerWorkflowBar({
   );
   const warning = plannerForwardWarning(currentStep, completion);
   const next = nextStepOf(currentStep);
+  const nextLabel = next === "place" ? "Place furniture" : next === "review" ? "Review & quote" : "Continue";
   const currentIndex = PLANNER_STEPS.indexOf(currentStep);
 
   return (
@@ -59,7 +60,13 @@ export function PlannerWorkflowBar({
               data-past={past ? "true" : undefined}
               data-active={active ? "true" : undefined}
             >
-              {index > 0 ? <span className="pw-step-bar__rail" aria-hidden="true" /> : null}
+              {index > 0 ? (
+                <span
+                  className="pw-step-bar__rail"
+                  data-completion={completion[PLANNER_STEPS[index - 1]!]}
+                  aria-hidden="true"
+                />
+              ) : null}
               <button
                 type="button"
                 className="pw-step-bar__btn"
@@ -89,7 +96,7 @@ export function PlannerWorkflowBar({
           data-testid="planner-step-next"
           onClick={() => onStepChange(next)}
         >
-          Continue
+          {nextLabel}
           <PhIcon name="caretRight" size={16} />
         </button>
       ) : null}

@@ -335,6 +335,196 @@
   }
 
   .ooplanner-root .project-menu__trigger {
+     min-height: 44px;
+   }
+}
+
+.ooplanner-root .planner-mobile-shell {
+  display: none;
+}
+
+@media (max-width: 639px) {
+  .ooplanner-root .workspace {
+    position: relative;
+    min-height: 0;
+  }
+
+  .ooplanner-root .planner-mobile-shell {
+    position: absolute;
+    inset: 0;
+    z-index: 25;
+    display: block;
+    pointer-events: none;
+  }
+
+  .ooplanner-root .planner-mobile-canvas {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .ooplanner-root .planner-mobile-bottom-chrome {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 3px;
+    padding: 6px 8px calc(6px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--border-soft);
+    background: color-mix(in srgb, var(--surface-panel) 94%, transparent);
+    box-shadow: var(--shadow-lift);
+    backdrop-filter: blur(12px);
+    pointer-events: auto;
+  }
+
+  .ooplanner-root .planner-mobile-action {
+    display: inline-flex;
+    min-width: 0;
     min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-direction: column;
+    padding: 5px 2px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .ooplanner-root .planner-mobile-action:hover,
+  .ooplanner-root .planner-mobile-action:focus-visible {
+    background: var(--surface-muted);
+    border-color: var(--border-soft);
+    color: var(--text-strong);
+  }
+
+  .ooplanner-root .planner-mobile-action[data-active="true"] {
+    background: var(--color-primary-soft);
+    border-color: var(--border-accent);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-segment-active);
+  }
+
+  .ooplanner-root .planner-mobile-more-trigger {
+    display: inline-flex;
+    min-width: 0;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    flex-direction: column;
+    padding: 5px 2px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-muted);
+    font: inherit;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .ooplanner-root .planner-mobile-more-trigger:hover,
+  .ooplanner-root .planner-mobile-more-trigger:focus-visible,
+  .ooplanner-root .export-menu[data-open="true"] .planner-mobile-more-trigger {
+    background: var(--surface-muted);
+    border-color: var(--border-soft);
+    color: var(--text-strong);
+  }
+
+  .ooplanner-root .planner-mobile-more-trigger:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+  }
+
+  .ooplanner-root .planner-mobile-more-trigger > svg:last-child {
+    display: none;
+  }
+
+  .ooplanner-root .planner-mobile-bottom-chrome .export-menu {
+    position: relative;
+    min-width: 0;
+  }
+
+  .ooplanner-root .planner-mobile-bottom-chrome .export-menu__panel {
+    top: auto;
+    right: 0;
+    bottom: calc(100% + 8px);
+    min-width: 220px;
+    max-width: min(280px, calc(100vw - 20px));
+    max-height: min(58vh, 440px);
+    overflow-y: auto;
+    box-shadow: var(--shadow-context-menu);
+  }
+
+  .ooplanner-root .planner-mobile-bottom-chrome .export-menu__item {
+    min-height: 44px;
+  }
+
+  .ooplanner-root .planner-mobile-action:focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 1px;
+  }
+
+  .ooplanner-root .canvas-stage {
+    min-height: 0;
+    padding-bottom: 64px;
+  }
+
+  .ooplanner-root .tool-rail {
+    display: none;
+  }
+
+  .ooplanner-root .side-panel[data-collapsed="true"] {
+    width: 0 !important;
+    min-width: 0;
+    border: none;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .ooplanner-root .side-panel[data-collapsed="false"] {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 20;
+    width: min(88vw, 320px) !important;
+    box-shadow: var(--shadow-lift);
+  }
+
+  .ooplanner-root .side-panel:not(.side-panel--left)[data-collapsed="false"] {
+    right: 0;
+    left: auto;
+  }
+
+  .ooplanner-root .canvas-overlay {
+    top: 8px;
+    right: 8px;
+    left: 8px;
+    max-width: calc(100% - 16px);
+    overflow-x: auto;
+    justify-content: flex-start;
+    touch-action: pan-x;
+  }
+
+  .ooplanner-root .canvas-info {
+    bottom: 72px;
+  }
+
+  .ooplanner-root .viewport-controls {
+    bottom: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ooplanner-root .planner-mobile-bottom-chrome,
+  .ooplanner-root .planner-mobile-action {
+    transition: none;
   }
 }

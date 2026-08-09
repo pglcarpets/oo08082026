@@ -313,7 +313,13 @@ test("fix #7 — Escape closes the AI panel", async ({ page }) => {
 // Major #8 — refresh loses the active project binding after Save
 // ---------------------------------------------------------------------------
 test("fix #8 — a hard refresh after Save keeps the project name bound", async ({ page }) => {
-  await gotoWorkspace(page, "3b refresh fix");
+  // reloadSafe: do not install init-script storage wipe — hard reload must keep
+  // ooplanner.last-project-id + project API binding (WRK-S08).
+  await enterGuestPlannerWorkspace(page, {
+    projectName: "3b refresh fix",
+    reloadSafe: true,
+  });
+  await expect(page.locator(CANVAS_STAGE)).toBeVisible({ timeout: 20_000 });
 
   const marker = `3b refresh marker ${Date.now()}`;
   const nameInput = page.getByTestId("project-name");
@@ -324,9 +330,10 @@ test("fix #8 — a hard refresh after Save keeps the project name bound", async 
   await expect
     .poll(async () => page.getByTestId("btn-save").isEnabled(), { timeout: 15_000 })
     .toBe(true);
-  await page.waitForTimeout(500);
+  // Save of a new plan navigates to /ooplanner/projects/:id — wait so reload keeps routeId.
+  await expect(page).toHaveURL(/\/ooplanner\/projects\/[^/]+/, { timeout: 15_000 });
 
-  await page.reload();
+  await page.reload({ waitUntil: "domcontentloaded" });
   await expect(page.locator(CANVAS_STAGE)).toBeVisible({ timeout: 20_000 });
   await expect
     .poll(async () => page.getByTestId("project-name").inputValue(), { timeout: 15_000 })
@@ -335,7 +342,10 @@ test("fix #8 — a hard refresh after Save keeps the project name bound", async 
 
   fs.writeFileSync(
     path.join(EVIDENCE, "08-refresh-binding-dom.txt"),
-    [`project name after hard reload: "${nameAfterReload}" (expected "${marker}")`].join("\n"),
+    [
+      `url after save/reload: ${page.url()}`,
+      `project name after hard reload: "${nameAfterReload}" (expected "${marker}")`,
+    ].join("\n"),
   );
 
   expect(nameAfterReload).toBe(marker);

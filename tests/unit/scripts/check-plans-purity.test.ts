@@ -25,7 +25,7 @@ const ROOT_PLANS = [
   "05-workspaces-plan.md",
 ];
 
-/** Layout pinned by check:plans-purity: 00-README.md + eight root programme plans only. */
+/** Layout pinned by check:plans-purity: 00-README.md + allowed programme plan set only. */
 function makeFixture(): string {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "check-plans-purity-"));
   const planRoot = path.join(tmp, "plans");

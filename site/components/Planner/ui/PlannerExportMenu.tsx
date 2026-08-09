@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
 import { PhIcon } from "@planner/components/ui/PlannerPhIcon";
+import type { PhIconName } from "@planner/components/ui/plannerPhIconMap";
 import {
   flattenExportSections,
   type ExportMenuItem,
@@ -20,6 +21,8 @@ type ExportMenuProps = {
   panelTestId?: string;
   /** Trigger button class — defaults to compact topbar button. */
   triggerClassName?: string;
+  /** Trigger icon — defaults to the download icon. */
+  triggerIcon?: PhIconName;
 };
 
 function focusItem(refs: Array<HTMLButtonElement | null>, index: number) {
@@ -41,6 +44,7 @@ export function ExportMenu({
   testId = "btn-export-menu",
   panelTestId = "export-menu-panel",
   triggerClassName = "btn btn--sm",
+  triggerIcon = "download",
 }: ExportMenuProps) {
   const sections = useMemo(() => resolveSections({ items, sections: sectionsProp }), [items, sectionsProp]);
   const flatItems = useMemo(() => flattenExportSections(sections), [sections]);
@@ -170,7 +174,7 @@ export function ExportMenu({
         onClick={() => (open ? closeMenu() : openMenu(0))}
         onKeyDown={onTriggerKeyDown}
       >
-        <PhIcon name="download" size={16} />
+        <PhIcon name={triggerIcon} size={16} />
         {label}
         <PhIcon name="caretDown" size={16} />
       </button>

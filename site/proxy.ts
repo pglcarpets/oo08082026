@@ -4,26 +4,75 @@ import { isDevAuthBypassEnabled } from "./lib/auth/devAuthBypass";
 import { sanitizeNextPath } from "./lib/auth/plannerRedirect";
 import { isMaintenanceReadonly } from "./lib/platform/maintenanceMode";
 
-/** Canonical planner paths only — legacy /oando-planner/* 301 in next.config.js */
-const PLANNER_GUEST_PATHS = ["/ooplanner", "/ooplanner/projects"];
 const WRITE_METHODS = new Set(["POST", "PUT", "PATCH", "DELETE"]);
-const BLOCKED_PAGE_PREFIXES = ["/admin", "/crm", "/ops"];
-/** Maintenance read-only: block mutating methods on these API prefixes. */
-const BLOCKED_WRITE_API_PREFIXES = [
+
+/**
+ * Maintenance policy **A** (browse-only member hubs): only offline these admin
+ * shells. `/dashboard` and member `/portal` stay open for browsing; API mutations
+ * are fail-closed separately. `/portal/guest` is never offline.
+ * Top-level `/crm` and `/ops` are not app routes — short-circuited to admin below.
+ */
+const MAINTENANCE_OFFLINE_PAGE_PREFIXES = ["/admin"] as const;
+
+/** Product shells that guests may open without a member session. */
+const GUEST_PRODUCT_SURFACE_PREFIXES = ["/ooplanner", "/oostudio"] as const;
+
+/**
+ * Surfaces that load Fabric (or other eval-using canvas runtimes) in production.
+ * Keep this tight — every extra prefix widens script-src 'unsafe-eval'.
+ */
+const CANVAS_HEAVY_PREFIXES = ["/ooplanner", "/oostudio"] as const;
+
+/**
+ * Maintenance read-only: allow mutating methods only on these API prefixes.
+ * Everything else under `/api` that uses POST/PUT/PATCH/DELETE returns 503.
+ * Keep this list tiny — prefer fail-closed over missing a mutator.
+ */
+const MAINTENANCE_MUTATION_ALLOW_API_PREFIXES = [
+  "/api/log-error", // client crash reports still useful in readonly
+] as const;
+
+/**
+ * Explicit member/account write prefixes — unauthenticated traffic must never
+ * hit these. Fork disk APIs (`/api/Planner`, `/api/Studio`) stay guest-usable
+ * at the edge with handler `withAuth({ role: "guest", requireCsrf: true })`.
+ */
+const MEMBER_ONLY_WRITE_PREFIXES = [
   "/api/plans",
-  "/api/Planner",
-  "/api/Studio",
-  "/api/tracking",
-  "/api/customer-queries",
   "/api/admin",
-  "/api/theme",
+  "/api/customer-queries/manage",
+  "/api/theme/manage",
   "/api/exports",
-  "/api/filter",
-  "/api/ai-advisor",
-  "/api/audit",
-  "/api/generate-alt",
-  "/api/configurator",
-];
+] as const;
+
+/**
+ * Full path *segments* (not substrings) that mark member-only write endpoints.
+ * Avoids false positives like a slug containing the letters "export".
+ */
+const MEMBER_ONLY_WRITE_SEGMENTS = new Set([
+  "export",
+  "exports",
+  "import",
+  "publish",
+  "share",
+  "persist",
+]);
+
+function pathMatchesPrefix(pathname: string, prefix: string): boolean {
+  return pathname === prefix || pathname.startsWith(`${prefix}/`);
+}
+
+function isApiPath(pathname: string): boolean {
+  return pathMatchesPrefix(pathname, "/api");
+}
+
+/** True when a mutating request may proceed during maintenance readonly. */
+export function isMaintenanceMutationAllowed(pathname: string): boolean {
+  const p = normalizePathname(pathname);
+  return MAINTENANCE_MUTATION_ALLOW_API_PREFIXES.some((prefix) =>
+    pathMatchesPrefix(p, prefix),
+  );
+}
 
 /**
  * Member/account write surfaces — unauthenticated traffic must never hit these.
@@ -32,37 +81,12 @@ const BLOCKED_WRITE_API_PREFIXES = [
  */
 export function isMemberOnlyWriteApi(pathname: string): boolean {
   const p = normalizePathname(pathname);
-  if (p === "/api/plans" || p.startsWith("/api/plans/")) return true;
-  if (p.startsWith("/api/admin")) return true;
-  if (p.startsWith("/api/customer-queries/manage")) return true;
-  if (p.startsWith("/api/theme/manage")) return true;
-  // Substring markers used by residual/legacy mutators
-  return (
-    p.includes("/export") ||
-    p.includes("/import") ||
-    p.includes("/publish") ||
-    p.includes("/share") ||
-    p.includes("/persist")
-  );
-}
-
-/** True when request looks like guest product traffic (no session). */
-export function isGuestProductContext(
-  pathname: string,
-  hasPlannerGuestPass: boolean,
-  referer: string | null,
-): boolean {
-  if (hasPlannerGuestPass) return true;
-  const p = normalizePathname(pathname);
-  if (p === "/ooplanner" || p.startsWith("/ooplanner/")) return true;
-  if (p === "/oostudio" || p.startsWith("/oostudio/")) return true;
-  const ref = referer ?? "";
-  return (
-    ref.includes("/ooplanner") ||
-    ref.includes("/oostudio") ||
-    ref.includes("/guest") ||
-    ref.includes("/choose-product")
-  );
+  if (MEMBER_ONLY_WRITE_PREFIXES.some((prefix) => pathMatchesPrefix(p, prefix))) {
+    return true;
+  }
+  // Segment match only — never raw includes() on the full path string.
+  const segments = p.split("/").filter(Boolean);
+  return segments.some((segment) => MEMBER_ONLY_WRITE_SEGMENTS.has(segment));
 }
 
 function normalizePathname(pathname: string): string {
@@ -72,7 +96,43 @@ function normalizePathname(pathname: string): string {
   return pathname;
 }
 
-/** Fabric / WebGL planner surfaces require eval at runtime; Next.js dev (React Refresh) needs it on every route. */
+/** True for /ooplanner and /oostudio product shells (and nested paths). */
+export function isGuestProductSurfacePath(pathname: string): boolean {
+  const p = normalizePathname(pathname);
+  return GUEST_PRODUCT_SURFACE_PREFIXES.some((prefix) => pathMatchesPrefix(p, prefix));
+}
+
+/**
+ * Planner guest-pass cookie is only meaningful on planner product paths.
+ * (Does not unlock admin/crm/ops — those use isProtectedPath + session cookies.)
+ */
+export function isPlannerGuestAllowedPath(pathname: string): boolean {
+  const p = normalizePathname(pathname);
+  return pathMatchesPrefix(p, "/ooplanner");
+}
+
+/**
+ * True when request looks like guest product traffic (no member session).
+ * Cookie + product path are primary; Referer is a weak secondary signal only
+ * (server-action block still requires isGuestProductSurfacePath).
+ */
+export function isGuestProductContext(
+  pathname: string,
+  hasPlannerGuestPass: boolean,
+  referer: string | null,
+): boolean {
+  if (hasPlannerGuestPass) return true;
+  if (isGuestProductSurfacePath(pathname)) return true;
+  const ref = referer ?? "";
+  return (
+    ref.includes("/ooplanner") ||
+    ref.includes("/oostudio") ||
+    ref.includes("/guest") ||
+    ref.includes("/choose-product")
+  );
+}
+
+/** Fabric planner/studio surfaces need eval at runtime; React Refresh needs it on every route in dev. */
 function allowsUnsafeEval(pathname: string): boolean {
   if (process.env.NODE_ENV === "development") {
     return true;
@@ -82,48 +142,41 @@ function allowsUnsafeEval(pathname: string): boolean {
 
 export function isCanvasHeavyPath(pathname: string): boolean {
   const normalized = normalizePathname(pathname);
-  const prefixes = ["/ooplanner", "/oostudio", "/dashboard", "/portal", "/admin", "/crm", "/ops", "/catalog"];
-  return prefixes.some(
-    (prefix) => normalized === prefix || normalized.startsWith(`${prefix}/`),
-  );
+  return CANVAS_HEAVY_PREFIXES.some((prefix) => pathMatchesPrefix(normalized, prefix));
 }
 
-/** Trusted third-party script/beacon origins (verified need — see SiteAnalytics + docs/architecture/README.md quality targets). */
-const CSP_VERCEL_ANALYTICS_ORIGINS =
-  "https://va.vercel-scripts.com https://vitals.vercel-insights.com https://vercel.live";
+/**
+ * Third-party script/beacon origins actually mounted by the app
+ * (SiteAnalytics → Vercel Analytics / Speed Insights; optional CF beacon).
+ */
+const CSP_ANALYTICS_ORIGINS =
+  "https://va.vercel-scripts.com https://vitals.vercel-insights.com https://vercel.live https://static.cloudflareinsights.com";
 
 export function buildContentSecurityPolicy(pathname: string): string {
+  // No esm.sh / unpkg / tldraw CDN — not used by live app bundles.
+  // No GTM until a real marketing tag is mounted (avoids idle script surface).
   const scriptSrc = allowsUnsafeEval(pathname)
-    ? `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://www.googletagmanager.com https://www.google-analytics.com https://esm.sh ${CSP_VERCEL_ANALYTICS_ORIGINS}`
-    : `script-src 'self' 'unsafe-inline' blob: https://www.googletagmanager.com https://www.google-analytics.com https://esm.sh ${CSP_VERCEL_ANALYTICS_ORIGINS}`;
+    ? `script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: ${CSP_ANALYTICS_ORIGINS}`
+    : `script-src 'self' 'unsafe-inline' blob: ${CSP_ANALYTICS_ORIGINS}`;
 
   return [
     "default-src 'self'",
     scriptSrc,
     "worker-src 'self' blob:",
-    "style-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com https://unpkg.com https://esm.sh",
-    "img-src 'self' data: blob: https: http:",
-    "font-src 'self' data: https://fonts.gstatic.com https://cdn.tldraw.com https://unpkg.com https://esm.sh",
-    `connect-src 'self' blob: https://*.supabase.co https://*.supabase.in wss://*.supabase.co https://api.openai.com https://openrouter.ai https://www.google-analytics.com https://unpkg.com https://cdn.tldraw.com https://esm.sh ${CSP_VERCEL_ANALYTICS_ORIGINS}`,
+    "style-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com",
+    // https only — no bare http: images
+    "img-src 'self' data: blob: https:",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    `connect-src 'self' blob: https://*.supabase.co https://*.supabase.in wss://*.supabase.co https://api.openai.com https://openrouter.ai ${CSP_ANALYTICS_ORIGINS}`,
     "frame-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
   ].join("; ");
 }
 
-export function isPlannerGuestAllowedPath(pathname: string): boolean {
-  const normalizedPathname = normalizePathname(pathname);
-  return PLANNER_GUEST_PATHS.some((path) => {
-    if (normalizedPathname === path) {return true;}
-    if (path === "/ooplanner") {return false;}
-    return normalizedPathname.startsWith(`${path}/`);
-  });
-}
-
 /**
- * Phase 7 Stage B: retired `/portal/svg-catalog` (routes deleted).
- * Proxy short-circuits with permanent redirect so auth never intercepts
- * inbound links before next.config 308 also applies for crawlers.
+ * Retired paths short-circuit **before** the auth gate (308 permanent).
+ * next.config.js keeps matching 308s for crawlers / non-proxy hits.
  */
 const PORTAL_RETIRED_SVG_CATALOG_PREFIX = "/portal/svg-catalog";
 
@@ -131,19 +184,30 @@ const PORTAL_RETIRED_SVG_CATALOG_PREFIX = "/portal/svg-catalog";
 const PORTAL_PUBLIC_GUEST_PREFIX = "/portal/guest";
 
 export function isRetiredPortalSvgCatalogPath(pathname: string): boolean {
-  const normalizedPathname = normalizePathname(pathname);
+  return pathMatchesPrefix(normalizePathname(pathname), PORTAL_RETIRED_SVG_CATALOG_PREFIX);
+}
+
+/** Legacy Product Studio URLs under /admin — live app is /oostudio. */
+export function isRetiredAdminStudioPath(pathname: string): boolean {
+  const p = normalizePathname(pathname);
   return (
-    normalizedPathname === PORTAL_RETIRED_SVG_CATALOG_PREFIX ||
-    normalizedPathname.startsWith(`${PORTAL_RETIRED_SVG_CATALOG_PREFIX}/`)
+    pathMatchesPrefix(p, "/admin/svg-editor") ||
+    pathMatchesPrefix(p, "/admin/product-studio")
   );
 }
 
+/** Dead top-level CRM/ops shells — canonical CRM is under /admin/crm. */
+export function resolveLegacyMemberShellRedirect(
+  pathname: string,
+): string | null {
+  const p = normalizePathname(pathname);
+  if (pathMatchesPrefix(p, "/crm")) return "/admin/crm/";
+  if (pathMatchesPrefix(p, "/ops")) return "/admin/";
+  return null;
+}
+
 export function isPublicPortalGuestPath(pathname: string): boolean {
-  const normalizedPathname = normalizePathname(pathname);
-  return (
-    normalizedPathname === PORTAL_PUBLIC_GUEST_PREFIX ||
-    normalizedPathname.startsWith(`${PORTAL_PUBLIC_GUEST_PREFIX}/`)
-  );
+  return pathMatchesPrefix(normalizePathname(pathname), PORTAL_PUBLIC_GUEST_PREFIX);
 }
 
 export function isProtectedPath(pathname: string): boolean {
@@ -154,17 +218,15 @@ export function isProtectedPath(pathname: string): boolean {
     return false;
   }
 
+  // Retired admin studio paths are not "login walls" — short-circuited to /oostudio.
+  if (isRetiredAdminStudioPath(normalizedPathname)) {
+    return false;
+  }
+
   if (
-    normalizedPathname === "/dashboard" ||
-    normalizedPathname.startsWith("/dashboard/") ||
-    normalizedPathname === "/portal" ||
-    normalizedPathname.startsWith("/portal/") ||
-    normalizedPathname === "/admin" ||
-    normalizedPathname.startsWith("/admin/") ||
-    normalizedPathname === "/crm" ||
-    normalizedPathname.startsWith("/crm/") ||
-    normalizedPathname === "/ops" ||
-    normalizedPathname.startsWith("/ops/")
+    pathMatchesPrefix(normalizedPathname, "/dashboard") ||
+    pathMatchesPrefix(normalizedPathname, "/portal") ||
+    pathMatchesPrefix(normalizedPathname, "/admin")
   ) {
     return true;
   }
@@ -172,15 +234,16 @@ export function isProtectedPath(pathname: string): boolean {
   return false;
 }
 
-/** Fast edge check: Supabase SSR session cookies (and legacy Appwrite if present). */
+/**
+ * Fast edge check: Supabase SSR session cookies only.
+ * Appwrite `a_session_*` removed (D3) — no longer a trust signal.
+ */
 export function hasSessionAuthCookies(
   cookies: Array<{ name: string; value: string }>,
 ): boolean {
   return cookies.some((cookie) => {
     const name = cookie.name;
-    if (name.startsWith("a_session_")) {return true;}
-    if (name.startsWith("sb-") && name.includes("auth-token")) {return true;}
-    return false;
+    return name.startsWith("sb-") && name.includes("auth-token");
   });
 }
 
@@ -195,8 +258,27 @@ function applySecurityHeaders(response: NextResponse, pathname: string) {
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(self)");
   response.headers.set("Strict-Transport-Security", "max-age=31536000; includeSubDomains; preload");
+  // allow-popups: Supabase/OAuth-style flows; tighten to same-origin only if login never pops.
+  response.headers.set("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  response.headers.set("Cross-Origin-Resource-Policy", "same-site");
   response.headers.set("Content-Security-Policy", buildContentSecurityPolicy(pathname));
   return response;
+}
+
+function permanentRedirect(
+  request: NextRequest,
+  fromPathname: string,
+  destPathname: string,
+  maintenanceReadonly: boolean,
+) {
+  const url = request.nextUrl.clone();
+  url.pathname = destPathname;
+  url.search = "";
+  return finalizeResponse(
+    NextResponse.redirect(url, 308),
+    fromPathname,
+    maintenanceReadonly,
+  );
 }
 
 function finalizeResponse(
@@ -221,31 +303,36 @@ export async function proxy(request: NextRequest) {
   // still reach /admin for catalog/CRM work (pnpm dev sets DEV_AUTH_BYPASS=1).
   const maintenanceReadonly = isMaintenanceReadonly() && !devAuthBypass;
 
-  // Phase 7 Stage B — retired portal SVG catalog (no page modules remain).
-  // Proxy short-circuits before the auth gate (default 307 via NextResponse).
-  // Permanent 308 for crawlers is declared in next.config redirects.
+  // Retired paths before auth (308). next.config mirrors SEO permanence.
   if (isRetiredPortalSvgCatalogPath(pathname)) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/products/";
-    url.search = "";
-    return finalizeResponse(
-      NextResponse.redirect(url),
-      pathname,
-      maintenanceReadonly,
-    );
+    return permanentRedirect(request, pathname, "/products/", maintenanceReadonly);
+  }
+  if (isRetiredAdminStudioPath(pathname)) {
+    return permanentRedirect(request, pathname, "/oostudio/", maintenanceReadonly);
+  }
+  const legacyShellDest = resolveLegacyMemberShellRedirect(pathname);
+  if (legacyShellDest) {
+    return permanentRedirect(request, pathname, legacyShellDest, maintenanceReadonly);
   }
 
   if (maintenanceReadonly) {
-    if (BLOCKED_PAGE_PREFIXES.some((prefix) => pathname.startsWith(prefix))) {
+    // Policy A: offline admin only — not dashboard/portal (browse-only member hubs).
+    if (
+      MAINTENANCE_OFFLINE_PAGE_PREFIXES.some((prefix) =>
+        pathMatchesPrefix(normalizePathname(pathname), prefix),
+      )
+    ) {
       const url = request.nextUrl.clone();
       url.pathname = "/offline";
       url.searchParams.set("reason", "maintenance");
       return finalizeResponse(NextResponse.redirect(url), pathname, true);
     }
 
+    // Fail-closed: any API mutation outside the tiny allowlist → 503.
     if (
       WRITE_METHODS.has(request.method) &&
-      BLOCKED_WRITE_API_PREFIXES.some((prefix) => pathname.startsWith(prefix))
+      isApiPath(pathname) &&
+      !isMaintenanceMutationAllowed(pathname)
     ) {
       return finalizeResponse(
         NextResponse.json(
@@ -263,10 +350,10 @@ export async function proxy(request: NextRequest) {
 
   const isProtected = isProtectedPath(pathname);
   const hasPlannerGuestPass = request.cookies.has(PLANNER_GUEST_COOKIE);
-  const allowPlannerGuest = hasPlannerGuestPass && isPlannerGuestAllowedPath(pathname);
 
   // Fast cookie existence check — avoids network calls for anonymous traffic.
   // Session validation still happens in layouts via getOptionalUser().
+  // Guest planner cookie never unlocks isProtectedPath pages (admin/crm/ops/…).
   const hasAuthCookies = hasSessionAuthCookies(request.cookies.getAll());
 
   // Already authenticated (or local dev bypass): leave /access via real HTTP redirect.
@@ -285,9 +372,9 @@ export async function proxy(request: NextRequest) {
     );
   }
 
-  // Short-circuit: If they have no auth cookies, are not a guest, and the route is protected -> Boot them immediately.
-  // Dev bypass (DEV_AUTH_BYPASS=1, non-prod) skips this gate for local admin/P0.1 work.
-  if (!devAuthBypass && !hasAuthCookies && !allowPlannerGuest && isProtected) {
+  // Short-circuit: no auth cookies on a protected page → /access.
+  // Dev bypass (DEV_AUTH_BYPASS=1, non-prod) skips this for local admin work.
+  if (!devAuthBypass && !hasAuthCookies && isProtected) {
     const redirectUrl = request.nextUrl.clone();
     redirectUrl.pathname = "/access";
     redirectUrl.search = `?next=${encodeURIComponent(`${pathname}${search}`)}`;
@@ -318,14 +405,12 @@ export async function proxy(request: NextRequest) {
       return finalizeResponse(response, pathname, maintenanceReadonly);
     }
 
-    // Block server actions from guest product surfaces (page POSTs with next-action).
+    // Block server actions on guest product shells (page POSTs with next-action).
     if (
       guestCtx &&
       isMutationMethod &&
       isServerAction &&
-      (allowPlannerGuest ||
-        pathname.startsWith("/ooplanner") ||
-        pathname.startsWith("/oostudio"))
+      isGuestProductSurfacePath(pathname)
     ) {
       const response = NextResponse.json(
         {
@@ -340,28 +425,30 @@ export async function proxy(request: NextRequest) {
 
   // The actual session validation is handled by getOptionalUser() in session.ts
   // at the page/layout level. The edge proxy just does a fast cookie existence check.
-  
-  // Locale selection is prefixless and handled by i18n/request.ts.
+  // Locale selection is prefixless (`localePrefix: "never"`) via i18n/request.ts.
   const response = NextResponse.next({ request });
 
   // ── Security Headers ──────────────────────────────────────────────────────
   return finalizeResponse(response, pathname, maintenanceReadonly);
 }
 
+/**
+ * Next.js 16 proxy lives at the Next app root (`site/proxy.ts` in this monorepo).
+ * Matcher OR-list: any hit runs proxy. Prefer skipping static/platform noise.
+ * Locales are prefixless — do not list /hi|/fr|/de|/es here.
+ */
 export const config = {
   matcher: [
-    // i18n locale-prefixed paths and the root, handled by the next-intl layer.
     "/",
-    "/(hi|fr|de|es)/:path*",
     "/api/:path*",
     /*
      * Match all request paths except:
-     * - _next/static (static files)
-     * - _next/image (image optimisation)
+     * - _next (static / image / HMR)
+     * - _vercel (platform)
+     * - api (covered above)
      * - favicon.ico, sitemap.xml, robots.txt
-     * - public folder assets (images, fonts, etc.)
-     * - API routes are matched separately via `/api/:path*` above
+     * - public static assets (images, fonts, media, source maps, etc.)
      */
-    "/((?!_next|_vercel|api|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|woff|woff2|ttf|otf|eot)$).*)",
+    "/((?!_next|_vercel|api|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|avif|ico|woff|woff2|ttf|otf|eot|css|js|map|json|txt|xml|webmanifest|mp4|webm|pdf|wasm)$).*)",
   ],
 };

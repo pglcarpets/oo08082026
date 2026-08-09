@@ -1,6 +1,6 @@
 # Programme plans — master index
 
-**AUDITED:** 2026-08-08 · **Structure:** microscopic vertical slices (TDD) · **Folder:** flat `plans/` only.
+**AUDITED:** 2026-08-09 · **Structure:** microscopic vertical slices (TDD) · **Folder:** flat `plans/` only.
 
 **Authority:** user instruction > live code > [`AGENTS.md`](../AGENTS.md) > this tree > [`01-handover.md`](./01-handover.md).
 
@@ -53,34 +53,18 @@ flowchart TD
   OPS --> HO
   DB --> HO
   TECH --> HO
+  SITE --> PX[09 proxy PX DONE]
+  PX --> HO
   F3[Failures F3] --> OPS-S01
-  P01[Failures P0-1] --> SITE-S01
-  P01 --> SITE-S02
 ```
 
 ---
 
-## Seams glossary
+## Seams (short)
 
-| Seam ID | Public boundary | Typical test layer |
-|---------|-----------------|-------------------|
-| `SEAM-GATE-TYPECHECK` | `pnpm run typecheck` exit code | — |
-| `SEAM-GATE-P0UNIT` | `pnpm run p0:unit` → `results/tests/vitest-p0-results.json` | Vitest |
-| `SEAM-GATE-FULL` | `pnpm run gate` exit code | composite |
-| `SEAM-GATE-LANES` | `pnpm run test` → `results/tests/summary.json` (2 lanes) | Vitest |
-| `SEAM-R2-BUCKET` | `resolveCatalogBucketName()` in `site/lib/storage/r2Catalog.ts` | Vitest `r2Catalog.test.ts` |
-| `SEAM-CLIENT-IP` | `normalizeClientIp()` in `site/lib/clientIp.ts` | Vitest `clientIp.test.ts` |
-| `SEAM-ASSET-PATH` | `normalizeAssetPath(..., { probeDisk })` in `site/lib/assetPaths.ts` | Vitest `assetPaths.test.ts` |
-| `SEAM-PLAYWRIGHT-REPORT` | Playwright HTML → `results/playwright-report/`; root `playwright-report/` gitignored | Vitest `root-configs.test.ts` |
-| `SEAM-E2E-PLANNER-3B` | `tests/e2e/audit-3b-planner-fixes.spec.ts` @ `http://localhost:3000/ooplanner` | Playwright |
-| `SEAM-E2E-STUDIO-2A` | `tests/e2e/audit-2a-studio-journey.spec.ts` @ `/oostudio` | Playwright |
-| `SEAM-E2E-MARKETING-4A` | `tests/e2e/audit-4a-marketing-journey.spec.ts` @ `/` | Playwright |
-| `SEAM-CONSOLE-ROUTE` | Browser console on route (no hydration error text) | Playwright + `results/console-audit/` |
-| `SEAM-OPS-CURL` | `curl.exe -sI` response headers/body | manual / script |
-| `SEAM-DB-TYPES-ADMIN` | `pnpm run ops db:types:admin` → `site/platform/types/database.admin.types.ts` | ops + `typecheck` |
-| `SEAM-DB-TYPES-PRODUCTS` | `pnpm run ops db:types` → `site/platform/types/database.types.ts` | ops (needs linked Supabase CLI) |
-| `SEAM-TECH-SNAPSHOT` | `tests/tech-docs-generator/snapshot.test.ts` | Vitest tech-docs lane |
-| `SEAM-SESSION-CLOSE` | Dated artifacts in `results/` + handover slice table updated | — |
+Gates: `SEAM-GATE-TYPECHECK` · `P0UNIT` · `FULL` · `LANES` · E2E: `PLANNER-3B` · `STUDIO-2A` · `MARKETING-4A` · `CONSOLE-ROUTE` · Ops: `OPS-CURL` · DB: `DB-TYPES-ADMIN` / `PRODUCTS` · Proxy: `PROXY-*` / `DASHBOARD-AUTH` / `API-ADMIN-AUTH` (detail in programme plans).
+
+**09 proxy/auth:** [`09-proxy-auth-hardening-plan.md`](./09-proxy-auth-hardening-plan.md) · **PX-S00–S06 DONE** (D1=A, D2=studio 308, D3=Supabase cookies only).
 
 ---
 
@@ -93,7 +77,7 @@ flowchart TD
 | HO-S03 | 01 | Plan `AUDITED` date bump | — | DONE |
 | HO-S04 | 01 | `check-plans-purity` | — | DONE |
 | HO-S05 | 01 | `activeBlockers.ts` mirror | — | DONE |
-| HO-S06 | 01 | Handover status table | — | PARTIAL |
+| HO-S06 | 01 | Handover status table | — | DONE |
 | TST-S01 | 02 | `SEAM-GATE-TYPECHECK` | — | DONE |
 | TST-S02 | 02 | `typecheck:tests` | — | DONE |
 | TST-S03 | 02 | `SEAM-GATE-P0UNIT` | — | DONE |
@@ -123,8 +107,8 @@ flowchart TD
 | OPS-S06 | 03 | Lockfile pnpm 11.20.0 | P1 | DONE |
 | OPS-S07 | 03 | Apex `/ooplanner/` worker header | — | DONE |
 | OPS-S08 | 03 | Apex catalog asset HEAD 200 | — | DONE |
-| DB-S01 | 04 | `db:apply:admin --dry` | — | OPEN |
-| DB-S02 | 04 | `feature_flags` grants → Planner | P0 | PARTIAL |
+| DB-S01 | 04 | `db:apply:admin --dry` | — | DONE |
+| DB-S02 | 04 | `feature_flags` grants → Planner | P0 | DONE |
 | DB-S03 | 04 | Asset cutover unit smokes | — | DONE |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |
 | DB-S05 | 04 | `SEAM-DB-TYPES-PRODUCTS` (CLI linked) | P1 | OPEN |
@@ -140,12 +124,10 @@ flowchart TD
 | WRK-S05 | 05 | 3b fix #5 toolbar handlers | — | DONE |
 | WRK-S06 | 05 | 3b fix #6 Ctrl+K palette | — | DONE |
 | WRK-S07 | 05 | 3b fix #7 Escape closes AI | — | DONE |
-| WRK-S08 | 05 | 3b fix #8 refresh project name | — | OPEN |
+| WRK-S08 | 05 | 3b fix #8 refresh project name | — | DONE |
 | WRK-S09 | 05 | 3b Supabase mode (no bypass) | **P0** | OPEN |
-| WRK-S10 | 05 | `SEAM-E2E-STUDIO-2A` | P2 | OPEN |
-| WRK-S11 | 05 | `audit-3c` polish | P2 | OPEN |
 | WRK-S12 | 05 | `scan:boundaries` on workspace edit | — | DONE |
-| WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
+| WRK-S13 | 05 | `responsive-audit.mjs` workspaces only | P1 | OPEN |
 | WRK-S14 | 05 | `PlannerProjectMenu` orphan decision | P2 | OPEN |
 | SITE-S01 | 06 | `/products/workstations/` hydration | **P0** | DONE |
 | SITE-S02 | 06 | `/products/seating/` hydration | **P0** | DONE |
@@ -158,8 +140,7 @@ flowchart TD
 | SITE-S09 | 06 | Assistant header overflow @390px | P1 | OPEN |
 | SITE-S10 | 06 | `/trusted-by` abort | P1 | OPEN |
 | SITE-S11 | 06 | Theme API (`/api/theme/active/` presets) | P1 | DONE |
-| SITE-S12 | 06 | `responsive-audit.mjs` site | P1 | OPEN |
-| SITE-S13 | 06 | `SEAM-E2E-MARKETING-4A` | P2 | OPEN |
+| SITE-S12 | 06 | `responsive-audit.mjs` marketing/site routes | P1 | OPEN |
 | SITE-S14 | 06 | `verify:focss` on site CSS touch | — | DONE |
 | SITE-S15 | 06 | i18n locale switch e2e | P1 | OPEN |
 | SITE-S16 | 06 | Enquiry notification (ledger #10) | P1 | OPEN |
@@ -181,10 +162,20 @@ flowchart TD
 | CHK-S08 | 08 | Two Vitest lanes awareness | — | OPEN |
 | CHK-S09 | 08 | Pre-commit docs + purity | — | OPEN |
 | CHK-S10 | 08 | Pick programme slice from registry | — | OPEN |
+| PX-S00 | 09 | Proxy baseline 1–5 (already in tree) | P1 | DONE |
+| PX-S01 | 09 | `SEAM-PROXY-LEGACY-REDIRECT` + guest hygiene | P1 | DONE |
+| PX-S02 | 09 | `SEAM-PROXY-MAINTENANCE` policy A | P1 | DONE |
+| PX-S03 | 09 | `SEAM-DASHBOARD-AUTH` layout gate | P1 | DONE |
+| PX-S04 | 09 | `SEAM-PROXY-SESSION-COOKIE` drop Appwrite | P1 | DONE |
+| PX-S05 | 09 | `SEAM-API-ADMIN-AUTH` inventory | P1 | DONE |
+| PX-S06 | 09 | `SEAM-PROXY-HEADERS` + docs | P2 | DONE |
 
-**Totals:** 93 slices · **P0-labelled:** 12 (`OPS-S01`, `OPS-S04`, `DB-S02`, `WRK-S01`–`WRK-S04`, `WRK-S09`, `SITE-S01`, `SITE-S02`, `TECH-S05`).
+**Totals:** 97 slices · **P0 still open:** OPS-S01, OPS-S04, WRK-S09, TECH-S05 (blocked on S01).  
+**Closed this session:** DB-S01, DB-S02, WRK-S08.
 
-Detail per slice: programme plan files below.
+**Removed as duplicates (2026-08-09):** WRK-S10 → use **TST-S18**; WRK-S11 → use **TST-S17**; SITE-S13 → use **TST-S19** (same e2e seams).
+
+Detail per slice: programme plan files below. Status in a programme plan must match this registry.
 
 ---
 
@@ -199,6 +190,7 @@ Detail per slice: programme plan files below.
 | [06-site-plan.md](./06-site-plan.md) | Marketing, hydration, i18n |
 | [07-tech-docs-plan.md](./07-tech-docs-plan.md) | Tech-docs generator + F3 |
 | [08-oo-start-checklist.md](./08-oo-start-checklist.md) | Session start → slice IDs |
+| [09-proxy-auth-hardening-plan.md](./09-proxy-auth-hardening-plan.md) | Proxy, auth, maintenance, legacy redirects |
 
 ---
 
@@ -208,4 +200,4 @@ Detail per slice: programme plan files below.
 node scripts/general/check-plans-purity.mjs
 ```
 
-**Expect:** `check:plans-purity OK` — `README.md` + `00-README.md` + eight programme docs, no subfolders, Markdown only.
+**Expect:** `check:plans-purity OK` — `README.md` + `00-README.md` + programme docs (incl. 09), no subfolders, Markdown only.

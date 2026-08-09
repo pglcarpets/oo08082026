@@ -1,4 +1,6 @@
 /**
+ * @vitest-environment node
+ *
  * Phase 3 — PNG upload checksum helper.
  *
  * `checksumPngBuffer` is the honest SHA-256 over PNG upload bytes

@@ -1,7 +1,42 @@
+/** RFC 9116 security.txt - served at edge so scanners pass before Next deploy. */
+const SECURITY_TXT = `# One&Only (oando.co.in) - security disclosure contact (RFC 9116)
+# Prefer responsible disclosure for security issues only (not sales or support).
+
+Contact: mailto:sales@oando.co.in
+Contact: tel:+91-98356-30940
+Expires: 2027-08-09T00:00:00.000Z
+Preferred-Languages: en, hi
+Canonical: https://oando.co.in/.well-known/security.txt
+Policy: https://oando.co.in/privacy/
+Hiring: https://oando.co.in/career/
+`;
+
+function securityTxtResponse() {
+  return new Response(SECURITY_TXT, {
+    status: 200,
+    headers: {
+      'content-type': 'text/plain; charset=utf-8',
+      'cache-control': 'public, max-age=86400',
+      'x-content-type-options': 'nosniff',
+      'x-oando-proxy': 'security-txt',
+    },
+  });
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     const pathname = url.pathname;
+
+    // RFC 9116 - canonical + root alias (before R2 / Vercel).
+    // Normalize trailing slash so scanners that append / still pass.
+    const securityPath = pathname.replace(/\/+$/, '') || '/';
+    if (
+      securityPath === '/.well-known/security.txt' ||
+      securityPath === '/security.txt'
+    ) {
+      return securityTxtResponse();
+    }
 
     // Try R2 first for asset paths (locked layout: /assets/{marketing|catalog}/…)
     if (pathname.startsWith('/assets/') || pathname.startsWith('/images/')) {

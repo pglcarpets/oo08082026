@@ -194,6 +194,16 @@
     "flagship_image": "/assets/catalog/seating/cafe/oando-seating--nordic/686d3b55385e7b905b01d3a5_68a31b177c1f6e1027de894f_nordic_2.webp"
   },
   {
+    "id": "652ea482-2e79-48c8-8e5f-d7f49409a2a7",
+    "slug": "oando-seating--cafeteria-seating",
+    "category_id": "oando-seating",
+    "name": "Cafeteria Seating",
+    "images": [
+      "/assets/catalog/seating/cafe/oando-seating--nordic/686d3b55385e7b905b01d3a5_68a31b177c1f6e1027de894f_nordic_2.webp"
+    ],
+    "flagship_image": "/assets/catalog/seating/cafe/oando-seating--nordic/686d3b55385e7b905b01d3a5_68a31b177c1f6e1027de894f_nordic_2.webp"
+  },
+  {
     "id": "f6994661-c547-15b8-c07a-12448a196381",
     "slug": "oando-seating--smile",
     "category_id": "oando-seating",

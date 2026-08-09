@@ -137,9 +137,9 @@ flowchart TD
 | WRK-S02 | 05 | 3b fix #2 BOQ dock | P0 | DONE |
 | WRK-S03 | 05 | 3b fix #3 390px place step | P0 | DONE |
 | WRK-S04 | 05 | 3b fix #4 click/keyboard place | **P0** | DONE |
-| WRK-S05 | 05 | 3b fix #5 toolbar handlers | — | OPEN |
-| WRK-S06 | 05 | 3b fix #6 Ctrl+K palette | — | OPEN |
-| WRK-S07 | 05 | 3b fix #7 Escape closes AI | — | OPEN |
+| WRK-S05 | 05 | 3b fix #5 toolbar handlers | — | DONE |
+| WRK-S06 | 05 | 3b fix #6 Ctrl+K palette | — | DONE |
+| WRK-S07 | 05 | 3b fix #7 Escape closes AI | — | DONE |
 | WRK-S08 | 05 | 3b fix #8 refresh project name | — | OPEN |
 | WRK-S09 | 05 | 3b Supabase mode (no bypass) | **P0** | OPEN |
 | WRK-S10 | 05 | `SEAM-E2E-STUDIO-2A` | P2 | OPEN |
@@ -147,13 +147,13 @@ flowchart TD
 | WRK-S12 | 05 | `scan:boundaries` on workspace edit | — | DONE |
 | WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
 | WRK-S14 | 05 | `PlannerProjectMenu` orphan decision | P2 | OPEN |
-| SITE-S01 | 06 | `/products/workstations/` hydration | **P0** | PARTIAL |
-| SITE-S02 | 06 | `/products/seating/` hydration | **P0** | PARTIAL |
-| SITE-S03 | 06 | `/contact/` hydration | P1 | OPEN |
-| SITE-S04 | 06 | `/dashboard/` console clean | P1 | OPEN |
-| SITE-S05 | 06 | `/portal/` console clean | P1 | OPEN |
-| SITE-S06 | 06 | `/planning/` console clean | P1 | OPEN |
-| SITE-S07 | 06 | `/` marketing console clean | P1 | OPEN |
+| SITE-S01 | 06 | `/products/workstations/` hydration | **P0** | DONE |
+| SITE-S02 | 06 | `/products/seating/` hydration | **P0** | DONE |
+| SITE-S03 | 06 | `/contact/` hydration | P1 | DONE |
+| SITE-S04 | 06 | `/dashboard/` console clean | P1 | DONE |
+| SITE-S05 | 06 | `/portal/` console clean | P1 | DONE |
+| SITE-S06 | 06 | `/planning/` console clean | P1 | DONE |
+| SITE-S07 | 06 | `/` marketing console clean | P1 | DONE |
 | SITE-S08 | 06 | Assistant off-canvas @390px | P1 | OPEN |
 | SITE-S09 | 06 | Assistant header overflow @390px | P1 | OPEN |
 | SITE-S10 | 06 | `/trusted-by` abort | P1 | OPEN |

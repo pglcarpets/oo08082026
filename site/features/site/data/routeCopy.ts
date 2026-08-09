@@ -417,7 +417,7 @@ export const SOLUTIONS_PAGE_COPY = {
   heroTitleLead: "Built for",
   heroTitleAccent: "how teams work.",
   heroSubtitle: "Furniture, planning, and delivery for complete workplaces.",
-  heroBackgroundImage: "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+  heroBackgroundImage: "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
   categoriesTitleLead: "Browse",
   categoriesTitleAccent: "solutions",
   deliveryKicker: "Delivery",

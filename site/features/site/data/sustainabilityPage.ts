@@ -2,7 +2,7 @@
  * Sustainability page media — materials photography (graded still; no hero video).
  */
 export const SUSTAINABILITY_HERO_IMAGE = {
-  src: "/assets/marketing/hero/pages/Other2-oneandonly-bright.webp",
+  src: "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
   alt: "Long-life office seating and workspace materials",
 } as const;
 
@@ -12,6 +12,6 @@ export const SUSTAINABILITY_HERO_MEDIA = {
 } as const;
 
 export const SUSTAINABILITY_STORY_IMAGE = {
-  src: "/assets/marketing/hero/pages/Other2-oneandonly-bright.webp",
+  src: "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
   alt: "Durable workstation materials selected for long service life",
 } as const;

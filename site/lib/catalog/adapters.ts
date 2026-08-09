@@ -18,13 +18,29 @@ function catalogIndexAssetsForSlug(slug: string): {
   flagship?: string;
   images?: string[];
 } {
+  const trimmed = String(slug || "").trim();
   const entry = (localCatalogIndex as LocalCatalogIndexRow[]).find(
-    (row) => row.slug === slug,
+    (row) =>
+      row.slug === trimmed ||
+      (trimmed && row.slug.endsWith(`--${trimmed}`)),
   );
   if (!entry) {return {};}
   return {
     flagship: entry.flagship_image,
     images: entry.images,
+  };
+}
+
+function preferredCatalogAssetsForProduct(product: Product): {
+  flagship?: string | null;
+  images?: Array<string | null | undefined> | null;
+} {
+  const indexAssets = catalogIndexAssetsForSlug(product.slug);
+  return {
+    flagship: indexAssets.flagship ?? product.flagship_image,
+    images: indexAssets.images
+      ? [...indexAssets.images, ...(product.images ?? [])]
+      : product.images,
   };
 }
 
@@ -54,16 +70,11 @@ export function isMissingTableError(message: string, tableName?: string): boolea
 
 export function normalizeProducts(rows: Product[]): Product[] {
   return (rows ?? []).map((product) => {
-    const indexAssets = catalogIndexAssetsForSlug(product.slug);
-    const preferredFlagship =
-      indexAssets.flagship ?? product.flagship_image;
-    const preferredImages = indexAssets.images
-      ? [...indexAssets.images, ...(product.images ?? [])]
-      : product.images;
+    const preferred = preferredCatalogAssetsForProduct(product);
     const assets = resolveProductCatalogAssets(
       product.slug,
-      preferredFlagship,
-      preferredImages,
+      preferred.flagship,
+      preferred.images,
     );
     const images = filterProductCatalogMedia(assets.images);
     const flagshipCandidates = filterProductCatalogMedia([assets.flagship_image]);
@@ -98,11 +109,11 @@ export function toCompatProduct(product: Product): CompatProduct {
     product.metadata?.ai_alt_text ||
     product.metadata?.aiAltText ||
     `${product.name} product image`;
-  // Prefer already-normalized product fields (normalizeProducts); re-resolve with slug if raw.
+  const preferred = preferredCatalogAssetsForProduct(product);
   const assets = resolveProductCatalogAssets(
     product.slug,
-    product.flagship_image,
-    product.images,
+    preferred.flagship,
+    preferred.images,
   );
 
   return {

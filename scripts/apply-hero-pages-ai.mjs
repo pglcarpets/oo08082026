@@ -11,8 +11,7 @@ const MAX = 2560;
 const pairs = [
   ["8.jpg", "contact-oneandonly.webp"], // portrait 0.72
   ["9.jpg", "about-oneandonly.webp"], // 1.5 landscape
-  ["10.jpg", "other-oneandonly.webp"], // 1.5
-  ["11.jpg", "Other2-oneandonly.webp"], // 1.5
+  ["10.jpg", "about-oneandonly.webp"], // 1.5 (other removed)
   ["12.jpg", "Other3-oneandonly.webp"], // 1.389
   ["13.jpg", "Planner-oneandonly.webp"], // 1.333
   ["14.jpg", "solutions-oneandonly.webp"], // should be ~1.0 square

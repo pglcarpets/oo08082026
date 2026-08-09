@@ -26,7 +26,7 @@ import type {
   Product,
 } from "@/lib/catalog/types";
 
-const getCachedProducts = unstable_cache(fetchAllProductsSource, ["catalog-products-v3"], {
+const getCachedProducts = unstable_cache(fetchAllProductsSource, ["catalog-products-v5"], {
   revalidate: CATALOG_REVALIDATE_SECONDS,
   tags: ["catalog", "catalog-products"],
 });
@@ -41,7 +41,7 @@ export async function getProductsFresh(): Promise<Product[]> {
 
 const getCachedProductsByCategory = unstable_cache(
   async (categoryId: string) => fetchProductsByCategorySource(categoryId),
-  ["catalog-products-by-category-v3"],
+  ["catalog-products-by-category-v5"],
   {
     revalidate: CATALOG_REVALIDATE_SECONDS,
     tags: ["catalog", "catalog-products"],

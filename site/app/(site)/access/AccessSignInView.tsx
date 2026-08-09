@@ -13,6 +13,8 @@ import {
   registerGsapPlugins,
 } from "@/lib/helpers/gsapMotion";
 import { OneAndOnlyLogo } from "@/components/ui/Logo";
+import { ADMIN_ENTRY_HERO_MEDIA } from "@/features/admin/dashboard/adminEntryContent";
+import { normalizeAssetPath } from "@/lib/assetPaths";
 
 import { AccessForm } from "./AccessForm";
 
@@ -35,6 +37,9 @@ export function AccessSignInView({
   guestHref,
   requiresAdmin,
 }: AccessSignInViewProps) {
+  const accessPoster =
+    normalizeAssetPath(ADMIN_ENTRY_HERO_MEDIA.poster) ??
+    ADMIN_ENTRY_HERO_MEDIA.poster;
   const rootRef = useRef<HTMLDivElement>(null);
 
   useGSAP(
@@ -97,7 +102,7 @@ export function AccessSignInView({
       <div className="shell-access-visual-side scheme-panel-soft">
         <div
           className="shell-access-visual-poster"
-          style={{ backgroundImage: "url(/assets/marketing/hero/admin-entry-poster.webp)" }}
+          style={{ backgroundImage: `url(${accessPoster})` }}
           aria-hidden="true"
         />
         <div className="shell-access-visual-grid" aria-hidden="true">

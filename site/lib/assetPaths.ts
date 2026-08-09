@@ -43,6 +43,17 @@ function applyAssetBase(value: string): string {
   return `${configuredAssetBaseUrl}${value}`;
 }
 
+function toWebAssetPath(assetPath: string): string {
+  const trimmed = String(assetPath || "").trim();
+  if (!trimmed) {return "";}
+  if (configuredAssetBaseUrl && trimmed.startsWith(configuredAssetBaseUrl)) {
+    return trimmed.slice(configuredAssetBaseUrl.length) || "/";
+  }
+  const absolute = trimmed.match(/^https?:\/\/[^/]+(\/.*)$/i);
+  if (absolute) {return absolute[1];}
+  return trimmed;
+}
+
 function isServer(): boolean {
   return typeof window === "undefined";
 }
@@ -154,6 +165,10 @@ function expandImagePathCandidates(assetPath: string): string[] {
   if (unpadded) {
     candidates.push(`${unpadded[1]}0${unpadded[2]}${unpadded[3]}`);
   }
+  const bareFromPadded = assetPath.match(/^(.*\/)image-0*(\d+)(\.webp)$/i);
+  if (bareFromPadded) {
+    candidates.push(`${bareFromPadded[1]}${bareFromPadded[2]}${bareFromPadded[3]}`);
+  }
   return candidates;
 }
 
@@ -191,6 +206,14 @@ const SEATING_LEATHER_SLUGS = new Set([
   "moonlight",
   "rider",
 ]);
+
+/** DB scrape slug → on-disk / CDN folder when assets live under another SKU. */
+const CATALOG_FOLDER_SLUG_ALIASES: Readonly<Record<string, string>> = {
+  crox: "oando-seating--crotch",
+  "oando-seating--crox": "oando-seating--crotch",
+  "cafeteria-seating": "oando-seating--nordic",
+  "oando-seating--cafeteria-seating": "oando-seating--nordic",
+};
 
 /** Products DB legacy bucket — CDN uses cafe|fabric|leather|mesh only. */
 function rewriteLegacyNonLeatherSeatingPath(assetPath: string): string {
@@ -390,17 +413,17 @@ const MARKETING_PATH_ALIASES: Readonly<Record<string, string>> = {
   "/assets/marketing/hero/slides/hero-1.webp":
     "/assets/marketing/hero/pages/Planner-oneandonly.webp",
   "/assets/marketing/hero/slides/hero-2.webp":
-    "/assets/marketing/hero/pages/other-oneandonly.webp",
+    "/assets/marketing/hero/pages/about-oneandonly.webp",
   "/assets/marketing/hero/slides/hero-3.webp":
-    "/assets/marketing/hero/pages/Other2-oneandonly.webp",
+    "/assets/marketing/hero/pages/Other3-oneandonly.webp",
   "/assets/marketing/hero/slides/hero-4.webp":
-    "/assets/marketing/hero/pages/Other2-oneandonly.webp",
+    "/assets/marketing/hero/pages/Other3-oneandonly.webp",
   "/assets/marketing/hero/slides/hero-5.webp":
-    "/assets/marketing/hero/pages/Other2-oneandonly.webp",
+    "/assets/marketing/hero/pages/Spare/hero-5.webp",
   "/assets/marketing/hero/hero-1.webp":
     "/assets/marketing/hero/pages/Planner-oneandonly-bright.webp",
   "/assets/marketing/hero/hero-2.webp":
-    "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
   "/assets/marketing/hero/slides/home-poster.webp":
     "/assets/marketing/hero/pages/Planner-oneandonly-bright.webp",
   "/assets/marketing/hero/admin-entry-poster.webp":
@@ -414,9 +437,9 @@ const MARKETING_PATH_ALIASES: Readonly<Record<string, string>> = {
   "/assets/marketing/hero/pages/hero-1.webp":
     "/assets/marketing/hero/pages/Planner-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/hero-2.webp":
-    "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/hero-5.webp":
-    "/assets/marketing/hero/pages/Other2-oneandonly-bright.webp",
+    "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/about-story.webp":
     "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/contact-poster.webp":
@@ -437,9 +460,13 @@ const MARKETING_PATH_ALIASES: Readonly<Record<string, string>> = {
   "/assets/marketing/hero/pages/contact-oneandonly.webp":
     "/assets/marketing/hero/pages/contact-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/other-oneandonly.webp":
-    "/assets/marketing/hero/pages/other-oneandonly-bright.webp",
+    "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
+  "/assets/marketing/hero/pages/other-oneandonly-bright.webp":
+    "/assets/marketing/hero/pages/about-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/Other2-oneandonly.webp":
-    "/assets/marketing/hero/pages/Other2-oneandonly-bright.webp",
+    "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
+  "/assets/marketing/hero/pages/Other2-oneandonly-bright.webp":
+    "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/Other3-oneandonly.webp":
     "/assets/marketing/hero/pages/Other3-oneandonly-bright.webp",
   "/assets/marketing/hero/pages/Planner-oneandonly.webp":
@@ -922,6 +949,15 @@ function catalogFolderSlugCandidates(slug: string): string[] {
   if (!trimmed) {return [];}
 
   const candidates = [trimmed];
+  const folderAlias = CATALOG_FOLDER_SLUG_ALIASES[trimmed];
+  if (folderAlias) {
+    candidates.push(folderAlias);
+  }
+  if (!trimmed.includes("--")) {
+    for (const family of CATALOG_FAMILIES) {
+      candidates.push(`oando-${family}--${trimmed}`);
+    }
+  }
   if (trimmed.endsWith("-workstation")) {
     candidates.push(trimmed.replace(/-workstation$/i, ""));
   }
@@ -1103,6 +1139,7 @@ function catalogFolderWebPathCandidates(slug: string): string[] {
 function probeCdnCatalogImage(folderWebPath: string): string | null {
   const imageNames: string[] = [];
   for (let i = 1; i <= 15; i += 1) {
+    imageNames.push(`${i}.webp`);
     const padded = String(i).padStart(2, "0");
     imageNames.push(`image-${i}.webp`, `image-${padded}.webp`);
   }
@@ -1163,14 +1200,20 @@ export function resolveProductCatalogAssets(
     };
   }
 
-  if (flagship && publishablePreferred.length > 0) {
-    return { flagship_image: flagship, images: publishablePreferred };
-  }
-
+  const probeAnchor = toWebAssetPath(String(preferredFlagship || flagship || ""));
+  const preferredFlagshipWeb = toWebAssetPath(String(preferredFlagship || ""));
+  const hasAuthoritativePreferred =
+    preferredFlagshipWeb &&
+    !isLegacyNonLeatherCatalogPath(preferredFlagshipWeb) &&
+    !/\/image-0*\d+\.webp$/i.test(preferredFlagshipWeb);
   const needsProbe =
-    !flagship ||
-    isLegacyNonLeatherCatalogPath(preferredFlagship) ||
-    isLegacyNonLeatherCatalogPath(flagship);
+    !hasAuthoritativePreferred &&
+    (!flagship ||
+      isLegacyNonLeatherCatalogPath(probeAnchor) ||
+      (probeAnchor &&
+        shouldPreferCdnFallback(probeAnchor) &&
+        isServer() &&
+        !localAssetExists(probeAnchor)));
   if (needsProbe) {
     for (const folder of catalogFolderWebPathCandidates(String(slug || "").trim())) {
       const probed = probeCdnCatalogImage(folder);
@@ -1182,6 +1225,10 @@ export function resolveProductCatalogAssets(
         };
       }
     }
+  }
+
+  if (flagship && publishablePreferred.length > 0) {
+    return { flagship_image: flagship, images: publishablePreferred };
   }
 
   const fallback = applyAssetBase(PRODUCT_IMAGE_FALLBACK);

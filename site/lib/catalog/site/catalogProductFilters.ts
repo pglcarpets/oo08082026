@@ -15,6 +15,12 @@ export type CatalogPublishabilityInput = {
 const PROJECT_CASE_STUDY_NAME_PATTERN =
   /\b(abdul hai|dmrc office|tcs workspace|honda office)\b/i;
 
+/** Scraped SKUs with no publishable CDN asset set — hide from public grids. */
+const UNPUBLISHED_CATALOG_SLUGS = new Set([
+  "crox",
+  "oando-seating--crox",
+]);
+
 export function isProjectOrInstallCatalogEntry(input: CatalogPublishabilityInput): boolean {
   const slug = String(input.slug || "").trim().toLowerCase();
   const name = String(input.name || "").trim();
@@ -40,6 +46,8 @@ function hasPublishableCatalogMedia(input: CatalogPublishabilityInput): boolean 
 }
 
 export function isPublishableCatalogProduct(input: CatalogPublishabilityInput): boolean {
+  const slug = String(input.slug || "").trim().toLowerCase();
+  if (UNPUBLISHED_CATALOG_SLUGS.has(slug)) {return false;}
   if (isProjectOrInstallCatalogEntry(input)) {return false;}
   return hasPublishableCatalogMedia(input);
 }

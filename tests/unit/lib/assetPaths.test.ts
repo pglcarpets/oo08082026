@@ -368,5 +368,22 @@ describe('assetPaths', () => {
     );
     expect(keep.flagship_image).toBe('https://cdn.example.com/assets/catalog/exists.webp');
     expect(keep.images).toEqual(['https://cdn.example.com/assets/catalog/exists.webp']);
+
+    mockFs.existsSync.mockReturnValue(false);
+    const arvo = assetPaths.resolveProductCatalogAssets(
+      'oando-seating--arvo',
+      '/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp',
+      ['/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp'],
+    );
+    expect(arvo.flagship_image).toContain('/oando-seating--arvo/');
+    expect(arvo.flagship_image).toMatch(/\/1\.webp$/);
+    expect(arvo.flagship_image).not.toContain('image-01');
+
+    const arvoShortSlug = assetPaths.resolveProductCatalogAssets(
+      'arvo',
+      '/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp',
+      ['/assets/catalog/seating/fabric/oando-seating--arvo/image-01.webp'],
+    );
+    expect(arvoShortSlug.flagship_image).toMatch(/\/1\.webp$/);
   });
 });

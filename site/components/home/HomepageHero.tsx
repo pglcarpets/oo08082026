@@ -144,7 +144,7 @@ export function HomepageHero() {
         className="home-hero__media absolute inset-0 h-[115%] w-full -top-[7%] origin-center transition-opacity duration-500 ease-out"
         style={{ opacity: bgVisible || gsapReducedMotion() ? 1 : 0 }}
       >
-        {/* Stable LCP poster — R2 /assets path (skip /_next/image optimizer). */}
+        {/* Stable LCP poster — always mounted, never swapped off the tree. */}
         <Image
           src={
             failedImageSrc === POSTER.src &&
@@ -156,8 +156,8 @@ export function HomepageHero() {
           fill
           priority
           fetchPriority="high"
-          unoptimized
           sizes={HOMEPAGE_HERO_IMAGE_SIZES}
+          quality={75}
           className={`home-hero__media-img object-cover object-center md:object-[64%_48%] ${
             showSlideImage ? "opacity-0" : "opacity-100"
           }`}

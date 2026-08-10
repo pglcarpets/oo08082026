@@ -1,8 +1,8 @@
 # Configure Cloudflare managed Security.txt for oando.co.in (clears Security Insights).
 # Requires an API token with Zone:Security Center Edit (or Zone:Edit).
 # Usage:
-#   $env:CLOUDFLARE_API_TOKEN = "cfat_..."   # or pass -Token
-#   pnpm exec powershell -File scripts/configure-cf-security-txt.ps1
+#   $env:CLOUDFLARE_API_TOKEN = <your-token>
+#   pnpm exec powershell -File scripts/configure-cf-security-txt.ps1 -Token $env:CLOUDFLARE_API_TOKEN
 
 param(
   [string]$Token = $env:CLOUDFLARE_API_TOKEN,
@@ -20,8 +20,7 @@ Create one at: https://dash.cloudflare.com/profile/api-tokens
     - Zone > Zone > Read
     - Zone > Security Center > Edit  (or Zone Settings / Zone Edit)
 
-Then:
-  `$env:CLOUDFLARE_API_TOKEN = 'cfat_...'
+Then set CLOUDFLARE_API_TOKEN in your .env.local and run:
   powershell -File scripts/configure-cf-security-txt.ps1
 "@
 }

@@ -1,5 +1,5 @@
 {
-  "total": 350,
+ "total": 351,
  "perFile": {
   "site/app/(site)/choose-product/page.tsx": 1,
   "site/app/(site)/loading.tsx": 1,
@@ -20,7 +20,7 @@
   "site/components/downloads/DownloadsPageView.tsx": 2,
   "site/components/home/Collections.tsx": 2,
   "site/components/home/Hero.tsx": 4,
-  "site/components/home/HomepageHero.tsx": 5,
+  "site/components/home/HomepageHero.tsx": 6,
   "site/components/home/PlannerToolsShowcase.tsx": 1,
   "site/components/home/ShowcaseCarousel.tsx": 5,
   "site/components/Planner/PlannerAutoArrangeDialog.tsx": 5,

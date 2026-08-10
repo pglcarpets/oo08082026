@@ -15,6 +15,8 @@ SITE-S01–S07 (hydration/console) · **SITE-S08** · **SITE-S09** · **SITE-S10
 
 **SITE-S17 (2026-08-10):** Homepage `h1`–`h3` scan: **20 headings, 0 empty** (hero, collections, tools, why, showcase, contact all have text). Trust strip is KPI-only (`aria-label`, no empty heading node). Showcase empty `label` fields unused (`item.name` only). Evidence: `results/site-slice-close-evidence.txt`.
 
+**SITE-S17 (2026-08-10):** Homepage headings verified — no empty h1–h3; showcase uses `name` (empty `label` fields unused). Marked closed by owner.
+
 **Removed dup:** SITE-S13→TST-S19
 
 ---

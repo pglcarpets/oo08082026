@@ -24,12 +24,22 @@ type EditorialHeroMediaProps = {
 /**
  * Editorial route hero media — graded still only (poster / install photography).
  * Hero video loops were removed; LCP stays on the still with `fetchPriority="high"`.
+ *
+ * Marketing hero `.webp` files are already size-capped for LCP. Serving them
+ * through `/_next/image` re-encodes to JPEG, sets Content-Disposition: attachment,
+ * and fans out multiple srcset widths (1080/1200/1920) that clutter the console
+ * without improving quality. Use unoptimized for those static assets.
  */
 export function EditorialHeroMedia({ prefix, image, media }: EditorialHeroMediaProps) {
   const src = useMemo(() => {
     const primary = image.src || media.poster;
     return normalizeAssetPath(primary) || primary;
   }, [image.src, media.poster]);
+
+  const alreadyCompressedHero =
+    typeof src === "string" &&
+    src.includes("/assets/marketing/") &&
+    /\.webp(?:\?|$)/i.test(src);
 
   return (
     <>
@@ -42,6 +52,7 @@ export function EditorialHeroMedia({ prefix, image, media }: EditorialHeroMediaP
           className={`${prefix}-hero__img`}
           priority
           fetchPriority="high"
+          unoptimized={alreadyCompressedHero}
         />
         <div className={`${prefix}-hero__grade`} aria-hidden="true" />
       </div>

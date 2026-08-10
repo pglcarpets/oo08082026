@@ -152,7 +152,8 @@
   border-radius: var(--radius-pill);
   border: 1px solid var(--border-muted);
   padding: 0.25rem 0.75rem;
-  font-size: 0.625rem;
+  /* ≥11px — responsive-audit tiny-text threshold (SITE-S12) */
+  font-size: var(--type-tiny-size, 0.6875rem);
   font-weight: var(--font-weight-copy-semibold);
   letter-spacing: 0.09em;
   line-height: 1.25;
@@ -193,7 +194,7 @@
 .pdp-section-label,
 .pdp-card-label {
   color: var(--text-subtle);
-  font-size: 0.625rem;
+  font-size: var(--type-tiny-size, 0.6875rem);
   font-weight: var(--font-weight-copy-semibold);
   letter-spacing: 0.18em;
   line-height: 1.25;
@@ -209,7 +210,7 @@
 
 .pdp-copy-link {
   color: var(--text-subtle);
-  font-size: 0.625rem;
+  font-size: var(--type-tiny-size, 0.6875rem);
   font-weight: var(--font-weight-copy-semibold);
   letter-spacing: 0.1em;
   line-height: 1.25;

@@ -216,7 +216,10 @@ function auditPage() {
     location.pathname.startsWith("/portal") ||
     location.pathname.startsWith("/choose-product");
 
-  if (!isAppShell && !isSuiteShell) {
+  // Offline PWA shell intentionally omits site header/footer chrome.
+  const isOfflineShell = location.pathname.startsWith("/offline");
+
+  if (!isAppShell && !isSuiteShell && !isOfflineShell) {
     if (!header) issues.push("missing header/nav");
     if (!footer) issues.push("missing footer");
   }

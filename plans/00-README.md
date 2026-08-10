@@ -40,7 +40,7 @@ DONE slices omitted. Full history in git + programme plans.
 | OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
 | **WRK-S09** | 05 | 3b Supabase member path (no bypass) | P0 | **PARTIAL** |
-| WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
+
 | TECH-S05 | 07 | Prod docs host (blocked on OPS-S01) | P0 | OPEN |
 | TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |
@@ -54,7 +54,6 @@ DONE slices omitted. Full history in git + programme plans.
 | TST-S17 | 02 | `audit-3c-planner-polish` | P2 | OPEN |
 | TST-S18 | 02 | `SEAM-E2E-STUDIO-2A` | P2 | OPEN |
 | TST-S19 | 02 | `SEAM-E2E-MARKETING-4A` | P2 | OPEN |
-| SITE-S12 | 06 | `responsive-audit.mjs` marketing | P1 | OPEN |
 | SITE-S15 | 06 | i18n locale switch e2e | P1 | OPEN |
 | SITE-S16 | 06 | Enquiry notification | P1 | OPEN |
 

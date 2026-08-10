@@ -190,7 +190,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  border-bottom: 0.0625rem solid var(--color-neutral-100, #f5f5f5);
+  border-bottom: 0.0625rem solid var(--border-soft);
   padding: 1rem 1.25rem;
   min-width: 0;
   /* SITE-S09: title/subtitle truncate inside the row; close stays on-canvas. */

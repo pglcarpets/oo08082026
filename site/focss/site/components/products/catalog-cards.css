@@ -155,7 +155,7 @@
   border: 1px solid var(--border-soft);
   background: var(--surface-hover);
   padding: 0.25rem 0.625rem;
-  font-size: 10px;
+  font-size: var(--type-tiny-size, 0.6875rem);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.16em;
@@ -207,7 +207,7 @@
 }
 
 @utility catalog-card__fact-label {
-  font-size: 10px;
+  font-size: var(--type-tiny-size, 0.6875rem);
   text-transform: uppercase;
   letter-spacing: 0.18em;
   color: var(--text-muted);

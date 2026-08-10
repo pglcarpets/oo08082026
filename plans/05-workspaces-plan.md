@@ -7,9 +7,11 @@ Registry: [`00-README.md`](./00-README.md) · E2E suites owned by **TST-S16–S1
 
 ## DONE
 
-WRK-S01–S08 (audit-3b #1–#8) · WRK-S12 (boundaries) · WRK-S14 (PlannerProjectMenu wired)
+WRK-S01–S08 (audit-3b #1–#8) · WRK-S12 (boundaries) · **WRK-S13** · WRK-S14 (PlannerProjectMenu wired)
 
 **WRK-S08 (2026-08-09):** save binds URL + `reloadSafe` e2e — Playwright fix #8 **passed** (22.9s).
+
+**WRK-S13 (2026-08-10):** Responsive audit scoped to workspaces (`node scripts/responsive-audit.mjs --scope=workspaces`). Phone 390×844 + desktop 1920. Offenders were **10px chrome labels** (topbar project label, mobile actions, canvas-info groups, etc.). Bumped planner/studio FOCSS `font-size: 10px` → **11px** (fork-local only). Re-run: **4/4 fully OK**. Evidence: `results/site/responsive-audit-workspaces.txt`. `scan:boundaries` + typecheck green.
 
 **WRK-S14 (2026-08-10):** `PlannerProjectMenu` wired in `Planner.tsx`; verified by `audit-3c-planner-polish.spec.ts`.
 
@@ -22,7 +24,6 @@ WRK-S01–S08 (audit-3b #1–#8) · WRK-S12 (boundaries) · WRK-S14 (PlannerProj
 | ID | Pri | Seam | Status | Remaining |
 |----|-----|------|--------|-----------|
 | **WRK-S09** | P0 | member Planner, `DEV_AUTH_BYPASS≠1` | **PARTIAL** | Member client + units done. Need member-session e2e + `results/planner/audit-3b-supabase/`. |
-| **WRK-S13** | P1 | responsive-audit workspaces only | OPEN | FOCSS at 390px |
 
 ### WRK-S09 progress
 
@@ -34,4 +35,4 @@ WRK-S01–S08 (audit-3b #1–#8) · WRK-S12 (boundaries) · WRK-S14 (PlannerProj
 
 ## Paths
 
-`site/lib/Planner/plannerApi.ts` · `site/lib/api/browserApi.ts` · `site/lib/auth/*` · `site/app/api/Planner/projects/*` · `tests/e2e/audit-3b-planner-fixes.spec.ts`
+`site/lib/Planner/plannerApi.ts` · `site/focss/planner/*` · `site/focss/studio/*` · `scripts/responsive-audit.mjs` · `results/site/responsive-audit-workspaces.txt`

@@ -30,6 +30,12 @@ export function FooterLogoMarquee() {
                 alt=""
                 fill
                 sizes="(max-width: 640px) 112px, (max-width: 768px) 128px, 176px"
+                // Marquee uses transform translate — layout boxes stay off-viewport, so
+                // native loading="lazy" (Next default) never intersects and logos stay blank.
+                // Eager is correct for this decorative strip; hero LCP images stay priority.
+                loading="eager"
+                decoding="async"
+                fetchPriority="low"
                 className="footer-logo-marquee__logo object-contain opacity-100 saturate-100 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-110 motion-reduce:hover:scale-100"
               />
             </div>

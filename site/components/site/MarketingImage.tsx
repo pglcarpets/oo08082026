@@ -13,6 +13,12 @@ type MarketingImageProps = {
   sizes: string;
   fill?: boolean;
   priority?: boolean;
+  /**
+   * Native lazy/eager. Default: lazy when not priority.
+   * Use `eager` for transform-based carousels/marquees where layout boxes
+   * never intersect the viewport (lazy would never fire).
+   */
+  loading?: "lazy" | "eager";
   fetchPriority?: "high" | "low" | "auto";
 };
 
@@ -24,6 +30,7 @@ export function MarketingImage({
   sizes,
   fill = true,
   priority = false,
+  loading,
   fetchPriority,
 }: MarketingImageProps) {
   const candidates = useMemo(() => {
@@ -42,6 +49,7 @@ export function MarketingImage({
       alt={alt}
       fill={fill}
       priority={priority}
+      loading={priority ? undefined : (loading ?? "lazy")}
       fetchPriority={fetchPriority}
       sizes={sizes}
       className={className}

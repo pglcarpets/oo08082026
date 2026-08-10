@@ -17,7 +17,7 @@
 | 4 | Hero preload `imageSrc` mismatches rendered LCP size | Major | ✅ Fixed: `HomepageHero.tsx` sizes updated to responsive breakpoints. |
 | 5 | React hydration mismatch on `/contact` | Major | Open |
 | 6 | Two homepage sections render with empty heading | Minor | ✅ Closed (SITE-S17): live h1–h3 scan 20/0 empty; trust strip KPI-only by design (aria-label). |
-| 7 | 23 of 48 images never load after full scroll | Minor | Open |
+| 7 | 23 of 48 images never load after full scroll | Minor | ✅ Fixed (SITE-S18): footer marquee logos `loading=eager` (transform track broke lazy). |
 | 8 | Hero "Trusted by" card exposes 90-character link name | Minor | Open |
 | 9 | Duplicate labels in tab order | Nit | Open |
 | 10 | Submitted enquiry notifies nobody | Major | Open |

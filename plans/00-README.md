@@ -57,7 +57,7 @@ DONE slices omitted. Full history in git + programme plans.
 | SITE-S12 | 06 | `responsive-audit.mjs` marketing | P1 | OPEN |
 | SITE-S15 | 06 | i18n locale switch e2e | P1 | OPEN |
 | SITE-S16 | 06 | Enquiry notification | P1 | OPEN |
-| SITE-S18 | 06 | Image lazy-load scroll | P2 | OPEN |
+
 | CHK-S01–S10 | 08 | Session start checklist | — | OPEN |
 
 **P0 open:** OPS-S01, OPS-S04, TECH-S05 (blocked on S01).  

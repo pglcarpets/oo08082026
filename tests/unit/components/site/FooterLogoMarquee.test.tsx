@@ -24,9 +24,12 @@ describe("FooterLogoMarquee Component", () => {
     // Decorative marquee (parent aria-hidden) — empty alts avoid SR noise.
     expect(images[0]).toHaveAttribute("alt", "");
     expect(images[0]).toHaveAttribute("src", "/logos/a.png");
+    // SITE-S18: transform marquee never intersects lazy viewport — must be eager.
+    expect(images[0]).toHaveAttribute("loading", "eager");
 
     expect(images[1]).toHaveAttribute("alt", "");
     expect(images[1]).toHaveAttribute("src", "/logos/b.png");
+    expect(images[1]).toHaveAttribute("loading", "eager");
 
     expect(images[2]).toHaveAttribute("alt", "");
     expect(images[3]).toHaveAttribute("alt", "");

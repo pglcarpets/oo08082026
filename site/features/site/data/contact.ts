@@ -6,12 +6,14 @@ export type SiteSocialLink = {
 
 export const SITE_CONTACT = {
   brandName: "One&Only",
+  /** Spoken / search form used in address blocks and local SEO copy. */
+  brandNameSpoken: "One and Only Furniture",
   salesPhone: "+91 98356 30940",
   supportPhone: "+91 90310 22875",
   salesEmail: "sales@oando.co.in",
   /** Public security disclosure inbox (RFC 9116 security.txt Contact). */
   securityEmail: "sales@oando.co.in",
-  regionLine: "India — multi-city commercial delivery",
+  regionLine: "India — multi-city commercial delivery · HQ Patna",
   openingHours: "Mo-Sa 09:00-18:00",
   priceRange: "INR",
   // Schema areaServed: national reach (physical HQ address stays accurate below).

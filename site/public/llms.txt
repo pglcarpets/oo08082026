@@ -1,6 +1,17 @@
-# One&Only (oando.co.in)
+# One&Only (One and Only Furniture) — oando.co.in
 
-> Premium ergonomic office furniture for modern workplaces across India. Planning-led workstations, seating, storage, tables, and soft seating for commercial projects nationwide.
+> One&Only, also searched as One and Only Furniture / One and Only Patna, supplies premium ergonomic office furniture for modern workplaces across India. Planning-led workstations, seating, storage, tables, and soft seating for commercial projects nationwide. HQ and showroom in Patna (Jagat Trade Centre, Frazer Road).
+
+## Brand aliases (same company)
+
+- One&Only
+- One and Only
+- One & Only
+- One and Only Furniture
+- One and Only Furniture Private Limited
+- One and Only Patna
+- One and Only Furniture Patna
+- Oando / oando.co.in
 
 ## Primary pages
 
@@ -9,7 +20,7 @@
 - [Solutions](https://oando.co.in/solutions/): Workspace solutions by need and sector
 - [Planning](https://oando.co.in/planning/): Layout planning and project scoping service
 - [Contact](https://oando.co.in/contact/): Sales and project enquiry
-- [Showrooms](https://oando.co.in/showrooms/): Visit locations and showroom details
+- [Showrooms](https://oando.co.in/showrooms/): One and Only Furniture showroom in Patna
 - [Downloads](https://oando.co.in/downloads/): Catalogs, datasheets, and resource desk
 - [Clients](https://oando.co.in/clients/): Selected client installs and project proof
 - [About](https://oando.co.in/about/): Company background (since 2011, pan-India)
@@ -21,6 +32,10 @@
 - [Tables](https://oando.co.in/products/tables/): Meeting, cabin, and collaboration tables
 - [Storage](https://oando.co.in/products/storages/): Cabinets, pedestals, and lockers
 - [Soft seating](https://oando.co.in/products/soft-seating/): Lounge and collaboration seating
+
+## Local
+
+- [Patna showroom](https://oando.co.in/showrooms/): One and Only Furniture / One&Only at Jagat Trade Centre, Frazer Road, Patna 800001, Bihar, India
 
 ## Crawl policy
 

@@ -332,13 +332,14 @@ export const CLIENTS_WORK = [
 
 export const SHOWROOMS_PAGE_COPY = {
   heroTitle: "Showrooms",
-  heroKicker: "Showroom",
+  heroKicker: "Showroom · Patna",
   heroTitleLead: "Visit",
   heroTitleAccent: "us.",
-  heroSubtitle: "Hours, directions, and signature deliveries from our showroom space.",
+  heroSubtitle:
+    "One and Only Furniture (One&Only) showroom in Patna — hours, directions, and signature deliveries from Jagat Trade Centre, Frazer Road.",
   craftQuote:
     "See seating, finishes, and systems in context — then brief the planning team with clarity.",
-  craftAttribution: "Jagat Trade Centre · Frazer Road",
+  craftAttribution: "One&Only · Jagat Trade Centre · Frazer Road, Patna",
   trustedKicker: "Trusted at a glance",
   aboutKicker: "About us",
   aboutTitle: "Clear planning, reliable supply.",

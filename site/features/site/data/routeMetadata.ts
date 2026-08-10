@@ -30,10 +30,13 @@ import { SITE_URL } from "@/lib/siteUrl";
  */
 
 export const ABOUT_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
-  title: "About One&Only | Premium office furniture India — Steelcase & Featherlite",
+  title: "About One&Only | One and Only Furniture India — Steelcase & Featherlite",
   description: ABOUT_PAGE_COPY.heroSubtitle,
   path: "/about",
   keywords: [
+    "about One&Only",
+    "about One and Only Furniture",
+    "One and Only Furniture Patna",
     "office furniture India",
     "commercial office furniture dealer India",
     "Steelcase dealer India",
@@ -41,7 +44,6 @@ export const ABOUT_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
     "Humanscale ergonomic seating",
     "authorized office furniture dealer",
     "workspace planning partner India",
-    "about One&Only",
   ],
 });
 
@@ -59,12 +61,14 @@ export const SOLUTIONS_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
 });
 
 export const CONTACT_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
-  title: "Contact sales | Office furniture India | One&Only",
+  title: "Contact One and Only Furniture | Sales | One&Only",
   description: CONTACT_PAGE_COPY.heroSubtitle,
   path: "/contact",
   image: "/assets/marketing/hero/slides/TVS3-Oneandonly-bright.webp",
   keywords: [
-    "contact office furniture India",
+    "contact One and Only Furniture",
+    "contact One&Only",
+    "One and Only Patna contact",
     "office furniture quote India",
     "office furniture dealer contact",
     "Steelcase Featherlite Humanscale contact",
@@ -176,15 +180,21 @@ export const QUOTE_CART_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
 });
 
 export const SHOWROOMS_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
-  title: `${SHOWROOMS_PAGE_COPY.heroTitle} | One&Only`,
-  description: SHOWROOMS_PAGE_COPY.heroSubtitle,
+  title: "One and Only Furniture showroom Patna | One&Only",
+  description:
+    "Visit One&Only (One and Only Furniture) showroom in Patna — Jagat Trade Centre, Frazer Road. See seating, workstations, and finishes before you brief the planning team.",
   path: "/showrooms",
   image: "/assets/marketing/hero/pages/Planner-oneandonly-bright.webp",
   keywords: [
-    "office furniture showroom India",
+    "One and Only Furniture Patna",
+    "One and Only Patna",
+    "One&Only Patna showroom",
+    "One and Only showroom",
+    "office furniture showroom Patna",
+    "office furniture showroom Bihar",
     "workspace showroom India",
-    "One&Only showroom",
-    "commercial furniture display",
+    "Jagat Trade Centre furniture",
+    "commercial furniture display Patna",
   ],
 });
 
@@ -260,6 +270,8 @@ export const PRODUCTS_PAGE_METADATA: Metadata = buildPageMetadata(SITE_URL, {
   path: "/products",
   image: "/assets/marketing/ui/categories/workstations-clean.webp",
   keywords: [
+    "One and Only Furniture products",
+    "One&Only furniture catalog",
     "office furniture products India",
     "workstations chairs tables storage",
     "office furniture catalog India",

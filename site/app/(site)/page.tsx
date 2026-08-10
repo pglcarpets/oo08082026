@@ -17,6 +17,7 @@ export const metadata: Metadata = buildPageMetadata(SITE_URL, {
   title: SITE_BRAND.defaultTitle,
   description: SITE_BRAND.description,
   path: "/",
+  keywords: [...SITE_BRAND.brandKeywords],
 });
 
 export default async function Home() {

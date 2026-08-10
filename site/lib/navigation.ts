@@ -101,7 +101,7 @@ export const NAV_PRIMARY_LINKS = [
   { label: "Products", href: "/products", hasMega: true },
   { label: "Solutions", href: "/solutions" },
   { label: "Clients", href: "/clients" },
-  { label: "Trusted by", href: "/trusted-by" },
+  { label: "Trusted by", href: "/trusted-by/" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ] as const;

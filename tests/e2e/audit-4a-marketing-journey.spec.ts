@@ -138,7 +138,8 @@ test("2. CTA destination truth — click-through + redirect chains", async ({ pa
   }
 
   // Destination truth for the other CTA/nav hrefs (status + first redirect hop).
-  const hrefs = ["/planner", "/planner/help", "/products", "/clients", "/trusted-by", "/contact", "/planning", "/ooplanner"];
+  // Prefer trailing-slash form (trailingSlash:true) — slashless hops 308 and flaked with ERR_ABORTED.
+  const hrefs = ["/planner/", "/planner/help/", "/products/", "/clients/", "/trusted-by/", "/contact/", "/planning/", "/ooplanner/"];
   const rows: string[] = [];
   for (const href of hrefs) {
     const res = await request.get(href, { maxRedirects: 0 }).catch(() => null);

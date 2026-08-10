@@ -73,7 +73,7 @@ export async function ClientsPageView() {
               </p>
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <MarketingCtaLink
-                  href="/trusted-by"
+                  href="/trusted-by/"
                   label={CLIENTS_PAGE_COPY.trustedCta}
                   surface="clients-empty"
                   variant="outline"

@@ -54,9 +54,6 @@ DONE slices omitted. Full history in git + programme plans.
 | TST-S17 | 02 | `audit-3c-planner-polish` | P2 | OPEN |
 | TST-S18 | 02 | `SEAM-E2E-STUDIO-2A` | P2 | OPEN |
 | TST-S19 | 02 | `SEAM-E2E-MARKETING-4A` | P2 | OPEN |
-| SITE-S08 | 06 | Assistant off-canvas @390px | P1 | OPEN |
-| SITE-S09 | 06 | Assistant header overflow @390px | P1 | OPEN |
-| SITE-S10 | 06 | `/trusted-by` abort | P1 | OPEN |
 | SITE-S12 | 06 | `responsive-audit.mjs` marketing | P1 | OPEN |
 | SITE-S15 | 06 | i18n locale switch e2e | P1 | OPEN |
 | SITE-S16 | 06 | Enquiry notification | P1 | OPEN |

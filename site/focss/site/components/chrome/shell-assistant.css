@@ -84,8 +84,9 @@
 .assistant-modal-sheet {
   position: relative;
   display: flex;
-  max-height: 92vh;
+  max-height: min(92vh, 100dvh);
   width: 100%;
+  max-width: 100%;
   flex-direction: column;
   overflow: hidden;
   border-radius: 1.5rem 1.5rem 0 0;
@@ -96,6 +97,7 @@
 @media (width >= theme(--breakpoint-sm)) {
   .assistant-modal-sheet {
     border-radius: 1rem;
+    max-height: 92vh;
   }
 }
 
@@ -148,47 +150,72 @@
   justify-content: center;
   background: var(--scrim-black-40);
   padding: 0;
+  /* Avoid horizontal bleed when the sheet is full-bleed on phone. */
+  overflow-x: hidden;
 }
 
 @media (width >= theme(--breakpoint-sm)) {
   .assistant-overlay {
     align-items: center;
     padding: 1.5rem;
+    overflow-x: visible;
   }
 }
 
 .assistant-sheet {
   position: relative;
   display: flex;
-  max-height: 92vh;
+  max-height: min(92vh, 100dvh);
   width: 100%;
+  max-width: 100%;
   flex-direction: column;
   overflow: hidden;
   border-radius: 1.5rem 1.5rem 0 0;
   background: var(--text-inverse);
   box-shadow: 0 25px 50px -12px var(--scrim-black-20);
+  /* Safe-area for notched phones when sheet is bottom-anchored. */
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 @media (width >= theme(--breakpoint-sm)) {
   .assistant-sheet {
     border-radius: 1rem;
+    max-height: 92vh;
+    padding-bottom: 0;
   }
 }
 
 .assistant-sheet__header {
-  @apply flex items-center justify-between border-b border-neutral-100 px-5 py-4;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 0.0625rem solid var(--color-neutral-100, #f5f5f5);
+  padding: 1rem 1.25rem;
+  min-width: 0;
+  /* SITE-S09: title/subtitle truncate inside the row; close stays on-canvas. */
+  overflow: hidden;
 }
 
 .assistant-sheet__brand {
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  flex: 1 1 0%;
   min-width: 0;
   overflow: hidden;
 }
 
+.assistant-sheet__brand-text {
+  display: flex;
+  min-width: 0;
+  flex: 1 1 0%;
+  flex-direction: column;
+  overflow: hidden;
+}
+
 .assistant-sheet__icon {
-  @apply inline-flex h-9 w-9 items-center justify-center rounded-full text-white;
+  @apply inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white;
 }
 
 .assistant-sheet__icon--dark {
@@ -201,6 +228,8 @@
 
 .assistant-sheet__title {
   @apply text-sm font-semibold text-neutral-900;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -208,13 +237,16 @@
 
 .assistant-sheet__subtitle {
   @apply text-xs text-neutral-500;
+  min-width: 0;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .assistant-sheet__close {
-  @apply rounded-full bg-neutral-100 p-2 text-neutral-700 transition-colors hover:bg-neutral-200;
+  @apply shrink-0 rounded-full bg-neutral-100 p-2 text-neutral-700 transition-colors hover:bg-neutral-200;
+  flex-shrink: 0;
 }
 
 .assistant-toolbar {

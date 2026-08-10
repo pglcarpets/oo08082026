@@ -60,7 +60,7 @@ export const SITE_NAV_SEARCH_FALLBACK_LINKS = [
   { href: "/clients", label: "Clients" },
   { href: PRODUCT_SUITE.planner.routes.landing, label: "Planner" },
   { href: PRODUCT_SUITE.planner.routes.help, label: "Planner help" },
-  { href: "/trusted-by", label: "Trusted By" },
+  { href: "/trusted-by/", label: "Trusted By" },
   { href: "/sustainability", label: "Sustainability" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -111,7 +111,7 @@ export const SITE_FOOTER_NAV = buildFooterNav([
     heading: "Company",
     links: [
       { href: "/about", label: "About Us" },
-      { href: "/trusted-by", label: "Trusted By" },
+      { href: "/trusted-by/", label: "Trusted By" },
       { href: "/sustainability", label: "Sustainability" },
       { href: "/showrooms", label: "Showrooms" },
     ],

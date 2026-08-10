@@ -38,7 +38,7 @@ const STATIC_PAGES: Array<Pick<SearchIndexEntry, "id" | "title" | "href">> = [
   { id: "page:products", title: "All Products", href: "/products" },
   { id: "page:solutions", title: "Solutions", href: "/solutions" },
   { id: "page:clients", title: "Clients", href: "/clients" },
-  { id: "page:trusted-by", title: "Trusted By", href: "/trusted-by" },
+  { id: "page:trusted-by", title: "Trusted By", href: "/trusted-by/" },
   { id: "page:about", title: "About Us", href: "/about" },
   { id: "page:contact", title: "Contact", href: "/contact" },
   { id: "page:sustainability", title: "Sustainability", href: "/sustainability" },

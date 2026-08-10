@@ -66,7 +66,9 @@ export const HOMEPAGE_HERO_CONTENT = {
     // Aligned with BUSINESS_STATS_SAFE_DEFAULTS.projectsDelivered (120) and proof/solutions floors.
     lead: "120+ workplaces delivered.",
     support: "Catalog in planner · drafts · branded BOQ.",
-    href: "/trusted-by",
+    // trailingSlash: true — keep canonical form so navigations skip the 308 hop
+    // (slashless /trusted-by was a source of intermittent net::ERR_ABORTED).
+    href: "/trusted-by/",
     cta: "View clients",
     source: "Internal project records",
     owner: "Marketing",

@@ -162,21 +162,46 @@ html:has([data-cookie-consent-bar]) {
   }
 }
 
-/* ── 390 px viewport guard ──────────────────────────────────────────────
-   At 390 px the floating launcher (3 rem × 3 rem + label) can clip when
-   anchored with large side offsets.  Pull the FAB inward so it stays fully
-   visible inside the safe area.  Placed after @utility definitions so the
-   cascade wins over site-fab-anchor--left/right auto offsets.  ─────── */
-@media (max-width: 390px) {
-  .site-fab-anchor--left.site-fab-anchor--bottom,
+/* ── Mobile FAB shell (≤639px = UnifiedAssistant sm:hidden range) ────────
+   Keep assistant / WhatsApp launchers fully on-canvas. Cover bottom, raised,
+   and panel anchors — not only plain --bottom (cookie bar uses --raised).
+   SITE-S08: 390×844 off-canvas / clipped launcher. ────────────────────── */
+@media (max-width: 639.98px) {
   .site-fab-anchor--right.site-fab-anchor--bottom,
+  .site-fab-anchor--right.site-fab-anchor--bottom-raised,
+  .site-fab-anchor--right.site-fab-anchor--panel,
+  .site-fab-anchor--right.site-fab-anchor--panel-raised,
   .site-fab-anchor--right.site-fab-anchor--center-y {
-    right: max(0.5rem, env(safe-area-inset-right, 0)) !important;
     left: auto !important;
+    right: max(0.5rem, env(safe-area-inset-right, 0px)) !important;
   }
 
-  .site-fab-anchor--left.site-fab-anchor--bottom {
-    left: max(0.5rem, env(safe-area-inset-left, 0)) !important;
+  .site-fab-anchor--left.site-fab-anchor--bottom,
+  .site-fab-anchor--left.site-fab-anchor--bottom-raised,
+  .site-fab-anchor--left.site-fab-anchor--panel,
+  .site-fab-anchor--left.site-fab-anchor--panel-raised {
     right: auto !important;
+    left: max(0.5rem, env(safe-area-inset-left, 0px)) !important;
+  }
+
+  .site-fab-anchor--inset-x.site-fab-anchor--panel,
+  .site-fab-anchor--inset-x.site-fab-anchor--panel-raised {
+    left: max(0.5rem, env(safe-area-inset-left, 0px)) !important;
+    right: max(0.5rem, env(safe-area-inset-right, 0px)) !important;
+    width: auto;
+    max-width: calc(100vw - 1rem - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px));
+  }
+
+  /* Icon FAB only on narrow screens — padding from assistant-floating-primary
+     must not expand the 3rem hit target past the safe edges. */
+  .site-fab-launcher.site-fab-launcher--assistant {
+    box-sizing: border-box;
+    width: 3rem;
+    height: 3rem;
+    min-width: 3rem;
+    min-height: 3rem;
+    max-width: 3rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }

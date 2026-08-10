@@ -54,6 +54,7 @@ describe("app/(site)/trusted-by/page.tsx", () => {
     render(<TrustedByPage />);
     expect(screen.getByTestId("home-marketing-layout")).toBeInTheDocument();
     expect(screen.getByTestId("trusted-by-hero")).toBeInTheDocument();
+    expect(screen.getByRole("heading", { level: 1 })).toBeInTheDocument();
     expect(screen.getByText(TRUSTED_BY_PAGE_COPY.overviewKicker)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", {

@@ -26,9 +26,16 @@ test.describe("site navigation smoke", () => {
 
     const glassProof = page.getByRole("link", { name: /View clients/i });
     await expect(glassProof).toBeVisible();
-    await expect(glassProof).toHaveAttribute("href", /\/trusted-by\/?$/);
+    // Canonical trailing slash — slashless form 308-redirects and was a net::ERR_ABORTED source.
+    await expect(glassProof).toHaveAttribute("href", /\/trusted-by\/$/);
     await expect(glassProof).toContainText(/Trusted by/i);
     await expect(glassProof).toContainText(/120\+/i);
+
+    // SITE-S10: client navigation must land on the live page (no abort / soft 404).
+    await glassProof.click();
+    await expect(page).toHaveURL(/\/trusted-by\/$/);
+    await expect(page.getByTestId("trusted-by-hero")).toBeVisible();
+    await expect(page.getByRole("heading", { level: 1 })).toContainText(/Trusted by/i);
   });
 
   test("homepage shows Final0704-inspired sections", async ({ page }) => {

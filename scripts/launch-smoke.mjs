@@ -33,7 +33,7 @@ const launchRoutes = [
   { name: "products", path: "/products" },
   { name: "login", path: "/login" },
   { name: "contact", path: "/contact" },
-  { name: "trusted-by", path: "/trusted-by" },
+  { name: "trusted-by", path: "/trusted-by/" },
   { name: "sustainability", path: "/sustainability" },
   { name: "planner-entry", path: "/choose-product" },
 ];

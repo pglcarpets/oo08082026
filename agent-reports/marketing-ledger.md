@@ -11,9 +11,9 @@
 
 | # | Issue | Severity | Status |
 |---|-------|----------|--------|
-| 1 | Assistant launcher appears off-canvas / not reachable at 390px | Major | Open |
-| 2 | Assistant header text overflows at 390px | Major | Open |
-| 3 | `/trusted-by` route intermittently aborts (`ERR_ABORTED`) | Major | Open |
+| 1 | Assistant launcher appears off-canvas / not reachable at 390px | Major | ✅ Fixed (SITE-S08): mobile FAB anchors + 3rem hit target ≤639.98px; e2e @390. |
+| 2 | Assistant header text overflows at 390px | Major | ✅ Fixed (SITE-S09): header flex gap, brand-text min-w-0, ellipsis, close shrink-0; e2e @390. |
+| 3 | `/trusted-by` route intermittently aborts (`ERR_ABORTED`) | Major | ✅ Fixed (SITE-S10): canonical `/trusted-by/` hrefs; e2e click→hero green. |
 | 4 | Hero preload `imageSrc` mismatches rendered LCP size | Major | ✅ Fixed: `HomepageHero.tsx` sizes updated to responsive breakpoints. |
 | 5 | React hydration mismatch on `/contact` | Major | Open |
 | 6 | Two homepage sections render with empty heading | Minor | Open |

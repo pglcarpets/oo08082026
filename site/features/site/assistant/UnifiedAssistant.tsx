@@ -596,13 +596,13 @@ export function UnifiedAssistant() {
         >
           <div className={ASSISTANT_MODAL_GUIDED_SHEET_CLASS}>
             <div className="assistant-sheet__header">
-              <div className="assistant-sheet__brand min-w-0">
-                <span className="assistant-sheet__icon assistant-sheet__icon--dark shrink-0">
+              <div className="assistant-sheet__brand">
+                <span className="assistant-sheet__icon assistant-sheet__icon--dark">
                   <Bot className="h-5 w-5" />
                 </span>
-                <div className="min-w-0">
-                  <p className="assistant-sheet__title truncate">{GUIDED_PLANNER_COPY.title}</p>
-                  <p className="assistant-sheet__subtitle truncate">{GUIDED_PLANNER_COPY.subtitle}</p>
+                <div className="assistant-sheet__brand-text">
+                  <p className="assistant-sheet__title">{GUIDED_PLANNER_COPY.title}</p>
+                  <p className="assistant-sheet__subtitle">{GUIDED_PLANNER_COPY.subtitle}</p>
                 </div>
               </div>
               <button
@@ -794,13 +794,13 @@ export function UnifiedAssistant() {
         >
           <div className={ASSISTANT_MODAL_CHAT_SHEET_CLASS}>
             <div className="assistant-sheet__header">
-              <div className="assistant-sheet__brand min-w-0">
-                <span className="assistant-sheet__icon assistant-sheet__icon--primary shrink-0">
+              <div className="assistant-sheet__brand">
+                <span className="assistant-sheet__icon assistant-sheet__icon--primary">
                   <Sparkles className="h-5 w-5" />
                 </span>
-                <div className="min-w-0">
-                  <p className="assistant-sheet__title truncate">{AI_CHATBOT_COPY.title}</p>
-                  <p className="assistant-sheet__subtitle truncate">{AI_CHATBOT_COPY.subtitle}</p>
+                <div className="assistant-sheet__brand-text">
+                  <p className="assistant-sheet__title">{AI_CHATBOT_COPY.title}</p>
+                  <p className="assistant-sheet__subtitle">{AI_CHATBOT_COPY.subtitle}</p>
                 </div>
               </div>
               <button

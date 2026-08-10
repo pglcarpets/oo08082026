@@ -71,6 +71,7 @@ async function collectPage(page, route, viewport) {
       timeout: 60_000,
     });
     httpStatus = response?.status() ?? 0;
+    await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(1200);
   } catch (error) {
     navigationError = String(error);

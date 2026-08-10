@@ -39,18 +39,20 @@ export default {
     }
 
     // Try R2 first for asset paths (locked layout: /assets/{marketing|catalog}/…)
+    // Bucket keys are often stored without the leading "assets/" (mirror-assets-to-r2.mjs);
+    // also accept full pathname keys so either layout hits R2 before Vercel fallback.
     if (pathname.startsWith('/assets/') || pathname.startsWith('/images/')) {
       try {
         const r2Keys = [];
         const baseKey = pathname.slice(1);
         r2Keys.push(baseKey);
-        if (baseKey.startsWith('assets/catalog/')) {
+        if (baseKey.startsWith('assets/')) {
           r2Keys.push(baseKey.slice('assets/'.length));
         }
         if (baseKey.includes('/gallery/')) {
           const withoutGallery = baseKey.replace(/\/gallery\//, '/');
           r2Keys.push(withoutGallery);
-          if (withoutGallery.startsWith('assets/catalog/')) {
+          if (withoutGallery.startsWith('assets/')) {
             r2Keys.push(withoutGallery.slice('assets/'.length));
           }
         }
@@ -62,14 +64,15 @@ export default {
         }
 
         if (!object && pathname.startsWith('/images/')) {
-          const remapped =
-            'assets/' +
-            pathname
-              .slice('/images/'.length)
-              .replace(/^products\//, 'catalog/products/')
-              .replace(/^(hero|client-logos|projects|fallback|home|brand)\//, 'marketing/$1/')
-              .replace(/^catalog\//, 'catalog/');
-          object = await env.ASSET_BUCKET.get(remapped);
+          const remappedTail = pathname
+            .slice('/images/'.length)
+            .replace(/^products\//, 'catalog/products/')
+            .replace(/^(hero|client-logos|projects|fallback|home|brand)\//, 'marketing/$1/')
+            .replace(/^catalog\//, 'catalog/');
+          for (const remapped of [`assets/${remappedTail}`, remappedTail]) {
+            object = await env.ASSET_BUCKET.get(remapped);
+            if (object) break;
+          }
         }
         
         if (object) {

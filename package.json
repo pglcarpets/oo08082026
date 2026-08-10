@@ -30,7 +30,7 @@
     "launch:env": "node scripts/general/validate-launch-env.mjs",
     "docs:check:root-links": "node scripts/general/check-root-markdown-links.mjs",
     "docs:sync": "node scripts/general/generate-docs.mjs --all",
-    "pretest": "pnpm run test:to ean",
+    "pretest": "pnpm run test:clean",
     "test": "node scripts/run-full-vitest.mjs",
     "posttest": "node scripts/generate-vitest-report.mjs results/tests/vitest-results.json",
     "test:clean": "node scripts/clean-test-artifacts.mjs",

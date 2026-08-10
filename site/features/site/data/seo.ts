@@ -223,8 +223,19 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+const BRAND_SEGMENT_ALIASES = new Set(
+  [
+    SITE_BRAND.titleSuffix,
+    SITE_BRAND.companyName,
+    "One and Only",
+    "One & Only",
+    "OneandOnly",
+    "Oando",
+  ].map((value) => value.trim().toLowerCase()),
+);
+
 function isPureBrandSegment(segment: string): boolean {
-  return segment.trim().toLowerCase() === SITE_BRAND.titleSuffix.toLowerCase();
+  return BRAND_SEGMENT_ALIASES.has(segment.trim().toLowerCase());
 }
 
 /**
@@ -307,27 +318,10 @@ export function buildSiteMetadata(siteUrl: string): Metadata {
       template: `%s | ${SITE_BRAND.titleSuffix}`,
     },
     description: SITE_BRAND.description,
-    keywords: [
-      "office furniture India",
-      "premium office furniture",
-      "commercial office furniture India",
-      "ergonomic office chairs India",
-      "modular office workstations",
-      "office furniture manufacturer supplier India",
-      "corporate office furniture",
-      "One&Only",
-      "oando furniture",
-      "meeting tables office India",
-      "office storage solutions",
-      "soft seating office",
-      "Steelcase Featherlite Humanscale dealer",
-      "workspace planning furniture",
-      "turnkey office furniture India",
-      "enterprise office fit-out",
-    ],
+    keywords: [...SITE_BRAND.brandKeywords],
     authors: [{ name: SITE_BRAND.companyName, url: origin }],
     creator: SITE_BRAND.companyName,
-    publisher: SITE_BRAND.companyName,
+    publisher: SITE_BRAND.legalName,
     category: "business",
     formatDetection: {
       email: false,
@@ -577,6 +571,7 @@ export function buildGlobalJsonLd(siteUrl: string) {
   const organizationId = `${siteUrl}#organization`;
   const websiteId = `${siteUrl}#website`;
   const localBusinessId = `${siteUrl}#localbusiness`;
+  const alternateNames = [...SITE_BRAND.alternateNames];
 
   return {
     "@context": "https://schema.org",
@@ -585,6 +580,8 @@ export function buildGlobalJsonLd(siteUrl: string) {
         "@type": "Organization",
         "@id": organizationId,
         name: SITE_BRAND.companyName,
+        legalName: SITE_BRAND.legalName,
+        alternateName: alternateNames,
         url: siteUrl,
         logo: `${siteUrl}/logo-v2.webp`,
         description: SITE_BRAND.organizationDescription,
@@ -614,6 +611,7 @@ export function buildGlobalJsonLd(siteUrl: string) {
         "@id": websiteId,
         url: siteUrl,
         name: SITE_BRAND.siteName,
+        alternateName: alternateNames,
         description: SITE_BRAND.description,
         inLanguage: "en-IN",
         publisher: { "@id": organizationId },
@@ -627,6 +625,8 @@ export function buildGlobalJsonLd(siteUrl: string) {
         "@type": "FurnitureStore",
         "@id": localBusinessId,
         name: SITE_BRAND.companyName,
+        legalName: SITE_BRAND.legalName,
+        alternateName: alternateNames,
         url: siteUrl,
         description: SITE_BRAND.localBusinessDescription,
         parentOrganization: { "@id": organizationId },
@@ -659,6 +659,8 @@ export function buildLocalBusinessJsonLd(siteUrl: string) {
     "@type": "FurnitureStore",
     "@id": `${siteUrl}#localbusiness`,
     name: SITE_BRAND.companyName,
+    legalName: SITE_BRAND.legalName,
+    alternateName: [...SITE_BRAND.alternateNames],
     url: siteUrl,
     description: SITE_BRAND.localBusinessDescription,
     image: `${siteUrl}${SITE_BRAND.ogImage}`,

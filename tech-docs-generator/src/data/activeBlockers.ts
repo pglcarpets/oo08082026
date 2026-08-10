@@ -12,9 +12,11 @@ export type ActiveBlocker = {
 export const activeBlockers: ActiveBlocker[] = [
   {
     id: 'F3',
-    blocker: 'docs.oando.co.in has no public DNS (NXDOMAIN)',
-    evidence: 'nslookup docs.oando.co.in 2026-08-08 — no A record (SOA only). Separate from apex Worker.',
+    blocker:
+      'docs.oando.co.in DNS resolves but HTTPS returns 525 (Cloudflare origin SSL handshake failed)',
+    evidence:
+      '2026-08-10: getent hosts docs.oando.co.in → CF anycast; curl -I https://docs.oando.co.in/ → 525. Not NXDOMAIN.',
     ownerAction:
-      'Add Cloudflare DNS for docs → tech-docs host. See docs/architecture/tech-docs-link.md.',
+      'Point docs origin at a live tech-docs deploy with a valid cert (CF Full strict). Confirm curl -I https://docs.oando.co.in/ → 200. See docs/architecture/tech-docs-link.md.',
   },
 ]

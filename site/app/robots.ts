@@ -6,7 +6,7 @@ const BASE_URL = SITE_URL;
 
 export default function robots(): MetadataRoute.Robots {
   const disallow = [...ROBOTS_DISALLOW_PREFIXES];
-  const host = BASE_URL.replace(/\/+$/, "");
+  const sitemapHost = BASE_URL.replace(/\/+$/, "");
   // Explicit major crawlers (same rules) — helps Bing/Google discover allow/disallow cleanly.
   const crawlers = ["*", "Googlebot", "Bingbot", "Googlebot-Image"] as const;
 
@@ -16,7 +16,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow,
     })),
-    sitemap: [`${host}/sitemap.xml`],
-    host,
+    sitemap: [`${sitemapHost}/sitemap.xml`],
   };
 }

@@ -32,14 +32,14 @@ Browser/Playwright: `http://localhost:3000` only.
 
 ## Open slices only
 
-DONE slices are omitted. Full history lives in git + programme plan files.
+DONE slices omitted. Full history in git + programme plans.
 
 | Slice | Plan | Focus | Pri | Status |
 |-------|------|-------|-----|--------|
 | OPS-S01 | 03 | F3 `docs.oando.co.in` DNS | P0 | OPEN |
 | OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
-| WRK-S09 | 05 | 3b Supabase member path (no bypass) | P0 | OPEN |
+| **WRK-S09** | 05 | 3b Supabase member path (no bypass) | P0 | **PARTIAL** |
 | WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
 | TECH-S05 | 07 | Prod docs host (blocked on OPS-S01) | P0 | OPEN |
 | TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
@@ -64,9 +64,10 @@ DONE slices are omitted. Full history lives in git + programme plan files.
 | SITE-S18 | 06 | Image lazy-load scroll | P2 | OPEN |
 | CHK-S01–S10 | 08 | Session start checklist | — | OPEN |
 
-**P0 open:** OPS-S01, OPS-S04, WRK-S09, TECH-S05 (blocked on S01).
+**P0 open:** OPS-S01, OPS-S04, TECH-S05 (blocked on S01).  
+**P0 partial:** WRK-S09 — member client + units done; member e2e evidence still missing.
 
-09 proxy/auth: **PX-S00–S06 all DONE.**
+09 proxy/auth: **PX-S00–S06 all DONE.** · WRK-S14 DONE.
 
 ---
 

@@ -164,7 +164,7 @@
 .oostudio-root .ai-panel { display: flex; flex-direction: column; gap: 10px; }
 .oostudio-root .ai-prompt { font-family: var(--font-sans); resize: vertical; min-height: 66px; }
 .oostudio-root .ai-examples { display: flex; flex-wrap: wrap; gap: 4px; }
-.oostudio-root .ai-examples .chip { font-size: 10px; padding: 3px 8px; }
+.oostudio-root .ai-examples .chip { font-size: 11px; padding: 3px 8px; }
 .oostudio-root .ai-hint { font-size: 11px; color: var(--text-subtle); font-style: italic; }
 .oostudio-root .spin { display: inline-flex; align-items: center; gap: 6px; }
 .oostudio-root .spin::before {

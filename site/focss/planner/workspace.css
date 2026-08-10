@@ -284,7 +284,7 @@
 }
 
 .ooplanner-root .topbar__project-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -444,7 +444,7 @@
 
 .ooplanner-root .pw-step-bar__done {
   color: var(--color-primary);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
 }
 
@@ -692,7 +692,7 @@
 }
 
 .ooplanner-root .project-menu__field-label {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -754,7 +754,7 @@
 .ooplanner-root .catalog-item__thumb img,
 .ooplanner-root .catalog-item__thumb svg { width: 80%; height: 80%; object-fit: contain; }
 .ooplanner-root .catalog-item__name { font-size: 11px; font-weight: 500; color: var(--text-strong); line-height: 1.25; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.ooplanner-root .catalog-item__dim { font-size: 10px; color: var(--text-subtle); font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); margin-top: 2px; }
+.ooplanner-root .catalog-item__dim { font-size: 11px; color: var(--text-subtle); font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures); margin-top: 2px; }
 
 /* Projects list */
 .ooplanner-root .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; padding: 24px; }

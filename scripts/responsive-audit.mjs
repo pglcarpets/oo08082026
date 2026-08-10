@@ -1,13 +1,15 @@
 /**
- * Full-site responsive audit — mobile (375×812) + desktop (1920×1080).
+ * Full-site responsive audit — phone (390×844) + desktop (1920×1080).
  * Requires dev server at http://localhost:3000 (never 127.0.0.1).
  *
- * Output:
- *   results/responsive-audit/mobile/*.png
- *   results/responsive-audit/desktop/*.png
- *   results/responsive-audit/audit-results.json
+ * Output (default):
+ *   results/responsive-audit-final/{mobile,desktop}/*.png
+ *   results/responsive-audit-final/audit-results.json
+ *   results/responsive-audit-final/summary.txt
  *
- * Run: node scripts/responsive-audit.mjs
+ * Scoped runs (WRK-S13 / SITE-S12):
+ *   node scripts/responsive-audit.mjs --scope=workspaces --out=results/site/responsive-audit-workspaces
+ *   node scripts/responsive-audit.mjs --scope=marketing --out=results/site/responsive-audit-marketing
  *
  * Session scratch scripts (narrower scope): scripts/tmp-*.mjs — not gated.
  */
@@ -16,7 +18,24 @@ import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const BASE = "http://localhost:3000";
-const OUT = path.resolve("results/responsive-audit-final");
+
+function readArg(name, fallback = null) {
+  const hit = process.argv.find((a) => a.startsWith(`${name}=`));
+  if (!hit) return fallback;
+  return hit.slice(name.length + 1);
+}
+
+const SCOPE = (readArg("--scope", "all") || "all").toLowerCase();
+const OUT = path.resolve(
+  readArg(
+    "--out",
+    SCOPE === "workspaces"
+      ? "results/site/responsive-audit-workspaces"
+      : SCOPE === "marketing"
+        ? "results/site/responsive-audit-marketing"
+        : "results/responsive-audit-final",
+  ),
+);
 
 const STATIC_MARKETING = [
   "/",
@@ -98,7 +117,8 @@ const ADMIN_ROUTES = [
 ];
 
 const VIEWPORTS = {
-  mobile: { width: 375, height: 812, label: "mobile", isMobile: true },
+  // Phone shell contract for WRK-S13 / SITE-S12 (390×844).
+  mobile: { width: 390, height: 844, label: "mobile", isMobile: true },
   desktop: { width: 1920, height: 1080, label: "desktop", isMobile: false },
 };
 
@@ -293,16 +313,36 @@ const dynamicRoutes = [
   `/portal/${planId}/`,
 ];
 
-const routes = [
+/** Workspace shells only — Planner + Studio (WRK-S13). */
+const WORKSPACE_ROUTES = [
+  ...APP_ROUTES,
+  `/ooplanner/projects/${planId}/`,
+];
+
+/** Marketing + residual site (SITE-S12) — excludes workspaces and admin. */
+const MARKETING_ROUTES = [
   ...new Set([
     ...STATIC_MARKETING,
     ...DYNAMIC_SAMPLES,
-    ...APP_ROUTES,
-    ...ADMIN_ROUTES,
-    ...dynamicRoutes,
     ...(productDetail ? [productDetail] : []),
   ]),
 ];
+
+const routes =
+  SCOPE === "workspaces"
+    ? WORKSPACE_ROUTES
+    : SCOPE === "marketing"
+      ? MARKETING_ROUTES
+      : [
+          ...new Set([
+            ...STATIC_MARKETING,
+            ...DYNAMIC_SAMPLES,
+            ...APP_ROUTES,
+            ...ADMIN_ROUTES,
+            ...dynamicRoutes,
+            ...(productDetail ? [productDetail] : []),
+          ]),
+        ];
 
 const browser = await chromium.launch({ headless: true });
 const allResults = [];
@@ -398,3 +438,49 @@ for (const r of offenders) {
     `${r}: mobile=[${m?.issues?.join("; ") ?? m?.error ?? "OK"}] desktop=[${d?.issues?.join("; ") ?? d?.error ?? "OK"}]`,
   );
 }
+
+const lines = [
+  `scope=${SCOPE}`,
+  `generatedAt=${summary.generatedAt}`,
+  `routes=${routes.length} fullyOK=${okCount} offenders=${offenders.length}`,
+  "",
+  "---WORST---",
+  ...offenders.map((r) => {
+    const m = allResults.find((x) => x.route === r && x.viewport === "mobile");
+    const d = allResults.find((x) => x.route === r && x.viewport === "desktop");
+    return `${r}: mobile=[${m?.issues?.join("; ") ?? m?.error ?? "OK"}] desktop=[${d?.issues?.join("; ") ?? d?.error ?? "OK"}]`;
+  }),
+  "",
+  "---MOBILE---",
+  ...routes.map((r) => {
+    const m = allResults.find((x) => x.route === r && x.viewport === "mobile");
+    const status = m?.error || m?.issues?.length ? "Issues" : "OK";
+    const top = m?.error ?? (m?.issues?.length ? m.issues.slice(0, 2).join("; ") : "—");
+    return `${r} | ${status} | ${top}`;
+  }),
+  "",
+  "---DESKTOP---",
+  ...routes.map((r) => {
+    const d = allResults.find((x) => x.route === r && x.viewport === "desktop");
+    const status = d?.error || d?.issues?.length ? "Issues" : "OK";
+    const top = d?.error ?? (d?.issues?.length ? d.issues.slice(0, 2).join("; ") : "—");
+    return `${r} | ${status} | ${top}`;
+  }),
+];
+await writeFile(path.join(OUT, "summary.txt"), lines.join("\n") + "\n");
+// Convenience copies for plan evidence paths
+if (SCOPE === "workspaces") {
+  await mkdir(path.resolve("results/site"), { recursive: true });
+  await writeFile(
+    path.resolve("results/site/responsive-audit-workspaces.txt"),
+    lines.join("\n") + "\n",
+  );
+}
+if (SCOPE === "marketing") {
+  await mkdir(path.resolve("results/site"), { recursive: true });
+  await writeFile(
+    path.resolve("results/site/responsive-audit-marketing.txt"),
+    lines.join("\n") + "\n",
+  );
+}
+console.log(`wrote ${path.join(OUT, "summary.txt")}`);

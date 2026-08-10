@@ -46,7 +46,7 @@
 .oostudio-root .context-menu__shortcut {
   color: var(--text-subtle);
   font-family: var(--font-numeric); font-variant-numeric: var(--numeric-figures);
-  font-size: 10px;
+  font-size: 11px;
   letter-spacing: 0.02em;
 }
 .oostudio-root .context-menu__sep {
@@ -170,7 +170,7 @@
   color: var(--text-strong);
 }
 .oostudio-root .side-panel__mode {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -215,7 +215,7 @@
   bottom: 48px;
   right: 12px;
   padding: 4px 8px;
-  font-size: 10px;
+  font-size: 11px;
   color: var(--text-subtle);
   background: color-mix(in srgb, var(--color-white-50) 90%, transparent);
   border: 1px solid var(--border-soft);
@@ -251,7 +251,7 @@
 .oostudio-root .canvas-info__group { display: inline-flex; gap: 4px; align-items: baseline; }
 .oostudio-root .canvas-info__group span {
   color: var(--text-subtle);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }

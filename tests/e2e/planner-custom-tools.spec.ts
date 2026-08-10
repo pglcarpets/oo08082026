@@ -9,28 +9,26 @@ import {
   getWallCount,
   plannerToolButton,
   selectPlannerTool,
-  setToolVisibilityMode,
   switchPlannerStep,
   placeOpeningOnCanvas,
   waitForPlannerCanvas,
   firstFurnitureCenter,
   clickAtPoint,
-  tapAtPoint,
+  placeCatalogOnCanvas,
 } from "./plannerCanvasHelpers";
 
 test.describe.configure({ timeout: 60_000 });
 
+/** Live PLANNER_TOOLS in Planner.tsx — no Room / Furniture / Zone / Erase on the rail. */
 const RAIL_TOOLS = [
   "Select",
   "Pan",
   "Wall",
-  "Room",
   "Door",
   "Window",
-  "Furniture",
-  "Zone",
+  "Line",
   "Measure",
-  "Erase",
+  "Text",
 ] as const;
 
 test.describe("Planner custom tools — Playwright", () => {
@@ -39,7 +37,7 @@ test.describe("Planner custom tools — Playwright", () => {
     await waitForPlannerCanvas(page);
   });
 
-  test("tool rail exposes every custom tool", async ({ page }) => {
+  test("tool rail exposes every live tool", async ({ page }) => {
     for (const tool of RAIL_TOOLS) {
       await expect(plannerToolButton(page, tool)).toBeVisible();
     }
@@ -51,7 +49,6 @@ test.describe("Planner custom tools — Playwright", () => {
   });
 
   test("Wall tool creates a wall shape", async ({ page }) => {
-    expect(page).toBeDefined();
     const before = await getObjectCount(page);
     await selectPlannerTool(page, "Wall");
     await dragOnCanvas(page, { rx: 0.32, ry: 0.5 }, { rx: 0.68, ry: 0.5 });
@@ -59,67 +56,29 @@ test.describe("Planner custom tools — Playwright", () => {
   });
 
   test("Wall tool supports dragging up and left", async ({ page }) => {
-    expect(page).toBeDefined();
     const before = await getObjectCount(page);
     await selectPlannerTool(page, "Wall");
     await dragOnCanvas(page, { rx: 0.65, ry: 0.62 }, { rx: 0.35, ry: 0.32 });
     await expectObjectCountAtLeast(page, before + 1);
   });
 
-  test("Room tool supports dragging up and left", async ({ page }) => {
-    expect(page).toBeDefined();
+  test("Line tool creates a line shape", async ({ page }) => {
     const before = await getObjectCount(page);
-    await selectPlannerTool(page, "Room");
-    await dragOnCanvas(page, { rx: 0.7, ry: 0.7 }, { rx: 0.4, ry: 0.4 });
+    await selectPlannerTool(page, "Line");
+    await dragOnCanvas(page, { rx: 0.3, ry: 0.3 }, { rx: 0.6, ry: 0.55 });
     await expectObjectCountAtLeast(page, before + 1);
   });
 
-  test("Room tool creates a room shape", async ({ page }) => {
-    expect(page).toBeDefined();
-    const before = await getObjectCount(page);
-    await selectPlannerTool(page, "Room");
-    await dragOnCanvas(page, { rx: 0.25, ry: 0.3 }, { rx: 0.55, ry: 0.55 });
-    await expectObjectCountAtLeast(page, before + 1);
+  test("Text tool activates without breaking the canvas", async ({ page }) => {
+    await selectPlannerTool(page, "Text");
+    await expect(plannerToolButton(page, "Text")).toHaveAttribute("aria-pressed", "true");
+    await waitForPlannerCanvas(page);
   });
 
-  test("Furniture tool places catalog item on canvas", async ({ page }) => {
-    expect(page).toBeDefined();
-    const before = await getObjectCount(page);
-    await selectPlannerTool(page, "Furniture");
-    await page
-      .getByRole("region", { name: "Catalog browser" })
-      .getByRole("button", { name: /Add .* to canvas/i })
-      .first()
-      .click();
-    await clickOnCanvas(page, 0.45, 0.42);
-    await expectObjectCountAtLeast(page, before + 1);
-  });
-
-  test("Place step defaults to Furniture and placement works", async ({ page }) => {
-    await switchPlannerStep(page, "Place");
-    await expect(plannerToolButton(page, "Furniture")).toHaveAttribute("aria-pressed", "true");
-
-    const before = await getObjectCount(page);
-    await page
-      .getByRole("region", { name: "Catalog browser" })
-      .getByRole("button", { name: /Add .* to canvas/i })
-      .first()
-      .click();
-    await clickOnCanvas(page, 0.45, 0.42);
-    await expectObjectCountAtLeast(page, before + 1);
-  });
-
-  test("catalog item click activates furniture placement", async ({ page }) => {
+  test("catalog item places furniture without a Furniture rail tool", async ({ page }) => {
     await switchPlannerStep(page, "Place");
     const before = await getObjectCount(page);
-    const catalogItem = page
-      .getByRole("region", { name: "Catalog browser" })
-      .getByRole("button", { name: /Add .* to canvas/i })
-      .first();
-    await expect(catalogItem).toBeVisible({ timeout: 15_000 });
-    await catalogItem.click();
-    await expect(plannerToolButton(page, "Furniture")).toHaveAttribute("aria-pressed", "true");
-    await clickOnCanvas(page, 0.5, 0.48);
+    await placeCatalogOnCanvas(page, 0.45, 0.42);
     await expectObjectCountAtLeast(page, before + 1);
   });
 
@@ -149,14 +108,6 @@ test.describe("Planner custom tools — Playwright", () => {
     await expectObjectCountAtLeast(page, before + 1);
   });
 
-  test("Zone tool creates a zone shape", async ({ page }) => {
-    expect(page).toBeDefined();
-    const before = await getObjectCount(page);
-    await selectPlannerTool(page, "Zone");
-    await dragOnCanvas(page, { rx: 0.58, ry: 0.28 }, { rx: 0.78, ry: 0.48 });
-    await expectObjectCountAtLeast(page, before + 1);
-  });
-
   test("Review step defaults to Measure and measurement works", async ({ page }) => {
     await switchPlannerStep(page, "Review");
     await expect(plannerToolButton(page, "Measure")).toHaveAttribute("aria-pressed", "true");
@@ -167,13 +118,8 @@ test.describe("Planner custom tools — Playwright", () => {
   });
 
   test("Select tool selects a placed shape", async ({ page }) => {
-    await selectPlannerTool(page, "Furniture");
-    await page
-      .getByRole("region", { name: "Catalog browser" })
-      .getByRole("button", { name: /Add .* to canvas/i })
-      .first()
-      .click();
-    await clickOnCanvas(page, 0.45, 0.42);
+    await switchPlannerStep(page, "Place");
+    await placeCatalogOnCanvas(page, 0.45, 0.42);
     await expectObjectCountAtLeast(page, 1);
 
     await selectPlannerTool(page, "Select");
@@ -186,7 +132,6 @@ test.describe("Planner custom tools — Playwright", () => {
   });
 
   test("Pan tool activates without breaking the canvas", async ({ page }) => {
-    expect(page).toBeDefined();
     await selectPlannerTool(page, "Wall");
     await dragOnCanvas(page, { rx: 0.15, ry: 0.4 }, { rx: 0.85, ry: 0.4 });
     const countAfterWall = await getObjectCount(page);
@@ -197,37 +142,5 @@ test.describe("Planner custom tools — Playwright", () => {
       .poll(async () => getObjectCount(page), { timeout: 15_000 })
       .toBe(countAfterWall);
     await waitForPlannerCanvas(page);
-  });
-
-  test("tool visibility dropdown filters the rail in step-focused mode", async ({ page }) => {
-    const devSelect = page.locator("#planner-tool-visibility-mode");
-    await expect(devSelect).toBeVisible();
-    await setToolVisibilityMode(page, "Step-focused");
-    await expect(plannerToolButton(page, "Wall")).toBeVisible();
-    await expect(plannerToolButton(page, "Furniture")).toHaveCount(0);
-    await expect(plannerToolButton(page, "Measure")).toHaveCount(0);
-
-    await setToolVisibilityMode(page, "All tools");
-    await expect(plannerToolButton(page, "Furniture")).toBeVisible();
-    await expect(plannerToolButton(page, "Measure")).toBeVisible();
-  });
-
-  test("Erase tool removes a shape", async ({ page }) => {
-    expect(page).toBeDefined();
-    await selectPlannerTool(page, "Furniture");
-    await page
-      .getByRole("region", { name: "Catalog browser" })
-      .getByRole("button", { name: /Add .* to canvas/i })
-      .first()
-      .click();
-    await clickOnCanvas(page, 0.45, 0.42);
-    const afterPlace = await getObjectCount(page);
-    expect(afterPlace).toBeGreaterThan(0);
-
-    await selectPlannerTool(page, "Erase");
-    const center = await firstFurnitureCenter(page);
-    if (!center) throw new Error("No furniture object to erase");
-    await tapAtPoint(page, center);
-    await expect.poll(async () => getObjectCount(page), { timeout: 15_000 }).toBe(afterPlace - 1);
   });
 });

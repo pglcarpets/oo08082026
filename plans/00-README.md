@@ -36,11 +36,9 @@ DONE slices omitted. Full history in git + programme plans.
 
 | Slice | Plan | Focus | Pri | Status |
 |-------|------|-------|-----|--------|
-| **OPS-S01** | 03 | F3 `docs.oando.co.in` origin SSL (525) | P0 | **PARTIAL** |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
 | **WRK-S09** | 05 | 3b Supabase member path (no bypass) | P0 | **PARTIAL** |
 | WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
-| TECH-S05 | 07 | Prod docs host (blocked on OPS-S01 200) | P0 | OPEN |
 | TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |
 | DB-S05 | 04 | `SEAM-DB-TYPES-PRODUCTS` | P1 | OPEN |
@@ -57,10 +55,10 @@ DONE slices omitted. Full history in git + programme plans.
 | SITE-S16 | 06 | Enquiry notification | P1 | OPEN |
 | CHK-S01–S10 | 08 | Session start checklist | — | OPEN |
 
-**P0 open:** TECH-S05 (needs docs HTTPS 200).  
-**P0 partial:** OPS-S01 (DNS up, SSL 525), WRK-S09 (member e2e evidence missing).
+**P0 partial only:** WRK-S09 (member e2e evidence).  
+**No active Failures.md rows.**
 
-**Closed:** OPS-S04 · SITE-S08/S09/S10/S12/S17/S18 · WRK-S14 · PX-S00–S06
+**Closed today:** OPS-S01 · OPS-S04 · TECH-S05 · F3 · SITE-S08/S09/S10/S12/S17/S18 · WRK-S14 · PX-*
 
 ---
 
@@ -73,7 +71,7 @@ DONE slices omitted. Full history in git + programme plans.
 | [04-database](./04-database-plan.md) | Migrations, types |
 | [05-workspaces](./05-workspaces-plan.md) | Planner / Studio |
 | [06-site](./06-site-plan.md) | Marketing, member suite |
-| [07-tech-docs](./07-tech-docs-plan.md) | tech-docs, F3 |
+| [07-tech-docs](./07-tech-docs-plan.md) | tech-docs |
 | [08-oo-start](./08-oo-start-checklist.md) | Session start |
 | [09-proxy-auth](./09-proxy-auth-hardening-plan.md) | Proxy/auth (DONE) |
 

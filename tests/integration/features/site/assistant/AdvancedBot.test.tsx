@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { AdvancedBot } from "@/features/site/assistant/AdvancedBot";
 import { SITE_CONTACT } from "@/features/site/data/contact";

@@ -19,8 +19,9 @@ Restore detail: [`docs/database/restore.md`](./docs/database/restore.md)
 | Production | **read-only** | **supabase** | never |
 
 `DEV_AUTH_BYPASS` is ignored when `NODE_ENV=production` — the code hard-returns
-false, so it cannot leak. `DEV_AUTH_BYPASS_ALLOW_PRODUCTION` appears in
-`.env.local` but has **zero code references**; it does nothing.
+false, so it cannot leak. **`DEV_AUTH_BYPASS_ALLOW_PRODUCTION` is dead — it has
+zero code references and does nothing. Do not set it; remove it from `.env.local`
+if present.**
 
 Two Supabase projects, and mixing them up is the most common incident here:
 

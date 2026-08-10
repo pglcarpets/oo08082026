@@ -44,6 +44,7 @@ export const DEFAULT_FLAGS = {
   studioExportDxf: true,
   studioImportFiles: true,
   studioPublishCatalog: true,
+  /** @planned Port 03 — draft/live/retired lifecycle. No UI consumer yet; seeded in DB for future admin toggle. */
   studioCatalogLifecycle: false,
 
   // ── Exports (planner) ─────────────────────────────────────────
@@ -57,6 +58,7 @@ export const DEFAULT_FLAGS = {
   plannerAiSpaceSuggest: true,
   /** Port 04 — sketch image → wall/room geometry */
   sketchToPlan: true,
+  /** @planned Marketing site AI advisor. No UI consumer yet; seeded in DB for future site integration. */
   siteAiAdvisor: false,
 
   // ── Sync / data ───────────────────────────────────────────────

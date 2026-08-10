@@ -7,12 +7,34 @@ import {
   SERVICE_PAGE_PILLARS,
 } from "@/features/site/data/routeCopy";
 import { SERVICE_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 export const metadata = SERVICE_PAGE_METADATA;
 
 export default function ServicePage() {
+  const serviceJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/service",
+    title: `${SERVICE_PAGE_COPY.heroTitle} | One&Only`,
+    description: SERVICE_PAGE_COPY.heroSubtitle,
+    pageType: "WebPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Service", path: "/service" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(serviceJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <ServicePageView
         heroKicker={SERVICE_PAGE_COPY.heroKicker}
         heroTitleLead={SERVICE_PAGE_COPY.heroTitleLead}

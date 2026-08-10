@@ -5,6 +5,9 @@ import { AboutPageView } from "@/components/about/AboutPageView";
 import { HomeMarketingLayout } from "@/components/home/layout";
 import { ContactTeaser } from "@/components/shared/ContactTeaser";
 import { ABOUT_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 /** Canonical SEO for /about (title length, description, OG, Twitter, canonical, hreflang). */
 export const metadata: Metadata = ABOUT_PAGE_METADATA;
@@ -21,8 +24,27 @@ export default async function AboutPage() {
   const pillars = t.raw("modelPillars") as AboutPillar[];
   const processSteps = t.raw("processSteps") as AboutProcessStep[];
 
+  const aboutJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/about",
+    title: "About One&Only | One and Only Furniture India — Steelcase & Featherlite",
+    description: t("heroSubtitle"),
+    pageType: "WebPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "About", path: "/about" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(aboutJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <AboutPageView
         heroKicker={t("heroKicker")}
         heroTitleLead={t("heroTitleLead")}

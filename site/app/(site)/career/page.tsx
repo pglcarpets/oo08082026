@@ -5,6 +5,7 @@ import { ContactTeaser } from "@/components/shared/ContactTeaser";
 import { CAREER_PAGE_JOBS } from "@/features/site/data/routeCopy";
 import { CAREER_PAGE_METADATA } from "@/features/site/data/routeMetadata";
 import {
+  buildBreadcrumbJsonLd,
   buildCareerJobsJsonLd,
   buildPageJsonLd,
 } from "@/features/site/data/seo";
@@ -28,6 +29,10 @@ export default async function CareerPage() {
     pageType: "WebPage",
   });
   const careerJobsJsonLd = buildCareerJobsJsonLd(SITE_URL, CAREER_PAGE_JOBS);
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Careers", path: "/career" },
+  ]);
 
   return (
     <>
@@ -42,6 +47,10 @@ export default async function CareerPage() {
         dangerouslySetInnerHTML={{
           __html: sanitizeJsonForScript(careerJobsJsonLd),
         }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
       />
       <HomeMarketingLayout>
         <CareerPageView

@@ -3,12 +3,34 @@ import { ContactTeaser } from "@/components/shared/ContactTeaser";
 import { DownloadsPageView } from "@/components/downloads/DownloadsPageView";
 import { DOWNLOADS_PAGE_COPY, DOWNLOADS_RESOURCE_CATEGORIES } from "@/features/site/data/routeCopy";
 import { DOWNLOADS_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 export const metadata = DOWNLOADS_PAGE_METADATA;
 
 export default function DownloadsPage() {
+  const downloadsJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/downloads",
+    title: `${DOWNLOADS_PAGE_COPY.heroTitle} | One&Only`,
+    description: DOWNLOADS_PAGE_COPY.heroSubtitle,
+    pageType: "WebPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Downloads", path: "/downloads" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(downloadsJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <DownloadsPageView
         heroKicker={DOWNLOADS_PAGE_COPY.heroKicker}
         heroTitleLead={DOWNLOADS_PAGE_COPY.heroTitleLead}

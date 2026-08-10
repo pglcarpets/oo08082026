@@ -9,7 +9,7 @@ import { MarketingCtaLink } from "@/components/ui/MarketingCtaLink";
 import { getBusinessStats } from "@/features/crm/businessStats";
 import { buildClientWorkWithPhotos } from "@/features/site/data/clientWorkPhotos";
 import { CLIENTS_PAGE_COPY, CLIENTS_WORK } from "@/features/site/data/routeCopy";
-import { buildPageJsonLd } from "@/features/site/data/seo";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
 import { formatKpiAsOf, formatKpiValuePlus } from "@/lib/kpiFormat";
 import { SITE_URL } from "@/lib/siteUrl";
 import { sanitizeJsonForScript } from "@/lib/security/sanitize";
@@ -21,6 +21,11 @@ const CLIENTS_JSON_LD = buildPageJsonLd(SITE_URL, {
   description: CLIENTS_PAGE_COPY.heroSubtitle,
   pageType: "CollectionPage",
 });
+
+const CLIENTS_BREADCRUMB_JSON_LD = buildBreadcrumbJsonLd(SITE_URL, [
+  { name: "Home", path: "/" },
+  { name: "Clients", path: "/clients" },
+]);
 
 /**
  * Hero â†’ editorial proof strip â†’ case studies â†’ bronze pull quotes â†’ CTA â†’ ContactTeaser.
@@ -49,6 +54,12 @@ export async function ClientsPageView() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: sanitizeJsonForScript(CLIENTS_JSON_LD),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: sanitizeJsonForScript(CLIENTS_BREADCRUMB_JSON_LD),
         }}
       />
       <ClientsHero

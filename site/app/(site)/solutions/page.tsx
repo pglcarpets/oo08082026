@@ -5,6 +5,9 @@ import { ContactTeaser } from "@/components/shared/ContactTeaser";
 import { SolutionsPageView } from "@/components/solutions/SolutionsPageView";
 import { SOLUTION_CATEGORIES } from "@/features/site/data/solutionsPage";
 import { SOLUTIONS_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 export const metadata = SOLUTIONS_PAGE_METADATA;
 
@@ -18,8 +21,27 @@ export default async function SolutionsPage() {
   const t = await getTranslations("solutions");
   const deliveryMedia = t.raw("deliveryMedia") as DeliveryMedia;
 
+  const solutionsJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/solutions",
+    title: `${t("heroTitleLead")} ${t("heroTitleAccent")}`,
+    description: t("heroSubtitle"),
+    pageType: "CollectionPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Solutions", path: "/solutions" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(solutionsJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <SolutionsPageView
         heroKicker={t("heroKicker")}
         heroTitleLead={t("heroTitleLead")}

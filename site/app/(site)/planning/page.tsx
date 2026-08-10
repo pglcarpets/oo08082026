@@ -9,12 +9,34 @@ import {
   PLANNING_PAGE_STEPS,
 } from "@/features/site/data/routeCopy";
 import { PLANNING_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 export const metadata: Metadata = PLANNING_PAGE_METADATA;
 
 export default function PlanningPage() {
+  const planningJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/planning",
+    title: `${PLANNING_PAGE_COPY.heroTitle} | One&Only`,
+    description: PLANNING_PAGE_COPY.heroSubtitle,
+    pageType: "WebPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Planning", path: "/planning" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(planningJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <PlanningPageView
         heroKicker={PLANNING_PAGE_COPY.heroKicker}
         heroTitleLead={PLANNING_PAGE_COPY.heroTitleLead}

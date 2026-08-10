@@ -4,6 +4,9 @@ import { TrustedByPageView } from "@/components/trusted-by/TrustedByPageView";
 import { TRUSTED_BY_CLIENTS } from "@/features/site/data/proof";
 import { TRUSTED_BY_PAGE_COPY } from "@/features/site/data/routeCopy";
 import { TRUSTED_BY_PAGE_METADATA } from "@/features/site/data/routeMetadata";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
+import { SITE_URL } from "@/lib/siteUrl";
+import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
 export const metadata = TRUSTED_BY_PAGE_METADATA;
 
@@ -13,8 +16,27 @@ export const metadata = TRUSTED_BY_PAGE_METADATA;
 export default function TrustedByPage() {
   const sectors = Array.from(new Set(TRUSTED_BY_CLIENTS.map((client) => client.sector)));
 
+  const trustedByJsonLd = buildPageJsonLd(SITE_URL, {
+    path: "/trusted-by",
+    title: `${TRUSTED_BY_PAGE_COPY.heroTitle} | One&Only`,
+    description: TRUSTED_BY_PAGE_COPY.heroSubtitle,
+    pageType: "WebPage",
+  });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Trusted by", path: "/trusted-by" },
+  ]);
+
   return (
     <HomeMarketingLayout>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(trustedByJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
+      />
       <TrustedByPageView
         heroKicker={TRUSTED_BY_PAGE_COPY.heroKicker}
         heroTitleLead={TRUSTED_BY_PAGE_COPY.heroTitleLead}

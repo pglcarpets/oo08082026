@@ -4,7 +4,7 @@ import { getTranslations } from "next-intl/server";
 import { ContactPageView } from "@/components/contact/ContactPageView";
 import { HomeMarketingLayout } from "@/components/home/layout";
 import { CONTACT_PAGE_METADATA } from "@/features/site/data/routeMetadata";
-import { buildPageJsonLd } from "@/features/site/data/seo";
+import { buildBreadcrumbJsonLd, buildPageJsonLd } from "@/features/site/data/seo";
 import { SITE_URL } from "@/lib/siteUrl";
 import { sanitizeJsonForScript } from "@/lib/security/sanitize";
 
@@ -37,12 +37,20 @@ export default async function ContactPage({
     description: t("heroSubtitle"),
     pageType: "ContactPage",
   });
+  const breadcrumbJsonLd = buildBreadcrumbJsonLd(SITE_URL, [
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+  ]);
 
   return (
     <HomeMarketingLayout>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(contactJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: sanitizeJsonForScript(breadcrumbJsonLd) }}
       />
       <ContactPageView
         intent={intent}

@@ -71,6 +71,8 @@ export default defineConfig({
     hookTimeout: 120_000,
     globals: true,
     environment: "happy-dom",
+    // @ts-expect-error -- vitest 4.x public types omit environmentMatchGlobs
+    environmentMatchGlobs: [["../tests/tech-docs-generator/snapshot.test.ts", "node"]],
     setupFiles: [VITEST_SETUP_FILE, techDocsSetupFile],
     globalSetup: [
       path.resolve(VITEST_WORKSPACE_ROOT, "tests/tech-docs-generator/global-setup.mjs"),

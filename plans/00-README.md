@@ -37,7 +37,6 @@ DONE slices omitted. Full history in git + programme plans.
 | Slice | Plan | Focus | Pri | Status |
 |-------|------|-------|-----|--------|
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
-| TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |
 | DB-S05 | 04 | `SEAM-DB-TYPES-PRODUCTS` | P1 | OPEN |
 | DB-S06 | 04 | Contact DB smokes | P1 | PARTIAL |
@@ -55,7 +54,7 @@ DONE slices omitted. Full history in git + programme plans.
 **No P0 partial slices open.**  
 **No active Failures.md rows.**
 
-**Closed today:** OPS-S01 · OPS-S04 · TECH-S05 · F3 · SITE-S08/S09/S10/S12/S15/S17/S18 · **WRK-S09** · **WRK-S13** · WRK-S14 · PX-*
+**Closed today:** OPS-S01 · OPS-S04 · TECH-S01 · TECH-S05 · F3 · SITE-S08/S09/S10/S12/S15/S17/S18 · **WRK-S09** · **WRK-S13** · WRK-S14 · PX-*
 
 ---
 

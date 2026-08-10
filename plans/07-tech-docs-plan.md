@@ -1,6 +1,6 @@
 # Tech-docs
 
-**AUDITED:** 2026-08-09 · App: `tech-docs-generator/` · Prod: `docs.oando.co.in` (**F3** blocks)  
+**AUDITED:** 2026-08-10 · App: `tech-docs-generator/` · Prod: `docs.oando.co.in` **live**  
 Registry: [`00-README.md`](./00-README.md) · [`docs/architecture/tech-docs-link.md`](../docs/architecture/tech-docs-link.md)
 
 ---
@@ -11,7 +11,8 @@ Registry: [`00-README.md`](./00-README.md) · [`docs/architecture/tech-docs-link
 |----|------|
 | TECH-S02 | `pnpm --filter oando-tech-docs gate` |
 | TECH-S03 | root `pnpm run test` tech-docs lane green |
-| TECH-S04 | `activeBlockers.ts` = F3 only |
+| TECH-S04 | `activeBlockers.ts` cleared when F3 closed |
+| **TECH-S05** | prod `https://docs.oando.co.in/` → **200** (2026-08-10, `server: Vercel`) |
 | TECH-S06 | Admin vs Products DB boundaries in docs |
 
 ---
@@ -21,7 +22,6 @@ Registry: [`00-README.md`](./00-README.md) · [`docs/architecture/tech-docs-link
 | ID | Pri | Seam | Remaining |
 |----|-----|------|-----------|
 | **TECH-S01** | P1 | `snapshot.test.ts` | lane green; dedicated `results/tech-docs/snapshot-test.log` still missing |
-| **TECH-S05** | P0 | prod `docs.oando.co.in` 200 | blocked on **OPS-S01** / F3 |
 
 ```powershell
 pnpm exec vitest run --config tests/vitest.tech-docs.config.ts tests/tech-docs-generator/snapshot.test.ts

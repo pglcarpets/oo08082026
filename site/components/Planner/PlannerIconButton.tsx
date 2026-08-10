@@ -14,6 +14,7 @@ type IconButtonProps = {
 export const IconButton = ({ icon, label, active, onClick, disabled, testId }: IconButtonProps) => (
   <button
     className="icon-btn"
+    aria-pressed={!!active}
     data-active={!!active}
     onClick={onClick}
     disabled={disabled}

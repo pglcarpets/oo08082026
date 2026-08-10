@@ -11,7 +11,7 @@ type ToolRailProps = {
 };
 
 export const ToolRail = ({ tools, activeTool, onSelect, extras }: ToolRailProps) => (
-  <aside className="tool-rail" data-testid="tool-rail" aria-label="Drawing tools">
+  <aside className="tool-rail" data-testid="tool-rail" role="toolbar" aria-label="Canvas tools">
     {tools.map((t, i) =>
       t.divider ? (
         <div key={`d${i}`} className="tool-rail__divider" />

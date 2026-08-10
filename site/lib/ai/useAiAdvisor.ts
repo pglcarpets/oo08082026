@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 
 import {
   callPlannerAdvisor,
@@ -28,9 +28,22 @@ export function useAiAdvisor(options: UseAiAdvisorOptions = {}) {
   const [messages, setMessages] = useState<AiMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const abortRef = useRef<AbortController | null>(null);
+
+  // Abort any in-flight request on unmount.
+  useEffect(() => {
+    return () => {
+      abortRef.current?.abort();
+    };
+  }, []);
 
   const sendMessage = useCallback(
     async (content: string) => {
+      // Cancel any previous in-flight request before starting a new one.
+      abortRef.current?.abort();
+      const controller = new AbortController();
+      abortRef.current = controller;
+
       const userMsg: AiMessage = {
         id: `msg-${Date.now()}-user`,
         role: "user",
@@ -48,11 +61,19 @@ export function useAiAdvisor(options: UseAiAdvisorOptions = {}) {
           content: m.content,
         }));
 
-        const result = await callPlannerAdvisor({
-          mode: "chat",
-          messages: chatHistory,
-          context: mapLegacyAdvisorUiContext(options.context),
-        });
+        const result = await callPlannerAdvisor(
+          {
+            mode: "chat",
+            messages: chatHistory,
+            context: mapLegacyAdvisorUiContext(options.context),
+          },
+          { signal: controller.signal },
+        );
+
+        // Ignore results from an aborted (superseded or unmounted) request.
+        if (controller.signal.aborted) {
+          return;
+        }
 
         const reply = result.content.trim().length > 0 ? result.content : null;
         if (!reply) {
@@ -68,15 +89,21 @@ export function useAiAdvisor(options: UseAiAdvisorOptions = {}) {
 
         setMessages((prev) => [...prev, assistantMsg]);
       } catch (err) {
+        if (controller.signal.aborted) {
+          return;
+        }
         setError(err instanceof Error ? err.message : "Unknown error");
       } finally {
-        setIsLoading(false);
+        if (!controller.signal.aborted) {
+          setIsLoading(false);
+        }
       }
     },
     [messages, options.context],
   );
 
   const clearMessages = useCallback(() => {
+    abortRef.current?.abort();
     setMessages([]);
     setError(null);
   }, []);

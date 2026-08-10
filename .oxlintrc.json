@@ -35,7 +35,7 @@
     "unicorn/prefer-string-starts-ends-with": "error",
     "no-unused-expressions": "error",
     "jsx-a11y/prefer-tag-over-role": "off",
-    "react-hooks/exhaustive-deps": "off"
+    "react-hooks/exhaustive-deps": "warn"
   },
   "overrides": [
     {

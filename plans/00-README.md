@@ -48,13 +48,12 @@ DONE slices omitted. Full history in git + programme plans.
 | TST-S17 | 02 | `audit-3c-planner-polish` | P2 | OPEN |
 | TST-S18 | 02 | `SEAM-E2E-STUDIO-2A` | P2 | OPEN |
 | TST-S19 | 02 | `SEAM-E2E-MARKETING-4A` | P2 | OPEN |
-| SITE-S16 | 06 | Enquiry notification | P1 | OPEN |
 | CHK-S01–S10 | 08 | Session start checklist | — | OPEN |
 
 **No P0 partial slices open.**  
 **No active Failures.md rows.**
 
-**Closed today:** OPS-S01 · OPS-S04 · TECH-S01 · TECH-S05 · F3 · SITE-S08/S09/S10/S12/S15/S17/S18 · **WRK-S09** · **WRK-S13** · WRK-S14 · PX-*
+**Closed today:** OPS-S01 · OPS-S04 · TECH-S01 · TECH-S05 · F3 · SITE-S08/S09/S10/S12/S15/S16/S17/S18 · **WRK-S09** · **WRK-S13** · WRK-S14 · PX-*
 
 ---
 

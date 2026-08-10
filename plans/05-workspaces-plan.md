@@ -11,9 +11,9 @@ WRK-S01–S08 (audit-3b #1–#8) · **WRK-S09** · WRK-S12 (boundaries) · **WRK
 
 **WRK-S08 (2026-08-09):** save binds URL + `reloadSafe` e2e — Playwright fix #8 **passed** (22.9s).
 
-**WRK-S09 (2026-08-10):** Member Planner path with `DEV_AUTH_BYPASS=0` (not guest). Playwright `tests/e2e/audit-3b-supabase-member.spec.ts` — real Supabase user (`E2E_SUPABASE_USER_*`), `/access` sign-in, list → create → save → hard reload → list card → open. Persistence via `oando_plans` + `browserApiFetch` (cookies + CSRF). **Passed** (21.2s). Evidence: `results/planner/audit-3b-supabase/` (`00-env.txt`, `journey.txt`, screenshots 01–06). `typecheck` + `scan:boundaries` green.
+**WRK-S09 (2026-08-10):** Member Planner path with `DEV_AUTH_BYPASS=0` (not guest). Playwright `tests/e2e/audit-3b-supabase-member.spec.ts` — real Supabase user (`E2E_SUPABASE_USER_*`), `/access` sign-in, list → create → save → hard reload → list card → open. Persistence via `oando_plans` + `browserApiFetch` (cookies + CSRF). **Passed** (fresh live rerun: 1 passed). Evidence: `results/planner/audit-3b-supabase/` (`00-env.txt`, `journey.txt`, screenshots 01–06). `typecheck` + `scan:boundaries` green.
 
-**WRK-S13 (2026-08-10):** Responsive audit scoped to workspaces (`node scripts/responsive-audit.mjs --scope=workspaces`). Phone 390×844 + desktop 1920. Offenders were **10px chrome labels** (topbar project label, mobile actions, canvas-info groups, etc.). Bumped planner/studio FOCSS `font-size: 10px` → **11px** (fork-local only). Re-run: **4/4 fully OK**. Evidence: `results/site/responsive-audit-workspaces.txt`. `scan:boundaries` + typecheck green.
+**WRK-S13 (2026-08-10):** Responsive audit scoped to workspaces (`node scripts/responsive-audit.mjs --scope=workspaces`). Phone 390×844 + desktop 1920. Offenders were **10px chrome labels** (topbar project label, mobile actions, canvas-info groups, etc.). Bumped planner/studio FOCSS `font-size: 10px` → **11px** (fork-local only). Fresh re-run: **4/4 fully OK** at both viewports. Evidence: `results/site/responsive-audit-workspaces.txt`. `scan:boundaries` + typecheck green.
 
 **WRK-S14 (2026-08-10):** `PlannerProjectMenu` wired in `Planner.tsx`; verified by `audit-3c-planner-polish.spec.ts`.
 

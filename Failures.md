@@ -11,10 +11,13 @@ Also mirrored in tech-docs: **Tech Stack — Active blockers** (`tech-docs-gener
 
 | ID | Priority | Blocker | Evidence | Owner action |
 |----|----------|---------|----------|--------------|
-| **F3** | P0 | `docs.oando.co.in` **DNS resolves** but HTTPS returns **525** (Cloudflare origin SSL handshake failed). Not NXDOMAIN. | 2026-08-10: `getent hosts docs.oando.co.in` → CF anycast; `curl -I https://docs.oando.co.in/` → **525**. Apex `https://oando.co.in/` → **200**; static CSS → **200**. | Point `docs` origin at a live tech-docs deploy (valid cert or CF Full strict with correct origin). Confirm `curl -I https://docs.oando.co.in/` → **200**. Then drop F3. |
+| — | — | **No active P0 blockers.** | — | — |
 
-**Not blockers:** Apex static CSS 404 (checked 2026-08-10 — `/_next/static/css/*.css` → **200**). Local Next routes for portal/dashboard/ooplanner exist under `site/app/`.
+**Resolved 2026-08-10:**
+
+- **F3** — `docs.oando.co.in` HTTPS **200** (`server: Vercel`). Was NXDOMAIN → 525 → fixed origin/deploy.
+- Apex CSS 200 (OPS-S04).
 
 ---
 
-*Last updated: 2026-08-10 — F3 reframed NXDOMAIN → origin SSL 525; OPS-S04 CSS 200 verified on apex*
+*Last updated: 2026-08-10 — F3 closed (docs 200)*

@@ -11,6 +11,14 @@ import * as productStaticParams from "@/lib/catalog/productStaticParams";
 import * as resolveBlockColors from "@/lib/catalog/resolveBlockColors";
 import * as configuratorCatalogPayload from "@/lib/catalog/configuratorCatalogPayload";
 
+/**
+ * Tests run with NEXT_PUBLIC_ASSET_BASE_URL set, so normalizeAssetPath prepends
+ * the origin. Strip it before comparing to the expected relative path.
+ */
+function stripOrigin(url: string): string {
+  return url.replace(/^https?:\/\/[^/]+/, "");
+}
+
 function sampleProduct(overrides: Partial<Product> = {}): Product {
   return {
     id: "prod-1",
@@ -54,10 +62,10 @@ describe("catalog adapters", () => {
       }),
     ]);
 
-    // Browser (happy-dom) client path: keep original (FS resolve is server-only).
-    expect(normalized[0].images[0]).toBe("/assets/catalog/chair.jpg");
-    expect(normalized[0].flagship_image).toBe("/assets/catalog/flagship.jpg");
-    expect(normalized[0]["3d_model"]).toBe("/models/model.glb");
+    // Browser (happy-dom) client path: normalizeAssetPath prepends NEXT_PUBLIC_ASSET_BASE_URL origin.
+    expect(stripOrigin(normalized[0].images[0])).toBe("/assets/catalog/chair.jpg");
+    expect(stripOrigin(normalized[0].flagship_image ?? "")).toBe("/assets/catalog/flagship.jpg");
+    expect(stripOrigin(normalized[0]["3d_model"] ?? "")).toBe("/models/model.glb");
     expect(normalizeProducts(null as unknown as Product[])).toEqual([]);
   });
 
@@ -69,7 +77,7 @@ describe("catalog adapters", () => {
     expect(compat.detailedInfo.features).toEqual(["Lumbar support", "Adjustable arms"]);
     expect(compat.metadata.sustainabilityScore).toBe(8);
     expect(compat.altText).toBe("Mesh task chair");
-    expect(compat.threeDModelUrl).toBe("/models/chair.glb");
+    expect(stripOrigin(compat.threeDModelUrl ?? "")).toBe("/models/chair.glb");
 
     const sparse = toCompatProduct(
       sampleProduct({

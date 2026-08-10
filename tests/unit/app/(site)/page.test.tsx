@@ -116,15 +116,16 @@ describe("app/(site)/page.tsx", () => {
     expect(screen.queryByTestId("site-mobile-sticky-cta")).not.toBeInTheDocument();
   });
 
-  it("embeds JSON-LD scripts for WebPage and LocalBusiness", async () => {
+  it("embeds JSON-LD script for WebPage", async () => {
     const jsx = await Home();
     const { container } = render(jsx);
     const scripts = container.querySelectorAll(
       'script[type="application/ld+json"]',
     );
-    expect(scripts.length).toBeGreaterThanOrEqual(2);
+    // Home only adds the WebPage graph; Organization/LocalBusiness live in the
+    // sitewide (site)/layout graph (see page.tsx line 25 comment).
+    expect(scripts.length).toBeGreaterThanOrEqual(1);
     const payloads = Array.from(scripts).map((el) => el.innerHTML);
     expect(payloads.some((p) => p.includes("WebPage"))).toBe(true);
-    expect(payloads.some((p) => p.includes("LocalBusiness"))).toBe(true);
   });
 });

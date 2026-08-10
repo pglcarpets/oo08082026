@@ -22,7 +22,7 @@ function catalogIndexAssetsForSlug(slug: string): {
   const entry = (localCatalogIndex as LocalCatalogIndexRow[]).find(
     (row) =>
       row.slug === trimmed ||
-      (trimmed && row.slug.endsWith(`--${trimmed}`)),
+      (trimmed && row.slug?.endsWith(`--${trimmed}`)),
   );
   if (!entry) {return {};}
   return {

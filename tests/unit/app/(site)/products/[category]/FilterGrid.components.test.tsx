@@ -220,7 +220,7 @@ describe('FilterGrid.components', () => {
         productUrlKey: 'awesome-chair',
         categoryId: 'office-chairs',
         name: 'Awesome Chair',
-        image: expectedCardImage,
+        image: expect.stringMatching(/\/img1\.jpg$/),
         href: '/products/office-chairs/awesome-chair',
       });
       expect(mockTrackCompareToggled).toHaveBeenCalled();

@@ -56,6 +56,9 @@ export function HeaderSearchPanel({
         role="search"
         aria-label="Site product search"
         suppressHydrationWarning
+        toolname="searchProducts"
+        tooldescription="Search the One&Only product catalog by keyword (chairs, workstations, tables, storage)."
+        toolautosubmit
         onSubmit={(event) => {
           event.preventDefault();
           onSubmitSearch();
@@ -78,6 +81,7 @@ export function HeaderSearchPanel({
           aria-label="Search products"
           aria-describedby="site-header-search-status"
           aria-controls={showSearchPanel ? "site-header-search-panel" : undefined}
+          toolparamdescription="Product search keywords, for example ergonomic chair or modular workstation."
         />
         <Sparkle size={16} weight="duotone" className="text-contrast-accent" aria-hidden="true" />
         <button type="submit" className="sr-only">

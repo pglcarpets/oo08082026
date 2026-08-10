@@ -169,6 +169,8 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
         data-testid="contact-page-form"
         onSubmit={form.handleSubmit(onSubmit)}
         noValidate
+        toolname="submitContactEnquiry"
+        tooldescription="Submit a workplace furniture project enquiry to One&Only sales. Requires name, message, consent, and either email or phone."
       >
         {contextCopy ? (
           <div className="contact-form-context">
@@ -199,6 +201,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                   tabIndex={-1}
                   autoComplete="off"
                   data-testid="contact-form-honeypot"
+                  toolparamdescription="Anti-spam honeypot. Always leave empty."
                 />
               </>
             )}
@@ -228,6 +231,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                   aria-describedby={
                     showNameInvalid ? "contact-form-error" : "contact-form-intro"
                   }
+                  toolparamdescription="Full name of the person making the enquiry."
                 />
               </FormControl>
               <FormMessage />
@@ -252,6 +256,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                   placeholder="Company Name (optional)"
                   className="contact-form-input"
                   autoComplete="organization"
+                  toolparamdescription="Optional company or organisation name."
                 />
               </FormControl>
               <FormMessage />
@@ -283,6 +288,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                         ? "contact-form-error"
                         : "contact-form-intro"
                     }
+                    toolparamdescription="Work email. Provide email or phone (at least one required)."
                   />
                 </FormControl>
                 <FormMessage />
@@ -313,6 +319,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                         ? "contact-form-error"
                         : "contact-form-intro"
                     }
+                    toolparamdescription="Phone or WhatsApp number with country code. Provide email or phone (at least one required)."
                   />
                 </FormControl>
                 <FormMessage />
@@ -338,6 +345,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                   id="preferredContact"
                   name="preferredContact"
                   className={cn("contact-form-input")}
+                  toolparamdescription="Preferred follow-up channel: any, email, whatsapp, or phone."
                 >
                   <option value="any">Any</option>
                   <option value="email">Email</option>
@@ -374,6 +382,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                       ? "contact-form-error"
                       : "contact-form-intro"
                   }
+                  toolparamdescription="Project brief: city, headcount, product needs, timeline, and any constraints."
                 />
               </FormControl>
               <FormMessage />
@@ -404,6 +413,7 @@ export function CustomerQueryForm({ intent, source }: CustomerQueryFormProps) {
                       : "contact-consent-hint"
                   }
                   data-testid="contact-form-consent"
+                  toolparamdescription="Must be true. Confirms consent for One&Only to use contact details to respond."
                 />
                 <span>
                   I agree that One&Only may use these details to respond to my

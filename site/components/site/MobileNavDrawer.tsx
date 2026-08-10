@@ -264,6 +264,9 @@ export function MobileNavDrawer({ open, onClose, closeButtonRef: _closeButtonRef
               className={drawerSearchClass}
               role="search"
               aria-label="Mobile product search"
+              toolname="searchProductsMobile"
+              tooldescription="Search the One&Only product catalog from the mobile navigation drawer."
+              toolautosubmit
               onSubmit={(event) => {
                 event.preventDefault();
                 void submitSearch();
@@ -285,6 +288,7 @@ export function MobileNavDrawer({ open, onClose, closeButtonRef: _closeButtonRef
                 autoComplete="off"
                 aria-label="Search products"
                 aria-describedby="mobile-nav-search-status"
+                toolparamdescription="Product search keywords, for example ergonomic chair or modular workstation."
               />
               <Sparkle size={16} weight="duotone" className="shrink-0 text-accent1" aria-hidden="true" />
               <button type="submit" className="sr-only">

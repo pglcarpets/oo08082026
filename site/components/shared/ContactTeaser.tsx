@@ -286,6 +286,8 @@ export function ContactTeaser() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 data-testid="home-contact-teaser-form"
                 noValidate
+                toolname="submitHomepageBrief"
+                tooldescription="Submit a short project brief from the homepage to One&Only. Requires name, city, message, consent, and either email or phone."
               >
                 {/* Honeypot: hidden from humans; bots that autofill "website" are silently accepted without DB write. */}
                 <div className="sr-only" aria-hidden="true">
@@ -303,6 +305,7 @@ export function ContactTeaser() {
                           tabIndex={-1}
                           autoComplete="off"
                           data-testid="contact-teaser-honeypot"
+                          toolparamdescription="Anti-spam honeypot. Always leave empty."
                         />
                       </>
                     )}
@@ -331,6 +334,7 @@ export function ContactTeaser() {
                             required
                             maxLength={180}
                             placeholder={t("contact.form.namePlaceholder")}
+                            toolparamdescription="Full name of the person making the enquiry."
                           />
                         </FormControl>
                         <FormMessage />
@@ -356,6 +360,7 @@ export function ContactTeaser() {
                       required
                       maxLength={120}
                       placeholder={t("contact.form.cityPlaceholder")}
+                      toolparamdescription="City or metro where the workplace project will be installed."
                     />
                   </div>
                   <FormField
@@ -386,6 +391,7 @@ export function ContactTeaser() {
                                 ? "contact-teaser-status"
                                 : "contact-teaser-channel-hint"
                             }
+                            toolparamdescription="Phone or WhatsApp number with country code. Provide email or phone (at least one required)."
                           />
                         </FormControl>
                         <FormMessage />
@@ -420,6 +426,7 @@ export function ContactTeaser() {
                                 ? "contact-teaser-status"
                                 : "contact-teaser-channel-hint"
                             }
+                            toolparamdescription="Work email. Provide email or phone (at least one required)."
                           />
                         </FormControl>
                         <FormMessage />
@@ -457,6 +464,7 @@ export function ContactTeaser() {
                           required
                           maxLength={5000}
                           placeholder={t("contact.form.briefPlaceholder")}
+                          toolparamdescription="Short project brief: scope, headcount, products needed, and timeline."
                         />
                       </FormControl>
                       <FormMessage />
@@ -490,6 +498,7 @@ export function ContactTeaser() {
                               : "contact-teaser-consent-hint"
                           }
                           data-testid="contact-teaser-consent"
+                          toolparamdescription="Must be true. Confirms consent for One&Only to use contact details to respond."
                         />
                         <span>
                           {t("contact.form.consentText")}{" "}

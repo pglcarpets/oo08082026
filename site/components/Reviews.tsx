@@ -160,7 +160,12 @@ export function Reviews({
                 Focus on comfort, finish quality, fit for use, and what would matter to the next buyer.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-6 space-y-5">
+              <form
+                onSubmit={handleSubmit}
+                className="mt-6 space-y-5"
+                toolname="submitProductReview"
+                tooldescription="Submit a product review with star rating, name, and practical usage comments."
+              >
                 <div>
                   <span id="review-rating-label" className="pdp-reviews-label">
                     Rating
@@ -210,6 +215,7 @@ export function Reviews({
                     className="pdp-reviews-input"
                     autoComplete="name"
                     required
+                    toolparamdescription="Display name of the reviewer."
                   />
                 </div>
                 <div>
@@ -228,6 +234,7 @@ export function Reviews({
                     className="pdp-reviews-input pdp-reviews-input--textarea"
                     autoComplete="off"
                     required
+                    toolparamdescription="Practical review notes: comfort, finish, fit for use, and tips for the next buyer."
                   />
                 </div>
                 <button

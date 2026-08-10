@@ -20,6 +20,8 @@ type MarketingImageProps = {
    */
   loading?: "lazy" | "eager";
   fetchPriority?: "high" | "low" | "auto";
+  /** Skip `/_next/image` for already-compressed static assets (e.g. marketing hero webp). */
+  unoptimized?: boolean;
 };
 
 /** Raster marketing image with normalize → hero → product-placeholder fallback chain. */
@@ -32,6 +34,7 @@ export function MarketingImage({
   priority = false,
   loading,
   fetchPriority,
+  unoptimized = false,
 }: MarketingImageProps) {
   const candidates = useMemo(() => {
     const raw = [src, DEFAULT_HERO_FALLBACK, PRODUCT_IMAGE_FALLBACK].filter(Boolean);
@@ -53,6 +56,7 @@ export function MarketingImage({
       fetchPriority={fetchPriority}
       sizes={sizes}
       className={className}
+      unoptimized={unoptimized}
       onError={() => {
         setCandidateIndex((current) => Math.min(current + 1, candidates.length - 1));
       }}

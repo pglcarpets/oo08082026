@@ -9,14 +9,5 @@ export type ActiveBlocker = {
   ownerAction: string
 }
 
-export const activeBlockers: ActiveBlocker[] = [
-  {
-    id: 'F3',
-    blocker:
-      'docs.oando.co.in DNS resolves but HTTPS returns 525 (Cloudflare origin SSL handshake failed)',
-    evidence:
-      '2026-08-10: getent hosts docs.oando.co.in → CF anycast; curl -I https://docs.oando.co.in/ → 525. Not NXDOMAIN.',
-    ownerAction:
-      'Point docs origin at a live tech-docs deploy with a valid cert (CF Full strict). Confirm curl -I https://docs.oando.co.in/ → 200. See docs/architecture/tech-docs-link.md.',
-  },
-]
+/** Empty when Failures.md has no active rows. */
+export const activeBlockers: ActiveBlocker[] = []

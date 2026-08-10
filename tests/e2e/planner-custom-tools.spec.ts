@@ -2,7 +2,6 @@ import { expect, test } from "@playwright/test";
 
 import { enterGuestPlannerWorkspace } from "./guestProjectSetup";
 import {
-  clickOnCanvas,
   dragOnCanvas,
   expectObjectCountAtLeast,
   getObjectCount,

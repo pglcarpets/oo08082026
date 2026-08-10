@@ -13,11 +13,3 @@ Also mirrored in tech-docs: **Tech Stack — Active blockers** (`tech-docs-gener
 |----|----------|---------|----------|--------------|
 | — | — | **No active P0 blockers.** | — | — |
 
-**Resolved 2026-08-10:**
-
-- **F3** — `docs.oando.co.in` HTTPS **200** (`server: Vercel`). Was NXDOMAIN → 525 → fixed origin/deploy.
-- Apex CSS 200 (OPS-S04).
-
----
-
-*Last updated: 2026-08-10 — F3 closed (docs 200)*

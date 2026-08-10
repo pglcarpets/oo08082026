@@ -1,4 +1,4 @@
-﻿# Active blockers
+# Active blockers
 
 Plan direction: [`plans/`](./plans/) — handover: [`plans/01-handover.md`](./plans/01-handover.md).  
 Browser for any claim: **`http://localhost:3000` only**.
@@ -11,10 +11,10 @@ Also mirrored in tech-docs: **Tech Stack — Active blockers** (`tech-docs-gener
 
 | ID | Priority | Blocker | Evidence | Owner action |
 |----|----------|---------|----------|--------------|
-| **F3** | P0 | `docs.oando.co.in` has **no public DNS** (NXDOMAIN). | `nslookup docs.oando.co.in` 2026-08-08 — no A record (SOA only). Separate from apex Worker. | Add CF DNS for `docs` → tech-docs host; ship docs separately per `docs/architecture/tech-docs-link.md`. |
+| **F3** | P0 | `docs.oando.co.in` **DNS resolves** but HTTPS returns **525** (Cloudflare origin SSL handshake failed). Not NXDOMAIN. | 2026-08-10: `getent hosts docs.oando.co.in` → CF anycast; `curl -I https://docs.oando.co.in/` → **525**. Apex `https://oando.co.in/` → **200**; static CSS → **200**. | Point `docs` origin at a live tech-docs deploy (valid cert or CF Full strict with correct origin). Confirm `curl -I https://docs.oando.co.in/` → **200**. Then drop F3. |
 
-**Not blockers for the reported 404s:** Page Rules / WAF inventing path 404s (unverified via API — token lacks zone DNS/rules read — but Worker is a transparent proxy and `CF-Cache-Status: DYNAMIC`; 404s carry `x-matched-path: /404` + `x-vercel-cache: HIT` from origin). Local Next routes for portal/dashboard/ooplanner **exist** under `site/app/`.
+**Not blockers:** Apex static CSS 404 (checked 2026-08-10 — `/_next/static/css/*.css` → **200**). Local Next routes for portal/dashboard/ooplanner exist under `site/app/`.
 
 ---
 
-*Last updated: 2026-08-09 — F3 (docs DNS) + F4 (apex X-Robots noindex via Worker Host)*
+*Last updated: 2026-08-10 — F3 reframed NXDOMAIN → origin SSL 525; OPS-S04 CSS 200 verified on apex*

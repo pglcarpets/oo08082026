@@ -36,12 +36,11 @@ DONE slices omitted. Full history in git + programme plans.
 
 | Slice | Plan | Focus | Pri | Status |
 |-------|------|-------|-----|--------|
-| OPS-S01 | 03 | F3 `docs.oando.co.in` DNS | P0 | OPEN |
-| OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
+| **OPS-S01** | 03 | F3 `docs.oando.co.in` origin SSL (525) | P0 | **PARTIAL** |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
 | **WRK-S09** | 05 | 3b Supabase member path (no bypass) | P0 | **PARTIAL** |
 | WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
-| TECH-S05 | 07 | Prod docs host (blocked on OPS-S01) | P0 | OPEN |
+| TECH-S05 | 07 | Prod docs host (blocked on OPS-S01 200) | P0 | OPEN |
 | TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |
 | DB-S05 | 04 | `SEAM-DB-TYPES-PRODUCTS` | P1 | OPEN |
@@ -57,13 +56,13 @@ DONE slices omitted. Full history in git + programme plans.
 | SITE-S12 | 06 | `responsive-audit.mjs` marketing | P1 | OPEN |
 | SITE-S15 | 06 | i18n locale switch e2e | P1 | OPEN |
 | SITE-S16 | 06 | Enquiry notification | P1 | OPEN |
-
 | CHK-S01–S10 | 08 | Session start checklist | — | OPEN |
 
-**P0 open:** OPS-S01, OPS-S04, TECH-S05 (blocked on S01).  
-**P0 partial:** WRK-S09 — member client + units done; member e2e evidence still missing.
+**P0 open:** TECH-S05 (needs docs HTTPS 200).  
+**P0 partial:** OPS-S01 (DNS up, SSL 525), WRK-S09 (member e2e evidence missing).  
+**Closed this check:** OPS-S04 (apex CSS 200).
 
-09 proxy/auth: **PX-S00–S06 all DONE.** · WRK-S14 DONE · SITE-S08/S09/S10/S17 DONE.
+09 proxy/auth DONE · WRK-S14 DONE · SITE-S08/S09/S10/S17 DONE · OPS-S04 DONE.
 
 ---
 

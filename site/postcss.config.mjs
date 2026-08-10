@@ -1,5 +1,1 @@
-export default {
-  plugins: {
-    "@tailwindcss/postcss": {},
-  },
-};
+export { default } from "../config/build/postcss.config.mjs";

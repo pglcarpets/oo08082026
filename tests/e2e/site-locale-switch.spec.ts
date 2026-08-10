@@ -1,8 +1,8 @@
 import { expect, test } from "@playwright/test";
 import { prepareSiteUiCapture } from "./site-ui-helpers";
 
-const HI_ABOUT_HERO = "वन एंड ओनली के बारे में";
-const EN_ABOUT_HERO = "About One&Only";
+const HI_ABOUT_SUBTITLE = "हम व्यावहारिक, टिकाऊ और स्केलेबल वर्कस्पेस सिस्टम डिज़ाइन और डिलीवर करते हैं।";
+const EN_ABOUT_SUBTITLE = "We plan, supply, and install workplaces teams use every day.";
 
 test.describe("site locale switch — wave 1", () => {
   test.use({ viewport: { width: 1280, height: 800 } });
@@ -22,8 +22,8 @@ test.describe("site locale switch — wave 1", () => {
     await page.getByTestId("home-marketing-layout").waitFor({ state: "visible" });
     await prepareSiteUiCapture(page);
 
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(HI_ABOUT_HERO);
-    await expect(page.getByRole("heading", { level: 1 })).not.toContainText(EN_ABOUT_HERO);
+    await expect(page.locator(".about-hero__subtitle")).toContainText(HI_ABOUT_SUBTITLE);
+    await expect(page.locator(".about-hero__subtitle")).not.toContainText(EN_ABOUT_SUBTITLE);
   });
 
   test("footer locale switcher changes about hero to Hindi without a page crash", async ({ page }) => {
@@ -40,9 +40,8 @@ test.describe("site locale switch — wave 1", () => {
     await page.getByTestId("home-marketing-layout").waitFor({ state: "visible" });
     await prepareSiteUiCapture(page);
 
-    const hero = page.getByRole("heading", { level: 1 });
-    await expect(hero).toContainText(HI_ABOUT_HERO);
-    await expect(hero).not.toContainText(EN_ABOUT_HERO);
+    await expect(page.locator(".about-hero__subtitle")).toContainText(HI_ABOUT_SUBTITLE);
+    await expect(page.locator(".about-hero__subtitle")).not.toContainText(EN_ABOUT_SUBTITLE);
     expect(pageErrors).toEqual([]);
   });
 });

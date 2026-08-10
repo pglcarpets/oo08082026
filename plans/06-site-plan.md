@@ -7,7 +7,9 @@ Registry: [`00-README.md`](./00-README.md) · Marketing e2e suite: **TST-S19**
 
 ## DONE
 
-SITE-S01–S07 · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 · **SITE-S12** · SITE-S14 · **SITE-S17** · **SITE-S18**
+SITE-S01–S07 · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 · **SITE-S12** · **SITE-S14** · **SITE-S15** · **SITE-S17** · **SITE-S18**
+
+**SITE-S15 (2026-08-10):** Existing footer locale switcher E2E selects supported Hindi, verifies translated visible copy after reload, URL stability, and no page crash. `tests/e2e/site-locale-switch.spec.ts` — **2 passed**. `typecheck` + `typecheck:tests` green.
 
 **SITE-S12 (2026-08-10):** Responsive audit marketing/site only (`--scope=marketing`). First pass 46/48 OK; offenders: `/offline/` (intentional no chrome — audit exempted) and PDP chips/labels at **10px** (`pdp-chip`, `pdp-card-label`, catalog pills). FOCSS → `--type-tiny-size` (11px). Residual recheck: offline + `/products/seating/arvo/` **OK**. Evidence: `results/site/responsive-audit-marketing.txt`. typecheck + `verify:focss` green.
 
@@ -21,7 +23,6 @@ SITE-S01–S07 · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 · **
 
 | ID | Pri | Seam | Red → green | Deps |
 |----|-----|------|-------------|------|
-| **SITE-S15** | P1 | i18n locale switch e2e | locale switcher UI | — |
 | **SITE-S16** | P1 | enquiry → staff notification | API/service wire | DB-S06 |
 
 ---

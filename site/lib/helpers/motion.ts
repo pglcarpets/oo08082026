@@ -41,15 +41,15 @@ export function fadeUpMount(distance: number = MOTION_TOKENS.distanceMd, delay =
   };
 }
 
-/** Prefer this in client components so `prefers-reduced-motion` is honored. */
+/**
+ * Marketing reveals stay on even when OS has prefers-reduced-motion.
+ * Large parallax/scrub still gated in GSAP helpers — not here.
+ * Returning {} previously left some callers without whileInView targets.
+ */
 export function useFadeUp(
   distance: number = MOTION_TOKENS.distanceMd,
   delay = 0,
-): ReturnType<typeof fadeUp> | Record<string, never> {
-  const reduce = useReducedMotion();
-  if (reduce) {
-    return {};
-  }
+): ReturnType<typeof fadeUp> {
   return fadeUp(distance, delay);
 }
 
@@ -76,22 +76,13 @@ export const staggerItem: Variants = {
   },
 };
 
-/** Instant variants when reduced motion is preferred. */
+/** Stagger reveals for marketing sections — always run (see useFadeUp). */
 export function useStaggerMotion(): {
   container: Variants;
   item: Variants;
   initial: "hidden" | false;
   whileInView: "visible" | undefined;
 } {
-  const reduce = useReducedMotion();
-  if (reduce) {
-    return {
-      container: { hidden: {}, visible: {} },
-      item: { hidden: {}, visible: {} },
-      initial: false,
-      whileInView: undefined,
-    };
-  }
   return {
     container: staggerContainer,
     item: staggerItem,

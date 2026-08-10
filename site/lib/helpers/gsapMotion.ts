@@ -14,7 +14,7 @@ export function registerGsapPlugins(): void {
   pluginsRegistered = true;
 }
 
-/** Honor `prefers-reduced-motion: reduce`. */
+/** Honor `prefers-reduced-motion: reduce` (parallax/scrub only). */
 export function gsapReducedMotion(): boolean {
   if (typeof window === "undefined") {
     return false;
@@ -32,9 +32,9 @@ export function subscribeGsapReducedMotion(onStoreChange: () => void): () => voi
   return () => media.removeEventListener("change", onStoreChange);
 }
 
-/** SSR snapshot: poster-only until client reads `matchMedia`. */
+/** SSR snapshot: assume motion allowed so first paint is not frozen off. */
 export function gsapReducedMotionServerSnapshot(): boolean {
-  return true;
+  return false;
 }
 
 export const GSAP_EASE_OUT = "power3.out";

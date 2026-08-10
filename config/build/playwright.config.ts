@@ -39,6 +39,8 @@ export default defineConfig({
     trace: "on-first-retry",
     navigationTimeout: 60_000,
     actionTimeout: 15_000,
+    // Host OS reduce-motion was killing GSAP/Framer in e2e and local Chromium.
+    reducedMotion: "no-preference",
   },
   expect: {
     toHaveScreenshot: {

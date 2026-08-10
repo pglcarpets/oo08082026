@@ -1,6 +1,6 @@
 /**
  * Browser localStorage project index for residual CRM plan linking.
- * Live interactive app uses `/api/Planner/projects` disk store.
+ * Live interactive app uses `/api/Planner/projects` (disk or supabase by mode).
  */
 
 export type LocalSavedPlan = {

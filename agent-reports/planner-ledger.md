@@ -3,7 +3,7 @@
 **Date:** 2026-08-02 · **Method:** real Playwright interaction at `http://localhost:3000`, viewports 1280×800 and 390×844.  
 **Audit scripts:** `tests/e2e/audit-3a-planner-journey.spec.ts` + `tests/e2e/audit-3a-planner-journey-2.spec.ts` — 13 cases, all pass.  
 **Evidence:** `E:\results\planner\audit-3a\`  
-**Status:** several 3b fixes verified; open blockers remain. Ledger updated 2026-08-06.
+**Status:** several 3b fixes verified; open blockers remain. Ledger updated 2026-08-10 (WRK-S09 member path).
 
 ---
 
@@ -47,12 +47,19 @@ Pre-existing shared helpers (`tests/e2e/guestProjectSetup.ts`, `tests/e2e/planne
 
 Not exercised with interacted-journey evidence: true unauthenticated guest behavior, multi-room plans, wall post-draw editing, multi-select, offline sync, custom furniture upload round-trip, sketch-to-plan processing round-trip, 100+ item performance, route bundle weight, `PlannerScene3D` dock tab.
 
+## WRK-S09 (2026-08-10) — partial
+
+Member client load/save no longer relies on `DEV_AUTH_BYPASS` to skip CSRF
+(`plannerApi` → `browserApiFetch`). Guest cookie path unchanged. Slice stays
+**OPEN** until preview e2e with real member session + `DEV_AUTH_BYPASS=0`
+writes `results/planner/audit-3b-supabase/` (audit-3b suite is still guest-entry).
+
 ## Handover -> 3b (proposed priority)
 
 1. Blocker #1 — Undo/Redo history.
 2. Blocker #2 — BOQ dock panel mount.
 3. Blocker #6 — 390px Place-furniture narrow viewport.
-4. Major #9 — owner decision on `PlannerProjectMenu.tsx`.
+4. Major #9 — owner decision on `PlannerProjectMenu.tsx` (see WRK-S14 — wired).
 5. Deferred list above as time allows.
 
 ## Sign-off

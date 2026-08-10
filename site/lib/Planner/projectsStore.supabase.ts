@@ -163,7 +163,7 @@ export async function writeProjectToSupabase(
     "";
   if (!userId) {
     throw new Error(
-      "Supabase planner mode requires a signed-in user id (use DEV_AUTH_BYPASS=1 for local disk).",
+      "Supabase planner mode requires a signed-in user id (session cookies via withAuth member role).",
     );
   }
   await ensurePlannerProfile(userId, opts?.email);

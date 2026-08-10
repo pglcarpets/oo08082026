@@ -39,9 +39,8 @@ DONE slices are omitted. Full history lives in git + programme plan files.
 | OPS-S01 | 03 | F3 `docs.oando.co.in` DNS | P0 | OPEN |
 | OPS-S04 | 03 | Vercel `--prebuilt` + static CSS 200 | P0 | OPEN |
 | OPS-S05 | 03 | Vercel token rotation | P1 | OPEN |
-| WRK-S09 | 05 | 3b Supabase mode (no bypass) | P0 | OPEN |
+| WRK-S09 | 05 | 3b Supabase member path (no bypass) | P0 | OPEN |
 | WRK-S13 | 05 | `responsive-audit.mjs` workspaces | P1 | OPEN |
-| WRK-S14 | 05 | `PlannerProjectMenu` orphan decision | P2 | OPEN |
 | TECH-S05 | 07 | Prod docs host (blocked on OPS-S01) | P0 | OPEN |
 | TECH-S01 | 07 | `snapshot.test.ts` isolate artifact | P1 | PARTIAL |
 | DB-S04 | 04 | `SEAM-DB-TYPES-ADMIN` | P1 | OPEN |

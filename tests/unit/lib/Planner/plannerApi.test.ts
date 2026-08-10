@@ -4,35 +4,25 @@
  *   /api/Planner/projects[/:id]  (case-sensitive Planner segment)
  *   /api/Planner/catalog[+upload]
  *   /api/exports
+ *
+ * Member saves (no DEV_AUTH_BYPASS) go through browserApiFetch so CSRF +
+ * credentials + trailingSlash are applied.
  */
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-const axiosMocks = vi.hoisted(() => ({
-  get: vi.fn(),
-  post: vi.fn(),
-  patch: vi.fn(),
-  delete: vi.fn(),
-  axiosPost: vi.fn(),
-  create: vi.fn(),
+const browserApiMocks = vi.hoisted(() => ({
+  browserApiFetch: vi.fn(),
+  apiPath: vi.fn((path: string) =>
+    path.endsWith("/") || path.includes("?") ? path : `${path}/`,
+  ),
 }));
 
-vi.mock("axios", () => {
-  axiosMocks.create.mockReturnValue({
-    get: axiosMocks.get,
-    post: axiosMocks.post,
-    patch: axiosMocks.patch,
-    delete: axiosMocks.delete,
-  });
-  return {
-    default: {
-      create: axiosMocks.create,
-      post: axiosMocks.axiosPost,
-    },
-  };
-});
+vi.mock("@/lib/api/browserApi", () => ({
+  browserApiFetch: (...args: unknown[]) => browserApiMocks.browserApiFetch(...args),
+  apiPath: (path: string) => browserApiMocks.apiPath(path),
+}));
 
 import {
-  api,
   createExport,
   createProject,
   deleteProject,
@@ -44,87 +34,115 @@ import {
   uploadFurniture,
 } from "@planner/lib/plannerApi";
 
-// Module load already called axios.create once; capture that config before any clear.
-const createConfigAtLoad = axiosMocks.create.mock.calls[0]?.[0];
+function jsonResponse(data: unknown, status = 200): Response {
+  return new Response(JSON.stringify(data), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
 
 describe("@planner/lib/plannerApi path contract", () => {
   beforeEach(() => {
-    // Clear only HTTP verb mocks — do not wipe axios.create module-init history.
-    axiosMocks.get.mockReset();
-    axiosMocks.post.mockReset();
-    axiosMocks.patch.mockReset();
-    axiosMocks.delete.mockReset();
-    axiosMocks.axiosPost.mockReset();
-    axiosMocks.get.mockResolvedValue({ data: [] });
-    axiosMocks.post.mockResolvedValue({ data: {} });
-    axiosMocks.patch.mockResolvedValue({ data: {} });
-    axiosMocks.delete.mockResolvedValue({ data: { ok: true } });
-    axiosMocks.axiosPost.mockResolvedValue({ data: {} });
+    browserApiMocks.browserApiFetch.mockReset();
+    browserApiMocks.apiPath.mockClear();
+    browserApiMocks.browserApiFetch.mockResolvedValue(jsonResponse({}));
   });
 
-  it("configures axios baseURL /api with JSON content-type", () => {
-    expect(createConfigAtLoad).toEqual({
-      baseURL: "/api",
-      headers: { "Content-Type": "application/json" },
-    });
-    expect(api).toBeDefined();
-  });
-
-  it("lists projects at GET /Planner/projects (relative to /api)", async () => {
-    axiosMocks.get.mockResolvedValueOnce({ data: [{ id: "p_1" }] });
+  it("lists projects at GET /api/Planner/projects", async () => {
+    browserApiMocks.browserApiFetch.mockResolvedValueOnce(
+      jsonResponse([{ id: "p_1" }]),
+    );
     const data = await listProjects();
-    expect(axiosMocks.get).toHaveBeenCalledWith("/Planner/projects");
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/projects",
+    );
     expect(data).toEqual([{ id: "p_1" }]);
   });
 
-  it("gets a project at GET /Planner/projects/:id", async () => {
-    axiosMocks.get.mockResolvedValueOnce({ data: { id: "p_1" } });
+  it("gets a project at GET /api/Planner/projects/:id", async () => {
+    browserApiMocks.browserApiFetch.mockResolvedValueOnce(
+      jsonResponse({ id: "p_1" }),
+    );
     await getProject("p_1");
-    expect(axiosMocks.get).toHaveBeenCalledWith("/Planner/projects/p_1");
-  });
-
-  it("creates a project at POST /Planner/projects", async () => {
-    const payload = { name: "A", canvas_json: {} };
-    axiosMocks.post.mockResolvedValueOnce({ data: { id: "p_a_x" } });
-    await createProject(payload);
-    expect(axiosMocks.post).toHaveBeenCalledWith("/Planner/projects", payload);
-  });
-
-  it("updates a project at PATCH /Planner/projects/:id", async () => {
-    const payload = { name: "B" };
-    await updateProject("p_1", payload);
-    expect(axiosMocks.patch).toHaveBeenCalledWith("/Planner/projects/p_1", payload);
-  });
-
-  it("deletes a project at DELETE /Planner/projects/:id", async () => {
-    await deleteProject("p_1");
-    expect(axiosMocks.delete).toHaveBeenCalledWith("/Planner/projects/p_1");
-  });
-
-  it("lists furniture catalog at GET /Planner/catalog (never /Studio)", async () => {
-    await listFurniture({ category: "desks" });
-    expect(axiosMocks.get).toHaveBeenCalledWith("/Planner/catalog", {
-      params: { category: "desks" },
-    });
-    const path = String(axiosMocks.get.mock.calls[0]?.[0] ?? "");
-    expect(path).not.toMatch(/Studio/i);
-  });
-
-  it("uploads furniture via absolute /api/Planner/catalog/upload", async () => {
-    const form = new FormData();
-    form.append("name", "Custom");
-    await uploadFurniture(form);
-    expect(axiosMocks.axiosPost).toHaveBeenCalledWith(
-      "/api/Planner/catalog/upload",
-      form,
-      { headers: { "Content-Type": "multipart/form-data" } },
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/projects/p_1",
     );
   });
 
-  it("posts exports at POST /exports (neutral, not Studio)", async () => {
+  it("creates a project at POST /api/Planner/projects with JSON body", async () => {
+    const payload = { name: "A", canvas_json: {} };
+    browserApiMocks.browserApiFetch.mockResolvedValueOnce(
+      jsonResponse({ id: "p_a_x" }, 201),
+    );
+    await createProject(payload);
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/projects",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+    );
+  });
+
+  it("updates a project at PATCH /api/Planner/projects/:id", async () => {
+    const payload = { name: "B" };
+    await updateProject("p_1", payload);
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/projects/p_1",
+      {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      },
+    );
+  });
+
+  it("deletes a project at DELETE /api/Planner/projects/:id", async () => {
+    await deleteProject("p_1");
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/projects/p_1",
+      { method: "DELETE" },
+    );
+  });
+
+  it("lists furniture catalog at GET /api/Planner/catalog (never /Studio)", async () => {
+    await listFurniture({ category: "desks" });
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/catalog?category=desks",
+    );
+    const path = String(browserApiMocks.browserApiFetch.mock.calls[0]?.[0] ?? "");
+    expect(path).not.toMatch(/Studio/i);
+  });
+
+  it("uploads furniture via /api/Planner/catalog/upload (CSRF path)", async () => {
+    const form = new FormData();
+    form.append("name", "Custom");
+    await uploadFurniture(form);
+    expect(browserApiMocks.apiPath).toHaveBeenCalledWith(
+      "/api/Planner/catalog/upload",
+    );
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith(
+      "/api/Planner/catalog/upload/",
+      { method: "POST", body: form },
+    );
+  });
+
+  it("posts exports at POST /api/exports (neutral, not Studio)", async () => {
     const payload = { data_url: "data:image/png;base64,xx", format: "png" };
     await createExport(payload);
-    expect(axiosMocks.post).toHaveBeenCalledWith("/exports", payload);
+    expect(browserApiMocks.browserApiFetch).toHaveBeenCalledWith("/api/exports", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
+  });
+
+  it("surfaces API error detail when response is not ok", async () => {
+    browserApiMocks.browserApiFetch.mockResolvedValueOnce(
+      jsonResponse({ detail: "Authentication required" }, 401),
+    );
+    await expect(listProjects()).rejects.toThrow("Authentication required");
   });
 
   it("fileUrl passes through path strings and nullish to null", () => {

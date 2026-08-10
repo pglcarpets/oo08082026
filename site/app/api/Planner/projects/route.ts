@@ -25,7 +25,7 @@ export const GET = withAuth(
       return NextResponse.json(
         {
           detail:
-            "Planner persistence not configured (set admin Supabase env, or DEV_AUTH_BYPASS=1 for disk).",
+            "Planner persistence not configured (set admin Supabase env for supabase mode, or enable disk only via DEV_AUTH_BYPASS=1 in non-production).",
           source: getPlannerProjectsSource(),
         },
         { status: 503 },
@@ -76,7 +76,7 @@ async function createProject(request: Request, auth: AuthContext) {
     return NextResponse.json(
       {
         detail:
-          "Planner persistence not configured (set admin Supabase env, or DEV_AUTH_BYPASS=1 for disk).",
+          "Planner persistence not configured (set admin Supabase env for supabase mode, or enable disk only via DEV_AUTH_BYPASS=1 in non-production).",
       },
       { status: 503 },
     );

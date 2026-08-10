@@ -1227,7 +1227,7 @@ const Planner = () => {
         setProjectName(proj.name);
         try { localStorage.setItem(PLANNER_LAST_PROJECT_KEY, proj.id); } catch { /* noop */ }
         if (proj.sheet && proj.sheet.width_mm) setSheet({ ...DEFAULT_SHEET, ...proj.sheet });
-        c.loadFromJSON(proj.canvas_json, () => {
+        c.loadFromJSON(proj.canvas_json ?? {}, () => {
           drawGridAndSheet();
           c.requestRenderAll();
           refreshLayers();

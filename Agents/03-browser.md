@@ -20,6 +20,8 @@
 | `node scripts/responsive-audit.mjs` | `results/responsive-audit/` — full route list, mobile + desktop screenshots |
 | `scripts/tmp-*.mjs` | Session scratch — prefer `responsive-audit.mjs` for full pass |
 
-Local dev runs `DEV_AUTH_BYPASS=1`, which also switches Planner projects and the
-furniture catalog to **disk**. Browser proof gathered that way does not prove the
-Supabase path production uses.
+Local dev often runs `DEV_AUTH_BYPASS=1`, which switches Planner projects and the
+furniture catalog to **disk** and skips CSRF in `withAuth`. That does **not** prove
+the production member path: set `DEV_AUTH_BYPASS=0` (or unset), sign in with a real
+Supabase session, and use Planner load/save via `plannerApi` → `browserApiFetch`
+(cookies + CSRF + trailingSlash).

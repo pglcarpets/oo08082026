@@ -78,6 +78,12 @@ export type PlannerProject = {
   thumbnail_url?: string | null;
   objects_count: number;
   updated_at: string;
+  /** Present on full load/save payloads from `/api/Planner/projects`. */
+  canvas_json?: string | Record<string, unknown>;
+  sheet?: Partial<PlannerSheet> & { width_mm?: number };
+  layers?: unknown;
+  user_id?: string | null;
+  created_at?: string;
 };
 
 export type LayerRow = {

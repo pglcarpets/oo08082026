@@ -3,5 +3,11 @@
   "installCommand": "cd .. && pnpm install",
   "buildCommand": "cd .. && pnpm --filter oando-tech-docs build && node tech-docs-generator/scripts/stage-vercel-output.mjs",
   "outputDirectory": "dist",
-  "framework": null
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/((?!assets/|favicon\\.ico|icon\\.png|.*\\..*).*)",
+      "destination": "/index.html"
+    }
+  ]
 }

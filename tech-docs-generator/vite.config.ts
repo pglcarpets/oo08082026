@@ -38,7 +38,9 @@ export function createViteConfig(mode: string): UserConfig {
       outDir: getSiteOutputRoot(repoRoot),
       emptyOutDir: true,
     },
-    base: './',
+    // Absolute base so /tech-stack and other client routes load /assets/* (not
+    // ./assets relative to the deep path). Relative base broke hard-refresh on Vercel.
+    base: '/',
   }
 }
 

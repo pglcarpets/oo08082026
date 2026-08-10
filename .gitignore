@@ -55,6 +55,8 @@ site/public/assets/others/legacy/recovery/
 site/public/assets/others/legacy/recovery-merged/
 site/public/assets/others/misc/from-recovery/
 .env*
+# Template is safe to commit; required by tech-docs generate on Vercel.
+!.env.example
 
 # Qwen IDE session artifacts
 .qwen/

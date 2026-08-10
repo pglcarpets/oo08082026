@@ -1,4 +1,4 @@
-import { readdirSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, statSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readSourceText } from './filesystem.mjs'
@@ -36,6 +36,12 @@ function walkFiles(rootDir, out = []) {
 }
 
 function collectEnvNamesFromExample(examplePath) {
+  // Vercel / sparse checkouts may omit the template (root `.gitignore` used to
+  // match `.env*`). Never crash generate — inventory is empty without a file.
+  if (!existsSync(examplePath)) {
+    return []
+  }
+
   const lines = readSourceText(examplePath).split('\n')
   const entries = []
 

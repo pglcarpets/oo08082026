@@ -52,6 +52,7 @@ export interface ContactPageViewProps {
 /**
  * Signature beat: bronze rule scale-X draw, then form-band entrance.
  * Hero keeps a quiet copy stagger.
+ * Form band must stay readable — never animate opacity on the enquiry form.
  */
 export function ContactPageView({
   intent,
@@ -117,7 +118,7 @@ export function ContactPageView({
 
   useGSAP(
     () => {
-      if (gsapReducedMotion()) {
+      if (!motionReady || gsapReducedMotion()) {
         return;
       }
 
@@ -143,11 +144,14 @@ export function ContactPageView({
         }
 
         if (formBand) {
+          // y-only motion — opacity stays 1 so the enquiry form is never unreadable
+          // if ScrollTrigger is interrupted or leaves an inline style.
+          gsap.set(formBand, { opacity: 1, clearProps: "opacity" });
           gsap.from(formBand, {
             y: GSAP_SCROLL_REVEAL.y,
-            opacity: GSAP_SCROLL_REVEAL.opacity,
             duration: GSAP_SCROLL_REVEAL.duration,
             ease: GSAP_EASE_OUT,
+            clearProps: "transform",
             scrollTrigger: {
               trigger: formBand,
               start: "top 88%",

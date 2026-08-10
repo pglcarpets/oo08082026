@@ -1,34 +1,36 @@
-# One&Only (oando.co.in) — main marketing site
+# One&Only (oando.co.in)
 
-> Premium ergonomic office furniture for modern workplaces across India.
-> Planning-led workstations, seating, storage, tables, and soft seating for commercial projects nationwide.
+> Premium ergonomic office furniture for modern workplaces across India. Planning-led workstations, seating, storage, tables, and soft seating for commercial projects nationwide.
 
-## Primary URLs
+## Primary pages
 
-- Home: https://oando.co.in/
-- Products: https://oando.co.in/products/
-- Solutions: https://oando.co.in/solutions/
-- Planning: https://oando.co.in/planning/
-- Contact / sales: https://oando.co.in/contact/
-- Showrooms: https://oando.co.in/showrooms/
-- Downloads / resource desk: https://oando.co.in/downloads/
-- Clients: https://oando.co.in/clients/
-- About: https://oando.co.in/about/
+- [Home](https://oando.co.in/): Main marketing homepage and product entry points
+- [Products](https://oando.co.in/products/): Full office furniture catalog by category
+- [Solutions](https://oando.co.in/solutions/): Workspace solutions by need and sector
+- [Planning](https://oando.co.in/planning/): Layout planning and project scoping service
+- [Contact](https://oando.co.in/contact/): Sales and project enquiry
+- [Showrooms](https://oando.co.in/showrooms/): Visit locations and showroom details
+- [Downloads](https://oando.co.in/downloads/): Catalogs, datasheets, and resource desk
+- [Clients](https://oando.co.in/clients/): Selected client installs and project proof
+- [About](https://oando.co.in/about/): Company background (since 2011, pan-India)
 
-## Focus
+## Product categories
 
-- Market: India commercial / enterprise offices, multi-city rollouts
-- Categories: workstations, seating, storage, tables, soft seating
-- Partners: Steelcase, Featherlite, Humanscale and other leading brands
+- [Seating](https://oando.co.in/products/seating/): Task, executive, and ergonomic chairs
+- [Workstations](https://oando.co.in/products/workstations/): Modular desk systems for teams
+- [Tables](https://oando.co.in/products/tables/): Meeting, cabin, and collaboration tables
+- [Storage](https://oando.co.in/products/storages/): Cabinets, pedestals, and lockers
+- [Soft seating](https://oando.co.in/products/soft-seating/): Lounge and collaboration seating
 
 ## Crawl policy
 
-- Public marketing pages are indexable.
-- Disallow private shells: /admin/, /api/, /dashboard/, /portal/, /ooplanner/, /oostudio/, /access/
-- Full rules: https://oando.co.in/robots.txt
-- Sitemap: https://oando.co.in/sitemap.xml
+- Public marketing pages are indexable for discovery and training use.
+- Do not crawl private app shells: `/admin/`, `/api/`, `/dashboard/`, `/portal/`, `/ooplanner/`, `/oostudio/`, `/access/`.
+- [robots.txt](https://oando.co.in/robots.txt): Full crawl rules
+- [sitemap.xml](https://oando.co.in/sitemap.xml): Canonical URL list
 
 ## Contact
 
-- Sales: sales@oando.co.in · +91 98356 30940
+- Sales email: sales@oando.co.in
+- Phone: +91 98356 30940
 - Corporate office: 401, Jagat Trade Centre, Frazer Road, Patna 800001, Bihar, India

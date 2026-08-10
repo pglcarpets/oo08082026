@@ -22,6 +22,13 @@ import {
 
 registerGsapPlugins();
 
+/** Skip entrance motion under md — mobile needs instant, solid UI (no opacity/y stuck states). */
+function contactMotionDisabled(): boolean {
+  if (typeof window === "undefined") return true;
+  if (gsapReducedMotion()) return true;
+  return window.matchMedia("(max-width: 47.99rem)").matches;
+}
+
 type ContactOffice = { title: string; lines: string[] };
 
 export interface ContactPageViewProps {
@@ -50,9 +57,8 @@ export interface ContactPageViewProps {
 }
 
 /**
- * Signature beat: bronze rule scale-X draw, then form-band entrance.
- * Hero keeps a quiet copy stagger.
- * Form band must stay readable — never animate opacity on the enquiry form.
+ * Signature beat: bronze rule scale-X draw, then form-band entrance (desktop only).
+ * Mobile: no GSAP — form and copy paint fully visible immediately.
  */
 export function ContactPageView({
   intent,
@@ -92,7 +98,7 @@ export function ContactPageView({
 
   useGSAP(
     () => {
-      if (!motionReady || gsapReducedMotion() || !heroRef.current) {
+      if (!motionReady || contactMotionDisabled() || !heroRef.current) {
         return;
       }
 
@@ -108,6 +114,7 @@ export function ContactPageView({
           duration: GSAP_REVEAL.duration,
           stagger: GSAP_REVEAL.stagger,
           ease: GSAP_EASE_OUT,
+          clearProps: "opacity,transform",
         });
       }, heroRef);
 
@@ -118,7 +125,7 @@ export function ContactPageView({
 
   useGSAP(
     () => {
-      if (!motionReady || gsapReducedMotion()) {
+      if (!motionReady || contactMotionDisabled()) {
         return;
       }
 
@@ -135,6 +142,7 @@ export function ContactPageView({
             transformOrigin: "left center",
             duration: 0.7,
             ease: GSAP_EASE_OUT,
+            clearProps: "transform",
             scrollTrigger: {
               trigger: bronzeRef.current,
               start: "top 90%",
@@ -144,8 +152,6 @@ export function ContactPageView({
         }
 
         if (formBand) {
-          // y-only motion — opacity stays 1 so the enquiry form is never unreadable
-          // if ScrollTrigger is interrupted or leaves an inline style.
           gsap.set(formBand, { opacity: 1, clearProps: "opacity" });
           gsap.from(formBand, {
             y: GSAP_SCROLL_REVEAL.y,

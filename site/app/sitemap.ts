@@ -20,6 +20,22 @@ const STATIC_SITEMAP_PATHS = Array.from(
   ]),
 );
 
+/**
+ * Stable lastModified reference for static marketing routes.
+ *
+ * Captured ONCE per server instance (cold start), NOT on every sitemap()
+ * invocation. Previously this used `new Date()` inside sitemap(), so every
+ * edge-cache refresh stamped all entries with a fresh identical "now" — Google
+ * then saw every URL as modified-in-lockstep periodically, which devalues
+ * <lastmod> as a per-URL freshness / crawl-prioritization signal. A stable
+ * epoch only shifts when a new instance cold-starts (far rarer than a cache
+ * miss), so lastmod stays coherent across cache refreshes.
+ *
+ * Catalog product/category entries still fall back to this epoch; plumbing
+ * real per-URL `created_at`/`updated_at` from the catalog is a follow-up.
+ */
+const SITEMAP_EPOCH = new Date();
+
 /** Catalog id/slug segments — reject host injection and path traversal. */
 function isSafeSitemapSegment(segment: unknown): segment is string {
   return typeof segment === "string" && /^[a-zA-Z0-9][a-zA-Z0-9._~-]*$/.test(segment);
@@ -60,10 +76,10 @@ function staticPathPriority(path: string): number {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const now = new Date();
+  const lastModified = SITEMAP_EPOCH;
   const entries: MetadataRoute.Sitemap = STATIC_SITEMAP_PATHS.map((path) => ({
     url: sitemapUrl(path),
-    lastModified: now,
+    lastModified,
     changeFrequency:
       path === "/" || path === "/products"
         ? "daily"
@@ -85,7 +101,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       }
       entries.push({
         url: sitemapUrl(categoryPath),
-        lastModified: now,
+        lastModified,
         changeFrequency: "weekly",
         priority: 0.8,
       });
@@ -102,7 +118,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           }
           entries.push({
             url: sitemapUrl(productPath),
-            lastModified: now,
+            lastModified,
             changeFrequency: "monthly",
             priority: 0.6,
           });

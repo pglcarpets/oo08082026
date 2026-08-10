@@ -7,14 +7,13 @@ Registry: [`00-README.md`](./00-README.md) · Marketing e2e suite: **TST-S19**
 
 ## DONE
 
-SITE-S01–S07 (hydration/console) · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 (theme API) · SITE-S14 (verify:focss)
+SITE-S01–S07 (hydration/console) · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 (theme API) · SITE-S14 (verify:focss) · **SITE-S17**
 
-**SITE-S10 (2026-08-10):** Route is live (`app/(site)/trusted-by/page.tsx` → 200). Intermittent `net::ERR_ABORTED` came from slashless `/trusted-by` 308 → `/trusted-by/` under `trailingSlash: true`. Canonicalized hrefs; e2e click→hero green.
+**SITE-S10 (2026-08-10, re-verified):** Direct `/trusted-by/` → **200**, h1 “Trusted by.”, `trusted-by-hero` visible, no soft 404. In-app glassProof (`href=/trusted-by/`) click lands same. No nav request failures. Evidence: `results/site-slice-close-evidence.txt`.
 
-**SITE-S08 / SITE-S09 (2026-08-10):** UnifiedAssistant at **390×844**.  
-- **S08:** Mobile FAB anchors (bottom / raised / panel) clamped into safe area for ≤639.98px; assistant FAB forced to 3rem icon hit target so padding cannot expand past the edge.  
-- **S09:** Sheet header is a flex row with gap, `brand`/`brand-text` `min-w-0 flex-1`, title/subtitle ellipsis, close `shrink-0`; overlay/sheet `max-width: 100%` + safe-area.  
-Evidence: `pnpm exec playwright test … tests/e2e/site-assistant-shell.spec.ts` **3 passed** (includes `@390` launcher + header asserts). Integration `UnifiedAssistant.test.tsx` green.
+**SITE-S08 / SITE-S09 (2026-08-10, re-verified @390×844):** Launcher fully in viewport (48×48 @ x=8,y=776). Chat sheet header overflowX=0, close on-canvas, no brand/close overlap. Evidence: same + `tests/e2e/site-assistant-shell.spec.ts` @390.
+
+**SITE-S17 (2026-08-10):** Homepage `h1`–`h3` scan: **20 headings, 0 empty** (hero, collections, tools, why, showcase, contact all have text). Trust strip is KPI-only (`aria-label`, no empty heading node). Showcase empty `label` fields unused (`item.name` only). Evidence: `results/site-slice-close-evidence.txt`.
 
 **Removed dup:** SITE-S13→TST-S19
 
@@ -27,7 +26,6 @@ Evidence: `pnpm exec playwright test … tests/e2e/site-assistant-shell.spec.ts`
 | **SITE-S12** | P1 | responsive-audit **site/marketing** routes | FOCSS per fail | CHK-S05 |
 | **SITE-S15** | P1 | i18n locale switch e2e | locale switcher UI | — |
 | **SITE-S16** | P1 | enquiry → staff notification | API/service wire | DB-S06 |
-| **SITE-S17** | P2 | empty homepage headings | i18n/CMS keys | — |
 | **SITE-S18** | P2 | lazy images never load on scroll | image component | S01 |
 
 ---

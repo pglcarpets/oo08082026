@@ -15,11 +15,12 @@ describe("techDocsUrl", () => {
     expect(DEV_TECH_DOCS_URL).toBe("http://localhost:3001");
   });
 
-  it("defaults to docs.oando.co.in subdomain in production", () => {
+  it("defaults to techdocsgenerator Vercel host in production", () => {
     expect(getTechDocsPublicUrl({ NODE_ENV: "production" })).toBe(
       DEFAULT_TECH_DOCS_URL,
     );
-    expect(DEFAULT_TECH_DOCS_URL).toBe("https://docs.oando.co.in");
+    // docs.oando.co.in is Cloudflare 525 until DNS/SSL (OPS-S01); use working SPA host.
+    expect(DEFAULT_TECH_DOCS_URL).toBe("https://techdocsgenerator.vercel.app");
   });
 
   it("uses NEXT_PUBLIC_TECH_DOCS_URL when set", () => {

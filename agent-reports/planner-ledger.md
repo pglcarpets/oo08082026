@@ -47,12 +47,13 @@ Pre-existing shared helpers (`tests/e2e/guestProjectSetup.ts`, `tests/e2e/planne
 
 Not exercised with interacted-journey evidence: true unauthenticated guest behavior, multi-room plans, wall post-draw editing, multi-select, offline sync, custom furniture upload round-trip, sketch-to-plan processing round-trip, 100+ item performance, route bundle weight, `PlannerScene3D` dock tab.
 
-## WRK-S09 (2026-08-10) — partial
+## WRK-S09 (2026-08-10) — DONE
 
-Member client load/save no longer relies on `DEV_AUTH_BYPASS` to skip CSRF
-(`plannerApi` → `browserApiFetch`). Guest cookie path unchanged. Slice stays
-**OPEN** until preview e2e with real member session + `DEV_AUTH_BYPASS=0`
-writes `results/planner/audit-3b-supabase/` (audit-3b suite is still guest-entry).
+Member client load/save uses `browserApiFetch` (cookies + CSRF) with
+`DEV_AUTH_BYPASS=0`. Playwright `tests/e2e/audit-3b-supabase-member.spec.ts`
+signed in as real Supabase user (`E2E_SUPABASE_USER_*`), not guest:
+list → create → save → hard reload → list → open. **Passed** (21.2s).
+Evidence: `results/planner/audit-3b-supabase/`.
 
 ## Handover -> 3b (proposed priority)
 

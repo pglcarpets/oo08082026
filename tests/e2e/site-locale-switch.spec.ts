@@ -26,16 +26,23 @@ test.describe("site locale switch — wave 1", () => {
     await expect(page.getByRole("heading", { level: 1 })).not.toContainText(EN_ABOUT_HERO);
   });
 
-  test("footer locale switcher changes about hero to Hindi", async ({ page }) => {
+  test("footer locale switcher changes about hero to Hindi without a page crash", async ({ page }) => {
+    const pageErrors: string[] = [];
+    page.on("pageerror", (error) => pageErrors.push(error.message));
+
     await page.goto("/about");
     await page.getByTestId("home-marketing-layout").waitFor({ state: "visible" });
 
     const switcher = page.locator("#locale-switcher");
     await switcher.scrollIntoViewIfNeeded();
     await switcher.selectOption("hi");
+    await expect(page).toHaveURL(/\/about\/?$/);
     await page.getByTestId("home-marketing-layout").waitFor({ state: "visible" });
     await prepareSiteUiCapture(page);
 
-    await expect(page.getByRole("heading", { level: 1 })).toContainText(HI_ABOUT_HERO);
+    const hero = page.getByRole("heading", { level: 1 });
+    await expect(hero).toContainText(HI_ABOUT_HERO);
+    await expect(hero).not.toContainText(EN_ABOUT_HERO);
+    expect(pageErrors).toEqual([]);
   });
 });

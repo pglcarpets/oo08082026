@@ -1,0 +1,30 @@
+{
+  "generatedAt": "2026-08-10T14:26:50.538Z",
+  "skipped": false,
+  "mode": "apply",
+  "bucket": "oando-asset-cdn",
+  "endpoint": "https://78e07661362639e5e9008dadd85a3f2d.r2.cloudflarestorage.com",
+  "credentialSource": "cloudflare-r2",
+  "assetsRoot": "site/public/assets",
+  "totalFound": 718,
+  "planned": 718,
+  "limit": null,
+  "uploaded": 718,
+  "failed": 0,
+  "bytesPlanned": 179057785,
+  "sampleKeys": [
+    "catalog/collaborative/oando-collaborative--cocoon-pod/image-21.webp",
+    "catalog/collaborative/oando-collaborative--cocoon-pod/image-27.webp",
+    "catalog/collaborative/oando-collaborative--cocoon-pod/image-33.webp",
+    "catalog/collaborative/oando-collaborative--cocoon-pod/image-73.webp",
+    "catalog/collaborative/oando-collaborative--cocoon-pod/image-8.webp",
+    "catalog/educational/oando-educational--connecta/image-3.webp",
+    "catalog/educational/oando-educational--magazine-rack/image-2.webp",
+    "catalog/flagship/categories/soft-seating.webp",
+    "catalog/flagship/categories/storages.webp",
+    "catalog/flagship/categories/tables.webp",
+    "catalog/flagship/categories/workstations.webp",
+    "catalog/seating/cafe/oando-seating--cafe-sleek/cafe_high_2.webp"
+  ],
+  "errors": []
+}

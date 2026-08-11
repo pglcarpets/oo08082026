@@ -28,7 +28,8 @@
   },
   "include": [
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "../site/types/webmcp.d.ts"
   ],
   "exclude": [
     "archive/**",

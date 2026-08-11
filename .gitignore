@@ -13,7 +13,8 @@ site/AGENTS.md
 generated-documents/
 .agents/
 # Local tool dumps / evidence (dir may exist for layout; never push contents)
-results/
+results/*
+!results/.gitkeep
 
 # Playwright / E2E artifacts (never commit trace bundles)
 playwright-report/

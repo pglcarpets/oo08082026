@@ -55,10 +55,10 @@ describe('tech docs package contract', () => {
     expect(packageJson.name).toBe('oando-tech-docs')
   })
 
-  it('uses a portable Vite base', () => {
+  it('uses an absolute Vite base for deep-route refreshes', () => {
     const vite = readSource(path.join(packageRoot, 'vite.config.ts'))
 
-    expect(vite).toMatch(/base:\s*['"]\.\/['"]/)
+    expect(vite).toMatch(/base:\s*['"]\/['"]/)
   })
 
   it('registers the live repository regeneration plugin', () => {

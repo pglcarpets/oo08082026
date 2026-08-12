@@ -2,7 +2,7 @@
 
 Live docs under `docs/database/`. Code and migrations under `site/platform/` win when this lags.
 
-Tech-docs / admin Architecture docs link is **not** database-backed; see [`tech-docs-link.md`](./tech-docs-link.md) if you need that surface.
+Tech-docs / admin Architecture docs link is **not** database-backed; see [`tech-docs-link.md`](../architecture/tech-docs-link.md) if you need that surface.
 
 ## Live
 
@@ -21,7 +21,7 @@ pnpm run ops db:advisors:performance
 pnpm run ops db:advisors:admin
 ```
 
-Ship bar: **0 SECURITY ERRORs** on Products and Admin. Script: `scripts/db_advisors.ts`. Full lint essay archived: `.archive/docs/database/ADVISORS.md`.
+Ship bar: **0 SECURITY ERRORs** on Products and Admin. Script: `scripts/db_advisors.ts`.
 
 ## Persistence modes
 
@@ -37,7 +37,3 @@ filesystem is read-only.
 
 Selectors: `lib/Planner/plannerPersistenceMode.ts`, `lib/catalog/furnitureCatalogMode.ts`.
 Never dual-write.
-
-## Archived
-
-`.archive/docs/database/ADVISORS.md` — Splinter lint encyclopedia (re-run commands above).

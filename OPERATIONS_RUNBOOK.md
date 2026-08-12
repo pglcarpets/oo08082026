@@ -1,234 +1,134 @@
 # Operations runbook
 
-Deploy, migrate, seed, verify, roll back. Every command runs from the **repo root**.
+Deploy · migrate · seed · roll back. **Repo root only.**
 
-Most operational steps use **`pnpm run ops <name>`** — `pnpm run ops list` for the
-full catalog. Root `package.json` keeps daily dev, gates, and tests only.
-
-Blockers: [`Failures.md`](./Failures.md) · Schema: [`docs/database/schema.md`](./docs/database/schema.md) ·
-Restore detail: [`docs/database/restore.md`](./docs/database/restore.md)
+- Daily: root scripts. Rest: `pnpm run ops <name>` (`ops list`).
+- Blockers: [`Failures.md`](./Failures.md) · Schema: [`docs/database/schema.md`](./docs/database/schema.md) · Restore: [`docs/database/restore.md`](./docs/database/restore.md)
 
 ---
 
-## 0. Environments at a glance
+## 0. Environments
 
-| | Filesystem | Persistence | Auth bypass |
-|---|---|---|---|
-| Local dev | writable | **disk** | `DEV_AUTH_BYPASS=1` |
+| | FS | Persistence | Bypass |
+|---|----|--------------|--------|
+| Local | writable | **disk** | `DEV_AUTH_BYPASS=1` |
 | CI | writable | **supabase** | unset |
-| Production | **read-only** | **supabase** | never |
+| Prod | **read-only** | **supabase** | never |
 
-`DEV_AUTH_BYPASS` is ignored when `NODE_ENV=production` — the code hard-returns
-false, so it cannot leak. **`DEV_AUTH_BYPASS_ALLOW_PRODUCTION` is dead — it has
-zero code references and does nothing. Do not set it; remove it from `.env.local`
-if present.**
+`DEV_AUTH_BYPASS` ignored in production. Don't set `DEV_AUTH_BYPASS_ALLOW_PRODUCTION` (dead).
 
-Two Supabase projects, and mixing them up is the most common incident here:
+| DB | Ref | URL env | DB env |
+|----|-----|---------|--------|
+| Products | `erpweaiypimorcunaimz` | `SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_URL` | `PRODUCTS_DATABASE_URL` |
+| Admin | `rxzpznmxbaoxpikowmfc` | `NEXT_ADMIN_SUPABASE_URL` | `SUPABASE_AUTH_DATABASE_URL` |
 
-| Role | Ref | URL env | DB env |
-|------|-----|---------|--------|
-| Products / catalog | `erpweaiypimorcunaimz` | `SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_URL` | `PRODUCTS_DATABASE_URL` |
-| Admin / planner | `rxzpznmxbaoxpikowmfc` | `NEXT_ADMIN_SUPABASE_URL` | `SUPABASE_AUTH_DATABASE_URL` |
-
-The `catalog-assets` bucket exists on **both** projects: the furniture library
-uses the Admin-project copy (`catalogAssetStorage.server.ts` selects the storage
-project), while legacy planner symbols/GLB remain on the products copy.
+Furniture + descriptors → **Admin**. Products may still hold legacy assets. Selector: `catalogAssetStorage.server.ts`.
 
 ---
 
-## 1. Deploy sequence
+## 1. Deploy
 
-Order matters. Migrations first, then seed, then code.
+Order: migrations → seed → code.
 
 ```bash
 pnpm install
-```
-
-```bash
-pnpm run ops db:apply -- --dry
-```
-
-Read the plan before applying. If it says "all up to date" but you expect a new
-file, check the filename sorts at or after `20260524` — `db:apply` ignores
-anything earlier.
-
-```bash
+pnpm run ops db:apply -- --dry    # read plan; only ≥ 20260524
 pnpm run ops db:apply
-```
-
-```bash
 pnpm run ops db:apply:admin
-```
-
-```bash
-pnpm run seed:furniture
-```
-
-**Required once per environment.** The furniture library does not seed itself in
-Supabase mode: the disk seeder is disk-only, because a GET handler must not write
-and production's filesystem is read-only. Skip this and the Planner rail is empty.
-
-```bash
+pnpm run seed:furniture           # once per env — else empty Planner rail
 pnpm run release:gate
-```
-
-Then deploy the build.
-
-### After deploying
-
-```bash
+# deploy
 pnpm run ops db:test
 ```
 
-Then, in a browser at the deployed origin: open `/ooplanner`, confirm the
-furniture rail is populated, place one item, save, reload, confirm it persisted.
-That single journey exercises `furniture_catalog`, the `catalog-assets` bucket and
-`oando_plans` together.
+Smoke in browser: `/ooplanner` → rail populated → place → save → reload.
 
 ---
 
-## 2. Adding a migration
+## 2. Migration
 
-1. Create the file under `site/platform/supabase/migrations/` (products) or
-   `migrations.admin/` (admin). Name it `YYYYMMDDHHMMSS_snake_case.sql`.
-2. **Include a `-- rollback:` section.** `check:governance` ratchets
-   `P4_migration_no_rollback` against a baseline of 42 and fails when it rises.
-3. If you create a table, add **grants as well as policies**:
+1. File under `site/platform/supabase/migrations/` or `migrations.admin/`: `YYYYMMDDHHMMSS_snake_case.sql`.
+2. Include `-- rollback:`. Ratchet baseline **42**.
+3. New table → **grants + policies**:
 
 ```sql
 alter table public.thing enable row level security;
 grant select on public.thing to anon, authenticated;
-grant all    on public.thing to service_role;
--- then the policies
+grant all on public.thing to service_role;
+-- policies next
 ```
 
-A policy without a grant still fails with `permission denied for table`. This is
-the single most common cause of a "correct" migration not working.
+4. `--dry`, then apply.  
+5. Types: `ops db:types:admin` then `ops db:types` (not interchangeable).  
+6. `pnpm run typecheck`.
 
-4. Apply with `--dry` first, then for real.
-5. Regenerate types:
-
-```bash
-pnpm run ops db:types:admin
-```
-
-```bash
-pnpm run ops db:types
-```
-
-`db:types:admin` introspects `information_schema` and writes
-`site/platform/types/database.admin.types.ts`. `db:types` needs the Supabase CLI
-and rewrites the products types, which contain Views and Functions the
-introspection generator does not emit — do not substitute one for the other.
-
-6. `pnpm run typecheck`. Stale types are how a live bug hid here before: `any`
-   casts added to work around them concealed a write to columns that did not
-   exist, failing every production Planner save.
-
-### Re-running an already-applied migration
-
-`db:apply` skips anything recorded in `_local_migration_history`. If you corrected
-an idempotent migration and need it re-run, delete its row and re-apply. Only do
-this when the migration is genuinely idempotent.
+Re-run: delete row from `_local_migration_history` only if migration is idempotent.
 
 ---
 
-## 3. Seeding
+## 3. Seed
 
-| Command | Target | Notes |
-|---------|--------|-------|
-| `pnpm run ops seed` | `catalog_products` (products) | Marketing catalog, idempotent |
-| `pnpm run ops seed:configurator` | `configurator_products` | Parametric catalog |
-| `pnpm run ops seed:managed` | `planner_managed_products` | Admin-curated library |
-| `pnpm run seed:furniture` | `furniture_catalog` | **Planner rail contents** |
+| Command | Target |
+|---------|--------|
+| `ops seed` | `catalog_products` |
+| `ops seed:configurator` | `configurator_products` |
+| `ops seed:managed` | `planner_managed_products` |
+| `seed:furniture` | `furniture_catalog` (Planner rail) |
 
-`seed:furniture` accepts `-- --dry` to plan and `-- --force` to overwrite existing
-ids. Source: `site/platform/Studio/data/seed-furniture.json`.
+`seed:furniture -- --dry` / `-- --force`. Source: `site/platform/Studio/data/seed-furniture.json`.
 
 ---
 
-## 4. Rolling back
+## 4. Rollback
 
-**Code and schema roll back separately, and the order matters.**
+Code and schema are separate. Revert migrations (newest first, hand-run `-- rollback:`) **before** Instant Rollback if schema moved.
 
-Rolling code back past a schema change without also reverting that migration can
-point old code at tables that have moved or changed. The specific hazard today:
-nine legacy tables (`plans`, `clients`, `quotes`, `users`, …) now live in the
-`archive` schema, so they are invisible to PostgREST.
-
-1. Identify which migrations landed after the target build.
-2. Run each one's `-- rollback:` section, newest first, by hand against the right
-   database. They are commented out on purpose — read before pasting.
-3. Then roll the code back (Vercel → Instant Rollback).
-
-Verified before this was written: no deployed code path reads the archived tables
-— zero `.from("<table>")` references across `site/` and `scripts/`. Re-verify if
-you are rolling back to a much older build.
+Hazard: legacy tables now in `archive` (invisible to PostgREST). Don't roll code past schema without reverting.
 
 ---
 
 ## 5. Incidents
 
-| Symptom | First check |
-|---------|-------------|
-| Planner rail empty in prod | `seed:furniture` never run on that environment |
-| Studio saves fail in prod | Persistence resolved to `disk` — is `DEV_AUTH_BYPASS` set? |
-| `permission denied for table` | Policy exists, grant missing |
-| `PGRST204 … column not found` | Code writing a column the table lacks; regenerate types |
-| Plan list empty for a signed-in user | `oando_plans.user_id` vs the session id; profile row must exist first |
-| `relation … does not exist` | Table archived, or wrong database of the two |
-| Catalog empty during outage | R2 `catalog-latest.json` fallback — see `docs/database/restore.md` |
-| Bad deploy | Vercel → Instant Rollback, then §4 |
+| Symptom | Check |
+|---------|-------|
+| Empty rail in prod | `seed:furniture` not run |
+| Saves fail in prod | Stuck on `disk`? `DEV_AUTH_BYPASS` set? |
+| `permission denied for table` | Grant missing |
+| `PGRST204` column | Stale types / wrong columns |
+| Empty plan list | `user_id` / profile row |
+| `relation does not exist` | Archived table or wrong DB |
+| Catalog outage | R2 fallback — `docs/database/restore.md` |
+| Bad deploy | Instant Rollback → §4 |
 
-Planned maintenance: set `SITE_MAINTENANCE_MODE=readonly`. Banner on, admin and
-mutating APIs blocked, public catalog and local planner drafts still work.
+Maintenance: `SITE_MAINTENANCE_MODE=readonly`.
 
 ---
 
 ## 6. Backups
 
-Nightly workflow `.github/workflows/supabase-backup-r2.yml` (02:15 UTC) writes
-`pg_dump` files for both databases, a catalog snapshot and a repo archive to R2.
+Nightly: `.github/workflows/supabase-backup-r2.yml` (02:15 UTC) → both DBs + catalog + repo to R2.
 
 ```bash
 pnpm run ops backup:github-secrets:sync
 ```
 
-A backup is not proven until a restore has been exercised — governance P5. Drill
-quarterly against staging and log the result in `Failures.md`.
-
-Note for any restore of a dump predating **2026-08-01**: it will still have the
-retired tables in `public` and no `archive` schema. Re-applying the migrations
-moves them.
+Prove with a restore drill (P5). Pre-2026-08-01 dumps still have public legacy tables.
 
 ---
 
-## 7. Gate reference
-
-Root scripts (daily loop):
+## 7. Gates
 
 | Command | Covers |
 |---------|--------|
-| `pnpm run check:layout` | Workspace shape, no nested installs |
-| `pnpm run scan:boundaries` | Studio ↔ Planner separation |
-| `pnpm run typecheck` · `typecheck:tests` | Types |
-| `pnpm run test` | **Both** vitest lanes |
-| `pnpm run check:docs-all` | Docs + handbooks + plan purity |
-| `pnpm run check:governance` | Ratchets incl. migration rollbacks |
-| `pnpm run gate` | Fast gate |
-| `pnpm run release:gate` | Full ship gate |
-| `pnpm run tech-docs:gate` | Tech-docs package CI gate |
+| `check:layout` | Workspace shape |
+| `scan:boundaries` | Studio ↔ Planner |
+| `typecheck` · `typecheck:tests` | Types |
+| `test` | Both vitest lanes |
+| `check:docs-all` | Docs + plan purity |
+| `check:governance` | Ratchets |
+| `gate` / `release:gate` | Fast / full |
+| `tech-docs:gate` | Inventory package |
 
-Ops examples (`pnpm run ops list`):
+Ops: `db:apply` · `db:test` · `backup:supabase:r2` · `gate:site-ui` · `gate:open3d` · `list`.
 
-| Command | Covers |
-|---------|--------|
-| `ops db:apply` · `ops db:apply:admin` | Migrations |
-| `ops db:test` | Connection smoke |
-| `ops backup:supabase:r2` | Scheduled backup workflow |
-| `ops gate:site-ui` | Marketing site-ui CI workflow |
-| `ops gate:open3d` | Open3D world e2e pack |
-
-Known blockers: [`Failures.md`](./Failures.md) P0-1–P0-3 and F3 (deploy: Worker origin /
-apex catalog / docs DNS) as of 2026-08-08. The tech-docs gate needs a fresh
-exit-0 run — no longer tracked under an F-id.
+Blockers: [`Failures.md`](./Failures.md) only.

@@ -47,7 +47,7 @@ describe("r2Catalog", () => {
     ListObjectsV2Command.mockClear();
     process.env = { ...originalEnv };
     process.argv = [...originalArgv];
-    // Bucket fallback is dev-bypass-only (plans/02-testing-plan.md §60).
+    // Bucket fallback is dev-bypass-only (see Testing-handbook.md / AGENTS.md).
     process.env.DEV_AUTH_BYPASS = "1";
     delete process.env.CLOUDFLARE_R2_CATALOG_BUCKET;
     delete process.env.CLOUDFLARE_R2_BUCKET;

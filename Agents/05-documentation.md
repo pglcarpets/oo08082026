@@ -5,7 +5,8 @@
 | Need | Open |
 |------|------|
 | Process floor | `AGENTS.md` |
-| Plan | `plans/00-README.md` |
+| Plan | `plans/README.md` |
+| Audit reports | `agent-reports/audit/` (MD only) |
 | Blockers | `Failures.md` |
 | Doc index | `CONTENTS.md` |
 | Structure | `DOC-MAP.md` |
@@ -15,8 +16,7 @@
 - Do not create shadow plans outside `plans/`.
 - Do not invent PASS from plan files or `results/`.
 - Edit `plans/**` only when the owner asks for plan work.
-- `plans/` is pinned to **README + six root programme plans** (`database-plan.md`,
-  `ops-deploy-plan.md`, `site-plan.md`, `tech-docs-plan.md`, `testing-plan.md`,
-  `workspaces-plan.md`). `check:plans-purity` rejects subfolders, extra files,
-  and retired plan names (OUTSTANDING/FINISH-PLAN/CHECKLIST/…).
-  `plans/00-README.md` numbers the six programmes in execution order.
+- **Placement:** programme plans → `plans/*.md` (flat); audit reports/briefs →
+  `agent-reports/audit/*.md` only; generated evidence → `results/**`.
+- `check:plans-purity` rejects subfolders, non-Markdown, and unlisted plan files.
+  Retired plan names (OUTSTANDING/FINISH-PLAN/CHECKLIST/…) stay forbidden.

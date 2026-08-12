@@ -97,14 +97,10 @@ for (const dir of ["site/platform/supabase/migrations", "site/platform/supabase/
 }
 
 // S2 — stray *report* files under plans/ (not the programme plan set).
-// Programme plans are pinned to README + six root plans (`check:plans-purity`).
+// Programme plans are pinned by `check:plans-purity` (flat MD only; audits → agent-reports).
 const ROOT_PLAN_DOCS = new Set([
-  "database-plan.md",
-  "ops-deploy-plan.md",
-  "site-plan.md",
-  "tech-docs-plan.md",
-  "testing-plan.md",
-  "workspaces-plan.md",
+  "oo-ux-shell-program.md",
+  "phase1-mobile-app-shell.md",
 ]);
 const PLAN_ROOT_OK = (name) => name === "README.md" || ROOT_PLAN_DOCS.has(name);
 const REPORT_LIKE = /(report|handover|outstanding|finish-plan|completion-contract)/i;

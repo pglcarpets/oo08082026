@@ -40,9 +40,9 @@ Canvas fidelity, catalog honesty, and clear handoff matter equally.
 | `site/public/assets/others/legacy/png-catalog/` | Local PNG mirror (public URL `/png-catalog` via rewrite) |
 
 Decision tree / package map: this README.  
-Generated page routes: `docs/architecture/routes-pages.md`. Plan direction: `plans/` (repo root).  
-CSS detail: `css.md` · stop-drift: `docs/governance/focss-stop-drift.md` · tree: `site/focss/README.md`.  
-Stack proof: fresh root commands + `stack.md`.
+Generated page routes: [`routes-pages.md`](./routes-pages.md). Plans: [`plans/README.md`](../../plans/README.md).  
+CSS: [`css.md`](./css.md) · stop-drift: [`focss-stop-drift.md`](../governance/focss-stop-drift.md) · tree: [`site/focss/README.md`](../../site/focss/README.md).  
+Stack: [`stack.md`](./stack.md).
 
 ### Product roots (live)
 
@@ -124,7 +124,7 @@ Shared rules: semantic tokens; distinct loading/empty/error states; no silent fa
 | Edge | **`site/proxy.ts` present** (Next 16); no `middleware.ts` |
 | i18n | **`site/i18n/` present** — config + messages; plugin `./i18n/request.ts`; root `i18n/request.ts` re-exports for monorepo `process.cwd()` |
 
-Blockers: `../../Failures.md`. Plan: `plans/README.md`. Engines/release: `stack.md`.
+Blockers: [`Failures.md`](../../Failures.md). Plans: [`plans/README.md`](../../plans/README.md). Stack: [`stack.md`](./stack.md).
 
 ## Quality targets
 

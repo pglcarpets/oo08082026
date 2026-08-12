@@ -11,23 +11,16 @@ const root = process.env.PLANS_PURITY_ROOT
 const planRoot = path.join(root, "plans");
 const planLabel = "plans";
 /**
- * `plans/` is pinned to README + programme plans + handover. No subfolders.
- * Fold working notes into programme plans or `Failures.md`.
+ * `plans/` is flat Markdown programme plans only.
+ * Audit reports live in `agent-reports/`; generated artifacts in `results/`.
  */
 const rootPlanDocs = [
   "README.md",
-  "08-oo-start-checklist.md",
-  "04-database-plan.md",
-  "01-handover.md",
-  "03-ops-deploy-plan.md",
-  "06-site-plan.md",
-  "07-tech-docs-plan.md",
-  "02-testing-plan.md",
-  "05-workspaces-plan.md",
-  "09-proxy-auth-hardening-plan.md",
+  "oo-ux-shell-program.md",
+  "phase1-mobile-app-shell.md",
 ];
-const requiredPlanDocs = [];
-const allowedPlanDocs = new Set(["00-README.md", ...rootPlanDocs, ...requiredPlanDocs]);
+const requiredPlanDocs = ["README.md"];
+const allowedPlanDocs = new Set(rootPlanDocs);
 const violations = [];
 
 if (!fs.existsSync(planRoot)) {
@@ -47,10 +40,6 @@ function collect(dir) {
 const allFiles = collect(planRoot);
 const markdown = allFiles.filter((file) => file.endsWith(".md"));
 
-if (!markdown.includes("00-README.md")) {
-  violations.push(`missing: ${planLabel}/README.md`);
-}
-
 for (const doc of requiredPlanDocs) {
   if (!markdown.includes(doc)) {
     violations.push(`missing: ${planLabel}/${doc}`);
@@ -60,7 +49,7 @@ for (const doc of requiredPlanDocs) {
 for (const f of markdown) {
   if (!allowedPlanDocs.has(f)) {
     violations.push(
-      `unexpected plan doc: ${planLabel}/${f} (allowed: README.md · ${rootPlanDocs.join(" · ")})`,
+      `unexpected plan doc: ${planLabel}/${f} (allowed: ${rootPlanDocs.join(" · ")})`,
     );
   }
 }
@@ -91,5 +80,5 @@ if (violations.length) {
 }
 
 console.log(
-  "check:plans-purity OK - README + programme plan docs, no subfolders or retired plan docs",
+  "check:plans-purity OK - README + programme plan docs, no subfolders or non-Markdown",
 );

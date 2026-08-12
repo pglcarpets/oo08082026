@@ -41,8 +41,8 @@ user instruction  >  live code + fresh commands  >  Agents/  >  docs/
 
 - Owner sets the goal. Clear goals execute without ceremony.
 - Fresh evidence decides PASS / FAIL / ship. No fake proof.
-- Programme direction: `plans/` + live code.
-- Active blockers: root `Failures.md` alone. Raw output: `results/`, never PASS.
+- Programme direction: `plans/` + live code. Audit reports: `agent-reports/audit/` (MD only).
+- Active blockers: root `Failures.md` alone. Raw/generated output: `results/`, never PASS.
 
 ## Working loop
 
@@ -77,16 +77,16 @@ raw disk helper. Selectors: `lib/Planner/plannerPersistenceMode.ts`,
 
 | Need | Open |
 |------|------|
-| Onboarding walkthrough | `../START.md` |
-| Every document, numbered | `../CONTENTS.md` |
-| Doc structure + authority | `../DOC-MAP.md` |
-| Deploy / migrate / roll back | `../OPERATIONS_RUNBOOK.md` · `pnpm run ops list` |
-| Where code goes | `../docs/architecture/product-map.md` |
-| Where a subsystem starts | `../docs/architecture/source-map.md` |
-| Tables, RLS, `archive` schema | `../docs/database/schema.md` |
-| Programme rules | `../docs/governance/rules.md` |
-| Blockers | `../Failures.md` |
-| Product / commands | `../README.md` |
+| Onboarding | [`../START.md`](../START.md) |
+| Index | [`../CONTENTS.md`](../CONTENTS.md) · [`../DOC-MAP.md`](../DOC-MAP.md) |
+| Deploy / migrate | [`../OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · `pnpm run ops list` |
+| Where code goes | [`../docs/architecture/product-map.md`](../docs/architecture/product-map.md) |
+| Start reading | [`../docs/architecture/source-map.md`](../docs/architecture/source-map.md) |
+| Schema | [`../docs/database/schema.md`](../docs/database/schema.md) |
+| Programme rules | [`../docs/governance/rules.md`](../docs/governance/rules.md) |
+| Blockers | [`../Failures.md`](../Failures.md) |
+| Product | [`../README.md`](../README.md) |
+| Plans / audits | [`../plans/README.md`](../plans/README.md) · [`../agent-reports/README.md`](../agent-reports/README.md) |
 
 ## VS Code Customizations
 
@@ -99,8 +99,5 @@ Just-in-time instructions loaded when editing specific file types:
 | [`.github/instructions/boundaries.instructions.md`](../.github/instructions/boundaries.instructions.md) | Studio/Planner forked code | Fork isolation rules |
 | [`.github/instructions/migrations.instructions.md`](../.github/instructions/migrations.instructions.md) | `site/platform/supabase/migrations/**/*.sql` | Rollback requirements, Supabase grants |
 
-Skills and prompts: the `.github/skills/` folder holds 16 role skills
-(code-reviewer, nextjs-expert, test-engineer, …) — see
-[`.github/skills/README.md`](../.github/skills/README.md). The former `/gate`
-skill and `/new-test` prompt no longer exist; run gates via `pnpm run gate`
-(see `OPERATIONS_RUNBOOK.md` §7) and scaffold tests from existing neighbours.
+Skills: [`.github/skills/README.md`](../.github/skills/README.md) (16 role skills).
+No `/gate` or `/new-test` commands — use `pnpm run gate` ([`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) §7).

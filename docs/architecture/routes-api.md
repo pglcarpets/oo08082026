@@ -1,6 +1,6 @@
 # API route index
 
-**Scope:** API handlers only — `site/app/api/**/route.ts`. **Pages:** [`pages.md`](./routes-pages.md). Package map: [`docs/architecture/product-map.md`](./product-map.md).
+**Scope:** API handlers only — `site/app/api/**/route.ts`. **Pages:** [`routes-pages.md`](./routes-pages.md). Package map: [`product-map.md`](./product-map.md).
 
 **Not in this index:** tech-docs SPA (Vite on **:3001** / subdomain) — admin only **links** to it; no Next API. See [`tech-docs-link.md`](./tech-docs-link.md).
 

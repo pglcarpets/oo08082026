@@ -1,4 +1,4 @@
-# UI Audit — Desktop + Mobile (File 1 of 5)
+﻿# UI Audit â€” Desktop + Mobile (File 1 of 5)
 
 **Tracks:** 1 (UI Desktop), 2 (UI Mobile)
 **Agent:** A
@@ -8,7 +8,7 @@
 
 ## Scope
 
-Route-by-route audit of chrome, layout, panels, and interaction across desktop (≥1280px) and mobile (<768px phone, 768–1280px tablet).
+Route-by-route audit of chrome, layout, panels, and interaction across desktop (â‰¥1280px) and mobile (<768px phone, 768â€“1280px tablet).
 
 **Routes (from `docs/architecture/routes-pages.md`):**
 - Marketing: `/`, `/about`, `/products`, `/products/*`, `/solutions`, `/showrooms`, `/contact`, `/clients`, `/planner`, `/planner/features`, `/planner/help`, `/service`, `/downloads`
@@ -21,7 +21,7 @@ Route-by-route audit of chrome, layout, panels, and interaction across desktop (
 
 - Dev server: `http://localhost:3000` (DEV_AUTH_BYPASS=1). Never `127.0.0.1`.
 - Playwright via `scripts/with_server.py` (webapp-testing skill) OR against the running dev server.
-- Viewports: desktop 1440×900, 1920×1080; tablet 820×1180 (iPad); phone 390×844 (iPhone 14), 360×740.
+- Viewports: desktop 1440Ã—900, 1920Ã—1080; tablet 820Ã—1180 (iPad); phone 390Ã—844 (iPhone 14), 360Ã—740.
 - Wait for `networkidle` + fonts (`document.fonts.ready`) before screenshots/metrics.
 - Per route: full-page screenshot + viewport screenshot, DOM landmark dump, console capture.
 
@@ -38,18 +38,18 @@ Route-by-route audit of chrome, layout, panels, and interaction across desktop (
 
 ## Mobile findings checklist (Track 2)
 
-- Marketing header hidden <1280; bottom tab bar presence (Home/Catalog/Planner/Studio/Account) — note: current state pre-Phase-1, may still be old hamburger drawer.
+- Marketing header hidden <1280; bottom tab bar presence (Home/Catalog/Planner/Studio/Account) â€” note: current state pre-Phase-1, may still be old hamburger drawer.
 - MobileNavDrawer contents (search + accordion + auth + language + CTAs vs simplified).
 - Planner canvas-first: full-screen canvas, bottom-sheet panels, Save/Export/BOQ thumb reach.
-- Studio mobile shell existence (today: none — document gap).
+- Studio mobile shell existence (today: none â€” document gap).
 - Safe-area insets (`env(safe-area-inset-bottom)`); home indicator clearance.
-- Touch target sizes ≥44px; thumb reach for primary actions.
+- Touch target sizes â‰¥44px; thumb reach for primary actions.
 - Horizontal overflow / pinched layouts at 360px.
 - Admin mobile two-row topbar + drawer.
 
 ## Evidence requirements
 
-- Screenshot path per route per viewport (saved under `agent-reports/audit/screenshots/`).
+- Screenshot path per route per viewport (saved under `results/audit/screenshots/`).
 - Console errors/warnings count per route.
 - Any overflow: measured `scrollWidth > clientWidth` with values.
 - File:line references for every layout gap (e.g., `site/components/Planner/Planner.tsx:120`).

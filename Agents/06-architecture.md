@@ -1,9 +1,9 @@
 # Architecture
 
 ## Bar
-- Live architecture docs: `docs/architecture/product-map.md` · `css.md` · `stack.md`.
+- Live architecture docs: `docs/architecture/product-map.md` · `docs/architecture/css.md` · `docs/architecture/stack.md`.
 - Read product-map before placing code.
-- Read css + `docs/governance/focss-stop-drift.md` before style changes.
+- Read `docs/architecture/css.md` + `docs/governance/focss-stop-drift.md` before style changes.
 - Read stack for engines / PNG / package limits.
 - Match surrounding patterns. Do not invent a second architecture in chat.
 

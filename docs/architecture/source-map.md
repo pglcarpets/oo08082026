@@ -82,7 +82,7 @@ pnpm run gate
 Expected: every command that applies exits 0. If a command cannot start (missing
 `config/build/*`, missing install), log under `Failures.md` — do not invent green.
 
-Instruments and bars: [`benchmarks.md`](./benchmarks.md).
+Instruments and bars: [`benchmarks.md`](../governance/benchmarks.md).
 
 ---
 
@@ -110,10 +110,10 @@ Raw tool output: repo-root `results/`. Blockers: `Failures.md`.
 ## Research pointers
 
 - Programme control: [`../governance/rules.md`](../governance/rules.md)
-- Locked decisions and configuration envelope: [`charter.md`](./charter.md)
-- Benchmarks and standards: [`benchmarks.md`](./benchmarks.md)
-- FOCSS map: [`docs/architecture/css.md`](../architecture/css.md)
-- FOCSS stop-drift: [`focss-stop-drift.md`](./focss-stop-drift.md)
+- Locked decisions and configuration envelope: [`charter.md`](../governance/charter.md)
+- Benchmarks and standards: [`benchmarks.md`](../governance/benchmarks.md)
+- FOCSS map: [`css.md`](./css.md)
+- FOCSS stop-drift: [`focss-stop-drift.md`](../governance/focss-stop-drift.md)
 - React Aria (admin/product controls): [react-spectrum.adobe.com/react-aria](https://react-spectrum.adobe.com/react-aria/)
 - Fabric canvas: live under `site/components/{Planner,Studio}`
 

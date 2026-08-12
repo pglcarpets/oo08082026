@@ -6,7 +6,7 @@ dockview shells, plus residual marketing/admin under `site/app`. See
 name prior Admin Product Studio journeys — treat **measured “Current” columns as
 capture-time**, not proof for this checkout.
 
-**Admin → Architecture docs:** external link to tech-docs SPA (dev **:3001**, prod subdomain). How-to: [`tech-docs-link.md`](./tech-docs-link.md).
+**Admin → Architecture docs:** external link to tech-docs SPA (dev **:3001**, prod subdomain). How-to: [`tech-docs-link.md`](../architecture/tech-docs-link.md).
 
 **Binding on every phase.** A task not covered by a rule here is out of scope until a rule
 is added. This document is the only place *programme* rules live; a programme rule stated
@@ -14,8 +14,10 @@ anywhere else and not here is not binding.
 
 **This document does not stand alone.** `../../../Agents/*.md` (indexed at
 `Agents/INDEX.md`) binds every session in this repository, programme or not — CSS lock
-(`07-css.md`), test discipline (`02-testing.md`), failure recording
-(`04-failures.md`), documentation bar (`05-documentation.md`). Where a rule here
+([`Agents/07-css.md`](../../Agents/07-css.md)), test discipline
+([`Agents/02-testing.md`](../../Agents/02-testing.md)), failure recording
+([`Agents/04-failures.md`](../../Agents/04-failures.md)), documentation bar
+([`Agents/05-documentation.md`](../../Agents/05-documentation.md)). Where a rule here
 restates one from `Agents/`, `Agents/` is the source; this file exists to make it
 phase-enforceable, not to re-derive it. Where the two would conflict,
 `Agents/01-standard.md`'s own top rule applies: user instruction wins, then stop and ask (E1) — the two
@@ -53,7 +55,7 @@ Two corollaries, both learned the hard way in this repository:
 
 | ID | Rule | Enforcement |
 |---|---|---|
-| **S1** | Live plan is **`plans/`** only: `README.md` + `1.md`–`6.md`. No flat `00`–`13` pile, no `cline/` subtree, no open-work file. | `AUTOMATED` — `check:plans-purity` (via `check:docs-all`) rejects any other file in that folder |
+| **S1** | Live plan is **`plans/`** only (flat Markdown): [`plans/README.md`](../../plans/README.md) + [`oo-ux-shell-program.md`](../../plans/oo-ux-shell-program.md) + [`phase1-mobile-app-shell.md`](../../plans/phase1-mobile-app-shell.md). Audits → `agent-reports/`; evidence → `results/`. No subfolders. | `AUTOMATED` — `check:plans-purity` (via `check:docs-all`) |
 | **S2** | No unsolicited summary/analysis dumps. Findings go in `Failures.md` (not free-form report trees). | `AUTOMATED` — `pnpm run check:governance` |
 | **S3** | Every unresolved blocker is in `Failures.md` with a repro command and an owning phase. Removed when fixed, not struck through. | `PARTIAL` — `check:failures` rejects resolution/history language only. Presence of a repro command and an owning phase is **not** checked |
 | **S4** | Plan documents do not carry duplicated status. One ledger, one place. | `MANUAL REVIEW` |
@@ -159,7 +161,7 @@ than left marked `AUTOMATED` against a check that does not exist.
 Recorded rather than quietly fixed, because §E1 applies to the governance document
 itself. **Re-measured 2026-08-01** — several have since cleared:
 
-1. **S2** — `scripts-inventory.md` was a report no step requested (archive/git only).
+1. **S2** — unsolicited scripts inventory report (archive/git only).
 2. **C3, C4, C5** — token-bypass findings; re-measure with `pnpm run check:style-tokens`.
 3. ~~**C8** — `check:composer-styles` fails.~~ **Clear 2026-08-01** — "no unstyled class, no dead rule".
 4. ~~**K2** — `typecheck:tests` fails.~~ **Clear 2026-08-01.** `typecheck` and
@@ -235,8 +237,8 @@ one is a programme change, not an implementation choice.
 
 ## 13. Related
 
-- Goals and targets: `benchmarks.md`
-- Blockers: `../../Failures.md`
-- FOCSS / custom CSS stop-drift: `focss-stop-drift.md`
-- Loop this document is executed under: plan → implement → verify → gate (see `Agents/INDEX.md`)
-- Plan: `../../plans/README.md` · blockers: `../../Failures.md`
+- Goals: [`benchmarks.md`](./benchmarks.md)
+- FOCSS stop-drift: [`focss-stop-drift.md`](./focss-stop-drift.md)
+- Working loop: [`Agents/INDEX.md`](../../Agents/INDEX.md)
+- Plans: [`plans/README.md`](../../plans/README.md)
+- Blockers: [`Failures.md`](../../Failures.md)

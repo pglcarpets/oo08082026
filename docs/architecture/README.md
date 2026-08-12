@@ -29,8 +29,7 @@ through a mode-aware store wrapper. Detail in [`stack.md`](./stack.md) and
 `docs/site/` and `docs/api/` were folded in on 2026-08-01. Page routes, API routes
 and the tech-docs link all answer "where does this live and what serves it," which
 is architecture; two single-file folders made the map harder to read than the
-content justified. `docs/governance/commands.md` became `source-map.md` here — it
-was a reading map, never a rule. Retired index pages sit under `.archive/docs/`.
+content justified. Retired reading maps and index pages sit under `.archive/docs/`.
 
 When the code and these docs disagree, the code wins — fix the doc.
 

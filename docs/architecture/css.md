@@ -45,7 +45,7 @@ Reference: [`site/focss/README.md`](../../site/focss/README.md) · live board `/
 
 **Inventory:** Success = **one canonical path per concern**.  
 **Page rule:** tokens + base + one zone entry.  
-**File size:** Prefer ≤500 lines per CSS file; hard max 800 (see `focss/README.md`).
+**File size:** Prefer ≤500 lines per CSS file; hard max 800 (see [`site/focss/README.md`](../../site/focss/README.md)).
 
 ## Layout import barrels
 
@@ -86,7 +86,7 @@ The design kit is the materials board for admin primitives when that surface is 
 
 **Enforcement:** `pnpm run lint:ui:strict` · `pnpm run ops check:composer-styles` · `pnpm run ops check:product-icons` · `pnpm run verify:focss` · forked scans `pnpm run ops scan:tokens` / `pnpm run ops scan:hardcoding`.
 
-Detail for engines/packages: `stack.md`. Process: `Agents/INDEX.md`. Programme stop-drift + remediation: [`../governance/focss-stop-drift.md`](../governance/focss-stop-drift.md).
+Detail for engines/packages: [`stack.md`](./stack.md). Process: [`Agents/INDEX.md`](../../Agents/INDEX.md). Stop-drift: [`focss-stop-drift.md`](../governance/focss-stop-drift.md).
 
 ## Migration status (FOCSS)
 

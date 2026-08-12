@@ -2,7 +2,7 @@
 
 **Binding.** Stops FOCSS structural drift and ad-hoc colours/CSS across Site, Admin, and Planner. Live CSS contract remains [`../architecture/css.md`](../architecture/css.md). Programme rules C1–C10 live in [`rules.md`](./rules.md) §3; this file owns **allowed vs forbidden**, **verification**, and the **correction plan** for preexisting debt.
 
-Process: `Agents/07-css.md`. Charter: R3 / R4 / R29 / R30 in [`charter.md`](./charter.md).
+Process: [`Agents/07-css.md`](../../Agents/07-css.md). Charter: R3 / R4 / R29 / R30 in [`charter.md`](./charter.md).
 
 When this file and live code disagree on a path detail, **code + fresh gate output win**. Direction here still binds.
 
@@ -29,13 +29,13 @@ All product surfaces under `site/`:
 | **Planner fork** | `/ooplanner*` | `@focss/planner/entry.css` (self-contained) |
 | **Studio fork** | `/oostudio*` | `@focss/studio/entry.css` (self-contained) |
 
-Out of scope for this doc: `tech-docs-generator/src/styles/` (not FOCSS). Do not move tech-docs styles into `site/focss/`. Admin only **links** to tech-docs (external URL, new tab) — see [`tech-docs-link.md`](./tech-docs-link.md).
+Out of scope for this doc: `tech-docs-generator/src/styles/` (not FOCSS). Do not move tech-docs styles into `site/focss/`. Admin only **links** to tech-docs (external URL, new tab) — see [`tech-docs-link.md`](../architecture/tech-docs-link.md).
 
 ---
 
 ## 3. Allowed vs forbidden
 
-Aligned with `css.md` and README C1–C10. Do not invent a second stack.
+Aligned with [`css.md`](../architecture/css.md) and rules C1–C10. Do not invent a second stack.
 
 | | Allowed | Forbidden |
 |---|---|---|
@@ -127,4 +127,4 @@ Unresolved blockers that stop a phase stay in root `Failures.md` with a repro co
 | [`../architecture/css.md`](../architecture/css.md) | Live CSS map |
 | `pnpm run check:style-tokens` | Live token-bypass count |
 | [`site/focss/README.md`](../../site/focss/README.md) | Tree ownership |
-| `Agents/07-css.md` | Session CSS fence |
+| [`Agents/07-css.md`](../../Agents/07-css.md) | Session CSS fence |

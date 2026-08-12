@@ -8,93 +8,93 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Repository Process & Rules
+# Process floor
 
-## 1. Authority & Truth
-*   **User Wins:** User instructions override everything (including this file).
-*   **Source of Truth:** Live code + filesystem + fresh root commands > `AGENTS.md` > `Agents/` > `docs/`.
-*   **Do Not Invent:** Never claim browser outcomes or build states without verifying via a fresh command. Rely on live code, not stale notes.
-*   **Blockers:** Tracked in `Failures.md` only. Raw tool output goes in `results/`.
+## 1. Truth
+- **User Wins.** Then: live code + fresh commands > `AGENTS.md` > `Agents/` > `docs/`.
+- Never invent browser/build state — run a command.
+- **Blockers:** `Failures.md` only.
+- **Placement:** plans → `plans/*.md` · audits → `agent-reports/**/*.md` · evidence → `results/**`.
 
-## 2. Execution Protocol
-*   **Root Only:** Always work from the repo root. **Never create worktrees.**
-*   **Package Manager:** Use **`pnpm`** exclusively from the root.
-*   **Code Quality:** Make the smallest sound change. Preserve unrelated code. No handwritten `any`.
-*   **Secrets:** Store only in `.env.local` (and `site/.env.local`).
-*   **UI Testing:** Strict use of `http://localhost:3000` (Auth cookies are host-bound. Never use `127.0.0.1`).
-*   **Agent parallelism:** Cap at **2 subagents in parallel** (Task tool / explore agents). Independent tracks (e.g. site console audit + tech-docs gate) may run as two agents; **3+ tracks** → start two, queue the rest after one finishes. **Dependent steps** stay single-threaded — no extra agents when output of one step feeds the next.
+## 2. Work
+- Repo root only. **Never create worktrees.** **`pnpm`** only.
+- Smallest sound change. No handwritten `any`.
+- Secrets: `.env.local` (and `site/.env.local`).
+- UI: `http://localhost:3000` only — never `127.0.0.1`.
+- Max **2** parallel subagents; queue the rest. Dependent steps stay serial.
 
-## 3. Product Layout & Architecture
-**CRITICAL:** Studio (`/oostudio`) and Planner (`/ooplanner`) are strictly forked. **They never import each other.** Run `pnpm run scan:boundaries` before committing changes to either tree.
+## 3. Layout
+Studio (`/oostudio`) and Planner (`/ooplanner`) are **forked** — never import each other. Run `pnpm run scan:boundaries` before committing either tree.
 
 | Path | Role |
 |------|------|
-| `site/` | Next app (`pnpm dev` / `pnpm build`) |
-| `site/app/(site)`, `site/app/admin` | Marketing (Root `/`) + Admin routes |
-| `site/components/{Studio,Planner}` | Fork trees (also applies to `lib/`, `hooks/`, etc.) |
-| `site/focss/` | CSS home (`@focss/*`) |
-| `tests/`, `tech-docs-generator/`, `config/build/` | Vitest/Playwright, Vite UI, Harness configs |
-| `site/platform/shared/data/` | Furniture library + exports (**dev disk mode only**) |
-| `site/platform/{Studio,Planner}/data/` | Per-fork uploads/projects (**dev disk mode only**) |
+| `site/` | Next app |
+| `site/app/(site)`, `site/app/admin` | Marketing + Admin |
+| `site/{components,lib,hooks,store,server}/{Studio,Planner}/` | Fork trees |
+| `site/focss/` | CSS (`@focss/*`) |
+| `tests/`, `tech-docs-generator/`, `config/build/` | Tests, inventory SPA, harness |
+| `site/platform/shared/data/` | Furniture (disk dev only) |
+| `plans/` · `agent-reports/` · `results/` | Plans · audit MD · generated output |
 
-*Note: `site/data/storage/` is legacy. Do not write to it.*
+`site/data/storage/` is legacy — do not write there.
 
 ## 4. Databases
-We use **two distinct databases**. (Rule of thumb: Customer/staff data is Admin; Catalog data is Products).
 
-| Role | Project ID | Holds |
-|------|------------|-------|
-| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, queries, audit, furniture library + `catalog-assets` |
-| **Products** | `erpweaiypimorcunaimz` | Catalog, configurator, descriptors, flags |
+| | Ref | Holds |
+|---|-----|-------|
+| **Admin** | `rxzpznmxbaoxpikowmfc` | Plans, profiles, handoffs, teams, price books, queries, audit, **furniture** + **descriptors** |
+| **Products** | `erpweaiypimorcunaimz` | Marketing catalog, configurator, flags, themes |
 
-## 5. Persistence (Never Dual-Write)
-Production uses a read-only filesystem (Supabase). Dev uses disk (`DEV_AUTH_BYPASS=1`). Route handlers **must** use mode-aware wrappers (e.g., `writeFurnitureItem`), never raw disk helpers.
+Staff/customer + furniture + descriptors → **Admin**. Marketing catalog tables → **Products**.
 
-| Data | Disk (Dev) | Supabase (Prod) | Mode Selector |
-|------|------------|-----------------|---------------|
-| Planner projects | `platform/Planner/data/projects/` | `oando_plans` (Admin) | `lib/Planner/plannerPersistenceMode.ts` |
-| Furniture library | `platform/shared/data/furniture/` | `furniture_catalog` (Admin) | `lib/catalog/furnitureCatalogMode.ts` |
-| Published desc. | `site/inventory/descriptors/` | `block_descriptors` (Admin)| (Same as furniture) |
+## 5. Persistence (no dual-write)
+Disk when `DEV_AUTH_BYPASS=1` (non-prod). Else Supabase. Prod FS is read-only. Use mode-aware wrappers (`writeFurnitureItem`, …), never raw disk helpers.
 
-*Note: Seeding is off the read path via `pnpm run seed:furniture`.*
+| Data | Disk | Supabase | Selector |
+|------|------|----------|----------|
+| Plans | `platform/Planner/data/projects/` | `oando_plans` | `plannerPersistenceMode.ts` |
+| Furniture | `platform/shared/data/furniture/` | `furniture_catalog` | `furnitureCatalogMode.ts` |
+| Descriptors | `site/inventory/descriptors/` | `block_descriptors` | (same as furniture) |
 
-## 6. Verification & Gates
-*   **Fast checks:** `pnpm run check:layout` (before completion), `pnpm run gate`.
-*   **Full checks:** `pnpm run release:gate`.
-*   **CSS/UI Linting:** `verify:focss`, `lint:ui:strict`, `check:composer-styles`, `check:style-tokens`.
-*   **Tests (`pnpm run test`):** Runs **two lanes** (default + tech-docs). Check BOTH summaries; one green summary does not equal a passing suite. Unit DOM environment is **happy-dom**.
+Seed: `pnpm run seed:furniture` (off the read path).
+
+## 6. Gates
+- Before done: `pnpm run check:layout`, then `pnpm run gate`.
+- Ship: `pnpm run release:gate`.
+- CSS: `verify:focss`, `lint:ui:strict`, `check:style-tokens`.
+- `pnpm run test` = **two** vitest lanes (default + tech-docs). Check both. DOM: **happy-dom**.
 
 ## 7. Migrations
-*   **Rollbacks Required:** Every migration needs a `-- rollback` section. `check:governance` ratchets `P4_migration_no_rollback` against a baseline of **42** and fails if it rises.
-*   **Applying:** `db:apply` runs lexicographically at/after `20260524` (tracked in `_local_migration_history`). Always use `--dry` first.
-*   **Supabase:** Requires **grants AND policies**. (e.g., a policy without `grant select … to anon, authenticated` fails).
-*   **Types:** Regenerate post-schema changes: `db:types:admin` and `db:types`.
+- Need `-- rollback`. Ratchet baseline **42** (`P4_migration_no_rollback`).
+- Apply: `pnpm run ops db:apply` / `db:apply:admin` — always `--dry` first (≥ `20260524`).
+- Grants **and** policies. Types: `ops db:types:admin`, `ops db:types`.
 
-## 8. Common Mistakes (Checklist)
-1.  **Test Suites:** Misreading `pnpm run test` (failing to check both lane summaries).
-2.  **Migrations:** Forgetting the `-- rollback` section and failing governance.
-3.  **Filesystem:** Writing to disk in production instead of using mode-aware wrappers.
-4.  **Boundaries:** Importing Studio components into Planner (or vice versa).
-5.  **Environment:** Using `127.0.0.1` instead of `localhost:3000`, breaking auth.
+## 8. Traps
+1. One green test summary ≠ full suite.
+2. Migration without `-- rollback`.
+3. Disk write in prod.
+4. Studio ↔ Planner import.
+5. `127.0.0.1` instead of `localhost`.
+6. Audit MD under `plans/`, or PNG under `agent-reports/`.
 
-## 9. Context & Handbooks
+## 9. Handbooks
+| Topic | Open |
+|-------|------|
+| Standard | `Agents/01-standard.md` |
+| Testing | `Agents/02-testing.md`, `Testing-handbook.md` |
+| Browser | `Agents/03-browser.md` |
+| Blockers | `Agents/04-failures.md`, `Failures.md` |
+| Docs | `Agents/05-documentation.md`, `DOC-MAP.md`, `CONTENTS.md` |
+| Architecture | `Agents/06-architecture.md`, `docs/architecture/product-map.md` |
+| CSS | `Agents/07-css.md`, `docs/architecture/css.md` |
+| Onboarding / ops | `START.md`, `OPERATIONS_RUNBOOK.md`, `README.md`, `Testing-handbook.md` |
+| Plans / audits | `plans/README.md`, `agent-reports/README.md` |
 
-### Agent Handbooks
-*   **Standard:** `Agents/01-standard.md`
-*   **Testing:** `Agents/02-testing.md`, `Testing-handbook.md`
-*   **Browser / E2E:** `Agents/03-browser.md`
-*   **Blockers:** `Agents/04-failures.md`, `Failures.md`
-*   **Docs / Maps:** `Agents/05-documentation.md`, `docs/README.md`, `DOC-MAP.md`, `CONTENTS.md`
-*   **Architecture:** `Agents/06-architecture.md`, `docs/architecture/product-map.md`
-*   **CSS:** `Agents/07-css.md`, `docs/architecture/css.md`
-*   **Ops:** `START.md` (Onboarding), `OPERATIONS_RUNBOOK.md` (Deploy/Rollback), `README.md`
-
-### VS Code Customizations (JIT Instructions)
-| File | Applies to | Purpose |
-|------|------------|---------|
-| `.github/instructions/focss.instructions.md` | `site/focss/**/*.css` | FOCSS boundaries, tokens, verification |
-| `.github/instructions/testing.instructions.md` | `tests/**/*.{ts,tsx}` | Conventions, mocking, two-lane awareness |
-| `.github/instructions/boundaries.instructions.md`| `site/**/{Studio,Planner}/**` | Fork isolation rules |
-| `.github/instructions/migrations.instructions.md`| `**/supabase/migrations/**/*.sql`| Rollbacks, Supabase grants |
-| `.github/skills/README.md` | Agent skills | 16 pinned skills (Note: no `/gate` or `/new-test` commands exist) |
-| `.cursor/rules/agent-parallelism.mdc` | All agent sessions | Max 2 parallel subagents; queue or single-thread when dependent |
+| JIT | Applies to |
+|-----|------------|
+| `.github/instructions/focss.instructions.md` | `site/focss/**/*.css` |
+| `.github/instructions/testing.instructions.md` | `tests/**/*.{ts,tsx}` |
+| `.github/instructions/boundaries.instructions.md` | Studio/Planner forks |
+| `.github/instructions/migrations.instructions.md` | `**/supabase/migrations/**/*.sql` |
+| `.github/skills/README.md` | 16 skills (no `/gate` or `/new-test`) |
+| `.cursor/rules/agent-parallelism.mdc` | Max 2 parallel agents |

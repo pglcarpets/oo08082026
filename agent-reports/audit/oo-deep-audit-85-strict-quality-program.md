@@ -4,7 +4,7 @@
 **Repo:** `E:\oo08082026` — Next 16 `site/` + `tech-docs-generator/` + `tests/` + `workers/`
 **Authority:** user > live code + fresh commands > `AGENTS.md` > `Agents/` > `docs/`
 **Bar:** 85% very strict, all 4 metrics, proper (non-hollow) tests. Execute slowly, check 3×, no shortcuts.
-**Home:** This file lives in `agent-reports/audit/` (flat `.md`, not gated). `plans/` is pinned by `check:plans-purity` to 11 programme filenames — this isn't one. Raw evidence (PNG/JSON) goes to `results/audit/` per `AGENTS.md §1`.
+**Home:** This file lives in `agent-reports/audit/` (flat `.md` only). Programme plans stay in `plans/` (flat MD). Raw evidence (PNG/JSON/HTML/TXT) goes to `results/audit/` per `AGENTS.md` §1.
 
 ---
 

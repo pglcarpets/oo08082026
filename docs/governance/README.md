@@ -20,8 +20,7 @@ What the programme has committed to, and which command enforces it.
 Where this folder restates a session rule, **`Agents/` is the source.** Governance
 exists to make a rule phase-enforceable, not to re-derive it. The working loop
 (plan → implement → verify → gate) lives in
-[`../../Agents/INDEX.md`](../../Agents/INDEX.md); the separate `agent-loop.md` that
-used to duplicate it here is retired to `.archive/docs/`.
+[`../../Agents/INDEX.md`](../../Agents/INDEX.md).
 
 ## Automated ratchets
 

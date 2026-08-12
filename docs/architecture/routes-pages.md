@@ -1,7 +1,7 @@
 # Page route classification
 
 **Scope:** live `site/app/**/page.tsx` modules observed on disk.  
-**APIs:** [`routes.md`](./routes-api.md). Package map: [`docs/architecture/product-map.md`](./product-map.md). Plan: [`plans/README.md`](../../plans/README.md).
+**APIs:** [`routes-api.md`](./routes-api.md). Package map: [`product-map.md`](./product-map.md). Plans: [`plans/README.md`](../../plans/README.md).
 
 *Hand-synced 2026-08-01 against filesystem. Base Next config: `config/build/next.config.js` (merged by `site/next.config.js`).*
 

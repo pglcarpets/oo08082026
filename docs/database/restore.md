@@ -91,8 +91,7 @@ Cloud saves fail until Admin DB returns. Local drafts stay in IndexedDB and sync
 Migrations are applied as work lands, so the databases can sit ahead of the
 deployed build. Rolling code back past a schema change without also running that
 migration's `-- rollback` section can point old code at tables that have moved to
-`archive`. Check the active rows in `Failures.md` before rolling back (as of
-2026-08-08 these are deploy blockers P0-1–P0-3 and F3, not schema items).
+`archive`. Check the active rows in root `Failures.md` before rolling back.
 
 ## Ownership
 

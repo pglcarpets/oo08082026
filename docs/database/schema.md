@@ -57,7 +57,7 @@ Clients: `@/platform/supabase/supabaseAdmin.ts` (products, service role),
 
 `profiles` has **no `email` and no `role` column.** Writing either returns
 PGRST204 — this previously broke every production Planner save (pre-deploy B4 —
-profile upsert fix; the old `docs/plan/6.md` write-up no longer exists).
+profile upsert fix).
 
 ### `archive` schema — 9 retired tables
 

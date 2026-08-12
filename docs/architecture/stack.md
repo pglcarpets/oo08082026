@@ -37,9 +37,8 @@ build → build:site       → check-sharp → next build site --webpack → pre
 ```
 
 So `tech-docs-generator` is optional *to the product* but **not optional to
-`pnpm run build`**. Package `test` / `tech-docs:gate` may still be red when
-`Failures.md` lists P0-1 — that does not block `build:site`, but it does block a
-green `tech-docs:gate` / CI tech-docs workflow.
+`pnpm run build`**. A red `tech-docs:gate` does not block `build:site`; open ship
+blockers (if any) are listed only in root `Failures.md`.
 
 If `node_modules/next` is missing, run `pnpm install` from root before making any
 claim about build state.

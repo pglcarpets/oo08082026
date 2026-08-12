@@ -166,21 +166,6 @@ Honest current state. **"Not measured" is a state, not a failure** — but it is
 
 ---
 
-## 6. Changes this document requires
-
-Adopting these bars changes three things in the repository. They are Stage 0 work.
-
-1. **Rebuild the ergonomics instrument.** The admin ergonomics probe / `probe:w1.5-benchmark-admin`
-   alias was removed (2026-08-02). Until a gated replacement exists, treat DB1–DB3 / DB5 as
-   **uninstrumented** for ship claims. Target bar remains `overall >= 8.5` per DB3 with a
-   per-viewport floor so one strong viewport cannot carry a weak one.
-2. **Add the missing instruments.** The five marked *No* in §4 (plus the removed probe slot).
-3. **Bind bars to gates.** `README` §7 requires "every goal the plan claims to move has a
-   fresh measured value". Each numbered plan's exit criteria must name the specific bars
-   from this file that it moves.
-
----
-
 ## 7. What this programme does not claim
 
 Stated so no reader infers more than the evidence supports:

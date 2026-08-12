@@ -231,10 +231,12 @@ here, because breaking either has already cost this programme a phase:
 
 ## Task 0: Capture the verified baseline
 
-**Status: run 2026-07-27** at commit `d459a52`, evidence stored under the baseline
-directory in [`README` §8](./rules.md#8-evidence-contract). It raised two findings, both
+> **Historical baseline — do not treat as current evidence.** Run 2026-07-27 at commit
+> `d459a52`. Re-run only when re-baselining.
+
+Evidence stored under the baseline directory in [`README` §8](./rules.md#8-evidence-contract). It raised two findings, both
 now tracked in `Failures.md`: the absent `0004` Task 7 modules (blocker **B3**) and the
-stale Product Studio list-route snapshots. Re-run only when re-baselining.
+stale Product Studio list-route snapshots.
 
 **Files:**
 - Verify: `package.json`

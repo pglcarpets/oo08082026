@@ -17,11 +17,11 @@ Disk only when `DEV_AUTH_BYPASS=1` (non-prod). Prod FS is read-only. Never dual-
 
 | Data | Supabase (prod) | Disk (dev) |
 |------|-----------------|------------|
-| Planner projects | `oando_plans` (admin) | `platform/Planner/data/projects/` |
-| Furniture library | `furniture_catalog` + `catalog-assets` (admin) | `platform/shared/data/furniture/` |
+| Planner projects | `oando_plans` (admin) | `site/platform/Planner/data/projects/` |
+| Furniture library | `furniture_catalog` + `catalog-assets` (admin) | `site/platform/shared/data/furniture/` |
 | Descriptors | `block_descriptors` (admin) | `site/inventory/descriptors/` |
 
-Selectors: `lib/Planner/plannerPersistenceMode.ts`, `lib/catalog/furnitureCatalogMode.ts`.
+Selectors: `site/lib/Planner/plannerPersistenceMode.ts`, `site/lib/catalog/furnitureCatalogMode.ts`.
 
 ## Advisors
 
@@ -101,6 +101,15 @@ Schema: [`schema.md`](./schema.md) · stack: [`../architecture/stack.md`](../arc
 | Migration "applied" but nothing changed | Filename sorts before `20260524`; `db:apply` ignores it |
 | Planner rail empty in prod | `seed:furniture` was never run against that environment |
 
+## What happens if you get this wrong
+
+The quiet failure mode: seed content is committed to git, so in production the Planner rail renders and looks healthy while every save fails with `EROFS: read-only file system`. This is silent data loss — the worst kind.
+
+Prevention: all route handlers must import from `plannerStore.ts` or `studioStore.ts`, never `node:fs` directly.
+
+---
+
+## Restore / backup
 ---
 
 ## Restore / backup

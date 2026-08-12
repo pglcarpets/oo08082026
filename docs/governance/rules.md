@@ -43,6 +43,7 @@ gaps — they are conditions of doing the work at all.
 | **E2 — Scope lock** | Work only on the current phase. No later-phase items. No opportunistic refactors, however small, however obviously correct. |
 | **E3 — Evidence, not assertion** | A checklist item is complete only with attached evidence: command output, a CI run reference, or a before/after figure. Self-assertion is not evidence. "I verified this" is not evidence. |
 | **E4 — Retire deliberately** | Removal is allowed, but it must be recoverable and it must be asked for. **Git history is the archive** for anything git tracks — files, scripts, dependencies, tests — so deleting them is fine once the owner approves; do not copy them into `.archive/` as well. `.archive/` is only for material that must stay browsable without git archaeology (superseded essays, retired index pages). **Database objects are the exception**: rows are not in git, so retire a table by moving it to the `archive` schema or by a migration with a working `-- rollback`, never a bare `drop table`. List what goes and wait for approval first. |
+| **E5 — Read-only production** | Production filesystem is read-only. All runtime writes must route through mode-aware wrappers (`plannerPersistenceMode.ts`, `furnitureCatalogMode.ts`). Raw disk helpers and dual-write are forbidden in production paths. |
 
 Two corollaries, both learned the hard way in this repository:
 

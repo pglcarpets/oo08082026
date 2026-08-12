@@ -179,13 +179,16 @@ everything else selects Supabase. Never both.
 
 | Data | Supabase (prod) | Disk (dev) |
 |------|-----------------|------------|
-| Planner projects | `oando_plans` (admin DB) | `platform/Planner/data/projects/` |
-| Furniture library | `furniture_catalog` + `catalog-assets` bucket (admin DB) | `platform/shared/data/furniture/` |
+| Planner projects | `oando_plans` (admin DB) | `site/platform/Planner/data/projects/` |
+| Furniture library | `furniture_catalog` + `catalog-assets` bucket (admin DB) | `site/platform/shared/data/furniture/` |
 | Published descriptors | `block_descriptors` (admin DB) | `site/inventory/descriptors/` |
 
-Selectors: `lib/Planner/plannerPersistenceMode.ts`,
-`lib/catalog/furnitureCatalogMode.ts`. Route handlers call the mode-aware store
+Selectors: `site/lib/Planner/plannerPersistenceMode.ts`,
+`site/lib/catalog/furnitureCatalogMode.ts`. Route handlers call the mode-aware store
 wrappers, never the raw disk helpers.
+
+> **Production filesystem is read-only.** Raw disk helpers throw `EROFS`. All runtime
+> writes must use mode-aware wrappers.
 
 The failure mode is quiet: seed content is committed to git, so in production the
 Planner rail renders and looks healthy while every save fails.

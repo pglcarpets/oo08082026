@@ -4,6 +4,8 @@
 **Verified live:** 2026-08-01, by introspecting both projects. The table lists below
 are the actual `public` contents on that date, not an aspiration.
 
+> **Production filesystem is read-only.** Runtime writes in production go to Supabase only. Route handlers must use mode-aware wrappers, never raw disk helpers.
+
 ## Two databases
 
 Genuinely separate Supabase projects — confirmed by pooler user, not by convention.
@@ -29,8 +31,8 @@ Clients: `@/platform/supabase/supabaseAdmin.ts` (products, service role),
 | `business_stats_current` · `business_stats_history` | Site stats |
 | `configurator_products` | Parametric catalog (separate from marketing) |
 | `planner_managed_products` | Admin-curated planner library |
-| `furniture_catalog` | **Shared Studio/Planner furniture library** — moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
-| `block_descriptors` | Published descriptor release record + `lifecycle` — moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
+| `furniture_catalog` | **LEGACY MIRROR — Admin DB is sole write target.** Moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
+| `block_descriptors` | **LEGACY MIRROR — Admin DB is sole write target.** Published descriptor release record + `lifecycle` — moved to Admin DB (phase 05 cutover, 2026-08-06); listed here while the legacy Products copy exists |
 | `block_themes` | Theme tokens |
 | `svg_revisions` · `svg_revision_artifacts` | Legacy SVG revision schema — residual |
 | `feature_flags` | Flag rows (mirrored in both DBs) |

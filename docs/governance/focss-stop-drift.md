@@ -29,7 +29,7 @@ All product surfaces under `site/`:
 | **Planner fork** | `/ooplanner*` | `@focss/planner/entry.css` (self-contained) |
 | **Studio fork** | `/oostudio*` | `@focss/studio/entry.css` (self-contained) |
 
-Out of scope for this doc: `tech-docs-generator/src/styles/` (not FOCSS). Do not move tech-docs styles into `site/focss/`. Admin only **links** to tech-docs (external URL, new tab) — see [`product-map.md`](../architecture/product-map.md).
+Out of scope for this doc: `tech-docs-generator/src/styles/` (not FOCSS). Do not move tech-docs styles into `site/focss/` — `site/focss/` is part of the product bundle and the production filesystem is read-only. Admin only **links** to tech-docs (external URL, new tab) — see [`product-map.md`](../architecture/product-map.md).
 
 ---
 

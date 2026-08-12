@@ -6,7 +6,8 @@ const protectedDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(protectedDir, "../..");
 const siteRoot = path.join(repoRoot, "site");
 const apiDir = path.join(siteRoot, "app", "api");
-const outFile = path.join(repoRoot, "docs", "architecture", "ROUTE-INDEX.md");
+// Generated dump only — live inventory is hand-maintained `docs/architecture/routes.md`.
+const outFile = path.join(repoRoot, "results", "tooling", "routes-api.generated.md");
 
 const HTTP_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"];
 
@@ -105,7 +106,7 @@ function renderMarkdown(rows) {
   const lines = [
     "# API route index",
     "",
-    "**Scope:** API handlers only — `site/app/api/**/route.ts`. **Pages:** [`route-classification.md`](../site/route-classification.md). Package map: [`docs/architecture/README.md`](../architecture/README.md).",
+    "**Scope:** API handlers only — `site/app/api/**/route.ts`. **Pages:** see Pages section in this file (or regenerate pages inventory separately). Package map: [`product-map.md`](./product-map.md).",
     "",
     `Generated ${today}. Regenerate: \`pnpm run docs:sync:routes\` (repo root).`,
     "",

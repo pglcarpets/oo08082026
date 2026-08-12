@@ -21,7 +21,7 @@ Additional marketing inventory from `responsive-audit.mjs` and `ui-polish-pass1-
 
 **Pre-flight (repo truth â€” read before auditing):**
 - `AGENTS.md` Â§1â€“Â§9, `Agents/01-standard.md`, `Agents/03-browser.md`, `Agents/06-architecture.md`, `Agents/07-css.md`
-- `docs/architecture/product-map.md`, `css.md`, `routes-pages.md`, `stack.md`, `docs/governance/rules.md`
+- `docs/architecture/product-map.md`, `css.md`, `routes.md`, `stack.md`, `docs/governance/rules.md`
 - `Testing-handbook.md`, `START.md`, `C:\Users\ayush\.commandcode\plans\oo-deep-audit-85-strict-quality-program.md`
 
 **Dev server â€” verified before browsing (never 127.0.0.1):**

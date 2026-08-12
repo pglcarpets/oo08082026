@@ -48,7 +48,7 @@ Prod FS read-only → mode wrappers (`plannerPersistenceMode.ts`, `furnitureCata
 | Products | `erpweaiypimorcunaimz` — marketing catalog, configurator, flags |
 
 API: Studio `/api/Studio/*` · Planner `/api/Planner/*` · disk assets `/api/files/*` (don’t rename).  
-Full: [`docs/architecture/routes-api.md`](./docs/architecture/routes-api.md) · schema: [`docs/database/schema.md`](./docs/database/schema.md).
+Routes: [`docs/architecture/routes.md`](./docs/architecture/routes.md) · schema: [`docs/database/schema.md`](./docs/database/schema.md) · stack: [`docs/architecture/stack.md`](./docs/architecture/stack.md).
 
 ## Checks
 

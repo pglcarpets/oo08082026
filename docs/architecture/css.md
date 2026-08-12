@@ -41,7 +41,7 @@ Reference: [`site/focss/README.md`](../../site/focss/README.md) · live board `/
 | Cross-feature | `focss/features/` | `product/foundation` (no shadcn), `product/entry` (admin + shadcn), shadcn pack |
 | Planner fork | `focss/planner/` | Foundation attach + zone `base/` aliases, chrome, controls, workspace, dock |
 | Studio fork | `focss/studio/` | Same shape as planner (no product/entry / shadcn) |
-| Tech-docs | `tech-docs-generator/src/styles/` | Not FOCSS; admin opens via external link only ([`tech-docs-link.md`](./tech-docs-link.md)) |
+| Tech-docs | `tech-docs-generator/src/styles/` | Not FOCSS; admin opens via external link only ([`product-map.md`](./product-map.md)) |
 
 **Inventory:** Success = **one canonical path per concern**.  
 **Page rule:** tokens + base + one zone entry.  

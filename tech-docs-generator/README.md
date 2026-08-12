@@ -51,7 +51,7 @@ Run from the **repository root** — never `pnpm install` inside this package.
 
 Admin links to this app rather than embedding it; URL resolver:
 `site/lib/admin/techDocsUrl.ts`. Full note:
-[`../docs/architecture/tech-docs-link.md`](../docs/architecture/tech-docs-link.md).
+[`../docs/architecture/product-map.md`](../docs/architecture/product-map.md).
 
 ## Tests
 

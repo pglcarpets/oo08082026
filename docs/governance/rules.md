@@ -6,7 +6,7 @@ dockview shells, plus residual marketing/admin under `site/app`. See
 name prior Admin Product Studio journeys — treat **measured “Current” columns as
 capture-time**, not proof for this checkout.
 
-**Admin → Architecture docs:** external link to tech-docs SPA (dev **:3001**, prod subdomain). How-to: [`tech-docs-link.md`](../architecture/tech-docs-link.md).
+**Admin → Architecture docs:** external link to tech-docs SPA (dev **:3001**, prod subdomain). How-to: [`product-map.md`](../architecture/product-map.md).
 
 **Binding on every phase.** A task not covered by a rule here is out of scope until a rule
 is added. This document is the only place *programme* rules live; a programme rule stated

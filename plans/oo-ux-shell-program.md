@@ -337,7 +337,7 @@ Files: `site/features/admin/ui/AdminLayoutShell.tsx` (exists — keep), new `sit
 - Files: `.github/workflows/release-gate.yml`, new `docs/governance/ux-metrics.yaml`. Add jobs: Lighthouse budgets (LCP/INP/CLS), `axe` a11y, `pnpm run gate` (already runs layout/boundaries/tests). Block release on fail. Add the `P4_migration_no_rollback` governance check is already enforced — extend the yaml with UX metrics.
 
 ## PHASE 9 — tech-docs & system map (scoped)
-- Files: `docs/architecture/routes-pages.md`, `docs/architecture/product-map.md`, `tech-docs-generator/`. Update route map to reflect the new `MOBILE_TABS` + `MobileAppShell`; document the domain-aware shell (marketing `.mobile-app-shell` vs duplicated `.planner-mobile-shell`/`.studio-mobile-shell`). Keep `check:docs-all` green.
+- Files: `docs/architecture/routes.md`, `docs/architecture/product-map.md`, `tech-docs-generator/`. Update route map to reflect the new `MOBILE_TABS` + `MobileAppShell`; document the domain-aware shell (marketing `.mobile-app-shell` vs duplicated `.planner-mobile-shell`/`.studio-mobile-shell`). Keep `check:docs-all` green.
 
 ## PHASE 10 — visual regression (scoped)
 - Files: `tests/e2e/` (Playwright). Baseline snapshots for: homepage, showrooms, contact, `/products/[category]`, `/ooplanner` (mobile), `/oostudio` (mobile), `/portal`, `/dashboard`, `/admin/plans`. Update baselines after Phases 1–2 land. Add to `pnpm run gate`.

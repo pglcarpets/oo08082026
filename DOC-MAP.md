@@ -27,7 +27,7 @@ user  >  live code + fresh commands  >  AGENTS.md  >  Agents/  >  docs/**
 |-------|------|
 | Root | Front doors — see table below |
 | `Agents/` | Session handbooks ([`INDEX`](./Agents/INDEX.md)) |
-| `docs/` | Reference (`architecture/`, `database/`, `governance/`) |
+| `docs/` | Reference — 10 files under `architecture/` · `database/` · `governance/` (see [`docs/README.md`](./docs/README.md)) |
 | `.github/` | JIT instructions + skills |
 | `.archive/` | Retired — never authority |
 

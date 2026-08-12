@@ -1,6 +1,6 @@
 # OOplannerOOStudio Deep Page-by-Page Audit and 10-Phase Remediation Plan (v2)
 
-Scope: All live Next.js `page.tsx` routes listed in `docs/architecture/routes-pages.md`, aligned with product domains and UI zones from `docs/architecture/product-map.md`.[cite:29][cite:31]
+Scope: All live Next.js `page.tsx` routes listed in `docs/architecture/routes.md`, aligned with product domains and UI zones from `docs/architecture/product-map.md`.[cite:29][cite:31]
 
 Authority: user instruction → live code + fresh command output → `AGENTS.md` → `docs/**`.[cite:28]
 

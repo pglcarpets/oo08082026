@@ -37,7 +37,7 @@
 | 6 | Lighthouse+perf | LCP≤2.5s/INP≤200ms/CLS≤0.1, `SiteAnalytics.tsx` (no vitals reporters), `next/font`, `next/image`, `fabric/jspdf/mastra` | `06-lighthouse.md` |
 | 7 | Accessibility | WCAG 2.2 AA + 44×44, `tests/e2e/accessibility.spec.ts` (AxeBuilder), landmarks/focus/ARIA | `07-accessibility.md` |
 | 8 | i18n | `site/i18n/*` (5 locales, `localePrefix:"never"`), `LanguageSwitcher.tsx`, `htmlLang` bug, `check-i18n-key-parity.mjs` | `08-i18n.md` |
-| 9 | API safety | `docs/architecture/routes-api.md` (65+), `audit-api-route-safety.mjs` | `09-api-route-safety.md` |
+| 9 | API safety | `docs/architecture/routes.md` (65+), `audit-api-route-safety.mjs` | `09-api-route-safety.md` |
 | 10 | Console+runtime | `page.on(console/pageerror/requestfailed)`, hydration, 404s | `10-console-runtime.md` |
 | 11 | VR+E2E | `ui-polish-pass1-audit.mjs`, `responsive-audit.mjs`, `playwright-gate-specs.json` (10), `hollow-test-patterns`, `audit-gate-skips` | `11-visual-regression-e2e.md` |
 

@@ -3,7 +3,7 @@
 Deploy · migrate · seed · roll back. **Repo root only.**
 
 - Daily: root scripts. Rest: `pnpm run ops <name>` (`ops list`).
-- Blockers: [`Failures.md`](./Failures.md) · Schema: [`docs/database/schema.md`](./docs/database/schema.md) · Restore: [`docs/database/restore.md`](./docs/database/restore.md)
+- Blockers: [`Failures.md`](./Failures.md) · Schema: [`docs/database/schema.md`](./docs/database/schema.md) · Restore: [`docs/database/ops.md`](./docs/database/ops.md)
 
 ---
 
@@ -97,7 +97,7 @@ Hazard: legacy tables now in `archive` (invisible to PostgREST). Don't roll code
 | `PGRST204` column | Stale types / wrong columns |
 | Empty plan list | `user_id` / profile row |
 | `relation does not exist` | Archived table or wrong DB |
-| Catalog outage | R2 fallback — `docs/database/restore.md` |
+| Catalog outage | R2 fallback — `docs/database/ops.md` |
 | Bad deploy | Instant Rollback → §4 |
 
 Maintenance: `SITE_MAINTENANCE_MODE=readonly`.

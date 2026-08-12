@@ -39,7 +39,7 @@
 ## Track 9 — API route safety (Agent B)
 
 ### Method
-- Inventory from `docs/architecture/routes-api.md`.
+- Inventory from `docs/architecture/routes.md`.
 - `scripts/general/audit-api-route-safety.mjs` (`pnpm run test:audit:api-routes`).
 - `scripts/general/audit-eslint-disable.mjs`, `audit-hollow-tests.mjs`, `audit-gate-skips.mjs`.
 - Server actions: `next-safe-action` v8; grep `metadataAction`, `withAuth`, `safeActionClient`.

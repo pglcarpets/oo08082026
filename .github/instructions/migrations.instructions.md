@@ -111,6 +111,6 @@ Production has a read-only filesystem, so disk is never the live path there. Rou
 
 ## References
 
-- Database docs: [`docs/database/README.md`](../../docs/database/README.md)
+- Database docs: [`docs/database/ops.md`](../../docs/database/ops.md)
 - Schema: [`docs/database/schema.md`](../../docs/database/schema.md)
 - Operations: [`OPERATIONS_RUNBOOK.md`](../../OPERATIONS_RUNBOOK.md)

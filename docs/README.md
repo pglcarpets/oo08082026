@@ -1,54 +1,45 @@
 # Docs
 
 **Authority:** user > live code + fresh proof > `Agents/` > this tree.  
-Code wins when docs lag — fix the doc.
+Code wins when docs lag.
 
 | | |
 |--|--|
 | New | [`../START.md`](../START.md) |
-| Index | [`../CONTENTS.md`](../CONTENTS.md) |
-| Map | [`../DOC-MAP.md`](../DOC-MAP.md) |
+| Index | [`../CONTENTS.md`](../CONTENTS.md) · [`../DOC-MAP.md`](../DOC-MAP.md) |
 
 ## Find it
 
 | Need | Open |
 |------|------|
-| Deploy / migrate | [`../OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · `pnpm run ops list` |
-| Where code goes | [`architecture/product-map.md`](./architecture/product-map.md) |
-| Start reading | [`architecture/source-map.md`](./architecture/source-map.md) |
-| Stack | [`architecture/stack.md`](./architecture/stack.md) |
-| Pages / API | [`architecture/routes-pages.md`](./architecture/routes-pages.md) · [`routes-api.md`](./architecture/routes-api.md) |
+| Where code goes / source pointers / tech-docs | [`architecture/product-map.md`](./architecture/product-map.md) |
+| Stack (Node, Next, FOCSS, packages) | [`architecture/stack.md`](./architecture/stack.md) |
+| Pages + API | [`architecture/routes.md`](./architecture/routes.md) |
 | CSS | [`architecture/css.md`](./architecture/css.md) · [`governance/focss-stop-drift.md`](./governance/focss-stop-drift.md) |
-| Tech-docs link | [`architecture/tech-docs-link.md`](./architecture/tech-docs-link.md) |
-| Schema / seed / restore | [`database/schema.md`](./database/schema.md) · [`seeding.md`](./database/seeding.md) · [`restore.md`](./database/restore.md) |
-| Persistence modes | [`database/overview.md`](./database/overview.md) |
+| Schema | [`database/schema.md`](./database/schema.md) |
+| DB ops (modes, seed, restore) | [`database/ops.md`](./database/ops.md) |
 | Programme rules | [`governance/rules.md`](./governance/rules.md) |
-| Plans / audits | [`../plans/README.md`](../plans/README.md) · [`../agent-reports/audit/`](../agent-reports/audit/) |
+| Charter / benchmarks | [`governance/charter.md`](./governance/charter.md) · [`benchmarks.md`](./governance/benchmarks.md) |
+| Deploy | [`../OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) |
+| Plans / audits | [`../plans/README.md`](../plans/README.md) · [`../agent-reports/`](../agent-reports/README.md) |
+| Tech-docs package | [`../tech-docs-generator/README.md`](../tech-docs-generator/README.md) |
 | Blockers | [`../Failures.md`](../Failures.md) |
-| VS Code skills | [`.github/skills/README.md`](../.github/skills/README.md) |
 
-## Folders
+## Layout (11 files)
 
-| Folder | Owns |
-|--------|------|
-| `architecture/` | Code placement, stack, routes, CSS map |
-| `database/` | Schema, modes, seed, restore |
-| `governance/` | Rules, charter, benchmarks, FOCSS debt |
+| Path | Owns |
+|------|------|
+| `architecture/product-map.md` | Placement, Studio→Planner, source pointers, tech-docs |
+| `architecture/stack.md` | Toolchain, workspace, FOCSS-on-Tailwind, package truth |
+| `architecture/routes.md` | Page + API inventories |
+| `architecture/css.md` | FOCSS zones |
+| `database/schema.md` | Tables, RLS, archive |
+| `database/ops.md` | Modes, advisors, seed, restore |
+| `governance/rules.md` | Programme rules + enforcement |
+| `governance/charter.md` | Locked decisions |
+| `governance/benchmarks.md` | Measurable bars |
+| `governance/focss-stop-drift.md` | CSS debt ratchet |
 
-Plans live at repo-root **`plans/`** (not under `docs/`). Audits → `agent-reports/`. Evidence → `results/`.
+Plans → repo-root `plans/`. Audits → `agent-reports/`. Evidence → `results/`.
 
-## `Agents/` vs governance
-
-| | `Agents/` | `docs/governance/` |
-|--|-----------|-------------------|
-| Question | How do I work now? | What is the programme committed to? |
-| Length | Short | Long + enforcement columns |
-
-Session rule conflict → **`Agents/` wins**.
-
-## Conventions
-
-- No `docs/audits/`. Raw output → `results/` (never PASS).
-- `pnpm run check:docs-all` · FOCSS debt: `pnpm run check:style-tokens`.
-- Process: [`../AGENTS.md`](../AGENTS.md) · [`../Agents/INDEX.md`](../Agents/INDEX.md).
-- Ops: root scripts for daily work; `pnpm run ops list` for the rest.
+Session rules: [`../Agents/INDEX.md`](../Agents/INDEX.md) beats governance restatements.

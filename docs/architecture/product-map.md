@@ -40,7 +40,7 @@ Canvas fidelity, catalog honesty, and clear handoff matter equally.
 | `site/public/assets/others/legacy/png-catalog/` | Local PNG mirror (public URL `/png-catalog` via rewrite) |
 
 Decision tree / package map: this README.  
-Generated page routes: [`routes-pages.md`](./routes-pages.md). Plans: [`plans/README.md`](../../plans/README.md).  
+Routes: [`routes.md`](./routes.md). Plans: [`plans/README.md`](../../plans/README.md).  
 CSS: [`css.md`](./css.md) · stop-drift: [`focss-stop-drift.md`](../governance/focss-stop-drift.md) · tree: [`site/focss/README.md`](../../site/focss/README.md).  
 Stack: [`stack.md`](./stack.md).
 
@@ -50,7 +50,7 @@ Stack: [`stack.md`](./stack.md).
 |---|---|
 | Site (marketing) | `app/(site)/`, `components/home/`, `features/site/` |
 | Admin | `app/admin/`, `features/admin/` (**no** `product-studio` tree on disk) |
-| Admin → Architecture docs | External link (System nav) to tech-docs SPA — **dev :3001**, **prod subdomain** — see [`tech-docs-link.md`](./tech-docs-link.md) |
+| Admin → Architecture docs | External link (System nav) to tech-docs SPA — **dev :3001**, **prod subdomain** — see § Tech-docs below |
 | Floor Planner (fork) | `app/ooplanner/`, `features/Planner/`, `components/Planner/`, `lib/Planner/`, `@planner/*` |
 | Furniture Studio (fork) | `app/oostudio/`, `features/Studio/`, `components/Studio/`, `lib/Studio/`, `@studio/*` |
 | Tech-docs (optional inventory UI) | `tech-docs-generator/` — Vite, not Next; not FOCSS |
@@ -135,3 +135,40 @@ Bars, not PASS certificates. Proof = fresh commands / browser evidence.
 ## Archived (not live authority)
 
 `.archive/docs/architecture/`: numbered essays `01`–`14` and related. Live CSS map is `css.md`.
+
+## Source pointers
+
+Where to start reading. Live code wins.
+
+| Concern | Start |
+|---|---|
+| Studio UI | `site/components/Studio/Studio.tsx` |
+| Studio store | `site/server/Studio/studioStore.ts` |
+| Planner UI | `site/components/Planner/Planner.tsx` |
+| Planner store | `site/server/Planner/plannerStore.ts` |
+| Persistence modes | `site/lib/Planner/plannerPersistenceMode.ts` · `site/lib/catalog/furnitureCatalogMode.ts` |
+| Furniture / descriptors (Supabase) | catalog stores under `site/lib/catalog/` |
+| Catalog assets | `site/features/shared/catalog/catalogAssetStorage.server.ts` |
+| Migrations / furniture seed | `scripts/db_apply_migrations.ts` · `scripts/seed_furniture_catalog.ts` |
+| Admin shell | `site/features/admin/ui/AdminLayoutShell.tsx` |
+| Tech-docs URL | `site/lib/admin/techDocsUrl.ts` |
+| Tech-docs package | `tech-docs-generator/` · `pnpm run tech-docs:dev` → **:3001** |
+| Proxy | `site/proxy.ts` |
+| Playwright harness | `config/build/playwright.config.ts` |
+
+**Absent:** `site/features/admin/product-studio/**`, legacy lowercase `features/planner/**` product cluster.
+
+## Tech-docs (inventory SPA)
+
+Optional Vite SPA — **not** product authority. Admin System → Architecture docs is an **external link** (`techDocsUrl.ts`).
+
+| | |
+|--|--|
+| Dev | `pnpm run tech-docs:dev` → http://localhost:3001/tech-stack (strict port; product stays **:3000**) |
+| Prod URL | `NEXT_PUBLIC_TECH_DOCS_URL` (default `https://docs.oando.co.in`) |
+| Generate | `pnpm run ops tech-docs:generate` → `generated-documents/` (wiped each run) |
+| Gate | `pnpm run tech-docs:gate` |
+| CSS | `tech-docs-generator/src/styles/` — **not** FOCSS |
+| Detail | [`tech-docs-generator/README.md`](../../tech-docs-generator/README.md) · stack: [`stack.md`](./stack.md) §1–2 |
+
+Blockers: root [`Failures.md`](../../Failures.md) only.

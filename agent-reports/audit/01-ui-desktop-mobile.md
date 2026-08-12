@@ -10,7 +10,7 @@
 
 Route-by-route audit of chrome, layout, panels, and interaction across desktop (â‰¥1280px) and mobile (<768px phone, 768â€“1280px tablet).
 
-**Routes (from `docs/architecture/routes-pages.md`):**
+**Routes (from `docs/architecture/routes.md`):**
 - Marketing: `/`, `/about`, `/products`, `/products/*`, `/solutions`, `/showrooms`, `/contact`, `/clients`, `/planner`, `/planner/features`, `/planner/help`, `/service`, `/downloads`
 - Tools: `/ooplanner`, `/ooplanner/projects`, `/ooplanner/projects/[id]`, `/oostudio`
 - Member: `/portal`, `/portal/*`, `/dashboard`, `/access`, `/login`

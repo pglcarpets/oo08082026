@@ -81,8 +81,10 @@ raw disk helper. Selectors: `lib/Planner/plannerPersistenceMode.ts`,
 | Index | [`../CONTENTS.md`](../CONTENTS.md) · [`../DOC-MAP.md`](../DOC-MAP.md) |
 | Deploy / migrate | [`../OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · `pnpm run ops list` |
 | Where code goes | [`../docs/architecture/product-map.md`](../docs/architecture/product-map.md) |
-| Start reading | [`../docs/architecture/source-map.md`](../docs/architecture/source-map.md) |
-| Schema | [`../docs/database/schema.md`](../docs/database/schema.md) |
+| Stack | [`../docs/architecture/stack.md`](../docs/architecture/stack.md) |
+| Routes | [`../docs/architecture/routes.md`](../docs/architecture/routes.md) |
+| Schema / DB ops | [`../docs/database/schema.md`](../docs/database/schema.md) · [`../docs/database/ops.md`](../docs/database/ops.md) |
+| Tech-docs SPA | [`../tech-docs-generator/README.md`](../tech-docs-generator/README.md) |
 | Programme rules | [`../docs/governance/rules.md`](../docs/governance/rules.md) |
 | Blockers | [`../Failures.md`](../Failures.md) |
 | Product | [`../README.md`](../README.md) |

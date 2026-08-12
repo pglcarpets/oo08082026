@@ -3,7 +3,7 @@
 ## Overview
 
 - **Track:** 09 — API route safety (auth/CSRF/rate-limit coverage of `site/app/api/**/route.ts`, server actions, mode-aware vs raw disk writes, audit-script coverage).
-- **Scope:** `site/app/api/**/route.ts` (65+ routes per `docs/architecture/routes-api.md`), `scripts/general/audit-api-route-safety.mjs`, `site/lib/safe-action.ts`, `site/features/admin/api/adminActionGuards.ts`, server actions under `site/features/**`, mode-aware write wrappers (`site/server/{Studio,Planner}/*Store.ts`, `site/lib/catalog/*Mode.ts`), legacy `site/data/storage/`.
+- **Scope:** `site/app/api/**/route.ts` (65+ routes per `docs/architecture/routes.md`), `scripts/general/audit-api-route-safety.mjs`, `site/lib/safe-action.ts`, `site/features/admin/api/adminActionGuards.ts`, server actions under `site/features/**`, mode-aware write wrappers (`site/server/{Studio,Planner}/*Store.ts`, `site/lib/catalog/*Mode.ts`), legacy `site/data/storage/`.
 - **Date:** 2026-08-12
 - **Auditor:** Agent B (Phase A). Audit only — no source files edited.
 
@@ -11,7 +11,7 @@
 
 ### Source files inspected (file:line)
 
-- `docs/architecture/routes-api.md` — 65+ route inventory; auth roles: admin→`withAuth(role:admin)`/`requireAdminSession`; `/api/Planner/projects*`→`member`; `/api/Planner/catalog|handoff` + `/api/Studio/furniture*`→`guest`; `goLive` admin-only.
+- `docs/architecture/routes.md` — 65+ route inventory; auth roles: admin→`withAuth(role:admin)`/`requireAdminSession`; `/api/Planner/projects*`→`member`; `/api/Planner/catalog|handoff` + `/api/Studio/furniture*`→`guest`; `goLive` admin-only.
 - `scripts/general/audit-api-route-safety.mjs` — `CSRF_OPTIONAL={tracking,log-error,customer-queries,nav-search}` (41–46); `CSRF_REQUIRED_PREFIXES` (53–72); `PUBLIC_FORM_MUTATORS` (78–83); checks: `missing-admin-auth`, `missing-csrf`, `missing-csrf-rejection-header`, `csrf-wrong-error-code`, `missing-rate-limit` (admin/planner/plans only), `missing-public-rate-limit`, `planner-mutator-no-withAuth`/`-no-requireCsrf`. Rate-limit/auth **not enforced** for surface `"other"` (281–295).
 - `site/features/shared/api/withAuth.ts` — `withAuth(handler,{role,rateLimitScope,rateLimit?,rateLimitWindowMs?,requireCsrf?})` → `enforceRateLimit` → CSRF (POST/PUT/PATCH/DELETE iff `requireCsrf && !isDevAuthBypassEnabled`) → `resolveAuthContext` → handler.
 - `site/lib/safe-action.ts` — `actionClient = createSafeActionClient({handleServerError})`.

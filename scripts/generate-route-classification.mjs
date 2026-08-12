@@ -1,5 +1,6 @@
 /**
- * Scan site/app pages + route classification; write docs/architecture/route-classification.md.
+ * Scan site/app pages + route classification.
+ * Writes results/tooling only — live inventory is docs/architecture/routes.md.
  * Run from repo root: node scripts/generate-route-classification.mjs
  */
 import fs from "node:fs";
@@ -14,7 +15,7 @@ const classificationPath = path.join(
   "features/site/data/routeClassification.ts",
 );
 const nextConfigPath = path.join(repoRoot, "config/build/next.config.js");
-const outPath = path.join(repoRoot, "docs", "architecture", "route-classification.md");
+const outPath = path.join(repoRoot, "results", "tooling", "routes-pages.generated.md");
 
 const LEGACY_PLANNER_REDIRECTS = [
   ["/oando-planner", "/ooplanner/"],
@@ -163,7 +164,7 @@ const lines = [
   "# Page route classification",
   "",
   "**Scope:** live `site/app/**/page.tsx` modules plus classified marketing/admin redirects.",
-  "**APIs:** [`ROUTE-INDEX.md`](../api/ROUTE-INDEX.md). Package map: [`docs/architecture/README.md`](../architecture/README.md). Execution: [`plans/3.md`](../../plans/3.md).",
+  "**APIs:** [`routes.md`](./routes.md) § API. Package map: [`product-map.md`](./product-map.md). Plans: [`plans/README.md`](../../plans/README.md).",
   "",
   `*Generated: ${new Date().toISOString().slice(0, 10)} — \`node scripts/generate-route-classification.mjs\` (repo root).*`,
   "",

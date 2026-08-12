@@ -65,4 +65,9 @@ pnpm run typecheck && pnpm run scan:boundaries && pnpm run gate
 - `pnpm run test` = **two** lanes — check both (`results/tests/*.json`).
 - Migrations need `-- rollback`.
 
-Detail: [`README.md`](./README.md) · tests: [`Testing-handbook.md`](./Testing-handbook.md) · agents: [`AGENTS.md`](./AGENTS.md)
+| | |
+|--|--|
+| Product / routes / stack | [`README.md`](./README.md) · [`docs/architecture/routes.md`](./docs/architecture/routes.md) · [`stack.md`](./docs/architecture/stack.md) |
+| Tests | [`Testing-handbook.md`](./Testing-handbook.md) |
+| Agents | [`AGENTS.md`](./AGENTS.md) |
+| Tech-docs SPA | [`tech-docs-generator/README.md`](./tech-docs-generator/README.md) |

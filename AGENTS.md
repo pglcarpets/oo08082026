@@ -85,8 +85,9 @@ Seed: `pnpm run seed:furniture` (off the read path).
 | Browser | `Agents/03-browser.md` |
 | Blockers | `Agents/04-failures.md`, `Failures.md` |
 | Docs | `Agents/05-documentation.md`, `DOC-MAP.md`, `CONTENTS.md` |
-| Architecture | `Agents/06-architecture.md`, `docs/architecture/product-map.md` |
+| Architecture | `Agents/06-architecture.md`, `docs/architecture/product-map.md`, `docs/architecture/stack.md`, `docs/architecture/routes.md` |
 | CSS | `Agents/07-css.md`, `docs/architecture/css.md` |
+| Tech-docs SPA | `tech-docs-generator/README.md` (detail also in product-map § Tech-docs) |
 | Onboarding / ops | `START.md`, `OPERATIONS_RUNBOOK.md`, `README.md`, `Testing-handbook.md` |
 | Plans / audits | `plans/README.md`, `agent-reports/README.md` |
 

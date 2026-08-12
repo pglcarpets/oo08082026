@@ -17,7 +17,7 @@ Required routes for this track: `/`, `/products`, `/ooplanner`, `/oostudio`, `/p
 
 ## Method
 
-**Pre-flight (same doc set as 01/02):** `AGENTS.md`, handbook `03-browser`, `07-css`, product-map/css/routes-pages/stack, governance `rules.md`, Testing-handbook, `C:\Users\ayush\.commandcode\plans\oo-deep-audit-85-strict-quality-program.md`.
+**Pre-flight (same doc set as 01/02):** `AGENTS.md`, handbook `03-browser`, `07-css`, product-map/css/routes/stack, governance `rules.md`, Testing-handbook, `C:\Users\ayush\.commandcode\plans\oo-deep-audit-85-strict-quality-program.md`.
 
 **Dev server â€” verified before browsing (never 127.0.0.1):**
 ```powershell

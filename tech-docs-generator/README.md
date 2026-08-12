@@ -1,76 +1,64 @@
-# Tech docs generator
-
-An **optional** Vite app that renders repository architecture and tooling data as
-a browsable inventory. It is not part of the product: the Next application under
-`site/` does not import from here, and nothing in this package can gate a
-product change.
-
-> **Status 2026-08-03** — Inventory SPA, not authority. Generate wipes and writes
-> `generated-documents/{docs,data}` directly. Package lane: **29 test files**,
-> **170 tests** via `pnpm --filter oando-tech-docs test`. Active blocker:
-> fresh `pnpm run tech-docs:gate` exit 0 — [`Failures.md`](../Failures.md) F1.
-
-## Generated output is disposable
-
-Every `generate` / gate run:
-
-1. **deletes** all of `generated-documents/` (docs, data, and site)
-2. **writes fresh** docs + data directly into those trees (no `.tmp` staging copy)
-3. exits non-zero if generation fails → the gate fails
-4. Vite rebuilds `generated-documents/site` afterward (`emptyOutDir`)
-
-There is no "keep last good tree": if step 2 fails, the live docs/data trees are
-already gone.
-
-Gate order: **generate** (wipe + write docs/data once) → validate → guards →
-typecheck → **build site** → coverage tests. Coverage and test artifacts go under
-`results/tooling/tech-docs/`.
-
-`generated-documents/site` is written directly by Vite (`emptyOutDir`), then
-`publish-all --surfaces=site` writes the manifest in place. Hand-edit neither tree.
-
-`results/tooling/tech-docs/vite-cache` is the Vite/Vitest cache — not inventory.
-
-## Commands (repo root)
-
-Run from the **repository root** — never `pnpm install` inside this package.
-
-| Need | Command |
-|------|---------|
-| Dev SPA | `pnpm run tech-docs:dev` → http://localhost:3001/tech-stack |
-| CI gate | `pnpm run tech-docs:gate` |
-| Regenerate inventory | `pnpm run ops tech-docs:generate` |
-| Package unit tests | `pnpm --filter oando-tech-docs test` |
-| Tech-docs vitest lane | `pnpm run ops test:tech-docs` |
-| Standalone check | `pnpm run ops tech-docs:check` |
-
-| App | Command | Port |
-|-----|---------|------|
-| Product site | `pnpm run dev` | **3000** |
-| Tech-docs | `pnpm run tech-docs:dev` | **3001** — strict, will not fall back onto 3000 |
-
-Admin links to this app rather than embedding it; URL resolver:
-`site/lib/admin/techDocsUrl.ts`. Full note:
-[`../docs/architecture/product-map.md`](../docs/architecture/product-map.md).
-
-## Tests
-
-Specs live at `tests/tech-docs-generator/` and run as the **second** vitest lane
-of `pnpm run test`. Each lane prints its own summary — read both, or the JSON
-reports under `results/tests/`.
-
-```bash
-pnpm exec vitest run --config tests/vitest.tech-docs.config.ts
-pnpm exec vitest list --config tests/vitest.tech-docs.config.ts   # 29 files
-```
-
-`tech-docs:gate` runs generate, guards, typecheck, build, and coverage — stricter
-than the root dual-lane `test` alone.
-
-## CSS
-
-Zone styles live in `src/styles/`, imported by `src/index.css`. **Not** under
-`site/focss/`, and not subject to the FOCSS fence — see
-[`../docs/governance/focss-stop-drift.md`](../docs/governance/focss-stop-drift.md).
-Do not move these styles into the product tree.
-
+# Tech docs generator
+
+Optional Vite inventory SPA. **Not** product runtime (`site/` does not import it).
+Still required for monorepo `pnpm run build` / ship paths that run `build:tech-docs`
+(see stack §1) — it does not replace root [`Failures.md`](../Failures.md).
+
+Aligned with [`docs/architecture/stack.md`](../docs/architecture/stack.md) §1–2 and
+[`docs/architecture/product-map.md`](../docs/architecture/product-map.md) § Tech-docs.
+
+> Inventory SPA only. Generate wipes `generated-documents/{docs,data}` each run.
+> Blockers: root [`Failures.md`](../Failures.md) only. Gate truth: fresh
+> `pnpm run tech-docs:gate`.
+
+## Generated output is disposable
+
+Every `generate` / gate run:
+
+1. **deletes** all of `generated-documents/` (docs, data, site)
+2. **writes fresh** docs + data (no `.tmp` staging for those trees)
+3. fails non-zero if generation fails
+4. Vite rebuilds `generated-documents/site` (`emptyOutDir`)
+
+No “keep last good tree.” Coverage / cache: `results/tooling/tech-docs/`.
+
+Gate order: **generate** → validate → guards → typecheck → **build site** → coverage.
+
+## Commands (repo root)
+
+Install only from monorepo root — never inside this package.
+
+| Need | Command |
+|------|---------|
+| Dev SPA | `pnpm run tech-docs:dev` → http://localhost:3001/tech-stack |
+| CI gate | `pnpm run tech-docs:gate` |
+| Regenerate | `pnpm run ops tech-docs:generate` |
+| Package tests | `pnpm --filter oando-tech-docs test` |
+| Root vitest lane | `pnpm run ops test:tech-docs` |
+| Standalone check | `pnpm run ops tech-docs:check` |
+
+| App | Command | Port |
+|-----|---------|------|
+| Product (Next) | `pnpm run dev` | **3000** |
+| Tech-docs (Vite) | `pnpm run tech-docs:dev` | **3001** (strict; never fall back to 3000) |
+
+Admin **System → Architecture docs** is an external link via
+`site/lib/admin/techDocsUrl.ts` (`NEXT_PUBLIC_TECH_DOCS_URL` in prod).
+
+Root `pnpm run build` runs `build:site` **and** `build:tech-docs` (stack §1).
+
+## Tests
+
+Specs: `tests/tech-docs-generator/` — second lane of `pnpm run test`. Check both
+lane summaries (or `results/tests/vitest-tech-docs-results.json`).
+
+```bash
+pnpm exec vitest run --config tests/vitest.tech-docs.config.ts
+```
+
+`tech-docs:gate` is stricter than the dual-lane root `test` alone.
+
+## CSS
+
+`src/styles/` (imported by `src/index.css`). **Not** FOCSS — do not move into
+`site/focss/`. See [`docs/governance/focss-stop-drift.md`](../docs/governance/focss-stop-drift.md).

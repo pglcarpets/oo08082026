@@ -2,15 +2,16 @@
 
 When docs and code differ, **code wins**. User instruction wins over both. Plan direction is right; details here can be wrong — verify against live code.
 
-**Live architecture is three files:**
+**Live architecture (4 files):**
 
 | File | Owns |
 |---|---|
-| **This README** | Vision, placement, domains, UI zones, current vs target |
-| [`css.md`](./css.md) | FOCSS / Product CSS (**detail kept**) |
-| [`stack.md`](./stack.md) | Engines, runtime, PNG release, i18n, package policy |
+| **This file** | Vision, placement, Studio→Planner, source pointers, tech-docs |
+| [`stack.md`](./stack.md) | Toolchain, workspace, FOCSS-on-Tailwind, package truth |
+| [`routes.md`](./routes.md) | Page + API inventories |
+| [`css.md`](./css.md) | FOCSS zones |
 
-Everything else formerly under this folder is in `.archive/docs/architecture/`.
+Also: [`database/schema.md`](../database/schema.md) · [`database/ops.md`](../database/ops.md).
 
 ## Vision
 
@@ -39,7 +40,7 @@ Canvas fidelity, catalog honesty, and clear handoff matter equally.
 | `site/public/assets/` | Nested asset tree — `{catalog,marketing,others}` on disk (2026-08-06) |
 | `site/public/assets/others/legacy/png-catalog/` | Local PNG mirror (public URL `/png-catalog` via rewrite) |
 
-Decision tree / package map: this README.  
+Decision tree / package map: this file.  
 Routes: [`routes.md`](./routes.md). Plans: [`plans/README.md`](../../plans/README.md).  
 CSS: [`css.md`](./css.md) · stop-drift: [`focss-stop-drift.md`](../governance/focss-stop-drift.md) · tree: [`site/focss/README.md`](../../site/focss/README.md).  
 Stack: [`stack.md`](./stack.md).

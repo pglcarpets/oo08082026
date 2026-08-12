@@ -18,7 +18,7 @@ fresh commands.
 |------|-------|------|
 | Node | **24** | Pinned in every CI workflow. The root package declares **no `engines`** field — CI is the only statement of the version |
 | Package manager | **pnpm 11.20.0** | Exact, via `packageManager`. Install from repo root only |
-| Framework | **Next 16.3.0-preview.10** | A preview release. Treat upgrade notes as load-bearing |
+| Framework | **Next 16.3.0** | Pinned in root `package.json` (`dev` / `build:site` use `--webpack`) |
 | React | **19.2.8** | Pinned exact, not caret |
 | TypeScript | **^7.0.2** | |
 | Bundler | **webpack, explicitly** | `dev` and `build:site` both pass `--webpack`. Next 16 defaults to Turbopack; this is a deliberate opt-out — do not remove the flag casually |

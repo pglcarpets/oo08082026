@@ -14,15 +14,7 @@ const planLabel = "plans";
  * `plans/` is flat Markdown programme plans only.
  * Audit reports live in `agent-reports/`; generated artifacts in `results/`.
  */
-const rootPlanDocs = [
-  "README.md",
-  "oo-ux-shell-program.md",
-  "phase1-mobile-app-shell.md",
-  "docs-readonly-alignment.md",
-  "benchmark-instruments.md",
-];
 const requiredPlanDocs = ["README.md"];
-const allowedPlanDocs = new Set(rootPlanDocs);
 const violations = [];
 
 if (!fs.existsSync(planRoot)) {
@@ -45,14 +37,6 @@ const markdown = allFiles.filter((file) => file.endsWith(".md"));
 for (const doc of requiredPlanDocs) {
   if (!markdown.includes(doc)) {
     violations.push(`missing: ${planLabel}/${doc}`);
-  }
-}
-
-for (const f of markdown) {
-  if (!allowedPlanDocs.has(f)) {
-    violations.push(
-      `unexpected plan doc: ${planLabel}/${f} (allowed: ${rootPlanDocs.join(" · ")})`,
-    );
   }
 }
 

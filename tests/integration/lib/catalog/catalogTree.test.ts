@@ -61,8 +61,10 @@ describe("catalog tree", () => {
     fetchCatalogCategoriesLive.mockResolvedValue(null);
     fetchCatalogProductsLive.mockResolvedValue(null);
 
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const { buildCatalogLive } = await import("@/lib/catalog/catalogTree");
     const catalog = await buildCatalogLive();
+    consoleSpy.mockRestore();
     expect(catalog.length).toBeGreaterThan(0);
     expect(catalog[0].series.length).toBeGreaterThan(0);
   });
@@ -120,8 +122,10 @@ describe("catalog tree", () => {
         },
       ]);
 
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation(() => {});
     const { buildCatalogLive } = await import("@/lib/catalog/catalogTree");
     const catalog = await buildCatalogLive();
+    consoleSpy.mockRestore();
     expect(catalog).toHaveLength(1);
     expect(fetchCatalogProductsLive).toHaveBeenCalledTimes(2);
   });

@@ -1,5 +1,7 @@
 # OOplannerOOStudio Deep Page-by-Page Audit and 10-Phase Remediation Plan (v2)
 
+**Status:** RETIRED — superseded by [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) (2026-08-12). History preserved: all 10 phases + AI prompt templates below.
+
 Scope: All live Next.js `page.tsx` routes listed in `docs/architecture/routes.md`, aligned with product domains and UI zones from `docs/architecture/product-map.md`.[cite:29][cite:31]
 
 Authority: user instruction → live code + fresh command output → `AGENTS.md` → `docs/**`.[cite:28]

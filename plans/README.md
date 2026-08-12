@@ -4,11 +4,10 @@ Flat Markdown only. No subfolders. No generated files.
 
 | Doc | Focus |
 |-----|--------|
+| [00-README.md](./00-README.md) | Slice ID registry (all plans) |
+| [revise-00-01-02-plans.md](./revise-00-01-02-plans.md) | This revision — registry, handover, testing |
 | [oo-ux-shell-program.md](./oo-ux-shell-program.md) | Mobile shell + UX program |
-| [phase1-mobile-app-shell.md](./phase1-mobile-app-shell.md) | Phase 1 PR |
-| [Mobile app shell for oando.co.md](./Mobile%20app%20shell%20for%20oando.co.md) | Mobile UX/UI remediation backlog |
 | [oo-deep-audit-85-strict-quality-program.md](./oo-deep-audit-85-strict-quality-program.md) | 85% strict quality program |
-| [oo-deep-audit-v2.md](./oo-deep-audit-v2.md) | Ten-phase remediation plan |
 | [01-handover.md](./01-handover.md) | Session handover |
 | [02-testing-plan.md](./02-testing-plan.md) | Gates, Vitest, Playwright |
 | [03-ops-deploy-plan.md](./03-ops-deploy-plan.md) | Vercel, Worker, DNS |
@@ -18,6 +17,14 @@ Flat Markdown only. No subfolders. No generated files.
 | [07-tech-docs-plan.md](./07-tech-docs-plan.md) | tech-docs |
 | [08-oo-start-checklist.md](./08-oo-start-checklist.md) | Session start |
 | [09-proxy-auth-hardening-plan.md](./09-proxy-auth-hardening-plan.md) | Proxy/auth hardening |
+
+## Retired
+
+| Doc | Was | Superseded by |
+|-----|-----|---------------|
+| [oo-deep-audit-v2.md](./oo-deep-audit-v2.md) | Ten-phase remediation plan | `oo-ux-shell-program.md` |
+| [phase1-mobile-app-shell.md](./phase1-mobile-app-shell.md) | Phase 1 PR (10-file diffs) | `oo-ux-shell-program.md` § PHASE 1 |
+| [Mobile app shell for oando.co.md](./Mobile%20app%20shell%20for%20oando.co.md) | Raw brief seed | `oo-ux-shell-program.md` |
 
 | Kind | Where |
 |------|--------|

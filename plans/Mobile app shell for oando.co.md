@@ -1,4 +1,6 @@
-Mobile app shell for oando.co.in + Planner/Studio
+# Mobile app shell for oando.co.in + Planner/Studio
+
+**Status:** RETIRED — raw brief seed superseded by [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) (2026-08-12). Kept to document the original user request.
 
 You are a senior front‑end architect working on One&Only’s stack: live marketing site at https://oando.co.in and internal apps ooplanner / oostudio in the repo pglcarpets/oo08082026.\n\nGoal:\n- Implement a unified mobile app shell with a minimal top bar and bottom tab bar (Home, Catalog, Planner, Studio, Account).\n\nTasks:\n- Inspect app/(site)/**, SiteHeader.tsx, MobileNavDrawer.tsx, and Planner/Studio entry layouts.\n- Design and add a MobileAppShell component that wraps (site) pages and /ooplanner* / /oostudio* when viewport < 768px.\n- Ensure Planner and Studio use canvas‑first layouts on mobile (full‑screen canvas, bottom sheet panels, large Save/Export/BOQ actions) and stay isolated via @planner/* and @studio/* boundaries.\nReturn concrete TSX + FOCSS changes and a short acceptance checklist for mobile.
 

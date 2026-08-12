@@ -1,5 +1,7 @@
 # OO Deep Audit + 85% Strict Quality Program
 
+**Plan location:** `plans/oo-deep-audit-85-strict-quality-program.md` (repository-local).
+
 **Status:** Approved plan, 2026-08-11. Implementation pending your go-ahead.
 **Repo:** `E:\oo08082026` — Next 16 `site/` + `tech-docs-generator/` + `tests/` + `workers/`
 **Authority:** user > live code + fresh commands > `AGENTS.md` > `Agents/` > `docs/`

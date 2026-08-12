@@ -1,5 +1,7 @@
 # Phase 1 — Mobile App Shell (10-file PR)
 
+**Status:** RETIRED — Phase 1 content merged into [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) § PHASE 1 (2026-08-12). Kept as reference — the exact 10-file diffs are useful during Phase 1 implementation.
+
 **Status:** Plan, awaiting approval. Concrete diffs against real file contents (read 2026-08-11).
 **Scope:** A single PR. Mobile (< 1280px) gets a minimal top bar + bottom tab bar (Home, Catalog, Planner, Studio, Account); desktop (≥ 1280px) is untouched. The mobile drawer is simplified to search + 4 curated shortcuts. Domain boundaries preserved (`scan:boundaries` stays green). Analytics shapes preserved (`planner_entry` conversion still fires on the Planner tab; new `site_tab_selected` event added through the existing consent-gated transport).
 

@@ -29,6 +29,10 @@ real **and** both persistence selectors resolve to `supabase`. A route test that
 mocks only the disk helpers will reach the network. Disk-path contract tests must
 pin the mode with `vi.mock` on `plannerPersistenceMode` / `furnitureCatalogMode`.
 
+> **Why this matters:** Production uses a read-only filesystem — disk-mocked tests
+> prove nothing about the live write path. Always verify the Supabase path for
+> mutating routes.
+
 Live-DB smoke suites (`*.db.smoke.test.ts`, `serviceRoleOnlyTables.db.test.ts`)
 **skip silently** without service env — a green run may have proved less than it
 looks. Detail: `Testing-handbook.md`.

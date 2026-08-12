@@ -164,7 +164,7 @@ Hand-synced 2026-08-01 from on-disk `route.ts` files (top-up 2026-08-06: added `
 
 ## Notes
 
-- **Forked apps:** Studio + Planner talk only to `/api/Studio/*` and `/api/Planner/*` (case as on disk). Storage is mode-aware — `site/platform/*/data/` in dev, Supabase in production. `site/data/storage/` is legacy with no code references.
+- **Forked apps:** Studio + Planner talk only to `/api/Studio/*` and `/api/Planner/*` (case as on disk). Storage is mode-aware — `site/platform/*/data/` in dev, Supabase in production. `site/data/storage/` is **legacy** — do not write there.
 - **Auth:** Residual user routes often use Supabase session via shared helpers. Admin routes use `withAuth({ role: "admin" })` or `requireAdminSession`.
 - **CSRF:** Plan mutations and some admin mutations validate CSRF (`GET /api/csrf` first) where wired.
 - **Admin catalog:** Canonical HTTP is `/api/admin/catalogs/{type}` (`standard` | `configurator`).

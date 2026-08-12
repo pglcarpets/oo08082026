@@ -12,7 +12,12 @@
 - Fabric 2D · dockview shells (no in-app Three.js — removed 2026-08-03).
 - Store: `server/{Studio,Planner}/` mode-aware wrappers — disk under
   `site/platform/{shared,Studio,Planner}/data/` in dev, Supabase in production.
-  `site/data/storage/` is **legacy** with zero code references.
+  `site/data/storage/` is **legacy** — do not write there.
+
+| ❌ Forbidden (raw disk) | ✅ Required (mode-aware) |
+|---|---|
+| `fs.writeFileSync(PROJECTS_DIR, data)` | `writeProjectRecord(data)` → checks `getPlannerPersistenceMode()` |
+| `fs.mkdirSync(FURNITURE_DIR)` | `writeFurnitureItem(item)` → Supabase branch in prod |
 
 ## Catalog symbols
 - Contract: `site/lib/catalog/planSymbolPngContract.ts` when present.

@@ -30,6 +30,7 @@ user  >  live code + fresh commands  >  AGENTS.md  >  Agents/  >  docs/**
 | `docs/` | Reference — 10 files under `architecture/` · `database/` · `governance/` (see [`docs/README.md`](./docs/README.md)) |
 | `.github/` | JIT instructions + skills |
 | `.archive/` | Retired — never authority |
+| Runtime constraints | [`AGENTS.md`](./AGENTS.md) §5 — read-only production contract |
 
 ### Root files
 

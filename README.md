@@ -37,7 +37,7 @@ GET  /api/Planner/catalog  ← same store
 
 | | When | Plans | Furniture |
 |--|------|-------|-----------|
-| disk | `DEV_AUTH_BYPASS=1`, non-prod | `platform/Planner/data/projects/` | `platform/shared/data/furniture/` |
+| disk | `DEV_AUTH_BYPASS=1`, non-prod | `site/platform/Planner/data/projects/` | `site/platform/shared/data/furniture/` |
 | supabase | else | `oando_plans` | `furniture_catalog` (Admin) |
 
 Prod FS read-only → mode wrappers (`plannerPersistenceMode.ts`, `furnitureCatalogMode.ts`).

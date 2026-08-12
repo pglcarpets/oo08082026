@@ -48,12 +48,15 @@ Studio (`/oostudio`) and Planner (`/ooplanner`) are **forked** — never import 
 Staff/customer + furniture + descriptors → **Admin**. Marketing catalog tables → **Products**.
 
 ## 5. Persistence (no dual-write)
+
+> **Production filesystem is read-only.** Raw disk helpers will throw `EROFS`. All runtime writes must use mode-aware wrappers.
+
 Disk when `DEV_AUTH_BYPASS=1` (non-prod). Else Supabase. Prod FS is read-only. Use mode-aware wrappers (`writeFurnitureItem`, …), never raw disk helpers.
 
 | Data | Disk | Supabase | Selector |
 |------|------|----------|----------|
-| Plans | `platform/Planner/data/projects/` | `oando_plans` | `plannerPersistenceMode.ts` |
-| Furniture | `platform/shared/data/furniture/` | `furniture_catalog` | `furnitureCatalogMode.ts` |
+| Plans | `site/platform/Planner/data/projects/` | `oando_plans` | [`plannerPersistenceMode.ts`](site/lib/Planner/plannerPersistenceMode.ts) |
+| Furniture | `site/platform/shared/data/furniture/` | `furniture_catalog` | [`furnitureCatalogMode.ts`](site/lib/catalog/furnitureCatalogMode.ts) |
 | Descriptors | `site/inventory/descriptors/` | `block_descriptors` | (same as furniture) |
 
 Seed: `pnpm run seed:furniture` (off the read path).

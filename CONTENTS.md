@@ -9,7 +9,7 @@ Plans `plans/*.md` · Audits `agent-reports/**/*.md` · Evidence `results/**`
 | 02 | [`CONTENTS.md`](./CONTENTS.md) | this |
 | 03 | [`DOC-MAP.md`](./DOC-MAP.md) | authority |
 | 04 | [`OPERATIONS_RUNBOOK.md`](./OPERATIONS_RUNBOOK.md) | deploy / migrate |
-| 05 | [`AGENTS.md`](./AGENTS.md) | process |
+| 05 | [`AGENTS.md`](./AGENTS.md) | process · read-only production contract §5 |
 | 06 | [`README.md`](./README.md) | product |
 | 07 | [`Testing-handbook.md`](./Testing-handbook.md) | tests |
 | 08 | [`Failures.md`](./Failures.md) | blockers |

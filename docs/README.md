@@ -3,6 +3,9 @@
 **Authority:** user > live code + fresh proof > `Agents/` > this tree.  
 Code wins when docs lag.
 
+> **Production filesystem is read-only.** Runtime writes use mode-aware wrappers.
+> See [`AGENTS.md`](../AGENTS.md) §5.
+
 | | |
 |--|--|
 | New | [`../START.md`](../START.md) |

@@ -53,7 +53,11 @@ Vitest `root` = `site/` → `cwd` inside tests is under `site/`. Harness: `confi
 
 ## Persistence in tests
 
-`DEV_AUTH_BYPASS=true` (not `"1"`) → modes = **supabase**. Disk tests mock:
+Vitest sets `DEV_AUTH_BYPASS: "true"` — not `"1"` — so `withAuth` gates run for real **and** both persistence selectors resolve to `supabase`. A route test that mocks only the disk helpers will reach the network. Disk-path contract tests must pin the mode with `vi.mock` on `plannerPersistenceMode` / `furnitureCatalogMode`.
+
+> **Production hazard:** The production filesystem is read-only. Disk-mode mock tests prove nothing about the live write path. For every mutating route, provide both a disk-mode test and a Supabase-mode test.
+
+Disk tests mock:
 
 ```ts
 vi.mock("@planner/lib/plannerPersistenceMode", () => ({

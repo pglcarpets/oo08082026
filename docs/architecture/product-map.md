@@ -36,7 +36,7 @@ Canvas fidelity, catalog honesty, and clear handoff matter equally.
 | `site/i18n/` | next-intl home — config + `messages/{en,hi,fr,de,es}.json`; plugin `./i18n/request.ts` (+ root `i18n/request.ts` re-export for monorepo cwd) |
 | `site/platform/{shared,Studio,Planner}/data/` | Furniture library, uploads, projects, exports — **dev disk mode only** |
 | `tests/` | Unit (name-mirror), integration, browser |
-| `site/inventory/descriptors/` | Descriptor JSON / local release records |
+| `site/inventory/descriptors/` | Descriptor JSON / local release records — **dev disk mode only** |
 | `site/public/assets/` | Nested asset tree — `{catalog,marketing,others}` on disk (2026-08-06) |
 | `site/public/assets/others/legacy/png-catalog/` | Local PNG mirror (public URL `/png-catalog` via rewrite) |
 
@@ -116,7 +116,17 @@ Shared rules: semantic tokens; distinct loading/empty/error states; no silent fa
 | Workspace layout | **dockview-react** in each forked DockShell |
 | 2D canvas | Fabric in each forked app |
 | 3D | **Removed 2026-08-03** — no `three` in app; the Open3D vendor embed (`public/vendor/open3d-floorplan/`) is also absent on disk now |
-| Store | Mode-aware: `site/platform/*/data/` (dev) or Supabase (prod). `site/data/storage/` is legacy, zero references |
+| Store | Mode-aware: `site/platform/*/data/` (dev) or Supabase (prod). `site/data/storage/` is **legacy** — do not write there. |
+
+> **Persistence decision tree:**
+> ```
+> DEV_AUTH_BYPASS=1 && NODE_ENV !== "production"
+>   ├─ YES → disk (site/platform/*/data/)
+>   └─ NO  → Supabase (never disk)
+>            ├─ Plans → oando_plans (Admin DB)
+>            ├─ Furniture → furniture_catalog + catalog-assets (Admin DB)
+>            └─ Descriptors → block_descriptors (Admin DB)
+> ```
 | Plan symbol (2D) contract | PNG fields via `planSymbolPngContract.ts`; local files under `site/public/assets/others/legacy/png-catalog/` (dev mirror only) |
 | Persistence | Exclusive mode — disk under `DEV_AUTH_BYPASS=1`, else Supabase. Never dual-write |
 | Descriptors | `site/inventory/descriptors/*.json` present |

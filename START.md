@@ -46,10 +46,10 @@ Prod FS **read-only**. One mode only.
 
 | | When | Plans | Furniture |
 |--|------|-------|-----------|
-| disk | `DEV_AUTH_BYPASS=1`, non-prod | `platform/Planner/data/projects/` | `platform/shared/data/furniture/` |
+| disk | `DEV_AUTH_BYPASS=1`, non-prod | `site/platform/Planner/data/projects/` | `site/platform/shared/data/furniture/` |
 | supabase | else | `oando_plans` | `furniture_catalog` (Admin) |
 
-Use mode wrappers. Selectors: `plannerPersistenceMode.ts`, `furnitureCatalogMode.ts`.
+Production uses Supabase exclusively — the filesystem is read-only.
 
 | DB | Ref | Holds |
 |----|-----|-------|

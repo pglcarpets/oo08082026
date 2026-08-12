@@ -70,8 +70,8 @@ store: the Studio writes the furniture library, the Planner rail reads it.
 Persistence is exclusive-mode. `DEV_AUTH_BYPASS=1` on a non-production build
 selects **disk**; everything else selects **Supabase**. Production's filesystem is
 read-only, so a route that writes must call the mode-aware store wrapper, never the
-raw disk helper. Selectors: `lib/Planner/plannerPersistenceMode.ts`,
-`lib/catalog/furnitureCatalogMode.ts`.
+raw disk helper. Selectors: `site/lib/Planner/plannerPersistenceMode.ts`,
+`site/lib/catalog/furnitureCatalogMode.ts`.
 
 ## Where to look
 

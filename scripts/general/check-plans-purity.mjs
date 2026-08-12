@@ -18,6 +18,7 @@ const rootPlanDocs = [
   "README.md",
   "oo-ux-shell-program.md",
   "phase1-mobile-app-shell.md",
+  "docs-readonly-alignment.md",
 ];
 const requiredPlanDocs = ["README.md"];
 const allowedPlanDocs = new Set(rootPlanDocs);

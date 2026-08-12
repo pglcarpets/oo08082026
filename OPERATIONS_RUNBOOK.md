@@ -43,6 +43,12 @@ pnpm run ops db:test
 
 Smoke in browser: `/ooplanner` → rail populated → place → save → reload.
 
+Verify no route handler performs raw disk writes:
+```bash
+grep -r 'writeFileSync\|mkdirSync' site/app/api/ --include='*.ts' | grep -v 'mode'
+# Expected: zero results
+```
+
 ---
 
 ## 2. Migration
@@ -100,7 +106,7 @@ Hazard: legacy tables now in `archive` (invisible to PostgREST). Don't roll code
 | Catalog outage | R2 fallback — `docs/database/ops.md` |
 | Bad deploy | Instant Rollback → §4 |
 
-Maintenance: `SITE_MAINTENANCE_MODE=readonly`.
+Maintenance: `SITE_MAINTENANCE_MODE=readonly` blocks mutating APIs (this is an API gate, not a filesystem change — prod FS is always read-only).
 
 ---
 

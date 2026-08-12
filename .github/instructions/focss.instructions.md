@@ -28,7 +28,7 @@ FOCSS is a semantic token layer on top of Tailwind v4. Never write raw utilities
 
 ## File Structure
 
-- Prefer ≤500 lines per CSS file; hard max 800
+- Keep CSS files focused and scoped to a single concern
 - One canonical path per concern
 - Page rule: tokens + base + one zone entry
 - No `core/` or `core/locked/` as live homes

@@ -101,4 +101,3 @@ Seed: `pnpm run seed:furniture` (off the read path).
 | `.github/instructions/boundaries.instructions.md` | Studio/Planner forks |
 | `.github/instructions/migrations.instructions.md` | `**/supabase/migrations/**/*.sql` |
 | `.github/skills/README.md` | 16 skills (no `/gate` or `/new-test`) |
-| `.cursor/rules/agent-parallelism.mdc` | Max 2 parallel agents |

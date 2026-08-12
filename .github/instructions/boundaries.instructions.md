@@ -20,8 +20,8 @@ Each fork owns a full vertical slice:
 | Server | `site/server/Studio/` | `site/server/Planner/` |
 | CSS | `site/focss/studio/` | `site/focss/planner/` |
 | Import alias | `@studio/*` | `@planner/*` |
-| Domain types | `lib/Studio/studioTypes.ts` | `lib/Planner/plannerTypes.ts` |
-| Palette | `lib/Studio/studioPalette.ts` | `lib/Planner/plannerPalette.ts` |
+| Domain types | `site/lib/Studio/studioTypes.ts` | `site/lib/Planner/plannerTypes.ts` |
+| Palette | `site/lib/Studio/studioPalette.ts` | `site/lib/Planner/plannerPalette.ts` |
 | Canvas scale | 0.2 px/mm | 0.05 px/mm |
 
 ## Allowed Imports

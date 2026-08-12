@@ -110,7 +110,7 @@ records applied files in `_local_migration_history`. Pre-batch files (`001_*`,
 applied out of band.
 
 Every migration needs a `-- rollback` section; `check:governance` ratchets
-`P4_migration_no_rollback` against a baseline of **42**.
+`P4_migration_no_rollback` against the current baseline.
 
 ## Known drift
 

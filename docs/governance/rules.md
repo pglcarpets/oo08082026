@@ -226,7 +226,7 @@ timestamp, commit SHA, console and network summary, and test or trace identity.
 
 All eight goals in §10 hold with fresh measured values, and:
 
-- [ ] Every phase in `phase1/`, `phase2/`, `phase3/` is signed off against its exit gate.
+- [ ] Every phase in [`plans/`](../../plans/README.md) is signed off against its exit gate.
 - [ ] Every goal G1–G8 has a measured value meeting or exceeding its target.
 - [ ] Every bar in [`benchmarks.md`](./benchmarks.md) is met, exceeded, or has a recorded owner-accepted deviation.
 - [ ] `Failures.md` contains every unresolved blocker and no resolved one.

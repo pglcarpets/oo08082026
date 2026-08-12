@@ -45,7 +45,7 @@ Reference: [`site/focss/README.md`](../../site/focss/README.md) · live board `/
 
 **Inventory:** Success = **one canonical path per concern**.  
 **Page rule:** tokens + base + one zone entry.  
-**File size:** Prefer ≤500 lines per CSS file; hard max 800 (see [`site/focss/README.md`](../../site/focss/README.md)).
+**File size:** Keep CSS files focused and scoped to a single concern (see [`site/focss/README.md`](../../site/focss/README.md)).
 
 ## Layout import barrels
 

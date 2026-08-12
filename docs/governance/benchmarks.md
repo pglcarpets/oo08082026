@@ -121,10 +121,7 @@ Numbers this programme sets. Each carries its rationale.
 | Bar | Command | Exists? |
 |---|---|---|
 | WCAG AA, axe | `pnpm run test:a11y` | Yes |
-| Product Studio axe at 390/1440/1920 | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/admin-product-studio-accessibility.spec.ts` | **No — spec does not exist** (verified 2026-08-06) |
-| Phone shell | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/admin-product-studio-phone.spec.ts` | **No — spec does not exist** (verified 2026-08-06) |
-| Layout floors (DB4) | `pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/admin-product-studio-layout.spec.ts` | **No — spec does not exist** (verified 2026-08-06) |
-| DB1–DB3, DB5 | Layout / a11y Playwright (`admin-product-studio-layout.spec.ts`, related e2e) | Partial — dedicated admin ergonomics probe script **removed** 2026-08-02; re-bind when a gated instrument exists |
+| DB1–DB3, DB5 | Layout / a11y Playwright (re-bind when a gated instrument exists) | Partial — dedicated admin ergonomics probe script **removed** 2026-08-02 |
 | G4 / RAIL / CWV at DB6 | `pnpm run test:e2e:planner-performance` | **No — `0007` T7 builds it** |
 | G1 determinism (C15) | 20-fixture render comparison | **No — `0004` T8 builds it** |
 | G2 / DB10 | Registry liveness assertion | **No — `0006` T2 S6 builds it** |

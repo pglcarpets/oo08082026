@@ -110,9 +110,6 @@ Prevention: all route handlers must import from `plannerStore.ts` or `studioStor
 ---
 
 ## Restore / backup
----
-
-## Restore / backup
 
 **Scope:** Products + Admin Postgres, R2 dumps, catalog degraded mode, maintenance.  
 **PNG release:** Storage bytes + release record — [`../architecture/stack.md`](../architecture/stack.md). Dual-write ≠ cutover.  

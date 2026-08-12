@@ -7,7 +7,9 @@ description: "Database migration rules - applies when editing SQL migration file
 
 ## Critical: Rollback Required
 
-**Every migration must include a `-- rollback` section.** The governance check ratchets `P4_migration_no_rollback` against a baseline of **42**. A file without a rollback section raises the count and fails the gate.
+Every migration must include a `-- rollback` section. The governance check ratchets `P4_migration_no_rollback` against the current baseline. A file without a rollback section raises the count and fails the gate.
+
+Run `pnpm run check:governance` to see the current baseline and verify compliance.
 
 ## Migration File Structure
 
@@ -75,7 +77,7 @@ pnpm run ops db:apply -- --dry
 pnpm run ops db:apply
 ```
 
-- `db:apply` applies everything at or after `20260524` in lexicographic order
+- `db:apply` applies every migration from the managed batch start onward in lexicographic order
 - Tracked in `_local_migration_history` table
 - Always confirm with `--dry` first
 

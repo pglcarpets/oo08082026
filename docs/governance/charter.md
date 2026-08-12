@@ -44,8 +44,6 @@ needed. Its conclusions still bind:
 - Planner still paints the published URL through `FabricImage`;
 - `Block2D` remains load-failure fallback;
 - Admin product-studio tree is **not** present on disk in this checkout (fork Studio is `/oostudio`);
-- raw React Flow JSON is never catalog truth when xyflow is used;
-- forked workspace layout is dockview configuration, not a shared FlexLayout host.
 
 The files in this folder replace the proposed upgrade portion only. They do not rewrite
 closed cutover evidence.

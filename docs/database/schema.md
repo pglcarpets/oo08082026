@@ -104,7 +104,7 @@ reads fail with "permission denied for table" despite a matching policy.
 | Verify Admin Drizzle | `pnpm run ops db:sync-drizzle` |
 | Advisors | `pnpm run ops db:advisors` / `:admin` |
 
-`db:apply` selects every migration at or after `20260524` lexicographically and
+`db:apply` selects every migration from the managed batch start onward lexicographically and
 records applied files in `_local_migration_history`. Pre-batch files (`001_*`,
 `20240101*`, `20250522*`, `20260101*`) are deliberately excluded — they were
 applied out of band.

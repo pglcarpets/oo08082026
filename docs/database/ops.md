@@ -98,7 +98,7 @@ Schema: [`schema.md`](./schema.md) · stack: [`../architecture/stack.md`](../arc
 | Workstations total 0 | Re-run `ops seed`; category inserts may have been skipped by comment-split bugs (fixed in seed script) |
 | Auth DB errors | Set `SUPABASE_AUTH_DATABASE_URL` for admin apply |
 | `permission denied for table` | Policy exists but the **grant** is missing — add `grant select … to anon, authenticated` |
-| Migration "applied" but nothing changed | Filename sorts before `20260524`; `db:apply` ignores it |
+| Migration "applied" but nothing changed | Filename sorts before the managed batch start; `db:apply` ignores it |
 | Planner rail empty in prod | `seed:furniture` was never run against that environment |
 
 ## What happens if you get this wrong

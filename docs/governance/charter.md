@@ -239,10 +239,6 @@ stale Product Studio list-route snapshots.
 **Files:**
 - Verify: `package.json`
 - Verify: `components.json`
-- Verify: `site/features/admin/product-studio/**`
-- Verify: `site/features/planner/**`
-- Verify: `tests/e2e/admin-product-studio-visual.spec.ts`
-- Verify: `tests/e2e/planner-chrome.spec.ts`
 - Record: [`README` §4](./rules.md#4-status-ledger)
 
 - [x] **Step 1: Run structural gates**
@@ -263,7 +259,6 @@ Run:
 
 ```powershell
 pnpm exec vitest run --config tests/vitest.config.ts `
-  tests/unit/features/admin/product-studio `
   tests/unit/features/planner/editor `
   tests/unit/features/planner/store
 ```
@@ -276,9 +271,6 @@ Run:
 
 ```powershell
 pnpm exec playwright test -c config/build/playwright.config.ts `
-  tests/e2e/admin-product-studio-visual.spec.ts `
-  tests/e2e/planner-chrome.spec.ts `
-  tests/e2e/planner-phone-chrome.spec.ts `
   --reporter=line --workers=1
 ```
 

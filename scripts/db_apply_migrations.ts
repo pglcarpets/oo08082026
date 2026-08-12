@@ -11,13 +11,16 @@
  *   npm run db:apply -- --target admin # apply pending to admin
  *   npm run db:apply -- --dry          # plan only
  *
- * Applies migrations prefixed 20260524*, 202606*, or 202607*
- * (split batch + June/July 2026 tables including SVG revisions + price books).
+ * Applies migrations from the managed batch start onward.
+ * Pre-batch files (001_*, 20240101*, 20250522*, 20260101*) are excluded
+ * because they were applied out of band and are absent from _local_migration_history.
  */
 import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import { readdirSync, readFileSync, existsSync } from "node:fs";
 import postgres from "postgres";
+
+const FIRST_MANAGED_MIGRATION = "20260524";
 
 const require = createRequire(import.meta.url);
 require("./general/loadEnvLocal.cjs").loadEnvLocal();
@@ -36,12 +39,12 @@ async function main() {
       ? {
           url: process.env.SUPABASE_AUTH_DATABASE_URL?.trim(),
           dir: resolve(process.cwd(), "site", "platform", "supabase", "migrations.admin"),
-          batchPrefix: "20260524",
+          batchPrefix: FIRST_MANAGED_MIGRATION,
         }
       : {
           url: process.env.PRODUCTS_DATABASE_URL?.trim(),
           dir: resolve(process.cwd(), "site", "platform", "supabase", "migrations"),
-          batchPrefix: "20260524",
+          batchPrefix: FIRST_MANAGED_MIGRATION,
         };
 
   if (!cfg.url) {
@@ -56,11 +59,10 @@ async function main() {
   const files = readdirSync(cfg.dir)
     .filter((f) => f.endsWith(".sql"))
     .sort();
-  // Everything from the 20260524 split batch onward. Lexicographic compare, so
+  // Everything from the managed batch start onward. Lexicographic compare, so
   // new timestamps are picked up without touching this list — the pre-batch
   // files (001_*, 20240101*, 20250522*, 20260101*) stay excluded because they
   // were applied out of band and are absent from _local_migration_history.
-  const FIRST_MANAGED_MIGRATION = "20260524";
   const candidates = files.filter((f) => f >= FIRST_MANAGED_MIGRATION);
 
   if (candidates.length === 0) {

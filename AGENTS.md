@@ -68,8 +68,8 @@ Seed: `pnpm run seed:furniture` (off the read path).
 - `pnpm run test` = **two** vitest lanes (default + tech-docs). Check both. DOM: **happy-dom**.
 
 ## 7. Migrations
-- Need `-- rollback`. Ratchet baseline **42** (`P4_migration_no_rollback`).
-- Apply: `pnpm run ops db:apply` / `db:apply:admin` — always `--dry` first (≥ `20260524`).
+- Need `-- rollback`. `check:governance` ratchets `P4_migration_no_rollback` against the current baseline (`config/quality/governance-baseline.json`).
+- Apply: `pnpm run ops db:apply` / `db:apply:admin` — always `--dry` first.
 - Grants **and** policies. Types: `ops db:types:admin`, `ops db:types`.
 
 ## 8. Traps

@@ -118,7 +118,7 @@ fails when debt **increases**, not on pre-existing totals. Re-measure with `pnpm
 | **P1** | No secret is committed. Only `.env.example` is tracked. | `AUTOMATED` — `pnpm run scan:secrets`, secretlint |
 | **P2** | `script-src` does not permit `'unsafe-inline'` in production when CSP is defined. Live CSP/security headers: **`site/proxy.ts`**. | `AUTOMATED` — `pnpm run check:governance` (+ unit coverage under `tests/unit/proxy.test.ts` when run) |
 | **P3** | The five security headers stay set. | `MANUAL REVIEW` — not built |
-| **P4** | Every migration has a `-- rollback` section. **9 of 51 do**; the 42 without are the ratcheted baseline. A new migration lacking one raises the count and fails the gate. | `AUTOMATED` — same check |
+| **P4** | Every migration has a `-- rollback` section. Migrations without one are tracked against the ratcheted baseline in `config/quality/governance-baseline.json`. A new migration lacking a rollback raises the count and fails the gate. | `AUTOMATED` — `pnpm run check:governance` |
 | **P5** | A backup is not proven until a restore has been exercised. | `MANUAL REVIEW` |
 | **P6** | Results contain no secrets and no production customer data. | `MANUAL REVIEW` |
 
@@ -168,8 +168,7 @@ itself. **Re-measured 2026-08-01** — several have since cleared:
 4. ~~**K2** — `typecheck:tests` fails.~~ **Clear 2026-08-01.** `typecheck` and
    `typecheck:tests` both exit 0. **K3** (`build`) not re-measured — do not claim it.
 5. **P2** — production CSP permits inline script.
-6. **P4** — 42 of 51 migrations still have no rollback path. 9 now do; the 42
-   are the ratcheted baseline.
+6. **P4** — migration rollback count held at the ratcheted baseline (`config/quality/governance-baseline.json`). Run `pnpm run check:governance` to verify.
 7. **D2** — `npx` still used in scripts; count from `pnpm run check:governance` (ratchet). One historically inside the PR gate path — re-check before claiming clear.
 8. ~~**The doc gates are enforced nowhere.**~~ **Fixed 2026-07-28.** The seven doc checks were reachable only through `pnpm run gate`, and no CI workflow ran `gate` — CI runs `release:gate:fast` and `release:gate` directly, so the entire documentation- and plan-integrity gate had never blocked a merge. They are now grouped as `check:docs-all` and appended to **both** CI chains, alongside `check:style-tokens` and `check:governance`. Verified by walking the workflow files: all nine are reachable, out of 49 CI-reachable scripts.
 

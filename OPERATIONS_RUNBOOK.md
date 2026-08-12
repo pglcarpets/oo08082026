@@ -32,7 +32,7 @@ Order: migrations → seed → code.
 
 ```bash
 pnpm install
-pnpm run ops db:apply -- --dry    # read plan; only ≥ 20260524
+pnpm run ops db:apply -- --dry    # read plan; managed batch onward
 pnpm run ops db:apply
 pnpm run ops db:apply:admin
 pnpm run seed:furniture           # once per env — else empty Planner rail
@@ -54,7 +54,7 @@ grep -r 'writeFileSync\|mkdirSync' site/app/api/ --include='*.ts' | grep -v 'mod
 ## 2. Migration
 
 1. File under `site/platform/supabase/migrations/` or `migrations.admin/`: `YYYYMMDDHHMMSS_snake_case.sql`.
-2. Include `-- rollback:`. Ratchet baseline **42**.
+2. Include `-- rollback:`. Run `pnpm run check:governance` to verify against the current baseline.
 3. New table → **grants + policies**:
 
 ```sql

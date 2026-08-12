@@ -1,7 +1,7 @@
 # Site — marketing & member suite
 
-**AUDITED:** 2026-08-10 · Browser: `http://localhost:3000` only  
-Registry: [`00-README.md`](./00-README.md) · Marketing e2e suite: **TST-S19**
+**AUDITED:** 2026-08-12 · Browser: `http://localhost:3000` only  
+Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · Marketing e2e suite: **TST-S19**
 
 ---
 
@@ -25,6 +25,10 @@ SITE-S01–S07 · **SITE-S08** · **SITE-S09** · **SITE-S10** · SITE-S11 · **
 
 | ID | Pri | Seam | Red → green | Deps |
 |----|-----|------|-------------|------|
+| **SITE-S19** | P2 | LH-3: `/oostudio/` CLS=0.30 (>0.1) + raw `<img>` no dims in Planner islands | add explicit width/height to `PlannerAutoArrangeDialog.tsx:158`, `PlannerProjectsList.tsx:81`; fix Studio late-layout | WRK-S15 |
+| **SITE-S20** | P2 | 8.3: `LanguageSwitcher` `NEXT_LOCALE` cookie lacks `Secure` | **DONE** 2026-08-12 — `; Secure` added on HTTPS |
+| **SITE-S21** | P3 | 3.2: duplicate `og:locale:alternate` + `og:image:alt` `&amp;` entity | dedupe alternates in `buildSiteMetadata`; fix entity in OG image alt | — |
+| **SITE-S22** | P2 | LH-4: `/products/` + `/ooplanner/` Lighthouse time out (no metrics) | investigate client fetch + HMR keeping network busy; re-measure in prod | — |
 
 ---
 

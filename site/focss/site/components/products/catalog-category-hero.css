@@ -77,6 +77,10 @@
 
 .catalog-category-hero__back {
   margin: 0;
+  /* ≥44px touch target (WCAG 2.5.5 AAA) — AUDIT-M-01 / TST-S27. */
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 600;
@@ -117,6 +121,11 @@
 }
 
 .catalog-category-hero__chip {
+  /* ≥44px touch target (WCAG 2.5.5 AAA) — AUDIT-M-01 / TST-S27. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
   font-family: var(--font-sans);
   font-size: var(--type-small-size, 0.8125rem);
   font-weight: var(--font-weight-copy-medium, 500);

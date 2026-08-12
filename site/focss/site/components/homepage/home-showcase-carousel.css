@@ -108,29 +108,43 @@
 }
 
 @utility home-showcase-dot {
-  height: 0.5rem;
-  width: 0.5rem;
+  /* 44×44 hit target (WCAG 2.5.5 AAA) with a small visual dot — AUDIT-M-01 / TST-S27. */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
+  width: 2.75rem;
   border-radius: var(--radius-pill);
-  transition: width var(--motion-fast) var(--ease-standard),
-              background-color var(--motion-fast) var(--ease-standard);
+  transition: background-color var(--motion-fast) var(--ease-standard);
+  &::before {
+    content: "";
+    display: block;
+    height: 0.5rem;
+    width: 0.5rem;
+    border-radius: var(--radius-pill);
+    background: currentColor;
+    transition: width var(--motion-fast) var(--ease-standard);
+  }
 }
 
 .home-showcase-dot--active-light {
-  width: 2rem;
-  background: var(--text-strong);
+  color: var(--text-strong);
+  &::before { width: 2rem; }
 }
 
 .home-showcase-dot--inactive-light {
-  background: var(--surface-soft);
+  color: var(--surface-soft);
 }
 
 .home-showcase-dot--active-dark {
-  width: 2rem;
-  background: var(--color-primary);
+  color: var(--color-primary);
+  &::before { width: 2rem; }
 }
 
 .home-showcase-dot--inactive-dark {
-  background: color-mix(in srgb, white 20%, transparent);
+  color: color-mix(in srgb, white 20%, transparent);
 }
 
 @utility home-trust-kpi {

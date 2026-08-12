@@ -1,6 +1,6 @@
 # Operations & deploy
 
-**AUDITED:** 2026-08-10 · Registry: [`00-README.md`](./00-README.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md)
+**AUDITED:** 2026-08-12 · Registry: [`00-README.md`](./00-README.md) · [`OPERATIONS_RUNBOOK.md`](../OPERATIONS_RUNBOOK.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md)
 
 ---
 
@@ -24,6 +24,9 @@
 | ID | Pri | Seam | Status | Evidence |
 |----|-----|------|--------|----------|
 | **OPS-S05** | P1 | Vercel token lifecycle | OPEN | revoke exposed token; vault only |
+| **OPS-S10** | P2 | P2-9: `/ooplanner/projects/` 401s in bypass mode | OPEN | verify dev-bypass identity reaches client `/api/Planner/projects` fetch; confirm list loads |
+| **OPS-S11** | P2 | P2-10: sitemap lists 308-redirected `/planner/features/3d-view/` | OPEN | drop path from `PLANNER_MARKETING_SITEMAP_PATHS`; regenerate sitemap |
+| **OPS-S12** | P3 | P3-seo: duplicate `og:locale:alternate` + `og:image:alt` `&amp;` | OPEN | dedupe alternates in `buildSiteMetadata`; fix entity |
 
 ### OPS-S01 closed (2026-08-10)
 

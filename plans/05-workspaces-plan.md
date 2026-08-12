@@ -1,7 +1,7 @@
 # Workspaces — Planner / Studio
 
-**AUDITED:** 2026-08-10 · `/ooplanner` · `/oostudio` · never cross-import (`scan:boundaries`)  
-Registry: [`00-README.md`](./00-README.md) · E2E suites owned by **TST-S16–S18**
+**AUDITED:** 2026-08-12 · `/ooplanner` · `/oostudio` · never cross-import (`scan:boundaries`)  
+Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · E2E suites owned by **TST-S16–S18**
 
 ---
 
@@ -23,7 +23,11 @@ WRK-S01–S08 (audit-3b #1–#8) · **WRK-S09** · WRK-S12 (boundaries) · **WRK
 
 ## OPEN / PARTIAL
 
-_None in this plan — WRK-S09 closed 2026-08-10._
+| ID | Pri | Seam | Red → green |
+|----|-----|------|-------------|
+| **WRK-S15** | P2 | P2-5: `/oostudio/` CLS=0.30 (>0.1); no `onLCP/onINP/onCLS` reporters | add vitals reporters to `SiteAnalytics.tsx`; assert budgets; fix Studio layout shift |
+| **WRK-S16** | P2 | P2-7: VR coverage missing `/ooplanner`, `/oostudio` | add both to VR baseline suite |
+| **WRK-S17** | P2 | P2-9: `/ooplanner/projects/` 401 in bypass (client fetch) | align with OPS-S10; fix bypass identity propagation |
 
 ---
 

@@ -210,13 +210,19 @@ describe('proxy.ts', () => {
       expect(csp).toContain('https://static.cloudflareinsights.com');
     });
 
+    it('allows Google Analytics 4 endpoints for the Zaraz GA4 tag', () => {
+      const csp = buildContentSecurityPolicy('/contact');
+      expect(csp).toContain('https://www.google-analytics.com');
+      expect(csp).toContain('https://region1.google-analytics.com');
+      expect(csp).toContain('https://stats.g.doubleclick.net');
+    });
+
     it('omits unused CDNs and bare http images from CSP', () => {
       const csp = buildContentSecurityPolicy('/contact');
       expect(csp).not.toContain('esm.sh');
       expect(csp).not.toContain('unpkg.com');
       expect(csp).not.toContain('cdn.tldraw.com');
       expect(csp).not.toContain('googletagmanager.com');
-      expect(csp).not.toContain('google-analytics.com');
       expect(csp).toContain("img-src 'self' data: blob: https:");
       expect(csp).not.toMatch(/img-src[^;]*http:/);
     });

@@ -364,7 +364,7 @@ export function ActiveChips({
             key={`${chip.key}-${chip.value ?? ""}`}
             type="button"
             onClick={() => onRemove(chip.key, chip.value)}
-            className="inline-flex items-center gap-1.5 rounded-full border border-soft bg-soft px-3 py-1 typ-micro text-body transition-colors hover:border-strong hover:text-heading"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-soft bg-soft px-3 py-1 typ-micro text-body transition-colors hover:border-strong hover:text-heading"
           >
             <span className="capitalize">{chip.label}</span>
             <X className="w-3 h-3" />
@@ -373,7 +373,7 @@ export function ActiveChips({
         <button
           type="button"
           onClick={onClearAll}
-          className="typ-micro text-muted hover:text-heading underline transition-colors ml-1"
+          className="typ-micro min-h-11 inline-flex items-center text-muted hover:text-heading underline transition-colors ml-1"
         >
           {CATEGORY_ROUTE_COPY.clearFiltersCta}
         </button>

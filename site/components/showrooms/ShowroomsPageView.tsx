@@ -119,7 +119,7 @@ export function ShowroomsPageView({
 
   useGSAP(
     () => {
-      if (gsapReducedMotion() || !contentRef.current) {
+      if (!motionReady || gsapReducedMotion() || !contentRef.current) {
         return;
       }
 
@@ -135,6 +135,7 @@ export function ShowroomsPageView({
           duration: GSAP_SCROLL_REVEAL.duration,
           stagger: GSAP_SCROLL_REVEAL.stagger,
           ease: GSAP_EASE_OUT,
+          clearProps: "opacity,transform",
           scrollTrigger: {
             trigger: contentRef.current,
             start: "top 82%",
@@ -145,7 +146,7 @@ export function ShowroomsPageView({
 
       return () => ctx.revert();
     },
-    { scope: contentRef },
+    { scope: contentRef, dependencies: [motionReady] },
   );
 
   return (

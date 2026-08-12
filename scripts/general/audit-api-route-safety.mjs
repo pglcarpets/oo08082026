@@ -82,6 +82,35 @@ const PUBLIC_FORM_MUTATORS = new Set([
   "nav-search",
 ]);
 
+/**
+ * `other`-surface routes that are intentionally public GET endpoints
+ * (no auth/rate-limit by design). Everything else on the `other` surface is
+ * now enforced: mutators must be rate-limited, and dev/internal GET routes
+ * must be auth-gated (TST-S31 / API-2 — closes the exports/git-user blind spot).
+ */
+const OTHER_PUBLIC_GET_ALLOWLIST = new Set([
+  "health",
+  "categories",
+  "products",
+  "products/filter",
+  "features",
+  "business-stats",
+  "nav-categories",
+  "csrf",
+  "theme/active",
+  // Public asset readers (catalog media / furniture / exports / uploads)
+  "files/catalog/[...path]",
+  "files/furniture/[filename]",
+  "files/projects/[filename]",
+  "files/uploads/[filename]",
+  "files/exports/[filename]",
+  // Root API index (public status)
+  "",
+  // Dev diagnostics — guarded by prod-404 + rate limit (never served in prod)
+  "dev/auth-bypass-status",
+  "dev-tools/lighthouse",
+]);
+
 const ADMIN_AUTH_MARKERS = [
   /withAuth\s*[<(]/,
   /requireAdminSession\s*\(/,
@@ -117,7 +146,8 @@ function walk(dir, files = []) {
 
 function toApiPath(absFile) {
   const rel = path.relative(apiRoot, absFile).replaceAll("\\", "/");
-  return rel.replace(/\/route\.(ts|js)$/, "");
+  const stripped = rel.replace(/\/route\.(ts|js)$/, "").replace(/^route\.(ts|js)$/, "");
+  return stripped;
 }
 
 function extractExportedMethods(source) {
@@ -452,6 +482,42 @@ for (const abs of routeFiles) {
         severity: "warn",
         message:
           "public customer-queries POST should keep a honeypot field (website) or documented equivalent",
+      });
+    }
+  }
+
+  // TST-S31 / API-2 — `other` surface is no longer a blind spot:
+  //   - mutators must be rate-limited (error)
+  //   - GET routes exposing dev/internal state must be auth-gated (error),
+  //     unless on the documented public GET allowlist
+  const surface = classifySurface(apiPath);
+  if (surface === "other") {
+    if (mutators.length > 0 && missingRateLimit(source)) {
+      addIssue({
+        file: rel,
+        apiPath,
+        id: "missing-other-rate-limit",
+        severity: "error",
+        message:
+          "other-surface mutator has no rateLimit / withAuth / enforcePublicApiRateLimit",
+      });
+    }
+
+    const onlyGets = methods.every((m) => m === "GET");
+    const isPublicAllowlisted = OTHER_PUBLIC_GET_ALLOWLIST.has(apiPath);
+    if (
+      onlyGets &&
+      !isPublicAllowlisted &&
+      !/withAuth\s*[<(]/.test(source) &&
+      !hasAny(source, ADMIN_AUTH_MARKERS)
+    ) {
+      addIssue({
+        file: rel,
+        apiPath,
+        id: "other-get-no-auth",
+        severity: "error",
+        message:
+          "other-surface GET exposes internal state without auth; gate with withAuth or add to OTHER_PUBLIC_GET_ALLOWLIST",
       });
     }
   }

@@ -266,7 +266,7 @@ export function MobileNavDrawer({ open, onClose, closeButtonRef: _closeButtonRef
               aria-label="Mobile product search"
               toolname="searchProductsMobile"
               tooldescription="Search the One&Only product catalog from the mobile navigation drawer."
-              toolautosubmit
+              toolautosubmit=""
               onSubmit={(event) => {
                 event.preventDefault();
                 void submitSearch();

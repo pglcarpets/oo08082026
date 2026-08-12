@@ -147,10 +147,15 @@ export function isCanvasHeavyPath(pathname: string): boolean {
 
 /**
  * Third-party script/beacon origins actually mounted by the app
- * (SiteAnalytics → Vercel Analytics / Speed Insights; optional CF beacon).
+ * (SiteAnalytics → Vercel Analytics / Speed Insights; optional CF beacon;
+ * Cloudflare Zaraz GA4 tag → Google Analytics endpoints).
  */
 const CSP_ANALYTICS_ORIGINS =
   "https://va.vercel-scripts.com https://vitals.vercel-insights.com https://vercel.live https://static.cloudflareinsights.com";
+
+/** Google Analytics 4 collection endpoints (Zaraz GA4 tag beacons). */
+const CSP_GA4_ORIGINS =
+  "https://www.google-analytics.com https://region1.google-analytics.com https://stats.g.doubleclick.net";
 
 export function buildContentSecurityPolicy(pathname: string): string {
   // No esm.sh / unpkg / tldraw CDN — not used by live app bundles.
@@ -167,7 +172,7 @@ export function buildContentSecurityPolicy(pathname: string): string {
     // https only — no bare http: images
     "img-src 'self' data: blob: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
-    `connect-src 'self' blob: https://*.supabase.co https://*.supabase.in wss://*.supabase.co https://api.openai.com https://openrouter.ai ${CSP_ANALYTICS_ORIGINS}`,
+    `connect-src 'self' blob: https://*.supabase.co https://*.supabase.in wss://*.supabase.co https://api.openai.com https://openrouter.ai ${CSP_ANALYTICS_ORIGINS} ${CSP_GA4_ORIGINS}`,
     "frame-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",

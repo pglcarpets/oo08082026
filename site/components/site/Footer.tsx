@@ -40,10 +40,10 @@ const footerInteractiveClass =
   "rounded transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary";
 
 /** ≥44px text links (phone, email, nav, legal). */
-const footerTextLinkClass = `site-footer__link ${footerInteractiveClass} inline-flex items-center gap-2 py-1`;
+const footerTextLinkClass = `site-footer__link ${footerInteractiveClass} inline-flex min-h-11 items-center gap-2 py-1`;
 
-/** Social targets. */
-const footerSocialClass = `site-footer__social ${footerInteractiveClass} inline-flex h-9 w-9 items-center justify-center rounded-full bg-soft text-inverse hover:text-primary hover:bg-soft-hover transition-all`;
+/** Social targets — ≥44×44 (WCAG 2.5.5 AAA) per AUDIT-M-01 / TST-S27. */
+const footerSocialClass = `site-footer__social ${footerInteractiveClass} inline-flex h-11 w-11 items-center justify-center rounded-full bg-soft text-inverse hover:text-primary hover:bg-soft-hover transition-all`;
 
 export function SiteFooter() {
   // useSyncExternalStore guarantees the same snapshot is used for SSR and

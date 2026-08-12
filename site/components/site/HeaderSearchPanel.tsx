@@ -58,7 +58,7 @@ export function HeaderSearchPanel({
         suppressHydrationWarning
         toolname="searchProducts"
         tooldescription="Search the One&Only product catalog by keyword (chairs, workstations, tables, storage)."
-        toolautosubmit
+        toolautosubmit=""
         onSubmit={(event) => {
           event.preventDefault();
           onSubmitSearch();

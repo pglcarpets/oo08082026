@@ -1,7 +1,7 @@
 # Tech-docs
 
-**AUDITED:** 2026-08-10 · App: `tech-docs-generator/` · Prod: `docs.oando.co.in` **live**  
-Registry: [`00-README.md`](./00-README.md) · [`docs/architecture/tech-docs-link.md`](../docs/architecture/tech-docs-link.md)
+**AUDITED:** 2026-08-12 · App: `tech-docs-generator/` · Prod: `docs.oando.co.in` **live**  
+Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · [`docs/architecture/tech-docs-link.md`](../docs/architecture/tech-docs-link.md)
 
 ---
 
@@ -22,6 +22,8 @@ Registry: [`00-README.md`](./00-README.md) · [`docs/architecture/tech-docs-link
 
 | ID | Pri | Seam | Remaining |
 |----|-----|------|-----------|
+| **TECH-S07** | P2 | VR-3/P2-8: tech-docs vitest lane JSON stale (2026-08-10, suites=1/tests=0) — two-lane misread risk | re-run tech-docs lane cleanly; ensure `pnpm run test` overwrites `vitest-tech-docs-results.json`; never read one lane as the suite |
+| **TECH-S08** | P2 | VR-2/P2-6: default lane 17 red tests (13 `resolvePdpPlanSvgThumb.server` + 2 `sitePackageRoot` + 1 docs links + 2 dev-tools/lighthouse) | triage disk-catalog/path-resolution cluster; regenerate types/paths |
 
 ```powershell
 pnpm exec vitest run --config tests/vitest.tech-docs.config.ts tests/tech-docs-generator/snapshot.test.ts

@@ -55,6 +55,10 @@ describe("audit-api-route-safety", () => {
     expect(source).toContain("csrf-wrong-error-code");
     expect(source).toContain("--matrix");
     expect(source).toContain("--json");
+    // TST-S31 / API-2 — `other` surface enforcement + documented allowlist
+    expect(source).toContain("OTHER_PUBLIC_GET_ALLOWLIST");
+    expect(source).toContain("missing-other-rate-limit");
+    expect(source).toContain("other-get-no-auth");
   });
 
   it("exits 0 on the live app/api tree and reports zero errors", () => {

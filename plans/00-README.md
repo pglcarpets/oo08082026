@@ -8,7 +8,7 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 
 ## Summary
 
-**76 DONE · 13 OPEN · 1 PARTIAL** (plan slices) + **7 P1 · 10 P2** (audit findings)
+**80 DONE · 25 OPEN · 1 PARTIAL** (plan slices) + **7 P1 · 10 P2** (audit findings)
 
 ---
 
@@ -50,13 +50,19 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | TST-S17 | **RETIRED** | audit-3c polish — superseded by audit |
 | TST-S18 | **RETIRED** | SEAM-E2E-STUDIO-2A — superseded by audit |
 | TST-S19 | **RETIRED** | SEAM-E2E-MARKETING-4A — superseded by audit |
-| TST-S22 | **OPEN** P1 | AUDIT-EXPORTS-01: gate `/api/exports` + test |
-| TST-S23 | **OPEN** P1 | AUDIT-I18N-01: wire `lang` to `<html>` + test |
-| TST-S24 | **OPEN** P1 | AUDIT-SHOWROOMS-01: fix hydration crash + e2e |
-| TST-S25 | **OPEN** P1 | AUDIT-TOOLAUTOSUBMIT-01: fix non-boolean prop + lint gate |
-| TST-S26 | **OPEN** P1 | AUDIT-A11Y-01: fix hero contrast + axe gate |
-| TST-S27 | **OPEN** P1 | AUDIT-MOBILE-01: touch targets ≥44×44 + e2e |
-| TST-S28 | **OPEN** P1 | AUDIT-A11Y-02: fix `role="toolbar"` + a11y gate |
+| TST-S22 | **DONE** 2026-08-12 | AUDIT-EXPORTS-01: `/api/exports` gated (member+CSRF+rate-limit) — `tests/unit/app/api/exports/route.test.ts` 5/5 |
+| TST-S23 | **DONE** 2026-08-12 | AUDIT-I18N-01: `<html lang>` wired via `getHtmlLang` — `tests/unit/app/layout.test.tsx` 3/3 |
+| TST-S24 | **DONE** 2026-08-12 | AUDIT-SHOWROOMS-01: GSAP scroll-reveal gated on `motionReady` — `tests/e2e/showrooms-console-clean.spec.ts` pass |
+| TST-S25 | **DONE** 2026-08-12 | AUDIT-TOOLAUTOSUBMIT-01: `toolautosubmit=""` — Header + MobileNavDrawer; console clean |
+| TST-S26 | **DONE** 2026-08-12 | AUDIT-A11Y-01: `btn-accent` fill → `--color-accent-strong` (4.91:1) — homepage axe WCAG2AA clean |
+| TST-S27 | **DONE** 2026-08-12 | AUDIT-MOBILE-01: footer 44px, dots 44px hit, pills/chips/breadcrumb ≥44 — `tests/e2e/touch-targets.spec.ts` 2/2 |
+| TST-S28 | **DONE** 2026-08-12 | AUDIT-A11Y-02: `aside role=toolbar` → `div role=toolbar` (Planner+Studio) — `test:a11y` 3/3 green |
+| TST-S29 | **OPEN** P2 | P2-6: default test lane 17 fails → fix 13 resolvePdpPlanSvgThumb + sitePackageRoot + docs + dev-tools |
+| TST-S30 | **OPEN** P2 | P2-8: tech-docs lane JSON stale → two-lane gate reads both |
+| TST-S31 | **DONE** 2026-08-12 | P2-2: api-route-safety `other` surface enforced (rate-limit + GET auth allowlist) — audit ok |
+| TST-S32 | **DONE** 2026-08-12 | P2-1: `/api/git-user` admin-gated — `tests/unit/app/api/git-user/route.test.ts` 4/4 |
+| TST-S33 | **DONE** 2026-08-12 | `/api/dev/auth-bypass-status` 404 in prod — test added |
+| TST-S34 | **OPEN** P2 | P2-7: VR baselines only 6 marketing routes → add ooplanner/oostudio/portal/dashboard |
 
 ---
 
@@ -73,6 +79,9 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | OPS-S08 | **DONE** | Apex catalog asset HEAD 200 |
 | OPS-S09 | **DONE** | Apex `X-Robots-Tag` fixed — F4 closed |
 | OPS-S05 | **OPEN** P1 | Vercel token lifecycle: revoke exposed token; vault only |
+| OPS-S10 | **OPEN** P2 | P2-9: `/ooplanner/projects/` 401s in bypass mode |
+| OPS-S11 | **OPEN** P2 | P2-10: sitemap lists 308-redirected `/planner/features/3d-view/` |
+| OPS-S12 | **OPEN** P3 | P3-seo: duplicate `og:locale:alternate` + `og:image:alt` `&amp;` |
 
 ---
 
@@ -90,6 +99,9 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | DB-S07 | **OPEN** P1 | Retire Products `furniture_catalog` |
 | DB-S08 | **OPEN** P1 | Planner save → `oando_plans` (no bypass) |
 | DB-S10 | **OPEN** — | `ops db:test` |
+| DB-S11 | **OPEN** P2 | DB-1: exports disk-only; breaks on prod read-only FS |
+| DB-S12 | **OPEN** P3 | DB-2: `customer_queries` anon-insert POLICY but no anon GRANT |
+| DB-S13 | **OPEN** P3 | DB-3: schema.md omits `block_descriptors` from Products service-role-only |
 
 ---
 
@@ -102,6 +114,9 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | WRK-S12 | **DONE** | Boundary scan |
 | WRK-S13 | **DONE** 2026-08-10 | Responsive audit workspaces (4/4 OK, 10px→11px) |
 | WRK-S14 | **DONE** 2026-08-10 | PlannerProjectMenu wired + audit-3c verify |
+| WRK-S15 | **OPEN** P2 | P2-5: `/oostudio/` CLS=0.30 + no vitals reporters |
+| WRK-S16 | **OPEN** P2 | P2-7: VR coverage missing `/ooplanner`, `/oostudio` |
+| WRK-S17 | **OPEN** P2 | P2-9: `/ooplanner/projects/` 401 in bypass (client fetch) |
 
 ---
 
@@ -120,6 +135,10 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | SITE-S16 | **DONE** 2026-08-10 | Contact/enquiry path + Resend notifier (19 passed) |
 | SITE-S17 | **DONE** | — |
 | SITE-S18 | **DONE** | — |
+| SITE-S19 | **OPEN** P2 | LH-3: oostudio CLS=0.30 + raw img no dims in Planner islands |
+| SITE-S20 | **DONE** 2026-08-12 | 8.3: LanguageSwitcher cookie Secure on HTTPS |
+| SITE-S21 | **OPEN** P3 | 3.2: duplicate og:locale:alternate + og:image:alt entity |
+| SITE-S22 | **OPEN** P2 | LH-4: /products + /ooplanner Lighthouse timeout |
 
 ---
 
@@ -133,6 +152,8 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | TECH-S04 | **DONE** | `activeBlockers.ts` cleared (F3 closed) |
 | TECH-S05 | **DONE** 2026-08-10 | Prod `docs.oando.co.in` → 200 |
 | TECH-S06 | **DONE** | Admin vs Products DB boundaries in docs |
+| TECH-S07 | **OPEN** P2 | VR-3/P2-8: tech-docs lane JSON stale — two-lane misread risk |
+| TECH-S08 | **OPEN** P2 | VR-2/P2-6: default lane 17 red tests (resolvePdpPlanSvgThumb + sitePackageRoot + docs + dev-tools) |
 
 ---
 
@@ -147,6 +168,11 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | PX-S04 | **DONE** | Drop `a_session_*` |
 | PX-S05 | **DONE** | Admin API auth inventory test |
 | PX-S06 | **DONE** | COOP/CORP headers; docs |
+| PX-S07 | **DONE** 2026-08-12 | SEC-2: `/api/git-user` admin-gated + test |
+| PX-S08 | **DONE** 2026-08-12 | SEC-3: `/api/dev/auth-bypass-status` 404 in prod + test |
+| PX-S09 | **OPEN** P2 | SEC-4: CSP `script-src 'unsafe-inline'` (ratcheted P2=2) |
+| PX-S10 | **DONE** 2026-08-12 | API-2: api-route-safety `other` surface enforced |
+| PX-S11 | **OPEN** P2 | P2-9: `/ooplanner/projects/` 401 in bypass |
 
 ---
 
@@ -166,6 +192,8 @@ Always OPEN by design — re-checked at each session start.
 | CHK-S08 | `pnpm run test` = two lanes | Both summaries green |
 | CHK-S09 | `check:docs-all` / purity before commit | Exit 0 |
 | CHK-S10 | Pick one OPEN id from registry | Start red/green |
+| CHK-S11 | Read audit master summary | Know P1/P2 backlog + healthy PASS list |
+| CHK-S12 | Verify catalog DB image coverage | 0 products with `images=[]` + null flagship |
 
 ---
 
@@ -206,10 +234,12 @@ Always OPEN by design — re-checked at each session start.
 
 | Pri | Count | IDs |
 |-----|-------|-----|
-| **P1** | 12 | TST-S22–S28 · OPS-S05 · DB-S04 · DB-S05 · DB-S07 · DB-S08 |
+| **P1** | 5 | OPS-S05 · DB-S04 · DB-S05 · DB-S07 · DB-S08 |
 | **P1 PARTIAL** | 1 | DB-S06 |
+| **P2** | 15 | TST-S29 · TST-S30 · TST-S34 · OPS-S10 · OPS-S11 · DB-S11 · WRK-S15 · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 · PX-S11 |
+| **P3** | 4 | OPS-S12 · DB-S12 · DB-S13 · SITE-S21 |
 | **—** | 1 | DB-S10 |
-| **P2** | 10 | AUDIT-P2-1 … AUDIT-P2-10 (see audit section) |
+| **Audit P2** | 10 | AUDIT-P2-1 … AUDIT-P2-10 (see audit section) |
 
 ## Active plans
 

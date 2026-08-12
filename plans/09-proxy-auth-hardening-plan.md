@@ -1,6 +1,6 @@
 # 09 — Proxy / auth / maintenance
 
-**AUDITED:** 2026-08-09 · **Status:** DONE · Registry: [`00-README.md`](./00-README.md) **PX-S00–S06**
+**AUDITED:** 2026-08-12 · **Status:** PX-S00–S06 DONE · Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · **PX-S00–S06**
 
 **Code:** `site/proxy.ts` · dashboard layout · `tests/unit/proxy*.ts` · `check-admin-api-auth.test.ts`
 
@@ -41,5 +41,17 @@ proxy (cookie / maintenance / guest write / CSP)
 ```
 
 **Deferred:** CSP nonces, edge-only auth, rate limit in proxy.
+
+---
+
+## OPEN — audit-derived (security / api-safety)
+
+| ID | Pri | Seam | Red → green |
+|----|-----|------|-------------|
+| ~~**PX-S07**~~ | ~~P2~~ | ~~SEC-2: `GET /api/git-user` leaks git identity unauthenticated~~ | **DONE** 2026-08-12 — admin-gated `withAuth({role:"admin"})`; `tests/unit/app/api/git-user/route.test.ts` 4/4 |
+| ~~**PX-S08**~~ | ~~P3~~ | ~~SEC-3: `GET /api/dev/auth-bypass-status` exposes bypass/nodeEnv state~~ | **DONE** 2026-08-12 — 404 in prod verified + test |
+| **PX-S09** | P2 | SEC-4: prod CSP `script-src 'unsafe-inline'` (ratcheted P2=2) | move inline scripts to nonce/hash to lower ratchet |
+| ~~**PX-S10**~~ | ~~P2~~ | ~~API-2 (9.2): `audit-api-route-safety.mjs` skips `"other"` surface~~ | **DONE** 2026-08-12 — `other` mutators rate-limited + GET auth allowlist; audit ok |
+| **PX-S11** | P2 | P2-9: `/ooplanner/projects/` 401 in bypass mode (client fetch) | verify bypass identity reaches client fetch; align OPS-S10/WRK-S17 |
 
 *Blockers: [`Failures.md`](../Failures.md) only.*

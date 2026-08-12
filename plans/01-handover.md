@@ -39,7 +39,7 @@
 ## Next session
 
 1. [`08-oo-start-checklist.md`](./08-oo-start-checklist.md)
-2. One **OPEN** id from [`00-README.md`](./00-README.md) (12 P1 OPEN + 1 PARTIAL; audit P2 list)
+2. One **OPEN** id from [`00-README.md`](./00-README.md) (TST-S22 **DONE** 2026-08-12 → next: TST-S23–S28, OPS-S05, DB-S04–S08)
 3. Close with HO-S01–S06 again
 
 *Closed: 2026-08-09 · Refreshed: 2026-08-12*

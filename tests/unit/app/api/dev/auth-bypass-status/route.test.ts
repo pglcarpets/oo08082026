@@ -51,4 +51,11 @@ describe("app/api/dev/auth-bypass-status/route.ts", () => {
     expect(body.flagSet).toBe(true);
     expect(body.nodeEnv).toBe("development");
   });
+
+  it("GET returns 404 in production (PX-S08 — no exposure of bypass state)", async () => {
+    setNodeEnv("production");
+
+    const res = await GET();
+    expect(res.status).toBe(404);
+  });
 });

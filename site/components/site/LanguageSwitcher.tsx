@@ -50,7 +50,9 @@ export function LanguageSwitcher({
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const nextLocale = e.target.value;
-    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; SameSite=Lax`;
+    // Secure flag on HTTPS (SITE-S20 / 8.3) — cookie never sent over plain http.
+    const secure = window.location.protocol === "https:" ? "; Secure" : "";
+    document.cookie = `NEXT_LOCALE=${nextLocale}; path=/; max-age=31536000; SameSite=Lax${secure}`;
     setCurrentLocale(nextLocale);
     window.location.reload();
   };

@@ -1,14 +1,14 @@
 # 00 — Slice ID Registry
 
-**Last updated:** 2026-08-12
+**Last updated:** 2026-08-13
 
-Single source of truth for every slice ID across all numbered plans. Every plan (01–09) links here as its registry.
+Single source of truth for every slice ID across all numbered plans. Every plan (01–10) links here as its registry.
 
 ---
 
 ## Summary
 
-**80 DONE · 25 OPEN · 1 PARTIAL** (plan slices) + **7 P1 · 10 P2** (audit findings)
+**90 DONE · 33 OPEN · 1 PARTIAL** (plan slices). Audit Phase A archived in [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) — do not re-run. Failures.md stays empty.
 
 ---
 
@@ -63,6 +63,7 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | TST-S32 | **DONE** 2026-08-12 | P2-1: `/api/git-user` admin-gated — `tests/unit/app/api/git-user/route.test.ts` 4/4 |
 | TST-S33 | **DONE** 2026-08-12 | `/api/dev/auth-bypass-status` 404 in prod — test added |
 | TST-S34 | **OPEN** P2 | P2-7: VR baselines only 6 marketing routes → add ooplanner/oostudio/portal/dashboard |
+| TST-S35 | **OPEN** P2 | P2-4: `htmlLang.ts` maps fr/de/es → `*-IN` (should be fr-FR/de-DE/es-ES); contradicts `LOCALE_HREFLANG` |
 
 ---
 
@@ -82,6 +83,20 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 | OPS-S10 | **OPEN** P2 | P2-9: `/ooplanner/projects/` 401s in bypass mode |
 | OPS-S11 | **OPEN** P2 | P2-10: sitemap lists 308-redirected `/planner/features/3d-view/` |
 | OPS-S12 | **OPEN** P3 | P3-seo: duplicate `og:locale:alternate` + `og:image:alt` `&amp;` |
+
+---
+
+## COST-S — Vercel cost + SEO ([10-vercel-cost-seo-performance.md](./10-vercel-cost-seo-performance.md))
+
+| ID | Status | Seam |
+|----|--------|------|
+| COST-S00 | **OPEN** | File plan + `vercel.json` `regions: ["bom1"]` |
+| COST-S01 | **OPEN** | Disable `/_next/image` in production |
+| COST-S02 | **OPEN** | Static default locale (no `cookies()`/`headers()`) |
+| COST-S03 | **OPEN** | Worker cache marketing HTML + `/_next/static` |
+| COST-S04 | **OPEN** | Sitemap PDPs + drop `3d-view` |
+| COST-S05 | **OPEN** | Homepage CLS ≤ 0.1 |
+| COST-S06 | **OPEN** | Content SEO (optional) |
 
 ---
 
@@ -199,34 +214,34 @@ Always OPEN by design — re-checked at each session start.
 
 ## AUDIT — Deep audit findings ([agent-reports/audit/00-audit-summary.md](../agent-reports/audit/00-audit-summary.md))
 
-11-track audit complete 2026-08-12. Evidence in `results/audit/`.
+11-track audit complete 2026-08-12. Evidence in `results/audit/`. Reports stay in `agent-reports/audit/` (not `.archive/`). Proposed Failures.md rows were never filed.
 
-### P1 — fix first (7)
+### P1 — all mapped and DONE (7)
 
 | ID | Finding | Mapped to |
 |----|---------|-----------|
-| AUDIT-EXPORTS-01 | `POST /api/exports` un-gated + raw disk write | TST-S22 |
-| AUDIT-I18N-01 | `<html lang="en">` hardcoded | TST-S23 |
-| AUDIT-SHOWROOMS-01 | `/showrooms/` hydration crash | TST-S24 |
-| AUDIT-TOOLAUTOSUBMIT-01 | `toolautosubmit` React warning (41/51 routes) | TST-S25 |
-| AUDIT-A11Y-01 | Hero color-contrast 3.28:1 (needs 4.5:1) | TST-S26 |
-| AUDIT-MOBILE-01 | Touch targets <44×44 site-wide | TST-S27 |
-| AUDIT-A11Y-02 | `aria-allowed-role` on Planner/Studio tool rail | TST-S28 |
+| AUDIT-EXPORTS-01 | `POST /api/exports` un-gated + raw disk write | TST-S22 **DONE** |
+| AUDIT-I18N-01 | `<html lang="en">` hardcoded | TST-S23 **DONE** |
+| AUDIT-SHOWROOMS-01 | `/showrooms/` hydration crash | TST-S24 **DONE** |
+| AUDIT-TOOLAUTOSUBMIT-01 | `toolautosubmit` React warning (41/51 routes) | TST-S25 **DONE** |
+| AUDIT-A11Y-01 | Hero color-contrast 3.28:1 (needs 4.5:1) | TST-S26 **DONE** |
+| AUDIT-MOBILE-01 | Touch targets <44×44 site-wide | TST-S27 **DONE** |
+| AUDIT-A11Y-02 | `aria-allowed-role` on Planner/Studio tool rail | TST-S28 **DONE** |
 
-### P2 — fix next (10)
+### P2 — mapped (10)
 
-| ID | Finding |
-|----|---------|
-| AUDIT-P2-1 | `GET /api/git-user` leaks committer email unauthenticated |
-| AUDIT-P2-2 | `audit-api-route-safety.mjs` skips "other" surface |
-| AUDIT-P2-3 | CSP `script-src 'unsafe-inline'` (standing debt) |
-| AUDIT-P2-4 | `htmlLang.ts` mis-maps fr→fr-IN, de→de-IN, es→es-IN |
-| AUDIT-P2-5 | LCP 14.5–20.1s mobile; CLS 0.30; no vitals reporters |
-| AUDIT-P2-6 | Default test lane 17 fails (13 resolvePdpPlanSvgThumb + 4 misc) |
-| AUDIT-P2-7 | VR baselines cover only 6 marketing routes |
-| AUDIT-P2-8 | Tech-docs lane JSON stale (Aug-10) |
-| AUDIT-P2-9 | `/ooplanner/projects/` 401s; `/products/seating/` 404 |
-| AUDIT-P2-10 | Sitemap lists 308-redirected `/planner/features/3d-view/` |
+| ID | Finding | Mapped to |
+|----|---------|-----------|
+| AUDIT-P2-1 | `GET /api/git-user` leaks committer email | TST-S32 / PX-S07 **DONE** |
+| AUDIT-P2-2 | `audit-api-route-safety.mjs` skips "other" surface | TST-S31 / PX-S10 **DONE** |
+| AUDIT-P2-3 | CSP `script-src 'unsafe-inline'` | PX-S09 **OPEN** |
+| AUDIT-P2-4 | `htmlLang.ts` mis-maps fr/de/es → `*-IN` | TST-S35 **OPEN** |
+| AUDIT-P2-5 | LCP / CLS / no vitals reporters | WRK-S15 · SITE-S19 · SITE-S22 **OPEN** (COST-S05 owns homepage CLS — leave 10) |
+| AUDIT-P2-6 | Default test lane 17 fails | TST-S29 / TECH-S08 **OPEN** |
+| AUDIT-P2-7 | VR baselines only 6 marketing routes | TST-S34 / WRK-S16 **OPEN** |
+| AUDIT-P2-8 | Tech-docs lane JSON stale | TST-S30 / TECH-S07 **OPEN** |
+| AUDIT-P2-9 | `/ooplanner/projects/` 401 in bypass | OPS-S10 · WRK-S17 · PX-S11 **OPEN** |
+| AUDIT-P2-10 | Sitemap lists 308 `/planner/features/3d-view/` | OPS-S11 **OPEN** (COST-S04 overlap — leave 10) |
 
 ---
 
@@ -236,14 +251,18 @@ Always OPEN by design — re-checked at each session start.
 |-----|-------|-----|
 | **P1** | 5 | OPS-S05 · DB-S04 · DB-S05 · DB-S07 · DB-S08 |
 | **P1 PARTIAL** | 1 | DB-S06 |
-| **P2** | 15 | TST-S29 · TST-S30 · TST-S34 · OPS-S10 · OPS-S11 · DB-S11 · WRK-S15 · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 · PX-S11 |
+| **P2** | 16 | TST-S29 · TST-S30 · TST-S34 · TST-S35 · OPS-S10 · OPS-S11 · DB-S11 · WRK-S15 · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 · PX-S11 |
 | **P3** | 4 | OPS-S12 · DB-S12 · DB-S13 · SITE-S21 |
+| **COST** | 7 | COST-S00–S06 (owned by 10 — do not expand here) |
 | **—** | 1 | DB-S10 |
-| **Audit P2** | 10 | AUDIT-P2-1 … AUDIT-P2-10 (see audit section) |
+
+CHK-S01–S12 stay OPEN by design (session start) and are not in the 33.
 
 ## Active plans
 
 | Plan | File | Status |
 |------|------|--------|
-| 85% strict quality program | [`oo-deep-audit-85-strict-quality-program.md`](./oo-deep-audit-85-strict-quality-program.md) | Phase A done, B+C pending |
 | Mobile app shell (10-phase) | [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) | Plan awaiting approval |
+| Vercel cost + SEO | [`10-vercel-cost-seo-performance.md`](./10-vercel-cost-seo-performance.md) | COST-S00–S06 OPEN |
+
+85% programme: retired — Phase A in `agent-reports/audit/`; Phase B text remains in [`02-testing-plan.md`](./02-testing-plan.md).

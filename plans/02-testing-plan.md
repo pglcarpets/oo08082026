@@ -1,6 +1,8 @@
 # Testing plan
 
-**AUDITED:** 2026-08-12 · Registry: [`00-README.md`](./00-README.md) · Handbook: [`Testing-handbook.md`](../Testing-handbook.md)
+**AUDITED:** 2026-08-13 · Registry: [`00-README.md`](./00-README.md) · Handbook: [`Testing-handbook.md`](../Testing-handbook.md)
+
+Audit Phase A is complete — do not re-run tracks. Reports stay in [`agent-reports/audit/`](../agent-reports/audit/00-audit-summary.md).
 
 **Rule:** one slice · confirm seam · red → green. Browser: `http://localhost:3000` only.
 
@@ -32,7 +34,7 @@
 
 ---
 
-## OPEN — audit P1 findings (fix first, one slice each)
+## DONE — audit P1 findings (TST-S22–S28)
 
 Evidence: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · raw in `results/audit/`.
 
@@ -65,12 +67,13 @@ Evidence: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-
 | ~~**TST-S32**~~ | ~~P2~~ | ~~P2-1: `GET /api/git-user` leaks identity~~ | ~~admin-gate or dev-only; add test~~ | **DONE** 2026-08-12 — admin-gated; `tests/unit/app/api/git-user/route.test.ts` 4/4 |
 | ~~**TST-S33**~~ | ~~P3~~ | ~~`GET /api/dev/auth-bypass-status` exposed~~ | ~~admin-gate or 404 in prod~~ | **DONE** 2026-08-12 — 404 in prod + test |
 | **TST-S34** | P2 | P2-7: VR baselines cover only 6 marketing routes | add `/ooplanner`, `/oostudio`, `/portal`, `/dashboard` baselines | `tests/e2e/site-visual-regression.spec.ts-snapshots/` |
+| **TST-S35** | P2 | P2-4: `htmlLang.ts` maps fr/de/es → `*-IN` | change to fr-FR / de-DE / es-ES (keep en-IN / hi-IN); unit test vs `LOCALE_HREFLANG` | `site/lib/i18n/htmlLang.ts`; `agent-reports/audit/08-i18n.md` |
 
 ---
 
 ## 85% strict quality program — Phase B (coverage thresholds)
 
-From [`oo-deep-audit-85-strict-quality-program.md`](./oo-deep-audit-85-strict-quality-program.md) § B. Proper tests enforced: `test:audit:hollow` 0 · `audit-gate-skips` 0 · `audit-eslint-disable` 0 · no `any`.
+Not started. Not a new TST id. From retired [`oo-deep-audit-85-strict-quality-program.md`](./oo-deep-audit-85-strict-quality-program.md) § B. Proper tests enforced: `test:audit:hollow` 0 · `audit-gate-skips` 0 · `audit-eslint-disable` 0 · no `any`.
 
 | File | Constant | Change |
 |------|----------|--------|

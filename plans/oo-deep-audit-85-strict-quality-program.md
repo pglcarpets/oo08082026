@@ -2,7 +2,7 @@
 
 **Plan location:** `plans/oo-deep-audit-85-strict-quality-program.md` (repository-local).
 
-**Status:** Approved plan, 2026-08-11. Implementation pending your go-ahead.
+**Status:** Phase A COMPLETE 2026-08-12 — reports in [`agent-reports/audit/`](../agent-reports/audit/00-audit-summary.md). Do not re-run Phase A. Phase B/C still pending. Leftover P1/P2 are TST/OPS/PX IDs in [`00-README.md`](./00-README.md), not new audit tracks.
 **Repo:** `E:\oo08082026` — Next 16 `site/` + `tech-docs-generator/` + `tests/` + `workers/`
 **Authority:** user > live code + fresh commands > `AGENTS.md` > `Agents/` > `docs/`
 **Bar:** 85% very strict, all 4 metrics, proper (non-hollow) tests. Execute slowly, check 3×, no shortcuts.
@@ -102,8 +102,8 @@ Browser probes: `node scripts/ui-polish-pass1-audit.mjs`, `node scripts/responsi
 - [x] Repo read at depth (AGENTS, Agents/1-7, docs/architecture, docs/database, Testing-handbook, vitest configs, coverage-policy, package.json gates, proxy, i18n, robots, sitemap)
 - [x] Plan approved with pushback recorded
 - [x] Phase A — Agent A done (tracks 1, 2, 7): `01-ui-desktop.md`, `02-ui-mobile.md`, `07-accessibility.md` + evidence in `results/audit/`
-- [ ] Phase A — Agent B (tracks 3, 4, 8, 9)
-- [ ] Phase A — Agent C (tracks 5, 6, 10, 11)
-- [ ] Phase A — `00-audit-summary.md`
+- [x] Phase A — Agent B (tracks 3, 4, 8, 9): `03-seo.md`, `04-security.md`, `08-i18n.md`, `09-api-route-safety.md`
+- [x] Phase A — Agent C (tracks 5, 6, 10, 11): `05-database.md`, `06-lighthouse.md`, `10-console-runtime.md`, `11-visual-regression-e2e.md`
+- [x] Phase A — `00-audit-summary.md`
 - [ ] Phase B — 85% strict thresholds (4 files)
-- [ ] Phase C — fix P0s→P1s
+- [ ] Phase C — remaining OPEN IDs in [`00-README.md`](./00-README.md) (audit P1s TST-S22–S28 already DONE)

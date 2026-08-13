@@ -1,6 +1,6 @@
 # Handover — session close
 
-**AUDITED:** 2026-08-12 · **Scope:** audit remediation (P1/P2) + plans expansion · Registry: [`00-README.md`](./00-README.md)
+**AUDITED:** 2026-08-13 · **Scope:** registry recount after audit archive · Registry: [`00-README.md`](./00-README.md)
 
 ---
 
@@ -40,7 +40,7 @@
 | HO-S03 | Plan `AUDITED` headers | all programme plans 2026-08-12 |
 | HO-S04 | `check-plans-purity` | OK |
 | HO-S05 | `activeBlockers.ts` ↔ Failures | zero active |
-| HO-S06 | Registry ↔ this file | aligned — 80 DONE / 25 OPEN / 1 PARTIAL |
+| HO-S06 | Registry ↔ this file | aligned — 90 DONE / 33 OPEN / 1 PARTIAL |
 
 ---
 
@@ -50,7 +50,7 @@
 |----|-------|
 | F1–F4 | **DONE** — all closed |
 
-**Zero active blockers** per [`Failures.md`](../Failures.md).
+**Zero active blockers** per [`Failures.md`](../Failures.md). Do not file the audit’s proposed Failures.md rows — leftover findings are plan OPEN IDs.
 
 ---
 
@@ -60,19 +60,18 @@
 |-----|-------|-----|
 | **P1** | 5 | OPS-S05 (Vercel token lifecycle) · DB-S04 · DB-S05 · DB-S07 · DB-S08 |
 | **P1 PARTIAL** | 1 | DB-S06 (contact query DB smoke) |
-| **P2** | 15 | TST-S29 (default lane 17 red tests) · TST-S30 (tech-docs lane JSON stale) · TST-S34 (VR coverage) · OPS-S10 · OPS-S11 (sitemap 308 dup) · DB-S11 (exports disk-only prod path) · WRK-S15 (oostudio CLS) · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 (CSP unsafe-inline) · PX-S11 (bypass 401) |
-| **P3** | 4 | OPS-S12 (OG dup) · DB-S12 · DB-S13 · SITE-S21 |
+| **P2** | 16 | TST-S29 · TST-S30 · TST-S34 · TST-S35 (htmlLang fr/de/es `*-IN`) · OPS-S10 · OPS-S11 · DB-S11 · WRK-S15 · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 · PX-S11 |
+| **P3** | 4 | OPS-S12 · DB-S12 · DB-S13 · SITE-S21 |
+| **COST** | 7 | COST-S00–S06 (plan 10 — do not expand here) |
 | **—** | 1 | DB-S10 |
 
 ---
 
 ## Next session
 
-1. [`08-oo-start-checklist.md`](./08-oo-start-checklist.md) — includes new CHK-S11 (read audit summary) + CHK-S12 (verify catalog DB image coverage)
-2. **Verify the deploy landed** — `curl -I https://oando.co.in/` → CSP header should include `stats.g.doubleclick.net`; confirm no more Zaraz/GA4 CSP violations in console
-3. Suggested first slice (highest value, quick):
-   - **TST-S30 / TECH-S07** — tech-docs lane JSON stale (two-lane misread risk; re-run lane cleanly) — unblocks trusting `pnpm run test`
-   - or **TST-S29 / TECH-S08** — default lane 17 red tests (13 `resolvePdpPlanSvgThumb` + 2 `sitePackageRoot` + docs + dev-tools)
+1. [`08-oo-start-checklist.md`](./08-oo-start-checklist.md) — CHK-S11 (audit summary, do not re-run Phase A) + CHK-S12
+2. Remaining P1s only: **OPS-S05 · DB-S04 · DB-S05 · DB-S07 · DB-S08** (DB-S06 PARTIAL). P2 backlog is in [`00-README.md`](./00-README.md).
+3. Suggested first P2 after P1s: **TST-S30 / TECH-S07** (stale tech-docs JSON) or **TST-S29 / TECH-S08** (default lane 17 red).
 4. Close with HO-S01–S06 again
 
 ---
@@ -83,4 +82,4 @@
 - Pre-existing red tests (not from this session): `page.test.tsx` + `clients/page.test.tsx` (broken suites), `check-plans-purity.test.ts` (stale expectation), `serviceRoleOnlyTables.db.test.ts` (live-DB drift) — see audit P2-6.
 - Catalog images: the 4 fixed products point at `oando-workstations--deskpro` flat paths (200 on CDN + on disk). If dedicated product photos are wanted later, they're in `.tmp/products/` (60x30/linear/deskpro variants).
 
-*Closed: 2026-08-12*
+*Registry recount: 2026-08-13. Session close: 2026-08-12.*

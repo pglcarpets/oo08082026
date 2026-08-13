@@ -16,7 +16,7 @@ Session-start only (CHK-S* stay OPEN until you check them).
 | **CHK-S08** | `pnpm run test` = two lanes | BOTH summaries green (check mtime — tech-docs JSON must be fresh, not the Aug-10 stale placeholder; see TECH-S07) |
 | **CHK-S09** | `check:docs-all` / purity before commit | exit 0 |
 | **CHK-S10** | Pick one OPEN id from registry | start red/green |
-| **CHK-S11** | Read audit master summary `agent-reports/audit/00-audit-summary.md` | know current P1/P2 backlog + healthy PASS list |
+| **CHK-S11** | Read audit master summary `.archive/audit/00-audit-summary.md` | know current P1/P2 backlog + healthy PASS list |
 | **CHK-S12** | Verify catalog DB image coverage (no empty `images` rows for published products) | 0 products with `images=[]` + `flagship_image=null` |
 
 Auth cookies are host-bound — always **`http://localhost:3000`**.

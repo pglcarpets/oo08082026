@@ -1,7 +1,7 @@
 # Database & persistence
 
 **AUDITED:** 2026-08-12 · Admin `rxzpznmxbaoxpikowmfc` · Products `erpweaiypimorcunaimz`  
-Registry: [`00-README.md`](./00-README.md) · Schema: [`docs/database/schema.md`](../docs/database/schema.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md)
+Registry: [`00-README.md`](./00-README.md) · Schema: [`docs/database/schema.md`](../docs/database/schema.md) · Audit: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md)
 
 **Rules:** mode-aware wrappers only · never dual-write · migrations need `-- rollback`.
 

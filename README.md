@@ -19,7 +19,7 @@ pnpm dev       # http://localhost:3000  (not 127.0.0.1)
 | Secrets | repo-root `.env.local` |
 | Root | `dev` `build` `test` `typecheck` `lint` `gate` `release:gate` `scan:boundaries` `seed:furniture` |
 | Ops | `pnpm run ops list` |
-| Place | plans → `plans/*.md` · audits → `agent-reports/**/*.md` · evidence → `results/**` · blockers → `Failures.md` |
+| Place | plans → `plans/*.md` · audits → `.archive/audit/**/*.md` · evidence → `results/**` · blockers → `Failures.md` |
 
 ## Fork + data
 

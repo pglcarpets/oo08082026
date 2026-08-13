@@ -8,7 +8,7 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 
 ## Summary
 
-**90 DONE · 33 OPEN · 1 PARTIAL** (plan slices). Audit Phase A archived in [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) — do not re-run. Failures.md stays empty.
+**90 DONE · 32 OPEN · 1 PARTIAL** (plan slices; COST-S00 not counted in open). Audit Phase A archived in [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) — do not re-run. Failures.md stays empty.
 
 ---
 
@@ -212,9 +212,9 @@ Always OPEN by design — re-checked at each session start.
 
 ---
 
-## AUDIT — Deep audit findings ([agent-reports/audit/00-audit-summary.md](../agent-reports/audit/00-audit-summary.md))
+## AUDIT — Deep audit findings ([.archive/audit/00-audit-summary.md](../.archive/audit/00-audit-summary.md))
 
-11-track audit complete 2026-08-12. Evidence in `results/audit/`. Reports stay in `agent-reports/audit/` (not `.archive/`). Proposed Failures.md rows were never filed.
+11-track audit complete 2026-08-12. Evidence in `results/audit/`. Reports archived in `.archive/audit/`. Proposed Failures.md rows were never filed.
 
 ### P1 — all mapped and DONE (7)
 
@@ -253,7 +253,7 @@ Always OPEN by design — re-checked at each session start.
 | **P1 PARTIAL** | 1 | DB-S06 |
 | **P2** | 16 | TST-S29 · TST-S30 · TST-S34 · TST-S35 · OPS-S10 · OPS-S11 · DB-S11 · WRK-S15 · WRK-S16 · WRK-S17 · SITE-S19 · SITE-S22 · TECH-S07 · TECH-S08 · PX-S09 · PX-S11 |
 | **P3** | 4 | OPS-S12 · DB-S12 · DB-S13 · SITE-S21 |
-| **COST** | 7 | COST-S00–S06 (owned by 10 — do not expand here) |
+| **COST** | 6 | COST-S01–S06 (owned by 10 — do not expand here) · COST-S00 DONE |
 | **—** | 1 | DB-S10 |
 
 CHK-S01–S12 stay OPEN by design (session start) and are not in the 33.
@@ -265,4 +265,4 @@ CHK-S01–S12 stay OPEN by design (session start) and are not in the 33.
 | Mobile app shell (10-phase) | [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) | Plan awaiting approval |
 | Vercel cost + SEO | [`10-vercel-cost-seo-performance.md`](./10-vercel-cost-seo-performance.md) | COST-S00–S06 OPEN |
 
-85% programme: retired — Phase A in `agent-reports/audit/`; Phase B text remains in [`02-testing-plan.md`](./02-testing-plan.md).
+85% programme: retired — Phase A in `.archive/audit/`; Phase B text remains in [`02-testing-plan.md`](./02-testing-plan.md).

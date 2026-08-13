@@ -40,7 +40,7 @@
 | HO-S03 | Plan `AUDITED` headers | all programme plans 2026-08-12 |
 | HO-S04 | `check-plans-purity` | OK |
 | HO-S05 | `activeBlockers.ts` ↔ Failures | zero active |
-| HO-S06 | Registry ↔ this file | aligned — 90 DONE / 33 OPEN / 1 PARTIAL |
+| HO-S06 | Registry ↔ this file | aligned — 90 DONE / 32 OPEN / 1 PARTIAL |
 
 ---
 

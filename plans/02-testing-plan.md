@@ -2,7 +2,7 @@
 
 **AUDITED:** 2026-08-13 · Registry: [`00-README.md`](./00-README.md) · Handbook: [`Testing-handbook.md`](../Testing-handbook.md)
 
-Audit Phase A is complete — do not re-run tracks. Reports stay in [`agent-reports/audit/`](../agent-reports/audit/00-audit-summary.md).
+Audit Phase A is complete — do not re-run tracks. Reports archived in [`.archive/audit/`](../.archive/audit/00-audit-summary.md).
 
 **Rule:** one slice · confirm seam · red → green. Browser: `http://localhost:3000` only.
 
@@ -36,7 +36,7 @@ Audit Phase A is complete — do not re-run tracks. Reports stay in [`agent-repo
 
 ## DONE — audit P1 findings (TST-S22–S28)
 
-Evidence: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · raw in `results/audit/`.
+Evidence: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) · raw in `results/audit/`.
 
 | ID | Seam | Red → green | Evidence |
 |----|------|-------------|----------|
@@ -57,7 +57,7 @@ pnpm exec playwright test -c config/build/playwright.config.ts tests/e2e/audit-3
 
 ## OPEN — audit P2/P3 backlog (tracked slices)
 
-Evidence: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · raw in `results/audit/`.
+Evidence: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) · raw in `results/audit/`.
 
 | ID | Pri | Seam | Red → green | Evidence |
 |----|-----|------|-------------|----------|
@@ -67,7 +67,7 @@ Evidence: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-
 | ~~**TST-S32**~~ | ~~P2~~ | ~~P2-1: `GET /api/git-user` leaks identity~~ | ~~admin-gate or dev-only; add test~~ | **DONE** 2026-08-12 — admin-gated; `tests/unit/app/api/git-user/route.test.ts` 4/4 |
 | ~~**TST-S33**~~ | ~~P3~~ | ~~`GET /api/dev/auth-bypass-status` exposed~~ | ~~admin-gate or 404 in prod~~ | **DONE** 2026-08-12 — 404 in prod + test |
 | **TST-S34** | P2 | P2-7: VR baselines cover only 6 marketing routes | add `/ooplanner`, `/oostudio`, `/portal`, `/dashboard` baselines | `tests/e2e/site-visual-regression.spec.ts-snapshots/` |
-| **TST-S35** | P2 | P2-4: `htmlLang.ts` maps fr/de/es → `*-IN` | change to fr-FR / de-DE / es-ES (keep en-IN / hi-IN); unit test vs `LOCALE_HREFLANG` | `site/lib/i18n/htmlLang.ts`; `agent-reports/audit/08-i18n.md` |
+| **TST-S35** | P2 | P2-4: `htmlLang.ts` maps fr/de/es → `*-IN` | change to fr-FR / de-DE / es-ES (keep en-IN / hi-IN); unit test vs `LOCALE_HREFLANG` | `site/lib/i18n/htmlLang.ts`; `.archive/audit/08-i18n.md` |
 
 ---
 

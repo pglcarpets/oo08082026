@@ -1,7 +1,7 @@
 # Site — marketing & member suite
 
 **AUDITED:** 2026-08-12 · Browser: `http://localhost:3000` only  
-Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · Marketing e2e suite: **TST-S19**
+Registry: [`00-README.md`](./00-README.md) · Audit: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) · Marketing e2e suite: **TST-S19**
 
 ---
 

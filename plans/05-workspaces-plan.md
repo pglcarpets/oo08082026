@@ -1,7 +1,7 @@
 # Workspaces — Planner / Studio
 
 **AUDITED:** 2026-08-12 · `/ooplanner` · `/oostudio` · never cross-import (`scan:boundaries`)  
-Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · E2E suites owned by **TST-S16–S18**
+Registry: [`00-README.md`](./00-README.md) · Audit: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) · E2E suites owned by **TST-S16–S18**
 
 ---
 

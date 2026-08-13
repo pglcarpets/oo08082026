@@ -1,7 +1,7 @@
 # Contents
 
 [`START.md`](./START.md) · [`DOC-MAP.md`](./DOC-MAP.md)  
-Plans `plans/*.md` · Audits `agent-reports/**/*.md` · Evidence `results/**`
+Plans `plans/*.md` · Audits `.archive/audit/**/*.md` (archived) · Evidence `results/**`
 
 | № | File | |
 |---|------|--|

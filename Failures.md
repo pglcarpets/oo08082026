@@ -3,7 +3,7 @@
 | | |
 |--|--|
 | Plans | [`plans/README.md`](./plans/README.md) |
-| Audits | [`agent-reports/audit/`](./agent-reports/audit/) · evidence `results/audit/` |
+| Audits | [`.archive/audit/`](./.archive/audit/) · evidence `results/audit/` |
 | Browser | `http://localhost:3000` only |
 
 **Only this file lists open blockers.** Elsewhere: link here, don't copy IDs.

@@ -34,7 +34,7 @@ Studio (`/oostudio`) and Planner (`/ooplanner`) are **forked** — never import 
 | `site/focss/` | CSS (`@focss/*`) |
 | `tests/`, `tech-docs-generator/`, `config/build/` | Tests, inventory SPA, harness |
 | `site/platform/shared/data/` | Furniture (disk dev only) |
-| `plans/` · `agent-reports/` · `results/` | Plans · audit MD · generated output |
+| `plans/` · `.archive/audit/` · `results/` | Plans · audit MD (archived) · generated output |
 
 `site/data/storage/` is legacy — do not write there.
 

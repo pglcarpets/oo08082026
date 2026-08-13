@@ -34,7 +34,7 @@ Slice-ID registry — one table per prefix (HO-S, TST-S, OPS-S, DB-S, WRK-S, SIT
 
 ### Step 2 — EDIT `plans/01-handover.md`
 - Replace stale F3 with "zero active blockers per Failures.md"; F1–F4 all DONE with close dates
-- Add post-audit note: 11-track deep audit complete (2026-08-12); 7 P1 + 10 P2 → `agent-reports/audit/00-audit-summary.md`
+- Add post-audit note: 11-track deep audit complete (2026-08-12); 7 P1 + 10 P2 → `.archive/audit/00-audit-summary.md`
 - Next-session → `00-README.md` OPEN items; update AUDITED date
 
 ### Step 3 — EDIT `plans/02-testing-plan.md`
@@ -76,4 +76,4 @@ pnpm run check:docs-all          # includes check:plans-purity — flat md, no s
 pnpm run check:layout
 ```
 
-Manual: every `[00-README.md](./00-README.md)` link in 01–09 resolves · `01` Failures map ↔ `Failures.md` (zero) · `02` audit IDs ↔ `agent-reports/audit/00-audit-summary.md` · **no `C:` path strings anywhere in `plans/`** (grep `C:\\Users` returns 0).
+Manual: every `[00-README.md](./00-README.md)` link in 01–09 resolves · `01` Failures map ↔ `Failures.md` (zero) · `02` audit IDs ↔ `.archive/audit/00-audit-summary.md` · **no `C:` path strings anywhere in `plans/`** (grep `C:\\Users` returns 0).

@@ -1,6 +1,6 @@
 # 09 — Proxy / auth / maintenance
 
-**AUDITED:** 2026-08-12 · **Status:** PX-S00–S06 DONE · Registry: [`00-README.md`](./00-README.md) · Audit: [`agent-reports/audit/00-audit-summary.md`](../agent-reports/audit/00-audit-summary.md) · **PX-S00–S06**
+**AUDITED:** 2026-08-12 · **Status:** PX-S00–S06 DONE · Registry: [`00-README.md`](./00-README.md) · Audit: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md) · **PX-S00–S06**
 
 **Code:** `site/proxy.ts` · dashboard layout · `tests/unit/proxy*.ts` · `check-admin-api-auth.test.ts`
 

@@ -2,18 +2,18 @@
 
 **Plan location:** `plans/oo-deep-audit-85-strict-quality-program.md` (repository-local).
 
-**Status:** Phase A COMPLETE 2026-08-12 — reports in [`agent-reports/audit/`](../agent-reports/audit/00-audit-summary.md). Do not re-run Phase A. Phase B/C still pending. Leftover P1/P2 are TST/OPS/PX IDs in [`00-README.md`](./00-README.md), not new audit tracks.
+**Status:** Phase A COMPLETE 2026-08-12 — reports archived in [`.archive/audit/`](../.archive/audit/00-audit-summary.md). Do not re-run Phase A. Phase B/C still pending. Leftover P1/P2 are TST/OPS/PX IDs in [`00-README.md`](./00-README.md), not new audit tracks.
 **Repo:** `E:\oo08082026` — Next 16 `site/` + `tech-docs-generator/` + `tests/` + `workers/`
 **Authority:** user > live code + fresh commands > `AGENTS.md` > `Agents/` > `docs/`
 **Bar:** 85% very strict, all 4 metrics, proper (non-hollow) tests. Execute slowly, check 3×, no shortcuts.
-**Home:** This plan lives in `plans/` (flat Markdown only). Audit reports stay in `agent-reports/audit/`. Raw evidence (PNG/JSON/HTML/TXT) goes to `results/audit/` per `AGENTS.md` §1.
+**Home:** This plan lives in `plans/` (flat Markdown only). Audit reports archived in `.archive/audit/`. Raw evidence (PNG/JSON/HTML/TXT) goes to `results/audit/` per `AGENTS.md` §1.
 
 ---
 
 ## Decisions (your review, 2026-08-11)
 
 1. **85% on gated profiles** — keep 95→85 on planner-gate / site / admin + add 85% to inventory (today no threshold). You said "right for 85% as long as it's a proper test." Proper = `test:audit:hollow` 0 violations, `audit-gate-skips` 0, no `any`, both lanes green.
-2. **`plans/` flat** — "go as per repo rules." No subfolders, no unlisted files. Audit output here in `agent-reports/audit/`.
+2. **`plans/` flat** — "go as per repo rules." No subfolders, no unlisted files. Audit output archived in `.archive/audit/`.
 3. **Speed vs quality** — "totally your call." Methodical: read → evidence → plan → TDD slice → gate → 3× check.
 4. **Agents** — "ok to your idea." `AGENTS.md §2` caps 2 parallel; 3rd queues. Max 3 total.
 5. **85% on all 4 metrics** — "ok to your idea." Statements/branches/functions/lines, no selective lowering.
@@ -47,7 +47,7 @@
 
 ## Phases
 
-**A — Audit (no code changes).** 2 parallel + 1 queued agent. `pnpm dev` (DEV_AUTH_BYPASS=1, disk) on `localhost:3000` only. `networkidle`+`fonts.ready` before screenshots. Evidence → `results/audit/{screenshots,a11y,lighthouse,console}`. Reports → `agent-reports/audit/`. Master `00-audit-summary.md` last.
+**A — Audit (no code changes).** 2 parallel + 1 queued agent. `pnpm dev` (DEV_AUTH_BYPASS=1, disk) on `localhost:3000` only. `networkidle`+`fonts.ready` before screenshots. Evidence → `results/audit/{screenshots,a11y,lighthouse,console}`. Reports → `.archive/audit/`. Master `00-audit-summary.md` last.
 - Agent A (tracks 1,2,7) — **DONE 2026-08-11**. Reports written; evidence in `results/audit/`.
 - Agent B (tracks 3,4,8,9) — pending.
 - Agent C (tracks 5,6,10,11) — pending, queued.
@@ -94,7 +94,7 @@ Browser probes: `node scripts/ui-polish-pass1-audit.mjs`, `node scripts/responsi
 - Browser: `http://localhost:3000` only, never `127.0.0.1`.
 - No writes to `site/data/storage/` (legacy). No dual-write. Use mode-aware wrappers.
 - No migration without `-- rollback`. No `any`.
-- Only `.md` in `agent-reports/audit/`. Raw evidence in `results/audit/`.
+- Only `.md` in `.archive/audit/`. Raw evidence in `results/audit/`.
 - Never invent browser/build state — fresh command or it didn't happen.
 
 ## Progress

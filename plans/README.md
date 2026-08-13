@@ -22,7 +22,7 @@ Flat Markdown only. No subfolders. No generated files.
 
 | Doc | Was | Superseded by |
 |-----|-----|---------------|
-| [oo-deep-audit-85-strict-quality-program.md](./oo-deep-audit-85-strict-quality-program.md) | 11-track audit + 85% programme | Phase A archived in `agent-reports/audit/` (not `.archive/`). Phase B stays in [`02-testing-plan.md`](./02-testing-plan.md); leftover P1/P2 are IDs in [`00-README.md`](./00-README.md) |
+| [oo-deep-audit-85-strict-quality-program.md](./oo-deep-audit-85-strict-quality-program.md) | 11-track audit + 85% programme | Phase A archived in `.archive/audit/`. Phase B stays in [`02-testing-plan.md`](./02-testing-plan.md); leftover P1/P2 are IDs in [`00-README.md`](./00-README.md) |
 | [oo-deep-audit-v2.md](./oo-deep-audit-v2.md) | Ten-phase remediation plan | `oo-ux-shell-program.md` |
 | [phase1-mobile-app-shell.md](./phase1-mobile-app-shell.md) | Phase 1 PR (10-file diffs) | `oo-ux-shell-program.md` § PHASE 1 |
 | [Mobile app shell for oando.co.md](./Mobile%20app%20shell%20for%20oando.co.md) | Raw brief seed | `oo-ux-shell-program.md` |
@@ -30,7 +30,7 @@ Flat Markdown only. No subfolders. No generated files.
 | Kind | Where |
 |------|--------|
 | Plans | `plans/*.md` |
-| Audits | `agent-reports/audit/*.md` |
+| Audits | `.archive/audit/*.md` (archived) |
 | Evidence | `results/**` |
 | Blockers | [`Failures.md`](../Failures.md) |
 

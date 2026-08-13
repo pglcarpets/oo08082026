@@ -4,7 +4,7 @@ Markdown only. No PNG/JSON/HTML here.
 
 | Path | Role |
 |------|------|
-| [`audit/`](./audit/) | Audit briefs + track reports |
+| [`audit/`](../.archive/audit/) | Audit briefs + track reports (archived → `.archive/audit/`) |
 
 | Kind | Where |
 |------|--------|

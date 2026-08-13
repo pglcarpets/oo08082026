@@ -41,7 +41,7 @@ user instruction  >  live code + fresh commands  >  Agents/  >  docs/
 
 - Owner sets the goal. Clear goals execute without ceremony.
 - Fresh evidence decides PASS / FAIL / ship. No fake proof.
-- Programme direction: `plans/` + live code. Audit reports: `agent-reports/audit/` (MD only).
+- Programme direction: `plans/` + live code. Audit reports: `.archive/audit/` (MD only, archived).
 - Active blockers: root `Failures.md` alone. Raw/generated output: `results/`, never PASS.
 
 ## Working loop

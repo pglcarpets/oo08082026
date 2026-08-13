@@ -56,7 +56,7 @@ Two corollaries, both learned the hard way in this repository:
 
 | ID | Rule | Enforcement |
 |---|---|---|
-| **S1** | Live plan is **`plans/`** only (flat Markdown): [`plans/README.md`](../../plans/README.md) + [`oo-ux-shell-program.md`](../../plans/oo-ux-shell-program.md) + [`phase1-mobile-app-shell.md`](../../plans/phase1-mobile-app-shell.md). Audits → `agent-reports/`; evidence → `results/`. No subfolders. | `AUTOMATED` — `check:plans-purity` (via `check:docs-all`) |
+| **S1** | Live plan is **`plans/`** only (flat Markdown): [`plans/README.md`](../../plans/README.md) + [`oo-ux-shell-program.md`](../../plans/oo-ux-shell-program.md). Audits → `.archive/audit/`; evidence → `results/`. No subfolders. | `AUTOMATED` — `check:plans-purity` (via `check:docs-all`) |
 | **S2** | No unsolicited summary/analysis dumps. Findings go in `Failures.md` (not free-form report trees). | `AUTOMATED` — `pnpm run check:governance` |
 | **S3** | Every unresolved blocker is in `Failures.md` with a repro command and an owning phase. Removed when fixed, not struck through. | `PARTIAL` — `check:failures` rejects resolution/history language only. Presence of a repro command and an owning phase is **not** checked |
 | **S4** | Plan documents do not carry duplicated status. One ledger, one place. | `MANUAL REVIEW` |

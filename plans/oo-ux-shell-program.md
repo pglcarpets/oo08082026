@@ -1,6 +1,6 @@
 # One&Only — Unified Mobile App Shell & UX Remediation Program
 
-**Status:** Plan (awaiting approval). Aligned with `oo-deep-audit-v2.md` (10-phase).
+**Status:** Plan (awaiting approval). 10-phase programme.
 **Scope:** This is a **phased program, not one PR**. Phase 1 is the shippable PR (mobile app shell). Phases 2–10 are sequenced follow-ups with exact file targets.
 **Authority:** user instruction → live code + fresh commands → `AGENTS.md` → `docs/**`. Source of truth for all paths/classes/analytics below is the repo (`E:\oo08082026`), verified via 6 exploration agents + 2 live fetches on 2026-08-11.
 
@@ -47,6 +47,17 @@ export const MOBILE_TABS = [
   { id: "account",  label: "Account", href: SITE_AUTH_LINK.href,   icon: "UserCircle" }, // /access
 ] as const;
 export type MobileTabId = (typeof MOBILE_TABS)[number]["id"];
+
+/** Resolve the active tab id from a pathname (null = interior page, no active tab). */
+export function activeTabFor(pathname: string): MobileTabId | null {
+  const p = (pathname || "/").replace(/\/+$/, "") || "/";
+  if (p === "/") return "home";
+  if (p.startsWith("/products")) return "catalog";
+  if (p.startsWith("/ooplanner") || p.startsWith("/planner")) return "planner";
+  if (p.startsWith("/oostudio")) return "studio";
+  if (["/access","/dashboard","/portal","/login"].some(s => p.startsWith(s))) return "account";
+  return null;
+}
 ```
 Notes: `/ooplanner` is a planner-entry href → its tab renders via `PlannerLaunchLink` (stamps `siteSource`/utm + fires `planner_entry`). Others use `TrackedLink`. `/oostudio` has no `PRODUCT_SUITE` entry — reference directly (confirmed in exploration).
 
@@ -78,21 +89,11 @@ import { OneAndOnlyLogo } from "@/components/ui/Logo";
 import { TrackedLink } from "@/components/ui/TrackedLink";
 import { PlannerLaunchLink } from "@/components/ui/PlannerLaunchLink";
 import { isPlannerEntryHref } from "@/lib/analytics/plannerEntry";
-import { MOBILE_TABS, type MobileTabId } from "@/features/site/data/navigation";
+import { MOBILE_TABS, activeTabFor, type MobileTabId } from "@/features/site/data/navigation";
 import { trackSiteTabSelected } from "@/lib/analytics/siteEvents";
 import { House, SquaresFour, PencilSimple, PaintBrush, UserCircle } from "@phosphor-icons/react";
 
 const ICONS = { House, SquaresFour, PencilSimple, PaintBrush, UserCircle } as const;
-
-function activeTabFor(pathname: string): MobileTabId | null {
-  const p = pathname.replace(/\/+$/, "") || "/";
-  if (p === "/") return "home";
-  if (p.startsWith("/products")) return "catalog";
-  if (p.startsWith("/ooplanner") || p.startsWith("/planner")) return "planner";
-  if (p.startsWith("/oostudio")) return "studio";
-  if (["/access","/dashboard","/portal","/login"].some(s => p.startsWith(s))) return "account";
-  return null; // interior marketing page → no active tab, shell still visible
-}
 
 export function MobileAppShell({ children, primaryAction }: {
   children: React.ReactNode;
@@ -223,8 +224,8 @@ Notes & trade-offs:
 - `trackSiteSearchSubmitted` surface stays `"mobile"` — do not change (it's a union type).
 - Open trigger: since the header hamburger is hidden <768, open the drawer from a search icon button added to `.mobile-app-bar` (add a `<button>` in `MobileAppShell` that calls the same `onOpen` — pass an `onOpenNav` prop, or lift drawer state into `MobileAppShell`). Simplest: move `MobileNavDrawer` + its open state into `MobileAppShell` so the app bar owns the trigger.
 
-#### 9. `site/components/site/Header.tsx` — no JSX change required
-The desktop header stays. It is hidden <768 by the CSS rule in #5. Its hamburger + `MobileNavDrawer` mount moves into `MobileAppShell` (per #8). Remove the now-duplicate drawer render from `Header.tsx` and the `mobileOpen` state (or leave it dormant behind the desktop hamburger, which is hidden anyway). Cleanest: delete the drawer render + `mobileOpen` state from `Header.tsx`; desktop-only nav remains.
+#### 9. `site/components/site/Header.tsx` — desktop-only, remove mobile drawer ownership
+The desktop header stays (hidden <768 by CSS in #5). Remove mobile drawer ownership — it moves into `MobileAppShell` (per #8 and implementation notes). Specifically delete: `MobileNavDrawer` import, `flushSync` import, `mobileOpen` state, `hamburgerRef`, the resize effect (closes drawer at ≥1280px), the hamburger `<button>`, and the `<MobileNavDrawer>` render. Keep: desktop nav, `HeaderSearchPanel`, `HeaderProductsMegaMenu`, `LanguageSwitcher`, auth `TrackedLink`.
 
 #### 10. Boundaries & analytics verification (no code, but required)
 - Run `pnpm run scan:boundaries` — must stay green (no new cross-fork imports; `MobileAppShell` is in `site/components/site/`, neutral).
@@ -237,6 +238,14 @@ The desktop header stays. It is hidden <768 by the CSS rule in #5. Its hamburger
 - [ ] Planner tab fires `planner_entry` conversion (not just `site_tab_selected`).
 - [ ] `MobileNavDrawer` contains only search + 4 curated shortcuts (no language/auth/CTAs).
 - [ ] `scan:boundaries` green; `pnpm run check:layout` green; `pnpm run gate` green.
+
+### Phase 1 implementation notes
+
+**Drawer ownership.** `MobileAppShell` owns `MobileNavDrawer` state (`navOpen`/`setNavOpen`) and renders it. The app bar includes a search icon `<button>` that opens the drawer. This removes drawer responsibility from `Header.tsx` on mobile. Props for `MobileNavDrawer` reduce to `{ open, onClose }`.
+
+**Header.tsx cleanup.** Remove from `Header.tsx`: `MobileNavDrawer` import, `flushSync` import (hamburger-only), `mobileOpen` state, `hamburgerRef`, the resize effect that closes drawer at ≥1280px, the hamburger `<button>`, and the `<MobileNavDrawer>` render. Desktop nav, `HeaderSearchPanel`, `HeaderProductsMegaMenu`, `LanguageSwitcher`, and auth `TrackedLink` stay.
+
+**Breakpoint trade-off.** The shell is `<768px` (md) by default. Extending to `<1280px` (xl) would cover tablets — the only change is swapping `--breakpoint-md` → `--breakpoint-xl` in `app-shell.css`. Flag for owner decision.
 
 ---
 

@@ -1,8 +1,6 @@
 # Vercel cost + SEO performance
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
-
-**Registry:** [`00-README.md`](./00-README.md) · Evidence: `results/cost-seo/`
+**AUDITED:** 2026-08-13 · Registry: [`00-README.md`](./00-README.md) · Evidence: `results/cost-seo/`
 
 **Goal:** Cut the Vercel invoice by stopping work we already buy from Cloudflare/R2, then make marketing HTML cacheable so Core Web Vitals and crawl discovery improve — without leaving Vercel.
 
@@ -70,7 +68,7 @@ Measure on `https://oando.co.in/` after each ship. Record under `results/cost-se
 
 | ID | Phase | Status |
 |----|-------|--------|
-| COST-S00 | File this plan + pin `bom1` in `vercel.json` | OPEN |
+| COST-S00 | File this plan + pin `bom1` in `vercel.json` | **DONE** 2026-08-11 |
 | COST-S01 | Disable `/_next/image` in production | OPEN |
 | COST-S02 | Static default locale (no `cookies()`/`headers()`) | OPEN |
 | COST-S03 | Worker cache for marketing HTML + `/_next/static` | OPEN |
@@ -110,8 +108,8 @@ Measure on `https://oando.co.in/` after each ship. Record under `results/cost-se
 All work inside this repo. No worktrees.
 
 - [x] Write `plans/10-vercel-cost-seo-performance.md` (this file).
-- [ ] Row in `plans/README.md`, COST-S table in `plans/00-README.md`, row in `CONTENTS.md`. `pnpm run check:docs-all`.
-- [ ] Pin functions in `vercel.json`:
+- [x] Row in `plans/README.md`, COST-S table in `plans/00-README.md`, row in `CONTENTS.md`. `pnpm run check:docs-all`.
+- [x] Pin functions in `vercel.json`:
 
 ```json
 {

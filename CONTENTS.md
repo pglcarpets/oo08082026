@@ -14,8 +14,7 @@ Plans `plans/*.md` · Audits `.archive/audit/**/*.md` (archived) · Evidence `re
 | 07 | [`Testing-handbook.md`](./Testing-handbook.md) | tests |
 | 08 | [`Failures.md`](./Failures.md) | blockers |
 | 09 | [`plans/README.md`](./plans/README.md) | plans |
-| 10 | [`plans/oo-ux-shell-program.md`](./plans/oo-ux-shell-program.md) | UX shell |
-| 11 | [`plans/phase1-mobile-app-shell.md`](./plans/phase1-mobile-app-shell.md) | phase 1 |
+| 10 | [`plans/oo-ux-shell-program.md`](./plans/oo-ux-shell-program.md) | UX shell + UX remediation (10-phase) |
 | 11a | [`plans/10-vercel-cost-seo-performance.md`](./plans/10-vercel-cost-seo-performance.md) | Vercel bill + SEO/CWV |
 | 12 | [`Agents/INDEX.md`](./Agents/INDEX.md) | handbooks |
 | 13–19 | [`Agents/01`…`07`](./Agents/) | session rules |

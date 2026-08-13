@@ -90,7 +90,7 @@ Single source of truth for every slice ID across all numbered plans. Every plan 
 
 | ID | Status | Seam |
 |----|--------|------|
-| COST-S00 | **OPEN** | File plan + `vercel.json` `regions: ["bom1"]` |
+| COST-S00 | **DONE** | Plan filed + `vercel.json` `regions: ["bom1"]` |
 | COST-S01 | **OPEN** | Disable `/_next/image` in production |
 | COST-S02 | **OPEN** | Static default locale (no `cookies()`/`headers()`) |
 | COST-S03 | **OPEN** | Worker cache marketing HTML + `/_next/static` |
@@ -212,36 +212,9 @@ Always OPEN by design — re-checked at each session start.
 
 ---
 
-## AUDIT — Deep audit findings ([.archive/audit/00-audit-summary.md](../.archive/audit/00-audit-summary.md))
+## AUDIT — archived
 
-11-track audit complete 2026-08-12. Evidence in `results/audit/`. Reports archived in `.archive/audit/`. Proposed Failures.md rows were never filed.
-
-### P1 — all mapped and DONE (7)
-
-| ID | Finding | Mapped to |
-|----|---------|-----------|
-| AUDIT-EXPORTS-01 | `POST /api/exports` un-gated + raw disk write | TST-S22 **DONE** |
-| AUDIT-I18N-01 | `<html lang="en">` hardcoded | TST-S23 **DONE** |
-| AUDIT-SHOWROOMS-01 | `/showrooms/` hydration crash | TST-S24 **DONE** |
-| AUDIT-TOOLAUTOSUBMIT-01 | `toolautosubmit` React warning (41/51 routes) | TST-S25 **DONE** |
-| AUDIT-A11Y-01 | Hero color-contrast 3.28:1 (needs 4.5:1) | TST-S26 **DONE** |
-| AUDIT-MOBILE-01 | Touch targets <44×44 site-wide | TST-S27 **DONE** |
-| AUDIT-A11Y-02 | `aria-allowed-role` on Planner/Studio tool rail | TST-S28 **DONE** |
-
-### P2 — mapped (10)
-
-| ID | Finding | Mapped to |
-|----|---------|-----------|
-| AUDIT-P2-1 | `GET /api/git-user` leaks committer email | TST-S32 / PX-S07 **DONE** |
-| AUDIT-P2-2 | `audit-api-route-safety.mjs` skips "other" surface | TST-S31 / PX-S10 **DONE** |
-| AUDIT-P2-3 | CSP `script-src 'unsafe-inline'` | PX-S09 **OPEN** |
-| AUDIT-P2-4 | `htmlLang.ts` mis-maps fr/de/es → `*-IN` | TST-S35 **OPEN** |
-| AUDIT-P2-5 | LCP / CLS / no vitals reporters | WRK-S15 · SITE-S19 · SITE-S22 **OPEN** (COST-S05 owns homepage CLS — leave 10) |
-| AUDIT-P2-6 | Default test lane 17 fails | TST-S29 / TECH-S08 **OPEN** |
-| AUDIT-P2-7 | VR baselines only 6 marketing routes | TST-S34 / WRK-S16 **OPEN** |
-| AUDIT-P2-8 | Tech-docs lane JSON stale | TST-S30 / TECH-S07 **OPEN** |
-| AUDIT-P2-9 | `/ooplanner/projects/` 401 in bypass | OPS-S10 · WRK-S17 · PX-S11 **OPEN** |
-| AUDIT-P2-10 | Sitemap lists 308 `/planner/features/3d-view/` | OPS-S11 **OPEN** (COST-S04 overlap — leave 10) |
+11-track deep audit complete 2026-08-12. All 7 P1 findings resolved as DONE slices (TST-S22–S28). 10 P2 findings tracked as OPEN slices across plans above. Reports → [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summary.md). Evidence → `results/audit/`.
 
 ---
 
@@ -265,4 +238,4 @@ CHK-S01–S12 stay OPEN by design (session start) and are not in the 33.
 | Mobile app shell (10-phase) | [`oo-ux-shell-program.md`](./oo-ux-shell-program.md) | Plan awaiting approval |
 | Vercel cost + SEO | [`10-vercel-cost-seo-performance.md`](./10-vercel-cost-seo-performance.md) | COST-S00–S06 OPEN |
 
-85% programme: retired — Phase A in `.archive/audit/`; Phase B text remains in [`02-testing-plan.md`](./02-testing-plan.md).
+85% coverage thresholds: see [`02-testing-plan.md`](./02-testing-plan.md) § Phase B.

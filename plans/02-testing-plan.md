@@ -73,7 +73,7 @@ Evidence: [`.archive/audit/00-audit-summary.md`](../.archive/audit/00-audit-summ
 
 ## 85% strict quality program — Phase B (coverage thresholds)
 
-Not started. Not a new TST id. From retired [`oo-deep-audit-85-strict-quality-program.md`](./oo-deep-audit-85-strict-quality-program.md) § B. Proper tests enforced: `test:audit:hollow` 0 · `audit-gate-skips` 0 · `audit-eslint-disable` 0 · no `any`.
+Not started. Not a new TST id. Proper tests enforced: `test:audit:hollow` 0 · `audit-gate-skips` 0 · `audit-eslint-disable` 0 · no `any`.
 
 | File | Constant | Change |
 |------|----------|--------|

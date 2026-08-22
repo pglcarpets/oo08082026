@@ -18,13 +18,13 @@
     "coverage": "node ../node_modules/vitest/vitest.mjs run --coverage"
   },
   "dependencies": {
-    "@supabase/supabase-js": "^2.111.0",
+    "@supabase/supabase-js": "^2.112.3",
     "@phosphor-icons/react": "^2.1.10",
     "clsx": "2.1.1",
     "framer-motion": "^12.43.0",
     "fuse.js": "^7.5.0",
-    "highlight.js": "^11.11.1",
-    "mermaid": "^11.16.0",
+    "highlight.js": "^11.12.0",
+    "mermaid": "^11.17.0",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-router-dom": "^7.18.2"
@@ -32,18 +32,18 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.3.3",
     "@testing-library/react": "^16.3.2",
-    "@types/node": "^26.1.2",
+    "@types/node": "^26.2.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.4",
     "@vitejs/plugin-react": "^6.0.5",
-    "@vitest/coverage-v8": "^4.1.10",
+    "@vitest/coverage-v8": "^4.1.11",
     "happy-dom": "^20.11.1",
-    "postcss": "8.5.25",
+    "postcss": "8.5.26",
     "tailwindcss": "^4.3.3",
     "ts-morph": "^28.0.0",
     "typescript": "^7.0.2",
     "vite": "^8.2.0",
-    "vitest": "^4.1.10",
+    "vitest": "^4.1.11",
     "zod": "^4.4.3"
   }
 }
